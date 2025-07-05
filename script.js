@@ -527,7 +527,13 @@ function initStatsAnimation() {
             const progress = Math.min(elapsed / duration, 1);
             
             const currentNumber = Math.floor(start + (end - start) * progress);
-            element.textContent = currentNumber.toLocaleString() + (end >= 1000 ? 'K+' : '%');
+            if (end === 95) {
+                element.textContent = currentNumber + '%';
+            } else if (end === 100000) {
+                element.textContent = Math.floor(currentNumber / 1000) + 'K+';
+            } else {
+                element.textContent = currentNumber.toLocaleString() + '+';
+            }
             
             if (progress < 1) {
                 requestAnimationFrame(animate);
@@ -543,7 +549,7 @@ function initStatsAnimation() {
             if (entry.isIntersecting) {
                 const stats = entry.target.querySelectorAll('.stat h3');
                 stats.forEach((stat, index) => {
-                    const values = [100, 30000, 95]; // 对应的数值
+                    const values = [100000, 30000, 95]; // 对应的数值
                     setTimeout(() => {
                         animateNumber(stat, 0, values[index], 2000);
                     }, index * 200);

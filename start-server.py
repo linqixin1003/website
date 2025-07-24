@@ -12,7 +12,7 @@ import sys
 from pathlib import Path
 
 # 配置
-PORT = 8000
+PORT = 3000
 HOST = 'localhost'
 
 def main():

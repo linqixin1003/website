@@ -110,7 +110,42 @@ const languages = {
         'journal.hero.title': '📔 Keeping a Bird Watching Journal',
         'journal.hero.subtitle': 'Document your birding adventures and build a personal record of discoveries',
         'beginners.hero.title': '🌟 Bird Watching for Beginners',
-        'beginners.hero.subtitle': 'Your complete guide to starting an amazing birding journey'
+        'beginners.hero.subtitle': 'Your complete guide to starting an amazing birding journey',
+        
+        // Scientific Wonders translations
+        'scientific.hero.title': '🔬 Scientific Wonders',
+        'scientific.hero.subtitle': 'Amazing discoveries and scientific insights about birds',
+        'scientific.category': 'Scientific Wonders',
+        'scientific.articles.flight.title': 'The Mechanics of Bird Flight',
+        'scientific.articles.flight.desc': 'Discover the fascinating physics and biomechanics behind bird flight, from wing structure to aerodynamic principles.',
+        'scientific.articles.magnetic.title': 'Magnetic Navigation in Birds',
+        'scientific.articles.magnetic.desc': 'Explore how birds use Earth\'s magnetic field for navigation during migration and daily activities.',
+        'scientific.articles.hummingbird.title': 'Hummingbird Flight Mechanics',
+        'scientific.articles.hummingbird.desc': 'Uncover the unique flight capabilities of hummingbirds, including hovering and backward flight.',
+        'scientific.articles.intelligence.title': 'Bird Intelligence and Cognition',
+        'scientific.articles.intelligence.desc': 'Delve into the remarkable intelligence of birds, from problem-solving to tool use.',
+        'scientific.articles.feathers.title': 'The Structure and Function of Feathers',
+        'scientific.articles.feathers.desc': 'Learn about the complex structure of feathers and their multiple functions.',
+        'scientific.articles.vision.title': 'Extraordinary Bird Vision',
+        'scientific.articles.vision.desc': 'Discover how birds see the world with their superior vision capabilities.',
+        'scientific.articles.eggs.title': 'The Science of Egg Development',
+        'scientific.articles.eggs.desc': 'Explore the remarkable process of avian embryonic development.',
+        'scientific.articles.communication.title': 'Bird Communication and Vocalizations',
+        'scientific.articles.communication.desc': 'Understand the complex world of bird communication and song learning.',
+        'scientific.articles.migration.title': 'Migration Physiology',
+        'scientific.articles.migration.desc': 'Learn about the physiological adaptations that enable long-distance migration.',
+        'scientific.articles.biomechanics.title': 'Biomechanics of Bird Movement',
+        'scientific.articles.biomechanics.desc': 'Explore the biomechanical principles behind various bird movements.',
+        
+        // Pet Care translations
+        'petcare.hero.title': '🐦 Pet Care',
+        'petcare.hero.subtitle': 'Complete guide to caring for your feathered companions',
+        'petcare.category': 'Pet Care',
+        
+        // Ecology translations
+        'ecology.hero.title': '🌿 Ecology',
+        'ecology.hero.subtitle': 'Understanding bird ecology and environmental relationships',
+        'ecology.category': 'Ecology'
     },
     'zh': {
         'nav.home': '首页',

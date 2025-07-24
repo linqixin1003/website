@@ -1,23 +1,29 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>图片使用示例 - BirdAiSnap</title>
+    <title>图片演示 - BirdAiSnap</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="image-styles.css">
+    <link rel="stylesheet" href="article-images.css">
+    <script src="image-loader.js"></script>
     <style>
-        .demo-section {
-            margin: 3rem 0;
+        .demo-container {
+            max-width: 1200px;
+            margin: 2rem auto;
             padding: 2rem;
             background: white;
             border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
         
+        .demo-section {
+            margin-bottom: 3rem;
+        }
+        
         .demo-title {
-            font-size: 1.5rem;
-            font-weight: 600;
+            font-size: 1.8rem;
+            font-weight: 700;
             color: #333;
             margin-bottom: 1rem;
             border-bottom: 2px solid #667eea;
@@ -25,50 +31,98 @@
         }
         
         .demo-description {
+            font-size: 1.1rem;
             color: #666;
             margin-bottom: 2rem;
             line-height: 1.6;
         }
         
-        .code-example {
-            background: #f8f9fa;
-            border: 1px solid #e9ecef;
-            border-radius: 8px;
-            padding: 1rem;
-            margin: 1rem 0;
-            font-family: 'Monaco', 'Consolas', monospace;
-            font-size: 0.9rem;
-            overflow-x: auto;
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
         }
         
-        .random-images {
+        .image-item {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+        }
+        
+        .image-item h4 {
+            margin-bottom: 1rem;
+            color: #333;
+        }
+        
+        .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 1rem;
-            margin: 2rem 0;
+            margin-top: 2rem;
         }
         
-        .hero-demo {
-            height: 400px;
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('images/birds/species/bird-image-001.png');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
             text-align: center;
-            border-radius: 12px;
         }
         
-        .hero-content h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
         }
         
-        .hero-content p {
-            font-size: 1.2rem;
+        .stat-label {
+            font-size: 0.9rem;
             opacity: 0.9;
+        }
+        
+        .article-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .article-link {
+            display: block;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s ease;
+            border-left: 4px solid #667eea;
+        }
+        
+        .article-link:hover {
+            background: #e9ecef;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .article-category {
+            font-size: 0.8rem;
+            color: #667eea;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+        
+        .article-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .article-meta {
+            font-size: 0.8rem;
+            color: #666;
         }
     </style>
 </head>
@@ -82,175 +136,177 @@
             <ul class="nav-menu">
                 <li><a href="index.html">首页</a></li>
                 <li><a href="knowledge.html">知识中心</a></li>
-                <li><a href="image-demo.html" class="active">图片示例</a></li>
+                <li><a href="image-demo.html" class="active">图片演示</a></li>
             </ul>
         </div>
     </nav>
 
-    <div class="container" style="margin-top: 100px;">
-        <h1 style="text-align: center; margin-bottom: 3rem; color: #333;">📷 图片使用示例</h1>
-
-        <!-- 基础响应式图片 -->
-        <div class="demo-section">
-            <h2 class="demo-title">1. 基础响应式图片</h2>
-            <p class="demo-description">使用 ImageManager 创建的响应式图片，自动适配不同屏幕尺寸。</p>
+    <main>
+        <div class="demo-container">
+            <h1 style="text-align: center; color: #333; margin-bottom: 2rem;">🖼️ 文章图片系统演示</h1>
             
-            <div class="image-container">
-                <img src="images/birds/species/bird-image-001.png" 
-                     alt="美丽的鸟类物种图片" 
-                     class="responsive-image"
-                     loading="lazy">
-                <figcaption>示例：美丽的鸟类物种图片</figcaption>
-            </div>
-
-            <div class="code-example">
-&lt;img src="images/birds/species/bird-image-001.png" 
-     alt="美丽的鸟类物种图片" 
-     class="responsive-image"
-     loading="lazy"&gt;
-            </div>
-        </div>
-
-        <!-- 图片画廊 -->
-        <div class="demo-section">
-            <h2 class="demo-title">2. 图片画廊</h2>
-            <p class="demo-description">展示多张图片的网格布局，支持点击查看大图。</p>
-            
-            <div class="image-gallery" id="bird-gallery">
-                <!-- 图片将通过JavaScript动态加载 -->
-            </div>
-
-            <div class="code-example">
-&lt;div class="image-gallery"&gt;
-    &lt;div class="gallery-item"&gt;
-        &lt;img src="images/birds/species/bird-image-002.png" 
-             alt="鸟类图片" 
-             class="gallery-image"&gt;
-    &lt;/div&gt;
-&lt;/div&gt;
-            </div>
-        </div>
-
-        <!-- 文章内图片 -->
-        <div class="demo-section">
-            <h2 class="demo-title">3. 文章内图片</h2>
-            <p class="demo-description">在文章内容中使用的图片样式。</p>
-            
-            <div style="text-align: justify; line-height: 1.8;">
-                <p>鸟类是地球上最令人着迷的生物之一。它们拥有独特的飞行能力，美丽的羽毛，以及复杂的社会行为。</p>
-                
-                <img src="images/birds/species/bird-image-003.png" 
-                     alt="鸟类行为观察" 
-                     class="article-image">
-                
-                <p>通过观察鸟类的行为，我们可以了解它们的生活习性、觅食方式和社交模式。这些知识不仅有助于我们更好地保护鸟类，也能让我们更深入地理解自然生态系统的复杂性。</p>
-                
-                <img src="images/birds/species/bird-image-004.png" 
-                     alt="鸟类栖息环境" 
-                     class="article-image-small">
-                
-                <p>不同的鸟类适应了不同的栖息环境，从森林到湿地，从城市到荒野。每种环境都为鸟类提供了独特的生存条件和挑战。</p>
-            </div>
-        </div>
-
-        <!-- 背景图片 -->
-        <div class="demo-section">
-            <h2 class="demo-title">4. 背景图片</h2>
-            <p class="demo-description">使用鸟类图片作为背景的英雄区域。</p>
-            
-            <div class="hero-demo">
-                <div class="hero-content">
-                    <h2>探索鸟类世界</h2>
-                    <p>发现自然界最美丽的生物</p>
+            <!-- 统计信息 -->
+            <div class="demo-section">
+                <h2 class="demo-title">📊 系统统计</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">73</div>
+                        <div class="stat-label">鸟类图片</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">50</div>
+                        <div class="stat-label">文章数量</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">500</div>
+                        <div class="stat-label">多语言文件</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">10</div>
+                        <div class="stat-label">支持语言</div>
+                    </div>
                 </div>
             </div>
-
-            <div class="code-example">
-.hero-background {
-    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
-                url('images/birds/species/bird-image-001.png');
-    background-size: cover;
-    background-position: center;
-}
-            </div>
-        </div>
-
-        <!-- 懒加载示例 -->
-        <div class="demo-section">
-            <h2 class="demo-title">5. 懒加载图片</h2>
-            <p class="demo-description">使用懒加载技术优化页面性能。</p>
             
-            <div class="random-images" id="lazy-images">
-                <!-- 懒加载图片将通过JavaScript动态生成 -->
-            </div>
-
-            <div class="code-example">
-&lt;img data-src="images/birds/species/bird-image-005.png" 
-     alt="懒加载图片" 
-     class="lazy-loading"&gt;
-            </div>
-        </div>
-
-        <!-- 错误处理示例 -->
-        <div class="demo-section">
-            <h2 class="demo-title">6. 图片错误处理</h2>
-            <p class="demo-description">当图片加载失败时的占位符显示。</p>
-            
-            <img src="images/birds/species/non-existent-image.png" 
-                 alt="不存在的图片" 
-                 class="responsive-image image-error-demo">
-
-            <div class="code-example">
-// JavaScript 错误处理
-img.onerror = function() {
-    this.src = 'images/ui/placeholders/image-not-found.svg';
-    this.classList.add('image-error');
-};
-            </div>
-        </div>
-    </div>
-
-    <!-- 引入图片管理脚本 -->
-    <script src="image-manager.js"></script>
-    <script>
-        // 页面加载完成后初始化图片功能
-        document.addEventListener('DOMContentLoaded', function() {
-            // 1. 创建图片画廊
-            const galleryImages = [
-                { path: 'images/birds/species/bird-image-002.png', alt: '鸟类物种图片 2', caption: '美丽的鸟类物种' },
-                { path: 'images/birds/species/bird-image-003.png', alt: '鸟类物种图片 3', caption: '自然栖息环境中的鸟类' },
-                { path: 'images/birds/species/bird-image-004.png', alt: '鸟类物种图片 4', caption: '鸟类行为观察' },
-                { path: 'images/birds/species/bird-image-005.png', alt: '鸟类物种图片 5', caption: '鸟类觅食行为' },
-                { path: 'images/birds/species/bird-image-006.png', alt: '鸟类物种图片 6', caption: '鸟类社交行为' },
-                { path: 'images/birds/species/bird-image-007.png', alt: '鸟类物种图片 7', caption: '鸟类繁殖行为' }
-            ];
-            
-            imageManager.createGallery(galleryImages, 'bird-gallery');
-
-            // 2. 生成懒加载图片
-            const lazyContainer = document.getElementById('lazy-images');
-            for (let i = 8; i <= 15; i++) {
-                const img = document.createElement('img');
-                img.dataset.src = `images/birds/species/bird-image-${i.toString().padStart(3, '0')}.png`;
-                img.alt = `懒加载鸟类图片 ${i}`;
-                img.className = 'responsive-image lazy-loading';
-                lazyContainer.appendChild(img);
+            <!-- 头图演示 -->
+            <div class="demo-section">
+                <h2 class="demo-title">🎨 文章头图演示</h2>
+                <p class="demo-description">
+                    每篇文章都配有精美的鸟类头图，图片经过优化处理，支持响应式显示和懒加载。
+                </p>
                 
-                // 添加到懒加载观察器
-                imageManager.addLazyImage(img);
-            }
+                <div class="article-hero-image">
+                    <img src="images/birds/species/bird-image-011.png" 
+                         alt="Getting Started with Bird Watching - Beautiful bird illustration" 
+                         class="hero-image responsive-image" 
+                         loading="eager">
+                </div>
+                
+                <p style="text-align: center; margin-top: 1rem; color: #666; font-style: italic;">
+                    示例：观鸟入门文章的头图
+                </p>
+            </div>
+            
+            <!-- 内容图片演示 -->
+            <div class="demo-section">
+                <h2 class="demo-title">📷 文章内容图片</h2>
+                <p class="demo-description">
+                    文章内容中穿插精美的鸟类图片，增强阅读体验。
+                </p>
+                
+                <div class="image-grid">
+                    <div class="image-item">
+                        <h4>内容配图 1</h4>
+                        <div class="article-image">
+                            <img src="images/birds/species/bird-image-047.png" 
+                                 alt="Beautiful bird illustration 1" 
+                                 class="content-image responsive-image" 
+                                 loading="lazy">
+                            <p class="image-caption">图1: 自然栖息地中的美丽鸟类</p>
+                        </div>
+                    </div>
+                    
+                    <div class="image-item">
+                        <h4>内容配图 2</h4>
+                        <div class="article-image">
+                            <img src="images/birds/species/bird-image-025.png" 
+                                 alt="Beautiful bird illustration 2" 
+                                 class="content-image responsive-image" 
+                                 loading="lazy">
+                            <p class="image-caption">图2: 鸟类行为观察示例</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 文章链接演示 -->
+            <div class="demo-section">
+                <h2 class="demo-title">📚 文章示例</h2>
+                <p class="demo-description">
+                    点击下方链接查看完整的文章页面，体验图片在实际文章中的效果。
+                </p>
+                
+                <div class="article-links">
+                    <a href="birdwatching/01-article.html" class="article-link">
+                        <div class="article-category">观鸟指南</div>
+                        <div class="article-title">观鸟入门指南</div>
+                        <div class="article-meta">包含头图和内容图片</div>
+                    </a>
+                    
+                    <a href="scientific-wonders/01-article.html" class="article-link">
+                        <div class="article-category">科学奇观</div>
+                        <div class="article-title">鸟类飞行机制</div>
+                        <div class="article-meta">科学插图配合说明</div>
+                    </a>
+                    
+                    <a href="pet-care/01-article.html" class="article-link">
+                        <div class="article-category">宠物护理</div>
+                        <div class="article-title">选择合适的宠物鸟</div>
+                        <div class="article-meta">实用图片指导</div>
+                    </a>
+                    
+                    <a href="ecology/01-article.html" class="article-link">
+                        <div class="article-category">生态学</div>
+                        <div class="article-title">鸟类栖息地与生态系统</div>
+                        <div class="article-meta">生态环境图片展示</div>
+                    </a>
+                    
+                    <a href="knowledge/01-article.html" class="article-link">
+                        <div class="article-category">知识库</div>
+                        <div class="article-title">鸟类学入门</div>
+                        <div class="article-meta">学术图片资料</div>
+                    </a>
+                    
+                    <a href="zh/birdwatching/01-article.html" class="article-link">
+                        <div class="article-category">中文版本</div>
+                        <div class="article-title">观鸟入门指南（中文）</div>
+                        <div class="article-meta">多语言图片支持</div>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- 技术特性 -->
+            <div class="demo-section">
+                <h2 class="demo-title">⚡ 技术特性</h2>
+                <div class="demo-description">
+                    <ul style="list-style-type: none; padding: 0;">
+                        <li style="margin-bottom: 0.5rem;">✅ <strong>响应式设计</strong> - 适配各种屏幕尺寸</li>
+                        <li style="margin-bottom: 0.5rem;">✅ <strong>懒加载优化</strong> - 提高页面加载速度</li>
+                        <li style="margin-bottom: 0.5rem;">✅ <strong>图片压缩</strong> - 优化网络传输</li>
+                        <li style="margin-bottom: 0.5rem;">✅ <strong>错误处理</strong> - 图片加载失败时显示占位符</li>
+                        <li style="margin-bottom: 0.5rem;">✅ <strong>多语言支持</strong> - 10种语言版本</li>
+                        <li style="margin-bottom: 0.5rem;">✅ <strong>SEO优化</strong> - 合适的alt文本和图片标题</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
 
-            // 3. 处理图片错误
-            const errorImg = document.querySelector('.image-error-demo');
-            imageManager.handleImageError(errorImg);
-
-            // 4. 预加载关键图片
-            imageManager.preloadImages([
-                'birds/species/bird-image-001.png',
-                'birds/species/bird-image-002.png',
-                'birds/species/bird-image-003.png'
-            ]);
-        });
-    </script>
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>BirdAiSnap</h3>
+                    <p>智能鸟类识别，AI技术驱动</p>
+                </div>
+                <div class="footer-section">
+                    <h4>快速链接</h4>
+                    <ul>
+                        <li><a href="index.html">首页</a></li>
+                        <li><a href="knowledge.html">知识中心</a></li>
+                        <li><a href="image-demo.html">图片演示</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>联系我们</h4>
+                    <p>邮箱: lingjuetech@gmail.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 杭州灵觉科技有限公司. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>蜂鸟的超高速飞行机制 - BirdAiSnap</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f5; color: #333; }
+        .status-bar { position: fixed; top: 0; left: 0; right: 0; height: 44px; background: rgba(0,0,0,0.8); color: white; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; font-size: 16px; font-weight: 600; z-index: 1000; }
+        .back-button { position: fixed; top: 60px; left: 20px; width: 36px; height: 36px; background: rgba(0,0,0,0.6); border: none; border-radius: 50%; color: white; font-size: 18px; cursor: pointer; z-index: 999; display: flex; align-items: center; justify-content: center; }
+        .hero-image { width: 100%; height: 400px; background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><rect fill="%232196f3" width="400" height="400"/><circle cx="200" cy="200" r="60" fill="%23FFF" opacity="0.9"/><path d="M170 180 Q200 160 230 180 Q200 200 170 180" fill="%232196f3"/><circle cx="190" cy="185" r="4" fill="%23000"/><path d="M200 190 L205 200 L195 200 Z" fill="%23FFA500"/><path d="M140 200 Q170 180 200 200 Q230 180 260 200" stroke="%23FFF" stroke-width="2" fill="none"/></svg>') center/cover; position: relative; margin-top: 44px; }
+        .content { background: white; margin: -30px 20px 20px 20px; border-radius: 20px; padding: 30px 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); min-height: 80vh; }
+        .title { font-size: 24px; font-weight: 700; color: #1a1a1a; margin-bottom: 30px; line-height: 1.3; }
+        .quote-box { background: linear-gradient(135deg, #e3f2fd, #bbdefb); border-left: 4px solid #2196f3; padding: 20px; margin: 25px 0; border-radius: 8px; position: relative; }
+        .quote-box::before { content: '"'; font-size: 48px; color: #2196f3; position: absolute; top: -5px; left: 15px; font-family: serif; line-height: 1; }
+        .quote-text { font-size: 18px; font-weight: 600; color: #1565c0; margin-left: 25px; line-height: 1.4; }
+        .main-text { font-size: 16px; line-height: 1.8; color: #333; margin: 20px 0; text-align: justify; }
+        .section-title { font-size: 20px; font-weight: 600; color: #2196f3; margin: 30px 0 15px 0; border-bottom: 2px solid #bbdefb; padding-bottom: 8px; }
+        .tip-box { background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px; padding: 15px; margin: 20px 0; border-left: 4px solid #28a745; }
+        .tip-title { font-weight: 600; color: #28a745; margin-bottom: 8px; }
+        .emoji { font-size: 18px; margin: 0 2px; }
+        .progress-container { position: fixed; bottom: 0; left: 0; right: 0; height: 60px; background: linear-gradient(to top, rgba(255,255,255,0.95), transparent); display: flex; align-items: center; justify-content: center; z-index: 998; }
+        .progress-bar { width: 200px; height: 4px; background: rgba(0,0,0,0.1); border-radius: 2px; overflow: hidden; }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, #2196f3, #64b5f6); width: 0%; border-radius: 2px; transition: width 0.3s ease; }
+        @media (max-width: 375px) { .content { margin: -30px 15px 20px 15px; padding: 25px 15px; } .title { font-size: 22px; } .main-text { font-size: 15px; } }
+    </style>
+</head>
+<body>
+    <div class="status-bar"><span id="current-time">16:27</span><div style="display: flex; gap: 5px;"><span>📶</span><span>📶</span><span style="font-size: 14px;">🔋</span></div></div>
+    <button class="back-button" onclick="history.back()">←</button>
+    <div class="hero-image"></div>
+    <div class="content">
+        <h1 class="title">蜂鸟的超高速飞行机制</h1>
+        <div class="quote-box"><div class="quote-text">解密自然界最精密的飞行机器</div></div>
+        <div class="main-text">蜂鸟是自然界中最令人惊叹的飞行专家，它们能够以每秒50-80次的频率拍打翅膀，实现悬停、后退甚至倒飞等高难度动作<span class="emoji">🐦</span>。这种独特的飞行能力背后隐藏着复杂而精妙的生物力学原理。</div>
+        <div class="section-title">8字形翼尖轨迹的奥秘</div>
+        <div class="main-text">蜂鸟的翅膀运动轨迹呈现独特的8字形模式，这与其他鸟类的椭圆形轨迹截然不同<span class="emoji">∞</span>。在这种运动模式下，翅膀在前拍和后拍过程中都能产生升力，使蜂鸟能够保持稳定的悬停状态。</div>
+        <div class="tip-box"><div class="tip-title">🔬 科学数据</div>蜂鸟的翅膀每秒拍打次数：小型蜂鸟80次，大型蜂鸟50次，是所有鸟类中频率最高的。</div>
+        <div class="main-text">这种8字形运动需要极其精确的肌肉控制和神经协调。蜂鸟的胸肌占其体重的25-30%，远高于其他鸟类的15-20%<span class="emoji">💪</span>。这些强大的肌肉为高频拍翼提供了必要的动力支持。</div>
+        <div class="section-title">独特的翼关节结构</div>
+        <div class="main-text">蜂鸟的肩关节具有特殊的球窝结构，允许翅膀在几乎所有方向上自由旋转<span class="emoji">🔄</span>。这种灵活性使蜂鸟能够精确控制翼面角度，在不同的飞行阶段产生所需的力量方向。</div>
+        <div class="main-text">与其他鸟类不同，蜂鸟的翅膀主要由手骨支撑，前臂骨相对较短。这种结构减少了翅膀的惯性，使高频拍翼成为可能<span class="emoji">🦴</span>。同时，翅膀的刚性也得到了增强，能够承受高速拍打产生的巨大应力。</div>
+        <div class="section-title">能量代谢的极限挑战</div>
+        <div class="main-text">蜂鸟的飞行是一项极其耗能的活动，其代谢率在飞行时可达静息时的10-15倍<span class="emoji">⚡</span>。为了维持这种高强度的能量消耗，蜂鸟必须频繁进食，每天消耗相当于其体重一半的花蜜。</div>
+        <div class="main-text">蜂鸟的心脏跳动频率可达每分钟1200次，血液循环速度极快，确保肌肉能够获得充足的氧气和营养供应<span class="emoji">❤️</span>。它们的呼吸频率也相应提高，每分钟可达250次。</div>
+        <div class="section-title">精密的飞行控制系统</div>
+        <div class="main-text">蜂鸟的大脑中有专门的区域负责处理飞行控制信息，这些区域的神经元密度极高<span class="emoji">🧠</span>。它们能够在毫秒级的时间内调整翅膀的拍打频率、角度和幅度，实现精确的空间定位。</div>
+        <div class="tip-box"><div class="tip-title">🌟 仿生应用</div>工程师们正在研究蜂鸟的飞行机制，开发能够悬停和精确机动的微型无人机。</div>
+        <div class="main-text">蜂鸟还具备出色的视觉系统，能够快速识别花朵的位置和形状。它们的眼睛能够感知紫外光，这帮助它们找到富含花蜜的花朵<span class="emoji">👁️</span>。这种视觉-运动协调系统的精确性令人叹为观止。</div>
+        <div class="main-text">蜂鸟的飞行机制代表了生物工程学的巅峰成就，它们在有限的体型内集成了最先进的飞行技术<span class="emoji">✨</span>。研究蜂鸟的飞行原理不仅能帮助我们理解生物进化的奇迹，还为未来的航空技术发展提供了宝贵的灵感。</div>
+    </div>
+    <div class="progress-container"><div class="progress-bar"><div class="progress-fill"></div></div></div>
+    <script>
+        function updateTime() { const now = new Date(); const timeString = now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0'); document.getElementById('current-time').textContent = timeString; }
+        function updateProgress() { const scrolled = window.pageYOffset; const maxHeight = document.body.scrollHeight - window.innerHeight; const progress = Math.min((scrolled / maxHeight) * 100, 100); document.querySelector('.progress-fill').style.width = progress + '%'; }
+        updateTime(); setInterval(updateTime, 60000); window.addEventListener('scroll', updateProgress); updateProgress();
+    </script>
+</body>
+</html>

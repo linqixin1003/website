@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>鸟类生态学 - BirdAiSnap</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+        
+        .status-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 44px;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            font-size: 16px;
+            font-weight: 600;
+            z-index: 1000;
+        }
+        
+        .back-button {
+            position: fixed;
+            top: 60px;
+            left: 20px;
+            width: 36px;
+            height: 36px;
+            background: rgba(0,0,0,0.6);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><rect fill="%234CAF50" width="400" height="400"/><circle cx="200" cy="100" r="40" fill="%23FFF9C4"/><rect x="50" y="200" width="300" height="150" fill="%2388C999" rx="20"/><circle cx="120" cy="250" r="15" fill="%23FFF"/><circle cx="200" cy="270" r="12" fill="%23FFF"/><circle cx="280" cy="250" r="18" fill="%23FFF"/><path d="M100 320 Q150 300 200 320 Q250 300 300 320" stroke="%23FFF" stroke-width="3" fill="none"/></svg>') center/cover;
+            position: relative;
+            margin-top: 44px;
+        }
+        
+        .content {
+            background: white;
+            margin: -30px 20px 20px 20px;
+            border-radius: 20px;
+            padding: 30px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        .title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            line-height: 1.3;
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, #e8f5e8, #c8e6c9);
+            border-left: 4px solid #4caf50;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .quote-box::before {
+            content: '"';
+            font-size: 48px;
+            color: #4caf50;
+            position: absolute;
+            top: -5px;
+            left: 15px;
+            font-family: serif;
+            line-height: 1;
+        }
+        
+        .quote-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2e7d32;
+            margin-left: 25px;
+            line-height: 1.4;
+        }
+        
+        .main-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            margin: 20px 0;
+            text-align: justify;
+        }
+        
+        .emoji {
+            font-size: 18px;
+            margin: 0 2px;
+        }
+        
+        .progress-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: linear-gradient(to top, rgba(255,255,255,0.95), transparent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 998;
+        }
+        
+        .progress-bar {
+            width: 200px;
+            height: 4px;
+            background: rgba(0,0,0,0.1);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4caf50, #81c784);
+            width: 65%;
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+        
+        @media (max-width: 375px) {
+            .content {
+                margin: -30px 15px 20px 15px;
+                padding: 25px 15px;
+            }
+            
+            .title {
+                font-size: 22px;
+            }
+            
+            .main-text {
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 状态栏 -->
+    <div class="status-bar">
+        <span id="current-time">16:27</span>
+        <div style="display: flex; gap: 5px;">
+            <span>📶</span>
+            <span>📶</span>
+            <span style="font-size: 14px;">🔋</span>
+        </div>
+    </div>
+    
+    <!-- 返回按钮 -->
+    <button class="back-button" onclick="history.back()">
+        ←
+    </button>
+    
+    <!-- 英雄图片 -->
+    <div class="hero-image"></div>
+    
+    <!-- 主要内容 -->
+    <div class="content">
+        <h1 class="title">鸟类生态学</h1>
+        
+        <div class="quote-box">
+            <div class="quote-text">
+                理解鸟类在生态系统中的重要作用
+            </div>
+        </div>
+        
+        <div class="main-text">
+            鸟类是生态系统中不可或缺的组成部分，它们在维持生态平衡方面发挥着至关重要的作用<span class="emoji">🌿</span>。从传粉到种子传播，从害虫控制到营养循环，鸟类的生态功能影响着整个自然界的健康运转。
+        </div>
+        
+        <div class="main-text">
+            许多鸟类是重要的传粉者，特别是蜂鸟和一些热带鸟类，它们帮助植物繁殖并维持植物多样性<span class="emoji">🌺</span>。同时，鸟类也是天然的害虫控制者，一只燕子每天可以捕食数百只昆虫，为农业生产提供了巨大的生态服务价值。
+        </div>
+        
+        <div class="main-text">
+            鸟类的迁徙行为连接着不同的生态系统，它们在繁殖地和越冬地之间传递营养物质和能量<span class="emoji">🗺️</span>。然而，气候变化、栖息地破坏和人类活动正在威胁着鸟类的生存。保护鸟类栖息地、建立迁徙走廊和减少环境污染是维护生态平衡的关键措施<span class="emoji">🛡️</span>。
+        </div>
+    </div>
+    
+    <!-- 进度条 -->
+    <div class="progress-container">
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
+        </div>
+    </div>
+    
+    <script>
+        // 更新时间
+        function updateTime() {
+            const now = new Date();
+            const timeString = now.getHours().toString().padStart(2, '0') + ':' + 
+                             now.getMinutes().toString().padStart(2, '0');
+            document.getElementById('current-time').textContent = timeString;
+        }
+        
+        // 模拟阅读进度
+        function updateProgress() {
+            const scrolled = window.pageYOffset;
+            const maxHeight = document.body.scrollHeight - window.innerHeight;
+            const progress = Math.min((scrolled / maxHeight) * 100, 100);
+            document.querySelector('.progress-fill').style.width = progress + '%';
+        }
+        
+        // 初始化
+        updateTime();
+        setInterval(updateTime, 60000);
+        
+        window.addEventListener('scroll', updateProgress);
+        updateProgress();
+    </script>
+</body>
+</html>

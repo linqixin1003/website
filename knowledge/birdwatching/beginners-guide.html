@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bird Watching for Beginners - BirdAiSnap</title>
+    <link rel="stylesheet" href="../../styles.css">
+    <link rel="stylesheet" href="../../knowledge.css">
+    <link rel="stylesheet" href="../../mobile-styles.css">
+    <link rel="stylesheet" href="../../mobile-enhancement.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .article-hero {
+            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
+        }
+        .article-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        .article-hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .article-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        .content-section {
+            margin-bottom: 60px;
+        }
+        .content-section h2 {
+            color: #2d3748;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #74b9ff;
+            padding-bottom: 10px;
+        }
+        .content-section h3 {
+            color: #4a5568;
+            font-size: 1.5rem;
+            margin: 30px 0 15px;
+        }
+        .content-section p {
+            line-height: 1.8;
+            margin-bottom: 20px;
+            color: #4a5568;
+        }
+        .bird-image {
+            width: 100%;
+            max-width: 600px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin: 30px auto;
+            display: block;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+        .bird-image:hover {
+            transform: scale(1.05);
+        }
+        .beginner-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+        .beginner-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            border-top: 4px solid #74b9ff;
+        }
+        .beginner-card:hover {
+            transform: translateY(-5px);
+        }
+        .beginner-card h4 {
+            color: #74b9ff;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+        .beginner-icon {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+        .step-by-step {
+            background: #f7fafc;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+        .step-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .step-item:last-child {
+            margin-bottom: 0;
+        }
+        .step-number {
+            background: #74b9ff;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+        .step-content h5 {
+            color: #2d3748;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        .step-content p {
+            margin: 0;
+            color: #4a5568;
+            line-height: 1.6;
+        }
+        .common-birds {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .bird-species-card {
+            background: #f7fafc;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            border-left: 4px solid #74b9ff;
+        }
+        .bird-species-card h5 {
+            color: #2d3748;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        .bird-species-card .habitat {
+            color: #74b9ff;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .bird-species-card p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #4a5568;
+        }
+        .encouragement-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .encouragement-box h4 {
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+        }
+        .quick-tips {
+            background: #e6fffa;
+            border: 2px solid #4fd1c7;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+        .quick-tips h4 {
+            color: #2c7a7b;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+        .quick-tips ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        .quick-tips li {
+            color: #2d3748;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+        .mistake-warning {
+            background: #fff5f5;
+            border: 2px solid #fc8181;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+        .mistake-warning h4 {
+            color: #e53e3e;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+        .mistake-warning ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        .mistake-warning li {
+            color: #2d3748;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2><a href="../../index.html">BirdAiSnap</a></h2>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../../index.html#home" data-i18n="nav.home">Home</a></li>
+                <li><a href="../../index.html#features" data-i18n="nav.features">Features</a></li>
+                <li><a href="../../index.html#about" data-i18n="nav.about">About</a></li>
+                <li><a href="../../index.html#contact" data-i18n="nav.contact">Contact</a></li>
+                <li><a href="../../knowledge.html" data-i18n="nav.knowledge">Knowledge</a></li>
+            </ul>
+            <div class="language-switcher">
+                <button id="langSwitch" class="lang-btn" onclick="toggleLanguage()">
+                    <span class="lang-icon">🌐</span>
+                    <span class="lang-text" data-i18n="nav.language">Language</span>
+                    <span id="currentLang">EN</span>
+                </button>
+            </div>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 文章标题区 -->
+    <section class="article-hero">
+        <div class="container">
+            <h1 data-i18n="beginners.hero.title">🌟 Bird Watching for Beginners</h1>
+            <p data-i18n="beginners.hero.subtitle">Your complete guide to starting an amazing birding journey</p>
+        </div>
+    </section>
+
+    <!-- 文章内容 -->
+    <div class="article-content">
+        <div class="content-section">
+            <img src="https://images.unsplash.com/photo-1574263867128-a3d5c1b1deae?w=800&h=400&fit=crop" alt="Beginner bird watcher with binoculars" class="bird-image">
+            
+            <h2>🚀 Welcome to Bird Watching!</h2>
+            <p>Bird watching is one of the most rewarding and accessible hobbies in the world. Whether you're drawn to the beauty of birds, fascinated by their behaviors, or simply enjoy being outdoors, birding offers endless opportunities for discovery and wonder.</p>
+            
+            <h3>Why Start Bird Watching?</h3>
+            <p>Bird watching combines outdoor adventure, scientific learning, and peaceful observation in a way that appeals to people of all ages and backgrounds. It's a hobby that grows with you, offering new challenges and rewards at every level.</p>
+            
+            <div class="beginner-grid">
+                <div class="beginner-card">
+                    <span class="beginner-icon">🌿</span>
+                    <h4>Connect with Nature</h4>
+                    <p>Develop a deeper appreciation for the natural world and your local environment through regular observation.</p>
+                </div>
+                <div class="beginner-card">
+                    <span class="beginner-icon">🧘</span>
+                    <h4>Stress Relief</h4>
+                    <p>Find peace and mindfulness in the quiet observation of birds and their natural behaviors.</p>
+                </div>
+                <div class="beginner-card">
+                    <span class="beginner-icon">🏃</span>
+                    <h4>Gentle Exercise</h4>
+                    <p>Enjoy walking and hiking while pursuing birds, combining physical activity with mental stimulation.</p>
+                </div>
+                <div class="beginner-card">
+                    <span class="beginner-icon">👥</span>
+                    <h4>Community</h4>
+                    <p>Join a welcoming community of birders who share knowledge, experiences, and conservation values.</p>
+                </div>
+            </div>
+            
+            <div class="encouragement-box">
+                <h4>You Don't Need to Be an Expert!</h4>
+                <p>Every expert birder started as a beginner. The joy of birding comes from the journey of discovery, not from knowing everything immediately. Start where you are, with what you have, and let your curiosity guide you.</p>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <img src="https://images.unsplash.com/photo-1552728089-57bdde30beb3?w=800&h=400&fit=crop" alt="Basic birding equipment" class="bird-image">
+            
+            <h2>🎒 Getting Started: Your First Steps</h2>
+            <p>Starting your birding journey doesn't require expensive equipment or extensive knowledge. With just a few basics, you can begin enjoying birds immediately.</p>
+            
+            <h3>Step-by-Step Beginner's Guide</h3>
+            <p>Follow these simple steps to begin your birding adventure with confidence and success.</p>
+            
+            <div class="step-by-step">
+                <h4>Your First Week of Birding:</h4>
+                <div class="step-item">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h5>Start in Your Backyard</h5>
+                        <p>Begin by observing birds in your own yard or neighborhood. Spend 15-20 minutes each morning watching and listening. You'll be surprised by the diversity you discover close to home.</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h5>Get Basic Equipment</h5>
+                        <p>Invest in a simple pair of binoculars (8x42 is ideal for beginners) and download a bird identification app like Merlin Bird ID or BirdAiSnap for instant help with identification.</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h5>Learn Common Species</h5>
+                        <p>Focus on identifying 5-10 common birds in your area first. Master these before moving on to more challenging species. Quality over quantity is key for beginners.</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h5>Visit Local Parks</h5>
+                        <p>Explore nearby parks, nature centers, or wildlife refuges. These locations often have diverse habitats and more bird species than residential areas.</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h5>Join Others</h5>
+                        <p>Connect with local birding groups or Audubon chapters. Experienced birders are usually happy to help beginners and can accelerate your learning significantly.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&h=400&fit=crop" alt="Common backyard birds" class="bird-image">
+            
+            <h2>🏠 Common Birds to Learn First</h2>
+            <p>Starting with common, easily identifiable species builds confidence and provides a foundation for learning more challenging birds. These species are found in most areas and are great for practicing identification skills.</p>
+            
+            <h3>Beginner-Friendly Species</h3>
+            <p>These birds are large enough to see clearly, have distinctive features, and are common in most regions, making them perfect for new birders.</p>
+            
+            <div class="common-birds">
+                <div class="bird-species-card">
+                    <h5>American Robin</h5>
+                    <div class="habitat">Yards & Parks</div>
+                    <p>Orange breast, dark head, cheerful song. Often seen hopping on lawns searching for worms.</p>
+                </div>
+                <div class="bird-species-card">
+                    <h5>Northern Cardinal</h5>
+                    <div class="habitat">Backyards</div>
+                    <p>Bright red male, brown female with red accents. Clear whistled songs and prominent crest.</p>
+                </div>
+                <div class="bird-species-card">
+                    <h5>Blue Jay</h5>
+                    <div class="habitat">Woodlands</div>
+                    <p>Bright blue with white underparts. Loud, varied calls and intelligent behavior.</p>
+                </div>
+                <div class="bird-species-card">
+                    <h5>House Sparrow</h5>
+                    <div class="habitat">Urban Areas</div>
+                    <p>Small brown bird, males with black bib. Very common around human habitation.</p>
+                </div>
+                <div class="bird-species-card">
+                    <h5>Mourning Dove</h5>
+                    <div class="habitat">Open Areas</div>
+                    <p>Soft gray-brown with pointed tail. Distinctive cooing call and whistling wing sounds.</p>
+                </div>
+                <div class="bird-species-card">
+                    <h5>Red-winged Blackbird</h5>
+                    <div class="habitat">Wetlands</div>
+                    <p>Black male with red shoulder patches. Often perches on cattails and fence posts.</p>
+                </div>
+            </div>
+            
+            <div class="quick-tips">
+                <h4>💡 Learning Tips for Beginners:</h4>
+                <ul>
+                    <li><strong>Focus on Size and Shape:</strong> Learn basic bird silhouettes before worrying about detailed markings</li>
+                    <li><strong>Notice Behavior:</strong> How does the bird move? Where does it feed? This helps narrow identification</li>
+                    <li><strong>Listen to Sounds:</strong> Bird songs and calls are often easier to detect than visual sightings</li>
+                    <li><strong>Use Comparison:</strong> Compare unknown birds to familiar ones for size reference</li>
+                    <li><strong>Take Notes:</strong> Write down what you see, even if you can't identify it immediately</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <img src="https://images.unsplash.com/photo-1444927714506-8492d94b5ba0?w=800&h=400&fit=crop" alt="Bird watching techniques" class="bird-image">
+            
+            <h2>🔍 Basic Identification Techniques</h2>
+            <p>Learning systematic approaches to bird identification makes the process less overwhelming and more successful. These techniques work for birders at any level.</p>
+            
+            <h3>The GISS Method for Beginners</h3>
+            <p>GISS (General Impression of Size and Shape) is a technique that helps you quickly categorize birds into groups, making identification much easier.</p>
+            
+            <div class="beginner-grid">
+                <div class="beginner-card">
+                    <span class="beginner-icon">📏</span>
+                    <h4>Size Comparison</h4>
+                    <p>Compare birds to familiar species: sparrow-sized, robin-sized, crow-sized, or goose-sized.</p>
+                </div>
+                <div class="beginner-card">
+                    <span class="beginner-icon">🔺</span>
+                    <h4>Overall Shape</h4>
+                    <p>Notice body proportions: long-legged, short-tailed, thick-necked, or streamlined.</p>
+                </div>
+                <div class="beginner-card">
+                    <span class="beginner-icon">🦆</span>
+                    <h4>Bill Shape</h4>
+                    <p>Bill shape indicates diet: seed-cracking, insect-catching, fish-eating, or nectar-feeding.</p>
+                </div>
+                <div class="beginner-card">
+                    <span class="beginner-icon">🏃</span>
+                    <h4>Movement Style</h4>
+                    <p>How does it move? Hopping, walking, climbing, swimming, or soaring?</p>
+                </div>
+            </div>
+            
+            <div class="step-by-step">
+                <h4>Simple Identification Process:</h4>
+                <div class="step-item">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h5>Size and Shape</h5>
+                        <p>What's the overall size and body shape? This eliminates many possibilities immediately.</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h5>Color Pattern</h5>
+                        <p>Note major color blocks and patterns, but don't get lost in fine details initially.</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h5>Behavior and Habitat</h5>
+                        <p>Where is it and what is it doing? This provides crucial identification clues.</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h5>Range and Season</h5>
+                        <p>Consider what species are expected in your area at this time of year.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&h=400&fit=crop" alt="Bird watching locations" class="bird-image">
+            
+            <h2>📍 Where to Go Birding</h2>
+            <p>Great birding locations exist everywhere, from urban parks to wilderness areas. Starting close to home helps you learn local species before venturing to more distant locations.</p>
+            
+            <h3>Best Places for Beginners</h3>
+            <p>These habitat types offer excellent birding opportunities and are usually accessible to beginners without special equipment or extensive hiking.</p>
+            
+            <div class="beginner-grid">
+                <div class="beginner-card">
+                    <span class="beginner-icon">🏡</span>
+                    <h4>Your Backyard</h4>
+                    <p>Start here! Set up feeders and water sources to attract birds. Regular observation builds familiarity with common species.</p>
+                </div>
+                <div class="beginner-card">
+                    <span class="beginner-icon">🌳</span>
+                    <h4>Local Parks</h4>
+                    <p>City and county parks often have diverse habitats and good bird populations. Many have walking trails and benches.</p>
+                </div>
+                <div class="beginner-card">
+                    <span class="beginner-icon">💧</span>
+                    <h4>Water Sources</h4>
+                    <p>Ponds, lakes, rivers, and wetlands attract many species. Water is essential for birds and concentrates activity.</p>
+                </div>
+                <div class="beginner-card">
+                    <span class="beginner-icon">🌾</span>
+                    <h4>Nature Centers</h4>
+                    <p>Often have bird feeders, trails, and knowledgeable staff. Many offer beginner birding programs and guided walks.</p>
+                </div>
+            </div>
+            
+            <div class="quick-tips">
+                <h4>🕐 Best Times for Birding:</h4>
+                <ul>
+                    <li><strong>Early Morning:</strong> First 2-3 hours after sunrise are most active</li>
+                    <li><strong>Late Afternoon:</strong> Activity picks up again before sunset</li>
+                    <li><strong>Overcast Days:</strong> Birds often more active than on bright, sunny days</li>
+                    <li><strong>After Storms:</strong> Weather changes can trigger increased bird activity</li>
+                    <li><strong>Spring Migration:</strong> April-May offers peak diversity in most areas</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&h=400&fit=crop" alt="Beginner mistakes to avoid" class="bird-image">
+            
+            <h2>⚠️ Common Beginner Mistakes to Avoid</h2>
+            <p>Learning from common mistakes helps new birders progress faster and enjoy their experiences more. These tips can save you frustration and help you develop good habits from the start.</p>
+            
+            <h3>Avoiding Early Pitfalls</h3>
+            <p>These common mistakes can discourage beginners, but they're easily avoided with the right approach and mindset.</p>
+            
+            <div class="mistake-warning">
+                <h4>❌ Don't Make These Mistakes:</h4>
+                <ul>
+                    <li><strong>Trying to identify every bird immediately:</strong> It's okay to enjoy watching without naming everything</li>
+                    <li><strong>Buying expensive equipment first:</strong> Start simple and upgrade as your interest grows</li>
+                    <li><strong>Getting frustrated with difficult identifications:</strong> Even experts struggle with some birds</li>
+                    <li><strong>Ignoring common birds:</strong> Familiar species teach important identification skills</li>
+                    <li><strong>Birding alone initially:</strong> Learning with others accelerates progress significantly</li>
+                    <li><strong>Focusing only on rare species:</strong> Common birds are often more interesting than you think</li>
+                    <li><strong>Not keeping records:</strong> Notes help you remember and learn from experiences</li>
+                </ul>
+            </div>
+            
+            <div class="quick-tips">
+                <h4>✅ Better Approaches:</h4>
+                <ul>
+                    <li><strong>Embrace the Learning Process:</strong> Every expert was once a beginner</li>
+                    <li><strong>Start Local:</strong> Master your backyard before exploring distant locations</li>
+                    <li><strong>Use Technology Wisely:</strong> Apps are tools, not replacements for observation skills</li>
+                    <li><strong>Be Patient:</strong> Bird identification skills develop gradually over time</li>
+                    <li><strong>Ask Questions:</strong> The birding community is welcoming and helpful</li>
+                    <li><strong>Enjoy the Journey:</strong> Focus on the experience, not just the species count</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <img src="https://images.unsplash.com/photo-1574263867128-a3d5c1b1deae?w=800&h=400&fit=crop" alt="Building birding skills" class="bird-image">
+            
+            <h2>📈 Building Your Skills Over Time</h2>
+            <p>Bird watching is a lifelong learning journey. Setting realistic goals and celebrating progress helps maintain enthusiasm and motivation as your skills develop.</p>
+            
+            <h3>Progressive Skill Development</h3>
+            <p>These milestones represent natural progression points in your birding journey. Don't rush through them – each stage has its own rewards and discoveries.</p>
+            
+            <div class="step-by-step">
+                <h4>Your First Year Goals:</h4>
+                <div class="step-item">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h5>Month 1-2: Foundation Building</h5>
+                        <p>Learn 10-15 common local birds. Practice using binoculars and identification apps. Establish regular birding routine.</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h5>Month 3-6: Expanding Knowledge</h5>
+                        <p>Explore different habitats. Learn seasonal patterns. Join local birding group or participate in guided walks.</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h5>Month 7-12: Developing Expertise</h5>
+                        <p>Tackle more challenging identifications. Learn bird songs. Participate in citizen science projects like eBird.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="encouragement-box">
+                <h4>🎉 Celebrate Your Progress!</h4>
+                <p>Every bird you learn to identify, every new behavior you observe, and every moment of wonder you experience is an achievement worth celebrating. The joy of birding comes from the journey itself, not just the destination.</p>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <img src="https://images.unsplash.com/photo-1552728089-57bdde30beb3?w=800&h=400&fit=crop" alt="Birding community and resources" class="bird-image">
+            
+            <h2>🤝 Connecting with the Birding Community</h2>
+            <p>The birding community is known for being welcoming, helpful, and passionate about sharing knowledge. Connecting with other birders enhances your experience and accelerates your learning.</p>
+            
+            <h3>Ways to Get Involved</h3>
+            <p>There are many opportunities to connect with fellow birders, from local clubs to online communities and citizen science projects.</p>
+            
+            <div class="beginner-grid">
+                <div class="beginner-card">
+                    <span class="beginner-icon">👥</span>
+                    <h4>Local Birding Groups</h4>
+                    <p>Join Audubon chapters, birding clubs, or nature center groups for guided walks and social birding opportunities.</p>
+                </div>
+                <div class="beginner-card">
+                    <span class="beginner-icon">📱</span>
+                    <h4>Online Communities</h4>
+                    <p>Participate in eBird, birding forums, and social media groups to share sightings and learn from others.</p>
+                </div>
+                <div class="beginner-card">
+                    <span class="beginner-icon">🔬</span>
+                    <h4>Citizen Science</h4>
+                    <p>Contribute to bird research through Christmas Bird Counts, breeding bird surveys, and migration monitoring.</p>
+                </div>
+                <div class="beginner-card">
+                    <span class="beginner-icon">🎓</span>
+                    <h4>Educational Programs</h4>
+                    <p>Attend workshops, lectures, and birding festivals to deepen your knowledge and meet like-minded people.</p>
+                </div>
+            </div>
+            
+            <div class="quick-tips">
+                <h4>🌟 Making the Most of Your Birding Journey:</h4>
+                <ul>
+                    <li><strong>Stay Curious:</strong> Every outing offers opportunities to learn something new</li>
+                    <li><strong>Be Patient:</strong> Skills develop gradually – enjoy the process</li>
+                    <li><strong>Share Your Enthusiasm:</strong> Introduce others to the joy of birding</li>
+                    <li><strong>Support Conservation:</strong> Your hobby can contribute to bird protection efforts</li>
+                    <li><strong>Keep Learning:</strong> Even experts continue discovering new things about birds</li>
+                    <li><strong>Have Fun:</strong> Remember that birding is meant to be enjoyable!</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>BirdAiSnap</h3>
+                    <p data-i18n="footer.description">Smart bird recognition powered by AI technology</p>
+                </div>
+                <div class="footer-section">
+                    <h4 data-i18n="footer.quicklinks">Quick Links</h4>
+                    <ul>
+                        <li><a href="../../index.html" data-i18n="nav.home">Home</a></li>
+                        <li><a href="../../knowledge.html" data-i18n="nav.knowledge">Knowledge Center</a></li>
+                        <li><a href="../birdwatching.html">Bird Watching</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 data-i18n="footer.contact">Contact</h4>
+                    <p data-i18n="footer.email">Email: lingjuetech@gmail.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Hangzhou Lingjue Technology Co., Ltd. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../script.js"></script>
+    <script src="../../mobile-interactions.js"></script>
+</body>
+</html>

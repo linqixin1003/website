@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bird Song Identification - BirdAiSnap</title>
+    <link rel="stylesheet" href="../../styles.css">
+    <link rel="stylesheet" href="../../knowledge.css">
+    <link rel="stylesheet" href="../../mobile-styles.css">
+    <link rel="stylesheet" href="../../mobile-enhancement.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .article-hero {
+            background: linear-gradient(135deg, #a8e6cf 0%, #dcedc1 100%);
+            color: #2d3748;
+            padding: 120px 0 80px;
+            text-align: center;
+        }
+        .article-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        .article-hero p {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .article-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        .content-section {
+            margin-bottom: 60px;
+        }
+        .content-section h2 {
+            color: #2d3748;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #a8e6cf;
+            padding-bottom: 10px;
+        }
+        .content-section h3 {
+            color: #4a5568;
+            font-size: 1.5rem;
+            margin: 30px 0 15px;
+        }
+        .content-section p {
+            line-height: 1.8;
+            margin-bottom: 20px;
+            color: #4a5568;
+        }
+        .bird-image {
+            width: 100%;
+            max-width: 600px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin: 30px auto;
+            display: block;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+        .bird-image:hover {
+            transform: scale(1.05);
+        }
+        .song-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+        .song-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            border-top: 4px solid #a8e6cf;
+        }
+        .song-card:hover {
+            transform: translateY(-5px);
+        }
+        .song-card h4 {
+            color: #a8e6cf;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+        .song-icon {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+        .song-description {
+            background: #f7fafc;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            border-left: 4px solid #a8e6cf;
+        }
+        .song-description .phonetic {
+            font-style: italic;
+            color: #667eea;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .learning-technique {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+        .learning-technique h4 {
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+        }
+        .mnemonic-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .mnemonic-card {
+            background: #f7fafc;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #a8e6cf;
+        }
+        .mnemonic-card h5 {
+            color: #2d3748;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        .mnemonic-card .mnemonic {
+            font-style: italic;
+            color: #667eea;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .mnemonic-card p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #4a5568;
+        }
+        .frequency-chart {
+            background: #f7fafc;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+        .frequency-bar {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+        }
+        .frequency-label {
+            min-width: 120px;
+            font-weight: 600;
+            color: #2d3748;
+        }
+        .frequency-visual {
+            flex: 1;
+            height: 20px;
+            background: #e2e8f0;
+            border-radius: 10px;
+            margin: 0 15px;
+            position: relative;
+            overflow: hidden;
+        }
+        .frequency-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #a8e6cf, #dcedc1);
+            border-radius: 10px;
+            transition: width 0.3s ease;
+        }
+        .frequency-value {
+            min-width: 60px;
+            color: #4a5568;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2><a href="../../index.html">BirdAiSnap</a></h2>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../../index.html#home" data-i18n="nav.home">Home</a></li>
+                <li><a href="../../index.html#features" data-i18n="nav.features">Features</a></li>
+                <li><a href="../../index.html#about" data-i18n="nav.about">About</a></li>
+                <li><a href="../../index.html#contact" data-i18n="nav.contact">Contact</a></li>
+                <li><a href="../../knowledge.html" data-i18n="nav.knowledge">Knowledge</a></li>
+            </ul>
+            <div class="language-switcher">
+                <button id="langSwitch" class="lang-btn" onclick="toggleLanguage()">
+                    <span class="lang-icon">🌐</span>
+                    <span class="lang-text" data-i18n="nav.language">Language</span>
+                    <span id="currentLang">EN</span>
+                </button>
+            </div>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 文章标题区 -->
+    <section class="article-hero">
+        <div class="container">
+            <h1>🎵 Bird Song Identification</h1>
+            <p>Master the art of identifying birds by their songs and calls</p>
+        </div>
+    </section>
+
+    <!-- 文章内容 -->
+    <div class="article-content">
+        <div class="content-section">
+            <img src="https://images.unsplash.com/photo-1574263867128-a3d5c1b1deae?w=800&h=400&fit=crop" alt="Songbird singing on branch" class="bird-image">
+            
+            <h2>🎼 Understanding Bird Vocalizations</h2>
+            <p>Bird songs and calls serve different purposes and provide crucial identification clues. Learning to distinguish between various types of vocalizations is the foundation of acoustic bird identification.</p>
+            
+            <h3>Songs vs. Calls: Key Differences</h3>
+            <p>Understanding the distinction between songs and calls helps you interpret what birds are communicating and when you're most likely to hear different vocalizations.</p>
+            
+            <div class="song-grid">
+                <div class="song-card">
+                    <span class="song-icon">🎵</span>
+                    <h4>Songs</h4>
+                    <p>Complex, melodious vocalizations primarily used by males during breeding season for territory establishment and mate attraction.</p>
+                </div>
+                <div class="song-card">
+                    <span class="song-icon">📢</span>
+                    <h4>Calls</h4>
+                    <p>Shorter, simpler vocalizations used year-round for communication, including alarm calls, contact calls, and flight calls.</p>
+                </div>
+                <div class="song-card">
+                    <span class="song-icon">🚨</span>
+                    <h4>Alarm Calls</h4>
+                    <p>Sharp, urgent vocalizations that warn of predators or threats, often understood by multiple species.</p>
+                </div>
+            </div>
+            
+            <div class="frequency-chart">
+                <h4>Vocal Activity Throughout the Day:</h4>
+                <div class="frequency-bar">
+                    <div class="frequency-label">Dawn Chorus</div>
+                    <div class="frequency-visual">
+                        <div class="frequency-fill" style="width: 95%"></div>
+                    </div>
+                    <div class="frequency-value">Peak Activity</div>
+                </div>
+                <div class="frequency-bar">
+                    <div class="frequency-label">Mid-Morning</div>
+                    <div class="frequency-visual">
+                        <div class="frequency-fill" style="width: 70%"></div>
+                    </div>
+                    <div class="frequency-value">High Activity</div>
+                </div>
+                <div class="frequency-bar">
+                    <div class="frequency-label">Midday</div>
+                    <div class="frequency-visual">
+                        <div class="frequency-fill" style="width: 30%"></div>
+                    </div>
+                    <div class="frequency-value">Low Activity</div>
+                </div>
+                <div class="frequency-bar">
+                    <div class="frequency-label">Evening</div>
+                    <div class="frequency-visual">
+                        <div class="frequency-fill" style="width: 60%"></div>
+                    </div>
+                    <div class="frequency-value">Moderate Activity</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&h=400&fit=crop" alt="Colorful songbird" class="bird-image">
+            
+            <h2>🔤 Learning Song Patterns and Mnemonics</h2>
+            <p>Mnemonics are memory aids that help birders remember and recognize bird songs. These verbal descriptions translate musical patterns into memorable phrases.</p>
+            
+            <h3>Common Song Mnemonics</h3>
+            <p>Experienced birders have developed memorable phrases that capture the rhythm and pattern of bird songs. These mnemonics make learning songs much easier and more enjoyable.</p>
+            
+            <div class="mnemonic-grid">
+                <div class="mnemonic-card">
+                    <h5>American Robin</h5>
+                    <div class="mnemonic">"Cheerily, cheer-up, cheer-up"</div>
+                    <p>Clear, liquid phrases with a cheerful, rising inflection</p>
+                </div>
+                <div class="mnemonic-card">
+                    <h5>Northern Cardinal</h5>
+                    <div class="mnemonic">"Birdy-birdy-birdy" or "Cheer-cheer-cheer"</div>
+                    <p>Clear, whistled notes often repeated in series</p>
+                </div>
+                <div class="mnemonic-card">
+                    <h5>White-throated Sparrow</h5>
+                    <div class="mnemonic">"Old Sam Peabody-Peabody-Peabody"</div>
+                    <p>Clear whistle followed by triplets, often described as plaintive</p>
+                </div>
+                <div class="mnemonic-card">
+                    <h5>Eastern Towhee</h5>
+                    <div class="mnemonic">"Drink-your-tea!"</div>
+                    <p>Two short notes followed by a trill</p>
+                </div>
+                <div class="mnemonic-card">
+                    <h5>Barred Owl</h5>
+                    <div class="mnemonic">"Who cooks for you? Who cooks for you-all?"</div>
+                    <p>Eight hoots in distinctive rhythm, often heard at dusk</p>
+                </div>
+                <div class="mnemonic-card">
+                    <h5>Yellow Warbler</h5>
+                    <div class="mnemonic">"Sweet-sweet-sweet, I'm so sweet!"</div>
+                    <p>Series of clear notes ending with emphasis</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <img src="https://images.unsplash.com/photo-1444927714506-8492d94b5ba0?w=800&h=400&fit=crop" alt="Bird listening in forest" class="bird-image">
+            
+            <h2>👂 Developing Your Listening Skills</h2>
+            <p>Effective bird song identification requires developing acute listening skills and learning to focus on specific acoustic elements while filtering out background noise.</p>
+            
+            <h3>Key Elements to Listen For</h3>
+            <p>Breaking down bird songs into component parts makes identification more systematic and reliable. Focus on these key characteristics when analyzing unfamiliar songs.</p>
+            
+            <div class="song-grid">
+                <div class="song-card">
+                    <span class="song-icon">🎯</span>
+                    <h4>Pitch and Tone</h4>
+                    <p>Is the song high or low? Clear and pure or harsh and scratchy? Pitch patterns often distinguish similar species.</p>
+                </div>
+                <div class="song-card">
+                    <span class="song-icon">⏱️</span>
+                    <h4>Rhythm and Tempo</h4>
+                    <p>Fast or slow delivery? Regular or irregular patterns? Rhythm is often the most distinctive element.</p>
+                </div>
+                <div class="song-card">
+                    <span class="song-icon">🔄</span>
+                    <h4>Repetition Patterns</h4>
+                    <p>Are phrases repeated? How many times? Some birds repeat phrases, others sing continuously varied songs.</p>
+                </div>
+                <div class="song-card">
+                    <span class="song-icon">📏</span>
+                    <h4>Song Length</h4>
+                    <p>Brief phrases or extended performances? Song duration can be a key identification feature.</p>
+                </div>
+            </div>
+            
+            <div class="learning-technique">
+                <h4>Systematic Listening Approach:</h4>
+                <ol style="margin: 0; padding-left: 20px;">
+                    <li><strong>Stop and Focus:</strong> When you hear an unfamiliar song, stop moving and concentrate</li>
+                    <li><strong>Count Elements:</strong> How many different notes or phrases do you hear?</li>
+                    <li><strong>Describe the Pattern:</strong> Use words to describe rhythm and pitch changes</li>
+                    <li><strong>Create Your Own Mnemonic:</strong> Make up a phrase that captures the song's essence</li>
+                    <li><strong>Record if Possible:</strong> Use smartphone apps to capture songs for later analysis</li>
+                    <li><strong>Practice Regularly:</strong> Consistent practice dramatically improves recognition skills</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&h=400&fit=crop" alt="Multiple birds in habitat" class="bird-image">
+            
+            <h2>🌍 Regional Variations and Dialects</h2>
+            <p>Bird songs can vary geographically, with regional "dialects" that differ from the standard descriptions in field guides. Understanding this variation helps explain why some birds don't sound exactly as expected.</p>
+            
+            <h3>Why Songs Vary</h3>
+            <p>Geographic variation in bird songs occurs for several reasons, including genetic differences, cultural transmission, and environmental factors that affect sound transmission.</p>
+            
+            <div class="song-description">
+                <div class="phonetic">Cultural Learning in Birds</div>
+                <p>Many songbirds learn their songs from adult tutors, leading to regional variations that are passed down through generations. Young birds may modify songs slightly, creating gradual changes over time and distance.</p>
+            </div>
+            
+            <div class="song-grid">
+                <div class="song-card">
+                    <span class="song-icon">🗺️</span>
+                    <h4>Geographic Dialects</h4>
+                    <p>White-crowned Sparrows have distinct dialects that change every few miles, with sharp boundaries between regions.</p>
+                </div>
+                <div class="song-card">
+                    <span class="song-icon">🏔️</span>
+                    <h4>Habitat Influence</h4>
+                    <p>Forest birds may sing differently than those in open areas due to acoustic properties of different environments.</p>
+                </div>
+                <div class="song-card">
+                    <span class="song-icon">🧬</span>
+                    <h4>Subspecies Differences</h4>
+                    <p>Different subspecies of the same species may have distinctly different songs, sometimes leading to species splits.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&h=400&fit=crop" alt="Technology for bird song identification" class="bird-image">
+            
+            <h2>📱 Technology and Tools for Song Learning</h2>
+            <p>Modern technology offers powerful tools for learning and identifying bird songs. These resources complement traditional learning methods and provide instant access to vast libraries of recordings.</p>
+            
+            <h3>Essential Apps and Resources</h3>
+            <p>Smartphone apps have revolutionized bird song learning, offering high-quality recordings, visual spectrograms, and even real-time identification capabilities.</p>
+            
+            <div class="song-grid">
+                <div class="song-card">
+                    <span class="song-icon">🎧</span>
+                    <h4>Merlin Bird ID</h4>
+                    <p>Free app with Sound ID feature that can identify birds from recordings in real-time, plus extensive song libraries.</p>
+                </div>
+                <div class="song-card">
+                    <span class="song-icon">📊</span>
+                    <h4>eBird Mobile</h4>
+                    <p>Access to Macaulay Library recordings for every species, integrated with sighting data and range maps.</p>
+                </div>
+                <div class="song-card">
+                    <span class="song-icon">🔬</span>
+                    <h4>Spectrogram Analysis</h4>
+                    <p>Visual representations of sound help you see patterns and compare similar species' vocalizations.</p>
+                </div>
+                <div class="song-card">
+                    <span class="song-icon">🎮</span>
+                    <h4>Song Learning Games</h4>
+                    <p>Interactive quizzes and games make learning bird songs engaging and help reinforce memory.</p>
+                </div>
+            </div>
+            
+            <div class="learning-technique">
+                <h4>Effective Use of Technology:</h4>
+                <ul style="margin: 0; padding-left: 20px;">
+                    <li><strong>Start with Common Species:</strong> Learn local, common birds first before tackling rarities</li>
+                    <li><strong>Use Multiple Sources:</strong> Compare recordings from different apps and websites</li>
+                    <li><strong>Practice Regularly:</strong> Set aside time daily for song learning and review</li>
+                    <li><strong>Field Testing:</strong> Use apps in the field to confirm identifications</li>
+                    <li><strong>Record Your Own:</strong> Build a personal library of local bird recordings</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <img src="https://images.unsplash.com/photo-1552728089-57bdde30beb3?w=800&h=400&fit=crop" alt="Seasonal bird song changes" class="bird-image">
+            
+            <h2>📅 Seasonal Changes in Vocalizations</h2>
+            <p>Bird vocalizations change throughout the year in response to breeding cycles, migration, and social dynamics. Understanding these patterns helps you know what to expect in different seasons.</p>
+            
+            <h3>Annual Vocal Cycles</h3>
+            <p>Most songbirds follow predictable patterns of vocal activity that correspond to their life cycles and environmental conditions.</p>
+            
+            <div class="frequency-chart">
+                <h4>Seasonal Vocal Activity:</h4>
+                <div class="frequency-bar">
+                    <div class="frequency-label">Spring Migration</div>
+                    <div class="frequency-visual">
+                        <div class="frequency-fill" style="width: 90%"></div>
+                    </div>
+                    <div class="frequency-value">Peak Singing</div>
+                </div>
+                <div class="frequency-bar">
+                    <div class="frequency-label">Breeding Season</div>
+                    <div class="frequency-visual">
+                        <div class="frequency-fill" style="width: 85%"></div>
+                    </div>
+                    <div class="frequency-value">Territorial Songs</div>
+                </div>
+                <div class="frequency-bar">
+                    <div class="frequency-label">Summer</div>
+                    <div class="frequency-visual">
+                        <div class="frequency-fill" style="width: 40%"></div>
+                    </div>
+                    <div class="frequency-value">Reduced Activity</div>
+                </div>
+                <div class="frequency-bar">
+                    <div class="frequency-label">Fall Migration</div>
+                    <div class="frequency-visual">
+                        <div class="frequency-fill" style="width: 25%"></div>
+                    </div>
+                    <div class="frequency-value">Mostly Calls</div>
+                </div>
+                <div class="frequency-bar">
+                    <div class="frequency-label">Winter</div>
+                    <div class="frequency-visual">
+                        <div class="frequency-fill" style="width: 15%"></div>
+                    </div>
+                    <div class="frequency-value">Contact Calls</div>
+                </div>
+            </div>
+            
+            <div class="song-description">
+                <div class="phonetic">Molt and Vocal Changes</div>
+                <p>During late summer molt, many birds become quiet as they replace their feathers and focus energy on survival rather than territory defense. This "molt migration" period can make familiar areas seem eerily quiet.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>BirdAiSnap</h3>
+                    <p data-i18n="footer.description">Smart bird recognition powered by AI technology</p>
+                </div>
+                <div class="footer-section">
+                    <h4 data-i18n="footer.quicklinks">Quick Links</h4>
+                    <ul>
+                        <li><a href="../../index.html" data-i18n="nav.home">Home</a></li>
+                        <li><a href="../../knowledge.html" data-i18n="nav.knowledge">Knowledge Center</a></li>
+                        <li><a href="../birdwatching.html">Bird Watching</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 data-i18n="footer.contact">Contact</h4>
+                    <p data-i18n="footer.email">Email: lingjuetech@gmail.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Hangzhou Lingjue Technology Co., Ltd. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../script.js"></script>
+    <script src="../../mobile-interactions.js"></script>
+</body>
+</html>

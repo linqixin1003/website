@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Click Test - BirdAiSnap</title>
+    <style>
+        .test-card {
+            border: 2px solid #007bff;
+            padding: 20px;
+            margin: 20px;
+            cursor: pointer;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        .test-card:hover {
+            background: #e9ecef;
+        }
+    </style>
+</head>
+<body>
+    <h1>点击功能测试</h1>
+    
+    <div class="test-card" onclick="testClick1()">
+        <h3>测试1: 直接跳转</h3>
+        <p>点击这里应该直接跳转到知识中心</p>
+    </div>
+    
+    <div class="test-card" onclick="testClick2()">
+        <h3>测试2: 函数调用</h3>
+        <p>点击这里调用openKnowledgeCenter函数</p>
+    </div>
+    
+    <div class="test-card" onclick="testClick3()">
+        <h3>测试3: 控制台输出</h3>
+        <p>点击这里在控制台输出信息</p>
+    </div>
+    
+    <script>
+        function testClick1() {
+            console.log('测试1: 直接跳转');
+            window.location.href = 'knowledge.html';
+        }
+        
+        function testClick2() {
+            console.log('测试2: 调用openKnowledgeCenter');
+            if (typeof openKnowledgeCenter === 'function') {
+                openKnowledgeCenter();
+            } else {
+                console.error('openKnowledgeCenter 函数未定义');
+                window.location.href = 'knowledge.html';
+            }
+        }
+        
+        function testClick3() {
+            console.log('测试3: 点击事件正常工作');
+            alert('点击事件正常工作！');
+        }
+        
+        // 知识中心功能
+        function openKnowledgeCenter() {
+            console.log('openKnowledgeCenter 被调用');
+            window.location.href = 'knowledge.html';
+        }
+    </script>
+</body>
+</html>

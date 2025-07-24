@@ -1,0 +1,325 @@
+/* 图片管理相关样式 */
+
+/* 响应式图片基础样式 */
+.responsive-image {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.responsive-image:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+/* 图片容器 */
+.image-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    margin: 1rem 0;
+    background: #f8f9fa;
+}
+
+.image-container figcaption {
+    padding: 0.75rem 1rem;
+    background: rgba(255,255,255,0.95);
+    color: #555;
+    font-size: 0.9rem;
+    text-align: center;
+    border-top: 1px solid #eee;
+}
+
+/* 懒加载相关样式 */
+.lazy-loading {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+    min-height: 200px;
+}
+
+@keyframes loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+.loaded {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* 图片错误处理 */
+.image-error {
+    background: #f8f9fa;
+    border: 2px dashed #dee2e6;
+    padding: 2rem;
+    text-align: center;
+    color: #6c757d;
+    position: relative;
+}
+
+.image-error::before {
+    content: "📷";
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.image-error::after {
+    content: "图片加载失败";
+    font-size: 0.9rem;
+    color: #868e96;
+}
+
+/* 图片画廊 */
+.image-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover {
+    transform: scale(1.05);
+}
+
+.gallery-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover .gallery-image {
+    transform: scale(1.1);
+}
+
+/* 灯箱效果 */
+.lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+}
+
+.lightbox-content {
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+    text-align: center;
+}
+
+.lightbox-image {
+    max-width: 100%;
+    max-height: 80vh;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    transition: opacity 0.3s ease;
+}
+
+.lightbox-close:hover {
+    opacity: 0.7;
+}
+
+.lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none;
+}
+
+.lightbox-prev,
+.lightbox-next {
+    background: rgba(255,255,255,0.2);
+    color: white;
+    border: none;
+    padding: 1rem;
+    cursor: pointer;
+    font-size: 1.5rem;
+    border-radius: 50%;
+    pointer-events: all;
+    transition: background 0.3s ease;
+}
+
+.lightbox-prev:hover,
+.lightbox-next:hover {
+    background: rgba(255,255,255,0.3);
+}
+
+.lightbox-caption {
+    color: white;
+    margin-top: 1rem;
+    font-size: 1rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* 文章内图片样式 */
+.article-image {
+    width: 100%;
+    max-width: 800px;
+    margin: 2rem auto;
+    display: block;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+
+.article-image-small {
+    max-width: 400px;
+    float: right;
+    margin: 0 0 1rem 2rem;
+}
+
+.article-image-left {
+    float: left;
+    margin: 0 2rem 1rem 0;
+}
+
+/* 图标样式 */
+.icon {
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.icon-large {
+    width: 48px;
+    height: 48px;
+}
+
+.icon-small {
+    width: 16px;
+    height: 16px;
+}
+
+/* 背景图片 */
+.hero-background {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.hero-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.4);
+    z-index: 1;
+}
+
+.hero-background > * {
+    position: relative;
+    z-index: 2;
+}
+
+/* 移动端优化 */
+@media (max-width: 768px) {
+    .image-gallery {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 0.5rem;
+    }
+    
+    .gallery-image {
+        height: 150px;
+    }
+    
+    .article-image-small,
+    .article-image-left {
+        float: none;
+        margin: 1rem auto;
+        display: block;
+    }
+    
+    .lightbox-content {
+        max-width: 95%;
+        max-height: 95%;
+    }
+    
+    .lightbox-nav {
+        display: none;
+    }
+}
+
+/* 打印样式 */
+@media print {
+    .image-gallery,
+    .lightbox {
+        display: none;
+    }
+    
+    .responsive-image {
+        max-width: 100%;
+        page-break-inside: avoid;
+    }
+}
+
+/* 高对比度模式 */
+@media (prefers-contrast: high) {
+    .image-container {
+        border: 2px solid #000;
+    }
+    
+    .lazy-loading {
+        background: repeating-linear-gradient(
+            45deg,
+            #000,
+            #000 10px,
+            #fff 10px,
+            #fff 20px
+        );
+    }
+}
+
+/* 减少动画模式 */
+@media (prefers-reduced-motion: reduce) {
+    .responsive-image,
+    .gallery-item,
+    .gallery-image,
+    .lightbox {
+        transition: none;
+        animation: none;
+    }
+}

@@ -4,213 +4,269 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bird Watching Ethics and Conservation - BirdAiSnap</title>
-    <link rel="stylesheet" href="../../styles.css">
-    <link rel="stylesheet" href="../../knowledge.css">
-    <link rel="stylesheet" href="../../mobile-styles.css">
-    <link rel="stylesheet" href="../../mobile-enhancement.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        .article-hero {
-            background: linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%);
-            color: white;
-            padding: 120px 0 80px;
-            text-align: center;
-        }
-        .article-hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            font-weight: 700;
-        }
-        .article-hero p {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        .article-content {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 60px 20px;
-        }
-        .content-section {
-            margin-bottom: 60px;
-        }
-        .content-section h2 {
-            color: #2d3748;
-            font-size: 2rem;
-            margin-bottom: 20px;
-            border-bottom: 3px solid #66a6ff;
-            padding-bottom: 10px;
-        }
-        .content-section h3 {
-            color: #4a5568;
-            font-size: 1.5rem;
-            margin: 30px 0 15px;
-        }
-        .content-section p {
-            line-height: 1.8;
-            margin-bottom: 20px;
-            color: #4a5568;
-        }
-        .bird-image {
-            width: 100%;
-            max-width: 600px;
-            height: 300px;
-            object-fit: cover;
-            border-radius: 15px;
-            margin: 30px auto;
-            display: block;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            transition: transform 0.3s ease;
-        }
-        .bird-image:hover {
-            transform: scale(1.05);
-        }
-        .ethics-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            margin: 40px 0;
-        }
-        .ethics-card {
-            background: white;
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-            border-top: 4px solid #66a6ff;
-        }
-        .ethics-card:hover {
-            transform: translateY(-5px);
-        }
-        .ethics-card h4 {
-            color: #66a6ff;
-            font-size: 1.3rem;
-            margin-bottom: 15px;
-        }
-        .ethics-icon {
-            font-size: 2rem;
-            margin-bottom: 15px;
-            display: block;
-        }
-        .do-dont-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            margin: 40px 0;
-        }
-        .do-card {
-            background: #f0fff4;
-            border: 2px solid #68d391;
-            border-radius: 15px;
-            padding: 25px;
-        }
-        .dont-card {
-            background: #fff5f5;
-            border: 2px solid #fc8181;
-            border-radius: 15px;
-            padding: 25px;
-        }
-        .do-card h4 {
-            color: #38a169;
-            margin-bottom: 20px;
-            font-size: 1.3rem;
-        }
-        .dont-card h4 {
-            color: #e53e3e;
-            margin-bottom: 20px;
-            font-size: 1.3rem;
-        }
-        .do-card ul, .dont-card ul {
+        * {
             margin: 0;
-            padding-left: 20px;
+            padding: 0;
+            box-sizing: border-box;
         }
-        .do-card li {
-            color: #2f855a;
-            margin-bottom: 8px;
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            color: #333;
         }
-        .dont-card li {
-            color: #c53030;
-            margin-bottom: 8px;
-        }
-        .conservation-highlight {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        
+        .back-button {
+            position: fixed;
+            top: 60px;
+            left: 20px;
+            width: 36px;
+            height: 36px;
+            background: rgba(0,0,0,0.6);
+            border: none;
+            border-radius: 50%;
             color: white;
-            padding: 30px;
+            font-size: 18px;
+            cursor: pointer;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                        url('../../images/birds/species/bird-image-010.png') center/cover;
+            position: relative;
+            margin-top: 0;
+        }
+        
+        .content {
+            background: white;
+            margin: -30px 20px 20px 20px;
+            border-radius: 20px;
+            padding: 30px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            min-height: 80vh;
+        }
+        
+        .title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            line-height: 1.3;
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, #e8f5e8, #c8e6c9);
+            border-left: 4px solid #4caf50;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .quote-box::before {
+            content: '"';
+            font-size: 48px;
+            color: #4caf50;
+            position: absolute;
+            top: -5px;
+            left: 15px;
+            font-family: serif;
+            line-height: 1;
+        }
+        
+        .quote-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2e7d32;
+            margin-left: 25px;
+            line-height: 1.4;
+        }
+        
+        .main-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            margin: 20px 0;
+            text-align: justify;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #4caf50;
+            margin: 30px 0 15px 0;
+            border-bottom: 2px solid #c8e6c9;
+            padding-bottom: 8px;
+        }
+        
+        .tip-box {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            border-left: 4px solid #28a745;
+        }
+        
+        .tip-title {
+            font-weight: 600;
+            color: #28a745;
+            margin-bottom: 8px;
+        }
+        
+        .emoji {
+            font-size: 18px;
+            margin: 0 2px;
+        }
+        
+        .equipment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .equipment-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            border: 2px solid #e9ecef;
+            transition: transform 0.3s ease;
+        }
+        
+        .equipment-card:hover {
+            transform: translateY(-5px);
+            border-color: #4caf50;
+        }
+        
+        .equipment-card h4 {
+            color: #2e7d32;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        
+        .equipment-card p {
+            color: #666;
+            line-height: 1.5;
+            margin: 0;
+        }
+        
+        .step-container {
+            background: #f8f9fa;
             border-radius: 15px;
-            margin: 30px 0;
+            padding: 25px;
+            margin: 25px 0;
         }
-        .conservation-highlight h4 {
-            margin-bottom: 20px;
-            font-size: 1.4rem;
-        }
-        .threat-assessment {
-            background: #f7fafc;
-            border-radius: 15px;
-            padding: 30px;
-            margin: 30px 0;
-        }
-        .threat-item {
+        
+        .step-item {
             display: flex;
             align-items: flex-start;
             margin-bottom: 20px;
             padding: 15px;
             background: white;
             border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
-        .threat-severity {
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
+        
+        .step-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .step-number {
+            background: #4caf50;
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
             margin-right: 15px;
-            min-width: 70px;
-            text-align: center;
+            flex-shrink: 0;
         }
-        .threat-high {
-            background: #fed7d7;
-            color: #c53030;
-        }
-        .threat-medium {
-            background: #feebc8;
-            color: #dd6b20;
-        }
-        .threat-low {
-            background: #c6f6d5;
-            color: #38a169;
-        }
-        .threat-content h5 {
-            color: #2d3748;
+        
+        .step-content h4 {
+            color: #2e7d32;
             margin-bottom: 8px;
-            font-size: 1.1rem;
+            font-size: 16px;
         }
-        .threat-content p {
+        
+        .step-content p {
             margin: 0;
-            color: #4a5568;
-            font-size: 0.9rem;
+            color: #555;
+            line-height: 1.5;
+            font-size: 14px;
         }
-        @media (max-width: 768px) {
-            .do-dont-grid {
+        
+        .progress-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: linear-gradient(to top, rgba(255,255,255,0.95), transparent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 998;
+        }
+        
+        .progress-bar {
+            width: 200px;
+            height: 4px;
+            background: rgba(0,0,0,0.1);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4caf50, #81c784);
+            width: 0%;
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+        
+        @media (max-width: 375px) {
+            .content {
+                margin: -30px 15px 20px 15px;
+                padding: 25px 15px;
+            }
+            
+            .title {
+                font-size: 22px;
+            }
+            
+            .main-text {
+                font-size: 15px;
+            }
+            
+            .equipment-grid {
                 grid-template-columns: 1fr;
-                gap: 20px;
             }
         }
     </style>
 </head>
 <body>
+    <!-- 返回按钮 -->
+    <button class="back-button" onclick="history.back()">
+        ←
+    </button>
     
-
-    <!-- 文章标题区 -->
-    <section class="article-hero">
-        <div class="container">
-            <h1>🤝 Bird Watching Ethics and Conservation</h1>
-            <p>Responsible birding practices that protect the birds we love to observe</p>
-        </div>
-    </section>
-
-    <!-- 文章内容 -->
-    <div class="article-content">
+    <!-- 英雄图片 -->
+    <div class="hero-image"></div>
+    
+    <!-- 主要内容 -->
+    <div class="content">
+        <div class="article-content">
         <div class="content-section">
             <img src="../../images/birds/species/bird-image-052.png" alt="Pristine bird habitat" class="bird-image">
             
@@ -226,284 +282,14 @@
                     <h4>Bird Welfare First</h4>
                     <p>The needs and safety of birds always come before getting a better view, photo, or adding a species to your list.</p>
                 </div>
-                <div class="ethics-card">
-                    <span class="ethics-icon">🏠</span>
-                    <h4>Habitat Protection</h4>
-                    <p>Minimize impact on natural environments and actively support habitat conservation efforts.</p>
-                </div>
-                <div class="ethics-card">
-                    <span class="ethics-icon">📚</span>
-                    <h4>Education and Awareness</h4>
-                    <p>Share knowledge responsibly and help others understand the importance of ethical practices.</p>
-                </div>
-                <div class="ethics-card">
-                    <span class="ethics-icon">🤝</span>
-                    <h4>Community Respect</h4>
-                    <p>Respect other birders, landowners, and local communities while pursuing your birding interests.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="content-section">
-            <img src="../../images/birds/species/bird-image-052.png" alt="Bird in natural habitat" class="bird-image">
-            
-            <h2>✅ Ethical Birding Guidelines</h2>
-            <p>Following established guidelines helps ensure that your birding activities have minimal negative impact while maximizing your enjoyment and learning opportunities.</p>
-            
-            <h3>Do's and Don'ts of Responsible Birding</h3>
-            <p>These practical guidelines cover the most important aspects of ethical birding behavior in the field.</p>
-            
-            <div class="do-dont-grid">
-                <div class="do-card">
-                    <h4>✅ DO These Things</h4>
-                    <ul>
-                        <li>Maintain respectful distances from birds</li>
-                        <li>Stay on designated trails and paths</li>
-                        <li>Keep noise levels to a minimum</li>
-                        <li>Respect private property and ask permission</li>
-                        <li>Follow local regulations and guidelines</li>
-                        <li>Share rare bird locations responsibly</li>
-                        <li>Support conservation organizations</li>
-                        <li>Educate others about ethical practices</li>
-                        <li>Report injured or distressed birds</li>
-                        <li>Pack out all trash and belongings</li>
-                    </ul>
-                </div>
-                <div class="dont-card">
-                    <h4>❌ DON'T Do These Things</h4>
-                    <ul>
-                        <li>Use playback to attract birds excessively</li>
-                        <li>Approach nests or disturb breeding birds</li>
-                        <li>Alter habitat for better viewing/photos</li>
-                        <li>Chase or flush birds for better views</li>
-                        <li>Publicize sensitive nesting locations</li>
-                        <li>Trespass on private property</li>
-                        <li>Ignore local regulations or closures</li>
-                        <li>Leave trash or disturb natural areas</li>
-                        <li>Use flash photography on birds</li>
-                        <li>Stress birds for the sake of photography</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="content-section">
-            <img src="../../images/birds/species/bird-image-052.png" alt="Bird nest protection" class="bird-image">
-            
-            <h2>🥚 Special Considerations for Breeding Season</h2>
-            <p>Breeding season requires extra caution and sensitivity from birders. Disturbing nesting birds can have serious consequences for reproductive success and population health.</p>
-            
-            <h3>Nesting Season Ethics</h3>
-            <p>During breeding season, birds are particularly vulnerable to disturbance. Even well-intentioned birders can cause significant harm without realizing it.</p>
-            
-            <div class="conservation-highlight">
-                <h4>Critical Breeding Season Guidelines:</h4>
-                <ul style="margin: 0; padding-left: 20px;">
-                    <li><strong>Never Approach Active Nests:</strong> Even brief disturbance can cause abandonment</li>
-                    <li><strong>Avoid Playback During Breeding:</strong> Can disrupt territorial and mating behaviors</li>
-                    <li><strong>Respect Closure Areas:</strong> Many areas are closed during sensitive periods</li>
-                    <li><strong>Watch for Distress Signals:</strong> Agitated calls and behavior indicate you're too close</li>
-                    <li><strong>Keep Dogs Leashed:</strong> Free-roaming pets can destroy ground nests</li>
-                    <li><strong>Report Violations:</strong> Help protect nesting areas by reporting disturbances</li>
-                </ul>
-            </div>
-            
-            <div class="ethics-grid">
-                <div class="ethics-card">
-                    <span class="ethics-icon">👀</span>
-                    <h4>Observation Distance</h4>
-                    <p>Use binoculars and spotting scopes to observe from distances that don't cause behavioral changes in the birds.</p>
-                </div>
-                <div class="ethics-card">
-                    <span class="ethics-icon">⏰</span>
-                    <h4>Timing Matters</h4>
-                    <p>Avoid early morning and late evening when birds are most active with nest duties and feeding.</p>
-                </div>
-                <div class="ethics-card">
-                    <span class="ethics-icon">🤫</span>
-                    <h4>Minimize Disturbance</h4>
-                    <p>Move slowly, speak quietly, and avoid sudden movements that might startle nesting birds.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="content-section">
-            <img src="../../images/birds/species/bird-image-052.png" alt="Bird conservation efforts" class="bird-image">
-            
-            <h2>🌍 Conservation Threats and Challenges</h2>
-            <p>Understanding the major threats facing bird populations helps birders make informed decisions about conservation support and ethical practices.</p>
-            
-            <h3>Primary Threats to Bird Populations</h3>
-            <p>Modern bird populations face unprecedented challenges from human activities. Awareness of these threats helps birders understand the importance of ethical practices.</p>
-            
-            <div class="threat-assessment">
-                <h4>Major Conservation Threats:</h4>
-                <div class="threat-item">
-                    <div class="threat-severity threat-high">HIGH</div>
-                    <div class="threat-content">
-                        <h5>Habitat Loss and Fragmentation</h5>
-                        <p>Development, agriculture, and deforestation destroy and fragment critical bird habitats worldwide.</p>
-                    </div>
-                </div>
-                <div class="threat-item">
-                    <div class="threat-severity threat-high">HIGH</div>
-                    <div class="threat-content">
-                        <h5>Climate Change</h5>
-                        <p>Shifting weather patterns, sea level rise, and temperature changes disrupt migration and breeding cycles.</p>
-                    </div>
-                </div>
-                <div class="threat-item">
-                    <div class="threat-severity threat-medium">MEDIUM</div>
-                    <div class="threat-content">
-                        <h5>Invasive Species</h5>
-                        <p>Non-native plants and animals compete with native birds for resources and nesting sites.</p>
-                    </div>
-                </div>
-                <div class="threat-item">
-                    <div class="threat-severity threat-medium">MEDIUM</div>
-                    <div class="threat-content">
-                        <h5>Pollution</h5>
-                        <p>Pesticides, plastics, and chemical contamination affect bird health and reproductive success.</p>
-                    </div>
-                </div>
-                <div class="threat-item">
-                    <div class="threat-severity threat-medium">MEDIUM</div>
-                    <div class="threat-content">
-                        <h5>Window Strikes and Collisions</h5>
-                        <p>Buildings, vehicles, and communication towers kill millions of birds annually during migration.</p>
-                    </div>
-                </div>
-                <div class="threat-item">
-                    <div class="threat-severity threat-low">LOW</div>
-                    <div class="threat-content">
-                        <h5>Human Disturbance</h5>
-                        <p>Recreation, photography, and research can disrupt feeding, nesting, and roosting behaviors.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="content-section">
-            <img src="../../images/birds/species/bird-image-052.png" alt="Citizen science birding" class="bird-image">
-            
-            <h2>📊 Contributing to Conservation Through Birding</h2>
-            <p>Birders can make significant contributions to bird conservation through citizen science, habitat protection, and advocacy efforts.</p>
-            
-            <h3>Citizen Science Opportunities</h3>
-            <p>Participating in citizen science projects turns your birding hobby into valuable conservation data that helps scientists understand and protect bird populations.</p>
-            
-            <div class="ethics-grid">
-                <div class="ethics-card">
-                    <span class="ethics-icon">📱</span>
-                    <h4>eBird Participation</h4>
-                    <p>Submit your bird observations to eBird to contribute to the world's largest biodiversity citizen science project.</p>
-                </div>
-                <div class="ethics-card">
-                    <span class="ethics-icon">🎄</span>
-                    <h4>Christmas Bird Count</h4>
-                    <p>Join the longest-running citizen science project in the world, providing over 120 years of bird population data.</p>
-                </div>
-                <div class="ethics-card">
-                    <span class="ethics-icon">🏠</span>
-                    <h4>Breeding Bird Surveys</h4>
-                    <p>Participate in standardized surveys that track breeding bird populations and trends across North America.</p>
-                </div>
-                <div class="ethics-card">
-                    <span class="ethics-icon">🌍</span>
-                    <h4>Global Big Day</h4>
-                    <p>Join thousands of birders worldwide in a single day of intensive birding to document global bird diversity.</p>
-                </div>
-            </div>
-            
-            <div class="conservation-highlight">
-                <h4>How Your Data Helps Conservation:</h4>
-                <ul style="margin: 0; padding-left: 20px;">
-                    <li><strong>Population Monitoring:</strong> Track species abundance and distribution changes over time</li>
-                    <li><strong>Habitat Assessment:</strong> Identify important areas for bird conservation</li>
-                    <li><strong>Climate Impact Studies:</strong> Document how climate change affects bird populations</li>
-                    <li><strong>Conservation Planning:</strong> Inform protected area designation and management</li>
-                    <li><strong>Policy Development:</strong> Provide scientific basis for conservation legislation</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="content-section">
-            <img src="../../images/birds/species/bird-image-052.png" alt="Bird habitat restoration" class="bird-image">
-            
-            <h2>🌿 Supporting Habitat Conservation</h2>
-            <p>Habitat protection is the most effective way to conserve bird populations. Birders can support these efforts through various means, from direct donations to volunteer work.</p>
-            
-            <h3>Ways to Support Conservation</h3>
-            <p>There are many ways birders can contribute to habitat conservation and bird protection efforts, regardless of their available time or resources.</p>
-            
-            <div class="ethics-grid">
-                <div class="ethics-card">
-                    <span class="ethics-icon">💰</span>
-                    <h4>Financial Support</h4>
-                    <p>Donate to conservation organizations, purchase duck stamps, and support habitat acquisition projects.</p>
-                </div>
-                <div class="ethics-card">
-                    <span class="ethics-icon">🏡</span>
-                    <h4>Backyard Habitat</h4>
-                    <p>Create bird-friendly spaces with native plants, water sources, and nesting opportunities.</p>
-                </div>
-                <div class="ethics-card">
-                    <span class="ethics-icon">🗳️</span>
-                    <h4>Advocacy and Policy</h4>
-                    <p>Support bird-friendly legislation and policies at local, state, and federal levels.</p>
-                </div>
-                <div class="ethics-card">
-                    <span class="ethics-icon">👥</span>
-                    <h4>Community Engagement</h4>
-                    <p>Educate others about bird conservation and encourage ethical birding practices.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="content-section">
-            <img src="../../images/birds/species/bird-image-052.png" alt="Future of birding" class="bird-image">
-            
-            <h2>🔮 The Future of Ethical Birding</h2>
-            <p>As birding continues to grow in popularity, maintaining ethical standards becomes increasingly important. The future of birding depends on our collective commitment to responsible practices.</p>
-            
-            <h3>Emerging Challenges and Opportunities</h3>
-            <p>New technologies and changing social dynamics present both challenges and opportunities for ethical birding practices.</p>
-            
-            <div class="conservation-highlight">
-                <h4>Looking Forward:</h4>
-                <ul style="margin: 0; padding-left: 20px;">
-                    <li><strong>Technology Integration:</strong> Using apps and AI responsibly to enhance rather than replace field skills</li>
-                    <li><strong>Social Media Ethics:</strong> Sharing bird sightings responsibly without causing overcrowding</li>
-                    <li><strong>Inclusive Birding:</strong> Making birding accessible to diverse communities while maintaining ethical standards</li>
-                    <li><strong>Climate Adaptation:</strong> Adjusting practices as climate change affects bird behavior and distribution</li>
-                    <li><strong>Global Cooperation:</strong> Supporting international conservation efforts for migratory species</li>
-                </ul>
-            </div>
-            
-            <div class="ethics-grid">
-                <div class="ethics-card">
-                    <span class="ethics-icon">📚</span>
-                    <h4>Continuous Learning</h4>
-                    <p>Stay informed about best practices, new research, and evolving conservation needs.</p>
-                </div>
-                <div class="ethics-card">
-                    <span class="ethics-icon">🎓</span>
-                    <h4>Mentorship</h4>
-                    <p>Share knowledge with new birders and help establish ethical practices from the beginning.</p>
-                </div>
-                <div class="ethics-card">
-                    <span class="ethics-icon">🌐</span>
-                    <h4>Global Perspective</h4>
-                    <p>Consider the international implications of local birding practices and conservation efforts.</p>
-                </div>
-            </div>
+    </div>
+    
+    <!-- 进度条 -->
+    <div class="progress-container">
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
         </div>
     </div>
-
-    
-
-    
-    
 
     <script>
         // 更新时间

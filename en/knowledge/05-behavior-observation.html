@@ -4,120 +4,186 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bird Behavior Observation - BirdAiSnap</title>
-    <link rel="stylesheet" href="../../styles.css">
-    <link rel="stylesheet" href="../../knowledge.css">
-    <link rel="stylesheet" href="../../mobile-styles.css">
-    <link rel="stylesheet" href="../../mobile-enhancement.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        .article-hero {
-            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
-            color: #2d3748;
-            padding: 120px 0 80px;
-            text-align: center;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        .article-hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            font-weight: 700;
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            color: #333;
         }
-        .article-hero p {
-            font-size: 1.2rem;
-            opacity: 0.8;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        .article-content {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 60px 20px;
-        }
-        .content-section {
-            margin-bottom: 60px;
-        }
-        .content-section h2 {
-            color: #2d3748;
-            font-size: 2rem;
-            margin-bottom: 20px;
-            border-bottom: 3px solid #fcb69f;
-            padding-bottom: 10px;
-        }
-        .content-section h3 {
-            color: #4a5568;
-            font-size: 1.5rem;
-            margin: 30px 0 15px;
-        }
-        .content-section p {
-            line-height: 1.8;
-            margin-bottom: 20px;
-            color: #4a5568;
-        }
-        .bird-image {
-            width: 100%;
-            max-width: 600px;
-            height: 300px;
-            object-fit: cover;
-            border-radius: 15px;
-            margin: 30px auto;
-            display: block;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            transition: transform 0.3s ease;
-        }
-        .bird-image:hover {
-            transform: scale(1.05);
-        }
-        .behavior-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            margin: 40px 0;
-        }
-        .behavior-card {
-            background: white;
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-            border-top: 4px solid #fcb69f;
-        }
-        .behavior-card:hover {
-            transform: translateY(-5px);
-        }
-        .behavior-card h4 {
-            color: #fcb69f;
-            font-size: 1.3rem;
-            margin-bottom: 15px;
-        }
-        .behavior-icon {
-            font-size: 2rem;
-            margin-bottom: 15px;
-            display: block;
-        }
-        .observation-guide {
-            background: #f7fafc;
-            border-radius: 15px;
-            padding: 30px;
-            margin: 30px 0;
-        }
-        .observation-guide h4 {
-            color: #2d3748;
-            margin-bottom: 20px;
-            font-size: 1.3rem;
-        }
-        .behavior-sequence {
+        
+        .back-button {
+            position: fixed;
+            top: 60px;
+            left: 20px;
+            width: 36px;
+            height: 36px;
+            background: rgba(0,0,0,0.6);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            z-index: 999;
             display: flex;
             align-items: center;
+            justify-content: center;
+        }
+        
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                        url('../../images/birds/species/bird-image-005.png') center/cover;
+            position: relative;
+            margin-top: 0;
+        }
+        
+        .content {
+            background: white;
+            margin: -30px 20px 20px 20px;
+            border-radius: 20px;
+            padding: 30px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            min-height: 80vh;
+        }
+        
+        .title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            line-height: 1.3;
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, #e8f5e8, #c8e6c9);
+            border-left: 4px solid #4caf50;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .quote-box::before {
+            content: '"';
+            font-size: 48px;
+            color: #4caf50;
+            position: absolute;
+            top: -5px;
+            left: 15px;
+            font-family: serif;
+            line-height: 1;
+        }
+        
+        .quote-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2e7d32;
+            margin-left: 25px;
+            line-height: 1.4;
+        }
+        
+        .main-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
             margin: 20px 0;
+            text-align: justify;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #4caf50;
+            margin: 30px 0 15px 0;
+            border-bottom: 2px solid #c8e6c9;
+            padding-bottom: 8px;
+        }
+        
+        .tip-box {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            border-left: 4px solid #28a745;
+        }
+        
+        .tip-title {
+            font-weight: 600;
+            color: #28a745;
+            margin-bottom: 8px;
+        }
+        
+        .emoji {
+            font-size: 18px;
+            margin: 0 2px;
+        }
+        
+        .equipment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .equipment-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            border: 2px solid #e9ecef;
+            transition: transform 0.3s ease;
+        }
+        
+        .equipment-card:hover {
+            transform: translateY(-5px);
+            border-color: #4caf50;
+        }
+        
+        .equipment-card h4 {
+            color: #2e7d32;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        
+        .equipment-card p {
+            color: #666;
+            line-height: 1.5;
+            margin: 0;
+        }
+        
+        .step-container {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        
+        .step-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
             padding: 15px;
             background: white;
             border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
-        .sequence-step {
-            background: #fcb69f;
+        
+        .step-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .step-number {
+            background: #4caf50;
             color: white;
-            width: 30px;
-            height: 30px;
+            width: 35px;
+            height: 35px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -126,45 +192,81 @@
             margin-right: 15px;
             flex-shrink: 0;
         }
-        .sequence-content {
-            flex: 1;
+        
+        .step-content h4 {
+            color: #2e7d32;
+            margin-bottom: 8px;
+            font-size: 16px;
         }
-        .sequence-content h5 {
-            color: #2d3748;
-            margin-bottom: 5px;
-            font-size: 1rem;
-        }
-        .sequence-content p {
+        
+        .step-content p {
             margin: 0;
-            font-size: 0.9rem;
-            color: #4a5568;
+            color: #555;
+            line-height: 1.5;
+            font-size: 14px;
         }
-        .insight-box {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 30px;
-            border-radius: 15px;
-            margin: 30px 0;
+        
+        .progress-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: linear-gradient(to top, rgba(255,255,255,0.95), transparent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 998;
         }
-        .insight-box h4 {
-            margin-bottom: 20px;
-            font-size: 1.4rem;
+        
+        .progress-bar {
+            width: 200px;
+            height: 4px;
+            background: rgba(0,0,0,0.1);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4caf50, #81c784);
+            width: 0%;
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+        
+        @media (max-width: 375px) {
+            .content {
+                margin: -30px 15px 20px 15px;
+                padding: 25px 15px;
+            }
+            
+            .title {
+                font-size: 22px;
+            }
+            
+            .main-text {
+                font-size: 15px;
+            }
+            
+            .equipment-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- 返回按钮 -->
+    <button class="back-button" onclick="history.back()">
+        ←
+    </button>
     
-
-    <!-- 文章标题区 -->
-    <section class="article-hero">
-        <div class="container">
-            <h1>🎭 Bird Behavior Observation</h1>
-            <p>Learn to interpret bird behaviors and understand their fascinating world</p>
-        </div>
-    </section>
-
-    <!-- 文章内容 -->
-    <div class="article-content">
+    <!-- 英雄图片 -->
+    <div class="hero-image"></div>
+    
+    <!-- 主要内容 -->
+    <div class="content">
+        <div class="article-content">
         <div class="content-section">
             <img src="../../images/birds/species/bird-image-054.png" alt="Bird displaying territorial behavior" class="bird-image">
             
@@ -180,297 +282,14 @@
                     <h4>Singing and Calling</h4>
                     <p>Males sing to establish territory boundaries and attract mates. Dawn chorus is the most intense period of vocal activity.</p>
                 </div>
-                <div class="behavior-card">
-                    <span class="behavior-icon">🪶</span>
-                    <h4>Display Postures</h4>
-                    <p>Aggressive postures include raised crests, spread wings, and puffed feathers to appear larger and more intimidating.</p>
-                </div>
-                <div class="behavior-card">
-                    <span class="behavior-icon">✈️</span>
-                    <h4>Chase Flights</h4>
-                    <p>Territorial birds chase intruders in dramatic aerial pursuits, often returning to the same perch afterward.</p>
-                </div>
-            </div>
-            
-            <div class="observation-guide">
-                <h4>Observing Territorial Behavior:</h4>
-                <div class="behavior-sequence">
-                    <div class="sequence-step">1</div>
-                    <div class="sequence-content">
-                        <h5>Identify Singing Posts</h5>
-                        <p>Males often sing from prominent perches at territory boundaries</p>
-                    </div>
-                </div>
-                <div class="behavior-sequence">
-                    <div class="sequence-step">2</div>
-                    <div class="sequence-content">
-                        <h5>Watch for Intruders</h5>
-                        <p>Notice when other birds approach and trigger defensive responses</p>
-                    </div>
-                </div>
-                <div class="behavior-sequence">
-                    <div class="sequence-step">3</div>
-                    <div class="sequence-content">
-                        <h5>Map Territory Boundaries</h5>
-                        <p>Track where chases end and birds return to establish territory size</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="content-section">
-            <img src="../../images/birds/species/bird-image-054.png" alt="Birds feeding behavior" class="bird-image">
-            
-            <h2>🍽️ Feeding Behaviors and Strategies</h2>
-            <p>Feeding behavior reveals a bird's ecological niche and provides excellent observation opportunities. Different species have evolved specialized techniques for finding and capturing food.</p>
-            
-            <h3>Foraging Techniques</h3>
-            <p>Each bird family has characteristic feeding methods that reflect their anatomy and ecological role. Understanding these patterns helps with identification and prediction of bird locations.</p>
-            
-            <div class="behavior-grid">
-                <div class="behavior-card">
-                    <span class="behavior-icon">🔍</span>
-                    <h4>Ground Foraging</h4>
-                    <p>Sparrows and thrushes scratch through leaf litter, using both feet to uncover hidden insects and seeds.</p>
-                </div>
-                <div class="behavior-card">
-                    <span class="behavior-icon">🌳</span>
-                    <h4>Bark Gleaning</h4>
-                    <p>Nuthatches and woodpeckers probe bark crevices, often working systematically up or down tree trunks.</p>
-                </div>
-                <div class="behavior-card">
-                    <span class="behavior-icon">🦟</span>
-                    <h4>Aerial Hawking</h4>
-                    <p>Flycatchers dart from perches to catch insects in mid-air, returning to the same spot repeatedly.</p>
-                </div>
-                <div class="behavior-card">
-                    <span class="behavior-icon">🌊</span>
-                    <h4>Surface Skimming</h4>
-                    <p>Swallows and martins catch insects while flying, often over water where insects are abundant.</p>
-                </div>
-            </div>
-            
-            <div class="insight-box">
-                <h4>Feeding Behavior Insights:</h4>
-                <ul style="margin: 0; padding-left: 20px;">
-                    <li><strong>Time of Day:</strong> Most birds are most active feeding in early morning and late afternoon</li>
-                    <li><strong>Weather Influence:</strong> Insect-eating birds are more active before storms when insects fly low</li>
-                    <li><strong>Seasonal Changes:</strong> Diet often shifts seasonally from insects in summer to seeds in winter</li>
-                    <li><strong>Flock Feeding:</strong> Mixed-species flocks increase foraging efficiency through cooperation</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="content-section">
-            <img src="../../images/birds/species/bird-image-054.png" alt="Bird courtship display" class="bird-image">
-            
-            <h2>💕 Courtship and Mating Behaviors</h2>
-            <p>Courtship behaviors are among the most spectacular and complex bird behaviors. These displays serve to attract mates, demonstrate fitness, and strengthen pair bonds.</p>
-            
-            <h3>Courtship Display Types</h3>
-            <p>Courtship displays vary dramatically between species, from elaborate dances to intricate nest-building demonstrations. These behaviors are most intense during breeding season.</p>
-            
-            <div class="behavior-grid">
-                <div class="behavior-card">
-                    <span class="behavior-icon">💃</span>
-                    <h4>Courtship Dances</h4>
-                    <p>Elaborate movements including bowing, wing-spreading, and synchronized steps to impress potential mates.</p>
-                </div>
-                <div class="behavior-card">
-                    <span class="behavior-icon">🎁</span>
-                    <h4>Nuptial Gifts</h4>
-                    <p>Males present food items to females as part of courtship, demonstrating their ability to provide.</p>
-                </div>
-                <div class="behavior-card">
-                    <span class="behavior-icon">🏗️</span>
-                    <h4>Nest Building Displays</h4>
-                    <p>Some species build multiple "practice nests" or elaborate structures to attract mates.</p>
-                </div>
-                <div class="behavior-card">
-                    <span class="behavior-icon">🎨</span>
-                    <h4>Plumage Displays</h4>
-                    <p>Spreading colorful feathers, raising crests, or revealing hidden patches of bright coloration.</p>
-                </div>
-            </div>
-            
-            <div class="observation-guide">
-                <h4>Timing Courtship Observations:</h4>
-                <div class="behavior-sequence">
-                    <div class="sequence-step">1</div>
-                    <div class="sequence-content">
-                        <h5>Early Season Arrival</h5>
-                        <p>Males often arrive first to establish territories before females</p>
-                    </div>
-                </div>
-                <div class="behavior-sequence">
-                    <div class="sequence-step">2</div>
-                    <div class="sequence-content">
-                        <h5>Peak Display Period</h5>
-                        <p>Most intense courtship occurs 2-4 weeks after arrival</p>
-                    </div>
-                </div>
-                <div class="behavior-sequence">
-                    <div class="sequence-step">3</div>
-                    <div class="sequence-content">
-                        <h5>Pair Bond Formation</h5>
-                        <p>Successful pairs begin nest site selection and construction</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="content-section">
-            <img src="../../images/birds/species/bird-image-054.png" alt="Parent bird feeding young" class="bird-image">
-            
-            <h2>👨‍👩‍👧‍👦 Parental Care and Family Dynamics</h2>
-            <p>Parental behaviors provide fascinating insights into bird family life. From nest construction to fledgling care, these behaviors demonstrate the complexity of avian social structures.</p>
-            
-            <h3>Nesting and Chick-Rearing</h3>
-            <p>Parental investment varies greatly between species. Some birds provide extensive care for months, while others are independent shortly after hatching.</p>
-            
-            <div class="behavior-grid">
-                <div class="behavior-card">
-                    <span class="behavior-icon">🥚</span>
-                    <h4>Incubation Behavior</h4>
-                    <p>Parents take turns warming eggs, with specific schedules and changeover rituals between partners.</p>
-                </div>
-                <div class="behavior-card">
-                    <span class="behavior-icon">🍼</span>
-                    <h4>Feeding Schedules</h4>
-                    <p>Parents make hundreds of feeding trips daily, often targeting specific prey types for growing chicks.</p>
-                </div>
-                <div class="behavior-card">
-                    <span class="behavior-icon">🛡️</span>
-                    <h4>Nest Defense</h4>
-                    <p>Aggressive protection of nest sites, including distraction displays and direct attacks on threats.</p>
-                </div>
-                <div class="behavior-card">
-                    <span class="behavior-icon">🎓</span>
-                    <h4>Teaching Behaviors</h4>
-                    <p>Parents demonstrate foraging techniques and safety behaviors to fledgling young.</p>
-                </div>
-            </div>
-            
-            <div class="insight-box">
-                <h4>Observing Family Groups:</h4>
-                <ul style="margin: 0; padding-left: 20px;">
-                    <li><strong>Begging Calls:</strong> Young birds have distinctive calls that differ from adult vocalizations</li>
-                    <li><strong>Size Differences:</strong> Juveniles are often similar in size but have different proportions</li>
-                    <li><strong>Following Behavior:</strong> Young birds closely follow parents and mimic their actions</li>
-                    <li><strong>Feeding Dependency:</strong> Fledglings continue begging for food even when capable of self-feeding</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="content-section">
-            <img src="../../images/birds/species/bird-image-054.png" alt="Bird flock behavior" class="bird-image">
-            
-            <h2>🐦‍⬛ Flocking and Group Dynamics</h2>
-            <p>Many birds form flocks for feeding, roosting, or migration. Understanding flock dynamics helps predict bird movements and locate productive birding areas.</p>
-            
-            <h3>Types of Flocking Behavior</h3>
-            <p>Different species form flocks for different reasons and at different times of year. Mixed-species flocks are particularly interesting for birders.</p>
-            
-            <div class="observation-guide">
-                <h4>Flock Observation Strategy:</h4>
-                <div class="behavior-sequence">
-                    <div class="sequence-step">1</div>
-                    <div class="sequence-content">
-                        <h5>Identify Core Species</h5>
-                        <p>Find the most common species that forms the flock's foundation</p>
-                    </div>
-                </div>
-                <div class="behavior-sequence">
-                    <div class="sequence-step">2</div>
-                    <div class="sequence-content">
-                        <h5>Look for Followers</h5>
-                        <p>Other species often join established flocks for protection and foraging benefits</p>
-                    </div>
-                </div>
-                <div class="behavior-sequence">
-                    <div class="sequence-step">3</div>
-                    <div class="sequence-content">
-                        <h5>Watch Movement Patterns</h5>
-                        <p>Flocks move in predictable patterns through habitat</p>
-                    </div>
-                </div>
-                <div class="behavior-sequence">
-                    <div class="sequence-step">4</div>
-                    <div class="sequence-content">
-                        <h5>Note Rare Species</h5>
-                        <p>Uncommon birds often travel with common species in mixed flocks</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="behavior-grid">
-                <div class="behavior-card">
-                    <span class="behavior-icon">🔄</span>
-                    <h4>Feeding Flocks</h4>
-                    <p>Mixed-species groups that move through habitat together, increasing foraging efficiency and predator detection.</p>
-                </div>
-                <div class="behavior-card">
-                    <span class="behavior-icon">🌙</span>
-                    <h4>Roosting Flocks</h4>
-                    <p>Large gatherings at night roosts provide warmth and protection from predators.</p>
-                </div>
-                <div class="behavior-card">
-                    <span class="behavior-icon">🧭</span>
-                    <h4>Migration Flocks</h4>
-                    <p>Coordinated movements during migration, often following specific routes and timing.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="content-section">
-            <img src="../../images/birds/species/bird-image-054.png" alt="Bird communication behavior" class="bird-image">
-            
-            <h2>📢 Communication and Vocalizations</h2>
-            <p>Bird communication extends far beyond simple songs. Understanding the nuances of bird vocalizations and body language reveals complex social interactions.</p>
-            
-            <h3>Types of Vocalizations</h3>
-            <p>Birds use different types of calls for different purposes. Learning to distinguish these helps you understand what birds are communicating.</p>
-            
-            <div class="behavior-grid">
-                <div class="behavior-card">
-                    <span class="behavior-icon">🎼</span>
-                    <h4>Territorial Songs</h4>
-                    <p>Complex, melodious vocalizations used to establish territory and attract mates, typically by males.</p>
-                </div>
-                <div class="behavior-card">
-                    <span class="behavior-icon">⚠️</span>
-                    <h4>Alarm Calls</h4>
-                    <p>Sharp, urgent calls that warn of predators or threats, often understood by multiple species.</p>
-                </div>
-                <div class="behavior-card">
-                    <span class="behavior-icon">📞</span>
-                    <h4>Contact Calls</h4>
-                    <p>Soft calls used to maintain contact between flock members or family groups.</p>
-                </div>
-                <div class="behavior-card">
-                    <span class="behavior-icon">🍼</span>
-                    <h4>Begging Calls</h4>
-                    <p>Distinctive calls made by young birds requesting food from parents.</p>
-                </div>
-            </div>
-            
-            <div class="insight-box">
-                <h4>Reading Bird Body Language:</h4>
-                <ul style="margin: 0; padding-left: 20px;">
-                    <li><strong>Relaxed Posture:</strong> Feathers smooth, normal stance indicates comfort</li>
-                    <li><strong>Alert Posture:</strong> Upright stance, head raised shows awareness of potential threat</li>
-                    <li><strong>Aggressive Posture:</strong> Feathers ruffled, wings spread, bill open indicates territorial defense</li>
-                    <li><strong>Submissive Posture:</strong> Crouched position, feathers slicked down shows deference</li>
-                    <li><strong>Preening:</strong> Self-maintenance behavior indicates security and comfort</li>
-                </ul>
-            </div>
+    </div>
+    
+    <!-- 进度条 -->
+    <div class="progress-container">
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
         </div>
     </div>
-
-    
-
-    
-    
 
     <script>
         // 更新时间

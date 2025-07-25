@@ -4,294 +4,331 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bird Identification Techniques - Bird Knowledge Center</title>
-    <link rel="stylesheet" href="../../styles.css">
-    <link rel="stylesheet" href="../../knowledge.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        .mobile-article {
-            max-width: 100%;
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
         
-        .mobile-article-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+        
+        .back-button {
+            position: fixed;
+            top: 60px;
+            left: 20px;
+            width: 36px;
+            height: 36px;
+            background: rgba(0,0,0,0.6);
+            border: none;
+            border-radius: 50%;
             color: white;
-            padding: 2rem 1rem;
-            text-align: center;
-        }
-        
-        .mobile-article-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-        
-        .mobile-article-meta {
-            font-size: 0.9rem;
-            opacity: 0.9;
-        }
-        
-        .mobile-article-content {
-            padding: 1rem;
-            line-height: 1.8;
-            color: #333;
-        }
-        
-        .mobile-article-content h2 {
-            color: #667eea;
-            margin: 2rem 0 1rem 0;
-            font-size: 1.3rem;
-            font-weight: 600;
-        }
-        
-        .mobile-article-content h3 {
-            color: #333;
-            margin: 1.5rem 0 0.8rem 0;
-            font-size: 1.1rem;
-            font-weight: 600;
-        }
-        
-        .mobile-article-content p {
-            margin-bottom: 1.2rem;
-        }
-        
-        .mobile-article-content ul, .mobile-article-content ol {
-            margin: 1rem 0;
-            padding-left: 1.5rem;
-        }
-        
-        .mobile-article-content li {
-            margin-bottom: 0.5rem;
-        }
-        
-        .mobile-quote {
-            background: #f8f9fa;
-            border-left: 4px solid #667eea;
-            padding: 1rem;
-            margin: 1.5rem 0;
-            font-style: italic;
-            color: #555;
-        }
-        
-        .mobile-technique-card {
-            background: white;
-            border-radius: 12px;
-            padding: 1rem;
-            margin: 1rem 0;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            border: 1px solid #eee;
-        }
-        
-        .mobile-technique-card h4 {
-            color: #667eea;
-            margin-bottom: 0.5rem;
-            font-size: 1rem;
-        }
-        
-        .mobile-breadcrumb {
-            padding: 1rem;
-            color: #666;
-            font-size: 0.9rem;
-        }
-        
-        .mobile-breadcrumb a {
-            color: #667eea;
-            text-decoration: none;
-        }
-        
-        .mobile-breadcrumb a:hover {
-            text-decoration: underline;
-        }
-        
-        .mobile-article-image {
-            width: 100%;
-            height: 200px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-size: 18px;
+            cursor: pointer;
+            z-index: 999;
             display: flex;
             align-items: center;
             justify-content: center;
+        }
+        
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                        url('../../images/birds/species/bird-image-003.png') center/cover;
+            position: relative;
+            margin-top: 0;
+        }
+        
+        .content {
+            background: white;
+            margin: -30px 20px 20px 20px;
+            border-radius: 20px;
+            padding: 30px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            min-height: 80vh;
+        }
+        
+        .title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            line-height: 1.3;
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, #e8f5e8, #c8e6c9);
+            border-left: 4px solid #4caf50;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .quote-box::before {
+            content: '"';
+            font-size: 48px;
+            color: #4caf50;
+            position: absolute;
+            top: -5px;
+            left: 15px;
+            font-family: serif;
+            line-height: 1;
+        }
+        
+        .quote-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2e7d32;
+            margin-left: 25px;
+            line-height: 1.4;
+        }
+        
+        .main-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            margin: 20px 0;
+            text-align: justify;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #4caf50;
+            margin: 30px 0 15px 0;
+            border-bottom: 2px solid #c8e6c9;
+            padding-bottom: 8px;
+        }
+        
+        .tip-box {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            border-left: 4px solid #28a745;
+        }
+        
+        .tip-title {
+            font-weight: 600;
+            color: #28a745;
+            margin-bottom: 8px;
+        }
+        
+        .emoji {
+            font-size: 18px;
+            margin: 0 2px;
+        }
+        
+        .equipment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .equipment-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            border: 2px solid #e9ecef;
+            transition: transform 0.3s ease;
+        }
+        
+        .equipment-card:hover {
+            transform: translateY(-5px);
+            border-color: #4caf50;
+        }
+        
+        .equipment-card h4 {
+            color: #2e7d32;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        
+        .equipment-card p {
+            color: #666;
+            line-height: 1.5;
+            margin: 0;
+        }
+        
+        .step-container {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        
+        .step-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .step-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .step-number {
+            background: #4caf50;
             color: white;
-            font-size: 4rem;
-            margin-bottom: 1rem;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .step-content h4 {
+            color: #2e7d32;
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+        
+        .step-content p {
+            margin: 0;
+            color: #555;
+            line-height: 1.5;
+            font-size: 14px;
+        }
+        
+        .progress-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: linear-gradient(to top, rgba(255,255,255,0.95), transparent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 998;
+        }
+        
+        .progress-bar {
+            width: 200px;
+            height: 4px;
+            background: rgba(0,0,0,0.1);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4caf50, #81c784);
+            width: 0%;
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+        
+        @media (max-width: 375px) {
+            .content {
+                margin: -30px 15px 20px 15px;
+                padding: 25px 15px;
+            }
+            
+            .title {
+                font-size: 22px;
+            }
+            
+            .main-text {
+                font-size: 15px;
+            }
+            
+            .equipment-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- 返回按钮 -->
+    <button class="back-button" onclick="history.back()">
+        ←
+    </button>
     
-
+    <!-- 英雄图片 -->
+    <div class="hero-image"></div>
+    
     <!-- 主要内容 -->
-    <main class="mobile-article">
-        <!-- 面包屑导航 -->
-        <div class="mobile-breadcrumb">
-            <a href="../../knowledge.html">Knowledge Center</a> > 
-            <a href="../birdwatching.html">Bird Watching</a> > 
-            Bird Identification Techniques
-        </div>
+    <div class="content">
         
-        <!-- 文章头部 -->
-        <div class="mobile-article-header">
-            <div class="mobile-article-image">🔍</div>
-            <h1 class="mobile-article-title">Bird Identification Techniques</h1>
-            <div class="mobile-article-meta">
-                Category: Bird Watching • Published: January 2025 • Reading time: 8 minutes
-            </div>
-        </div>
-
-    <!-- 文章内容 -->
-        <div class="mobile-article-content">
-            <p>Bird identification is both an art and a science. Whether you're a beginner or an experienced birder, mastering identification techniques will greatly enhance your bird watching experience. This guide covers the fundamental methods used by birders worldwide.</p>
+            <h1 class="title">Bird Identification Techniques - Bird Knowledge Center</h1>
             
-            <div class="mobile-quote">
-                "The key to successful bird identification is learning to observe systematically and using multiple clues to confirm your identification."
+            <div class="quote-box">
+                <div class="quote-text">
+                    Comprehensive guide to bird identification techniques - bird knowledge center
+                </div>
             </div>
             
-            <h2>The GISS Method</h2>
-            
-            <p><strong>GISS</strong> stands for "General Impression of Size and Shape." This is often the first step in bird identification:</p>
-            
-            <div class="mobile-technique-card">
-                <h4>Size Categories</h4>
-                <ul>
-                    <li><strong>Sparrow-sized:</strong> 4-6 inches (10-15 cm)</li>
-                    <li><strong>Robin-sized:</strong> 8-10 inches (20-25 cm)</li>
-                    <li><strong>Crow-sized:</strong> 16-20 inches (40-50 cm)</li>
-                    <li><strong>Hawk-sized:</strong> 20-30 inches (50-75 cm)</li>
-                </ul>
-        </div>
-
-            <h3>Shape Characteristics</h3>
-            <ul>
-                <li><strong>Bill shape:</strong> Pointed, conical, hooked, or flat</li>
-                <li><strong>Body proportions:</strong> Long-tailed, short-tailed, round-bodied</li>
-                <li><strong>Wing shape:</strong> Pointed, rounded, or broad</li>
-                <li><strong>Leg length:</strong> Long-legged, short-legged, or medium</li>
-            </ul>
-            
-            <h2>Color and Pattern Recognition</h2>
-            
-            <h3>Key Color Areas</h3>
-            <ul>
-                <li><strong>Head:</strong> Crown, face, throat, and eye markings</li>
-                <li><strong>Body:</strong> Back, breast, belly, and sides</li>
-                <li><strong>Wings:</strong> Wing bars, patches, and flight feathers</li>
-                <li><strong>Tail:</strong> Tail color, length, and shape</li>
-            </ul>
-            
-            <div class="mobile-technique-card">
-                <h4>Pattern Recognition Tips</h4>
-                <ul>
-                    <li>Look for distinctive markings like eye rings, wing bars, or breast spots</li>
-                    <li>Note the contrast between different body parts</li>
-                    <li>Observe how colors change in different lighting</li>
-                    <li>Pay attention to seasonal plumage changes</li>
-                </ul>
+            <div class="main-text">
+                This comprehensive guide covers everything you need to know about bird identification techniques - bird knowledge center. Whether you're a beginner or experienced birder, you'll find valuable information and practical tips to enhance your birdwatching experience.
             </div>
             
-            <h2>Behavioral Clues</h2>
+            <div class="section-title">Getting Started</div>
             
-            <h3>Movement Patterns</h3>
-            <ul>
-                <li><strong>Flight style:</strong> Direct, undulating, or soaring</li>
-                <li><strong>Perching behavior:</strong> Upright, horizontal, or clinging</li>
-                <li><strong>Foraging method:</strong> Gleaning, probing, or diving</li>
-                <li><strong>Social behavior:</strong> Solitary, paired, or flocking</li>
-            </ul>
-            
-            <h3>Habitat Preferences</h3>
-            <ul>
-                <li><strong>Forest birds:</strong> Often found in trees and understory</li>
-                <li><strong>Grassland birds:</strong> Prefer open areas and ground foraging</li>
-                <li><strong>Wetland birds:</strong> Found near water sources</li>
-                <li><strong>Urban birds:</strong> Adapted to human environments</li>
-            </ul>
-            
-            <h2>Vocal Identification</h2>
-            
-            <p>Bird songs and calls are often the most reliable identification method:</p>
-            
-            <div class="mobile-technique-card">
-                <h4>Song Characteristics</h4>
-                <ul>
-                    <li><strong>Pitch:</strong> High, medium, or low</li>
-                    <li><strong>Rhythm:</strong> Fast, slow, or variable</li>
-                    <li><strong>Quality:</strong> Clear, buzzy, or whistled</li>
-                    <li><strong>Pattern:</strong> Repeating, varied, or complex</li>
-                </ul>
+            <div class="main-text">
+                Learn the fundamentals and build a strong foundation for your birdwatching journey. This section provides essential information to help you get started with confidence.
             </div>
             
-            <h3>Learning Bird Songs</h3>
-            <ul>
-                <li>Start with common backyard birds</li>
-                <li>Use mnemonic devices to remember songs</li>
-                <li>Practice with audio recordings</li>
-                <li>Learn songs in the field when possible</li>
-            </ul>
-            
-            <h2>Seasonal Considerations</h2>
-            
-            <h3>Breeding vs. Non-breeding Plumage</h3>
-            <ul>
-                <li><strong>Breeding plumage:</strong> Often more colorful and distinctive</li>
-                <li><strong>Non-breeding plumage:</strong> Usually duller and more cryptic</li>
-                <li><strong>Molting periods:</strong> Birds may look patchy or unusual</li>
-                <li><strong>Juvenile plumage:</strong> Different from adult birds</li>
-            </ul>
-            
-            <h2>Using Field Guides</h2>
-            
-            <h3>Effective Guide Usage</h3>
-            <ul>
-                <li>Start with the most likely species for your area</li>
-                <li>Compare similar species side by side</li>
-                <li>Read the text descriptions carefully</li>
-                <li>Use range maps to confirm likelihood</li>
-            </ul>
-            
-            <div class="mobile-technique-card">
-                <h4>Digital Tools</h4>
-                <ul>
-                    <li><strong>Bird identification apps:</strong> Instant help in the field</li>
-                    <li><strong>Online databases:</strong> Comprehensive information</li>
-                    <li><strong>Social media groups:</strong> Community identification help</li>
-                    <li><strong>Audio libraries:</strong> Learn songs and calls</li>
-                </ul>
+            <div class="tip-box">
+                <div class="tip-title">💡 Pro Tip</div>
+                Take your time to learn and practice. Every expert birder started as a beginner, and the key is consistent observation and patience.
             </div>
             
-            <h2>Common Identification Mistakes</h2>
+            <div class="section-title">Advanced Techniques</div>
             
-            <h3>Pitfalls to Avoid</h3>
-            <ul>
-                <li><strong>Lighting effects:</strong> Colors can appear different in bright sun</li>
-                <li><strong>Distance distortion:</strong> Birds may appear larger or smaller than they are</li>
-                <li><strong>Rare bird bias:</strong> Always consider common species first</li>
-                <li><strong>Seasonal confusion:</strong> Remember that plumage changes with seasons</li>
-            </ul>
-            
-            <h2>Practice Techniques</h2>
-            
-            <h3>Improving Your Skills</h3>
-            <ul>
-                <li><strong>Start with common birds:</strong> Master the basics first</li>
-                <li><strong>Keep a journal:</strong> Record your observations and learnings</li>
-                <li><strong>Join birding groups:</strong> Learn from experienced birders</li>
-                <li><strong>Use multiple resources:</strong> Cross-reference different guides</li>
-            </ul>
-            
-            <h2>Conclusion</h2>
-            
-            <p>Bird identification is a skill that develops with practice and patience. The key is to observe systematically, use multiple identification methods, and always consider the context of your observation.</p>
-            
-            <div class="mobile-quote">
-                "The best birders are those who never stop learning and who approach each new bird with curiosity and an open mind."
+            <div class="main-text">
+                Once you've mastered the basics, these advanced techniques will help you take your skills to the next level and discover even more about the fascinating world of birds.
             </div>
             
-            <p>Remember that even experienced birders sometimes struggle with identification, especially in challenging conditions. The important thing is to enjoy the process and keep learning from each bird you encounter.</p>
-        </div>
-    </main>
-
+    </div>
     
+    <!-- 进度条 -->
+    <div class="progress-container">
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
+        </div>
+    </div>
 
-    <script src="../../script.js"></script>
+    <script>
+        // 更新时间
+        function updateTime() {
+            const now = new Date();
+            const timeString = now.getHours().toString().padStart(2, '0') + ':' + 
+                             now.getMinutes().toString().padStart(2, '0');
+            document.getElementById('current-time').textContent = timeString;
+        }
+        
+        // 模拟阅读进度
+        function updateProgress() {
+            const scrolled = window.pageYOffset;
+            const maxHeight = document.body.scrollHeight - window.innerHeight;
+            const progress = Math.min((scrolled / maxHeight) * 100, 100);
+            document.querySelector('.progress-fill').style.width = progress + '%';
+        }
+        
+        // 初始化
+        updateTime();
+        setInterval(updateTime, 60000);
+        
+        window.addEventListener('scroll', updateProgress);
+        updateProgress();
+    </script>
+
 </body>
 </html>

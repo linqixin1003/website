@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>宠物鸟住房与环境 - BirdAiSnap</title>
+    <title>Bird Housing and Environment - Pet Care Guide</title>
     <style>
         * {
             margin: 0;
@@ -39,7 +39,7 @@
             width: 100%;
             height: 400px;
             background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
-                        url('../../images/birds/species/bird-image-025.png') center/cover;
+                        url('../../images/birds/species/bird-image-030.png') center/cover;
             position: relative;
             margin-top: 0;
         }
@@ -62,8 +62,8 @@
         }
         
         .quote-box {
-            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
-            border-left: 4px solid #ff9800;
+            background: linear-gradient(135deg, #e8f5e8, #c8e6c9);
+            border-left: 4px solid #2E8B57;
             padding: 20px;
             margin: 25px 0;
             border-radius: 8px;
@@ -73,7 +73,7 @@
         .quote-box::before {
             content: '"';
             font-size: 48px;
-            color: #ff9800;
+            color: #2E8B57;
             position: absolute;
             top: -5px;
             left: 15px;
@@ -84,7 +84,7 @@
         .quote-text {
             font-size: 18px;
             font-weight: 600;
-            color: #e65100;
+            color: #1b5e20;
             margin-left: 25px;
             line-height: 1.4;
         }
@@ -97,62 +97,138 @@
             text-align: justify;
         }
         
+        .main-text ul {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+
+        .main-text li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .main-text li:before {
+            content: "•";
+            position: absolute;
+            left: 8px;
+            color: #2E8B57;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        
         .section-title {
             font-size: 20px;
             font-weight: 600;
-            color: #ff9800;
+            color: #2E8B57;
             margin: 30px 0 15px 0;
-            border-bottom: 2px solid #ffe0b2;
+            border-bottom: 2px solid #c8e6c9;
             padding-bottom: 8px;
         }
         
         .tip-box {
             background: #f8f9fa;
             border: 1px solid #e9ecef;
-            border-radius: 8px;
-            padding: 15px;
+            border-radius: 12px;
+            padding: 20px;
             margin: 20px 0;
             border-left: 4px solid #28a745;
+            box-shadow: 0 2px 6px rgba(40, 167, 69, 0.1);
         }
-        
+
         .tip-title {
             font-weight: 600;
             color: #28a745;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tip-box p {
+            margin: 0;
+            line-height: 1.6;
+            color: #495057;
+        }
+        
+        .warning-box {
+            background: #FFF8DC;
+            border: 2px solid #DAA520;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(218, 165, 32, 0.1);
+        }
+
+        .warning-box h4 {
+            color: #B8860B;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .warning-box ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .warning-box li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 12px;
+            line-height: 1.6;
+            color: #8B4513;
+        }
+
+        .warning-box li:before {
+            content: "•";
+            position: absolute;
+            left: 8px;
+            color: #DAA520;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .warning-box li:last-child {
+            margin-bottom: 0;
+        }
+        
+        .housing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .housing-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #c8e6c9;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .housing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+        }
+
+        .housing-card h4 {
+            color: #2E8B57;
+            font-size: 1.3em;
+            margin-bottom: 10px;
         }
         
         .emoji {
             font-size: 18px;
             margin: 0 2px;
-        }
-        
-        .progress-container {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 60px;
-            background: linear-gradient(to top, rgba(255,255,255,0.95), transparent);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 998;
-        }
-        
-        .progress-bar {
-            width: 200px;
-            height: 4px;
-            background: rgba(0,0,0,0.1);
-            border-radius: 2px;
-            overflow: hidden;
-        }
-        
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #ff9800, #ffb74d);
-            width: 0%;
-            border-radius: 2px;
-            transition: width 0.3s ease;
         }
         
         @media (max-width: 375px) {
@@ -168,51 +244,269 @@
             .main-text {
                 font-size: 15px;
             }
+            
+            .housing-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- 返回按钮 -->
+    <!-- Back Button -->
     <button class="back-button" onclick="history.back()">
         ←
     </button>
     
-    <!-- 英雄图片 -->
+    <!-- Hero Image -->
     <div class="hero-image"></div>
     
-    <!-- 主要内容 -->
+    <!-- Main Content -->
     <div class="content">
-        <h1 class="title">宠物鸟住房与环境</h1>
-        <div class="quote-box"><div class="quote-text">舒适安全的家是鸟儿健康快乐的保障
-    </div>
-    
-    <!-- 进度条 -->
-    <div class="progress-container">
-        <div class="progress-bar">
-            <div class="progress-fill"></div>
+        <h1 class="title">Bird Housing and Environment</h1>
+        
+        <div class="quote-box">
+            <div class="quote-text">
+                Create a safe, comfortable, and enriching home for your feathered friend
+            </div>
+        </div>
+        
+        <div class="main-text">
+            Providing proper housing and environment is fundamental to your bird's physical and mental well-being. A well-designed living space not only keeps your bird safe but also promotes natural behaviors and reduces stress <span class="emoji">🏠</span>. The right environment can significantly impact your bird's health, happiness, and longevity.
+        </div>
+        
+        <div class="section-title">Choosing the Right Cage</div>
+        
+        <div class="main-text">
+            The cage is your bird's primary living space, so selecting the right one is crucial. Size, shape, materials, and design all play important roles in your bird's comfort and safety <span class="emoji">🔍</span>. Remember that bigger is always better when it comes to bird cages.
+        </div>
+        
+        <div class="housing-grid">
+            <div class="housing-card">
+                <h4>📏 Size Requirements</h4>
+                <p><strong>Small Birds:</strong> 18" x 18" x 24" minimum</p>
+                <p><strong>Medium Birds:</strong> 24" x 24" x 30" minimum</p>
+                <p><strong>Large Birds:</strong> 36" x 24" x 48" minimum</p>
+                <p>Birds should be able to fully spread their wings without touching the sides.</p>
+            </div>
+
+            <div class="housing-card">
+                <h4>🔧 Bar Spacing</h4>
+                <p><strong>Small Birds:</strong> 1/4" to 1/2" spacing</p>
+                <p><strong>Medium Birds:</strong> 1/2" to 5/8" spacing</p>
+                <p><strong>Large Birds:</strong> 5/8" to 1" spacing</p>
+                <p>Proper spacing prevents escape and injury while allowing good visibility.</p>
+            </div>
+
+            <div class="housing-card">
+                <h4>🏗️ Cage Shape</h4>
+                <p><strong>Best:</strong> Rectangular or square</p>
+                <p><strong>Avoid:</strong> Round or ornate shapes</p>
+                <p><strong>Why:</strong> Corners provide security</p>
+                <p>Birds feel more secure with defined corners and straight lines.</p>
+            </div>
+
+            <div class="housing-card">
+                <h4>🔩 Materials</h4>
+                <p><strong>Safe:</strong> Stainless steel, powder-coated</p>
+                <p><strong>Avoid:</strong> Galvanized, brass, zinc</p>
+                <p><strong>Toxic:</strong> Lead-based paints</p>
+                <p>Choose non-toxic materials that won't harm your bird if chewed.</p>
+            </div>
+        </div>
+        
+        <div class="section-title">Cage Placement and Location</div>
+        
+        <div class="main-text">
+            Where you place your bird's cage is just as important as the cage itself. The location affects your bird's sense of security, social interaction, and overall well-being <span class="emoji">📍</span>.
+        </div>
+
+        <div class="main-text">
+            <strong>Ideal Placement Guidelines:</strong><br>
+            • Against a wall for security (not in the center of room)<br>
+            • At eye level or slightly higher<br>
+            • Away from kitchen (cooking fumes are toxic)<br>
+            • Near family activity but not in high-traffic areas<br>
+            • Away from direct sunlight and drafts<br>
+            • Not near heating/cooling vents
+        </div>
+
+        <div class="tip-box">
+            <div class="tip-title">💡 Placement Tip</div>
+            <p>Birds are prey animals and feel most secure when they can see their surroundings while having their back protected by a wall.</p>
+        </div>
+        
+        <div class="section-title">Essential Cage Accessories</div>
+        
+        <div class="main-text">
+            The right accessories make your bird's cage functional and comfortable. Each item serves a specific purpose in maintaining your bird's health and happiness <span class="emoji">🛠️</span>.
+        </div>
+
+        <div class="main-text">
+            <strong>Must-Have Accessories:</strong><br>
+            • Perches of varying diameters and textures<br>
+            • Food and water dishes (stainless steel preferred)<br>
+            • Cuttlebone or mineral block<br>
+            • Safe toys for mental stimulation<br>
+            • Cage cover for nighttime<br>
+            • Newspaper or safe cage liner
+        </div>
+        
+        <div class="section-title">Perches and Positioning</div>
+        
+        <div class="main-text">
+            Proper perches are essential for foot health and comfort. Different sizes and textures help prevent foot problems and provide exercise <span class="emoji">🦶</span>.
+        </div>
+
+        <div class="main-text">
+            <strong>Perch Variety:</strong><br>
+            • Natural wood branches (apple, willow, birch)<br>
+            • Rope perches for texture variation<br>
+            • Mineral perches for beak maintenance<br>
+            • Avoid sandpaper perches (can cause sores)<br>
+            • Position at different heights and angles<br>
+            • Ensure perches don't obstruct food/water access
+        </div>
+
+        <div class="tip-box">
+            <div class="tip-title">🌳 Natural Branch Tip</div>
+            <p>Natural branches provide varying diameters that exercise foot muscles and help maintain proper nail length naturally.</p>
+        </div>
+        
+        <div class="section-title">Lighting and Temperature</div>
+        
+        <div class="main-text">
+            Proper lighting and temperature control are crucial for your bird's health, behavior, and breeding cycles <span class="emoji">🌡️</span>. Birds are sensitive to environmental changes and need consistent conditions.
+        </div>
+
+        <div class="main-text">
+            <strong>Lighting Requirements:</strong><br>
+            • 10-12 hours of light, 10-12 hours of darkness<br>
+            • Full-spectrum UV lighting if no natural sunlight<br>
+            • Avoid sudden light changes<br>
+            • Use cage covers for consistent sleep schedule<br>
+            • Natural sunlight is best (through screened windows)
+        </div>
+
+        <div class="main-text">
+            <strong>Temperature Guidelines:</strong><br>
+            • Ideal range: 65-80°F (18-27°C)<br>
+            • Avoid temperature fluctuations<br>
+            • Protect from drafts and direct heat<br>
+            • Monitor humidity levels (40-60%)<br>
+            • Provide gradual seasonal adjustments
+        </div>
+        
+        <div class="section-title">Air Quality and Ventilation</div>
+        
+        <div class="main-text">
+            Birds have extremely sensitive respiratory systems and require clean, well-ventilated air. Many common household items can be toxic to birds <span class="emoji">💨</span>.
+        </div>
+
+        <div class="warning-box">
+            <h4>⚠️ Toxic Air Hazards</h4>
+            <ul>
+                <li><strong>Teflon/Non-stick cookware:</strong> Releases deadly fumes when overheated</li>
+                <li><strong>Aerosols:</strong> Air fresheners, cleaning products, hairspray</li>
+                <li><strong>Candles and incense:</strong> Smoke and chemical fumes</li>
+                <li><strong>Cigarette smoke:</strong> Extremely harmful to bird lungs</li>
+                <li><strong>Kitchen fumes:</strong> Cooking oils, burnt food</li>
+                <li><strong>Paint and solvents:</strong> VOCs are toxic to birds</li>
+            </ul>
+        </div>
+
+        <div class="main-text">
+            <strong>Air Quality Tips:</strong><br>
+            • Use air purifiers with HEPA filters<br>
+            • Ensure good ventilation without drafts<br>
+            • Keep birds away from kitchen during cooking<br>
+            • Use bird-safe cleaning products only<br>
+            • Avoid scented products near birds<br>
+            • Monitor for signs of respiratory distress
+        </div>
+        
+        <div class="section-title">Creating a Bird-Safe Room</div>
+        
+        <div class="main-text">
+            Birds need daily out-of-cage time for exercise and mental stimulation. Creating a bird-safe room is essential for supervised free flight time <span class="emoji">🚪</span>.
+        </div>
+
+        <div class="main-text">
+            <strong>Bird-Proofing Checklist:</strong><br>
+            • Cover or remove mirrors (can cause obsessive behavior)<br>
+            • Secure or remove toxic plants<br>
+            • Cover windows and ceiling fans<br>
+            • Remove or secure electrical cords<br>
+            • Close toilet lids and cover water containers<br>
+            • Remove small objects that could be swallowed<br>
+            • Ensure no escape routes (open doors/windows)
+        </div>
+
+        <div class="tip-box">
+            <div class="tip-title">🔒 Safety First</div>
+            <p>Always supervise your bird during out-of-cage time and do a safety check of the room before each session.</p>
+        </div>
+        
+        <div class="section-title">Cleaning and Maintenance</div>
+        
+        <div class="main-text">
+            Regular cleaning is essential for preventing disease and maintaining a healthy environment. Establish a cleaning routine that keeps your bird's space hygienic <span class="emoji">🧽</span>.
+        </div>
+
+        <div class="main-text">
+            <strong>Daily Cleaning Tasks:</strong><br>
+            • Change cage liner/newspaper<br>
+            • Clean and refill food and water dishes<br>
+            • Remove uneaten fresh foods<br>
+            • Spot clean any messes<br>
+            • Quick visual health check of your bird
+        </div>
+
+        <div class="main-text">
+            <strong>Weekly Cleaning Tasks:</strong><br>
+            • Wash all perches and toys<br>
+            • Clean cage bars and bottom thoroughly<br>
+            • Disinfect food and water dishes<br>
+            • Replace or rotate toys<br>
+            • Deep clean the surrounding area
+        </div>
+
+        <div class="main-text">
+            <strong>Monthly Deep Cleaning:</strong><br>
+            • Complete cage disassembly and cleaning<br>
+            • Replace worn perches or accessories<br>
+            • Check for wear and damage<br>
+            • Sanitize everything with bird-safe cleaners<br>
+            • Reorganize cage layout for variety
+        </div>
+        
+        <div class="section-title">Environmental Enrichment</div>
+        
+        <div class="main-text">
+            Mental stimulation is just as important as physical comfort. Environmental enrichment prevents boredom and promotes natural behaviors <span class="emoji">🧩</span>.
+        </div>
+
+        <div class="main-text">
+            <strong>Enrichment Ideas:</strong><br>
+            • Rotate toys weekly to maintain interest<br>
+            • Provide foraging opportunities<br>
+            • Play bird-safe music or nature sounds<br>
+            • Offer different textures and materials<br>
+            • Create climbing opportunities<br>
+            • Provide safe chewing materials
+        </div>
+
+        <div class="main-text">
+            Remember, your bird's environment is their entire world. Taking time to create a safe, comfortable, and stimulating space will reward you with a healthier, happier companion. Regular maintenance and attention to environmental factors will help ensure your bird thrives in their home <span class="emoji">✨</span>.
         </div>
     </div>
 
     <script>
-        // 更新时间
-        function updateTime() {
-            const now = new Date();
-            const timeString = now.getHours().toString().padStart(2, '0') + ':' + 
-                             now.getMinutes().toString().padStart(2, '0');
-            document.getElementById('current-time').textContent = timeString;
-        }
-        
-        // 模拟阅读进度
+        // Simulate reading progress
         function updateProgress() {
             const scrolled = window.pageYOffset;
             const maxHeight = document.body.scrollHeight - window.innerHeight;
             const progress = Math.min((scrolled / maxHeight) * 100, 100);
-            document.querySelector('.progress-fill').style.width = progress + '%';
         }
-        
-        // 初始化
-        updateTime();
-        setInterval(updateTime, 60000);
         
         window.addEventListener('scroll', updateProgress);
         updateProgress();

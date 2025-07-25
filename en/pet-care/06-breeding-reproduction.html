@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>宠物鸟护理 - BirdAiSnap</title>
+    <title>Bird Breeding and Reproduction - Pet Care Guide</title>
     <style>
         * {
             margin: 0;
@@ -39,7 +39,7 @@
             width: 100%;
             height: 400px;
             background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
-                        url('../../images/birds/species/bird-image-025.png') center/cover;
+                        url('../../images/birds/species/bird-image-060.png') center/cover;
             position: relative;
             margin-top: 0;
         }
@@ -62,8 +62,8 @@
         }
         
         .quote-box {
-            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
-            border-left: 4px solid #ff9800;
+            background: linear-gradient(135deg, #e8f5e8, #c8e6c9);
+            border-left: 4px solid #2E8B57;
             padding: 20px;
             margin: 25px 0;
             border-radius: 8px;
@@ -73,7 +73,7 @@
         .quote-box::before {
             content: '"';
             font-size: 48px;
-            color: #ff9800;
+            color: #2E8B57;
             position: absolute;
             top: -5px;
             left: 15px;
@@ -84,7 +84,7 @@
         .quote-text {
             font-size: 18px;
             font-weight: 600;
-            color: #e65100;
+            color: #1b5e20;
             margin-left: 25px;
             line-height: 1.4;
         }
@@ -97,62 +97,138 @@
             text-align: justify;
         }
         
+        .main-text ul {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+
+        .main-text li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .main-text li:before {
+            content: "•";
+            position: absolute;
+            left: 8px;
+            color: #2E8B57;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        
         .section-title {
             font-size: 20px;
             font-weight: 600;
-            color: #ff9800;
+            color: #2E8B57;
             margin: 30px 0 15px 0;
-            border-bottom: 2px solid #ffe0b2;
+            border-bottom: 2px solid #c8e6c9;
             padding-bottom: 8px;
         }
         
         .tip-box {
             background: #f8f9fa;
             border: 1px solid #e9ecef;
-            border-radius: 8px;
-            padding: 15px;
+            border-radius: 12px;
+            padding: 20px;
             margin: 20px 0;
             border-left: 4px solid #28a745;
+            box-shadow: 0 2px 6px rgba(40, 167, 69, 0.1);
         }
-        
+
         .tip-title {
             font-weight: 600;
             color: #28a745;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tip-box p {
+            margin: 0;
+            line-height: 1.6;
+            color: #495057;
+        }
+        
+        .warning-box {
+            background: #FFF8DC;
+            border: 2px solid #DAA520;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(218, 165, 32, 0.1);
+        }
+
+        .warning-box h4 {
+            color: #B8860B;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .warning-box ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .warning-box li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 12px;
+            line-height: 1.6;
+            color: #8B4513;
+        }
+
+        .warning-box li:before {
+            content: "•";
+            position: absolute;
+            left: 8px;
+            color: #DAA520;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .warning-box li:last-child {
+            margin-bottom: 0;
+        }
+        
+        .breeding-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .breeding-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #c8e6c9;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .breeding-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+        }
+
+        .breeding-card h4 {
+            color: #2E8B57;
+            font-size: 1.3em;
+            margin-bottom: 10px;
         }
         
         .emoji {
             font-size: 18px;
             margin: 0 2px;
-        }
-        
-        .progress-container {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 60px;
-            background: linear-gradient(to top, rgba(255,255,255,0.95), transparent);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 998;
-        }
-        
-        .progress-bar {
-            width: 200px;
-            height: 4px;
-            background: rgba(0,0,0,0.1);
-            border-radius: 2px;
-            overflow: hidden;
-        }
-        
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #ff9800, #ffb74d);
-            width: 0%;
-            border-radius: 2px;
-            transition: width 0.3s ease;
         }
         
         @media (max-width: 375px) {
@@ -168,50 +244,350 @@
             .main-text {
                 font-size: 15px;
             }
+            
+            .breeding-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- 返回按钮 -->
+    <!-- Back Button -->
     <button class="back-button" onclick="history.back()">
         ←
     </button>
     
-    <!-- 英雄图片 -->
+    <!-- Hero Image -->
     <div class="hero-image"></div>
     
-    <!-- 主要内容 -->
+    <!-- Main Content -->
     <div class="content">
-        <h1 class="title">宠物鸟护理</h1><div class="main-text">内容正在更新中...</div>
-    </div>
-    
-    <!-- 进度条 -->
-    <div class="progress-container">
-        <div class="progress-bar">
-            <div class="progress-fill"></div>
+        <h1 class="title">Bird Breeding and Reproduction</h1>
+        
+        <div class="quote-box">
+            <div class="quote-text">
+                Responsible breeding requires knowledge, commitment, and preparation for the welfare of parent birds and offspring
+            </div>
+        </div>
+        
+        <div class="main-text">
+            Bird breeding is a complex and rewarding aspect of aviculture that requires extensive knowledge, preparation, and commitment. Whether you're considering breeding your birds or simply want to understand reproductive behaviors, this guide covers essential information about avian reproduction <span class="emoji">🥚</span>. Responsible breeding prioritizes the health and welfare of both parent birds and their offspring.
+        </div>
+        
+        <div class="section-title">Before You Consider Breeding</div>
+        
+        <div class="main-text">
+            Breeding birds is not a decision to take lightly. It requires significant time, resources, and expertise. Many factors must be considered before allowing your birds to breed <span class="emoji">🤔</span>.
+        </div>
+
+        <div class="main-text">
+            <strong>Essential Prerequisites:</strong><br>
+            • Extensive knowledge of your bird species<br>
+            • Established relationship with avian veterinarian<br>
+            • Adequate space and resources for breeding setup<br>
+            • Financial resources for veterinary care and supplies<br>
+            • Plans for housing and caring for offspring<br>
+            • Understanding of genetics and potential health issues
+        </div>
+
+        <div class="main-text">
+            <strong>Ethical Considerations:</strong><br>
+            • Overpopulation in many bird species<br>
+            • Responsibility for lifetime care of offspring<br>
+            • Finding suitable homes for babies<br>
+            • Impact on parent birds' health and lifespan<br>
+            • Contributing to conservation vs. pet trade<br>
+            • Avoiding breeding birds with genetic defects
+        </div>
+
+        <div class="warning-box">
+            <h4>⚠️ Breeding Responsibilities</h4>
+            <ul>
+                <li><strong>Lifetime commitment:</strong> You're responsible for all offspring produced</li>
+                <li><strong>Health screening:</strong> Both parents should be tested for diseases</li>
+                <li><strong>Emergency preparedness:</strong> Breeding complications can be life-threatening</li>
+                <li><strong>Legal requirements:</strong> Some species require permits or documentation</li>
+                <li><strong>Market saturation:</strong> Many species have limited demand</li>
+                <li><strong>Time investment:</strong> Hand-feeding babies requires 24/7 commitment</li>
+            </ul>
+        </div>
+        
+        <div class="section-title">Understanding Avian Reproduction</div>
+        
+        <div class="main-text">
+            Birds have unique reproductive systems and behaviors that differ significantly from mammals. Understanding these natural processes is crucial for successful breeding <span class="emoji">🔬</span>.
+        </div>
+
+        <div class="breeding-grid">
+            <div class="breeding-card">
+                <h4>🌸 Sexual Maturity</h4>
+                <p><strong>Small birds:</strong> 6-12 months</p>
+                <p><strong>Medium birds:</strong> 1-3 years</p>
+                <p><strong>Large birds:</strong> 3-7 years</p>
+                <p>Birds should be fully mature before breeding to ensure healthy reproduction.</p>
+            </div>
+
+            <div class="breeding-card">
+                <h4>🌅 Breeding Season</h4>
+                <p><strong>Natural triggers:</strong> Daylight length, temperature</p>
+                <p><strong>Artificial triggers:</strong> Increased light, nesting materials</p>
+                <p><strong>Duration:</strong> Varies by species</p>
+                <p>Most birds breed during spring when conditions are optimal for raising young.</p>
+            </div>
+
+            <div class="breeding-card">
+                <h4>💑 Pair Bonding</h4>
+                <p><strong>Monogamous species:</strong> Mate for life</p>
+                <p><strong>Seasonal pairs:</strong> New partners each season</p>
+                <p><strong>Compatibility:</strong> Not all birds will accept each other</p>
+                <p>Strong pair bonds are essential for successful breeding and chick rearing.</p>
+            </div>
+
+            <div class="breeding-card">
+                <h4>🏠 Nesting Behavior</h4>
+                <p><strong>Cavity nesters:</strong> Require nest boxes</p>
+                <p><strong>Platform nesters:</strong> Build nests on flat surfaces</p>
+                <p><strong>Materials:</strong> Species-specific preferences</p>
+                <p>Providing appropriate nesting sites triggers breeding behavior.</p>
+            </div>
+        </div>
+        
+        <div class="section-title">Pre-Breeding Health Assessment</div>
+        
+        <div class="main-text">
+            Both potential parents should undergo thorough health evaluations before breeding. This ensures the best possible outcomes for parents and offspring <span class="emoji">🏥</span>.
+        </div>
+
+        <div class="main-text">
+            <strong>Pre-Breeding Veterinary Exam:</strong><br>
+            • Complete physical examination<br>
+            • Blood work including complete blood count<br>
+            • Disease testing (PBFD, polyoma, chlamydia)<br>
+            • Fecal examination for parasites<br>
+            • Nutritional assessment and recommendations<br>
+            • Genetic screening if available
+        </div>
+
+        <div class="main-text">
+            <strong>Optimal Breeding Condition:</strong><br>
+            • Ideal body weight and condition<br>
+            • Excellent feather quality<br>
+            • Active and alert behavior<br>
+            • Good appetite and normal droppings<br>
+            • No signs of illness or stress<br>
+            • Proper age and sexual maturity
+        </div>
+
+        <div class="tip-box">
+            <div class="tip-title">📋 Health Records</div>
+            <p>Maintain detailed health records for breeding birds, including vaccination history, test results, and any medical treatments.</p>
+        </div>
+        
+        <div class="section-title">Breeding Setup and Environment</div>
+        
+        <div class="main-text">
+            Creating the right environment is crucial for successful breeding. The setup must accommodate natural behaviors while ensuring safety and monitoring capabilities <span class="emoji">🏗️</span>.
+        </div>
+
+        <div class="main-text">
+            <strong>Breeding Cage Requirements:</strong><br>
+            • Larger than normal housing (minimum 4x2x2 feet for medium birds)<br>
+            • Horizontal space for flight and exercise<br>
+            • Multiple perches at different levels<br>
+            • Easy access for monitoring and cleaning<br>
+            • Secure but removable nest box<br>
+            • Separate feeding stations
+        </div>
+
+        <div class="main-text">
+            <strong>Environmental Conditions:</strong><br>
+            • Temperature: 70-80°F (21-27°C)<br>
+            • Humidity: 50-60% for most species<br>
+            • Lighting: 12-14 hours of light daily<br>
+            • Quiet location with minimal disturbances<br>
+            • Good ventilation without drafts<br>
+            • Privacy for nesting activities
+        </div>
+
+        <div class="main-text">
+            <strong>Nest Box Specifications:</strong><br>
+            • Size appropriate for species<br>
+            • Entrance hole sized to exclude larger birds<br>
+            • Drainage holes in bottom<br>
+            • Removable top or side for inspection<br>
+            • Natural wood construction preferred<br>
+            • Proper nesting material provided
+        </div>
+        
+        <div class="section-title">Breeding Nutrition</div>
+        
+        <div class="main-text">
+            Proper nutrition is critical during breeding season. Both parents need increased protein and specific nutrients to support egg production and chick development <span class="emoji">🥗</span>.
+        </div>
+
+        <div class="main-text">
+            <strong>Breeding Diet Requirements:</strong><br>
+            • Increased protein: 18-22% (vs. 14-16% maintenance)<br>
+            • High-quality pellets as base diet<br>
+            • Fresh vegetables rich in vitamin A<br>
+            • Calcium supplementation for egg-laying females<br>
+            • Omega-3 fatty acids for development<br>
+            • Avoid high-fat foods that can cause problems
+        </div>
+
+        <div class="main-text">
+            <strong>Breeding Season Foods:</strong><br>
+            • Cooked eggs (excellent protein source)<br>
+            • Sprouted seeds and legumes<br>
+            • Dark leafy greens (kale, spinach)<br>
+            • Orange vegetables (carrots, sweet potato)<br>
+            • Whole grain breads and cereals<br>
+            • Species-appropriate hand-feeding formula
+        </div>
+
+        <div class="tip-box">
+            <div class="tip-title">🍼 Hand-Feeding Preparation</div>
+            <p>Learn proper hand-feeding techniques before breeding season. Have supplies ready and practice with experienced breeders if possible.</p>
+        </div>
+        
+        <div class="section-title">The Breeding Process</div>
+        
+        <div class="main-text">
+            Understanding the breeding timeline helps you provide appropriate care at each stage. Different species have varying incubation periods and development rates <span class="emoji">📅</span>.
+        </div>
+
+        <div class="main-text">
+            <strong>Typical Breeding Timeline:</strong><br>
+            • Courtship and pair bonding: 1-4 weeks<br>
+            • Nest building and preparation: 1-2 weeks<br>
+            • Egg laying: Every other day until clutch complete<br>
+            • Incubation period: 18-30 days (species dependent)<br>
+            • Hatching: Over 1-3 days<br>
+            • Fledging: 3-12 weeks depending on species
+        </div>
+
+        <div class="main-text">
+            <strong>Egg Laying and Incubation:</strong><br>
+            • Females typically lay 2-8 eggs per clutch<br>
+            • Incubation usually begins with second egg<br>
+            • Both parents may share incubation duties<br>
+            • Maintain consistent temperature and humidity<br>
+            • Minimize disturbances during incubation<br>
+            • Monitor for signs of problems
+        </div>
+
+        <div class="main-text">
+            <strong>Hatching and Early Care:</strong><br>
+            • Chicks hatch with egg tooth for breaking shell<br>
+            • Initially blind, naked, and completely dependent<br>
+            • Parents feed regurgitated food every 1-2 hours<br>
+            • Rapid growth and development<br>
+            • Eyes open around 7-14 days<br>
+            • Feathers begin developing at 1-2 weeks
+        </div>
+        
+        <div class="section-title">Hand-Feeding and Chick Care</div>
+        
+        <div class="main-text">
+            Sometimes hand-feeding becomes necessary due to parental rejection, health issues, or breeding goals. This is an intensive process requiring dedication and expertise <span class="emoji">🍼</span>.
+        </div>
+
+        <div class="main-text">
+            <strong>When Hand-Feeding is Needed:</strong><br>
+            • Parents abandon or reject chicks<br>
+            • Insufficient parental feeding<br>
+            • Health problems in parents<br>
+            • Desire for tame, socialized babies<br>
+            • Large clutches requiring supplemental feeding<br>
+            • Emergency situations
+        </div>
+
+        <div class="main-text">
+            <strong>Hand-Feeding Basics:</strong><br>
+            • Use species-appropriate commercial formula<br>
+            • Maintain proper temperature (104-106°F)<br>
+            • Feed every 2-4 hours initially<br>
+            • Use proper feeding tools (syringes, spoons)<br>
+            • Monitor crop emptying between feedings<br>
+            • Maintain detailed feeding records
+        </div>
+
+        <div class="warning-box">
+            <h4>⚠️ Hand-Feeding Risks</h4>
+            <ul>
+                <li><strong>Aspiration pneumonia:</strong> Formula entering lungs</li>
+                <li><strong>Crop burn:</strong> Formula too hot causing tissue damage</li>
+                <li><strong>Crop stasis:</strong> Food not moving through digestive system</li>
+                <li><strong>Dehydration:</strong> Inadequate fluid intake</li>
+                <li><strong>Malnutrition:</strong> Improper formula preparation</li>
+                <li><strong>Behavioral issues:</strong> Improper socialization</li>
+            </ul>
+        </div>
+        
+        <div class="section-title">Weaning and Fledgling Care</div>
+        
+        <div class="main-text">
+            The weaning process is critical for developing independent, healthy birds. Rushing this process can lead to behavioral and health problems <span class="emoji">🌱</span>.
+        </div>
+
+        <div class="main-text">
+            <strong>Weaning Process:</strong><br>
+            • Gradual reduction in hand-feeding frequency<br>
+            • Introduction of solid foods<br>
+            • Monitoring weight and body condition<br>
+            • Ensuring adequate food intake<br>
+            • Maintaining social interaction<br>
+            • Patience with individual development rates
+        </div>
+
+        <div class="main-text">
+            <strong>Signs of Successful Weaning:</strong><br>
+            • Consistent weight maintenance<br>
+            • Active eating of solid foods<br>
+            • Normal droppings and behavior<br>
+            • Reduced begging for hand-feeding<br>
+            • Increased independence and exploration<br>
+            • Proper feather development
+        </div>
+        
+        <div class="section-title">Finding Homes for Offspring</div>
+        
+        <div class="main-text">
+            Responsible breeders carefully screen potential homes for their birds. This ensures the best possible future for the animals you've brought into the world <span class="emoji">🏡</span>.
+        </div>
+
+        <div class="main-text">
+            <strong>Screening Potential Owners:</strong><br>
+            • Experience with birds and specific species<br>
+            • Appropriate housing and setup<br>
+            • Financial ability to provide proper care<br>
+            • Long-term commitment understanding<br>
+            • References from veterinarians or other breeders<br>
+            • Willingness to maintain contact
+        </div>
+
+        <div class="main-text">
+            <strong>Providing Support:</strong><br>
+            • Detailed care instructions and diet information<br>
+            • Health records and veterinary contacts<br>
+            • Ongoing availability for questions<br>
+            • Take-back policy if needed<br>
+            • Connection to local bird communities<br>
+            • Follow-up contact to ensure well-being
+        </div>
+
+        <div class="main-text">
+            Remember, breeding birds is a serious responsibility that extends far beyond the initial pairing. Success requires extensive knowledge, proper facilities, financial resources, and a commitment to the welfare of all birds involved. Consider whether breeding aligns with conservation goals and ethical practices in aviculture <span class="emoji">✨</span>.
         </div>
     </div>
 
     <script>
-        // 更新时间
-        function updateTime() {
-            const now = new Date();
-            const timeString = now.getHours().toString().padStart(2, '0') + ':' + 
-                             now.getMinutes().toString().padStart(2, '0');
-            document.getElementById('current-time').textContent = timeString;
-        }
-        
-        // 模拟阅读进度
+        // Simulate reading progress
         function updateProgress() {
             const scrolled = window.pageYOffset;
             const maxHeight = document.body.scrollHeight - window.innerHeight;
             const progress = Math.min((scrolled / maxHeight) * 100, 100);
-            document.querySelector('.progress-fill').style.width = progress + '%';
         }
-        
-        // 初始化
-        updateTime();
-        setInterval(updateTime, 60000);
         
         window.addEventListener('scroll', updateProgress);
         updateProgress();

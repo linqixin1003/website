@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>宠物鸟营养与喂食 - BirdAiSnap</title>
+    <title>Bird Nutrition and Feeding - Pet Care Guide</title>
     <style>
         * {
             margin: 0;
@@ -39,7 +39,7 @@
             width: 100%;
             height: 400px;
             background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
-                        url('../../images/birds/species/bird-image-025.png') center/cover;
+                        url('../../images/birds/species/bird-image-020.png') center/cover;
             position: relative;
             margin-top: 0;
         }
@@ -62,8 +62,8 @@
         }
         
         .quote-box {
-            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
-            border-left: 4px solid #ff9800;
+            background: linear-gradient(135deg, #e8f5e8, #c8e6c9);
+            border-left: 4px solid #2E8B57;
             padding: 20px;
             margin: 25px 0;
             border-radius: 8px;
@@ -73,7 +73,7 @@
         .quote-box::before {
             content: '"';
             font-size: 48px;
-            color: #ff9800;
+            color: #2E8B57;
             position: absolute;
             top: -5px;
             left: 15px;
@@ -84,7 +84,7 @@
         .quote-text {
             font-size: 18px;
             font-weight: 600;
-            color: #e65100;
+            color: #1b5e20;
             margin-left: 25px;
             line-height: 1.4;
         }
@@ -97,62 +97,138 @@
             text-align: justify;
         }
         
+        .main-text ul {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+
+        .main-text li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .main-text li:before {
+            content: "•";
+            position: absolute;
+            left: 8px;
+            color: #2E8B57;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        
         .section-title {
             font-size: 20px;
             font-weight: 600;
-            color: #ff9800;
+            color: #2E8B57;
             margin: 30px 0 15px 0;
-            border-bottom: 2px solid #ffe0b2;
+            border-bottom: 2px solid #c8e6c9;
             padding-bottom: 8px;
         }
         
         .tip-box {
             background: #f8f9fa;
             border: 1px solid #e9ecef;
-            border-radius: 8px;
-            padding: 15px;
+            border-radius: 12px;
+            padding: 20px;
             margin: 20px 0;
             border-left: 4px solid #28a745;
+            box-shadow: 0 2px 6px rgba(40, 167, 69, 0.1);
         }
-        
+
         .tip-title {
             font-weight: 600;
             color: #28a745;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tip-box p {
+            margin: 0;
+            line-height: 1.6;
+            color: #495057;
+        }
+        
+        .warning-box {
+            background: #FFF8DC;
+            border: 2px solid #DAA520;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(218, 165, 32, 0.1);
+        }
+
+        .warning-box h4 {
+            color: #B8860B;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .warning-box ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .warning-box li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 12px;
+            line-height: 1.6;
+            color: #8B4513;
+        }
+
+        .warning-box li:before {
+            content: "•";
+            position: absolute;
+            left: 8px;
+            color: #DAA520;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .warning-box li:last-child {
+            margin-bottom: 0;
+        }
+        
+        .food-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .food-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #c8e6c9;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .food-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+        }
+
+        .food-card h4 {
+            color: #2E8B57;
+            font-size: 1.3em;
+            margin-bottom: 10px;
         }
         
         .emoji {
             font-size: 18px;
             margin: 0 2px;
-        }
-        
-        .progress-container {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 60px;
-            background: linear-gradient(to top, rgba(255,255,255,0.95), transparent);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 998;
-        }
-        
-        .progress-bar {
-            width: 200px;
-            height: 4px;
-            background: rgba(0,0,0,0.1);
-            border-radius: 2px;
-            overflow: hidden;
-        }
-        
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #ff9800, #ffb74d);
-            width: 0%;
-            border-radius: 2px;
-            transition: width 0.3s ease;
         }
         
         @media (max-width: 375px) {
@@ -168,51 +244,205 @@
             .main-text {
                 font-size: 15px;
             }
+            
+            .food-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- 返回按钮 -->
+    <!-- Back Button -->
     <button class="back-button" onclick="history.back()">
         ←
     </button>
     
-    <!-- 英雄图片 -->
+    <!-- Hero Image -->
     <div class="hero-image"></div>
     
-    <!-- 主要内容 -->
+    <!-- Main Content -->
     <div class="content">
-        <h1 class="title">宠物鸟营养与喂食</h1>
-        <div class="quote-box"><div class="quote-text">健康饮食是宠物鸟长寿快乐的基础
-    </div>
-    
-    <!-- 进度条 -->
-    <div class="progress-container">
-        <div class="progress-bar">
-            <div class="progress-fill"></div>
+        <h1 class="title">Bird Nutrition and Feeding</h1>
+        
+        <div class="quote-box">
+            <div class="quote-text">
+                Proper nutrition is the foundation of your bird's health and happiness
+            </div>
+        </div>
+        
+        <div class="main-text">
+            Providing proper nutrition is one of the most important aspects of bird care. A well-balanced diet not only keeps your feathered friend healthy but also affects their behavior, plumage quality, and overall lifespan <span class="emoji">🌱</span>. Understanding what to feed your bird and how to establish healthy eating habits is crucial for responsible pet ownership.
+        </div>
+        
+        <div class="section-title">Understanding Bird Nutrition Basics</div>
+        
+        <div class="main-text">
+            Birds have unique nutritional requirements that differ significantly from other pets. Their high metabolism means they need frequent, nutrient-dense meals throughout the day <span class="emoji">⚡</span>. A balanced diet should include proteins, carbohydrates, fats, vitamins, and minerals in the right proportions.
+        </div>
+        
+        <div class="main-text">
+            <strong>Essential Nutrients for Birds:</strong><br>
+            • Proteins: 14-20% for most species<br>
+            • Carbohydrates: 65-80% of total diet<br>
+            • Fats: 4-12% depending on species<br>
+            • Vitamins: A, D3, E, K, and B-complex<br>
+            • Minerals: Calcium, phosphorus, iron, zinc
+        </div>
+        
+        <div class="section-title">Types of Bird Food</div>
+        
+        <div class="food-grid">
+            <div class="food-card">
+                <h4>🌾 Pellets</h4>
+                <p><strong>Best for:</strong> Daily staple diet</p>
+                <p><strong>Benefits:</strong> Nutritionally complete, prevents selective eating</p>
+                <p><strong>Portion:</strong> 75-80% of total diet</p>
+                <p>High-quality pellets should form the foundation of your bird's diet. Choose pellets appropriate for your bird's size and species.</p>
+            </div>
+
+            <div class="food-card">
+                <h4>🥬 Fresh Vegetables</h4>
+                <p><strong>Best for:</strong> Vitamins and minerals</p>
+                <p><strong>Benefits:</strong> Natural nutrients, enrichment</p>
+                <p><strong>Portion:</strong> 15-20% of total diet</p>
+                <p>Dark leafy greens, carrots, broccoli, and bell peppers are excellent choices. Wash thoroughly before serving.</p>
+            </div>
+
+            <div class="food-card">
+                <h4>🍎 Fresh Fruits</h4>
+                <p><strong>Best for:</strong> Treats and variety</p>
+                <p><strong>Benefits:</strong> Natural sugars, vitamins</p>
+                <p><strong>Portion:</strong> 5-10% of total diet</p>
+                <p>Apples, berries, and melons make great treats. Remove seeds and pits as they can be toxic.</p>
+            </div>
+
+            <div class="food-card">
+                <h4>🌰 Seeds and Nuts</h4>
+                <p><strong>Best for:</strong> Occasional treats</p>
+                <p><strong>Benefits:</strong> Healthy fats, enrichment</p>
+                <p><strong>Portion:</strong> 5-10% of total diet</p>
+                <p>Use sparingly as treats. Sunflower seeds and nuts are high in fat and should be limited.</p>
+            </div>
+        </div>
+        
+        <div class="section-title">Feeding Schedule and Portions</div>
+        
+        <div class="main-text">
+            Establishing a consistent feeding routine helps maintain your bird's health and creates structure in their day <span class="emoji">⏰</span>. Most birds do well with two main meals per day, supplemented with healthy snacks.
+        </div>
+
+        <div class="tip-box">
+            <div class="tip-title">💡 Feeding Schedule Tip</div>
+            <p>Offer fresh food in the morning and evening, removing uneaten fresh foods after 2-4 hours to prevent spoilage. Keep pellets available throughout the day.</p>
+        </div>
+        
+        <div class="main-text">
+            <strong>Daily Feeding Guidelines:</strong><br>
+            • Small birds (budgies, canaries): 1-2 tablespoons of pellets<br>
+            • Medium birds (cockatiels, conures): 2-4 tablespoons of pellets<br>
+            • Large birds (macaws, cockatoos): 1/4 to 1/2 cup of pellets<br>
+            • Fresh foods: Adjust portions based on bird size and appetite
+        </div>
+        
+        <div class="section-title">Foods to Avoid</div>
+        
+        <div class="warning-box">
+            <h4>⚠️ Toxic Foods for Birds</h4>
+            <ul>
+                <li><strong>Avocado:</strong> Contains persin, which is highly toxic to birds</li>
+                <li><strong>Chocolate:</strong> Contains theobromine, can cause seizures and death</li>
+                <li><strong>Caffeine:</strong> Found in coffee, tea, and soda - can cause heart problems</li>
+                <li><strong>Salt:</strong> High sodium foods can cause kidney damage</li>
+                <li><strong>Fruit pits and seeds:</strong> Apple seeds, cherry pits contain cyanide</li>
+                <li><strong>Onions and garlic:</strong> Can cause anemia and digestive issues</li>
+                <li><strong>Alcohol:</strong> Even small amounts can be fatal</li>
+            </ul>
+        </div>
+        
+        <div class="section-title">Transitioning to a New Diet</div>
+        
+        <div class="main-text">
+            If your bird is currently on a seed-only diet, transitioning to a healthier pellet-based diet requires patience and persistence <span class="emoji">🔄</span>. Sudden dietary changes can be stressful and potentially dangerous for birds.
+        </div>
+        
+        <div class="main-text">
+            <strong>Transition Steps:</strong><br>
+            • Week 1-2: Mix 25% pellets with 75% current food<br>
+            • Week 3-4: Increase to 50% pellets, 50% current food<br>
+            • Week 5-6: Use 75% pellets, 25% current food<br>
+            • Week 7+: Transition to 80% pellets, 20% fresh foods<br>
+            • Monitor weight and eating habits throughout the process
+        </div>
+        
+        <div class="section-title">Special Dietary Considerations</div>
+        
+        <div class="main-text">
+            Different life stages and health conditions may require dietary adjustments. Breeding birds, young birds, and elderly birds have different nutritional needs <span class="emoji">🔬</span>.
+        </div>
+        
+        <div class="main-text">
+            <strong>Special Situations:</strong><br>
+            • Breeding birds: Increase protein to 18-22%<br>
+            • Hand-feeding babies: Specialized hand-feeding formulas<br>
+            • Molting birds: Extra protein and vitamins<br>
+            • Sick birds: Consult avian veterinarian for specific diets<br>
+            • Overweight birds: Reduce high-fat foods, increase exercise
+        </div>
+        
+        <div class="section-title">Water and Hydration</div>
+        
+        <div class="main-text">
+            Fresh, clean water should always be available to your bird. Change water daily and clean water dishes regularly to prevent bacterial growth <span class="emoji">💧</span>. Some birds prefer shallow dishes, while others like water bottles.
+        </div>
+
+        <div class="tip-box">
+            <div class="tip-title">🚰 Water Quality Tip</div>
+            <p>Use filtered or bottled water if your tap water is heavily chlorinated. Some birds are sensitive to chemicals in tap water.</p>
+        </div>
+        
+        <div class="section-title">Supplements and Vitamins</div>
+        
+        <div class="main-text">
+            Birds on a balanced pellet diet typically don't need additional supplements. However, birds eating primarily seeds may benefit from vitamin supplements under veterinary guidance <span class="emoji">💊</span>.
+        </div>
+        
+        <div class="main-text">
+            <strong>Common Supplements:</strong><br>
+            • Vitamin A: For birds with poor feather quality<br>
+            • Calcium: For egg-laying females<br>
+            • Probiotics: For digestive health<br>
+            • Omega-3 fatty acids: For skin and feather health<br>
+            • Always consult an avian vet before adding supplements
+        </div>
+        
+        <div class="section-title">Monitoring Your Bird's Health</div>
+        
+        <div class="main-text">
+            Regular monitoring of your bird's eating habits, weight, and overall condition helps detect health issues early. Sudden changes in appetite or eating behavior can indicate illness <span class="emoji">📊</span>.
+        </div>
+        
+        <div class="main-text">
+            <strong>Signs of Good Nutrition:</strong><br>
+            • Bright, vibrant plumage<br>
+            • Active and alert behavior<br>
+            • Stable weight<br>
+            • Regular, well-formed droppings<br>
+            • Good appetite and eating habits<br>
+            • Clear, bright eyes
+        </div>
+        
+        <div class="main-text">
+            Remember, proper nutrition is an investment in your bird's long-term health and happiness. Take time to research your specific bird species' needs and consult with an avian veterinarian to develop the best feeding plan <span class="emoji">✨</span>.
         </div>
     </div>
 
     <script>
-        // 更新时间
-        function updateTime() {
-            const now = new Date();
-            const timeString = now.getHours().toString().padStart(2, '0') + ':' + 
-                             now.getMinutes().toString().padStart(2, '0');
-            document.getElementById('current-time').textContent = timeString;
-        }
-        
-        // 模拟阅读进度
+        // Simulate reading progress
         function updateProgress() {
             const scrolled = window.pageYOffset;
             const maxHeight = document.body.scrollHeight - window.innerHeight;
             const progress = Math.min((scrolled / maxHeight) * 100, 100);
-            document.querySelector('.progress-fill').style.width = progress + '%';
         }
-        
-        // 初始化
-        updateTime();
-        setInterval(updateTime, 60000);
         
         window.addEventListener('scroll', updateProgress);
         updateProgress();

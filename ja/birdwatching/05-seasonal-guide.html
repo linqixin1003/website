@@ -3,56 +3,259 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>初心者向けバードウォッチング - BirdAiSnap</title>
+    <title>季節別バードウォッチングガイド - BirdAiSnap</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f5; color: #333; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         
-        .back-button { position: fixed; top: 60px; left: 20px; width: 36px; height: 36px; background: rgba(0,0,0,0.6); border: none; border-radius: 50%; color: white; font-size: 18px; cursor: pointer; z-index: 999; display: flex; align-items: center; justify-content: center; }
-        .hero-image { width: 100%; height: 400px; background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('../../images/birds/species/bird-image-006.png') center/cover; position: relative; margin-top: 0; }
-        .content { background: white; margin: -30px 20px 20px 20px; border-radius: 20px; padding: 30px 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); min-height: 80vh; }
-        .title { font-size: 24px; font-weight: 700; color: #1a1a1a; margin-bottom: 30px; margin-top: 15px; line-height: 1.3; }
-        .quote-box { background: linear-gradient(135deg, #f3e5f5, #e1bee7); border-left: 4px solid #9c27b0; padding: 20px; margin: 25px 0; border-radius: 8px; position: relative; }
-        .quote-box::before { content: '"'; font-size: 48px; color: #9c27b0; position: absolute; top: -5px; left: 15px; font-family: serif; line-height: 1; }
-        .quote-text { font-size: 18px; font-weight: 600; color: #6a1b9a; margin-left: 25px; line-height: 1.4; }
-        .main-text { font-size: 16px; line-height: 1.8; color: #333; margin: 20px 0; text-align: justify; }
-        .section-title { font-size: 20px; font-weight: 600; color: #9c27b0; margin: 30px 0 15px 0; border-bottom: 2px solid #e1bee7; padding-bottom: 8px; }
-        .tip-box { background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px; padding: 15px; margin: 20px 0; border-left: 4px solid #28a745; }
-        .tip-title { font-weight: 600; color: #28a745; margin-bottom: 8px; }
-        .emoji { font-size: 18px; margin: 0 2px; }
-        .progress-container { position: fixed; bottom: 0; left: 0; right: 0; height: 60px; background: linear-gradient(to top, rgba(255,255,255,0.95), transparent); display: flex; align-items: center; justify-content: center; z-index: 998; }
-        .progress-bar { width: 200px; height: 4px; background: rgba(0,0,0,0.1); border-radius: 2px; overflow: hidden; }
-        .progress-fill { height: 100%; background: linear-gradient(90deg, #9c27b0, #ba68c8); width: 0%; border-radius: 2px; transition: width 0.3s ease; }
-        @media (max-width: 375px) { .content { margin: -30px 15px 20px 15px; padding: 25px 15px; } .title { font-size: 22px; } .main-text { font-size: 15px; } }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+        
+        .back-button {
+            position: fixed;
+            top: 60px;
+            left: 20px;
+            width: 36px;
+            height: 36px;
+            background: rgba(0,0,0,0.6);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                        url('../../images/birds/species/bird-image-006.png') center/cover;
+            position: relative;
+            margin-top: 0;
+        }
+        
+        .content {
+            background: white;
+            margin: -30px 20px 20px 20px;
+            border-radius: 20px;
+            padding: 30px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            min-height: 80vh;
+        }
+        
+        .title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            margin-top: 15px;
+            line-height: 1.3;
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, #f3e5f5, #e1bee7);
+            border-left: 4px solid #9c27b0;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .quote-box::before {
+            content: '"';
+            font-size: 48px;
+            color: #9c27b0;
+            position: absolute;
+            top: -5px;
+            left: 15px;
+            font-family: serif;
+            line-height: 1;
+        }
+        
+        .quote-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: #6a1b9a;
+            margin-left: 25px;
+            line-height: 1.4;
+        }
+        
+        .main-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            margin: 20px 0;
+            text-align: justify;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #9c27b0;
+            margin: 30px 0 15px 0;
+            border-bottom: 2px solid #e1bee7;
+            padding-bottom: 8px;
+        }
+        
+        .tip-box {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            border-left: 4px solid #28a745;
+        }
+        
+        .tip-title {
+            font-weight: 600;
+            color: #28a745;
+            margin-bottom: 8px;
+        }
+        
+        .emoji {
+            font-size: 18px;
+            margin: 0 2px;
+        }
+        
+        .progress-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: linear-gradient(to top, rgba(255,255,255,0.95), transparent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 998;
+        }
+        
+        .progress-bar {
+            width: 200px;
+            height: 4px;
+            background: rgba(0,0,0,0.1);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #9c27b0, #ba68c8);
+            width: 0%;
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+        
+        @media (max-width: 375px) {
+            .content {
+                margin: -30px 15px 20px 15px;
+                padding: 25px 15px;
+            }
+            
+            .title {
+                font-size: 22px;
+            }
+            
+            .main-text {
+                font-size: 15px;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- 戻るボタン -->
+    <button class="back-button" onclick="history.back()">
+        ←
+    </button>
     
-    </div>
-    <button class="back-button" onclick="history.back()">←</button>
+    <!-- ヒーロー画像 -->
     <div class="hero-image"></div>
-    <div class="content">
-        <h1 class="title">Sesl Bird見るg Guide</h1>
-        <div class="quote-box"><div class="quote-テキスト">Under立つ どのように 鳥 活動 変化s と 季節s と 計画 your 観察s</div></div>
-        <div class="main-text">Sesl 変化s 持っています prのound 効果s  鳥類' 住むs, と 理解するg これらの パターンs す 重要な に 成功ful バードウォッチング<span class="emoji">📅</span>. Bird 活動 パターンs, 種 com位置, と 行動s vry 重要なly 十字路 異なる 季節s. Mste鳴らす この 知識 きます 助ける you 観察する tr得る 種   権利 時間 と 場所.</div>
-        <div class="section-title">Sp鳴らす: The Vibrt Breedg Ses</div>
-        <div class="main-text">Sp鳴らす す e の  ほとんどの エキサイティングな 季節s のために バードウォッチング. As 温度s 上がる と 日light 時間s extend, 鳥類 入る 繁殖 季節 と frequent 活動 と cstt 歌うg<span class="emoji">🌸</span>. Thす す  最高の 時間 に 観察する court船 行動s, 巣-建物 ctivities, と territまたはil dす置くes.</div>
-        <div class="main-text">Sp鳴らす 渡り す 他の バードウォッチング 高いlight. Lrge 数s の migrまたはy 鳥類 戻る から 勝つte鳴らす grounds に 繁殖 エリアs, providg 鳥見るers と oppまたはt単位ies に 観察する diverse 種<span class="emoji">🦅</span>. Costl エリアs, 山 psses, と 川 vすべてeys す i対処する 場所s のために observg migrまたはy 鳥類.</div>
-        <div class="tip-box"><div class="tip-title">🌟 Sp鳴らす Bird見るg Tips</div>Between 4-8 AM is when birds are most active, with songs at their most frequent. Pay attention to trees with new leaves, as many insectivorous birds will forage there.</div>
-        <div class="section-title">Summer: The Busy Nestg Period</div>
-        <div class="main-text">Summer す  pek 繁殖 季節 のために 鳥類, と ほとんどの 種 忙しい ri歌う と c鳴らす のために ir 若い<span class="emoji">☀️</span>. Although 成鳥 鳥類 my 歌う less, observg 親s 採餌 と 給餌 ir 若い す equすべてy fscg. Thす 季節 す lso  良い 時間 に 見る fledglgs 学ぶ に 飛ぶ と 家族 グループs  行動.</div>
-        <div class="main-text">Summer バードウォッチング 時間s 必要 調整するment に 避ける  hot mid日 時間s. Erly 朝 と 夕方 re主な  最高の 時間s のために バードウォッチング<span class="emoji">🌅</span>. Bird 活動 増加するs ner 水 sources, s 鳥類 必要 mまたはe hyd比率n に cope と 高い 温度s.</div>
-        <div class="section-title">Fすべて: The Spectculr Mig比率n Ses</div>
-        <div class="main-text">Fすべて 渡り す 典型的なly mまたはe spectculr と pro長いed th sp鳴らす 渡り. Birds のためにage frequently に 保存する エネルギー のために 長い-dすtce 飛行s<span class="emoji">🍂</span>. The 季節 の riペンg 果実s lso trcts numerous frugivまたはous 鳥類, providg 優秀な 観察 oppまたはt単位ies のために 鳥見るers.</div>
-        <div class="main-text">Fすべて す  最高の 時間 に 観察する rptまたは 渡り. Ridges, cost行s, と 川 vすべてeys す  主な cまたはridまたはs のために rptまたは 渡り<span class="emoji">🦅</span>. Cler 日s と mode率 勝つds す ほとんどの 適切な のために observg rptまたは 渡り.</div>
-        <div class="section-title">Wter: Resi嘘nt Residents と Vi座るまたはs</div>
-        <div class="main-text">Although 勝つter 持っています relively 少数のer 鳥 種, 観察 条件s す のten より良い. Lefless trees 提供する 明確なer vすibility, と 鳥類 す mまたはe 活発な  採餌<span class="emoji">❄️</span>. Thす 季節 す  良い 時間 に 観察する resident 鳥類' dptive 行動s と 勝つter 鳥 グループ ctivities.</div>
-        <div class="main-text">Artificil 給餌 stis す 部分iculrly 効果的な  勝つter, trctg 様々な 鳥 種 に feed<span class="emoji">🌰</span>. Bird den座るy  都市の 環境s my be 高いer th  他の 季節s be原因 食物 resources す relively 集中するd.</div>
-        <div class="tip-box"><div class="tip-title">💡 Wter Bird見るg Suggestis</div>Focus on berry-rich shrubs and plants that retain seeds, as these are important food sources for birds in winter.</div>
-        <div class="main-text">Mste鳴らす 季節l バードウォッチング パターンs 必要とするs 長い-term 観察 と 記録g. It's 推奨するed に 維持する  バードウォッチング 日記, 記録g 鳥 変化s 観察するd   同じ 場所 十字路 異なる 季節s<span class="emoji">📝</span>. Such 記録s not ly id 個人的な 学習 but lso 提供する 価値のある データ のために 科学的な 研究.</div>
-    </div>
-    <div class="progress-container"><div class="progress-br"><div class="progress-fill"></div></div></div>
     
+    <!-- メインコンテンツ -->
+    <div class="content">
+        <h1 class="title">📅 季節別バードウォッチングガイド</h1>
+        
+        <div class="quote-box">
+            <div class="quote-text">
+                鳥の活動が季節とともにどのように変化するかを理解し、観察を計画する
+            </div>
+        </div>
+        
+        <div class="main-text">
+            季節の変化は鳥類の生活に深い影響を与え、これらのパターンを理解することは成功するバードウォッチングにとって重要です<span class="emoji">📅</span>。鳥の活動パターン、種の構成、行動は異なる季節で大きく変化します。この知識をマスターすることで、適切な時間と場所で目標種を観察するのに役立ちます。
+        </div>
+        
+        <div class="section-title">春：活気に満ちた繁殖期</div>
+        
+        <div class="main-text">
+            春はバードウォッチングにとって最もエキサイティングな季節の一つです<span class="emoji">🌸</span>。気温が上昇し日照時間が延びると、鳥類は繁殖期に入り、頻繁な活動と絶え間ない歌声を響かせます。これは求愛行動、巣作り活動、縄張り争いを観察する最適な時期です。
+        </div>
+        
+        <div class="main-text">
+            春の渡りはバードウォッチングのもう一つのハイライトです<span class="emoji">🦅</span>。大量の渡り鳥が越冬地から繁殖地に戻り、バードウォッチャーに多様な種を観察する機会を提供します。海岸地域、山の峠、川の谷は渡り鳥を観察する理想的な場所です。
+        </div>
+        
+        <div class="tip-box">
+            <div class="tip-title">🌟 春のバードウォッチングのコツ</div>
+            午前4時から8時の間が鳥類が最も活発で、歌声が最も頻繁な時間帯です。新緑の木々に注意を払いましょう。多くの昆虫食鳥類がそこで採餌します。
+        </div>
+        
+        <div class="section-title">夏：忙しい営巣期</div>
+        
+        <div class="main-text">
+            夏は鳥類にとって繁殖のピーク期であり、ほとんどの種が幼鳥の育雛と世話に忙しくしています<span class="emoji">☀️</span>。成鳥の歌声は少なくなるかもしれませんが、親鳥が採餌し幼鳥に給餌する様子を観察することは同様に魅力的です。この季節は巣立ち雛が飛ぶことを学び、家族群で行動する様子を見る良い時期でもあります。
+        </div>
+        
+        <div class="main-text">
+            夏のバードウォッチング時間は、暑い日中の時間を避けるために調整が必要です<span class="emoji">🌅</span>。早朝と夕方がバードウォッチングの最適な時間帯です。鳥類は高温に対処するためにより多くの水分を必要とするため、水源近くで鳥の活動が増加します。
+        </div>
+        
+        <div class="section-title">秋：壮観な渡りの季節</div>
+        
+        <div class="main-text">
+            秋の渡りは通常、春の渡りよりも壮観で長期間にわたります<span class="emoji">🍂</span>。鳥類は長距離飛行のためにエネルギーを蓄えるために頻繁に採餌します。熟した果実の季節は多数の果食性鳥類を引き寄せ、バードウォッチャーに優れた観察機会を提供します。
+        </div>
+        
+        <div class="main-text">
+            秋は猛禽類の渡りを観察する最適な時期です<span class="emoji">🦅</span>。尾根、海岸線、川の谷は猛禽類の渡りの主要な回廊です。晴れた日と適度な風は猛禽類の渡りを観察するのに最も適しています。
+        </div>
+        
+        <div class="section-title">冬：逞しい留鳥と訪問者</div>
+        
+        <div class="main-text">
+            冬は比較的少ない鳥種しかいませんが、観察条件はしばしばより良好です<span class="emoji">❄️</span>。葉のない木々はより明確な視界を提供し、鳥類は採餌により活発になります。この季節は留鳥の適応行動と冬鳥の群れ活動を観察する良い時期です。
+        </div>
+        
+        <div class="main-text">
+            人工給餌場は冬に特に効果的で、様々な鳥種を引き寄せて採餌させます<span class="emoji">🌰</span>。食物資源が比較的集中しているため、都市環境での鳥の密度は他の季節よりも高くなる可能性があります。
+        </div>
+        
+        <div class="tip-box">
+            <div class="tip-title">💡 冬のバードウォッチングの提案</div>
+            ベリー類が豊富な低木や種子を保持する植物に注目しましょう。これらは冬の鳥類にとって重要な食物源です。
+        </div>
+        
+        <div class="main-text">
+            季節別バードウォッチングパターンをマスターするには、長期間の観察と記録が必要です<span class="emoji">📝</span>。バードウォッチング日記を維持し、同じ場所で異なる季節に観察された鳥の変化を記録することをお勧めします。このような記録は個人的な学習に役立つだけでなく、科学研究にとって貴重なデータも提供します。
+        </div>
+    </div>
+    
+    <!-- プログレスバー -->
+    <div class="progress-container">
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
+        </div>
+    </div>
 
     <script>
         // 更新时间

@@ -3,59 +3,315 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>初心者向けバードウォッチング - BirdAiSnap</title>
+    <title>鳥類バイオメカニクスの原理 - BirdAiSnap</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f5; color: #333; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         
-        .back-button { position: fixed; top: 60px; left: 20px; width: 36px; height: 36px; background: rgba(0,0,0,0.6); border: none; border-radius: 50%; color: white; font-size: 18px; cursor: pointer; z-index: 999; display: flex; align-items: center; justify-content: center; }
-        .hero-image { width: 100%; height: 400px; background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('../../images/birds/species/bird-image-018.png') center/cover; position: relative; margin-top: 0; }
-        .content { background: white; margin: -30px 20px 20px 20px; border-radius: 20px; padding: 40px 20px 30px 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); min-height: 80vh; }
-        .title { font-size: 24px; font-weight: 700; color: #1a1a1a; margin-bottom: 30px; margin-top: 10px; line-height: 1.3; }
-        .quote-box { background: linear-gradient(135deg, #e3f2fd, #bbdefb); border-left: 4px solid #2196f3; padding: 20px; margin: 25px 0; border-radius: 8px; position: relative; }
-        .quote-box::before { content: '"'; font-size: 48px; color: #2196f3; position: absolute; top: -5px; left: 15px; font-family: serif; line-height: 1; }
-        .quote-text { font-size: 18px; font-weight: 600; color: #1565c0; margin-left: 25px; line-height: 1.4; }
-        .main-text { font-size: 16px; line-height: 1.8; color: #333; margin: 20px 0; text-align: justify; }
-        .section-title { font-size: 20px; font-weight: 600; color: #2196f3; margin: 30px 0 15px 0; border-bottom: 2px solid #bbdefb; padding-bottom: 8px; }
-        .tip-box { background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px; padding: 15px; margin: 20px 0; border-left: 4px solid #28a745; }
-        .tip-title { font-weight: 600; color: #28a745; margin-bottom: 8px; }
-        .emoji { font-size: 18px; margin: 0 2px; }
-        .progress-container { position: fixed; bottom: 0; left: 0; right: 0; height: 60px; background: linear-gradient(to top, rgba(255,255,255,0.95), transparent); display: flex; align-items: center; justify-content: center; z-index: 998; }
-        .progress-bar { width: 200px; height: 4px; background: rgba(0,0,0,0.1); border-radius: 2px; overflow: hidden; }
-        .progress-fill { height: 100%; background: linear-gradient(90deg, #2196f3, #64b5f6); width: 0%; border-radius: 2px; transition: width 0.3s ease; }
-        @media (max-width: 375px) { .content { margin: -30px 15px 20px 15px; padding: 25px 15px; } .title { font-size: 22px; } .main-text { font-size: 15px; } }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+        
+        .back-button {
+            position: fixed;
+            top: 60px;
+            left: 20px;
+            width: 36px;
+            height: 36px;
+            background: rgba(0,0,0,0.6);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                        url('../../images/birds/species/bird-image-018.png') center/cover;
+            position: relative;
+            margin-top: 0;
+        }
+        
+        .content {
+            background: white;
+            margin: -30px 20px 20px 20px;
+            border-radius: 20px;
+            padding: 40px 20px 30px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            min-height: 80vh;
+        }
+        
+        .title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            margin-top: 10px;
+            line-height: 1.3;
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            border-left: 4px solid #2196f3;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .quote-box::before {
+            content: '"';
+            font-size: 48px;
+            color: #2196f3;
+            position: absolute;
+            top: -5px;
+            left: 15px;
+            font-family: serif;
+            line-height: 1;
+        }
+        
+        .quote-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1565c0;
+            margin-left: 25px;
+            line-height: 1.4;
+        }
+        
+        .main-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            margin: 20px 0;
+            text-align: justify;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #2196f3;
+            margin: 30px 0 15px 0;
+            border-bottom: 2px solid #bbdefb;
+            padding-bottom: 8px;
+        }
+        
+        .tip-box {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            border-left: 4px solid #28a745;
+        }
+        
+        .tip-title {
+            font-weight: 600;
+            color: #28a745;
+            margin-bottom: 8px;
+        }
+        
+        .emoji {
+            font-size: 18px;
+            margin: 0 2px;
+        }
+        
+        .progress-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: linear-gradient(to top, rgba(255,255,255,0.95), transparent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 998;
+        }
+        
+        .progress-bar {
+            width: 200px;
+            height: 4px;
+            background: rgba(0,0,0,0.1);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #2196f3, #64b5f6);
+            width: 0%;
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+        
+        @media (max-width: 375px) {
+            .content {
+                margin: -30px 15px 20px 15px;
+                padding: 25px 15px;
+            }
+            
+            .title {
+                font-size: 22px;
+            }
+            
+            .main-text {
+                font-size: 15px;
+            }
+        }
     </style>
 </head>
 <body>
-    </div>
-    <button class="back-button" onclick="history.back()">←</button>
-    <div class="hero-image"></div>
-    <div class="content">
-        <h1 class="title">Avi Biomechics Prciples</h1>
-        <div class="quote-box"><div class="quote-テキスト">Anlyzg Nure's Most Precすe Movement Mchery</div></div>
-        <div class="main-text">A 鳥's 体 す  precすe biologicl 機械, と それぞれの 部分 optimized through millis の ages の evoluti<span class="emoji">⚙️</span>. From skeletl 構造 に musculr システム, から neurl 制御する に エネルギー trsfer, すべてのthg embodies 完璧な engee鳴らす prciples.</div>
-        <div class="section-title">Lightweight Skeletl System</div>
-        <div class="main-text">Bird skeleにns 使う hol低い 構造s, 重要なly reducg weight while 維持するg 強さ<span class="emoji">🦴</span>. Thす デザイン す 似ている に steel tube 構造s  modern rc打つecture, chievg  optiml 強さ-に-weight 比率.</div>
-        <div class="tip-box"><div class="tip-title">🏗️ Structurl Engee鳴らす</div>Bird bone density is 20-30% lower than mammals, yet with comparable strength, a classic example of structural optimization.</div>
-        <div class="main-text">The keel の  sternum 提供するs tchment pots のために 力ful 飛行 muscles, のためにmg  efficient 力 trsお嬢さんi システム<span class="emoji">🔗</span>. Thす デザイン ensures mximum efficiency の 翼 flppg.</div>
-        <div class="section-title">Dynmics の  Musculr System</div>
-        <div class="main-text">Birds' pectまたはl muscles cカウント のために 15-25% の ir 体 weight,  高いest 割合 mg すべて verteb率s<span class="emoji">💪</span>. These muscles 接続する に  翼s through  複雑な tend システム, enblg precすe 力 制御する.</div>
-        <div class="main-text">The timg 制御する の muscle ctr行動s す extremely precすe, と 異なる muscle グループs 仕事g  coまたはdi に produce 複雑な 翼 動き パターンs<span class="emoji">🎼</span>. Thす coまたはdi す  結果 の precすe 制御する によって  nervous システム.</div>
-        <div class="section-title">Flexibility の  Jot System</div>
-        <div class="main-text">Birds' 参加するt システムs 持っています extremely 高い flexibility と st能力. The coまたはded 動き の すべきすer, elbow, と wrすt 参加するts produces 複雑な 翼 trjectまたはies<span class="emoji">🔄</span>.</div>
-        <div class="main-text">Jot 車tilage と synovil fluid システムs ensure 低い-fricti 動き の間 長い 飛行s<span class="emoji">🛢️</span>. The efficiency の この biologicl lubrici システム fr exceeds 芸術ificil lubriきますts.</div>
-        <div class="section-title">Neurl Ctrol System</div>
-        <div class="main-text">Birds 持っています 高いly 発達するed cerebellums, respsible のために coまたはdg 複雑な 飛行 動きs<span class="emoji">🧠</span>. Neurl 信号 trsお嬢さんi す extremely 速い, enblg milli秒-レベル 動き 調整するments.</div>
-        <div class="main-text">The proprioceptまたは システム 提供するs 本当の-時間 位置 と 動き 情報, 許可するg 鳥類 に 飛ぶ precすely  複雑な 環境s<span class="emoji">📡</span>.</div>
-        <div class="section-title">Energy Trsfer Efficiency</div>
-        <div class="main-text">Birds' エネルギー trsfer システムs す 高いly efficient, と cversi 率s から chemicl に mechicl エネルギー exceedg 25%<span class="emoji">⚡</span>. Thす す mまたはe efficient th ほとんどの 芸術ificil mechicl システムs.</div>
-        <div class="main-text">E最後のic エネルギー stまたはage mechすms 許可する 鳥類 に re覆う 部分 の  エネルギー の間 翼 flppg, furr improvg 飛行 efficiency<span class="emoji">🔋</span>.</div>
-        <div class="section-title">Biomimetic Applici Prospects</div>
-        <div class="main-text">Re探す  vi biomechics 提供するs 重要な spi比率n のために robotics と eruticl engee鳴らす<span class="emoji">🤖</span>. From またはnithopters に biic robots, 努力s す beg mde に mimic  動き prciples の 鳥類.</div>
-        <div class="main-text">These studies not ly drive technologicl progress but lso deeペン our 理解するg の  複雑なity と sophすtici の livg システムs<span class="emoji">🌟</span>.</div>
-    </div>
-    <div class="progress-container"><div class="progress-br"><div class="progress-fill"></div></div></div>
+    <!-- 戻るボタン -->
+    <button class="back-button" onclick="history.back()">
+        ←
+    </button>
     
+    <!-- ヒーロー画像 -->
+    <div class="hero-image"></div>
+    
+    <!-- メインコンテンツ -->
+    <div class="content">
+        <h1 class="title">⚙️ 鳥類バイオメカニクスの原理</h1>
+        
+        <div class="quote-box">
+            <div class="quote-text">
+                自然界で最も精密な運動機械を分析する
+            </div>
+        </div>
+        
+        <div class="main-text">
+            鳥の体は精密な生物学的機械であり、各部分が何百万年もの進化を通じて最適化されています<span class="emoji">⚙️</span>。骨格構造から筋肉系、神経制御からエネルギー伝達まで、すべてが完璧な工学原理を体現しています。
+        </div>
+        
+        <div class="section-title">軽量骨格システム</div>
+        
+        <div class="main-text">
+            鳥の骨格は中空構造を使用し、強度を維持しながら重量を大幅に削減しています<span class="emoji">🦴</span>。この設計は現代建築の鋼管構造に似ており、最適な強度対重量比を実現しています。中空骨は単なる軽量化ではなく、構造工学の傑作です。
+        </div>
+        
+        <div class="main-text">
+            胸骨の竜骨突起は強力な飛行筋の付着点を提供し、効率的な力伝達システムを形成します<span class="emoji">🔗</span>。この設計により、翼の羽ばたきの最大効率が確保されます。骨格の各部分は特定の機能に特化し、全体として統合されたシステムを形成しています。
+        </div>
+        
+        <div class="tip-box">
+            <div class="tip-title">🏗️ 構造工学</div>
+            鳥の骨密度は哺乳類より20-30%低いにもかかわらず、同等の強度を持ち、構造最適化の典型例です。
+        </div>
+        
+        <div class="section-title">筋肉系の動力学</div>
+        
+        <div class="main-text">
+            鳥類の胸筋は体重の15-25%を占め、すべての脊椎動物の中で最も高い割合です<span class="emoji">💪</span>。これらの筋肉は複雑な腱システムを通じて翼に接続され、精密な力制御を可能にします。
+        </div>
+        
+        <div class="main-text">
+            筋肉収縮のタイミング制御は極めて精密で、異なる筋肉群が協調して働き、複雑な翼の動きパターンを生成します<span class="emoji">🎼</span>。この協調は神経系による精密な制御の結果です。各筋繊維の収縮タイミングは、ミリ秒レベルで調整されます。
+        </div>
+        
+        <div class="section-title">関節系の柔軟性</div>
+        
+        <div class="main-text">
+            鳥類の関節系は極めて高い柔軟性と安定性を持っています<span class="emoji">🔄</span>。肩、肘、手首関節の協調した動きが複雑な翼の軌道を生み出します。各関節は特定の可動域と制限を持ち、効率的で安全な動きを確保します。
+        </div>
+        
+        <div class="main-text">
+            関節軟骨と滑液システムは、長時間の飛行中も低摩擦の動きを確保します<span class="emoji">🛢️</span>。この生物学的潤滑システムの効率は人工潤滑剤をはるかに上回ります。関節の設計は摩耗を最小限に抑え、長寿命を実現しています。
+        </div>
+        
+        <div class="section-title">神経制御システム</div>
+        
+        <div class="main-text">
+            鳥類は高度に発達した小脳を持ち、複雑な飛行動作の協調を担当しています<span class="emoji">🧠</span>。神経信号の伝達は極めて高速で、ミリ秒レベルの動き調整を可能にします。
+        </div>
+        
+        <div class="main-text">
+            固有受容システムはリアルタイムの位置と動き情報を提供し、鳥類が複雑な環境で精密に飛行することを可能にします<span class="emoji">📡</span>。このフィードバックシステムにより、瞬時の軌道修正と障害物回避が実現されます。
+        </div>
+        
+        <div class="section-title">エネルギー伝達効率</div>
+        
+        <div class="main-text">
+            鳥類のエネルギー伝達システムは高効率で、化学エネルギーから機械エネルギーへの変換率が25%を超えます<span class="emoji">⚡</span>。これはほとんどの人工機械システムよりも効率的です。
+        </div>
+        
+        <div class="main-text">
+            弾性エネルギー貯蔵メカニズムにより、鳥類は翼の羽ばたき中にエネルギーの一部を回収でき、飛行効率をさらに向上させます<span class="emoji">🔋</span>。腱と筋肉の弾性特性が、エネルギーの効率的な利用を可能にします。
+        </div>
+        
+        <div class="section-title">流体力学的最適化</div>
+        
+        <div class="main-text">
+            鳥類の体形と翼の形状は流体力学的に最適化されており、抗力を最小限に抑えながら揚力を最大化します<span class="emoji">🌊</span>。羽毛の微細構造も気流制御に重要な役割を果たし、乱流を減少させて飛行効率を向上させます。
+        </div>
+        
+        <div class="main-text">
+            翼の形状は飛行速度と環境条件に応じて動的に調整され、常に最適な空力特性を維持します<span class="emoji">📐</span>。この適応能力は現代の可変翼航空機の設計にインスピレーションを与えています。
+        </div>
+        
+        <div class="section-title">振動と騒音制御</div>
+        
+        <div class="main-text">
+            鳥類の飛行は驚くほど静かで、これは特殊な羽毛構造と翼の動きパターンによるものです<span class="emoji">🔇</span>。フクロウの羽毛は特に優れた騒音抑制特性を持ち、無音飛行を実現します。この技術は静音航空機の開発に応用されています。
+        </div>
+        
+        <div class="main-text">
+            振動制御システムも高度に発達しており、飛行中の構造振動を最小限に抑えて効率と安定性を向上させます<span class="emoji">📳</span>。これらの制御メカニズムは工学設計に重要な示唆を提供します。
+        </div>
+        
+        <div class="section-title">バイオミメティクス応用の展望</div>
+        
+        <div class="main-text">
+            鳥類バイオメカニクスの研究は、ロボット工学と航空工学に重要なインスピレーションを提供します<span class="emoji">🤖</span>。オーニソプターからバイオニックロボットまで、鳥類の動き原理を模倣する努力が続けられています。
+        </div>
+        
+        <div class="main-text">
+            これらの研究は技術進歩を推進するだけでなく、生物システムの複雑さと洗練さに対する理解も深めます<span class="emoji">🌟</span>。自然から学ぶことで、より効率的で持続可能な技術ソリューションを開発できます。
+        </div>
+        
+        <div class="tip-box">
+            <div class="tip-title">🔬 研究応用</div>
+            鳥類の飛行原理は、次世代ドローン、個人用飛行装置、効率的な輸送システムの開発に応用されており、航空技術の革新を推進しています。
+        </div>
+        
+        <div class="section-title">材料科学への貢献</div>
+        
+        <div class="main-text">
+            鳥類の骨と羽毛の構造は、新しい複合材料の開発にインスピレーションを提供します<span class="emoji">🧪</span>。軽量でありながら高強度を実現する階層構造は、航空宇宙産業や建築業界で応用されています。
+        </div>
+        
+        <div class="main-text">
+            自己修復能力を持つ生物材料の研究も進んでおり、損傷を自動的に修復できる新しい材料の開発につながる可能性があります<span class="emoji">🔧</span>。これらの技術は持続可能な社会の実現に貢献します。
+        </div>
+        
+        <div class="section-title">未来への展望</div>
+        
+        <div class="main-text">
+            鳥類バイオメカニクスの理解は、人間の移動手段を革新する可能性を秘めています<span class="emoji">🚀</span>。個人用飛行装置、効率的な都市交通システム、環境に優しい輸送技術の開発において、鳥類の飛行原理は重要な指針となります。
+        </div>
+        
+        <div class="main-text">
+            鳥類バイオメカニクスの原理は、自然界の精巧な設計と何億年もの進化の知恵を完璧に実証しています<span class="emoji">✨</span>。これらの驚異的なシステムを理解し応用することで、人類の技術発展と持続可能な未来の実現に貢献できます。
+        </div>
+    </div>
+    
+    <!-- プログレスバー -->
+    <div class="progress-container">
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
+        </div>
+    </div>
 
     <script>
         // 更新时间

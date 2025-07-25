@@ -3,56 +3,301 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>初心者向けバードウォッチング - BirdAiSnap</title>
+    <title>鳥類の卵発生の奇跡 - BirdAiSnap</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f5; color: #333; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         
-        .back-button { position: fixed; top: 60px; left: 20px; width: 36px; height: 36px; background: rgba(0,0,0,0.6); border: none; border-radius: 50%; color: white; font-size: 18px; cursor: pointer; z-index: 999; display: flex; align-items: center; justify-content: center; }
-        .hero-image { width: 100%; height: 400px; background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('../../images/birds/species/bird-image-012.png') center/cover; position: relative; margin-top: 0; }
-        .content { background: white; margin: -30px 20px 20px 20px; border-radius: 20px; padding: 40px 20px 30px 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); min-height: 80vh; }
-        .title { font-size: 24px; font-weight: 700; color: #1a1a1a; margin-bottom: 30px; margin-top: 10px; line-height: 1.3; }
-        .quote-box { background: linear-gradient(135deg, #e3f2fd, #bbdefb); border-left: 4px solid #2196f3; padding: 20px; margin: 25px 0; border-radius: 8px; position: relative; }
-        .quote-box::before { content: '"'; font-size: 48px; color: #2196f3; position: absolute; top: -5px; left: 15px; font-family: serif; line-height: 1; }
-        .quote-text { font-size: 18px; font-weight: 600; color: #1565c0; margin-left: 25px; line-height: 1.4; }
-        .main-text { font-size: 16px; line-height: 1.8; color: #333; margin: 20px 0; text-align: justify; }
-        .section-title { font-size: 20px; font-weight: 600; color: #2196f3; margin: 30px 0 15px 0; border-bottom: 2px solid #bbdefb; padding-bottom: 8px; }
-        .tip-box { background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px; padding: 15px; margin: 20px 0; border-left: 4px solid #28a745; }
-        .tip-title { font-weight: 600; color: #28a745; margin-bottom: 8px; }
-        .emoji { font-size: 18px; margin: 0 2px; }
-        .progress-container { position: fixed; bottom: 0; left: 0; right: 0; height: 60px; background: linear-gradient(to top, rgba(255,255,255,0.95), transparent); display: flex; align-items: center; justify-content: center; z-index: 998; }
-        .progress-bar { width: 200px; height: 4px; background: rgba(0,0,0,0.1); border-radius: 2px; overflow: hidden; }
-        .progress-fill { height: 100%; background: linear-gradient(90deg, #2196f3, #64b5f6); width: 0%; border-radius: 2px; transition: width 0.3s ease; }
-        @media (max-width: 375px) { .content { margin: -30px 15px 20px 15px; padding: 25px 15px; } .title { font-size: 22px; } .main-text { font-size: 15px; } }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+        
+        .back-button {
+            position: fixed;
+            top: 60px;
+            left: 20px;
+            width: 36px;
+            height: 36px;
+            background: rgba(0,0,0,0.6);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                        url('../../images/birds/species/bird-image-012.png') center/cover;
+            position: relative;
+            margin-top: 0;
+        }
+        
+        .content {
+            background: white;
+            margin: -30px 20px 20px 20px;
+            border-radius: 20px;
+            padding: 40px 20px 30px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            min-height: 80vh;
+        }
+        
+        .title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            margin-top: 10px;
+            line-height: 1.3;
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            border-left: 4px solid #2196f3;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .quote-box::before {
+            content: '"';
+            font-size: 48px;
+            color: #2196f3;
+            position: absolute;
+            top: -5px;
+            left: 15px;
+            font-family: serif;
+            line-height: 1;
+        }
+        
+        .quote-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1565c0;
+            margin-left: 25px;
+            line-height: 1.4;
+        }
+        
+        .main-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            margin: 20px 0;
+            text-align: justify;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #2196f3;
+            margin: 30px 0 15px 0;
+            border-bottom: 2px solid #bbdefb;
+            padding-bottom: 8px;
+        }
+        
+        .tip-box {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            border-left: 4px solid #28a745;
+        }
+        
+        .tip-title {
+            font-weight: 600;
+            color: #28a745;
+            margin-bottom: 8px;
+        }
+        
+        .emoji {
+            font-size: 18px;
+            margin: 0 2px;
+        }
+        
+        .progress-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: linear-gradient(to top, rgba(255,255,255,0.95), transparent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 998;
+        }
+        
+        .progress-bar {
+            width: 200px;
+            height: 4px;
+            background: rgba(0,0,0,0.1);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #2196f3, #64b5f6);
+            width: 0%;
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+        
+        @media (max-width: 375px) {
+            .content {
+                margin: -30px 15px 20px 15px;
+                padding: 25px 15px;
+            }
+            
+            .title {
+                font-size: 22px;
+            }
+            
+            .main-text {
+                font-size: 15px;
+            }
+        }
     </style>
 </head>
 <body>
-    </div>
-    <button class="back-button" onclick="history.back()">←</button>
-    <div class="hero-image"></div>
-    <div class="content">
-        <h1 class="title">The Mircle の Bird Egg Development</h1>
-        <div class="quote-box"><div class="quote-テキスト">Witnes歌う  Amzg Trsのためにmi から  Sgle Cell に  Complete Life</div></div>
-        <div class="main-text">Bird 卵s す 自然's 完璧な 生活 cubまたはs, どこ  この en閉じるd miure wまたはld,  単一の cell 発達するs に  複雑な livg またはgすm と just  少数の 週s<span class="emoji">🥚</span>. Thす プロセス す filled と sにnすhg biologicl mircles.</div>
-        <div class="section-title">Precすi Engee鳴らす の  Eggshell</div>
-        <div class="main-text">The 卵shell 現れるs 簡単な but す ctuすべてy  複雑な bioengeered 構造. It csすts の clcium 車be crystls と thousとs の micropまたはes その 許可する gs ex変化 while 防ぐg bcteril vsi<span class="emoji">🛡️</span>.</div>
-        <div class="tip-box"><div class="tip-title">🔬 Structurl Mrvel</div>The eggshell is only 0.3 millimeters thick, yet can withstand pressure up to 40 times its own weight while maintaining permeability.</div>
-        <div class="main-text">The ner membre の  卵shell のためにms  加えるitil 保護するive lyer と 作るs  ir chmber   blunt end, providg  最初の br食べるh の ir のために  hchg ひな<span class="emoji">💨</span>.</div>
-        <div class="section-title">Precすe Timg の Embryic Development</div>
-        <div class="main-text">Bird embryo 発展 従うs  precすe 予定する. In  最初の 少数の 日s の cubi,  nervous と circulまたはy システムs 始める に のためにm<span class="emoji">🧠</span>. The 心臓 す  最初の またはg に 始める 仕事g, providg 栄養 のために  rpidly 発達するg embryo.</div>
-        <div class="main-text">As 発展 progresses,  embryo grduすべてy c合計es nutrients から  yolk, while  卵 w打つe 提供するs moすture と 加えるitil 栄養<span class="emoji">🍳</span>. Thす nutrient dすtributi システム ensures エネルギー 供給する のために  embryo throughout  発展 プロセス.</div>
-        <div class="section-title">Impまたはtce の Temperure Reguli</div>
-        <div class="main-text">Temperure す  criticl 事実または  embryic 発展. Most 鳥類 必要 に 維持する 卵 温度s between 37-39°C<span class="emoji">🌡️</span>. Even  1-2 degree 温度 difference きます ffect hchg 成功 率s と ひな 健康.</div>
-        <div class="main-text">Pすnt 鳥類 維持する cstt 温度 through precすe cubi 行動s, cludg 定期的なly 曲がり角g 卵s, 調整するg cubi posture, と u歌う brood pches に trsfer 体 h食べる<span class="emoji">🔄</span>.</div>
-        <div class="section-title">The F食べる の Hchg</div>
-        <div class="main-text">Hchg す  fl 段階 の embryic 発展 と lso  ほとんどの chすべてengg プロセス. The ひな 必要があります 使う its 卵 にoth に 壊す through  難しい 卵shell<span class="emoji">⚡</span>. Thす プロセス きます 最後の severl 時間s または even 日s.</div>
-        <div class="main-text">The hchg プロセス 必要とするs tremendous physicl 強さ と precすe coまたはdi. The ひな drws  完了する circle 長い  卵shell through 特別な muscle ctr行動s と 頭 動きs<span class="emoji">⭕</span>.</div>
-        <div class="section-title">Adpti St率gies の Different Species</div>
-        <div class="main-text">Different 鳥類 持っています vryg 卵 と cubi st率gies. Precocil 鳥類' ひなs きます progressく と のためにage immediely 後に hchg, while ltricil 鳥類' ひなs 必要とする 長い-term 親l 気にかける<span class="emoji">👶</span>.</div>
-        <div class="main-text">Thす diver座るy reflects evolutiry dptis に 異なる ecologicl 環境s, と それぞれの st率gy beg  crystすべてizi の 自然の 選択するi's wすdom<span class="emoji">🌟</span>.</div>
-    </div>
-    <div class="progress-container"><div class="progress-br"><div class="progress-fill"></div></div></div>
+    <!-- 戻るボタン -->
+    <button class="back-button" onclick="history.back()">
+        ←
+    </button>
     
+    <!-- ヒーロー画像 -->
+    <div class="hero-image"></div>
+    
+    <!-- メインコンテンツ -->
+    <div class="content">
+        <h1 class="title">🥚 鳥類の卵発生の奇跡</h1>
+        
+        <div class="quote-box">
+            <div class="quote-text">
+                単一細胞から完全な生命への驚異的な変化を目撃する
+            </div>
+        </div>
+        
+        <div class="main-text">
+            鳥の卵は自然界の完璧な生命インキュベーターであり、この閉じられた小さな世界で、単一の細胞がわずか数週間で複雑な生物に発達します<span class="emoji">🥚</span>。このプロセスは驚異的な生物学的奇跡に満ちています。
+        </div>
+        
+        <div class="section-title">卵殻の精密工学</div>
+        
+        <div class="main-text">
+            卵殻は単純に見えますが、実際には複雑な生体工学構造です<span class="emoji">🛡️</span>。炭酸カルシウム結晶と数千の微細孔から構成され、ガス交換を可能にしながら細菌の侵入を防ぎます。この精密な設計により、胚の発達に必要な酸素を供給し、二酸化炭素を排出できます。
+        </div>
+        
+        <div class="main-text">
+            卵殻の内膜は追加の保護層を形成し、鈍端に気室を作ります<span class="emoji">💨</span>。この気室は孵化するひなの最初の呼吸を提供する重要な役割を果たします。孵化前に、ひなはこの気室の空気を使って肺呼吸を開始します。
+        </div>
+        
+        <div class="tip-box">
+            <div class="tip-title">🔬 構造の驚異</div>
+            卵殻の厚さはわずか0.3ミリメートルですが、自重の40倍の圧力に耐えることができ、同時に透過性を維持しています。
+        </div>
+        
+        <div class="section-title">胚発生の精密なタイミング</div>
+        
+        <div class="main-text">
+            鳥の胚発生は精密なスケジュールに従います<span class="emoji">🧠</span>。抱卵の最初の数日間で、神経系と循環系の形成が始まります。心臓は最初に機能し始める器官で、急速に発達する胚に栄養を供給します。
+        </div>
+        
+        <div class="main-text">
+            発生が進むにつれて、胚は卵黄から栄養を徐々に消費し、卵白は水分と追加の栄養を提供します<span class="emoji">🍳</span>。この栄養分配システムは、発生プロセス全体を通じて胚にエネルギー供給を確保します。各発生段階で異なる栄養素が必要とされ、卵の構成はこれらの需要を完璧に満たします。
+        </div>
+        
+        <div class="section-title">温度調節の重要性</div>
+        
+        <div class="main-text">
+            温度は胚発生の重要な要因です<span class="emoji">🌡️</span>。ほとんどの鳥類は卵の温度を37-39°Cの間に維持する必要があります。わずか1-2度の温度差でも孵化成功率とひなの健康に影響を与える可能性があります。
+        </div>
+        
+        <div class="main-text">
+            親鳥は精密な抱卵行動を通じて一定の温度を維持します<span class="emoji">🔄</span>。定期的な卵の回転、抱卵姿勢の調整、抱卵斑を使った体温の伝達などが含まれます。これらの行動は本能的でありながら、極めて精密で効果的です。
+        </div>
+        
+        <div class="section-title">孵化の最終段階</div>
+        
+        <div class="main-text">
+            孵化は胚発生の最終段階であり、最も困難なプロセスでもあります<span class="emoji">⚡</span>。ひなは卵歯を使って硬い卵殻を破る必要があります。このプロセスは数時間から数日間続くことがあります。
+        </div>
+        
+        <div class="main-text">
+            孵化プロセスには tremendous な体力と精密な協調が必要です<span class="emoji">⭕</span>。ひなは特別な筋肉収縮と頭の動きを通じて、卵殻に完全な円を描きます。この「ピッピング」と呼ばれるプロセスは、ひなの生存にとって重要な試練です。
+        </div>
+        
+        <div class="section-title">異なる種の適応戦略</div>
+        
+        <div class="main-text">
+            異なる鳥類は様々な卵と抱卵戦略を持っています<span class="emoji">👶</span>。早成性鳥類のひなは孵化後すぐに歩行し採餌できますが、晩成性鳥類のひなは長期間の親の世話を必要とします。
+        </div>
+        
+        <div class="main-text">
+            この多様性は異なる生態学的環境への進化的適応を反映しており、各戦略は自然選択の知恵の結晶です<span class="emoji">🌟</span>。地上営巣種は通常早成性で、樹上営巣種は晩成性の傾向があります。
+        </div>
+        
+        <div class="section-title">卵の栄養組成</div>
+        
+        <div class="main-text">
+            鳥の卵は完璧にバランスの取れた栄養パッケージです<span class="emoji">🥄</span>。卵黄は脂質とタンパク質が豊富で、胚の主要なエネルギー源となります。卵白は水分とタンパク質を提供し、胚の成長に必要なアミノ酸を供給します。
+        </div>
+        
+        <div class="main-text">
+            卵殻膜は抗菌特性を持ち、感染から胚を保護します<span class="emoji">🛡️</span>。この天然の防御システムは、無菌環境で胚が発達できるようにします。
+        </div>
+        
+        <div class="section-title">環境要因の影響</div>
+        
+        <div class="main-text">
+            湿度も胚発生にとって重要な要因です<span class="emoji">💧</span>。適切な湿度レベルは卵からの水分蒸発を制御し、胚の正常な発達を確保します。湿度が低すぎると胚が脱水し、高すぎると溺死する可能性があります。
+        </div>
+        
+        <div class="main-text">
+            卵の位置と回転も重要です<span class="emoji">🔄</span>。定期的な回転により、胚が卵殻膜に付着することを防ぎ、均等な発達を促進します。親鳥は本能的にこれらの行動を行います。
+        </div>
+        
+        <div class="section-title">現代科学への応用</div>
+        
+        <div class="main-text">
+            鳥の卵発生の研究は、発生生物学と医学研究に重要な貢献をしています<span class="emoji">🔬</span>。胚発生のメカニズムの理解は、人間の発生異常の研究と治療法の開発に役立っています。
+        </div>
+        
+        <div class="tip-box">
+            <div class="tip-title">🧬 科学的応用</div>
+            鳥の胚は発生生物学研究のモデル生物として広く使用され、遺伝子発現と器官形成の研究に重要な洞察を提供しています。
+        </div>
+        
+        <div class="section-title">保護への示唆</div>
+        
+        <div class="main-text">
+            卵発生プロセスの理解は、鳥類保護にとっても重要です<span class="emoji">🌍</span>。環境汚染、気候変動、生息地破壊が卵の発達と孵化成功率に与える影響を理解することで、より効果的な保護戦略を開発できます。
+        </div>
+        
+        <div class="main-text">
+            鳥の卵発生は、生命の奇跡と自然の精巧な設計を完璧に実証しています<span class="emoji">✨</span>。この小さな卵の中で起こる変化は、何億年もの進化の知恵と生命力の結晶なのです。
+        </div>
+    </div>
+    
+    <!-- プログレスバー -->
+    <div class="progress-container">
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
+        </div>
+    </div>
 
     <script>
         // 更新时间

@@ -3,50 +3,275 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>初心者向けバードウォッチング - BirdAiSnap</title>
+    <title>羽毛の微細構造 - BirdAiSnap</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f5; color: #333; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         
-        .back-button { position: fixed; top: 60px; left: 20px; width: 36px; height: 36px; background: rgba(0,0,0,0.6); border: none; border-radius: 50%; color: white; font-size: 18px; cursor: pointer; z-index: 999; display: flex; align-items: center; justify-content: center; }
-        .hero-image { width: 100%; height: 400px; background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('../../images/birds/species/bird-image-013.png') center/cover; position: relative; margin-top: 0; }
-        .content { background: white; margin: -30px 20px 20px 20px; border-radius: 20px; padding: 40px 20px 30px 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); min-height: 80vh; }
-        .title { font-size: 24px; font-weight: 700; color: #1a1a1a; margin-bottom: 30px; margin-top: 10px; line-height: 1.3; }
-        .quote-box { background: linear-gradient(135deg, #e3f2fd, #bbdefb); border-left: 4px solid #2196f3; padding: 20px; margin: 25px 0; border-radius: 8px; position: relative; }
-        .quote-box::before { content: '"'; font-size: 48px; color: #2196f3; position: absolute; top: -5px; left: 15px; font-family: serif; line-height: 1; }
-        .quote-text { font-size: 18px; font-weight: 600; color: #1565c0; margin-left: 25px; line-height: 1.4; }
-        .main-text { font-size: 16px; line-height: 1.8; color: #333; margin: 20px 0; text-align: justify; }
-        .section-title { font-size: 20px; font-weight: 600; color: #2196f3; margin: 30px 0 15px 0; border-bottom: 2px solid #bbdefb; padding-bottom: 8px; }
-        .tip-box { background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px; padding: 15px; margin: 20px 0; border-left: 4px solid #28a745; }
-        .tip-title { font-weight: 600; color: #28a745; margin-bottom: 8px; }
-        .emoji { font-size: 18px; margin: 0 2px; }
-        .progress-container { position: fixed; bottom: 0; left: 0; right: 0; height: 60px; background: linear-gradient(to top, rgba(255,255,255,0.95), transparent); display: flex; align-items: center; justify-content: center; z-index: 998; }
-        .progress-bar { width: 200px; height: 4px; background: rgba(0,0,0,0.1); border-radius: 2px; overflow: hidden; }
-        .progress-fill { height: 100%; background: linear-gradient(90deg, #2196f3, #64b5f6); width: 0%; border-radius: 2px; transition: width 0.3s ease; }
-        @media (max-width: 375px) { .content { margin: -30px 15px 20px 15px; padding: 25px 15px; } .title { font-size: 22px; } .main-text { font-size: 15px; } }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+        
+        .back-button {
+            position: fixed;
+            top: 60px;
+            left: 20px;
+            width: 36px;
+            height: 36px;
+            background: rgba(0,0,0,0.6);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                        url('../../images/birds/species/bird-image-013.png') center/cover;
+            position: relative;
+            margin-top: 0;
+        }
+        
+        .content {
+            background: white;
+            margin: -30px 20px 20px 20px;
+            border-radius: 20px;
+            padding: 40px 20px 30px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            min-height: 80vh;
+        }
+        
+        .title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            margin-top: 10px;
+            line-height: 1.3;
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            border-left: 4px solid #2196f3;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .quote-box::before {
+            content: '"';
+            font-size: 48px;
+            color: #2196f3;
+            position: absolute;
+            top: -5px;
+            left: 15px;
+            font-family: serif;
+            line-height: 1;
+        }
+        
+        .quote-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1565c0;
+            margin-left: 25px;
+            line-height: 1.4;
+        }
+        
+        .main-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            margin: 20px 0;
+            text-align: justify;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #2196f3;
+            margin: 30px 0 15px 0;
+            border-bottom: 2px solid #bbdefb;
+            padding-bottom: 8px;
+        }
+        
+        .tip-box {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            border-left: 4px solid #28a745;
+        }
+        
+        .tip-title {
+            font-weight: 600;
+            color: #28a745;
+            margin-bottom: 8px;
+        }
+        
+        .emoji {
+            font-size: 18px;
+            margin: 0 2px;
+        }
+        
+        .progress-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: linear-gradient(to top, rgba(255,255,255,0.95), transparent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 998;
+        }
+        
+        .progress-bar {
+            width: 200px;
+            height: 4px;
+            background: rgba(0,0,0,0.1);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #2196f3, #64b5f6);
+            width: 0%;
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+        
+        @media (max-width: 375px) {
+            .content {
+                margin: -30px 15px 20px 15px;
+                padding: 25px 15px;
+            }
+            
+            .title {
+                font-size: 22px;
+            }
+            
+            .main-text {
+                font-size: 15px;
+            }
+        }
     </style>
 </head>
 <body>
-    </div>
-    <button class="back-button" onclick="history.back()">←</button>
-    <div class="hero-image"></div>
-    <div class="content">
-        <h1 class="title">The Microscopic Mircle の Fer Structure</h1>
-        <div class="quote-box"><div class="quote-テキスト">Unveilg Nure's Most Precすe Biologicl Meril</div></div>
-        <div class="main-text">Fers す mg  ほとんどの 複雑な と precすe biologicl 構造s  自然, not ly lightweight と 美しい, but lso 含むg sにnすhg engee鳴らす prciples<span class="emoji">🪶</span>. Ech 羽毛 す  microscopic rc打つecturl mrvel.</div>
-        <div class="section-title">Wすdom の Hierrchicl Structure De標識</div>
-        <div class="main-text">Fers employ  hierrchicl 構造 デザイン, から  rchす に brbs, n に brbules, と それぞれの レベル hvg 特定の 楽しみctis<span class="emoji">🔬</span>. Thす 構造 ensures both 強さ と ulti配偶者 lightweight 適切なties.</div>
-        <div class="tip-box"><div class="tip-title">🧬 Structurl Mrvel</div>A single feather contains millions of microscopic hooks that interconnect to form a complete vane, with any damage capable of self-repair.</div>
-        <div class="main-text">The 色 producti mechすm の 羽毛s す even mまたはe 素晴らしい. Structurl 色s す produced through light terference と scte鳴らす, cr食べるg brillit 色s とout y pigments<span class="emoji">🌈</span>.</div>
-        <div class="section-title">Perfect Integ比率n の Multiple Functis</div>
-        <div class="main-text">Fers 組み合わせる 複数の 楽しみctis cludg 飛行, suli, 水p屋根g, と 表示する. Different タイプするs の 羽毛s 提供する ir respective roles, にger のためにmg  完璧な biologicl システム<span class="emoji">⚙️</span>.</div>
-        <div class="main-text">Modern 配偶者rils 科学 す strivg に mimic 羽毛 構造s に 発達する 新しい lightweight, 高い-強さ 配偶者rils, 持ってくるg revolutiry 壊すthroughs に ero空間 と テキストile dustries<span class="emoji">🚀</span>.</div>
-        <div class="section-title">Inspi比率n のために Biomimetics</div>
-        <div class="main-text">Fer 研究 提供するs rich spi比率n のために biomimetics, から self-掃除するg sur顔s に sm芸術 配偶者rils,  prciples の 羽毛s す beg widely pp嘘d  modern 技術<span class="emoji">🔧</span>.</div>
-        <div class="main-text">Ech 羽毛 す  crystすべてizi の evolutiry wすdom, demstrg 自然's fite cr食べるivity  配偶者ril デザイン<span class="emoji">✨</span>.</div>
-    </div>
-    <div class="progress-container"><div class="progress-br"><div class="progress-fill"></div></div></div>
+    <!-- 戻るボタン -->
+    <button class="back-button" onclick="history.back()">
+        ←
+    </button>
     
+    <!-- ヒーロー画像 -->
+    <div class="hero-image"></div>
+    
+    <!-- メインコンテンツ -->
+    <div class="content">
+        <h1 class="title">🪶 羽毛構造の微細な奇跡</h1>
+        
+        <div class="quote-box">
+            <div class="quote-text">
+                自然界で最も精密な生物学的材料を解明する
+            </div>
+        </div>
+        
+        <div class="main-text">
+            羽毛は自然界で最も複雑で精密な生物学的構造の一つであり、軽量で美しいだけでなく、驚くべき工学原理を含んでいます<span class="emoji">🪶</span>。各羽毛は顕微鏡レベルの建築学的驚異です。
+        </div>
+        
+        <div class="section-title">階層構造設計の知恵</div>
+        
+        <div class="main-text">
+            羽毛は階層構造設計を採用しており、羽軸から羽枝、さらに小羽枝まで、各レベルが特定の機能を持っています<span class="emoji">🔬</span>。この構造は強度と究極の軽量特性の両方を確保します。羽軸は主要な支持構造を提供し、羽枝は羽毛の主要な表面を形成し、小羽枝は精密な連結システムを作り出します。
+        </div>
+        
+        <div class="main-text">
+            小羽枝レベルでは、さらに微細な構造が存在します<span class="emoji">🔍</span>。小鉤と小溝のシステムにより、隣接する羽枝が確実に連結され、完全で連続的な羽毛表面を形成します。この設計により、羽毛は損傷を受けても自己修復能力を持ちます。
+        </div>
+        
+        <div class="tip-box">
+            <div class="tip-title">🧬 構造の驚異</div>
+            単一の羽毛には数百万の微細なフックが含まれており、これらが相互に連結して完全な羽弁を形成し、損傷があっても自己修復が可能です。
+        </div>
+        
+        <div class="section-title">羽毛の色彩生成メカニズム</div>
+        
+        <div class="main-text">
+            羽毛の色彩生成メカニズムはさらに驚異的です<span class="emoji">🌈</span>。構造色は光の干渉と散乱によって生成され、色素を使用せずに鮮やかな色彩を作り出します。これらの構造色は角度によって変化し、虹色効果を生み出します。
+        </div>
+        
+        <div class="main-text">
+            色素による色彩と構造色の組み合わせにより、鳥類は信じられないほど豊富な色彩パレットを実現します<span class="emoji">🎨</span>。メラニン色素は黒、茶、灰色を提供し、カロテノイド色素は赤、オレンジ、黄色を提供し、構造色は青、緑、紫の鮮やかな色彩を作り出します。
+        </div>
+        
+        <div class="section-title">複数機能の完璧な統合</div>
+        
+        <div class="main-text">
+            羽毛は飛行、断熱、防水、ディスプレイなど複数の機能を組み合わせています<span class="emoji">⚙️</span>。異なるタイプの羽毛がそれぞれの役割を提供し、完璧な生物学的システムを形成します。風切羽は飛行に特化し、綿羽は断熱を提供し、尾羽は方向制御を助けます。
+        </div>
+        
+        <div class="main-text">
+            羽毛の防水機能は特に注目に値します<span class="emoji">💧</span>。水鳥の羽毛は特別な微細構造を持ち、水滴が羽毛表面で球状になり、簡単に転がり落ちます。この自己清浄効果は現代の材料科学に重要な啓発を提供しています。
+        </div>
+        
+        <div class="section-title">羽毛の成長と再生</div>
+        
+        <div class="main-text">
+            羽毛の成長プロセスは精密に制御された生物学的プロセスです<span class="emoji">🌱</span>。羽毛は毛包から成長し、遺伝子発現の複雑なネットワークによって制御されます。各羽毛の形状、サイズ、色彩は遺伝的にプログラムされており、環境要因によって微調整されます。
+        </div>
+        
+        <div class="main-text">
+            鳥類は定期的に換羽を行い、古い羽毛を新しい羽毛に置き換えます<span class="emoji">🔄</span>。この過程により、羽毛の機能が最適な状態に保たれ、損傷した羽毛が修復されます。換羽のタイミングと順序は種によって異なり、飛行能力を維持しながら行われます。
+        </div>
+        
+        <div class="section-title">バイオミメティクスへの啓発</div>
+        
+        <div class="main-text">
+            羽毛研究はバイオミメティクスに豊富な啓発を提供しており、自己清浄表面からスマート材料まで、羽毛の原理が現代技術に広く応用されています<span class="emoji">🔧</span>。現代の材料科学は羽毛構造を模倣して、新しい軽量、高強度材料の開発に努めており、航空宇宙産業とテキスタイル産業に革命的な突破をもたらしています。
+        </div>
+        
+        <div class="main-text">
+            羽毛の階層構造設計は建築学と工学設計にも啓発を与えています<span class="emoji">🏗️</span>。軽量でありながら高強度を実現する構造原理は、現代の建築材料と構造設計に新しいアイデアを提供しています。
+        </div>
+        
+        <div class="tip-box">
+            <div class="tip-title">🚀 技術応用</div>
+            羽毛の構造原理は、新世代の航空機材料、スポーツ用品、建築材料の開発に応用されており、人類の技術進歩を推進しています。
+        </div>
+        
+        <div class="section-title">進化の傑作</div>
+        
+        <div class="main-text">
+            各羽毛は進化の知恵の結晶であり、自然の材料設計における無限の創造性を実証しています<span class="emoji">✨</span>。何億年もの進化を通じて、羽毛は単純な鱗から複雑で多機能な構造へと発展し、鳥類の成功の重要な要因となりました。
+        </div>
+        
+        <div class="main-text">
+            羽毛の研究は、自然界の精巧な設計に対する理解を深めるだけでなく、持続可能な材料開発と環境に優しい技術革新の新しい方向性も提供します<span class="emoji">🌍</span>。自然から学ぶことで、より効率的で環境に優しい技術ソリューションを開発できます。
+        </div>
+    </div>
+    
+    <!-- プログレスバー -->
+    <div class="progress-container">
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
+        </div>
+    </div>
 
     <script>
         // 更新时间

@@ -3,56 +3,283 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>初心者向けバードウォッチング - BirdAiSnap</title>
+    <title>鳥の鳴き声識別 - BirdAiSnap</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f5; color: #333; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         
-        .back-button { position: fixed; top: 60px; left: 20px; width: 36px; height: 36px; background: rgba(0,0,0,0.6); border: none; border-radius: 50%; color: white; font-size: 18px; cursor: pointer; z-index: 999; display: flex; align-items: center; justify-content: center; }
-        .hero-image { width: 100%; height: 400px; background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('../../images/birds/species/bird-image-003.png') center/cover; position: relative; margin-top: 0; }
-        .content { background: white; margin: -30px 20px 20px 20px; border-radius: 20px; padding: 40px 20px 30px 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); min-height: 80vh; }
-        .title { font-size: 24px; font-weight: 700; color: #1a1a1a; margin-bottom: 30px; margin-top: 10px; line-height: 1.3; }
-        .quote-box { background: linear-gradient(135deg, #f3e5f5, #e1bee7); border-left: 4px solid #9c27b0; padding: 20px; margin: 25px 0; border-radius: 8px; position: relative; }
-        .quote-box::before { content: '"'; font-size: 48px; color: #9c27b0; position: absolute; top: -5px; left: 15px; font-family: serif; line-height: 1; }
-        .quote-text { font-size: 18px; font-weight: 600; color: #6a1b9a; margin-left: 25px; line-height: 1.4; }
-        .main-text { font-size: 16px; line-height: 1.8; color: #333; margin: 20px 0; text-align: justify; }
-        .section-title { font-size: 20px; font-weight: 600; color: #9c27b0; margin: 30px 0 15px 0; border-bottom: 2px solid #e1bee7; padding-bottom: 8px; }
-        .tip-box { background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px; padding: 15px; margin: 20px 0; border-left: 4px solid #28a745; }
-        .tip-title { font-weight: 600; color: #28a745; margin-bottom: 8px; }
-        .emoji { font-size: 18px; margin: 0 2px; }
-        .progress-container { position: fixed; bottom: 0; left: 0; right: 0; height: 60px; background: linear-gradient(to top, rgba(255,255,255,0.95), transparent); display: flex; align-items: center; justify-content: center; z-index: 998; }
-        .progress-bar { width: 200px; height: 4px; background: rgba(0,0,0,0.1); border-radius: 2px; overflow: hidden; }
-        .progress-fill { height: 100%; background: linear-gradient(90deg, #9c27b0, #ba68c8); width: 0%; border-radius: 2px; transition: width 0.3s ease; }
-        @media (max-width: 375px) { .content { margin: -30px 15px 20px 15px; padding: 25px 15px; } .title { font-size: 22px; } .main-text { font-size: 15px; } }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+        
+        .back-button {
+            position: fixed;
+            top: 60px;
+            left: 20px;
+            width: 36px;
+            height: 36px;
+            background: rgba(0,0,0,0.6);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                        url('../../images/birds/species/bird-image-003.png') center/cover;
+            position: relative;
+            margin-top: 0;
+        }
+        
+        .content {
+            background: white;
+            margin: -30px 20px 20px 20px;
+            border-radius: 20px;
+            padding: 40px 20px 30px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            min-height: 80vh;
+        }
+        
+        .title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            margin-top: 10px;
+            line-height: 1.3;
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, #f3e5f5, #e1bee7);
+            border-left: 4px solid #9c27b0;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .quote-box::before {
+            content: '"';
+            font-size: 48px;
+            color: #9c27b0;
+            position: absolute;
+            top: -5px;
+            left: 15px;
+            font-family: serif;
+            line-height: 1;
+        }
+        
+        .quote-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: #6a1b9a;
+            margin-left: 25px;
+            line-height: 1.4;
+        }
+        
+        .main-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            margin: 20px 0;
+            text-align: justify;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #9c27b0;
+            margin: 30px 0 15px 0;
+            border-bottom: 2px solid #e1bee7;
+            padding-bottom: 8px;
+        }
+        
+        .tip-box {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            border-left: 4px solid #28a745;
+        }
+        
+        .tip-title {
+            font-weight: 600;
+            color: #28a745;
+            margin-bottom: 8px;
+        }
+        
+        .emoji {
+            font-size: 18px;
+            margin: 0 2px;
+        }
+        
+        .progress-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: linear-gradient(to top, rgba(255,255,255,0.95), transparent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 998;
+        }
+        
+        .progress-bar {
+            width: 200px;
+            height: 4px;
+            background: rgba(0,0,0,0.1);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #9c27b0, #ba68c8);
+            width: 0%;
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+        
+        @media (max-width: 375px) {
+            .content {
+                margin: -30px 15px 20px 15px;
+                padding: 25px 15px;
+            }
+            
+            .title {
+                font-size: 22px;
+            }
+            
+            .main-text {
+                font-size: 15px;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- 戻るボタン -->
+    <button class="back-button" onclick="history.back()">
+        ←
+    </button>
     
-    </div>
-    <button class="back-button" onclick="history.back()">←</button>
+    <!-- ヒーロー画像 -->
     <div class="hero-image"></div>
-    <div class="content">
-        <h1 class="title">Bird 鳴き声識別</h1>
-        <div class="quote-box"><div class="quote-テキスト">Mster  芸術 の 識別するg 鳥類 through ir 歌s と 呼ぶs</div></div>
-        <div class="main-text">Bird 歌s と 呼ぶs す 重要な 識別 道具s, e特別なly いつ vすibility す obstructed または 鳥類 す hidden. Ech 鳥 種 持っています 独特の 音 chrcterすtics, と 学習 に 識別する これらの 音s きます gr食べるly 改善する バードウォッチング efficiency<span class="emoji">🎵</span>.</div>
-        <div class="section-title">Under立つg Bird Voclizis</div>
-        <div class="main-text">Bird voclizis きます be 分けるd に two 主な cegまたはies: 歌s と 呼ぶs. Sgs す 典型的なly 使うd のために court船 と 縄張り decl比率n, と 複雑な 構造s と melodious qulities<span class="emoji">🎼</span>. Cすべてs す 使うd のために 毎日の コミュニケーション, such s lerts, ctct, と 採餌.</div>
-        <div class="section-title">L稼ぐg Sg Pterns</div>
-        <div class="main-text">Ech 鳥 種' 歌 持っています 特定の 音程, リズム, と reペットiti パターンs. U歌う mnemics に 助ける memまたはizi す  効果的な 方法<span class="emoji">🗣️</span>. Fまたは 例,  gr食べる tit's 呼ぶ 音s 好き "先生-先生," と  cuckoo's 呼ぶ す literすべてy "cuckoo-cuckoo."</div>
-        <div class="tip-box"><div class="tip-title">🎧 Prctice Suggesti</div>Use bird sound applications to repeatedly listen to common bird calls, and try to recall and compare when you hear them in the field.</div>
-        <div class="section-title">Developg Lすteng Skills</div>
-        <div class="main-text">Effective 鳥 歌 識別 必要とするs 発達するg keen 聞くg スキルs. Prctice dすtguすhg 異なる 音程es, 音量s, と リズム 変化s<span class="emoji">👂</span>. L稼ぐ に すo遅い 特定の 鳥 音s  複雑な coustic 環境s.</div>
-        <div class="section-title">Regil Vriis と Dilects</div>
-        <div class="main-text">The 同じ 鳥 種 my 持っています 音 vriis  異なる 地域s, 似ている に hu男性 dilects. Under立つg  音 chrcterすtics の 地域の 鳥類 す 重要な のために ccu率 識別<span class="emoji">🌍</span>.</div>
-        <div class="section-title">Technologicl Tools Assすtce</div>
-        <div class="main-text">Modern 技術 提供するs cvenience のために 学習 鳥 音s. Mobile pplicis, 行 データbses, と 記録g 装置s す すべて 有用な 道具s<span class="emoji">📱</span>. But 覚える, 技術 す ly  id; 本当の スキルs 必要 に be 発達するed through field 練習する.</div>
-        <div class="main-text">Bird 歌 識別 す  スキル その 必要とするs 時間 と pience. St芸術 と 一般的な 鳥類 と grduすべてy expと に mまたはe 種<span class="emoji">🎯</span>. As you 得る 経験, you'll 見つける その 音 識別 なるs  dすペンsble スキル  バードウォッチング ctivities.</div>
-    </div>
-    <div class="progress-container"><div class="progress-br"><div class="progress-fill"></div></div></div>
     
+    <!-- メインコンテンツ -->
+    <div class="content">
+        <h1 class="title">🎵 鳥の鳴き声識別</h1>
+        
+        <div class="quote-box">
+            <div class="quote-text">
+                歌と鳴き声を通じて鳥類を識別する技術をマスターする
+            </div>
+        </div>
+        
+        <div class="main-text">
+            鳥の歌と鳴き声は重要な識別ツールであり、特に視界が遮られたり鳥が隠れている場合に有効です<span class="emoji">🎵</span>。各鳥種は独特の音響特徴を持っており、これらの音を識別することを学ぶことで、バードウォッチングの効率を大幅に向上させることができます。
+        </div>
+        
+        <div class="section-title">鳥の発声の理解</div>
+        
+        <div class="main-text">
+            鳥の発声は主に二つのカテゴリーに分けることができます：歌と鳴き声です<span class="emoji">🎼</span>。歌は通常求愛と縄張り宣言に使用され、複雑な構造と旋律的な質を持っています。鳴き声は警戒、接触、採餌などの日常的なコミュニケーションに使用されます。
+        </div>
+        
+        <div class="main-text">
+            歌は一般的に繁殖期に雄鳥によって歌われ、雌を引き付け、縄張りを宣言する目的があります<span class="emoji">💕</span>。鳴き声はより短く、特定の状況や感情を表現するために使用されます。両方を理解することで、鳥の行動と状態をより深く理解できます。
+        </div>
+        
+        <div class="section-title">歌のパターンを学ぶ</div>
+        
+        <div class="main-text">
+            各鳥種の歌は特定の音程、リズム、反復パターンを持っています<span class="emoji">🗣️</span>。記憶を助けるために語呂合わせを使用することは効果的な方法です。例えば、シジュウカラの鳴き声は「ツピツピツピ」のように聞こえ、カッコウの鳴き声は文字通り「カッコウ、カッコウ」です。
+        </div>
+        
+        <div class="main-text">
+            歌の構造を分析することも重要です<span class="emoji">🎶</span>。フレーズの長さ、音程の変化、休止の間隔、全体的な旋律パターンなど、これらの要素はすべて種の識別に役立ちます。複雑な歌を持つ種では、個々のフレーズや音符に注目することが有効です。
+        </div>
+        
+        <div class="tip-box">
+            <div class="tip-title">🎧 練習の提案</div>
+            鳥の音声アプリを使用して一般的な鳥の鳴き声を繰り返し聞き、野外で聞いた時に思い出して比較してみましょう。
+        </div>
+        
+        <div class="section-title">聞き取りスキルの発達</div>
+        
+        <div class="main-text">
+            効果的な鳥の歌識別には鋭い聞き取りスキルの発達が必要です<span class="emoji">👂</span>。異なる音程、音量、リズムの変化を区別する練習をしましょう。複雑な音響環境で特定の鳥の音を分離することを学びます。
+        </div>
+        
+        <div class="main-text">
+            聞き取り練習は段階的に行うことが重要です<span class="emoji">📚</span>。まず静かな環境で単一の鳥の歌から始め、徐々に複数の鳥が同時に鳴いている状況での識別に挑戦します。背景ノイズがある環境での練習も重要です。
+        </div>
+        
+        <div class="section-title">地域変異と方言</div>
+        
+        <div class="main-text">
+            同じ鳥種でも異なる地域で音の変異を持つことがあり、これは人間の方言に似ています<span class="emoji">🌍</span>。地域の鳥類の音響特徴を理解することは、正確な識別にとって重要です。
+        </div>
+        
+        <div class="main-text">
+            地理的変異は特に歌鳥で顕著です<span class="emoji">🗺️</span>。同じ種でも山脈や川などの地理的障壁によって分離された個体群は、異なる歌のパターンを発達させることがあります。地域の鳥類ガイドや録音を参照することが重要です。
+        </div>
+        
+        <div class="section-title">季節と時間による変化</div>
+        
+        <div class="main-text">
+            鳥の発声は季節と時間によって変化します<span class="emoji">🌅</span>。繁殖期には歌が最も活発になり、早朝と夕方は多くの種が最も活発に歌います。これらのパターンを理解することで、効果的な聞き取り時間を計画できます。
+        </div>
+        
+        <div class="main-text">
+            若鳥の歌は成鳥と異なることがあり、学習過程にある若鳥の不完全な歌を聞くこともあります<span class="emoji">🐣</span>。これらの変異を理解することで、より包括的な音声識別能力を発達させることができます。
+        </div>
+        
+        <div class="section-title">技術ツールの活用</div>
+        
+        <div class="main-text">
+            現代の技術は鳥の音を学ぶのに便利さを提供します<span class="emoji">📱</span>。モバイルアプリ、オンラインデータベース、録音機器はすべて有用なツールです。しかし、技術は単なる補助であることを覚えておいてください。真のスキルは野外での練習を通じて発達させる必要があります。
+        </div>
+        
+        <div class="main-text">
+            音声分析ソフトウェアを使用して、鳴き声の視覚的表現（スペクトログラム）を学ぶことも有効です<span class="emoji">📊</span>。これにより、音の周波数パターンと時間的変化をより深く理解できます。
+        </div>
+        
+        <div class="section-title">記録と分析</div>
+        
+        <div class="main-text">
+            野外で聞いた鳥の音を記録し、後で分析することは学習プロセスの重要な部分です<span class="emoji">📝</span>。録音機器やスマートフォンを使用して音を記録し、家で詳細に分析することで、識別スキルを向上させることができます。
+        </div>
+        
+        <div class="main-text">
+            鳥の歌識別は時間と忍耐を要するスキルです<span class="emoji">🎯</span>。一般的な鳥類から始めて、徐々により多くの種に拡張してください。経験を積むにつれて、音声識別がバードウォッチング活動において不可欠なスキルになることがわかるでしょう。
+        </div>
+    </div>
+    
+    <!-- プログレスバー -->
+    <div class="progress-container">
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
+        </div>
+    </div>
 
     <script>
-        // Update time
+        // 更新时间
         function updateTime() {
             const now = new Date();
             const timeString = now.getHours().toString().padStart(2, '0') + ':' + 
@@ -60,7 +287,7 @@
             document.getElementById('current-time').textContent = timeString;
         }
         
-        // Simulate reading progress
+        // 模拟阅读进度
         function updateProgress() {
             const scrolled = window.pageYOffset;
             const maxHeight = document.body.scrollHeight - window.innerHeight;
@@ -68,7 +295,7 @@
             document.querySelector('.progress-fill').style.width = progress + '%';
         }
         
-        // Initialize
+        // 初始化
         updateTime();
         setInterval(updateTime, 60000);
         

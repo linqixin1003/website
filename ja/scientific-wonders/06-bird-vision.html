@@ -3,53 +3,285 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>初心者向けバードウォッチング - BirdAiSnap</title>
+    <title>鳥類の超視覚システム - BirdAiSnap</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f5; color: #333; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         
-        .back-button { position: fixed; top: 60px; left: 20px; width: 36px; height: 36px; background: rgba(0,0,0,0.6); border: none; border-radius: 50%; color: white; font-size: 18px; cursor: pointer; z-index: 999; display: flex; align-items: center; justify-content: center; }
-        .hero-image { width: 100%; height: 400px; background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('../../images/birds/species/bird-image-010.png') center/cover; position: relative; margin-top: 0; }
-        .content { background: white; margin: -30px 20px 20px 20px; border-radius: 20px; padding: 40px 20px 30px 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); min-height: 80vh; }
-        .title { font-size: 24px; font-weight: 700; color: #1a1a1a; margin-bottom: 30px; margin-top: 10px; line-height: 1.3; }
-        .quote-box { background: linear-gradient(135deg, #e3f2fd, #bbdefb); border-left: 4px solid #2196f3; padding: 20px; margin: 25px 0; border-radius: 8px; position: relative; }
-        .quote-box::before { content: '"'; font-size: 48px; color: #2196f3; position: absolute; top: -5px; left: 15px; font-family: serif; line-height: 1; }
-        .quote-text { font-size: 18px; font-weight: 600; color: #1565c0; margin-left: 25px; line-height: 1.4; }
-        .main-text { font-size: 16px; line-height: 1.8; color: #333; margin: 20px 0; text-align: justify; }
-        .section-title { font-size: 20px; font-weight: 600; color: #2196f3; margin: 30px 0 15px 0; border-bottom: 2px solid #bbdefb; padding-bottom: 8px; }
-        .tip-box { background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px; padding: 15px; margin: 20px 0; border-left: 4px solid #28a745; }
-        .tip-title { font-weight: 600; color: #28a745; margin-bottom: 8px; }
-        .emoji { font-size: 18px; margin: 0 2px; }
-        .progress-container { position: fixed; bottom: 0; left: 0; right: 0; height: 60px; background: linear-gradient(to top, rgba(255,255,255,0.95), transparent); display: flex; align-items: center; justify-content: center; z-index: 998; }
-        .progress-bar { width: 200px; height: 4px; background: rgba(0,0,0,0.1); border-radius: 2px; overflow: hidden; }
-        .progress-fill { height: 100%; background: linear-gradient(90deg, #2196f3, #64b5f6); width: 0%; border-radius: 2px; transition: width 0.3s ease; }
-        @media (max-width: 375px) { .content { margin: -30px 15px 20px 15px; padding: 25px 15px; } .title { font-size: 22px; } .main-text { font-size: 15px; } }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+        
+        .back-button {
+            position: fixed;
+            top: 60px;
+            left: 20px;
+            width: 36px;
+            height: 36px;
+            background: rgba(0,0,0,0.6);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                        url('../../images/birds/species/bird-image-010.png') center/cover;
+            position: relative;
+            margin-top: 0;
+        }
+        
+        .content {
+            background: white;
+            margin: -30px 20px 20px 20px;
+            border-radius: 20px;
+            padding: 40px 20px 30px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            min-height: 80vh;
+        }
+        
+        .title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            margin-top: 10px;
+            line-height: 1.3;
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            border-left: 4px solid #2196f3;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .quote-box::before {
+            content: '"';
+            font-size: 48px;
+            color: #2196f3;
+            position: absolute;
+            top: -5px;
+            left: 15px;
+            font-family: serif;
+            line-height: 1;
+        }
+        
+        .quote-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1565c0;
+            margin-left: 25px;
+            line-height: 1.4;
+        }
+        
+        .main-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            margin: 20px 0;
+            text-align: justify;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #2196f3;
+            margin: 30px 0 15px 0;
+            border-bottom: 2px solid #bbdefb;
+            padding-bottom: 8px;
+        }
+        
+        .tip-box {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            border-left: 4px solid #28a745;
+        }
+        
+        .tip-title {
+            font-weight: 600;
+            color: #28a745;
+            margin-bottom: 8px;
+        }
+        
+        .emoji {
+            font-size: 18px;
+            margin: 0 2px;
+        }
+        
+        .progress-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: linear-gradient(to top, rgba(255,255,255,0.95), transparent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 998;
+        }
+        
+        .progress-bar {
+            width: 200px;
+            height: 4px;
+            background: rgba(0,0,0,0.1);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #2196f3, #64b5f6);
+            width: 0%;
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+        
+        @media (max-width: 375px) {
+            .content {
+                margin: -30px 15px 20px 15px;
+                padding: 25px 15px;
+            }
+            
+            .title {
+                font-size: 22px;
+            }
+            
+            .main-text {
+                font-size: 15px;
+            }
+        }
     </style>
 </head>
 <body>
-    </div>
-    <button class="back-button" onclick="history.back()">←</button>
-    <div class="hero-image"></div>
-    <div class="content">
-        <h1 class="title">Birds' Super Vすi System</h1>
-        <div class="quote-box"><div class="quote-テキスト">Explo鳴らす  Vすul Wまたはld Beyd Hu男性 Imgi</div></div>
-        <div class="main-text">Birds possess e の  ほとんどの 上級の vすul システムs   iml 王dom, と vすul bilities fr surps歌う hu男性s, 許可するg m に 見る  wまたはld の 色s we きますnot imge<span class="emoji">👁️</span>. Thす super vすi す  重要な dvtage のために ir survivl と 生殖.</div>
-        <div class="section-title">The Mircle の Tetrchromic Vすi</div>
-        <div class="main-text">Un好き hu男性 trichromic vすi, ほとんどの 鳥類 possess tetrchromic vすi, 許可するg m に perceive ultrviolet light<span class="emoji">🌈</span>. Thす 意味するs y 見る  much richer wまたはld th we do, と 多くの objects その 現れる またはdry に us glo翼 brillitly  鳥類' 目s.</div>
-        <div class="tip-box"><div class="tip-title">🔬 Vすul Advtage</div>Birds' visual acuity is 2-8 times that of humans, with raptors even able to spot mice from 3 kilometers away.</div>
-        <div class="main-text">Ultrviolet vすi 助けるs 鳥類 識別する 食物, 選択する 配偶者s, と nvi門. My f下げるs と 果実s 表示する 特別な パターンs under ultrviolet light, guidg 鳥類 に nectr と 種子s<span class="emoji">🌺</span>.</div>
-        <div class="section-title">Precすi De標識 の Eye Structure</div>
-        <div class="main-text">Birds' 目bすべてs す 割合すべてy 大きい relive に ir 頭s, と いくつかの 鳥類 hvg 目bすべてs その weigh mまたはe th ir brs<span class="emoji">🧠</span>. Thす デザイン ensures mximum light-集めるg cp能力 と vすul プロセスg efficiency.</div>
-        <div class="main-text">The extremely 高い den座るy の ce cells  鳥類' 目s 許可するs m に dすtguすh extremely fe de尾s と rpid 動きs<span class="emoji">⚡</span>. Thす す crucil のために 狩り と 避けるg 捕食者s.</div>
-        <div class="section-title">Dynmic Vすi と Moti Detecti</div>
-        <div class="main-text">Birds' vすul システムs す 部分iculrly dept  detectg 動き, 許可するg m に プロセス 複数の movg tr得るs simulteously<span class="emoji">🎯</span>. Thす 能力 enbles m に rect 素早いly  複雑な 環境s.</div>
-        <div class="main-text">My 鳥類 lso possess 独特の vすul dpt能力, ble に 調整する ir vすul sen座るivity ccまたはdg に lightg 条件s, 維持するg 優秀な vすul パフォーマンス の間 夜明け と 夕暮れ<span class="emoji">🌅</span>.</div>
-        <div class="section-title">Perfect Integ比率n の Vすi と Behviまたは</div>
-        <div class="main-text">Birds' super vすi 完璧なly 試合es ir 行動l パターンs. Rptまたはs' telescope-好き vすi す 適するed のために 高い-ltitude 狩り, while hummg鳥類' wide-gle vすi す i対処する のために precすe hove鳴らす 飛行<span class="emoji">🦅</span>.</div>
-        <div class="main-text">Re探す  この vすul システム 提供するs 重要な spi比率n のために  発展 の 芸術ificil 知能 と 機械 vすi, 助けるg us 発達する mまたはe 上級の vすul recogniti technologies<span class="emoji">🤖</span>.</div>
-    </div>
-    <div class="progress-container"><div class="progress-br"><div class="progress-fill"></div></div></div>
+    <!-- 戻るボタン -->
+    <button class="back-button" onclick="history.back()">
+        ←
+    </button>
     
+    <!-- ヒーロー画像 -->
+    <div class="hero-image"></div>
+    
+    <!-- メインコンテンツ -->
+    <div class="content">
+        <h1 class="title">👁️ 鳥類の超視覚システム</h1>
+        
+        <div class="quote-box">
+            <div class="quote-text">
+                人間の想像を超えた視覚世界を探る
+            </div>
+        </div>
+        
+        <div class="main-text">
+            鳥類は動物界で最も先進的な視覚システムの一つを持っており、人間をはるかに超える視覚能力により、私たちが想像できない色彩の世界を見ることができます<span class="emoji">👁️</span>。この超視覚は彼らの生存と繁殖にとって重要な優位性です。
+        </div>
+        
+        <div class="section-title">四色視覚の奇跡</div>
+        
+        <div class="main-text">
+            人間の三色視覚とは異なり、ほとんどの鳥類は四色視覚を持ち、紫外線を知覚することができます<span class="emoji">🌈</span>。これは彼らが私たちよりもはるかに豊かな世界を見ていることを意味し、私たちには平凡に見える多くの物体が鳥類の目には鮮やかに輝いて見えます。
+        </div>
+        
+        <div class="main-text">
+            紫外線視覚は鳥類が食物を識別し、配偶者を選択し、ナビゲーションを行うのに役立ちます<span class="emoji">🌺</span>。多くの花や果実は紫外線下で特別なパターンを表示し、鳥類を蜜や種子へと導きます。これらの「隠された信号」は人間の目には見えませんが、鳥類にとっては明確な道標です。
+        </div>
+        
+        <div class="tip-box">
+            <div class="tip-title">🔬 視覚的優位性</div>
+            鳥類の視力は人間の2-8倍で、猛禽類は3キロメートル離れた場所からネズミを発見することができます。
+        </div>
+        
+        <div class="section-title">眼球構造の精密設計</div>
+        
+        <div class="main-text">
+            鳥類の眼球は頭部に対して比例的に大きく、一部の鳥類では眼球が脳よりも重いものもあります<span class="emoji">🧠</span>。この設計は最大限の光収集能力と視覚処理効率を確保します。眼球の大きさは視覚の重要性を物理的に反映しています。
+        </div>
+        
+        <div class="main-text">
+            鳥類の目における錐体細胞の極めて高い密度により、極めて細かい詳細と迅速な動きを区別することができます<span class="emoji">⚡</span>。これは狩猟と捕食者の回避にとって重要です。人間の網膜には約20万個の錐体細胞があるのに対し、一部の鳥類は100万個以上を持っています。
+        </div>
+        
+        <div class="section-title">動的視覚と動き検出</div>
+        
+        <div class="main-text">
+            鳥類の視覚システムは動きの検出に特に長けており、複数の移動する標的を同時に処理することができます<span class="emoji">🎯</span>。この能力により、複雑な環境で迅速に反応することができます。飛行中の昆虫を捕らえたり、空中での障害物を避けたりする際に、この能力が重要な役割を果たします。
+        </div>
+        
+        <div class="main-text">
+            多くの鳥類は独特の視覚適応能力も持っており、照明条件に応じて視覚感度を調整し、夜明けと夕暮れの間も優秀な視覚パフォーマンスを維持できます<span class="emoji">🌅</span>。この適応性により、一日中活動することができます。
+        </div>
+        
+        <div class="section-title">色彩知覚の複雑性</div>
+        
+        <div class="main-text">
+            鳥類の色彩知覚は人間よりもはるかに複雑です<span class="emoji">🎨</span>。四つの異なるタイプの錐体細胞により、数百万の色彩の組み合わせを区別できます。これにより、食物の成熟度を判断したり、健康な配偶者を識別したり、環境の微細な変化を検出したりできます。
+        </div>
+        
+        <div class="main-text">
+            偏光視覚も一部の鳥類が持つ特別な能力です<span class="emoji">🌟</span>。偏光パターンを検出することで、太陽の位置を曇りの日でも特定でき、ナビゲーションに役立ちます。この能力は特に渡り鳥にとって重要です。
+        </div>
+        
+        <div class="section-title">視覚と行動の完璧な統合</div>
+        
+        <div class="main-text">
+            鳥類の超視覚は彼らの行動パターンと完璧に一致しています<span class="emoji">🦅</span>。猛禽類の望遠鏡のような視覚は高高度での狩猟に適しており、ハチドリの広角視覚は精密なホバリング飛行に理想的です。各種の視覚システムは、その生態学的ニッチと生活様式に完璧に適応しています。
+        </div>
+        
+        <div class="main-text">
+            夜行性の鳥類は特別な視覚適応を持っています<span class="emoji">🦉</span>。大きな眼球、高密度の桿体細胞、特殊な反射層により、極めて低い光条件下でも効果的に狩猟できます。これらの適応は夜間の生態学的ニッチを占有することを可能にします。
+        </div>
+        
+        <div class="section-title">技術への応用と啓発</div>
+        
+        <div class="main-text">
+            この視覚システムの研究は、人工知能と機械視覚の発展に重要な啓発を提供し、より先進的な視覚認識技術の開発に役立っています<span class="emoji">🤖</span>。鳥類の視覚処理原理は、コンピュータビジョンアルゴリズムの改善に新しいアイデアを提供しています。
+        </div>
+        
+        <div class="main-text">
+            鳥類の動き検出能力は、自動運転車の安全システムやドローンの障害物回避技術の開発にインスピレーションを与えています<span class="emoji">🚗</span>。これらの生物学的原理を模倣することで、より効率的で信頼性の高い技術システムを開発できます。
+        </div>
+        
+        <div class="tip-box">
+            <div class="tip-title">🔬 研究の進展</div>
+            最新の研究により、一部の鳥類は磁場を視覚的に知覚できることが発見され、ナビゲーション能力の理解がさらに深まっています。
+        </div>
+        
+        <div class="section-title">保護への示唆</div>
+        
+        <div class="main-text">
+            鳥類の視覚システムの理解は、彼らの保護にとっても重要です<span class="emoji">🌍</span>。光汚染が鳥類のナビゲーションと行動に与える影響を理解することで、より鳥類に優しい都市照明設計を行うことができます。
+        </div>
+        
+        <div class="main-text">
+            鳥類の超視覚システムは、自然界の精巧な設計と進化の力を実証しています<span class="emoji">✨</span>。これらの驚異的な能力を理解し保護することは、生物多様性の維持と科学技術の発展の両方にとって重要です。
+        </div>
+    </div>
+    
+    <!-- プログレスバー -->
+    <div class="progress-container">
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
+        </div>
+    </div>
 
     <script>
         // 更新时间

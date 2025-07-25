@@ -3,360 +3,611 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>初心者向けバードウォッチング - BirdAiSnap</title>
-    <link rel="stylesheet" href="../mobile-styles.css">
-    <link rel="stylesheet" href="../mobile-enhancement.css">
+    <title>食物網と食物連鎖 - BirdAiSnap</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+        
+        .back-button {
+            position: fixed;
+            top: 60px;
+            left: 20px;
+            width: 36px;
+            height: 36px;
+            background: rgba(0,0,0,0.6);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                        url('../../images/birds/species/bird-image-038.png') center/cover;
+            position: relative;
+            margin-top: 0;
+        }
+        
+        .content {
+            background: white;
+            margin: -30px 20px 20px 20px;
+            border-radius: 20px;
+            padding: 40px 20px 30px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            min-height: 80vh;
+        }
+        
+        .title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            margin-top: 10px;
+            line-height: 1.3;
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, #e8f5e8, #c8e6c9);
+            border-left: 4px solid #4caf50;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .quote-box::before {
+            content: '"';
+            font-size: 48px;
+            color: #4caf50;
+            position: absolute;
+            top: -5px;
+            left: 15px;
+            font-family: serif;
+            line-height: 1;
+        }
+        
+        .quote-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2e7d32;
+            margin-left: 25px;
+            line-height: 1.4;
+        }
+        
+        .main-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            margin: 20px 0;
+            text-align: justify;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #4caf50;
+            margin: 30px 0 15px 0;
+            border-bottom: 2px solid #c8e6c9;
+            padding-bottom: 8px;
+        }
+        
+        .trophic-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .trophic-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            border: 2px solid #e9ecef;
+            transition: transform 0.3s ease;
+        }
+        
+        .trophic-card:hover {
+            transform: translateY(-5px);
+            border-color: #4caf50;
+        }
+        
+        .trophic-card h4 {
+            color: #2e7d32;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        
+        .trophic-card p {
+            color: #666;
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+        
+        .trophic-card ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .trophic-card li {
+            color: #555;
+            margin: 5px 0;
+            padding-left: 15px;
+            position: relative;
+        }
+        
+        .trophic-card li::before {
+            content: "•";
+            color: #4caf50;
+            position: absolute;
+            left: 0;
+        }
+        
+        .energy-flow {
+            background: #f0f8ff;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid #2196f3;
+        }
+        
+        .energy-level {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+        }
+        
+        .level-name {
+            width: 150px;
+            font-weight: 600;
+            color: #1976d2;
+        }
+        
+        .energy-bar {
+            height: 20px;
+            background: linear-gradient(90deg, #4caf50, #81c784);
+            border-radius: 10px;
+            margin-left: 10px;
+            position: relative;
+        }
+        
+        .energy-bar::after {
+            content: attr(data-percentage);
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .tip-box {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            border-left: 4px solid #28a745;
+        }
+        
+        .tip-title {
+            font-weight: 600;
+            color: #28a745;
+            margin-bottom: 8px;
+        }
+        
+        .warning-box {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            border-left: 4px solid #f39c12;
+        }
+        
+        .warning-title {
+            font-weight: 600;
+            color: #d68910;
+            margin-bottom: 8px;
+        }
+        
+        .emoji {
+            font-size: 18px;
+            margin: 0 2px;
+        }
+        
+        .niche-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .niche-card {
+            background: #fff3e0;
+            border-radius: 8px;
+            padding: 15px;
+            border-left: 4px solid #ff9800;
+        }
+        
+        .niche-card h5 {
+            color: #e65100;
+            margin-bottom: 8px;
+        }
+        
+        @media (max-width: 375px) {
+            .content {
+                margin: -30px 15px 20px 15px;
+                padding: 25px 15px;
+            }
+            
+            .title {
+                font-size: 22px;
+            }
+            
+            .main-text {
+                font-size: 15px;
+            }
+            
+            .trophic-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- 戻るボタン -->
+    <button class="back-button" onclick="history.back()">
+        ←
+    </button>
     
+    <!-- ヒーロー画像 -->
+    <div class="hero-image"></div>
     
-    </div>
-
-    
-
     <!-- メインコンテンツ -->
-    <主な class="芸術icle-ctent">
-        <!-- ヒーロー画像 -->
-        <div class="hero-image" style="mrg-botにm: 50px;">
-            <img src="../../images/鳥類/種/鳥-image-038.png" lt="食物网与食物链">
-            <div class="hero-overly">
-                <h2 style="mrg-にp: 30px;">Energy F低い  Ecoシステムs</h2>
-            </div>
-        </div>
-
-        <!-- 文章信息 -->
-        <div class="芸術icle-met" style="mrg-にp: 40px;">
-            <span class="category ecology">Bird Ecology</span>
-            <span class="read-time">📖 9 分 読む</span>
-            <span class="difficulty">🟡 Intermedie</span>
-        </div>
-
-        <!-- 引用框 -->
+    <div class="content">
+        <h1 class="title">🔗 食物網と食物連鎖</h1>
+        
         <div class="quote-box">
-            <p>"In 自然's 食物 web, 鳥類 す both 捕食者s と 獲物, 維持するg  blce の 生態系s."</p>
-            <cite>— Ecologすt</cite>
+            <div class="quote-text">
+                自然の食物網において、鳥類は捕食者でもあり被食者でもあり、生態系のバランスを維持している
+            </div>
         </div>
-
-        <!-- 文章正文 -->
-        <div class="芸術icle-体">
-            <h3>🔗 Bsic Ccepts の Food Chs</h3>
-            <p>Food chs す 道道s のために エネルギー と nutrient trsfer  生態系s, sho翼 "who 食べるs whom" reli船s. Birds occupy 異なる trophic レベルs  食物 chs, から 主要な c合計ers に にp 捕食者s.</p>
-
-            <div class="食物-ch-レベルs">
-                <div class="trophic-レベル">
-                    <h4>🌱 Producers (First Trophic Level)</h4>
-                    <p>Plts produce またはgic 重要ある through phoにsynsす, providg  エネルギー foundi のために  entire 食物 ch</p>
-                    <ul>
-                        <li>Trees, shrubs, herbceous 計画ts</li>
-                        <li>Alge, phyに計画kにn</li>
-                        <li>Direct 食物 source のために herbivまたはous 鳥類</li>
-                    </ul>
-                </div>
-
-                <div class="trophic-level">
-                    <h4>🦆 Pri先生y C合計ers (Secd Trophic Level)</h4>
-                    <p>Birds その feed directly  計画ts</p>
-                    <ul>
-                        <li>Seed-食べるers: Fches, ハト, オウム</li>
-                        <li>Fruit-食べるers: Bulbuls, strlgs, hまたはnbills</li>
-                        <li>Lef-食べるers: Geese, sws, いくつかの ducks</li>
-                        <li>Nectr-feeders: Hummg鳥類, sun鳥類, h目ers</li>
-                    </ul>
-                </div>
-
-                <div class="trophic-level">
-                    <h4>🐛 Secdry C合計ers (Third Trophic Level)</h4>
-                    <p>Birds その feed  昆虫s と 小さい imls</p>
-                    <ul>
-                        <li>Insectivまたはous 鳥類: Sw許可するs, 飛ぶ捕まえるers, wrens</li>
-                        <li>Omnivまたはous 鳥類: Crows, mgpies, tits</li>
-                        <li>Smすべて 魚-食べるers: Kg魚ers, cまたはmまたはts, egrets</li>
-                    </ul>
-                </div>
-
-                <div class="trophic-level">
-                    <h4>🦅 Tertiry C合計ers (Fourth Trophic Level)</h4>
-                    <p>Rptまたはs その feed  他の 鳥類 と medium-サイズd imls</p>
-                    <ul>
-                        <li>Diurnl rptまたはs: Hwks, flcs, hrriers</li>
-                        <li>Noc曲がり角l rptまたはs: Owls, egle-owls</li>
-                        <li>Lrge 魚-食べるers: Peliきますs, cまたはmまたはts, se egles</li>
-                    </ul>
-                </div>
-
-                <div class="trophic-level">
-                    <h4>🦴 Decomposers</h4>
-                    <p>Birds その feed  車ri と 参加する  nutrient cyclg</p>
-                    <ul>
-                        <li>Vultures: Cle up 大きい iml 車csses</li>
-                        <li>Cまたはvids: Process 様々な またはgic 無駄にする</li>
-                        <li>Some se鳥類: Cle up ded 魚  oces</li>
-                    </ul>
-                </div>
-            </div>
-
-            <h3>🕸️ Compl出口y の Food Webs</h3>
-            <p>Rel 生態系s す much mまたはe 複雑な th 簡単な 食物 chs. Food webs ショー 複数の ter接続するed 食物 chs, reflectg  複雑な 栄養l reli船s  生態系s.</p>
-
-            <div class="food-web-characteristics">
-                <div class="chrcterすtic">
-                    <h4>🔄 Multiple Nutritil Reli船s</h4>
-                    <p>Most 鳥類 d't 食べる just e タイプする の 食物, nまたは す y 獲物ed up によって just e 捕食者</p>
-                    <ul>
-                        <li>Omnivまたはous 鳥類 occupy 複数の trophic レベルs simulteously</li>
-                        <li>Sesl 食事ry 変化s</li>
-                        <li>Age-re遅いd 食事ry differences</li>
-                    </ul>
-                </div>
-
-                <div class="characteristic">
-                    <h4>⚖️ Dynmic Blce</h4>
-                    <p>The 数s の 様々な compents   食物 web mutuすべてy regu遅い それぞれの 他の, 維持するg ecologicl blce</p>
-                    <ul>
-                        <li>Predまたはs 制御する 獲物 populis</li>
-                        <li>Prey bunダンス ffects 捕食者 生殖</li>
-                        <li>Comペットitive reli船s regu遅い populi den座るy</li>
-                    </ul>
-                </div>
-
-                <div class="characteristic">
-                    <h4>🌊 Energy F低い</h4>
-                    <p>Energy f低いs uni方向すべてy through  食物 web, decre歌う  それぞれの レベル</p>
-                    <ul>
-                        <li>Ech trophic レベル ly 得るs について 10% の  エネルギー から  レベル be低い</li>
-                        <li>Limited 数 の trophic レベルs</li>
-                        <li>Top 捕食者s す relively 珍しい</li>
-                    </ul>
-                </div>
-            </div>
-
-            <h3>🎯 Birds' Specil Ecologicl Niches</h3>
-            <p>Different 鳥類 occupy 独特の ecologicl niches   食物 web, 避けるg direct 競争:</p>
-
-            <div class="ecological-niches">
-                <div class="niche-cegまたはy">
-                    <h4>🕐 Tempまたはl Differentii</h4>
-                    <div class="niche-例s">
-                        <div class="niche-item">
-                            <h5>Diurnl Birds</h5>
-                            <p>Most 歌鳥類 と rptまたはs す 活発な と のためにage の間  日</p>
-                        </div>
-                        <div class="niche-item">
-                            <h5>Noc曲がり角l Birds</h5>
-                            <p>Owls と 夜 hers 狩る  夜</p>
-                        </div>
-                        <div class="niche-item">
-                            <h5>Crepusculr Activity</h5>
-                            <p>Some 鳥類 す ほとんどの 活発な  夜明け と 夕暮れ</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="niche-category">
-                    <h4>📍 Spil Differentii</h4>
-                    <div class="niche-例s">
-                        <div class="niche-item">
-                            <h5>Copy Lyer</h5>
-                            <p>Fly捕まえるers と 戦争blers 狩る 昆虫s   tree きますopy</p>
-                        </div>
-                        <div class="niche-item">
-                            <h5>Tree T走るks</h5>
-                            <p>Woodpeckers と nuそのches のためにage  tree t走るks</p>
-                        </div>
-                        <div class="niche-item">
-                            <h5>Ground Level</h5>
-                            <p>Thrushes と pipits 探す のために 食物   ground</p>
-                        </div>
-                        <div class="niche-item">
-                            <h5>Wer Sur顔</h5>
-                            <p>Ducks と gulls のためにage  または  水</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="niche-category">
-                    <h4>🍽️ Food Differentii</h4>
-                    <div class="niche-例s">
-                        <div class="niche-item">
-                            <h5>Insect Size</h5>
-                            <p>Different 鳥類 獲物  昆虫s の 異なる サイズs</p>
-                        </div>
-                        <div class="niche-item">
-                            <h5>Seed Types</h5>
-                            <p>Bek shpe 決定するs 何 タイプするs の 種子s きます be プロセスed</p>
-                        </div>
-                        <div class="niche-item">
-                            <h5>Huntg Methods</h5>
-                            <p>Aeril 狩り, ground 探すg, under水 divg</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <h3>🔄 Sesl Chges</h3>
-            <p>The 構造 の 食物 webs 変化s 重要なly と  季節s:</p>
-
-            <div class="seasonal-food-web">
-                <div class="季節-変化s">
-                    <h4>🌸 Sp鳴らす Chges</h4>
-                    <ul>
-                        <li>Insects なる 活発な, cre歌う 食物 のために 昆虫ivまたはous 鳥類</li>
-                        <li>Plts bloom, pollg 鳥類 なる mまたはe 活発な</li>
-                        <li>Breedg 季節 始めるs, prote 要求 増加するs</li>
-                        <li>Migrまたはy 鳥類 戻る, 食物 競争 tensifies</li>
-                    </ul>
-                </div>
-
-                <div class="season-changes">
-                    <h4>☀️ Summer Chges</h4>
-                    <ul>
-                        <li>Ses と  ほとんどの bundt 食物 resources</li>
-                        <li>Young 鳥類 必要 大きい 量s の prote</li>
-                        <li>Fruits 始める に riペン</li>
-                        <li>Aquic 昆虫s reproduce  大きい 数s</li>
-                    </ul>
-                </div>
-
-                <div class="season-changes">
-                    <h4>🍂 Autumn Chges</h4>
-                    <ul>
-                        <li>Fruits と 種子s riペン  bunダンス</li>
-                        <li>Birds 保存する f  prep比率n のために 渡り</li>
-                        <li>Insect 数s 始める に 減少する</li>
-                        <li>Food 競争 減少するs, グループ 採餌 増加するs</li>
-                    </ul>
-                </div>
-
-                <div class="season-changes">
-                    <h4>❄️ Wter Chges</h4>
-                    <ul>
-                        <li>Ses と  s車cest 食物 resources</li>
-                        <li>My 鳥類 変化 ir 食事</li>
-                        <li>Comペットiti す ほとんどの tense</li>
-                        <li>Food web 構造 す 簡単なst</li>
-                    </ul>
-                </div>
-            </div>
-
-            <h3>⚡ Energy F低い Efficiency</h3>
-            <p>Under立つg エネルギー f低い  食物 webs す crucil のために 理解するg 生態系 楽しみcti:</p>
-
-            <div class="energy-flow">
-                <div class="efficiency-データ">
-                    <h4>📊 Trophic Level Energy Trsfer Efficiency</h4>
-                    <div class="efficiency-ch芸術">
-                        <div class="efficiency-レベル">
-                            <span class="level-name">Producers</span>
-                            <div class="エネルギー-br" style="width: 100%">100%</div>
-                        </div>
-                        <div class="efficiency-level">
-                            <span class="level-name">Primry C合計ers</span>
-                            <div class="エネルギー-br" style="width: 10%">10%</div>
-                        </div>
-                        <div class="efficiency-level">
-                            <span class="level-name">Secdry C合計ers</span>
-                            <div class="エネルギー-br" style="width: 1%">1%</div>
-                        </div>
-                        <div class="efficiency-level">
-                            <span class="level-name">Tertiry C合計ers</span>
-                            <div class="エネルギー-br" style="width: 0.1%">0.1%</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="energy-loss">
-                    <h4>💨 Energy Loss Ph道s</h4>
-                    <ul>
-                        <li>Respi比率n c合計pti: Mtg 基本的な 生活 ctivities</li>
-                        <li>Movement exペンditure: Fまたはgg, 渡り, 捕食者 避けるce</li>
-                        <li>Thermまたはeguli: Mtg cstt 体 温度</li>
-                        <li>Excreti loss: Undigested 食物 と metbolic 無駄にする</li>
-                        <li>Reproductive vestment: Court船, 巣-建物, ひな-re鳴らす</li>
-                    </ul>
-                </div>
-            </div>
-
-            <h3>🌍 Hu男性 Activity Impcts</h3>
-            <p>Hu男性 ctivities 持っています prのound 効果s  鳥 食物 webs:</p>
-
-            <div class="human-impacts">
-                <div class="影響-cegまたはy">
-                    <h4>🏭 Direct Impcts</h4>
-                    <ul>
-                        <li>Pesticide 使う 減らすs 昆虫 populis</li>
-                        <li>Over魚g ffects 魚-食べるg 鳥類</li>
-                        <li>Hbit destructi 壊すs 食物 chs</li>
-                        <li>Envirmentl polluti ffects 食物 品質</li>
-                    </ul>
-                </div>
-
-                <div class="impact-category">
-                    <h4>🔄 Indirect Impcts</h4>
-                    <ul>
-                        <li>Cli配偶者 変化 変更するs 食物 vil能力</li>
-                        <li>Invsive 種 変化 comペットitive reli船s</li>
-                        <li>Urbizi 作るs 新しい 食物 sources</li>
-                        <li>Artificil 給餌 変化s 自然の 行動s</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="conservation-implications">
-                <h4>🛡️ Cservi Implicis</h4>
-                <p>Under立つg 食物 webs す 重要な のために 鳥 保護:</p>
+        
+        <div class="main-text">
+            食物連鎖と食物網は、生態系におけるエネルギーと栄養素の流れを示す重要な概念です<span class="emoji">🌊</span>。鳥類は様々な栄養段階を占め、「誰が誰を食べるか」という関係性の中で重要な役割を果たしています。この複雑な相互関係を理解することは、生態系の機能と鳥類保護の基礎となります。
+        </div>
+        
+        <div class="section-title">食物連鎖の基本概念</div>
+        
+        <div class="main-text">
+            食物連鎖は生態系内でのエネルギーと栄養素の移動経路を示し、各生物の栄養段階での位置を明確にします<span class="emoji">⚡</span>。鳥類は一次消費者から頂点捕食者まで、様々な段階に位置しています。
+        </div>
+        
+        <div class="trophic-grid">
+            <div class="trophic-card">
+                <h4>🌱 生産者（第1栄養段階）</h4>
+                <p>植物が光合成により有機物を生産し、食物連鎖全体のエネルギー基盤を提供</p>
                 <ul>
-                    <li>Protectg 重要な 種 維持するs 食物 web st能力</li>
-                    <li>Resに鳴らす 生息地s re建てるs 食物 chs</li>
-                    <li>Ctrollg vsive 種 保護するs nive 食物 webs</li>
-                    <li>Reducg polluti 維持するs 食物 品質</li>
-                    <li>Estblすhg 保護するed エリアs p予約するs 完了する 食物 webs</li>
+                    <li>樹木、低木、草本植物</li>
+                    <li>藻類、植物プランクトン</li>
+                    <li>植物食性鳥類の直接的食物源</li>
+                    <li>生態系の一次生産力の基礎</li>
+                </ul>
+            </div>
+            
+            <div class="trophic-card">
+                <h4>🦆 一次消費者（第2栄養段階）</h4>
+                <p>植物を直接摂食する鳥類</p>
+                <ul>
+                    <li>種子食性：フィンチ類、ハト類、オウム類</li>
+                    <li>果実食性：ヒヨドリ、ムクドリ、ハチドリ</li>
+                    <li>葉食性：ガン類、ハクチョウ、一部のカモ類</li>
+                    <li>蜜食性：ハチドリ、タイヨウチョウ、ミツスイ</li>
+                </ul>
+            </div>
+            
+            <div class="trophic-card">
+                <h4>🐛 二次消費者（第3栄養段階）</h4>
+                <p>昆虫や小動物を摂食する鳥類</p>
+                <ul>
+                    <li>昆虫食性：ツバメ、ヒタキ、ミソサザイ</li>
+                    <li>雑食性：カラス、カササギ、シジュウカラ</li>
+                    <li>小魚食性：カワセミ、ウ、サギ</li>
+                    <li>小型哺乳類食性：一部のフクロウ類</li>
+                </ul>
+            </div>
+            
+            <div class="trophic-card">
+                <h4>🦅 三次消費者（第4栄養段階）</h4>
+                <p>他の鳥類や中型動物を捕食する猛禽類</p>
+                <ul>
+                    <li>昼行性猛禽類：タカ、ハヤブサ、チュウヒ</li>
+                    <li>夜行性猛禽類：フクロウ、ワシミミズク</li>
+                    <li>大型魚食性：ペリカン、ウ、ウミワシ</li>
+                    <li>腐肉食性：ハゲワシ、コンドル</li>
+                </ul>
+            </div>
+            
+            <div class="trophic-card">
+                <h4>🦴 分解者</h4>
+                <p>死骸を摂食し、栄養循環に参加する鳥類</p>
+                <ul>
+                    <li>ハゲワシ類：大型動物の死骸を処理</li>
+                    <li>カラス科：様々な有機廃棄物を処理</li>
+                    <li>一部の海鳥：海洋の死魚を清掃</li>
+                    <li>腐肉食性猛禽類：生態系の清掃役</li>
                 </ul>
             </div>
         </div>
-
-        <!-- 相关文章推荐 -->
-        <div class="related-articles">
-            <h3>Re遅いd Articles</h3>
-            <div class="芸術icle-grid">
-                < href="01-生息地-生態系s.html" class="芸術icle-車d">
-                    <img src="../../images/鳥類/種/鳥-image-036.png" lt="Hbits と Ecoシステムs">
-                    <h4>Hbits と Ecoシステムs</h4>
-                    <p>Under立つg  楽しみdmentl 環境s のために 鳥 survivl</p>
-                </>
-                < href="10-コミュニティ-dynmics.html" class="芸術icle-車d">
-                    <img src="../../images/鳥類/種/鳥-image-036.png" lt="Comm単位y Dynmics">
-                    <h4>Bird Comm単位y Dynmics</h4>
-                    <p>Explo鳴らす  構造 と 変化s  鳥 comm単位ies</p>
-                </>
+        
+        <div class="section-title">食物網の複雑性</div>
+        
+        <div class="main-text">
+            実際の生態系は単純な食物連鎖よりもはるかに複雑です<span class="emoji">🕸️</span>。食物網は複数の相互接続された食物連鎖を示し、生態系内の複雑な栄養関係を反映しています。
+        </div>
+        
+        <div class="trophic-grid">
+            <div class="trophic-card">
+                <h4>🔄 複数の栄養関係</h4>
+                <p>ほとんどの鳥類は一種類の食物だけを食べるわけではなく、一種類の捕食者にのみ捕食されるわけでもありません</p>
+                <ul>
+                    <li>雑食性鳥類は複数の栄養段階を同時に占有</li>
+                    <li>季節的な食性の変化</li>
+                    <li>年齢に関連した食性の違い</li>
+                    <li>地域的な食性の適応</li>
+                </ul>
+            </div>
+            
+            <div class="trophic-card">
+                <h4>⚖️ 動的バランス</h4>
+                <p>食物網の様々な構成要素の数は相互に調節し合い、生態学的バランスを維持</p>
+                <ul>
+                    <li>捕食者が被食者個体数を制御</li>
+                    <li>被食者の豊富さが捕食者の繁殖に影響</li>
+                    <li>競争関係が個体群密度を調節</li>
+                    <li>環境変化への適応的応答</li>
+                </ul>
+            </div>
+            
+            <div class="trophic-card">
+                <h4>🌊 エネルギー流</h4>
+                <p>エネルギーは食物網を通じて一方向に流れ、各段階で減少</p>
+                <ul>
+                    <li>各栄養段階は下位段階の約10%のエネルギーのみ獲得</li>
+                    <li>栄養段階数の制限</li>
+                    <li>頂点捕食者は相対的に稀少</li>
+                    <li>生物量ピラミッドの形成</li>
+                </ul>
             </div>
         </div>
-    </main>
-
-    <!-- 底部导航 -->
-    <nav class="bottom-nav">
-        <a href="../knowledge.html" class="nav-item">
-            <span class="nav-icon">🏠</span>
-            <span class="nav-label">Home</span>
-        </a>
-        <a href="../pet-care-articles.html" class="nav-item">
-            <span class="nav-icon">🐦</span>
-            <span class="nav-label">Pet Cす</span>
-        </a>
-        <a href="../バードウォッチング-articles.html" class="nav-item">
-            <span class="nav-icon">🔍</span>
-            <span class="nav-label">Bird見るg</span>
-        </a>
-        <a href="../ecology-articles.html" class="nav-item active">
-            <span class="nav-icon">🌿</span>
-            <span class="nav-label">Ecology</span>
-        </a>
-    </nav>
-
-    <!-- プログレスバー -->
-    <div class="progress-bar">
-        <div class="progress-fill" style="width: 100%"></div>
+        
+        <div class="section-title">エネルギー流の効率</div>
+        
+        <div class="main-text">
+            食物網におけるエネルギー流の理解は、生態系機能の理解に重要です<span class="emoji">⚡</span>。
+        </div>
+        
+        <div class="energy-flow">
+            <h4>📊 栄養段階別エネルギー転送効率</h4>
+            <div class="energy-level">
+                <span class="level-name">生産者</span>
+                <div class="energy-bar" style="width: 300px;" data-percentage="100%"></div>
+            </div>
+            <div class="energy-level">
+                <span class="level-name">一次消費者</span>
+                <div class="energy-bar" style="width: 30px;" data-percentage="10%"></div>
+            </div>
+            <div class="energy-level">
+                <span class="level-name">二次消費者</span>
+                <div class="energy-bar" style="width: 3px;" data-percentage="1%"></div>
+            </div>
+            <div class="energy-level">
+                <span class="level-name">三次消費者</span>
+                <div class="energy-bar" style="width: 1px;" data-percentage="0.1%"></div>
+            </div>
+        </div>
+        
+        <div class="section-title">鳥類の特殊な生態学的ニッチ</div>
+        
+        <div class="main-text">
+            異なる鳥類は食物網内で独特の生態学的ニッチを占有し、直接的競争を回避しています<span class="emoji">🎯</span>。
+        </div>
+        
+        <div class="niche-grid">
+            <div class="niche-card">
+                <h5>🕐 時間的分化</h5>
+                <p>昼行性鳥類：ほとんどの鳴禽類と猛禽類が日中に活動</p>
+            </div>
+            
+            <div class="niche-card">
+                <h5>🌙 夜行性活動</h5>
+                <p>フクロウ類と夜行性サギ類が夜間に狩りを行う</p>
+            </div>
+            
+            <div class="niche-card">
+                <h5>🌅 薄明薄暮性活動</h5>
+                <p>一部の鳥類は夜明けと夕暮れに最も活発</p>
+            </div>
+            
+            <div class="niche-card">
+                <h5>🌲 樹冠層</h5>
+                <p>ヒタキ類とムシクイ類が樹冠で昆虫を狩る</p>
+            </div>
+            
+            <div class="niche-card">
+                <h5>🌳 樹幹</h5>
+                <p>キツツキ類とゴジュウカラ類が樹幹で採餌</p>
+            </div>
+            
+            <div class="niche-card">
+                <h5>🌱 地上レベル</h5>
+                <p>ツグミ類とタヒバリ類が地上で食物を探す</p>
+            </div>
+        </div>
+        
+        <div class="section-title">季節変化</div>
+        
+        <div class="main-text">
+            食物網の構造は季節とともに大きく変化します<span class="emoji">🔄</span>。
+        </div>
+        
+        <div class="trophic-grid">
+            <div class="trophic-card">
+                <h4>🌸 春の変化</h4>
+                <ul>
+                    <li>昆虫が活発になり、昆虫食性鳥類の食物が増加</li>
+                    <li>植物が開花し、送粉鳥類が活発化</li>
+                    <li>繁殖シーズン開始、タンパク質需要増加</li>
+                    <li>渡り鳥の帰還、食物競争激化</li>
+                </ul>
+            </div>
+            
+            <div class="trophic-card">
+                <h4>☀️ 夏の変化</h4>
+                <ul>
+                    <li>最も豊富な食物資源の季節</li>
+                    <li>若鳥が大量のタンパク質を必要</li>
+                    <li>果実が熟し始める</li>
+                    <li>水生昆虫が大量繁殖</li>
+                </ul>
+            </div>
+            
+            <div class="trophic-card">
+                <h4>🍂 秋の変化</h4>
+                <ul>
+                    <li>果実と種子が豊富に熟す</li>
+                    <li>鳥類が渡りに備えて脂肪蓄積</li>
+                    <li>昆虫数が減少開始</li>
+                    <li>食物競争減少、群れ採餌増加</li>
+                </ul>
+            </div>
+            
+            <div class="trophic-card">
+                <h4>❄️ 冬の変化</h4>
+                <ul>
+                    <li>最も乏しい食物資源の季節</li>
+                    <li>多くの鳥類が食性を変更</li>
+                    <li>競争が最も激しくなる</li>
+                    <li>食物網構造が最も単純化</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="section-title">人間活動の影響</div>
+        
+        <div class="main-text">
+            人間活動は鳥類の食物網に深刻な影響を与えています<span class="emoji">🌍</span>。
+        </div>
+        
+        <div class="warning-box">
+            <div class="warning-title">⚠️ 直接的影響</div>
+            <ul style="list-style: none; padding: 0;">
+                <li style="margin: 5px 0; padding-left: 15px; position: relative;">
+                    <span style="position: absolute; left: 0; color: #d68910;">•</span>
+                    農薬使用が昆虫個体数を減少
+                </li>
+                <li style="margin: 5px 0; padding-left: 15px; position: relative;">
+                    <span style="position: absolute; left: 0; color: #d68910;">•</span>
+                    過漁が魚食性鳥類に影響
+                </li>
+                <li style="margin: 5px 0; padding-left: 15px; position: relative;">
+                    <span style="position: absolute; left: 0; color: #d68910;">•</span>
+                    生息地破壊が食物連鎖を破綻
+                </li>
+                <li style="margin: 5px 0; padding-left: 15px; position: relative;">
+                    <span style="position: absolute; left: 0; color: #d68910;">•</span>
+                    環境汚染が食物品質に影響
+                </li>
+            </ul>
+        </div>
+        
+        <div class="tip-box">
+            <div class="tip-title">🔄 間接的影響</div>
+            <ul style="list-style: none; padding: 0;">
+                <li style="margin: 5px 0; padding-left: 15px; position: relative;">
+                    <span style="position: absolute; left: 0; color: #28a745;">•</span>
+                    気候変動が食物利用可能性を変更
+                </li>
+                <li style="margin: 5px 0; padding-left: 15px; position: relative;">
+                    <span style="position: absolute; left: 0; color: #28a745;">•</span>
+                    外来種が競争関係を変化
+                </li>
+                <li style="margin: 5px 0; padding-left: 15px; position: relative;">
+                    <span style="position: absolute; left: 0; color: #28a745;">•</span>
+                    都市化が新しい食物源を創出
+                </li>
+                <li style="margin: 5px 0; padding-left: 15px; position: relative;">
+                    <span style="position: absolute; left: 0; color: #28a745;">•</span>
+                    人工給餌が自然行動を変化
+                </li>
+            </ul>
+        </div>
+        
+        <div class="section-title">保護への示唆</div>
+        
+        <div class="main-text">
+            食物網の理解は鳥類保護にとって重要です<span class="emoji">🛡️</span>。
+        </div>
+        
+        <div class="tip-box">
+            <div class="tip-title">🌟 保護戦略</div>
+            <ul style="list-style: none; padding: 0;">
+                <li style="margin: 5px 0; padding-left: 15px; position: relative;">
+                    <span style="position: absolute; left: 0; color: #28a745;">•</span>
+                    重要種の保護が食物網安定性を維持
+                </li>
+                <li style="margin: 5px 0; padding-left: 15px; position: relative;">
+                    <span style="position: absolute; left: 0; color: #28a745;">•</span>
+                    生息地復元が食物連鎖を再構築
+                </li>
+                <li style="margin: 5px 0; padding-left: 15px; position: relative;">
+                    <span style="position: absolute; left: 0; color: #28a745;">•</span>
+                    外来種制御が在来食物網を保護
+                </li>
+                <li style="margin: 5px 0; padding-left: 15px; position: relative;">
+                    <span style="position: absolute; left: 0; color: #28a745;">•</span>
+                    汚染削減が食物品質を維持
+                </li>
+                <li style="margin: 5px 0; padding-left: 15px; position: relative;">
+                    <span style="position: absolute; left: 0; color: #28a745;">•</span>
+                    保護区設立が完全な食物網を保存
+                </li>
+            </ul>
+        </div>
+        
+        <div class="main-text">
+            食物網と食物連鎖の理解は、鳥類と生態系の複雑な相互関係を把握する基礎です<span class="emoji">🌍</span>。この知識を活用して、効果的な保護戦略を策定し、豊かな鳥類群集を支える健全な生態系を維持することができます。
+        </div>
     </div>
 
-    <script src="../mobile-interactions.js"></script>
+    <script>
+        // 模拟阅读进度
+        function updateProgress() {
+            const scrolled = window.pageYOffset;
+            const maxHeight = document.body.scrollHeight - window.innerHeight;
+            const progress = Math.min((scrolled / maxHeight) * 100, 100);
+        }
+        
+        window.addEventListener('scroll', updateProgress);
+        updateProgress();
+    </script>
+
 </body>
 </html>

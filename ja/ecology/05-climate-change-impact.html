@@ -3,375 +3,751 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>初心者向けバードウォッチング - BirdAiSnap</title>
-    <link rel="stylesheet" href="../mobile-styles.css">
-    <link rel="stylesheet" href="../mobile-enhancement.css">
+    <title>気候変動が鳥類に与える影響 - BirdAiSnap</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+        
+        .back-button {
+            position: fixed;
+            top: 60px;
+            left: 20px;
+            width: 36px;
+            height: 36px;
+            background: rgba(0,0,0,0.6);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                        url('../../images/birds/species/bird-image-038.png') center/cover;
+            position: relative;
+            margin-top: 0;
+        }
+        
+        .content {
+            background: white;
+            margin: -30px 20px 20px 20px;
+            border-radius: 20px;
+            padding: 40px 20px 30px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            min-height: 80vh;
+        }
+        
+        .title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            margin-top: 10px;
+            line-height: 1.3;
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, #ffebee, #ffcdd2);
+            border-left: 4px solid #f44336;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .quote-box::before {
+            content: '"';
+            font-size: 48px;
+            color: #f44336;
+            position: absolute;
+            top: -5px;
+            left: 15px;
+            font-family: serif;
+            line-height: 1;
+        }
+        
+        .quote-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: #c62828;
+            margin-left: 25px;
+            line-height: 1.4;
+        }
+        
+        .main-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            margin: 20px 0;
+            text-align: justify;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #f44336;
+            margin: 30px 0 15px 0;
+            border-bottom: 2px solid #ffcdd2;
+            padding-bottom: 8px;
+        }
+        
+        .climate-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .climate-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            border: 2px solid #e9ecef;
+            transition: transform 0.3s ease;
+        }
+        
+        .climate-card:hover {
+            transform: translateY(-5px);
+            border-color: #f44336;
+        }
+        
+        .climate-card h4 {
+            color: #c62828;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        
+        .climate-card p {
+            color: #666;
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+        
+        .climate-card ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .climate-card li {
+            color: #555;
+            margin: 5px 0;
+            padding-left: 15px;
+            position: relative;
+        }
+        
+        .climate-card li::before {
+            content: "•";
+            color: #f44336;
+            position: absolute;
+            left: 0;
+        }
+        
+        .impact-card {
+            background: #fff3e0;
+            border-radius: 12px;
+            padding: 20px;
+            border-left: 4px solid #ff9800;
+            margin: 15px 0;
+        }
+        
+        .impact-card h4 {
+            color: #e65100;
+            margin-bottom: 10px;
+        }
+        
+        .threat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .threat-card {
+            background: #ffebee;
+            border-radius: 8px;
+            padding: 15px;
+            border-left: 4px solid #f44336;
+        }
+        
+        .threat-card h5 {
+            color: #c62828;
+            margin-bottom: 8px;
+        }
+        
+        .adaptation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .adaptation-card {
+            background: #e8f5e8;
+            border-radius: 8px;
+            padding: 15px;
+            border-left: 4px solid #4caf50;
+        }
+        
+        .adaptation-card h4 {
+            color: #2e7d32;
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+        
+        .tip-box {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            border-left: 4px solid #28a745;
+        }
+        
+        .tip-title {
+            font-weight: 600;
+            color: #28a745;
+            margin-bottom: 8px;
+        }
+        
+        .warning-box {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            border-left: 4px solid #f39c12;
+        }
+        
+        .warning-title {
+            font-weight: 600;
+            color: #d68910;
+            margin-bottom: 8px;
+        }
+        
+        .emoji {
+            font-size: 18px;
+            margin: 0 2px;
+        }
+        
+        @media (max-width: 375px) {
+            .content {
+                margin: -30px 15px 20px 15px;
+                padding: 25px 15px;
+            }
+            
+            .title {
+                font-size: 22px;
+            }
+            
+            .main-text {
+                font-size: 15px;
+            }
+            
+            .climate-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- 戻るボタン -->
+    <button class="back-button" onclick="history.back()">
+        ←
+    </button>
     
+    <!-- ヒーロー画像 -->
+    <div class="hero-image"></div>
     
-    </div>
-
-    
-
     <!-- メインコンテンツ -->
-    <主な class="芸術icle-ctent">
-        <!-- ヒーロー画像 -->
-        <div class="hero-image" style="mrg-botにm: 50px;">
-            <img src="../../images/鳥類/種/鳥-image-038.png" lt="气候变化对鸟类的影响">
-            <div class="hero-overly">
-                <h2 style="mrg-にp: 30px;">A Chgg Wまたはld, Adptg Life</h2>
-            </div>
-        </div>
-
-        <!-- 文章信息 -->
-        <div class="芸術icle-met" style="mrg-にp: 40px;">
-            <span class="category ecology">Bird Ecology</span>
-            <span class="read-time">📖 12 分 読む</span>
-            <span class="difficulty">🔴 Advced</span>
-        </div>
-
-        <!-- 引用框 -->
+    <div class="content">
+        <h1 class="title">🌡️ 気候変動が鳥類に与える影響</h1>
+        
         <div class="quote-box">
-            <p>"Cli配偶者 変化 す e の  greテスト thr食べるs fcg 鳥類   21st century, reshpg globl 鳥 dすtributi と 行動 パターンs."</p>
-            <cite>— Cli配偶者 Chge Biologすt</cite>
+            <div class="quote-text">
+                気候変動は21世紀の鳥類が直面する最大の脅威の一つであり、世界の鳥類分布と行動パターンを根本的に変化させている
+            </div>
         </div>
-
-        <!-- 文章正文 -->
-        <div class="芸術icle-体">
-            <h3>🌡️ Direct Impcts の Globl W腕g</h3>
-            <p>The 上がる  globl 平均 温度 持っています 複数の direct 影響s  鳥類, から physiologicl dptis に 行動l 変化s.</p>
-
-            <div class="direct-影響s">
-                <div class="温度-効果s">
-                    <h4>🔥 Effects の Ri歌う Temperures</h4>
-                    <ul>
-                        <li>Incresed pressure  温度 reguli</li>
-                        <li>Incresed 水 必要とするments</li>
-                        <li>H食べる stress respses</li>
-                        <li>Decresed 繁殖 成功</li>
-                        <li>Chges  生息地 適する能力</li>
-                    </ul>
-                </div>
-
-                <div class="physiological-responses">
-                    <h4>🧬 Physiologicl Adpti Respses</h4>
-                    <ul>
-                        <li>Metbolic 率 調整するments</li>
-                        <li>Chges  羽毛 den座るy</li>
-                        <li>Chges  体 サイズ</li>
-                        <li>Blood circuli reguli</li>
-                        <li>Chges  hまたはme レベルs</li>
-                    </ul>
-                </div>
-            </div>
-
-            <h3>📅 Phenologicl Chges</h3>
-            <p>Cli配偶者 変化 原因s shifts   timg の 鳥 生活 cycle events,  phenomen 知るn s phenologicl 変化s.</p>
-
-            <div class="phenological-changes">
-                <div class="繁殖-timg">
-                    <h4>🐣 Chges  Breedg Timg</h4>
-                    <ul>
-                        <li>Er嘘r 繁殖 季節s</li>
-                        <li>Chges  卵-lyg 時間s</li>
-                        <li>Shまたはtened または extended cubi 期間s</li>
-                        <li>Incresed 複数の broods</li>
-                    </ul>
-                </div>
-
-                <div class="migration-timing">
-                    <h4>✈️ Chges  Mig比率n Timg</h4>
-                    <ul>
-                        <li>Er嘘r sp鳴らす 渡り</li>
-                        <li>Delyed utumn 渡り</li>
-                        <li>Shまたはtened 渡り dすtces</li>
-                        <li>Some 種 ce歌う 渡り</li>
-                    </ul>
-                </div>
-
-                <div class="mismatch-problems">
-                    <h4>⚠️ Timg Mす試合 Problems</h4>
-                    <ul>
-                        <li>Breedg 期間 mす試合ed と 食物 peks</li>
-                        <li>Mig比率n timg csすtent と resource vil能力</li>
-                        <li>Predまたは-獲物 reli船 imblces</li>
-                        <li>Plt f下げるg synchrous と pollg 鳥類</li>
-                    </ul>
-                </div>
-            </div>
-
-            <h3>🗺️ Dすtributi Rge Chges</h3>
-            <p>Cli配偶者 変化 す 変更するg  geogrphic dすtributi rges の 鳥類, のためにcg 多くの 種 に mig率 に 高いer litudes または elevis.</p>
-
-            <div class="range-shifts">
-                <div class="litudl-shifts">
-                    <h4>🧭 Litudl Dすtributi Chges</h4>
-                    <ul>
-                        <li>Expsi に戦争d polr 地域s</li>
-                        <li>Ctr行動 の sourn boundries</li>
-                        <li>Nまたはth戦争d shift の dすtributi c入るs</li>
-                        <li>Emergence の 新しい dすtributi エリアs</li>
-                    </ul>
-                </div>
-
-                <div class="altitudinal-shifts">
-                    <h4>⛰️ Altitudl Dすtributi Chges</h4>
-                    <ul>
-                        <li>Mig比率n に 高いer elevis</li>
-                        <li>Mount 種 fcg "noどこ に retr食べる"</li>
-                        <li>Up戦争d shift の verticl dすtributi ゾーンs</li>
-                        <li>Alpe endemic 種 thr食べるened</li>
-                    </ul>
-                </div>
-
-                <div class="habitat-changes">
-                    <h4>🌿 Hbit Chges</h4>
-                    <ul>
-                        <li>Up戦争d shift の tree 行s</li>
-                        <li>Wetlとs dryg up または expとg</li>
-                        <li>Grsslとs tr座るig に 森林s</li>
-                        <li>Loss の 費用l 生息地s</li>
-                    </ul>
-                </div>
-            </div>
-
-            <h3>🌊 Extreme Wer Events</h3>
-            <p>Cli配偶者 変化 増加するs  frequency と ten座るy の extreme 天気 events, po歌う serious thr食べるs に 鳥類.</p>
-
-            <div class="extreme-weather">
-                <div class="stまたはm-影響s">
-                    <h4>🌪️ Stまたはms と Hurriきますes</h4>
-                    <ul>
-                        <li>Incresed direct mまたはtlity</li>
-                        <li>Hbit destructi</li>
-                        <li>Mig比率n route obstructi</li>
-                        <li>Breedg 失敗</li>
-                    </ul>
-                </div>
-
-                <div class="drought-impacts">
-                    <h4>🏜️ Droughts と Floods</h4>
-                    <ul>
-                        <li>Wer と 食物 短いages</li>
-                        <li>Decresed 生息地 品質</li>
-                        <li>Incresed 病気 trsお嬢さんi</li>
-                        <li>Populi 数 fluctuis</li>
-                    </ul>
-                </div>
-
-                <div class="temperature-extremes">
-                    <h4>🌡️ Extreme Temperures</h4>
-                    <ul>
-                        <li>H食べる wves cu歌う mss mまたはtlity</li>
-                        <li>C古い snps ffectg 食物 cqui座るi</li>
-                        <li>Decresed 繁殖 成功</li>
-                        <li>Reduced ひな survivl 率s</li>
-                    </ul>
-                </div>
-            </div>
-
-            <h3>🌊 Se Level Rすe Impcts</h3>
-            <p>Se レベル 上がる poses 部分iculrly serious thr食べるs に costl と すlと 鳥類.</p>
-
-            <div class="sea-level-impacts">
-                <div class="costl-効果s">
-                    <h4>🏖️ Costl Hbit Loss</h4>
-                    <ul>
-                        <li>Submersi の mudfls と slt 奥様hes</li>
-                        <li>Dす現れるce の 繁殖 grounds</li>
-                        <li>Reducti の 採餌 エリアs</li>
-                        <li>Intensified 生息地 frgmenti</li>
-                    </ul>
-                </div>
-
-                <div class="island-effects">
-                    <h4>🏝️ Islと Ecoシステムs</h4>
-                    <ul>
-                        <li>Complete submersi の 小さい すlとs</li>
-                        <li>Slizi の fresh水 resources</li>
-                        <li>Ve得るi 死</li>
-                        <li>Extcti リスク のために endemic 種</li>
-                    </ul>
-                </div>
-            </div>
-
-            <h3>🍎 Food Web Chges</h3>
-            <p>Cli配偶者 変化 変更するs  食物 web 構造 の 生態系s, ffectg 鳥類' 食物 sources.</p>
-
-            <div class="food-web-changes">
-                <div class="獲物-変化s">
-                    <h4>🐛 Prey Chges</h4>
-                    <ul>
-                        <li>Chges  昆虫 生活 cycles</li>
-                        <li>Chges  魚 dすtributi</li>
-                        <li>Chges  計画t f下げるg と 果実g 時間s</li>
-                        <li>Dec行  食物 品質</li>
-                    </ul>
-                </div>
-
-                <div class="competition-changes">
-                    <h4>🤝 Comペットiti Reli船 Chges</h4>
-                    <ul>
-                        <li>Emergence の 新しい comペットitまたはs</li>
-                        <li>Intensified resource 競争</li>
-                        <li>Incresed niche overlp</li>
-                        <li>Chges  domt populis</li>
-                    </ul>
-                </div>
-            </div>
-
-            <h3>🦠 Dすese Trsお嬢さんi</h3>
-            <p>Cli配偶者 変化 ffects  パターンs と ten座るy の 病気 trsお嬢さんi.</p>
-
-            <div class="disease-impacts">
-                <div class="道ogen-変化s">
-                    <h4>🦠 Phogen Chges</h4>
-                    <ul>
-                        <li>Expとed 道ogen dすtributi rge</li>
-                        <li>Incresed trsお嬢さんi vectまたはs</li>
-                        <li>Incresed frequency の 病気 out壊すs</li>
-                        <li>Emergence の 新しい 病気s</li>
-                    </ul>
-                </div>
-
-                <div class="immunity-effects">
-                    <h4>🛡️ Immune System Effects</h4>
-                    <ul>
-                        <li>Stress reducg imm単位y</li>
-                        <li>Ml栄養 ffectg resすtce</li>
-                        <li>Populi den座るy 変化s ffectg trsお嬢さんi</li>
-                        <li>Cli配偶者 stress cre歌う susceptibility</li>
-                    </ul>
-                </div>
-            </div>
-
-            <h3>🔬 Adpti と Evoluti</h3>
-            <p>Fcg 気候 変化, 鳥類 exhibit 異なる dpti st率gies.</p>
-
-            <div class="adaptation-strategies">
-                <div class="行動l-dpti">
-                    <h4>🎭 Behviまたはl Adpti</h4>
-                    <ul>
-                        <li>Chgg 活動 時間s</li>
-                        <li>Adjustg 採餌 st率gies</li>
-                        <li>Chgg 渡り routes</li>
-                        <li>Modifyg 繁殖 行動s</li>
-                    </ul>
-                </div>
-
-                <div class="evolutionary-adaptation">
-                    <h4>🧬 Evolutiry Adpti</h4>
-                    <ul>
-                        <li>Chges  gene frequencies</li>
-                        <li>Chges  mまたはphologicl chrcterすtics</li>
-                        <li>Adjustments  physiologicl 楽しみctis</li>
-                        <li>Chges  生活 歴史 st率gies</li>
-                    </ul>
-                </div>
-
-                <div class="adaptation-limits">
-                    <h4>⚠️ Adpti Limitis</h4>
-                    <ul>
-                        <li>Adpti 速度 きますnot 保つ up と 率 の 変化</li>
-                        <li>Insufficient genetic diver座るy</li>
-                        <li>Physiologicl limits</li>
-                        <li>Hbit cs電車ts</li>
-                    </ul>
-                </div>
-            </div>
-
-            <h3>🛡️ Cservi St率gies</h3>
-            <p>Addres歌う 気候 変化 必要とするs comprehensive 保護 st率gies.</p>
-
-            <div class="conservation-strategies">
-                <div class="mitigi-st率gies">
-                    <h4>🌱 Mitigi St率gies</h4>
-                    <ul>
-                        <li>Reducg green家 gs eお嬢さんis</li>
-                        <li>Protectg 車b sk 生息地s</li>
-                        <li>Promotg re新しいble エネルギー</li>
-                        <li>Improvg エネルギー efficiency</li>
-                    </ul>
-                </div>
-
-                <div class="adaptation-strategies-conservation">
-                    <h4>🔄 Adpti St率gies</h4>
-                    <ul>
-                        <li>Estblすhg 気候 refuges</li>
-                        <li>Cr食べるg ecologicl cまたはridまたはs</li>
-                        <li>Assすted 渡り</li>
-                        <li>Hbit 休むo比率n</li>
-                    </ul>
-                </div>
-
-                <div class="monitoring-strategies">
-                    <h4>📊 Miに鳴らす St率gies</h4>
-                    <ul>
-                        <li>Lg-term populi miに鳴らす</li>
-                        <li>Cli配偶者 影響 評価するment</li>
-                        <li>Erly 警告するg システムs</li>
-                        <li>Adptive 管理するment</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="future-outlook">
-                <h4>🔮 Future Out見る</h4>
-                <p>The 影響 の 気候 変化  鳥類 しょう 続ける に tensify, requi鳴らす:</p>
+        
+        <div class="main-text">
+            気候変動は鳥類に多面的で深刻な影響を与えています<span class="emoji">🌍</span>。地球温暖化、極端気象の増加、海面上昇、生態系の変化など、これらの環境変化は鳥類の生存、繁殖、渡り、分布に広範囲にわたる影響をもたらしています。この複雑な問題を理解することは、効果的な保護戦略の策定に不可欠です。
+        </div>
+        
+        <div class="section-title">地球温暖化の直接的影響</div>
+        
+        <div class="main-text">
+            地球平均気温の上昇は鳥類に複数の直接的影響をもたらします<span class="emoji">🔥</span>。生理学的適応から行動変化まで、様々なレベルで影響が現れています。
+        </div>
+        
+        <div class="climate-grid">
+            <div class="climate-card">
+                <h4>🌡️ 気温上昇の影響</h4>
                 <ul>
-                    <li>Strengned ternil coope比率n</li>
-                    <li>Mまたはe 保護 resources</li>
-                    <li>Development の 新しい 保護 technologies</li>
-                    <li>Incresed public 環境l wすness</li>
-                    <li>Lg-term 保護 計画ng</li>
+                    <li>体温調節への圧迫増加</li>
+                    <li>水分必要量の増加</li>
+                    <li>熱ストレス反応</li>
+                    <li>繁殖成功率の低下</li>
+                    <li>生息地適合性の変化</li>
+                    <li>代謝率の変化</li>
+                </ul>
+            </div>
+            
+            <div class="climate-card">
+                <h4>🧬 生理学的適応反応</h4>
+                <ul>
+                    <li>代謝率の調整</li>
+                    <li>羽毛密度の変化</li>
+                    <li>体サイズの変化</li>
+                    <li>血液循環の調節</li>
+                    <li>ホルモンレベルの変化</li>
+                    <li>免疫機能への影響</li>
+                </ul>
+            </div>
+            
+            <div class="climate-card">
+                <h4>💧 水資源への影響</h4>
+                <ul>
+                    <li>淡水資源の減少</li>
+                    <li>水質の悪化</li>
+                    <li>湿地の乾燥化</li>
+                    <li>水辺生息地の消失</li>
+                    <li>飲水機会の減少</li>
+                    <li>水生食物源の変化</li>
                 </ul>
             </div>
         </div>
-
-        <!-- 相关文章推荐 -->
-        <div class="related-articles">
-            <h3>Re遅いd Articles</h3>
-            <div class="芸術icle-grid">
-                < href="03-渡り-パターンs.html" class="芸術icle-車d">
-                    <img src="../../images/鳥類/種/鳥-image-042.png" lt="Mig比率n Pterns">
-                    <h4>Mig比率n Pterns と Routes</h4>
-                    <p>Under立つg どのように 気候 変化 ffects 鳥 渡り</p>
-                </>
-                < href="07-保護-biology.html" class="芸術icle-車d">
-                    <img src="../../images/鳥類/種/鳥-image-042.png" lt="Cservi Biology">
-                    <h4>Bird Cservi Biology</h4>
-                    <p>Explo鳴らす 保護 st率gies のために 気候 変化</p>
-                </>
+        
+        <div class="section-title">フェノロジー変化</div>
+        
+        <div class="main-text">
+            気候変動は鳥類の生活環イベントのタイミングに変化をもたらします<span class="emoji">📅</span>。これをフェノロジー変化と呼びます。
+        </div>
+        
+        <div class="impact-card">
+            <h4>🐣 繁殖タイミングの変化</h4>
+            <ul>
+                <li>繁殖期の早期化</li>
+                <li>産卵時期の変化</li>
+                <li>抱卵期間の短縮または延長</li>
+                <li>複数回繁殖の増加</li>
+                <li>繁殖成功率への影響</li>
+                <li>雛の生存率変化</li>
+            </ul>
+        </div>
+        
+        <div class="impact-card">
+            <h4>✈️ 渡りタイミングの変化</h4>
+            <ul>
+                <li>春の渡りの早期化</li>
+                <li>秋の渡りの遅延</li>
+                <li>渡り距離の短縮</li>
+                <li>一部種の渡り停止</li>
+                <li>渡りルートの変更</li>
+                <li>中継地利用パターンの変化</li>
+            </ul>
+        </div>
+        
+        <div class="warning-box">
+            <div class="warning-title">⚠️ タイミング不一致問題</div>
+            <ul style="list-style: none; padding: 0;">
+                <li style="margin: 5px 0; padding-left: 15px; position: relative;">
+                    <span style="position: absolute; left: 0; color: #d68910;">•</span>
+                    繁殖期と食物ピークの不一致
+                </li>
+                <li style="margin: 5px 0; padding-left: 15px; position: relative;">
+                    <span style="position: absolute; left: 0; color: #d68910;">•</span>
+                    渡りタイミングと資源利用可能性の不整合
+                </li>
+                <li style="margin: 5px 0; padding-left: 15px; position: relative;">
+                    <span style="position: absolute; left: 0; color: #d68910;">•</span>
+                    捕食者-被食者関係の不均衡
+                </li>
+                <li style="margin: 5px 0; padding-left: 15px; position: relative;">
+                    <span style="position: absolute; left: 0; color: #d68910;">•</span>
+                    植物開花と花粉媒介鳥類の非同期化
+                </li>
+            </ul>
+        </div>
+        
+        <div class="section-title">分布域の変化</div>
+        
+        <div class="main-text">
+            気候変動は鳥類の地理的分布域を変化させ、多くの種を高緯度や高標高地域への移動を余儀なくしています<span class="emoji">🗺️</span>。
+        </div>
+        
+        <div class="climate-grid">
+            <div class="climate-card">
+                <h4>🧭 緯度分布の変化</h4>
+                <ul>
+                    <li>極地域への拡大</li>
+                    <li>南限境界の収縮</li>
+                    <li>分布中心の北方移動</li>
+                    <li>新しい分布域の出現</li>
+                    <li>分布域の分断化</li>
+                    <li>局所絶滅の増加</li>
+                </ul>
+            </div>
+            
+            <div class="climate-card">
+                <h4>⛰️ 標高分布の変化</h4>
+                <ul>
+                    <li>高標高地域への移動</li>
+                    <li>山地種の「退却場所なし」状況</li>
+                    <li>垂直分布帯の上方移動</li>
+                    <li>高山固有種の脅威</li>
+                    <li>山頂効果による絶滅リスク</li>
+                    <li>標高勾配に沿った競争激化</li>
+                </ul>
+            </div>
+            
+            <div class="climate-card">
+                <h4>🌿 生息地の変化</h4>
+                <ul>
+                    <li>森林限界線の上方移動</li>
+                    <li>湿地の乾燥化または拡大</li>
+                    <li>草原の森林化</li>
+                    <li>沿岸生息地の消失</li>
+                    <li>植生帯の移動</li>
+                    <li>生息地の質的変化</li>
+                </ul>
             </div>
         </div>
-    </main>
-
-    <!-- 底部导航 -->
-    <nav class="bottom-nav">
-        <a href="../knowledge.html" class="nav-item">
-            <span class="nav-icon">🏠</span>
-            <span class="nav-label">Home</span>
-        </a>
-        <a href="../pet-care-articles.html" class="nav-item">
-            <span class="nav-icon">🐦</span>
-            <span class="nav-label">Pet Cす</span>
-        </a>
-        <a href="../バードウォッチング-articles.html" class="nav-item">
-            <span class="nav-icon">🔍</span>
-            <span class="nav-label">Bird見るg</span>
-        </a>
-        <a href="../ecology-articles.html" class="nav-item active">
-            <span class="nav-icon">🌿</span>
-            <span class="nav-label">Ecology</span>
-        </a>
-    </nav>
-
-    <!-- プログレスバー -->
-    <div class="progress-bar">
-        <div class="progress-fill" style="width: 100%"></div>
+        
+        <div class="section-title">極端気象事象</div>
+        
+        <div class="main-text">
+            気候変動は極端気象事象の頻度と強度を増加させ、鳥類に深刻な脅威をもたらします<span class="emoji">🌊</span>。
+        </div>
+        
+        <div class="threat-grid">
+            <div class="threat-card">
+                <h5>🌪️ 嵐とハリケーン</h5>
+                <ul>
+                    <li>直接的死亡率の増加</li>
+                    <li>生息地の破壊</li>
+                    <li>渡りルートの阻害</li>
+                    <li>繁殖失敗</li>
+                </ul>
+            </div>
+            
+            <div class="threat-card">
+                <h5>🏜️ 干ばつと洪水</h5>
+                <ul>
+                    <li>水と食物の不足</li>
+                    <li>生息地品質の低下</li>
+                    <li>疾病伝播の増加</li>
+                    <li>個体群数の変動</li>
+                </ul>
+            </div>
+            
+            <div class="threat-card">
+                <h5>🌡️ 極端気温</h5>
+                <ul>
+                    <li>熱波による大量死</li>
+                    <li>寒波による食物獲得困難</li>
+                    <li>繁殖成功率の低下</li>
+                    <li>雛生存率の減少</li>
+                </ul>
+            </div>
+            
+            <div class="threat-card">
+                <h5>❄️ 異常気象パターン</h5>
+                <ul>
+                    <li>予期しない降雪</li>
+                    <li>季節外れの気温</li>
+                    <li>降水パターンの変化</li>
+                    <li>風向・風速の変化</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="section-title">海面上昇の影響</div>
+        
+        <div class="main-text">
+            海面上昇は沿岸部と島嶼の鳥類に特に深刻な脅威をもたらします<span class="emoji">🌊</span>。
+        </div>
+        
+        <div class="climate-grid">
+            <div class="climate-card">
+                <h4>🏖️ 沿岸生息地の消失</h4>
+                <ul>
+                    <li>干潟と塩性湿地の水没</li>
+                    <li>繁殖地の消失</li>
+                    <li>採餌エリアの減少</li>
+                    <li>生息地分断の激化</li>
+                    <li>沿岸植生の変化</li>
+                    <li>砂浜営巣地の消失</li>
+                </ul>
+            </div>
+            
+            <div class="climate-card">
+                <h4>🏝️ 島嶼生態系</h4>
+                <ul>
+                    <li>小島嶼の完全水没</li>
+                    <li>淡水資源の塩水化</li>
+                    <li>植生の枯死</li>
+                    <li>固有種の絶滅リスク</li>
+                    <li>島間移動の困難化</li>
+                    <li>避難場所の不足</li>
+                </ul>
+            </div>
+            
+            <div class="climate-card">
+                <h4>🌊 海洋環境の変化</h4>
+                <ul>
+                    <li>海水温の上昇</li>
+                    <li>海洋酸性化</li>
+                    <li>海流パターンの変化</li>
+                    <li>海洋食物連鎖の変化</li>
+                    <li>魚類分布の変化</li>
+                    <li>海鳥の食物不足</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="section-title">食物網の変化</div>
+        
+        <div class="main-text">
+            気候変動は生態系の食物網構造を変化させ、鳥類の食物源に影響を与えます<span class="emoji">🍎</span>。
+        </div>
+        
+        <div class="climate-grid">
+            <div class="climate-card">
+                <h4>🐛 被食者の変化</h4>
+                <ul>
+                    <li>昆虫生活環の変化</li>
+                    <li>魚類分布の変化</li>
+                    <li>植物開花・結実時期の変化</li>
+                    <li>食物品質の低下</li>
+                    <li>食物量の変動</li>
+                    <li>新しい食物源の出現</li>
+                </ul>
+            </div>
+            
+            <div class="climate-card">
+                <h4>🤝 競争関係の変化</h4>
+                <ul>
+                    <li>新しい競争者の出現</li>
+                    <li>資源競争の激化</li>
+                    <li>ニッチ重複の増加</li>
+                    <li>優占個体群の変化</li>
+                    <li>外来種の侵入</li>
+                    <li>在来種の駆逐</li>
+                </ul>
+            </div>
+            
+            <div class="climate-card">
+                <h4>🌱 植物-鳥類相互作用</h4>
+                <ul>
+                    <li>花粉媒介関係の変化</li>
+                    <li>種子散布パターンの変化</li>
+                    <li>植物フェノロジーとの不一致</li>
+                    <li>果実生産量の変化</li>
+                    <li>植物群落構造の変化</li>
+                    <li>共進化関係の破綻</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="section-title">疾病伝播</div>
+        
+        <div class="main-text">
+            気候変動は疾病の伝播パターンと強度に影響を与えます<span class="emoji">🦠</span>。
+        </div>
+        
+        <div class="climate-grid">
+            <div class="climate-card">
+                <h4>🦠 病原体の変化</h4>
+                <ul>
+                    <li>病原体分布域の拡大</li>
+                    <li>伝播ベクターの増加</li>
+                    <li>疾病発生頻度の増加</li>
+                    <li>新しい疾病の出現</li>
+                    <li>病原体の毒性変化</li>
+                    <li>薬剤耐性の発達</li>
+                </ul>
+            </div>
+            
+            <div class="climate-card">
+                <h4>🛡️ 免疫システムへの影響</h4>
+                <ul>
+                    <li>ストレスによる免疫力低下</li>
+                    <li>栄養不良による抵抗力低下</li>
+                    <li>個体群密度変化による伝播影響</li>
+                    <li>気候ストレスによる感受性増加</li>
+                    <li>免疫機能の季節変動</li>
+                    <li>慢性ストレスの蓄積</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="section-title">適応と進化</div>
+        
+        <div class="main-text">
+            気候変動に直面して、鳥類は様々な適応戦略を示します<span class="emoji">🔬</span>。
+        </div>
+        
+        <div class="adaptation-grid">
+            <div class="adaptation-card">
+                <h4>🎭 行動的適応</h4>
+                <ul>
+                    <li>活動時間の変更</li>
+                    <li>採餌戦略の調整</li>
+                    <li>渡りルートの変更</li>
+                    <li>繁殖行動の修正</li>
+                </ul>
+            </div>
+            
+            <div class="adaptation-card">
+                <h4>🧬 進化的適応</h4>
+                <ul>
+                    <li>遺伝子頻度の変化</li>
+                    <li>形態学的特徴の変化</li>
+                    <li>生理学的機能の調整</li>
+                    <li>生活史戦略の変化</li>
+                </ul>
+            </div>
+            
+            <div class="adaptation-card">
+                <h4>⚠️ 適応の限界</h4>
+                <ul>
+                    <li>適応速度が変化速度に追いつかない</li>
+                    <li>遺伝的多様性の不足</li>
+                    <li>生理学的限界</li>
+                    <li>生息地制約</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="section-title">保護戦略</div>
+        
+        <div class="main-text">
+            気候変動への対処には包括的な保護戦略が必要です<span class="emoji">🛡️</span>。
+        </div>
+        
+        <div class="tip-box">
+            <div class="tip-title">🌱 緩和戦略</div>
+            <ul style="list-style: none; padding: 0;">
+                <li style="margin: 5px 0; padding-left: 15px; position: relative;">
+                    <span style="position: absolute; left: 0; color: #28a745;">•</span>
+                    早期警告システム
+                </li>
+                <li style="margin: 5px 0; padding-left: 15px; position: relative;">
+                    <span style="position: absolute; left: 0; color: #28a745;">•</span>
+                    適応的管理
+                </li>
+            </ul>
+        </div>
+        
+        <div class="warning-box">
+            <div class="warning-title">🔮 将来の展望</div>
+            <p>鳥類への気候変動の影響は今後も激化し続けるでしょう。以下が必要です：</p>
+            <ul style="list-style: none; padding: 0;">
+                <li style="margin: 5px 0; padding-left: 15px; position: relative;">
+                    <span style="position: absolute; left: 0; color: #d68910;">•</span>
+                    国際協力の強化
+                </li>
+                <li style="margin: 5px 0; padding-left: 15px; position: relative;">
+                    <span style="position: absolute; left: 0; color: #d68910;">•</span>
+                    保護資源の増加
+                </li>
+                <li style="margin: 5px 0; padding-left: 15px; position: relative;">
+                    <span style="position: absolute; left: 0; color: #d68910;">•</span>
+                    新しい保護技術の開発
+                </li>
+                <li style="margin: 5px 0; padding-left: 15px; position: relative;">
+                    <span style="position: absolute; left: 0; color: #d68910;">•</span>
+                    公衆の環境意識向上
+                </li>
+                <li style="margin: 5px 0; padding-left: 15px; position: relative;">
+                    <span style="position: absolute; left: 0; color: #d68910;">•</span>
+                    長期保護計画
+                </li>
+            </ul>
+        </div>
+        
+        <div class="main-text">
+            気候変動は鳥類にとって前例のない挑戦ですが、適切な科学的理解と効果的な保護行動により、その影響を軽減することができます<span class="emoji">🌍</span>。私たち一人一人の行動が、鳥類の未来を決定する重要な要素となります。
+        </div>
     </div>
 
-    <script src="../mobile-interactions.js"></script>
+    <script>
+        // 模拟阅读进度
+        function updateProgress() {
+            const scrolled = window.pageYOffset;
+            const maxHeight = document.body.scrollHeight - window.innerHeight;
+            const progress = Math.min((scrolled / maxHeight) * 100, 100);
+        }
+        
+        window.addEventListener('scroll', updateProgress);
+        updateProgress();
+    </script>
+
 </body>
 </html>
+                    炭素吸収生息地の保護
+                </li>
+                <li style="margin: 5px 0; padding-left: 15px; position: relative;">
+                    <span style="position: absolute; left: 0; color: #28a745;">•</span>
+                    再生可能エネルギーの推進
+                </li>
+                <li style="margin: 5px 0; padding-left: 15px; position: relative;">
+                    <span style="position: absolute; left: 0; color: #28a745;">•</span>
+                    エネルギー効率の改善
+                </li>
+            </ul>
+        </div>
+        
+        <div class="tip-box">
+            <div class="tip-title">🔄 適応戦略</div>
+            <ul style="list-style: none; padding: 0;">
+                <li style="margin: 5px 0; padding-left: 15px; position: relative;">
+                    <span style="position: absolute; left: 0; color: #28a745;">•</span>
+                    気候避難地の確立
+                </li>
+                <li style="margin: 5px 0; padding-left: 15px; position: relative;">
+                    <span style="position: absolute; left: 0; color: #28a745;">•</span>
+                    生態学的回廊の創設
+                </li>
+                <li style="margin: 5px 0; padding-left: 15px; position: relative;">
+                    <span style="position: absolute; left: 0; color: #28a745;">•</span>
+                    支援移住の実施
+                </li>
+                <li style="margin: 5px 0; padding-left: 15px; position: relative;">
+                    <span style="position: absolute; left: 0; color: #28a745;">•</span>
+                    生息地復元
+                </li>
+            </ul>
+        </div>
+        
+        <div class="tip-box">
+            <div class="tip-title">📊 監視戦略</div>
+            <ul style="list-style: none; padding: 0;">
+                <li style="margin: 5px 0; padding-left: 15px; position: relative;">
+                    <span style="position: absolute; left: 0; color: #28a745;">•</span>
+                    長期個体群監視
+                </li>
+                <li style="margin: 5px 0; padding-left: 15px; position: relative;">
+                    <span style="position: absolute; left: 0; color: #28a745;">•</span>
+                    気候影響評価
+                </li>
+                <li style="margin: 5px 0; padding-left: 15px; position: relative;">
+                    <span style="position: absolute; left: 0; color: #28a745;">•</span>
+                    早期警告システム
+                </li>
+                <li style="margin: 5px 0

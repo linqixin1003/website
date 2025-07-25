@@ -3,58 +3,283 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>初心者向けバードウォッチング - BirdAiSnap</title>
+    <title>バードウォッチング記録の保持 - BirdAiSnap</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f5; color: #333; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         
-        .back-button { position: fixed; top: 60px; left: 20px; width: 36px; height: 36px; background: rgba(0,0,0,0.6); border: none; border-radius: 50%; color: white; font-size: 18px; cursor: pointer; z-index: 999; display: flex; align-items: center; justify-content: center; }
-        .hero-image { width: 100%; height: 400px; background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('../../images/birds/species/bird-image-004.png') center/cover; position: relative; margin-top: 0; }
-        .content { background: white; margin: -30px 20px 20px 20px; border-radius: 20px; padding: 40px 20px 30px 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); min-height: 80vh; }
-        .title { font-size: 24px; font-weight: 700; color: #1a1a1a; margin-bottom: 30px; margin-top: 10px; line-height: 1.3; }
-        .quote-box { background: linear-gradient(135deg, #f3e5f5, #e1bee7); border-left: 4px solid #9c27b0; padding: 20px; margin: 25px 0; border-radius: 8px; position: relative; }
-        .quote-box::before { content: '"'; font-size: 48px; color: #9c27b0; position: absolute; top: -5px; left: 15px; font-family: serif; line-height: 1; }
-        .quote-text { font-size: 18px; font-weight: 600; color: #6a1b9a; margin-left: 25px; line-height: 1.4; }
-        .main-text { font-size: 16px; line-height: 1.8; color: #333; margin: 20px 0; text-align: justify; }
-        .section-title { font-size: 20px; font-weight: 600; color: #9c27b0; margin: 30px 0 15px 0; border-bottom: 2px solid #e1bee7; padding-bottom: 8px; }
-        .tip-box { background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px; padding: 15px; margin: 20px 0; border-left: 4px solid #28a745; }
-        .tip-title { font-weight: 600; color: #28a745; margin-bottom: 8px; }
-        .emoji { font-size: 18px; margin: 0 2px; }
-        .progress-container { position: fixed; bottom: 0; left: 0; right: 0; height: 60px; background: linear-gradient(to top, rgba(255,255,255,0.95), transparent); display: flex; align-items: center; justify-content: center; z-index: 998; }
-        .progress-bar { width: 200px; height: 4px; background: rgba(0,0,0,0.1); border-radius: 2px; overflow: hidden; }
-        .progress-fill { height: 100%; background: linear-gradient(90deg, #9c27b0, #ba68c8); width: 0%; border-radius: 2px; transition: width 0.3s ease; }
-        @media (max-width: 375px) { .content { margin: -30px 15px 20px 15px; padding: 25px 15px; } .title { font-size: 22px; } .main-text { font-size: 15px; } }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+        
+        .back-button {
+            position: fixed;
+            top: 60px;
+            left: 20px;
+            width: 36px;
+            height: 36px;
+            background: rgba(0,0,0,0.6);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                        url('../../images/birds/species/bird-image-004.png') center/cover;
+            position: relative;
+            margin-top: 0;
+        }
+        
+        .content {
+            background: white;
+            margin: -30px 20px 20px 20px;
+            border-radius: 20px;
+            padding: 40px 20px 30px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            min-height: 80vh;
+        }
+        
+        .title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            margin-top: 10px;
+            line-height: 1.3;
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, #f3e5f5, #e1bee7);
+            border-left: 4px solid #9c27b0;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .quote-box::before {
+            content: '"';
+            font-size: 48px;
+            color: #9c27b0;
+            position: absolute;
+            top: -5px;
+            left: 15px;
+            font-family: serif;
+            line-height: 1;
+        }
+        
+        .quote-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: #6a1b9a;
+            margin-left: 25px;
+            line-height: 1.4;
+        }
+        
+        .main-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            margin: 20px 0;
+            text-align: justify;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #9c27b0;
+            margin: 30px 0 15px 0;
+            border-bottom: 2px solid #e1bee7;
+            padding-bottom: 8px;
+        }
+        
+        .tip-box {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            border-left: 4px solid #28a745;
+        }
+        
+        .tip-title {
+            font-weight: 600;
+            color: #28a745;
+            margin-bottom: 8px;
+        }
+        
+        .emoji {
+            font-size: 18px;
+            margin: 0 2px;
+        }
+        
+        .progress-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: linear-gradient(to top, rgba(255,255,255,0.95), transparent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 998;
+        }
+        
+        .progress-bar {
+            width: 200px;
+            height: 4px;
+            background: rgba(0,0,0,0.1);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #9c27b0, #ba68c8);
+            width: 0%;
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+        
+        @media (max-width: 375px) {
+            .content {
+                margin: -30px 15px 20px 15px;
+                padding: 25px 15px;
+            }
+            
+            .title {
+                font-size: 22px;
+            }
+            
+            .main-text {
+                font-size: 15px;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- 戻るボタン -->
+    <button class="back-button" onclick="history.back()">
+        ←
+    </button>
     
-    </div>
-    <button class="back-button" onclick="history.back()">←</button>
+    <!-- ヒーロー画像 -->
     <div class="hero-image"></div>
-    <div class="content">
-        <h1 class="title">Bird見るg 記録の保持</h1>
-        <div class="quote-box"><div class="quote-テキスト">Recまたはd your バードウォッチング 冒険s と 建てる  個人的な 発見 log</div></div>
-        <div class="main-text">A バードウォッチング 日記 変換するs csul 観察s に  価値のある データbse の 個人的な 経験s, パターンs, と 発見するies. Systemic 記録g not ly ids 個人的な 学習 と スキル 発展 but lso 提供するs 価値のある データ のために 科学的な 研究 と 保護 努力s<span class="emoji">📔</span>.</div>
-        <div class="section-title">Why Keep  Bird見るg Journl?</div>
-        <div class="main-text">A バードウォッチング 日記 助けるs you trck your 個人的な バードウォッチング 旅, 記録 種 観察するd のために  最初の 時間, と 分析する 季節l パターンs と 行動l 変化s<span class="emoji">📈</span>. Lg-term 記録s きます 明かす トレンドs  地域の 鳥 comm単位ies と 提供する bse行 データ のために 環境l miに鳴らす.</div>
-        <div class="section-title">Bsic Inのためにmi に Recまたはd</div>
-        <div class="main-text">An 効果的な バードウォッチング 日記 すべきす 含む 基本的な 情報 such s de, 時間, 場所, 天気 条件s, 種 観察するd, 数s, と 行動 descriptis<span class="emoji">📋</span>. De尾ed 生息地 descriptis と 個人的な 観察 notes す lso 価値のある.</div>
-        <div class="tip-box"><div class="tip-title">✏️ Recまたはdg Tips</div>Use concise symbols and abbreviations to improve recording efficiency. Quickly note key points in the field, then add detailed information when you return home.</div>
-        <div class="section-title">Digitl vs. Pper Journls</div>
-        <div class="main-text">Digitl 日記s す 便利な のために 探すg, stすtics, と sh鳴らす, と きます 含む phoにs と GPS 場所s<span class="emoji">📱</span>. Pper 日記s す mまたはe relible のために field 使う, not limited によって btery 生活 または 信号 覆うage. My 鳥見るers 選ぶ に 使う both  combi.</div>
-        <div class="section-title">Addg Sketches と Vすul Elements</div>
-        <div class="main-text">Simple sketches きます 記録 重要な 識別 f食べるures mまたはe tuitively th written descriptis<span class="emoji">🎨</span>. Prのessil dr翼 スキルs すn't 必要な;  集中する す  記録g 重要な f食べるures と 割合l reli船s.</div>
-        <div class="section-title">Anlyzg Your Recまたはds</div>
-        <div class="main-text">Regulrly review と 分析する 日記 entries に 見る のために パターンs と トレンドs. Trck 種 数 変化s 十字路 異なる 季節s と 分析する どのように 天気 ffects 鳥 活動<span class="emoji">📊</span>. These lyses きます 改善する your バードウォッチング スキルs と ecologicl 理解するg.</div>
-        <div class="section-title">Sh鳴らす と Ctributg Your Recまたはds</div>
-        <div class="main-text">Csider submittg your 観察s に citizen 科学 projects such s eBird と 他の plのためにms<span class="emoji">🌐</span>. Thす データ 持っています 重要な 価値 のために 鳥 研究 と 保護 仕事, while lso 許可するg you に 共有する your 発見するies と  globl バードウォッチング コミュニティ.</div>
-        <div class="main-text">A バードウォッチング 日記 す  記録 の your dilogue と  自然の wまたはld と  テストment に 個人的な 成長 と 学習<span class="emoji">🌟</span>. By 維持するg csすtent 記録s, you'll 発見する その バードウォッチング す not just  hobによって but  deep 自然の 経験 と 科学的な explo比率n.</div>
-    </div>
-    <div class="progress-container"><div class="progress-br"><div class="progress-fill"></div></div></div>
     
+    <!-- メインコンテンツ -->
+    <div class="content">
+        <h1 class="title">📔 バードウォッチング記録の保持</h1>
+        
+        <div class="quote-box">
+            <div class="quote-text">
+                バードウォッチングの冒険を記録し、個人的な発見ログを構築する
+            </div>
+        </div>
+        
+        <div class="main-text">
+            バードウォッチング日記は、何気ない観察を個人的な経験、パターン、発見の貴重なデータベースに変換します<span class="emoji">📔</span>。体系的な記録は個人的な学習とスキル発達を助けるだけでなく、科学研究と保護活動にとって価値あるデータも提供します。
+        </div>
+        
+        <div class="section-title">なぜバードウォッチング日記を保持するのか？</div>
+        
+        <div class="main-text">
+            バードウォッチング日記は、個人的なバードウォッチングの旅を追跡し、初めて観察した種を記録し、季節パターンと行動変化を分析するのに役立ちます<span class="emoji">📈</span>。長期記録は地域の鳥類コミュニティのトレンドを明らかにし、環境モニタリングのベースラインデータを提供できます。
+        </div>
+        
+        <div class="main-text">
+            日記を保持することで、バードウォッチングスキルの向上を追跡し、個人的な成長を記録できます<span class="emoji">🌱</span>。時間が経つにつれて、あなたの観察力と識別能力がどのように発達したかを振り返ることができます。
+        </div>
+        
+        <div class="section-title">記録すべき基本情報</div>
+        
+        <div class="main-text">
+            効果的なバードウォッチング日記には、日付、時間、場所、天候条件、観察した種、個体数、行動記述などの基本情報を含めるべきです<span class="emoji">📋</span>。詳細な生息地記述と個人的な観察メモも価値があります。
+        </div>
+        
+        <div class="main-text">
+            各観察記録には以下の要素を含めることをお勧めします：観察地点の正確な位置、観察時間の長さ、使用した機材、同行者、特別な観察条件など<span class="emoji">📍</span>。これらの詳細は後でパターンを分析する際に重要になります。
+        </div>
+        
+        <div class="tip-box">
+            <div class="tip-title">✏️ 記録のコツ</div>
+            記録効率を向上させるために、簡潔な記号と略語を使用しましょう。野外では要点を素早くメモし、帰宅後に詳細情報を追加してください。
+        </div>
+        
+        <div class="section-title">デジタル日記 vs. 紙の日記</div>
+        
+        <div class="main-text">
+            デジタル日記は検索、統計、共有に便利で、写真やGPS位置情報を含めることができます<span class="emoji">📱</span>。紙の日記は野外使用により信頼性があり、バッテリー寿命や信号範囲に制限されません。多くのバードウォッチャーは両方の組み合わせを使用することを選択しています。
+        </div>
+        
+        <div class="main-text">
+            デジタルツールの利点には、自動的な日付・時間記録、GPS位置情報、写真との統合、クラウド同期、データ分析機能などがあります<span class="emoji">💻</span>。一方、紙の日記は電子機器の故障を心配する必要がなく、どこでも使用できる信頼性があります。
+        </div>
+        
+        <div class="section-title">スケッチと視覚的要素の追加</div>
+        
+        <div class="main-text">
+            簡単なスケッチは、文字による記述よりも直感的に重要な識別特徴を記録できます<span class="emoji">🎨</span>。プロの描画スキルは必要ありません。重要な特徴と比例関係の記録に焦点を当ててください。
+        </div>
+        
+        <div class="main-text">
+            視覚的記録には、鳥のシルエット、特徴的なマーク、色パターン、行動の瞬間などを含めることができます<span class="emoji">🖼️</span>。これらの視覚的要素は、後で種を確認したり、他の人と観察を共有したりする際に非常に有用です。
+        </div>
+        
+        <div class="section-title">記録の分析</div>
+        
+        <div class="main-text">
+            定期的に日記のエントリーを見直し、パターンとトレンドを探すために分析してください<span class="emoji">📊</span>。異なる季節での種数の変化を追跡し、天気が鳥の活動にどのように影響するかを分析してください。これらの分析はバードウォッチングスキルと生態学的理解を向上させることができます。
+        </div>
+        
+        <div class="main-text">
+            データ分析により、個人的なバードウォッチングホットスポット、最適な観察時間、季節的な渡りパターンなどを特定できます<span class="emoji">🔍</span>。これらの洞察は将来のバードウォッチング計画に役立ちます。
+        </div>
+        
+        <div class="section-title">記録の共有と貢献</div>
+        
+        <div class="main-text">
+            eBirdやその他のプラットフォームなどの市民科学プロジェクトに観察記録を提出することを検討してください<span class="emoji">🌐</span>。このデータは鳥類研究と保護活動にとって重要な価値を持ち、同時にあなたの発見を世界的なバードウォッチングコミュニティと共有することも可能にします。
+        </div>
+        
+        <div class="main-text">
+            地域のバードウォッチンググループや自然保護組織と記録を共有することで、地域の鳥類保護活動に貢献できます<span class="emoji">🤝</span>。あなたの観察は地域の生物多様性モニタリングの重要な一部となります。
+        </div>
+        
+        <div class="section-title">長期的な価値</div>
+        
+        <div class="main-text">
+            バードウォッチング日記は、自然界との対話の記録であり、個人的な成長と学習への証言です<span class="emoji">🌟</span>。一貫した記録を維持することで、バードウォッチングが単なる趣味ではなく、深い自然体験と科学的探求であることを発見するでしょう。
+        </div>
+        
+        <div class="main-text">
+            年月が経つにつれて、あなたの日記は貴重な個人史となり、自然との関係の発展、観察スキルの向上、そして鳥類世界への理解の深化を記録します<span class="emoji">📚</span>。これは将来の世代に残すことができる貴重な遺産でもあります。
+        </div>
+    </div>
+    
+    <!-- プログレスバー -->
+    <div class="progress-container">
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
+        </div>
+    </div>
 
     <script>
-        // Update time
+        // 更新时间
         function updateTime() {
             const now = new Date();
             const timeString = now.getHours().toString().padStart(2, '0') + ':' + 
@@ -62,7 +287,7 @@
             document.getElementById('current-time').textContent = timeString;
         }
         
-        // Simulate reading progress
+        // 模拟阅读进度
         function updateProgress() {
             const scrolled = window.pageYOffset;
             const maxHeight = document.body.scrollHeight - window.innerHeight;
@@ -70,7 +295,7 @@
             document.querySelector('.progress-fill').style.width = progress + '%';
         }
         
-        // Initialize
+        // 初始化
         updateTime();
         setInterval(updateTime, 60000);
         

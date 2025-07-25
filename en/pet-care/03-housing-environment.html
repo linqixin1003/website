@@ -5,51 +5,193 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>宠物鸟住房与环境 - BirdAiSnap</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f5; color: #333; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         
-        .back-button { position: fixed; top: 60px; left: 20px; width: 36px; height: 36px; background: rgba(0,0,0,0.6); border: none; border-radius: 50%; color: white; font-size: 18px; cursor: pointer; z-index: 999; display: flex; align-items: center; justify-content: center; }
-        .hero-image { width: 100%; height: 400px; background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('../../images/birds/species/bird-image-023.png') center/cover; position: relative; margin-top: 0; }
-        .content { background: white; margin: -30px 20px 20px 20px; border-radius: 20px; padding: 30px 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); min-height: 80vh; }
-        .title { font-size: 24px; font-weight: 700; color: #1a1a1a; margin-bottom: 30px; line-height: 1.3; }
-        .quote-box { background: linear-gradient(135deg, #fff3e0, #ffe0b2); border-left: 4px solid #ff9800; padding: 20px; margin: 25px 0; border-radius: 8px; position: relative; }
-        .quote-box::before { content: '"'; font-size: 48px; color: #ff9800; position: absolute; top: -5px; left: 15px; font-family: serif; line-height: 1; }
-        .quote-text { font-size: 18px; font-weight: 600; color: #e65100; margin-left: 25px; line-height: 1.4; }
-        .main-text { font-size: 16px; line-height: 1.8; color: #333; margin: 20px 0; text-align: justify; }
-        .section-title { font-size: 20px; font-weight: 600; color: #ff9800; margin: 30px 0 15px 0; border-bottom: 2px solid #ffe0b2; padding-bottom: 8px; }
-        .tip-box { background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px; padding: 15px; margin: 20px 0; border-left: 4px solid #28a745; }
-        .tip-title { font-weight: 600; color: #28a745; margin-bottom: 8px; }
-        .emoji { font-size: 18px; margin: 0 2px; }
-        .progress-container { position: fixed; bottom: 0; left: 0; right: 0; height: 60px; background: linear-gradient(to top, rgba(255,255,255,0.95), transparent); display: flex; align-items: center; justify-content: center; z-index: 998; }
-        .progress-bar { width: 200px; height: 4px; background: rgba(0,0,0,0.1); border-radius: 2px; overflow: hidden; }
-        .progress-fill { height: 100%; background: linear-gradient(90deg, #ff9800, #ffb74d); width: 0%; border-radius: 2px; transition: width 0.3s ease; }
-        @media (max-width: 375px) { .content { margin: -30px 15px 20px 15px; padding: 25px 15px; } .title { font-size: 22px; } .main-text { font-size: 15px; } }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+        
+        .back-button {
+            position: fixed;
+            top: 60px;
+            left: 20px;
+            width: 36px;
+            height: 36px;
+            background: rgba(0,0,0,0.6);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                        url('../../images/birds/species/bird-image-025.png') center/cover;
+            position: relative;
+            margin-top: 0;
+        }
+        
+        .content {
+            background: white;
+            margin: -30px 20px 20px 20px;
+            border-radius: 20px;
+            padding: 30px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            min-height: 80vh;
+        }
+        
+        .title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            line-height: 1.3;
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            border-left: 4px solid #ff9800;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .quote-box::before {
+            content: '"';
+            font-size: 48px;
+            color: #ff9800;
+            position: absolute;
+            top: -5px;
+            left: 15px;
+            font-family: serif;
+            line-height: 1;
+        }
+        
+        .quote-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: #e65100;
+            margin-left: 25px;
+            line-height: 1.4;
+        }
+        
+        .main-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            margin: 20px 0;
+            text-align: justify;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #ff9800;
+            margin: 30px 0 15px 0;
+            border-bottom: 2px solid #ffe0b2;
+            padding-bottom: 8px;
+        }
+        
+        .tip-box {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            border-left: 4px solid #28a745;
+        }
+        
+        .tip-title {
+            font-weight: 600;
+            color: #28a745;
+            margin-bottom: 8px;
+        }
+        
+        .emoji {
+            font-size: 18px;
+            margin: 0 2px;
+        }
+        
+        .progress-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: linear-gradient(to top, rgba(255,255,255,0.95), transparent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 998;
+        }
+        
+        .progress-bar {
+            width: 200px;
+            height: 4px;
+            background: rgba(0,0,0,0.1);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ff9800, #ffb74d);
+            width: 0%;
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+        
+        @media (max-width: 375px) {
+            .content {
+                margin: -30px 15px 20px 15px;
+                padding: 25px 15px;
+            }
+            
+            .title {
+                font-size: 22px;
+            }
+            
+            .main-text {
+                font-size: 15px;
+            }
+        }
     </style>
 </head>
 <body>
-    </div>
-    <button class="back-button" onclick="history.back()">←</button>
+    <!-- 返回按钮 -->
+    <button class="back-button" onclick="history.back()">
+        ←
+    </button>
+    
+    <!-- 英雄图片 -->
     <div class="hero-image"></div>
+    
+    <!-- 主要内容 -->
     <div class="content">
         <h1 class="title">宠物鸟住房与环境</h1>
-        <div class="quote-box"><div class="quote-text">舒适安全的家是鸟儿健康快乐的保障</div></div>
-        <div class="main-text">为宠物鸟创造一个舒适、安全的生活环境是每个鸟主人的重要责任<span class="emoji">🏠</span>。合适的笼子、正确的摆放位置和良好的环境条件都会直接影响鸟儿的身心健康。</div>
-        <div class="section-title">选择合适的鸟笼</div>
-        <div class="main-text">鸟笼的大小应该让鸟儿能够完全展开翅膀而不碰到笼壁<span class="emoji">📏</span>。对于小型鸟类，最小尺寸应为60x40x40厘米，大型鹦鹉则需要更大的空间。</div>
-        <div class="tip-box"><div class="tip-title">📐 笼子选择</div>横向空间比纵向更重要，因为鸟类主要是水平飞行。条形间距应适合鸟的大小，防止头部卡住。</div>
-        <div class="main-text">笼子材质应选择不锈钢或粉末涂层钢材，避免镀锌或含铅材料<span class="emoji">🔒</span>。笼门应足够大，方便鸟儿进出和日常清洁。</div>
-        <div class="section-title">笼内设施配置</div>
-        <div class="main-text">栖木是笼内最重要的设施，应提供不同直径和材质的栖木<span class="emoji">🌳</span>。天然木材栖木有助于爪子健康，避免使用砂纸栖木。</div>
-        <div class="main-text">食物和水容器应放置在容易清洁的位置，避免被粪便污染<span class="emoji">🍽️</span>。玩具能提供精神刺激，但要定期更换以保持新鲜感。</div>
-        <div class="section-title">环境条件控制</div>
-        <div class="main-text">温度应保持在18-24°C之间，避免急剧温度变化<span class="emoji">🌡️</span>。湿度控制在50-60%有助于呼吸道健康和羽毛保养。</div>
-        <div class="main-text">光照对鸟类的生物钟和维生素D合成很重要<span class="emoji">☀️</span>。每天需要10-12小时的自然光或全光谱灯照射。</div>
-        <div class="section-title">安全考虑</div>
-        <div class="main-text">避免将鸟笼放在厨房、吸烟区或使用化学清洁剂的地方<span class="emoji">⚠️</span>。某些植物、蜡烛和空气清新剂对鸟类有毒。</div>
-        <div class="main-text">定期清洁笼子和更换笼底纸，保持环境卫生<span class="emoji">🧽</span>。良好的环境不仅让鸟儿健康，也让您更好地享受与羽毛朋友的时光。</div>
+        <div class="quote-box"><div class="quote-text">舒适安全的家是鸟儿健康快乐的保障
     </div>
-    <div class="progress-container"><div class="progress-bar"><div class="progress-fill"></div></div></div>
     
+    <!-- 进度条 -->
+    <div class="progress-container">
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
+        </div>
+    </div>
 
     <script>
         // 更新时间

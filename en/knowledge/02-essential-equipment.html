@@ -3,336 +3,231 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Essential Bird Watching Equipment - BirdAiSnap</title>
+    <title>Bird Study Equipment and Research Tools - BirdAiSnap</title>
     <style>
-        * {
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
         }
         
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #f5f5f5;
-            color: #333;
-        }
-        
-        .back-button {
-            position: fixed;
-            top: 60px;
-            left: 20px;
-            width: 36px;
-            height: 36px;
-            background: rgba(0,0,0,0.6);
-            border: none;
-            border-radius: 50%;
-            color: white;
-            font-size: 18px;
-            cursor: pointer;
-            z-index: 999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .hero-image {
-            width: 100%;
-            height: 400px;
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
-                        url('../../images/birds/species/bird-image-002.png') center/cover;
-            position: relative;
-            margin-top: 0;
-        }
-        
-        .content {
-            background: white;
-            margin: -30px 20px 20px 20px;
-            border-radius: 20px;
-            padding: 40px 20px 30px 20px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            min-height: 80vh;
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
         
         .title {
-            font-size: 24px;
-            font-weight: 700;
-            color: #1a1a1a;
+            color: #2c3e50;
+            text-align: center;
             margin-bottom: 30px;
-            margin-top: 10px;
-            line-height: 1.3;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
         }
         
         .quote-box {
-            background: linear-gradient(135deg, #e8f5e8, #c8e6c9);
-            border-left: 4px solid #4caf50;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
             padding: 20px;
-            margin: 25px 0;
-            border-radius: 8px;
-            position: relative;
-        }
-        
-        .quote-box::before {
-            content: '"';
-            font-size: 48px;
-            color: #4caf50;
-            position: absolute;
-            top: -5px;
-            left: 15px;
-            font-family: serif;
-            line-height: 1;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
         
         .quote-text {
-            font-size: 18px;
-            font-weight: 600;
-            color: #2e7d32;
-            margin-left: 25px;
-            line-height: 1.4;
-        }
-        
-        .main-text {
-            font-size: 16px;
-            line-height: 1.8;
-            color: #333;
-            margin: 20px 0;
-            text-align: justify;
+            font-size: 1.2em;
+            font-style: italic;
         }
         
         .section-title {
-            font-size: 20px;
-            font-weight: 600;
-            color: #4caf50;
-            margin: 30px 0 15px 0;
-            border-bottom: 2px solid #c8e6c9;
-            padding-bottom: 8px;
+            color: #2c3e50;
+            font-size: 1.5em;
+            margin: 25px 0 15px 0;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+        
+        .main-text {
+            color: #34495e;
+            margin: 15px 0;
+            font-size: 1.1em;
+            text-align: justify;
         }
         
         .tip-box {
-            background: #f8f9fa;
-            border: 1px solid #e9ecef;
-            border-radius: 8px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
             padding: 15px;
+            border-radius: 8px;
             margin: 20px 0;
-            border-left: 4px solid #28a745;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
         }
         
         .tip-title {
-            font-weight: 600;
-            color: #28a745;
+            font-weight: bold;
             margin-bottom: 8px;
-        }
-        
-        .emoji {
-            font-size: 18px;
-            margin: 0 2px;
+            font-size: 1.1em;
         }
         
         .equipment-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
-            margin: 25px 0;
+            margin: 20px 0;
         }
         
         .equipment-card {
-            background: #f8f9fa;
-            border-radius: 12px;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
             padding: 20px;
-            border: 2px solid #e9ecef;
-            transition: transform 0.3s ease;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
         
-        .equipment-card:hover {
-            transform: translateY(-5px);
-            border-color: #4caf50;
-        }
-        
-        .equipment-card h4 {
-            color: #2e7d32;
+        .equipment-title {
+            color: #2c3e50;
+            font-size: 1.3em;
+            font-weight: bold;
             margin-bottom: 10px;
-            font-size: 18px;
         }
         
-        .equipment-card p {
-            color: #666;
+        .equipment-description {
+            color: #34495e;
+            font-size: 1em;
             line-height: 1.5;
-            margin: 0;
         }
         
-        .progress-container {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 60px;
-            background: linear-gradient(to top, rgba(255,255,255,0.95), transparent);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 998;
+        .emoji {
+            font-size: 1.2em;
+            margin: 0 5px;
         }
         
-        .progress-bar {
-            width: 200px;
-            height: 4px;
-            background: rgba(0,0,0,0.1);
-            border-radius: 2px;
-            overflow: hidden;
+        ul {
+            color: #34495e;
+            padding-left: 20px;
         }
         
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #4caf50, #81c784);
-            width: 0%;
-            border-radius: 2px;
-            transition: width 0.3s ease;
+        li {
+            margin: 8px 0;
         }
         
-        @media (max-width: 375px) {
-            .content {
-                margin: -30px 15px 20px 15px;
-                padding: 25px 15px;
-            }
-            
-            .title {
-                font-size: 22px;
-            }
-            
-            .main-text {
-                font-size: 15px;
-            }
-            
-            .equipment-grid {
-                grid-template-columns: 1fr;
-            }
+        .highlight {
+            background: linear-gradient(120deg, #a8edea 0%, #fed6e3 100%);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
-    <!-- Back Button -->
-    <button class="back-button" onclick="history.back()">
-        ←
-    </button>
-    
-    <!-- Hero Image -->
-    <div class="hero-image"></div>
-    
-    <!-- Main Content -->
-    <div class="content">
-        <h1 class="title">🔭 Essential Bird Watching Equipment</h1>
+    <div class="container">
+        <h1 class="title">🔬 Bird Study Equipment and Research Tools</h1>
         
         <div class="quote-box">
             <div class="quote-text">
-                Discover the must-have tools and equipment for successful bird watching adventures
+                Explore the scientific tools and equipment used in ornithological research and professional bird study
             </div>
         </div>
         
         <div class="main-text">
-            Binoculars are the most essential piece of equipment for any bird watcher<span class="emoji">🔍</span>. They bring distant birds into clear view, allowing you to observe details that would be impossible to see with the naked eye. The right pair of binoculars can make the difference between a frustrating experience and a rewarding one.
+            Professional bird study and ornithological research require specialized equipment beyond basic birdwatching gear. These scientific tools enable researchers to conduct detailed studies, collect data, and advance our understanding of avian biology<span class="emoji">🔬</span>. This guide covers the essential equipment used in professional bird research and advanced study.
         </div>
         
-        <div class="section-title">Choosing the Right Binoculars</div>
-        
+        <div class="section-title">Banding and Marking Equipment</div>
         <div class="main-text">
-            When selecting binoculars for bird watching, consider the magnification and objective lens diameter<span class="emoji">🎯</span>. The most popular choice among birders is 8x42 binoculars, which offer a good balance of magnification, field of view, and light-gathering ability.
+            Bird banding is a crucial research technique for tracking individual birds over time. Professional researchers use specialized equipment including numbered metal bands, color bands, and application tools<span class="emoji">🏷️</span>. Modern studies also employ GPS transmitters and radio telemetry devices to track migration patterns and behavior.
         </div>
         
         <div class="equipment-grid">
             <div class="equipment-card">
-                <h4>8x42 Binoculars</h4>
-                <p>Perfect for beginners and experienced birders alike. Offers excellent image quality with manageable weight and size.</p>
+                <div class="equipment-title">🏷️ Banding Equipment</div>
+                <div class="equipment-description">
+                    <strong>Metal Bands:</strong> Numbered aluminum bands for permanent identification<br>
+                    <strong>Color Bands:</strong> Plastic bands for field identification<br>
+                    <strong>Banding Pliers:</strong> Specialized tools for safe band application<br>
+                    <strong>Band Size Guide:</strong> Reference charts for proper band sizing
+                </div>
             </div>
+            
             <div class="equipment-card">
-                <h4>10x42 Binoculars</h4>
-                <p>Higher magnification for distant birds, but requires steadier hands and has a narrower field of view.</p>
-            </div>
-            <div class="equipment-card">
-                <h4>Compact Binoculars</h4>
-                <p>Lightweight and portable, ideal for casual birding and travel. Usually 8x25 or 10x25 configuration.</p>
+                <div class="equipment-title">📡 Tracking Technology</div>
+                <div class="equipment-description">
+                    <strong>GPS Transmitters:</strong> Satellite tracking devices for migration studies<br>
+                    <strong>Radio Transmitters:</strong> VHF transmitters for local tracking<br>
+                    <strong>Geolocators:</strong> Light-based location loggers<br>
+                    <strong>Receiver Equipment:</strong> Antennas and receivers for signal detection
+                </div>
             </div>
         </div>
         
-        <div class="section-title">Field Guides and Reference Materials</div>
-        
+        <div class="section-title">Capture and Handling Equipment</div>
         <div class="main-text">
-            A comprehensive field guide is your companion for identifying the birds you encounter<span class="emoji">📚</span>. Modern field guides include detailed illustrations, range maps, and behavioral descriptions that help you distinguish between similar species.
+            Safe capture of birds for research requires specialized nets and traps designed to minimize stress and injury. Mist nets are the most common capture method, requiring proper setup and constant monitoring<span class="emoji">🕸️</span>. Professional handling techniques and equipment ensure bird safety during research procedures.
         </div>
         
         <div class="tip-box">
-            <div class="tip-title">📱 Digital vs. Physical Guides</div>
-            While traditional printed field guides remain popular, smartphone apps like eBird, Merlin Bird ID, and BirdAiSnap offer interactive features, bird songs, and real-time sighting data.
+            <div class="tip-title">⚠️ Safety Protocol</div>
+            Bird capture and handling requires proper training, permits, and adherence to strict ethical guidelines. Only licensed researchers should use these techniques.
         </div>
         
-        <div class="section-title">Camera Equipment for Bird Photography</div>
-        
+        <div class="section-title">Measurement and Data Collection Tools</div>
         <div class="main-text">
-            While not essential for bird watching, a camera allows you to capture and share your discoveries<span class="emoji">📷</span>. Bird photography requires specific considerations due to the often distant and fast-moving nature of your subjects.
+            Precise measurements are essential for ornithological research. Specialized calipers, rulers, and scales designed for bird research provide accurate morphometric data<span class="emoji">📏</span>. Digital data loggers and field computers streamline data collection and reduce transcription errors.
         </div>
         
         <div class="equipment-grid">
             <div class="equipment-card">
-                <h4>DSLR/Mirrorless + Telephoto</h4>
-                <p>Best image quality and flexibility, but heavier and more expensive. Ideal for serious bird photographers.</p>
+                <div class="equipment-title">📏 Measurement Tools</div>
+                <div class="equipment-description">
+                    <strong>Wing Rulers:</strong> Specialized rulers for wing chord measurement<br>
+                    <strong>Calipers:</strong> Digital calipers for bill and tarsus measurements<br>
+                    <strong>Precision Scales:</strong> Electronic scales accurate to 0.1g<br>
+                    <strong>Fat Score Charts:</strong> Visual guides for body condition assessment
+                </div>
             </div>
+            
             <div class="equipment-card">
-                <h4>Superzoom Compact</h4>
-                <p>Convenient all-in-one solution with impressive zoom ranges. Perfect for casual birders who want photo capability.</p>
+                <div class="equipment-title">💻 Data Recording</div>
+                <div class="equipment-description">
+                    <strong>Field Computers:</strong> Ruggedized tablets for data entry<br>
+                    <strong>Data Loggers:</strong> Automated environmental monitoring devices<br>
+                    <strong>Voice Recorders:</strong> Digital recorders for field notes<br>
+                    <strong>Barcode Scanners:</strong> For efficient band number recording
+                </div>
             </div>
         </div>
         
-        <div class="section-title">Additional Essential Gear</div>
-        
+        <div class="section-title">Nest Monitoring Equipment</div>
         <div class="main-text">
-            Beyond the basics, several additional items can significantly improve your bird watching experience and comfort in the field<span class="emoji">🎒</span>. Proper clothing is crucial for comfortable and successful bird watching.
+            Breeding ecology studies require specialized equipment for monitoring nests without disturbance. Remote cameras, temperature loggers, and extendable mirrors allow researchers to study nesting behavior and success rates<span class="emoji">🥚</span>. Modern technology enables continuous monitoring with minimal human interference.
+        </div>
+        
+        <div class="section-title">Acoustic Research Equipment</div>
+        <div class="main-text">
+            Bird vocalization studies use professional-grade recording equipment and analysis software. Directional microphones, digital recorders, and spectrogram analysis programs enable detailed study of bird communication<span class="emoji">🎵</span>. Automated recording stations can monitor bird activity continuously across large areas.
         </div>
         
         <div class="tip-box">
-            <div class="tip-title">🌟 Essential Accessories</div>
-            Comfortable hiking boots, weather-appropriate clothing in neutral colors, wide-brimmed hat, insect repellent, small backpack, and notebook for recording observations.
+            <div class="tip-title">🔬 Research Applications</div>
+            These tools support various research areas including migration ecology, breeding biology, population dynamics, behavioral studies, and conservation biology.
         </div>
         
-        <div class="section-title">Budget-Friendly Alternatives</div>
+        <div class="section-title">Laboratory Equipment</div>
+        <div class="main-text">
+            Laboratory analysis of bird samples requires specialized equipment for genetic, physiological, and pathological studies. Microscopes, centrifuges, and molecular biology equipment enable detailed analysis of feathers, blood, and tissue samples<span class="emoji">🧪</span>. This equipment supports research in evolution, disease ecology, and conservation genetics.
+        </div>
         
         <div class="main-text">
-            Bird watching doesn't have to be expensive<span class="emoji">💡</span>. Many excellent birding experiences can be had with essential equipment, and there are budget-friendly alternatives for most gear. Begin with an entry-level pair of binoculars in the $100-200 range, a regional field guide, and comfortable outdoor clothing you already own.
-        </div>
-        
-        <div class="main-text">
-            As your interest grows, you can gradually upgrade your equipment<span class="emoji">📈</span>. Consider buying used equipment from reputable dealers, starting with foundational models, using free smartphone apps, and joining local birding groups to try different equipment before purchasing.
+            Professional bird research equipment represents a significant investment and requires proper training for safe and effective use. These tools enable scientists to gather precise data that advances our understanding of avian biology and supports conservation efforts<span class="emoji">🌟</span>. The choice of equipment depends on specific research objectives, target species, and study design requirements.
         </div>
     </div>
-    
-    <!-- Progress Bar -->
-    <div class="progress-container">
-        <div class="progress-bar">
-            <div class="progress-fill"></div>
-        </div>
-    </div>
-
-    <script>
-        // Update time
-        function updateTime() {
-            const now = new Date();
-            const timeString = now.getHours().toString().padStart(2, '0') + ':' + 
-                             now.getMinutes().toString().padStart(2, '0');
-            document.getElementById('current-time').textContent = timeString;
-        }
-        
-        // Simulate reading progress
-        function updateProgress() {
-            const scrolled = window.pageYOffset;
-            const maxHeight = document.body.scrollHeight - window.innerHeight;
-            const progress = Math.min((scrolled / maxHeight) * 100, 100);
-            document.querySelector('.progress-fill').style.width = progress + '%';
-        }
-        
-        // Initialize
-        updateTime();
-        setInterval(updateTime, 60000);
-        
-        window.addEventListener('scroll', updateProgress);
-        updateProgress();
-    </script>
-
 </body>
 </html>

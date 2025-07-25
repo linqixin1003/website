@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vogelbeobachtung für Anfänger - BirdAiSnap</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+        
+        .back-button {
+            position: fixed;
+            top: 60px;
+            left: 20px;
+            width: 36px;
+            height: 36px;
+            background: rgba(0,0,0,0.6);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                        url('../../images/birds/species/bird-image-070.png') center/cover;
+            position: relative;
+            margin-top: 0;
+        }
+        
+        .content {
+            background: white;
+            margin: -30px 20px 20px 20px;
+            border-radius: 20px;
+            padding: 30px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            min-height: 80vh;
+        }
+        
+        .title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            margin-top: 15px;
+            line-height: 1.3;
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, #e8f5e8, #c8e6c9);
+            border-left: 4px solid #2E8B57;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .quote-box::before {
+            content: '"';
+            font-size: 48px;
+            color: #2E8B57;
+            position: absolute;
+            top: -5px;
+            left: 15px;
+            font-family: serif;
+            line-height: 1;
+        }
+        
+        .quote-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1b5e20;
+            margin-left: 25px;
+            line-height: 1.4;
+        }
+        
+        .main-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            margin: 20px 0;
+            text-align: justify;
+        }
+        
+        .main-text ul {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+
+        .main-text li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .main-text li:before {
+            content: "•";
+            position: absolute;
+            left: 8px;
+            color: #2E8B57;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #2E8B57;
+            margin: 30px 0 15px 0;
+            border-bottom: 2px solid #c8e6c9;
+            padding-bottom: 8px;
+        }
+        
+        .tip-box {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid #28a745;
+            box-shadow: 0 2px 6px rgba(40, 167, 69, 0.1);
+        }
+
+        .tip-title {
+            font-weight: 600;
+            color: #28a745;
+            margin-bottom: 12px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tip-box p {
+            margin: 0;
+            line-height: 1.6;
+            color: #495057;
+        }
+        
+        .emergency-box {
+            background: #FFE6E6;
+            border: 2px solid #DC3545;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(220, 53, 69, 0.1);
+        }
+
+        .emergency-box h4 {
+            color: #DC3545;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .emergency-box ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .emergency-box li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 12px;
+            line-height: 1.6;
+            color: #721C24;
+        }
+
+        .emergency-box li:before {
+            content: "•";
+            position: absolute;
+            left: 8px;
+            color: #DC3545;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .emergency-box li:last-child {
+            margin-bottom: 0;
+        }
+        
+        .warning-box {
+            background: #FFF8DC;
+            border: 2px solid #DAA520;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(218, 165, 32, 0.1);
+        }
+
+        .warning-box h4 {
+            color: #B8860B;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .warning-box ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .warning-box li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 12px;
+            line-height: 1.6;
+            color: #8B4513;
+        }
+
+        .warning-box li:before {
+            content: "•";
+            position: absolute;
+            left: 8px;
+            color: #DAA520;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .warning-box li:last-child {
+            margin-bottom: 0;
+        }
+        
+        .first-aid-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .first-aid-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #c8e6c9;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .first-aid-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+        }
+
+        .first-aid-card h4 {
+            color: #2E8B57;
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+        
+        .emoji {
+            font-size: 18px;
+            margin: 0 2px;
+        }
+        
+        @media (max-width: 375px) {
+            .content {
+                margin: -30px 15px 20px 15px;
+                padding: 25px 15px;
+            }
+            
+            .title {
+                font-size: 22px;
+            }
+            
+            .main-text {
+                font-size: 15px;
+            }
+            
+            .first-aid-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Zurück-Taste -->
+    <button class="back-button" onclick="history.back()">
+        ←
+    </button>
+    
+    <!-- Hauptbild -->
+    <div class="hero-image"></div>
+    
+    <!-- Hauptinhalt -->
+    <div class="content">
+        <h1 class="title">Vogel Notfall-Erste Hilfe</h1>
+        
+        <div class="quote-box">
+            <div class="quote-text">
+                Being prepared für emergencies können save Ihr Vogel's Leben - jeder zweite counts
+            </div>
+        </div>
+        
+        <div class="main-text">
+            Vogel emergencies können happen plötzlich und require immediate Aktion. Vögel sind fragile creatures das können deteriorate schnell, making quick recognition und angemessen erste aid crucial für survival <span class="emoji">🚨</span>. dies Leitfaden provides wesentlich Information für handling häufig Vogel emergencies, but remember das professionell veterinary Pflege ist immer der ultimate Ziel.
+        </div>
+        
+        <div class="section-title">Emergency Preparedness</div>
+        
+        <div class="main-text">
+            Being prepared vor an emergency occurs können make der difference between Leben und death für Ihr Vogel. Having supplies ready und knowing war zu do saves precious Zeit <span class="emoji">⏰</span>.
+        </div>
+
+        <div class="main-text">
+            <strong>wesentlich Emergency Kit:</strong><br>
+            • klein towels für restraint und warmth<br>
+            • Heating pad oder heat lamp<br>
+            • klein transport carrier<br>
+            • Styptic powder für bleeding<br>
+            • Saline Lösung für wound cleaning<br>
+            • Emergency contact numbers<br>
+            • Flashlight für examination<br>
+            • klein scissors und tweezers
+        </div>
+
+        <div class="main-text">
+            <strong>wichtig Contact Information:</strong><br>
+            • Ihr avian veterinarian's Nummer<br>
+            • nach-hours emergency clinic<br>
+            • Poison control hotline<br>
+            • Nearest 24-Stunde animal hospital<br>
+            • Backup avian veterinarian<br>
+            • örtlich Vogel rescue Organisation
+        </div>
+
+        <div class="tip-box">
+            <div class="tip-title">📞 Emergency Contacts</div>
+            <p>Keep emergency numbers posted near Ihr Vogel's cage und saved in Ihr phone. Include directions zu emergency clinics.</p>
+        </div>
+        
+        <div class="section-title">Recognizing Emergency Situations</div>
+        
+        <div class="main-text">
+            Vögel instinctively hide signs von illness, so durch der Zeit symptoms sind visible, der Situation may be critical. Learning zu recognize emergency signs helps Sie act schnell <span class="emoji">👁️</span>.
+        </div>
+
+        <div class="emergency-box">
+            <h4>🚨 Immediate Leben-Threatening Emergencies</h4>
+            <ul>
+                <li><strong>Difficulty breathing:</strong> Open-mouth breathing, tail bobbing, gasping</li>
+                <li><strong>Severe bleeding:</strong> Active bleeding von any source</li>
+                <li><strong>Unconsciousness:</strong> Unresponsive, limp, oder collapsed</li>
+                <li><strong>Seizures:</strong> Convulsions, loss von control, falling</li>
+                <li><strong>Severe trauma:</strong> Injuries von attacks, accidents, oder falls</li>
+                <li><strong>Poisoning:</strong> Known ingestion von toxic substances</li>
+                <li><strong>Ei binding:</strong> Straining zu lay Ei für over 4 hours</li>
+            </ul>
+        </div>
+
+        <div class="main-text">
+            <strong>Urgent But Not sofort Leben-Threatening:</strong><br>
+            • Sitting auf cage bottom, unable zu perch<br>
+            • Severe lethargy oder weakness<br>
+            • Vomiting oder regurgitation<br>
+            • Diarrhea oder abnormal droppings<br>
+            • Swollen oder injured limbs<br>
+            • Auge injuries oder discharge<br>
+            • Crop stasis (Nahrung not emptying von crop)
+        </div>
+        
+        <div class="section-title">grundlegend Emergency Response</div>
+        
+        <div class="main-text">
+            Ihr immediate response können stabilize Ihr Vogel until professionell helfen ist available. Stay calm und Arbeit systematically durch diese steps <span class="emoji">🎯</span>.
+        </div>
+
+        <div class="main-text">
+            <strong>Emergency Response Steps:</strong><br>
+            • Assess der Situation schnell but safely<br>
+            • Remove immediate dangers (andere pets, hazards)<br>
+            • bereitstellen warmth und quiet Umgebung<br>
+            • Contact Ihr avian veterinarian sofort<br>
+            • Prepare für transport if advised<br>
+            • Monitor vital signs und Verhalten<br>
+            • Document war happened für der vet
+        </div>
+
+        <div class="main-text">
+            <strong>Creating a sicher Umgebung:</strong><br>
+            • Move Vogel zu quiet, dimly lit Fläche<br>
+            • Maintain Temperatur around 80-85°F (27-29°C)<br>
+            • Minimize handling und stress<br>
+            • Remove Nahrung und Wasser if vomiting<br>
+            • Keep andere pets away<br>
+            • Avoid loud noises oder sudden movements
+        </div>
+        
+        <div class="section-title">spezifische Emergency Situations</div>
+        
+        <div class="first-aid-grid">
+            <div class="erste-aid-card">
+                <h4>🩸 Bleeding</h4>
+                <p><strong>Aktion:</strong> Apply direct pressure mit clean cloth</p>
+                <p><strong>Supplies:</strong> Styptic powder, gauze, towel</p>
+                <p><strong>Warning:</strong> Don't remove embedded objects</p>
+                <p>Control bleeding erste, then seek immediate veterinary Pflege. sogar klein amounts von blood loss sind ernst in Vögel.</p>
+            </div>
+
+            <div class="first-aid-card">
+                <h4>🫁 Breathing Difficulty</h4>
+                <p><strong>Aktion:</strong> bereitstellen warmth, Stress reduzieren</p>
+                <p><strong>Position:</strong> Keep Vogel upright</p>
+                <p><strong>Umgebung:</strong> Fresh air, no aerosols</p>
+                <p>Respiratory emergencies sind critical. Get zu vet sofort while keeping Vogel calm und warm.</p>
+            </div>
+
+            <div class="first-aid-card">
+                <h4>🤕 Trauma/Injuries</h4>
+                <p><strong>Aktion:</strong> Stabilize, don't move unnecessarily</p>
+                <p><strong>Support:</strong> Use towel für gentle restraint</p>
+                <p><strong>Transport:</strong> sicher carrier mit soft bedding</p>
+                <p>Handle minimally. Support injured areas während transport zu prevent further damage.</p>
+            </div>
+
+            <div class="first-aid-card">
+                <h4>☠️ Poisoning</h4>
+                <p><strong>Aktion:</strong> Remove source, don't induce vomiting</p>
+                <p><strong>Information:</strong> Identify der toxin if möglich</p>
+                <p><strong>Contact:</strong> Poison control und vet sofort</p>
+                <p>Zeit ist critical. Bring sample von suspected poison zu vet if sicher zu do so.</p>
+            </div>
+
+            <div class="first-aid-card">
+                <h4>🥚 Ei Binding</h4>
+                <p><strong>Aktion:</strong> bereitstellen warmth und humidity</p>
+                <p><strong>Umgebung:</strong> Quiet, stress-free Fläche</p>
+                <p><strong>Warning:</strong> Don't attempt zu remove Ei</p>
+                <p>Leben-threatening Zustand requiring immediate veterinary intervention. Keep Vogel warm und calm.</p>
+            </div>
+
+            <div class="first-aid-card">
+                <h4>🔥 Burns</h4>
+                <p><strong>Aktion:</strong> Cool mit Zimmer Temperatur Wasser</p>
+                <p><strong>Avoid:</strong> Ice, butter, oder Zuhause remedies</p>
+                <p><strong>Cover:</strong> Clean, damp cloth</p>
+                <p>Cool burns gently, cover mit clean material, und seek immediate veterinary Pflege.</p>
+            </div>
+        </div>
+        
+        <div class="section-title">sicher Restraint Techniques</div>
+        
+        <div class="main-text">
+            richtig restraint ist wesentlich für examination und treatment while minimizing stress und injury risk. Vögel sind fragile und können be easily injured durch improper handling <span class="emoji">🤲</span>.
+        </div>
+
+        <div class="main-text">
+            <strong>Towel Restraint Methode:</strong><br>
+            • Use a klein, soft towel<br>
+            • Ansatz calmly von behind<br>
+            • Gently drape towel over Vogel<br>
+            • Support head und neck vorsichtig<br>
+            • Avoid pressure auf chest/abdomen<br>
+            • Keep restraint Zeit minimal
+        </div>
+
+        <div class="main-text">
+            <strong>sicher Handling Guidelines:</strong><br>
+            • nie grab durch wings, tail, oder legs<br>
+            • Support der body Gewicht richtig<br>
+            • Keep head controlled but not compressed<br>
+            • beobachten für signs von respiratory distress<br>
+            • Release sofort if Vogel struggles excessively<br>
+            • haben someone assist if möglich
+        </div>
+
+        <div class="warning-box">
+            <h4>⚠️ Restraint Warnings</h4>
+            <ul>
+                <li><strong>Chest compression:</strong> können prevent breathing</li>
+                <li><strong>Neck pressure:</strong> können damage delicate structures</li>
+                <li><strong>Excessive force:</strong> können Ursache fractures</li>
+                <li><strong>Prolonged restraint:</strong> Increases stress und risk</li>
+                <li><strong>falsch grip:</strong> können injure wings oder legs</li>
+                <li><strong>Panic response:</strong> können Ursache self-injury</li>
+            </ul>
+        </div>
+        
+        <div class="section-title">Transport zu Veterinary Pflege</div>
+        
+        <div class="main-text">
+            sicher transport ist crucial für getting Ihr Vogel zu professionell Pflege without worsening der Zustand. richtig preparation und Technik können prevent additional trauma <span class="emoji">🚗</span>.
+        </div>
+
+        <div class="main-text">
+            <strong>Transport Preparation:</strong><br>
+            • Use klein, sicher carrier<br>
+            • Line mit soft, non-slip material<br>
+            • Ensure adequate ventilation<br>
+            • bereitstellen warmth (heating pad, blankets)<br>
+            • Keep Umgebung dim und quiet<br>
+            • Bring medical history und emergency kit
+        </div>
+
+        <div class="main-text">
+            <strong>während Transport:</strong><br>
+            • Drive smoothly, avoid sudden movements<br>
+            • Keep carrier Niveau und sicher<br>
+            • Monitor Vogel without disturbing<br>
+            • Maintain warm Temperatur<br>
+            • Call ahead zu alert veterinary staff<br>
+            • haben someone else drive if möglich
+        </div>
+
+        <div class="tip-box">
+            <div class="tip-title">📋 Information zu bereitstellen</div>
+            <p>wann calling der vet, bereitstellen: Vogel's Art, age, symptoms, timeline, any treatments given, und Ihr estimated arrival Zeit.</p>
+        </div>
+        
+        <div class="section-title">war NOT zu Do in Emergencies</div>
+        
+        <div class="main-text">
+            Well-meaning actions können manchmal worsen emergency situations. Knowing war zu avoid ist gerade as wichtig as knowing war zu do <span class="emoji">❌</span>.
+        </div>
+
+        <div class="main-text">
+            <strong>nie Do diese Things:</strong><br>
+            • Give human medications<br>
+            • Force Nahrung oder Wasser<br>
+            • Use hydrogen peroxide auf wounds<br>
+            • Apply ice direkt zu injuries<br>
+            • Attempt surgery oder komplex procedures<br>
+            • Induce vomiting unless spezifisch instructed<br>
+            • Use heating pads without Temperatur control
+        </div>
+
+        <div class="main-text">
+            <strong>Avoid diese häufig Mistakes:</strong><br>
+            • Panicking und making hasty decisions<br>
+            • Handling der Vogel excessively<br>
+            • Using Zuhause remedies without vet guidance<br>
+            • Waiting zu sehen if Zustand improves<br>
+            • Separating bonded pairs unnecessarily<br>
+            • Giving Nahrung zu unconscious Vögel
+        </div>
+        
+        <div class="section-title">Prevention ist Key</div>
+        
+        <div class="main-text">
+            der beste emergency Pflege ist prevention. viele Vogel emergencies können be avoided durch richtig Pflege, Umgebung management, und regelmäßig Gesundheit monitoring <span class="emoji">🛡️</span>.
+        </div>
+
+        <div class="main-text">
+            <strong>Prevention Strategies:</strong><br>
+            • regelmäßig veterinary checkups<br>
+            • Vogel-proof Ihr Zuhause thoroughly<br>
+            • Maintain richtig diet und Ernährung<br>
+            • Monitor für early signs von illness<br>
+            • Keep emergency supplies stocked<br>
+            • lernen Ihr Vogel's normal behaviors<br>
+            • Avoid known hazards und toxins
+        </div>
+
+        <div class="main-text">
+            <strong>häufig Preventable Emergencies:</strong><br>
+            • Teflon poisoning (use Vogel-sicher cookware)<br>
+            • Window strikes (use decals oder screens)<br>
+            • Ceiling fan injuries (turn off wann Vogel ist out)<br>
+            • Drowning (cover Wasser sources)<br>
+            • Electrical cord injuries (cover oder hide cords)<br>
+            • Toxic plant ingestion (remove gefährlich plants)
+        </div>
+
+        <div class="main-text">
+            Remember, dies Leitfaden provides grundlegend emergency Information, but it cannot replace professionell veterinary Pflege. wann in doubt, immer err auf der side von caution und contact Ihr avian veterinarian sofort. Ihr quick thinking und richtig erste aid können save Ihr Vogel's Leben <span class="emoji">✨</span>.
+        </div>
+    </div>
+
+    <script>
+        // Simulate reading progress
+        function updateProgress() {
+            const scrolled = window.pageYOffset;
+            const maxHeight = document.body.scrollHeight - window.innerHeight;
+            const progress = Math.min((scrolled / maxHeight) * 100, 100);
+        }
+        
+        window.addEventListener('scroll', updateProgress);
+        updateProgress();
+    </script>
+
+</body>
+</html>

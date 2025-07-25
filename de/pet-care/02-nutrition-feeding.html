@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vogelbeobachtung für Anfänger - BirdAiSnap</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+        
+        .back-button {
+            position: fixed;
+            top: 60px;
+            left: 20px;
+            width: 36px;
+            height: 36px;
+            background: rgba(0,0,0,0.6);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                        url('../../images/birds/species/bird-image-020.png') center/cover;
+            position: relative;
+            margin-top: 0;
+        }
+        
+        .content {
+            background: white;
+            margin: -30px 20px 20px 20px;
+            border-radius: 20px;
+            padding: 30px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            min-height: 80vh;
+        }
+        
+        .title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            margin-top: 15px;
+            line-height: 1.3;
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, #e8f5e8, #c8e6c9);
+            border-left: 4px solid #2E8B57;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .quote-box::before {
+            content: '"';
+            font-size: 48px;
+            color: #2E8B57;
+            position: absolute;
+            top: -5px;
+            left: 15px;
+            font-family: serif;
+            line-height: 1;
+        }
+        
+        .quote-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1b5e20;
+            margin-left: 25px;
+            line-height: 1.4;
+        }
+        
+        .main-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            margin: 20px 0;
+            text-align: justify;
+        }
+        
+        .main-text ul {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+
+        .main-text li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .main-text li:before {
+            content: "•";
+            position: absolute;
+            left: 8px;
+            color: #2E8B57;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #2E8B57;
+            margin: 30px 0 15px 0;
+            border-bottom: 2px solid #c8e6c9;
+            padding-bottom: 8px;
+        }
+        
+        .tip-box {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid #28a745;
+            box-shadow: 0 2px 6px rgba(40, 167, 69, 0.1);
+        }
+
+        .tip-title {
+            font-weight: 600;
+            color: #28a745;
+            margin-bottom: 12px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tip-box p {
+            margin: 0;
+            line-height: 1.6;
+            color: #495057;
+        }
+        
+        .warning-box {
+            background: #FFF8DC;
+            border: 2px solid #DAA520;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(218, 165, 32, 0.1);
+        }
+
+        .warning-box h4 {
+            color: #B8860B;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .warning-box ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .warning-box li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 12px;
+            line-height: 1.6;
+            color: #8B4513;
+        }
+
+        .warning-box li:before {
+            content: "•";
+            position: absolute;
+            left: 8px;
+            color: #DAA520;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .warning-box li:last-child {
+            margin-bottom: 0;
+        }
+        
+        .food-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .food-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #c8e6c9;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .food-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+        }
+
+        .food-card h4 {
+            color: #2E8B57;
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+        
+        .emoji {
+            font-size: 18px;
+            margin: 0 2px;
+        }
+        
+        @media (max-width: 375px) {
+            .content {
+                margin: -30px 15px 20px 15px;
+                padding: 25px 15px;
+            }
+            
+            .title {
+                font-size: 22px;
+            }
+            
+            .main-text {
+                font-size: 15px;
+            }
+            
+            .food-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Zurück-Taste -->
+    <button class="back-button" onclick="history.back()">
+        ←
+    </button>
+    
+    <!-- Hauptbild -->
+    <div class="hero-image"></div>
+    
+    <!-- Hauptinhalt -->
+    <div class="content">
+        <h1 class="title">Vogel Ernährung und Fütterung</h1>
+        
+        <div class="quote-box">
+            <div class="quote-text">
+                richtig Ernährung ist der foundation von Ihr Vogel's Gesundheit und happiness
+            </div>
+        </div>
+        
+        <div class="main-text">
+            Providing richtig Ernährung ist one von der meiste wichtig aspects von Vogel Pflege. A well-balanced diet not nur keeps Ihr feathered Freund healthy but auch affects their Verhalten, plumage Qualität, und overall lifespan <span class="emoji">🌱</span>. Understanding war zu feed Ihr Vogel und wie zu establish healthy eating habits ist crucial für responsible Haustier ownership.
+        </div>
+        
+        <div class="section-title">Understanding Vogel Ernährung Basics</div>
+        
+        <div class="main-text">
+            Vögel haben einzigartig nutritional requirements das differ bedeutend von andere pets. Their hoch metabolism means they brauchen häufig, nutrient-dense meals throughout der Tag <span class="emoji">⚡</span>. A balanced diet should include proteins, carbohydrates, fats, vitamins, und minerals in der richtig proportions.
+        </div>
+        
+        <div class="main-text">
+            <strong>wesentlich Nutrients für Vögel:</strong><br>
+            • Proteins: 14-20% für meiste Art<br>
+            • Carbohydrates: 65-80% von total diet<br>
+            • Fats: 4-12% depending auf Art<br>
+            • Vitamins: A, D3, E, K, und B-komplex<br>
+            • Minerals: Calcium, phosphorus, iron, zinc
+        </div>
+        
+        <div class="section-title">Types von Vogel Nahrung</div>
+        
+        <div class="food-grid">
+            <div class="Nahrung-card">
+                <h4>🌾 Pellets</h4>
+                <p><strong>beste für:</strong> Daily staple diet</p>
+                <p><strong>Benefits:</strong> Nutritionally vollständig, prevents selective eating</p>
+                <p><strong>Portion:</strong> 75-80% von total diet</p>
+                <p>hoch-Qualität pellets should form der foundation von Ihr Vogel's diet. wählen pellets angemessen für Ihr Vogel's Größe und Art.</p>
+            </div>
+
+            <div class="food-card">
+                <h4>🥬 Fresh Vegetables</h4>
+                <p><strong>beste für:</strong> Vitamins und minerals</p>
+                <p><strong>Benefits:</strong> natürlich nutrients, enrichment</p>
+                <p><strong>Portion:</strong> 15-20% von total diet</p>
+                <p>Dark leafy greens, carrots, broccoli, und bell peppers sind ausgezeichnet choices. Wash thoroughly vor serving.</p>
+            </div>
+
+            <div class="food-card">
+                <h4>🍎 Fresh Fruits</h4>
+                <p><strong>beste für:</strong> Treats und variety</p>
+                <p><strong>Benefits:</strong> natürlich sugars, vitamins</p>
+                <p><strong>Portion:</strong> 5-10% von total diet</p>
+                <p>Apples, berries, und melons make großartig treats. Remove seeds und pits as they können be toxic.</p>
+            </div>
+
+            <div class="food-card">
+                <h4>🌰 Seeds und Nuts</h4>
+                <p><strong>beste für:</strong> gelegentlich treats</p>
+                <p><strong>Benefits:</strong> Healthy fats, enrichment</p>
+                <p><strong>Portion:</strong> 5-10% von total diet</p>
+                <p>Use sparingly as treats. Sunflower seeds und nuts sind hoch in fat und should be limited.</p>
+            </div>
+        </div>
+        
+        <div class="section-title">Fütterung Schedule und Portions</div>
+        
+        <div class="main-text">
+            Establishing a consistent Fütterung routine helps maintain Ihr Vogel's Gesundheit und creates Struktur in their Tag <span class="emoji">⏰</span>. meiste Vögel do well mit two Haupt- meals per Tag, supplemented mit healthy snacks.
+        </div>
+
+        <div class="tip-box">
+            <div class="tip-title">💡 Fütterung Schedule Tip</div>
+            <p>Offer fresh Nahrung in der Morgen und Abend, removing uneaten fresh foods nach 2-4 hours zu prevent spoilage. Keep pellets available throughout der Tag.</p>
+        </div>
+        
+        <div class="main-text">
+            <strong>Daily Fütterung Guidelines:</strong><br>
+            • klein Vögel (budgies, canaries): 1-2 tablespoons von pellets<br>
+            • Medium Vögel (cockatiels, conures): 2-4 tablespoons von pellets<br>
+            • groß Vögel (macaws, cockatoos): 1/4 zu 1/2 cup von pellets<br>
+            • Fresh foods: Adjust portions based auf Vogel Größe und appetite
+        </div>
+        
+        <div class="section-title">Foods zu Avoid</div>
+        
+        <div class="warning-box">
+            <h4>⚠️ Toxic Foods für Vögel</h4>
+            <ul>
+                <li><strong>Avocado:</strong> Contains persin, which ist hoch toxic zu Vögel</li>
+                <li><strong>Chocolate:</strong> Contains theobromine, können Ursache seizures und death</li>
+                <li><strong>Caffeine:</strong> Found in coffee, tea, und soda - können Ursache heart problems</li>
+                <li><strong>Salt:</strong> hoch sodium foods können Ursache kidney damage</li>
+                <li><strong>Fruit pits und seeds:</strong> Apple seeds, cherry pits contain cyanide</li>
+                <li><strong>Onions und garlic:</strong> können Ursache anemia und digestive issues</li>
+                <li><strong>Alcohol:</strong> sogar klein amounts können be fatal</li>
+            </ul>
+        </div>
+        
+        <div class="section-title">Transitioning zu a neu Diet</div>
+        
+        <div class="main-text">
+            If Ihr Vogel ist derzeit auf a seed-nur diet, transitioning zu a healthier pellet-based diet requires patience und persistence <span class="emoji">🔄</span>. Sudden dietary changes können be stressful und potentially gefährlich für Vögel.
+        </div>
+        
+        <div class="main-text">
+            <strong>Transition Steps:</strong><br>
+            • Woche 1-2: Mix 25% pellets mit 75% aktuell Nahrung<br>
+            • Woche 3-4: Increase zu 50% pellets, 50% aktuell Nahrung<br>
+            • Woche 5-6: Use 75% pellets, 25% aktuell Nahrung<br>
+            • Woche 7+: Transition zu 80% pellets, 20% fresh foods<br>
+            • Monitor Gewicht und eating habits throughout der Prozess
+        </div>
+        
+        <div class="section-title">besonders Dietary Considerations</div>
+        
+        <div class="main-text">
+            unterschiedlich Leben stages und Gesundheit conditions may require dietary adjustments. Zucht Vögel, young Vögel, und elderly Vögel haben unterschiedlich nutritional needs <span class="emoji">🔬</span>.
+        </div>
+        
+        <div class="main-text">
+            <strong>besonders Situations:</strong><br>
+            • Zucht Vögel: Increase protein zu 18-22%<br>
+            • Hand-Fütterung babies: Specialized hand-Fütterung formulas<br>
+            • Molting Vögel: Extra protein und vitamins<br>
+            • Sick Vögel: Consult avian veterinarian für spezifische diets<br>
+            • Overweight Vögel: Reduce hoch-fat foods, increase exercise
+        </div>
+        
+        <div class="section-title">Wasser und Hydration</div>
+        
+        <div class="main-text">
+            Fresh, clean Wasser should immer be available zu Ihr Vogel. Change Wasser daily und clean Wasser dishes regelmäßig zu prevent bacterial growth <span class="emoji">💧</span>. einige Vögel prefer shallow dishes, while others mögen Wasser bottles.
+        </div>
+
+        <div class="tip-box">
+            <div class="tip-title">🚰 Wasser Qualität Tip</div>
+            <p>Use filtered oder bottled Wasser if Ihr tap Wasser ist heavily chlorinated. einige Vögel sind sensitive zu chemicals in tap Wasser.</p>
+        </div>
+        
+        <div class="section-title">Supplements und Vitamins</div>
+        
+        <div class="main-text">
+            Vögel auf a balanced pellet diet typischerweise don't brauchen additional supplements. jedoch, Vögel eating hauptsächlich seeds may benefit von vitamin supplements under veterinary guidance <span class="emoji">💊</span>.
+        </div>
+        
+        <div class="main-text">
+            <strong>häufig Supplements:</strong><br>
+            • Vitamin A: für Vögel mit schlecht Feder Qualität<br>
+            • Calcium: für Ei-laying females<br>
+            • Probiotics: für digestive Gesundheit<br>
+            • Omega-3 fatty acids: für skin und Feder Gesundheit<br>
+            • immer consult an avian vet vor adding supplements
+        </div>
+        
+        <div class="section-title">Monitoring Ihr Vogel's Gesundheit</div>
+        
+        <div class="main-text">
+            regelmäßig monitoring von Ihr Vogel's eating habits, Gewicht, und overall Zustand helps detect Gesundheit issues early. Sudden changes in appetite oder eating Verhalten können indicate illness <span class="emoji">📊</span>.
+        </div>
+        
+        <div class="main-text">
+            <strong>Signs von gut Ernährung:</strong><br>
+            • Bright, vibrant plumage<br>
+            • Active und alert Verhalten<br>
+            • Stable Gewicht<br>
+            • regelmäßig, well-formed droppings<br>
+            • gut appetite und eating habits<br>
+            • klar, bright eyes
+        </div>
+        
+        <div class="main-text">
+            Remember, richtig Ernährung ist an investment in Ihr Vogel's lang-term Gesundheit und happiness. Take Zeit zu Forschung Ihr spezifische Vogel Art' needs und consult mit an avian veterinarian zu entwickeln der beste Fütterung Plan <span class="emoji">✨</span>.
+        </div>
+    </div>
+
+    <script>
+        // Simulate reading progress
+        function updateProgress() {
+            const scrolled = window.pageYOffset;
+            const maxHeight = document.body.scrollHeight - window.innerHeight;
+            const progress = Math.min((scrolled / maxHeight) * 100, 100);
+        }
+        
+        window.addEventListener('scroll', updateProgress);
+        updateProgress();
+    </script>
+
+</body>
+</html>

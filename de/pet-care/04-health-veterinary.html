@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vogelbeobachtung für Anfänger - BirdAiSnap</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+        
+        .back-button {
+            position: fixed;
+            top: 60px;
+            left: 20px;
+            width: 36px;
+            height: 36px;
+            background: rgba(0,0,0,0.6);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                        url('../../images/birds/species/bird-image-040.png') center/cover;
+            position: relative;
+            margin-top: 0;
+        }
+        
+        .content {
+            background: white;
+            margin: -30px 20px 20px 20px;
+            border-radius: 20px;
+            padding: 30px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            min-height: 80vh;
+        }
+        
+        .title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            margin-top: 15px;
+            line-height: 1.3;
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, #e8f5e8, #c8e6c9);
+            border-left: 4px solid #2E8B57;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .quote-box::before {
+            content: '"';
+            font-size: 48px;
+            color: #2E8B57;
+            position: absolute;
+            top: -5px;
+            left: 15px;
+            font-family: serif;
+            line-height: 1;
+        }
+        
+        .quote-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1b5e20;
+            margin-left: 25px;
+            line-height: 1.4;
+        }
+        
+        .main-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            margin: 20px 0;
+            text-align: justify;
+        }
+        
+        .main-text ul {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+
+        .main-text li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .main-text li:before {
+            content: "•";
+            position: absolute;
+            left: 8px;
+            color: #2E8B57;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #2E8B57;
+            margin: 30px 0 15px 0;
+            border-bottom: 2px solid #c8e6c9;
+            padding-bottom: 8px;
+        }
+        
+        .tip-box {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid #28a745;
+            box-shadow: 0 2px 6px rgba(40, 167, 69, 0.1);
+        }
+
+        .tip-title {
+            font-weight: 600;
+            color: #28a745;
+            margin-bottom: 12px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tip-box p {
+            margin: 0;
+            line-height: 1.6;
+            color: #495057;
+        }
+        
+        .warning-box {
+            background: #FFF8DC;
+            border: 2px solid #DAA520;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(218, 165, 32, 0.1);
+        }
+
+        .warning-box h4 {
+            color: #B8860B;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .warning-box ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .warning-box li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 12px;
+            line-height: 1.6;
+            color: #8B4513;
+        }
+
+        .warning-box li:before {
+            content: "•";
+            position: absolute;
+            left: 8px;
+            color: #DAA520;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .warning-box li:last-child {
+            margin-bottom: 0;
+        }
+        
+        .emergency-box {
+            background: #FFE6E6;
+            border: 2px solid #DC3545;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(220, 53, 69, 0.1);
+        }
+
+        .emergency-box h4 {
+            color: #DC3545;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .emergency-box ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .emergency-box li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 12px;
+            line-height: 1.6;
+            color: #721C24;
+        }
+
+        .emergency-box li:before {
+            content: "•";
+            position: absolute;
+            left: 8px;
+            color: #DC3545;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .emergency-box li:last-child {
+            margin-bottom: 0;
+        }
+        
+        .health-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .health-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #c8e6c9;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .health-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+        }
+
+        .health-card h4 {
+            color: #2E8B57;
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+        
+        .emoji {
+            font-size: 18px;
+            margin: 0 2px;
+        }
+        
+        @media (max-width: 375px) {
+            .content {
+                margin: -30px 15px 20px 15px;
+                padding: 25px 15px;
+            }
+            
+            .title {
+                font-size: 22px;
+            }
+            
+            .main-text {
+                font-size: 15px;
+            }
+            
+            .health-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Zurück-Taste -->
+    <button class="back-button" onclick="history.back()">
+        ←
+    </button>
+    
+    <!-- Hauptbild -->
+    <div class="hero-image"></div>
+    
+    <!-- Hauptinhalt -->
+    <div class="content">
+        <h1 class="title">Vogel Gesundheit und Tierarzt Pflege</h1>
+        
+        <div class="quote-box">
+            <div class="quote-text">
+                Prevention ist der beste medicine - regelmäßig Pflege keeps Ihr Vogel healthy und happy
+            </div>
+        </div>
+        
+        <div class="main-text">
+            Maintaining Ihr Vogel's Gesundheit requires proactive Pflege, regelmäßig monitoring, und establishing a relationship mit a qualified avian veterinarian. Vögel sind masters bei hiding illness, making preventive Pflege und early detection crucial für their well-being <span class="emoji">🏥</span>. Understanding normal Vogel Verhalten und Gesundheit indicators werden helfen Sie bereitstellen der beste Pflege für Ihr feathered companion.
+        </div>
+        
+        <div class="section-title">Finding an Avian Veterinarian</div>
+        
+        <div class="main-text">
+            Not alle veterinarians sind trained in avian medicine. Vögel haben einzigartig anatomy, physiology, und medical needs das require specialized Wissen <span class="emoji">👨‍⚕️</span>. Finding a qualified avian vet should be Ihr erste priority as a Vogel owner.
+        </div>
+
+        <div class="main-text">
+            <strong>wie zu finden an Avian Vet:</strong><br>
+            • Search der Association von Avian Veterinarians directory<br>
+            • Ask örtlich Vogel clubs und Haustier stores für recommendations<br>
+            • Contact Vogel rescues für referrals<br>
+            • Look für board-certified avian specialists<br>
+            • Besuch der clinic vor Sie brauchen emergency Pflege<br>
+            • Ensure they haben avian-spezifische Ausrüstung
+        </div>
+
+        <div class="tip-box">
+            <div class="tip-title">🔍 Vet Auswahl Tip</div>
+            <p>Schedule a wellness Besuch bald nach getting Ihr Vogel zu establish Pflege und erstellen a baseline Gesundheit record.</p>
+        </div>
+        
+        <div class="section-title">regelmäßig Gesundheit Monitoring</div>
+        
+        <div class="main-text">
+            Daily Beobachtung ist key zu early detection von Gesundheit problems. Vögel instinctively hide signs von illness zu avoid appearing vulnerable zu predators <span class="emoji">👁️</span>. Learning war's normal für Ihr Vogel helps Sie spot changes schnell.
+        </div>
+
+        <div class="health-grid">
+            <div class="Gesundheit-card">
+                <h4>🦅 Physical Appearance</h4>
+                <p><strong>normal:</strong> Bright eyes, clean nostrils, smooth feathers</p>
+                <p><strong>Concerning:</strong> Discharge, ruffled feathers, drooping wings</p>
+                <p>Check daily für changes in posture, Feder Zustand, und overall appearance.</p>
+            </div>
+
+            <div class="health-card">
+                <h4>🎵 Verhalten und Aktivität</h4>
+                <p><strong>normal:</strong> Alert, active, vocalizing regelmäßig</p>
+                <p><strong>Concerning:</strong> Lethargy, sitting auf cage bottom, silence</p>
+                <p>Monitor energy levels, sozial interaction, und normal daily routines.</p>
+            </div>
+
+            <div class="health-card">
+                <h4>🍽️ Eating und Drinking</h4>
+                <p><strong>normal:</strong> regelmäßig appetite, consistent Nahrung/Wasser intake</p>
+                <p><strong>Concerning:</strong> Loss von appetite, excessive drinking</p>
+                <p>Track daily Nahrung consumption und Wasser intake patterns.</p>
+            </div>
+
+            <div class="health-card">
+                <h4>💩 Droppings</h4>
+                <p><strong>normal:</strong> Consistent Farbe, texture, und Häufigkeit</p>
+                <p><strong>Concerning:</strong> Farbe changes, blood, ungewöhnlich consistency</p>
+                <p>Monitor droppings daily as they're ausgezeichnet Gesundheit indicators.</p>
+            </div>
+        </div>
+        
+        <div class="section-title">Preventive Pflege Schedule</div>
+        
+        <div class="main-text">
+            regelmäßig veterinary Pflege helps prevent problems und catches issues early wann they're meiste treatable <span class="emoji">📅</span>. Establishing a preventive Pflege routine ist wesentlich für lang-term Gesundheit.
+        </div>
+
+        <div class="main-text">
+            <strong>Recommended Vet Besuch Schedule:</strong><br>
+            • Initial Prüfung within 48 hours von acquisition<br>
+            • Annual wellness exams für healthy erwachsen Vögel<br>
+            • Semi-annual exams für Vögel over 5 years alt<br>
+            • Immediate visits für any concerning symptoms<br>
+            • Pre-Zucht exams if planning zu breed<br>
+            • Post-illness follow-up visits as recommended
+        </div>
+
+        <div class="main-text">
+            <strong>typisch Wellness Prüfung Includes:</strong><br>
+            • Physical examination und Gewicht check<br>
+            • Blood Arbeit (vollständig blood count, chemistry panel)<br>
+            • Fecal examination für parasites<br>
+            • Crop examination (if applicable)<br>
+            • Schnabel und nail trimming if needed<br>
+            • Vaccination discussion (if applicable)
+        </div>
+        
+        <div class="section-title">häufig Gesundheit Issues</div>
+        
+        <div class="main-text">
+            Understanding häufig Vogel Gesundheit problems helps Sie recognize symptoms early und seek angemessen treatment <span class="emoji">🩺</span>. viele conditions sind preventable mit richtig Pflege.
+        </div>
+
+        <div class="main-text">
+            <strong>Respiratory Issues:</strong><br>
+            • Symptoms: Tail bobbing, open-mouth breathing, discharge<br>
+            • Causes: schlecht air Qualität, infections, stress<br>
+            • Prevention: Clean Umgebung, avoid toxins<br>
+            • Treatment: Immediate veterinary Pflege required
+        </div>
+
+        <div class="main-text">
+            <strong>Digestive Problems:</strong><br>
+            • Symptoms: Vomiting, diarrhea, crop stasis<br>
+            • Causes: schlecht diet, infections, foreign objects<br>
+            • Prevention: richtig Ernährung, clean Nahrung/Wasser<br>
+            • Treatment: Veterinary diagnosis und treatment
+        </div>
+
+        <div class="main-text">
+            <strong>Feder Problems:</strong><br>
+            • Symptoms: Excessive molting, bald patches, damaged feathers<br>
+            • Causes: schlecht Ernährung, stress, parasites, disease<br>
+            • Prevention: Balanced diet, stress reduction<br>
+            • Treatment: Address underlying causes
+        </div>
+
+        <div class="main-text">
+            <strong>Behavioral Issues:</strong><br>
+            • Symptoms: Feder plucking, aggression, screaming<br>
+            • Causes: Boredom, stress, hormonal changes<br>
+            • Prevention: Enrichment, consistent routine<br>
+            • Treatment: Environmental und behavioral modifications
+        </div>
+        
+        <div class="section-title">Emergency Situations</div>
+        
+        <div class="emergency-box">
+            <h4>🚨 Immediate Emergency Signs</h4>
+            <ul>
+                <li><strong>Difficulty breathing:</strong> Open-mouth breathing, tail bobbing</li>
+                <li><strong>Bleeding:</strong> Any visible blood von any source</li>
+                <li><strong>Trauma:</strong> Injuries von accidents oder attacks</li>
+                <li><strong>Seizures:</strong> Convulsions oder loss von consciousness</li>
+                <li><strong>Inability zu perch:</strong> Sitting auf cage bottom, weakness</li>
+                <li><strong>Severe lethargy:</strong> Unresponsive oder kaum moving</li>
+                <li><strong>Crop stasis:</strong> Nahrung remaining in crop für hours</li>
+            </ul>
+        </div>
+
+        <div class="main-text">
+            <strong>Notfall-Erste Hilfe:</strong><br>
+            • Keep der Vogel warm und quiet<br>
+            • Stop any bleeding mit direct pressure<br>
+            • Remove andere pets von der Fläche<br>
+            • Contact Ihr avian vet sofort<br>
+            • Transport in a sicher, ventilated carrier<br>
+            • Bring a sample von kürzlich droppings if möglich
+        </div>
+
+        <div class="tip-box">
+            <div class="tip-title">📞 Emergency Preparedness</div>
+            <p>Keep Ihr avian vet's emergency contact Information easily accessible, und know der Standort von der nearest 24-Stunde animal hospital das treats Vögel.</p>
+        </div>
+        
+        <div class="section-title">Medication und Treatment</div>
+        
+        <div class="main-text">
+            Administering medication zu Vögel requires besonders techniques und precautions. nie give human medications zu Vögel without veterinary guidance <span class="emoji">💊</span>.
+        </div>
+
+        <div class="main-text">
+            <strong>Medication Administration Tips:</strong><br>
+            • Follow dosing instructions genau<br>
+            • Use richtig restraint techniques<br>
+            • Give medications bei consistent times<br>
+            • vollständig der full course von treatment<br>
+            • Monitor für side effects oder reactions<br>
+            • Store medications richtig
+        </div>
+
+        <div class="warning-box">
+            <h4>⚠️ nie Give Vögel</h4>
+            <ul>
+                <li><strong>Aspirin oder ibuprofen:</strong> Toxic zu Vögel</li>
+                <li><strong>Acetaminophen:</strong> können Ursache liver damage</li>
+                <li><strong>Chocolate oder caffeine:</strong> hoch toxic</li>
+                <li><strong>Avocado:</strong> Contains persin, deadly zu Vögel</li>
+                <li><strong>Human cold medications:</strong> können be fatal</li>
+                <li><strong>Topical ointments:</strong> können damage feathers und skin</li>
+            </ul>
+        </div>
+        
+        <div class="section-title">Quarantine Procedures</div>
+        
+        <div class="main-text">
+            If Sie haben multiple Vögel, quarantine procedures sind wesentlich wann introducing neu Vögel oder dealing mit illness <span class="emoji">🏠</span>. richtig quarantine prevents disease spread.
+        </div>
+
+        <div class="main-text">
+            <strong>Quarantine Guidelines:</strong><br>
+            • Isolate neu Vögel für 30-45 days minimum<br>
+            • Use separate Zimmer mit unterschiedlich air circulation<br>
+            • Wash hands between handling unterschiedlich Vögel<br>
+            • Use separate Nahrung/Wasser dishes und cleaning supplies<br>
+            • Monitor quarantined Vögel closely<br>
+            • Veterinary clearance vor ending quarantine
+        </div>
+        
+        <div class="section-title">Altenvogelpflege</div>
+        
+        <div class="main-text">
+            Older Vögel require besonders attention und mehr häufig monitoring. Age-related changes können affect their Gesundheit und Verhalten <span class="emoji">👴</span>.
+        </div>
+
+        <div class="main-text">
+            <strong>Senior Vogel Considerations:</strong><br>
+            • mehr häufig veterinary exams<br>
+            • Easier access zu Nahrung und Wasser<br>
+            • Softer perches für arthritic feet<br>
+            • Warmer Umgebung preferences<br>
+            • Potential dietary modifications<br>
+            • Increased monitoring für age-related diseases
+        </div>
+
+        <div class="main-text">
+            Remember, Ihr Vogel depends auf Sie zu recognize wann something isn't richtig. Trust Ihr instincts - if Ihr Vogel seems "off," don't hesitate zu contact Ihr avian veterinarian. Early intervention oft makes der difference between a Neben- Problem und a ernst Gesundheit Problem <span class="emoji">✨</span>.
+        </div>
+    </div>
+
+    <script>
+        // Simulate reading progress
+        function updateProgress() {
+            const scrolled = window.pageYOffset;
+            const maxHeight = document.body.scrollHeight - window.innerHeight;
+            const progress = Math.min((scrolled / maxHeight) * 100, 100);
+        }
+        
+        window.addEventListener('scroll', updateProgress);
+        updateProgress();
+    </script>
+
+</body>
+</html>

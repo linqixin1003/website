@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>所有文章链接 - BirdAiSnap (581篇文章)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .stat-label {
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        .language-section {
+            background: white;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .language-header {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 20px;
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+        
+        .category-group {
+            padding: 20px;
+        }
+        
+        .category-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eee;
+        }
+        
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .article-link {
+            display: block;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s ease;
+            border-left: 4px solid #667eea;
+        }
+        
+        .article-link:hover {
+            background: #e9ecef;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .article-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .article-path {
+            font-size: 0.9em;
+            color: #666;
+            font-family: monospace;
+        }
+        
+        .search-box {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #eee;
+            border-radius: 8px;
+            font-size: 1.1em;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+        
+        .search-input:focus {
+            border-color: #667eea;
+        }
+        
+        .server-info {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .server-info strong {
+            color: #0c5460;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🐦 BirdAiSnap 所有文章链接</h1>
+            <p>探索鸟类世界的完整知识库 - 581篇精彩文章</p>
+        </div>
+        
+        <div class="server-info">
+            <strong>🌐 本地服务器已启动:</strong> <a href="http://localhost:8000" target="_blank">http://localhost:8000</a>
+            <br>点击下方任意链接即可在新标签页中打开对应文章
+        </div>
+        
+        <div class="search-box">
+            <input type="text" class="search-input" placeholder="🔍 搜索文章标题或路径..." id="searchInput">
+        </div>
+        
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-number">581</div>
+                <div class="stat-label">总文章数</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">10</div>
+                <div class="stat-label">支持语言</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">4</div>
+                <div class="stat-label">主要分类</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">56</div>
+                <div class="stat-label">每语言文章数</div>
+            </div>
+        </div>
+        
+        <div id="articlesContainer">
+            <!-- 文章链接将通过JavaScript动态生成 -->
+        </div>
+    </div>
+    
+    <script>
+        // 文章数据结构
+        const articles = {
+            'en': {
+                name: '🇺🇸 English (英语)',
+                categories: {
+                    'birdwatching': '🔭 观鸟指南',
+                    'knowledge': '📚 鸟类知识',
+                    'pet-care': '🏠 宠物护理',
+                    'ecology': '🌿 生态学',
+                    'scientific-wonders': '🔬 科学奇迹'
+                }
+            },
+            'de': {
+                name: '🇩🇪 Deutsch (德语)',
+                categories: {
+                    'birdwatching': '🔭 Vogelbeobachtung',
+                    'knowledge': '📚 Vogelwissen',
+                    'pet-care': '🏠 Haustierpflege',
+                    'ecology': '🌿 Ökologie',
+                    'scientific-wonders': '🔬 Wissenschaftliche Wunder'
+                }
+            },
+            'pt': {
+                name: '🇵🇹 Português (葡萄牙语)',
+                categories: {
+                    'birdwatching': '🔭 Observação de Aves',
+                    'knowledge': '📚 Conhecimento sobre Aves',
+                    'pet-care': '🏠 Cuidados com Animais',
+                    'ecology': '🌿 Ecologia',
+                    'scientific-wonders': '🔬 Maravilhas Científicas'
+                }
+            },
+            'ko': {
+                name: '🇰🇷 한국어 (韩语)',
+                categories: {
+                    'birdwatching': '🔭 조류 관찰',
+                    'knowledge': '📚 조류 지식',
+                    'pet-care': '🏠 반려동물 관리',
+                    'ecology': '🌿 생태학',
+                    'scientific-wonders': '🔬 과학의 경이'
+                }
+            },
+            'ja': {
+                name: '🇯🇵 日本語 (日语)',
+                categories: {
+                    'birdwatching': '🔭 バードウォッチング',
+                    'knowledge': '📚 鳥類知識',
+                    'pet-care': '🏠 ペットケア',
+                    'ecology': '🌿 生態学',
+                    'scientific-wonders': '🔬 科学の驚異'
+                }
+            },
+            'es': {
+                name: '🇪🇸 Español (西班牙语)',
+                categories: {
+                    'birdwatching': '🔭 Observación de Aves',
+                    'knowledge': '📚 Conocimiento de Aves',
+                    'pet-care': '🏠 Cuidado de Mascotas',
+                    'ecology': '🌿 Ecología',
+                    'scientific-wonders': '🔬 Maravillas Científicas'
+                }
+            },
+            'fr': {
+                name: '🇫🇷 Français (法语)',
+                categories: {
+                    'birdwatching': '🔭 Observation des Oiseaux',
+                    'knowledge': '📚 Connaissance des Oiseaux',
+                    'pet-care': '🏠 Soins aux Animaux',
+                    'ecology': '🌿 Écologie',
+                    'scientific-wonders': '🔬 Merveilles Scientifiques'
+                }
+            },
+            'it': {
+                name: '🇮🇹 Italiano (意大利语)',
+                categories: {
+                    'birdwatching': '🔭 Birdwatching',
+                    'knowledge': '📚 Conoscenza degli Uccelli',
+                    'pet-care': '🏠 Cura degli Animali',
+                    'ecology': '🌿 Ecologia',
+                    'scientific-wonders': '🔬 Meraviglie Scientifiche'
+                }
+            },
+            'ru': {
+                name: '🇷🇺 Русский (俄语)',
+                categories: {
+                    'birdwatching': '🔭 Наблюдение за Птицами',
+                    'knowledge': '📚 Знания о Птицах',
+                    'pet-care': '🏠 Уход за Животными',
+                    'ecology': '🌿 Экология',
+                    'scientific-wonders': '🔬 Научные Чудеса'
+                }
+            },
+            'zh': {
+                name: '🇨🇳 中文 (中文)',
+                categories: {
+                    'birdwatching': '🔭 观鸟指南',
+                    'knowledge': '📚 鸟类知识',
+                    'pet-care': '🏠 宠物护理',
+                    'ecology': '🌿 生态学',
+                    'scientific-wonders': '🔬 科学奇迹'
+                }
+            }
+        };
+        
+        // 生成文章标题
+        function generateArticleTitle(filename) {
+            const titles = {
+                '01-getting-started': '入门指南',
+                '02-essential-equipment': '必备设备',
+                '03-identification-techniques': '识别技巧',
+                '04-best-locations': '最佳地点',
+                '05-seasonal-guide': '季节指南',
+                '06-photography-tips': '摄影技巧',
+                '07-behavior-observation': '行为观察',
+                '08-song-identification': '声音识别',
+                '09-journal-keeping': '日志记录',
+                '10-ethics-conservation': '伦理保护',
+                '01-beginners-guide': '初学者指南',
+                '01-choosing-right-bird': '选择合适的鸟',
+                '02-nutrition-feeding': '营养喂养',
+                '03-housing-environment': '住房环境',
+                '04-health-veterinary': '健康兽医',
+                '05-training-behavior': '训练行为',
+                '06-breeding-reproduction': '繁殖生育',
+                '07-emergency-first-aid': '紧急急救',
+                '08-seasonal-care': '季节护理',
+                '09-enrichment-activities': '丰富活动',
+                '09-senior-bird-care': '老年鸟护理',
+                '10-species-profiles': '物种档案',
+                '10-senior-bird-care': '老年鸟护理',
+                '01-habitat-ecosystems': '栖息地生态系统',
+                '02-food-webs-chains': '食物网链',
+                '03-migration-patterns': '迁徙模式',
+                '04-breeding-ecology': '繁殖生态学',
+                '05-climate-change-impact': '气候变化影响',
+                '06-urban-ecology': '城市生态学',
+                '07-conservation-biology': '保护生物学',
+                '08-island-biogeography': '岛屿生物地理学',
+                '09-pollination-seed-dispersal': '授粉种子传播',
+                '10-community-dynamics': '群落动态',
+                '01-bird-flight-mechanics': '鸟类飞行力学',
+                '02-magnetic-navigation': '磁导航',
+                '03-hummingbird-mechanics': '蜂鸟力学',
+                '04-bird-intelligence': '鸟类智能',
+                '05-feather-structure': '羽毛结构',
+                '06-bird-vision': '鸟类视觉',
+                '07-egg-development': '蛋发育',
+                '08-bird-communication': '鸟类交流',
+                '09-migration-physiology': '迁徙生理学',
+                '10-biomechanics': '生物力学'
+            };
+            
+            const baseName = filename.replace('.html', '');
+            return titles[baseName] || baseName;
+        }
+        
+        // 生成所有文章链接
+        function generateArticleLinks() {
+            const container = document.getElementById('articlesContainer');
+            
+            Object.keys(articles).forEach(lang => {
+                const langData = articles[lang];
+                const langSection = document.createElement('div');
+                langSection.className = 'language-section';
+                langSection.innerHTML = `<div class="language-header">${langData.name}</div>`;
+                
+                const categoryContainer = document.createElement('div');
+                categoryContainer.className = 'category-group';
+                
+                Object.keys(langData.categories).forEach(category => {
+                    const categoryTitle = document.createElement('div');
+                    categoryTitle.className = 'category-title';
+                    categoryTitle.textContent = langData.categories[category];
+                    
+                    const articlesGrid = document.createElement('div');
+                    articlesGrid.className = 'articles-grid';
+                    
+                    // 生成该分类下的文章链接
+                    for (let i = 1; i <= 10; i++) {
+                        const filename = `${i.toString().padStart(2, '0')}-${getArticleFilename(category, i)}.html`;
+                        const articlePath = `${lang}/${category}/${filename}`;
+                        const articleTitle = generateArticleTitle(filename);
+                        
+                        const articleLink = document.createElement('a');
+                        articleLink.className = 'article-link';
+                        articleLink.href = `http://localhost:8000/${articlePath}`;
+                        articleLink.target = '_blank';
+                        articleLink.innerHTML = `
+                            <div class="article-title">${articleTitle}</div>
+                            <div class="article-path">${articlePath}</div>
+                        `;
+                        
+                        articlesGrid.appendChild(articleLink);
+                    }
+                    
+                    categoryContainer.appendChild(categoryTitle);
+                    categoryContainer.appendChild(articlesGrid);
+                });
+                
+                langSection.appendChild(categoryContainer);
+                container.appendChild(langSection);
+            });
+            
+            // 添加主页和其他页面
+            const otherSection = document.createElement('div');
+            otherSection.className = 'language-section';
+            otherSection.innerHTML = `<div class="language-header">🏠 主要页面</div>`;
+            
+            const otherContainer = document.createElement('div');
+            otherContainer.className = 'category-group';
+            
+            const otherGrid = document.createElement('div');
+            otherGrid.className = 'articles-grid';
+            
+            const mainPages = [
+                { path: 'index.html', title: '主页' },
+                { path: 'knowledge.html', title: '知识中心' },
+                { path: 'ecology.html', title: '生态学' },
+                { path: 'pet-care.html', title: '宠物护理' },
+                { path: 'article-links.html', title: '文章链接' },
+                { path: 'ecology-articles.html', title: '生态文章' }
+            ];
+            
+            mainPages.forEach(page => {
+                const articleLink = document.createElement('a');
+                articleLink.className = 'article-link';
+                articleLink.href = `http://localhost:8000/${page.path}`;
+                articleLink.target = '_blank';
+                articleLink.innerHTML = `
+                    <div class="article-title">${page.title}</div>
+                    <div class="article-path">${page.path}</div>
+                `;
+                otherGrid.appendChild(articleLink);
+            });
+            
+            otherContainer.appendChild(otherGrid);
+            otherSection.appendChild(otherContainer);
+            container.appendChild(otherSection);
+        }
+        
+        // 获取文章文件名
+        function getArticleFilename(category, index) {
+            const filenames = {
+                'birdwatching': [
+                    'getting-started', 'essential-equipment', 'identification-techniques', 
+                    'best-locations', 'seasonal-guide', 'photography-tips', 
+                    'behavior-observation', 'song-identification', 'ethics-conservation', 'journal-keeping'
+                ],
+                'knowledge': [
+                    'beginners-guide', 'essential-equipment', 'identification-techniques',
+                    'best-locations', 'behavior-observation', 'song-identification',
+                    'photography-tips', 'seasonal-guide', 'journal-keeping', 'ethics-conservation'
+                ],
+                'pet-care': [
+                    'choosing-right-bird', 'nutrition-feeding', 'housing-environment',
+                    'health-veterinary', 'training-behavior', 'breeding-reproduction',
+                    'emergency-first-aid', 'seasonal-care', 'enrichment-activities', 'species-profiles'
+                ],
+                'ecology': [
+                    'habitat-ecosystems', 'food-webs-chains', 'migration-patterns',
+                    'breeding-ecology', 'climate-change-impact', 'urban-ecology',
+                    'conservation-biology', 'island-biogeography', 'pollination-seed-dispersal', 'community-dynamics'
+                ],
+                'scientific-wonders': [
+                    'bird-flight-mechanics', 'magnetic-navigation', 'hummingbird-mechanics',
+                    'bird-intelligence', 'feather-structure', 'bird-vision',
+                    'egg-development', 'bird-communication', 'migration-physiology', 'biomechanics'
+                ]
+            };
+            
+            return filenames[category][index - 1];
+        }
+        
+        // 搜索功能
+        function setupSearch() {
+            const searchInput = document.getElementById('searchInput');
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                const articleLinks = document.querySelectorAll('.article-link');
+                
+                articleLinks.forEach(link => {
+                    const title = link.querySelector('.article-title').textContent.toLowerCase();
+                    const path = link.querySelector('.article-path').textContent.toLowerCase();
+                    
+                    if (title.includes(searchTerm) || path.includes(searchTerm)) {
+                        link.style.display = 'block';
+                    } else {
+                        link.style.display = 'none';
+                    }
+                });
+            });
+        }
+        
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            generateArticleLinks();
+            setupSearch();
+        });
+    </script>
+</body>
+</html>

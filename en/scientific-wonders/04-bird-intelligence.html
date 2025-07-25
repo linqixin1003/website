@@ -5,51 +5,266 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bird Intelligence and Cognitive Abilities - BirdAiSnap</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f5; color: #333; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         
-        .back-button { position: fixed; top: 60px; left: 20px; width: 36px; height: 36px; background: rgba(0,0,0,0.6); border: none; border-radius: 50%; color: white; font-size: 18px; cursor: pointer; z-index: 999; display: flex; align-items: center; justify-content: center; }
-        .hero-image { width: 100%; height: 400px; background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('../../images/birds/species/bird-image-019.png') center/cover; position: relative; margin-top: 0; }
-        .content { background: white; margin: -30px 20px 20px 20px; border-radius: 20px; padding: 40px 20px 30px 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); min-height: 80vh; }
-        .title { font-size: 24px; font-weight: 700; color: #1a1a1a; margin-bottom: 30px; margin-top: 10px; line-height: 1.3; }
-        .quote-box { background: linear-gradient(135deg, #e3f2fd, #bbdefb); border-left: 4px solid #2196f3; padding: 20px; margin: 25px 0; border-radius: 8px; position: relative; }
-        .quote-box::before { content: '"'; font-size: 48px; color: #2196f3; position: absolute; top: -5px; left: 15px; font-family: serif; line-height: 1; }
-        .quote-text { font-size: 18px; font-weight: 600; color: #1565c0; margin-left: 25px; line-height: 1.4; }
-        .main-text { font-size: 16px; line-height: 1.8; color: #333; margin: 20px 0; text-align: justify; }
-        .section-title { font-size: 20px; font-weight: 600; color: #2196f3; margin: 30px 0 15px 0; border-bottom: 2px solid #bbdefb; padding-bottom: 8px; }
-        .tip-box { background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px; padding: 15px; margin: 20px 0; border-left: 4px solid #28a745; }
-        .tip-title { font-weight: 600; color: #28a745; margin-bottom: 8px; }
-        .emoji { font-size: 18px; margin: 0 2px; }
-        .progress-container { position: fixed; bottom: 0; left: 0; right: 0; height: 60px; background: linear-gradient(to top, rgba(255,255,255,0.95), transparent); display: flex; align-items: center; justify-content: center; z-index: 998; }
-        .progress-bar { width: 200px; height: 4px; background: rgba(0,0,0,0.1); border-radius: 2px; overflow: hidden; }
-        .progress-fill { height: 100%; background: linear-gradient(90deg, #2196f3, #64b5f6); width: 0%; border-radius: 2px; transition: width 0.3s ease; }
-        @media (max-width: 375px) { .content { margin: -30px 15px 20px 15px; padding: 25px 15px; } .title { font-size: 22px; } .main-text { font-size: 15px; } }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+        
+        .back-button {
+            position: fixed;
+            top: 60px;
+            left: 20px;
+            width: 36px;
+            height: 36px;
+            background: rgba(0,0,0,0.6);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                        url('../../images/birds/species/bird-image-019.png') center/cover;
+            position: relative;
+            margin-top: 0;
+        }
+        
+        .content {
+            background: white;
+            margin: -30px 20px 20px 20px;
+            border-radius: 20px;
+            padding: 30px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            min-height: 80vh;
+        }
+        
+        .title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            margin-top: 15px;
+            line-height: 1.3;
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            border-left: 4px solid #2196f3;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .quote-box::before {
+            content: '"';
+            font-size: 48px;
+            color: #2196f3;
+            position: absolute;
+            top: -5px;
+            left: 15px;
+            font-family: serif;
+            line-height: 1;
+        }
+        
+        .quote-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1565c0;
+            margin-left: 25px;
+            line-height: 1.4;
+        }
+        
+        .main-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            margin: 20px 0;
+            text-align: justify;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #2196f3;
+            margin: 30px 0 15px 0;
+            border-bottom: 2px solid #bbdefb;
+            padding-bottom: 8px;
+        }
+        
+        .tip-box {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            border-left: 4px solid #28a745;
+        }
+        
+        .tip-title {
+            font-weight: 600;
+            color: #28a745;
+            margin-bottom: 8px;
+        }
+        
+        .emoji {
+            font-size: 18px;
+            margin: 0 2px;
+        }
+        
+        .progress-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: linear-gradient(to top, rgba(255,255,255,0.95), transparent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 998;
+        }
+        
+        .progress-bar {
+            width: 200px;
+            height: 4px;
+            background: rgba(0,0,0,0.1);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #2196f3, #64b5f6);
+            width: 0%;
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+        
+        @media (max-width: 375px) {
+            .content {
+                margin: -30px 15px 20px 15px;
+                padding: 25px 15px;
+            }
+            
+            .title {
+                font-size: 22px;
+            }
+            
+            .main-text {
+                font-size: 15px;
+            }
+        }
     </style>
 </head>
 <body>
-    </div>
-    <button class="back-button" onclick="history.back()">←</button>
+    <!-- Back Button -->
+    <button class="back-button" onclick="history.back()">
+        ←
+    </button>
+    
+    <!-- Hero Image -->
     <div class="hero-image"></div>
+    
+    <!-- Main Content -->
     <div class="content">
         <h1 class="title">Bird Intelligence and Cognitive Abilities</h1>
-        <div class="quote-box"><div class="quote-text">Exploring the Hidden Mysteries of Intelligence in Bird Brains</div></div>
-        <div class="main-text">For a long time, the term "bird brain" was used to describe stupidity, but modern scientific research has completely overturned this prejudice. Birds demonstrate astonishing wisdom and cognitive abilities, in some aspects even surpassing many mammals<span class="emoji">🧠</span>.</div>
-        <div class="section-title">Tool-Using Geniuses</div>
-        <div class="main-text">Crows and magpies are experts at using tools, capable of creating and using various tools to obtain food<span class="emoji">🔧</span>. New Caledonian crows can even bend wire to make hooks, demonstrating amazing creativity and problem-solving abilities.</div>
-        <div class="tip-box"><div class="tip-title">🔬 Research Finding</div>Experiments show that certain birds can understand cause-and-effect relationships and choose the most appropriate tools for different situations.</div>
-        <div class="main-text">The language learning ability of parrots is even more astonishing. African Grey Parrots not only mimic human language but also understand the meaning of vocabulary and engage in simple conversations<span class="emoji">🦜</span>.</div>
-        <div class="section-title">Memory and Navigation Abilities</div>
-        <div class="main-text">Birds have exceptional spatial memory abilities. Jays can remember thousands of food caching locations and accurately find them months later<span class="emoji">🗺️</span>. This memory capability is crucial for their survival.</div>
-        <div class="main-text">The navigation ability of migratory birds demonstrates complex cognitive processing. They can integrate multiple information sources, including magnetic fields, constellations, landmarks, etc., for precise long-distance navigation<span class="emoji">🧭</span>.</div>
-        <div class="section-title">Social Cognition and Emotions</div>
-        <div class="main-text">Many birds have complex social structures and emotional expressions. They can recognize individuals, remember social relationships, and even demonstrate empathy and cooperative behaviors<span class="emoji">❤️</span>.</div>
-        <div class="main-text">Research has found that although bird brains have different structures from mammals, they are no less efficient in information processing, providing us with a new perspective for understanding the nature of intelligence<span class="emoji">🌟</span>.</div>
+        
+        <div class="quote-box">
+            <div class="quote-text">
+                Exploring the remarkable mysteries of intelligence in avian minds
+            </div>
+        </div>
+        
+        <div class="main-text">
+            For centuries, the term "bird brain" was synonymous with stupidity, but modern scientific research has completely overturned this misconception. Birds demonstrate astonishing cognitive abilities that, in some aspects, even surpass those of many mammals<span class="emoji">🧠</span>.
+        </div>
+        
+        <div class="section-title">Tool-Using Mastery</div>
+        
+        <div class="main-text">
+            Corvids are among nature's most accomplished tool users, capable of creating and utilizing sophisticated implements to obtain food<span class="emoji">🔧</span>. New Caledonian crows can bend wire into hooks and craft leaf tools with remarkable precision, demonstrating extraordinary creativity and problem-solving capabilities.
+        </div>
+        
+        <div class="tip-box">
+            <div class="tip-title">🔬 Research Finding</div>
+            Experiments reveal that certain birds can understand cause-and-effect relationships and select the most appropriate tools for different situations, showing advanced planning abilities.
+        </div>
+        
+        <div class="main-text">
+            The linguistic capabilities of parrots are equally astounding. African Grey Parrots not only mimic human speech but also comprehend vocabulary meanings and engage in meaningful conversations<span class="emoji">🦜</span>. They can express desires, answer questions, and even demonstrate humor.
+        </div>
+        
+        <div class="section-title">Memory and Navigation Excellence</div>
+        
+        <div class="main-text">
+            Birds possess exceptional spatial memory capabilities. Clark's nutcrackers can remember thousands of seed cache locations and accurately retrieve them months later<span class="emoji">🗺️</span>. This extraordinary memory capacity is crucial for their survival in harsh environments.
+        </div>
+        
+        <div class="main-text">
+            The navigational abilities of migratory birds demonstrate complex cognitive processing. They integrate multiple information sources—magnetic fields, celestial patterns, landmarks, and atmospheric cues—for precise long-distance navigation<span class="emoji">🧭</span>.
+        </div>
+        
+        <div class="section-title">Mathematical Concepts in Avian Minds</div>
+        
+        <div class="main-text">
+            Many birds possess fundamental mathematical concepts, capable of numerical counting and quantity comparisons<span class="emoji">🔢</span>. Pigeons can learn to sort by numerical order, while crows can understand the concept of "zero"—abilities that are extremely rare in the animal kingdom.
+        </div>
+        
+        <div class="main-text">
+            More remarkably, some birds also demonstrate geometric intuition. They can recognize symmetry, understand angular relationships, and even master fundamental spatial geometric concepts<span class="emoji">📐</span>. These abilities are significant for their foraging strategies, nest construction, and navigation systems.
+        </div>
+        
+        <div class="section-title">Social Cognition and Emotional Intelligence</div>
+        
+        <div class="main-text">
+            Many birds exhibit complex social structures and emotional expressions. They can recognize individuals, remember social relationships, and demonstrate empathy and cooperative behaviors<span class="emoji">❤️</span>. Some species even show evidence of grief, joy, and playfulness.
+        </div>
+        
+        <div class="tip-box">
+            <div class="tip-title">🌟 Mirror Test</div>
+            Magpies are among the few non-mammalian animals that can pass the mirror self-recognition test, suggesting they may possess self-awareness comparable to great apes.
+        </div>
+        
+        <div class="main-text">
+            Research has revealed that although avian brains have different structures from mammals, they are equally efficient in information processing. This provides us with new perspectives for understanding the fundamental nature of intelligence<span class="emoji">✨</span>.
+        </div>
+        
+        <div class="section-title">Neurological Marvels</div>
+        
+        <div class="main-text">
+            Bird brains achieve remarkable cognitive feats through highly efficient neural architecture. Despite lacking a neocortex like mammals, their forebrain regions are densely packed with neurons, creating processing power that rivals much larger brains<span class="emoji">⚡</span>.
+        </div>
+        
+        <div class="main-text">
+            This convergent evolution of intelligence through different neural pathways offers profound insights into the nature of consciousness and cognition. Birds prove that intelligence is not about brain size, but about the sophisticated organization and connectivity of neural networks<span class="emoji">🌟</span>.
+        </div>
     </div>
-    <div class="progress-container"><div class="progress-bar"><div class="progress-fill"></div></div></div>
     
-
+    <!-- Progress Bar -->
+    <div class="progress-container">
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
+        </div>
+    </div>
+    
     <script>
-        // 更新时间
+        // Update time
         function updateTime() {
             const now = new Date();
             const timeString = now.getHours().toString().padStart(2, '0') + ':' + 
@@ -57,7 +272,7 @@
             document.getElementById('current-time').textContent = timeString;
         }
         
-        // 模拟阅读进度
+        // Simulate reading progress
         function updateProgress() {
             const scrolled = window.pageYOffset;
             const maxHeight = document.body.scrollHeight - window.innerHeight;
@@ -65,91 +280,7 @@
             document.querySelector('.progress-fill').style.width = progress + '%';
         }
         
-        // 初始化
-        updateTime();
-        setInterval(updateTime, 60000);
-        
-        window.addEventListener('scroll', updateProgress);
-        updateProgress();
-    </script>
-
-</body>
-</html><!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>鸟类智慧与认知能力 - BirdAiSnap</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f5; color: #333; }
-        
-        .back-button { position: fixed; top: 60px; left: 20px; width: 36px; height: 36px; background: rgba(0,0,0,0.6); border: none; border-radius: 50%; color: white; font-size: 18px; cursor: pointer; z-index: 999; display: flex; align-items: center; justify-content: center; }
-        .hero-image { width: 100%; height: 400px; background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('../../images/birds/species/bird-image-019.png') center/cover; position: relative; margin-top: 0; }
-        .content { background: white; margin: -30px 20px 20px 20px; border-radius: 20px; padding: 30px 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); min-height: 80vh; }
-        .title { font-size: 24px; font-weight: 700; color: #1a1a1a; margin-bottom: 30px; line-height: 1.3; }
-        .quote-box { background: linear-gradient(135deg, #e3f2fd, #bbdefb); border-left: 4px solid #2196f3; padding: 20px; margin: 25px 0; border-radius: 8px; position: relative; }
-        .quote-box::before { content: '"'; font-size: 48px; color: #2196f3; position: absolute; top: -5px; left: 15px; font-family: serif; line-height: 1; }
-        .quote-text { font-size: 18px; font-weight: 600; color: #1565c0; margin-left: 25px; line-height: 1.4; }
-        .main-text { font-size: 16px; line-height: 1.8; color: #333; margin: 20px 0; text-align: justify; }
-        .section-title { font-size: 20px; font-weight: 600; color: #2196f3; margin: 30px 0 15px 0; border-bottom: 2px solid #bbdefb; padding-bottom: 8px; }
-        .tip-box { background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px; padding: 15px; margin: 20px 0; border-left: 4px solid #28a745; }
-        .tip-title { font-weight: 600; color: #28a745; margin-bottom: 8px; }
-        .emoji { font-size: 18px; margin: 0 2px; }
-        .progress-container { position: fixed; bottom: 0; left: 0; right: 0; height: 60px; background: linear-gradient(to top, rgba(255,255,255,0.95), transparent); display: flex; align-items: center; justify-content: center; z-index: 998; }
-        .progress-bar { width: 200px; height: 4px; background: rgba(0,0,0,0.1); border-radius: 2px; overflow: hidden; }
-        .progress-fill { height: 100%; background: linear-gradient(90deg, #2196f3, #64b5f6); width: 0%; border-radius: 2px; transition: width 0.3s ease; }
-        @media (max-width: 375px) { .content { margin: -30px 15px 20px 15px; padding: 25px 15px; } .title { font-size: 22px; } .main-text { font-size: 15px; } }
-    </style>
-</head>
-<body>
-    </div>
-    <button class="back-button" onclick="history.back()">←</button>
-    <div class="hero-image"></div>
-    <div class="content">
-        <h1 class="title">鸟类智慧与认知能力</h1>
-        <div class="quote-box"><div class="quote-text">探索鸟类大脑中隐藏的智慧奥秘</div></div>
-        <div class="main-text">For a long time, people believed that birds had limited intelligence, with "bird brain" even becoming synonymous with stupidity. However, modern scientific research has completely overturned this notion<span class="emoji">🧠</span>. Many birds demonstrate astonishing cognitive abilities, in some aspects even surpassing primates.</div>
-        <div class="section-title">Tool-Using Abilities of Crows</div>
-        <div class="main-text">Corvids are among the smartest species in the animal kingdom, capable of making and using complex tools to solve problems<span class="emoji">🔧</span>. New Caledonian crows can bend leaves into hook-shaped tools to extract insects from tree holes, a behavior that requires high levels of spatial imagination and causal reasoning.</div>
-        <div class="tip-box"><div class="tip-title">🔬 Research Finding</div>Crows can solve multi-step logical problems, with intelligence levels comparable to 7-year-old children.</div>
-        <div class="main-text">Even more amazingly, crows possess a "theory of mind," allowing them to understand the intentions and knowledge states of other individuals<span class="emoji">💭</span>. They adjust their strategies based on other crows' behaviors and may even deliberately mislead competitors.</div>
-        <div class="section-title">Parrots' Language Learning Talent</div>
-        <div class="main-text">Parrots not only mimic human language, but more importantly, they can understand the meaning of vocabulary and engage in meaningful communication<span class="emoji">🦜</span>. The famous African Grey Parrot Alex mastered over 150 English words, could identify colors, shapes, quantities, and even express emotional needs.</div>
-        <div class="main-text">Research shows that parrots' language learning ability is closely related to their social complexity. In the wild, parrot groups have complex social structures and communication systems<span class="emoji">👥</span>. These social demands have driven the evolution of their language abilities.</div>
-        <div class="section-title">Mathematical Concepts in Birds</div>
-        <div class="main-text">Many birds possess basic mathematical concepts, capable of simple counting and quantity comparisons<span class="emoji">🔢</span>. Pigeons can learn to sort by numerical size, while crows can understand the concept of "zero" - abilities that are extremely rare in the animal kingdom.</div>
-        <div class="main-text">More interestingly, some birds also demonstrate geometric intuition. They can recognize symmetry, understand angular relationships, and even master basic spatial geometric concepts<span class="emoji">📐</span>. These abilities are significant for their foraging, nest-building, and navigation.</div>
-        <div class="section-title">Emotions and Self-Awareness</div>
-        <div class="main-text">Birds not only possess advanced cognitive abilities but also demonstrate complex emotional responses. They can feel sad when losing a mate and excited when successfully solving a problem<span class="emoji">😢</span>. Some studies even suggest that certain birds may possess self-awareness.</div>
-        <div class="tip-box"><div class="tip-title">🌟 Mirror Test</div>Magpies are among the few non-mammalian animals that can pass the mirror self-recognition test, suggesting they may possess self-awareness.</div>
-        <div class="main-text">Birds also demonstrate rudimentary moral behaviors, such as a sense of fairness and reciprocity. They remember the behaviors of other individuals and adjust their cooperation strategies accordingly<span class="emoji">🤝</span>. This social cognitive ability provides important clues for understanding the evolutionary origins of moral behavior.</div>
-        <div class="section-title">Uniqueness of Brain Structure</div>
-        <div class="main-text">The structure of bird brains is drastically different from mammals, yet they produce similar cognitive functions. Birds lack a neocortex, but other regions of their forebrain are highly developed<span class="emoji">🧬</span>. This phenomenon of "convergent evolution" suggests that intelligence can be achieved through different neural structures.</div>
-        <div class="main-text">Bird brains have extremely high neuron density; although small in volume, they are highly efficient in information processing. This compact and efficient design provides new insights for understanding the nature of intelligence and the development of artificial intelligence<span class="emoji">⚡</span>.</div>
-        <div class="main-text">Research on bird intelligence continually refreshes our understanding of animal cognitive abilities and makes us rethink the definition and origin of intelligence<span class="emoji">✨</span>. These feathered friends prove with their cleverness that brain size does not determine intelligence level; what matters is the organization and function of neural networks.</div>
-    </div>
-    <div class="progress-container"><div class="progress-bar"><div class="progress-fill"></div></div></div>
-    
-
-    <script>
-        // 更新时间
-        function updateTime() {
-            const now = new Date();
-            const timeString = now.getHours().toString().padStart(2, '0') + ':' + 
-                             now.getMinutes().toString().padStart(2, '0');
-            document.getElementById('current-time').textContent = timeString;
-        }
-        
-        // 模拟阅读进度
-        function updateProgress() {
-            const scrolled = window.pageYOffset;
-            const maxHeight = document.body.scrollHeight - window.innerHeight;
-            const progress = Math.min((scrolled / maxHeight) * 100, 100);
-            document.querySelector('.progress-fill').style.width = progress + '%';
-        }
-        
-        // 初始化
+        // Initialize
         updateTime();
         setInterval(updateTime, 60000);
         

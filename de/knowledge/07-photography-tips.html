@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vogel Fotografie-Tipps - BirdAiSnap</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+        
+        .back-button {
+            position: fixed;
+            top: 60px;
+            left: 20px;
+            width: 36px;
+            height: 36px;
+            background: rgba(0,0,0,0.6);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                        url('../../images/birds/species/bird-image-007.png') center/cover;
+            position: relative;
+            margin-top: 0;
+        }
+        
+        .content {
+            background: white;
+            margin: -30px 20px 20px 20px;
+            border-radius: 20px;
+            padding: 40px 20px 30px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            min-height: 80vh;
+        }
+        
+        .title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            margin-top: 10px;
+            line-height: 1.3;
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, #e8f5e8, #c8e6c9);
+            border-left: 4px solid #4caf50;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .quote-box::before {
+            content: '"';
+            font-size: 48px;
+            color: #4caf50;
+            position: absolute;
+            top: -5px;
+            left: 15px;
+            font-family: serif;
+            line-height: 1;
+        }
+        
+        .quote-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2e7d32;
+            margin-left: 25px;
+            line-height: 1.4;
+        }
+        
+        .main-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            margin: 20px 0;
+            text-align: justify;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #4caf50;
+            margin: 30px 0 15px 0;
+            border-bottom: 2px solid #c8e6c9;
+            padding-bottom: 8px;
+        }
+        
+        .tip-box {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            border-left: 4px solid #28a745;
+        }
+        
+        .tip-title {
+            font-weight: 600;
+            color: #28a745;
+            margin-bottom: 8px;
+        }
+        
+        .emoji {
+            font-size: 18px;
+            margin: 0 2px;
+        }
+        
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .photo-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            border: 2px solid #e9ecef;
+            transition: transform 0.3s ease;
+        }
+        
+        .photo-card:hover {
+            transform: translateY(-5px);
+            border-color: #4caf50;
+        }
+        
+        .photo-card h4 {
+            color: #2e7d32;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        
+        .photo-card p {
+            color: #666;
+            line-height: 1.5;
+            margin: 0;
+        }
+        
+        .camera-icon {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            display: block;
+            text-align: center;
+        }
+        
+        .progress-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: linear-gradient(to top, rgba(255,255,255,0.95), transparent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 998;
+        }
+        
+        .progress-bar {
+            width: 200px;
+            height: 4px;
+            background: rgba(0,0,0,0.1);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4caf50, #81c784);
+            width: 0%;
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+        
+        @media (max-width: 375px) {
+            .content {
+                margin: -30px 15px 20px 15px;
+                padding: 25px 15px;
+            }
+            
+            .title {
+                font-size: 22px;
+            }
+            
+            .main-text {
+                font-size: 15px;
+            }
+            
+            .photo-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 返回按钮 -->
+    <button class="back-button" onclick="history.back()">
+        ←
+    </button>
+    
+    <!-- 英雄图片 -->
+    <div class="hero-image"></div>
+    
+    <!-- 主要内容 -->
+    <div class="content">
+        <h1 class="title">📷 Vogel Fotografie-Tipps</h1>
+        
+        <div class="quote-box">
+            <div class="quote-text">
+                Capture der beauty und Verhalten von Vögel mit diese wesentlich Fotografie techniques
+            </div>
+        </div>
+        
+        <div class="main-text">
+            Vogel Fotografie combines der challenges von Tierwelt Fotografie mit der rewards von documenting Natur's meiste dynamic subjects<span class="emoji">📸</span>. Erfolg requires understanding both Vogel Verhalten und Kamera techniques zu capture compelling images.
+        </div>
+        
+        <div class="section-title">wesentlich Kamera Ausrüstung</div>
+        
+        <div class="main-text">
+            A telephoto lens is crucial für Vogel Fotografie, as it allows you zu maintain Entfernung while filling der frame<span class="emoji">🔭</span>. Lenses von 300mm oder longer are ideal, though modern superzoom cameras can auch produce ausgezeichnet results.
+        </div>
+        
+        <div class="photo-grid">
+            <div class="photo-card">
+                <span class="Kamera-icon">📷</span>
+                <h4>DSLR/Mirrorless</h4>
+                <p>beste image Qualität und lens options. Ideal für ernst Vogel photographers who wollen maximum control und flexibility.</p>
+            </div>
+            <div class="photo-card">
+                <span class="Kamera-icon">🔍</span>
+                <h4>Superzoom Kamera</h4>
+                <p>bequem alle-in-one Lösung mit impressive zoom ranges. perfekt für beginners und Reise Fotografie.</p>
+            </div>
+            <div class="photo-card">
+                <span class="Kamera-icon">📱</span>
+                <h4>Smartphone + Adapter</h4>
+                <p>Budget-friendly Option using digiscoping techniques mit Fernglas oder spotting scopes.</p>
+            </div>
+        </div>
+        
+        <div class="section-title">Kamera Settings für Vögel</div>
+        
+        <div class="main-text">
+            Use schnell shutter speeds zu freeze Vogel movement - typischerweise 1/500s oder faster für perched Vögel, 1/1000s oder faster für Vögel in Flug<span class="emoji">⚡</span>. Aperture priority mode oft works well, allowing you zu control Tiefe von field while der Kamera selects angemessen shutter Geschwindigkeit.
+        </div>
+        
+        <div class="tip-box">
+            <div class="tip-title">⚙️ Key Settings</div>
+            Shutter Priority or Manual mode, continuous autofocus (AI Servo/AF-C), high ISO capability (1600-6400), and burst mode for action sequences.
+        </div>
+        
+        <div class="section-title">Understanding Vogel Verhalten</div>
+        
+        <div class="main-text">
+            erfolgreich Vogel Fotografie requires patience und understanding von Vogel Verhalten<span class="emoji">🦅</span>. lernen Fütterung patterns, preferred perches, und Flug paths. Early Morgen und late afternoon bereitstellen der beste light und meiste active Vogel Verhalten.
+        </div>
+        
+        <div class="main-text">
+            Ansatz Vögel langsam und avoid sudden movements<span class="emoji">🚶</span>. Use natürlich cover mögen trees oder blinds wann möglich. viele Vögel have predictable routines - beobachten vor shooting zu anticipate der beste moments.
+        </div>
+        
+        <div class="section-title">Composition Techniques</div>
+        
+        <div class="main-text">
+            Apply der Regel von thirds, placing der Vogel's Auge along intersection points<span class="emoji">👁️</span>. Ensure der Auge is sharp und well-lit - dies is der meiste critical Element von any Vogel portrait. Leave Raum in der Richtung der Vogel is looking oder moving.
+        </div>
+        
+        <div class="tip-box">
+            <div class="tip-title">🎨 Creative Tips</div>
+            Capture behavior and interaction, use shallow depth of field to isolate subjects, include environmental context, and shoot at the bird's eye level for more engaging images.
+        </div>
+        
+        <div class="section-title">Ethical Considerations</div>
+        
+        <div class="main-text">
+            immer prioritize Vogel welfare over getting der shot<span class="emoji">❤️</span>. Maintain angemessen distances, avoid disturbing nests oder roosting sites, und nie use playback near nesting Vögel. Respect privat Eigenschaft und geschützt areas.
+        </div>
+        
+        <div class="section-title">Post-Processing Tips</div>
+        
+        <div class="main-text">
+            Shoot in RAW format für maximum editing flexibility<span class="emoji">🎛️</span>. Focus auf enhancing natürlich colors und details ziemlich than over-processing. Crop judiciously zu verbessern composition, but maintain image Qualität. Noise reduction software can helfen mit hoch-ISO images.
+        </div>
+        
+        <div class="main-text">
+            Practice makes perfekt in Vogel Fotografie<span class="emoji">🎯</span>. beginnen mit häufig, approachable Art in your backyard oder örtlich parks. As your skills entwickeln, you can tackle mehr challenging subjects und situations. Remember das der beste Kamera is der one you have mit you!
+        </div>
+    </div>
+    
+    <!-- 进度条 -->
+    <div class="progress-container">
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
+        </div>
+    </div>
+
+    <script>
+        // 更新时间
+        function updateTime() {
+            const now = new Date();
+            const timeString = now.getHours().toString().padStart(2, '0') + ':' + 
+                             now.getMinutes().toString().padStart(2, '0');
+            document.getElementById('current-time').textContent = timeString;
+        }
+        
+        // 模拟阅读进度
+        function updateProgress() {
+            const scrolled = window.pageYOffset;
+            const maxHeight = document.body.scrollHeight - window.innerHeight;
+            const progress = Math.min((scrolled / maxHeight) * 100, 100);
+            document.querySelector('.progress-fill').style.width = progress + '%';
+        }
+        
+        // 初始化
+        updateTime();
+        setInterval(updateTime, 60000);
+        
+        window.addEventListener('scroll', updateProgress);
+        updateProgress();
+    </script>
+
+</body>
+</html>

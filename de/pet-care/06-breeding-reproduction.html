@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vogel Zucht und Fortpflanzung - Haustier Pflege Leitfaden</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+        
+        .back-button {
+            position: fixed;
+            top: 60px;
+            left: 20px;
+            width: 36px;
+            height: 36px;
+            background: rgba(0,0,0,0.6);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                        url('../../images/birds/species/bird-image-060.png') center/cover;
+            position: relative;
+            margin-top: 0;
+        }
+        
+        .content {
+            background: white;
+            margin: -30px 20px 20px 20px;
+            border-radius: 20px;
+            padding: 30px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            min-height: 80vh;
+        }
+        
+        .title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            margin-top: 15px;
+            line-height: 1.3;
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, #e8f5e8, #c8e6c9);
+            border-left: 4px solid #2E8B57;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .quote-box::before {
+            content: '"';
+            font-size: 48px;
+            color: #2E8B57;
+            position: absolute;
+            top: -5px;
+            left: 15px;
+            font-family: serif;
+            line-height: 1;
+        }
+        
+        .quote-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1b5e20;
+            margin-left: 25px;
+            line-height: 1.4;
+        }
+        
+        .main-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            margin: 20px 0;
+            text-align: justify;
+        }
+        
+        .main-text ul {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+
+        .main-text li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .main-text li:before {
+            content: "•";
+            position: absolute;
+            left: 8px;
+            color: #2E8B57;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #2E8B57;
+            margin: 30px 0 15px 0;
+            border-bottom: 2px solid #c8e6c9;
+            padding-bottom: 8px;
+        }
+        
+        .tip-box {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid #28a745;
+            box-shadow: 0 2px 6px rgba(40, 167, 69, 0.1);
+        }
+
+        .tip-title {
+            font-weight: 600;
+            color: #28a745;
+            margin-bottom: 12px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tip-box p {
+            margin: 0;
+            line-height: 1.6;
+            color: #495057;
+        }
+        
+        .warning-box {
+            background: #FFF8DC;
+            border: 2px solid #DAA520;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(218, 165, 32, 0.1);
+        }
+
+        .warning-box h4 {
+            color: #B8860B;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .warning-box ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .warning-box li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 12px;
+            line-height: 1.6;
+            color: #8B4513;
+        }
+
+        .warning-box li:before {
+            content: "•";
+            position: absolute;
+            left: 8px;
+            color: #DAA520;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .warning-box li:last-child {
+            margin-bottom: 0;
+        }
+        
+        .breeding-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .breeding-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #c8e6c9;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .breeding-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+        }
+
+        .breeding-card h4 {
+            color: #2E8B57;
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+        
+        .emoji {
+            font-size: 18px;
+            margin: 0 2px;
+        }
+        
+        @media (max-width: 375px) {
+            .content {
+                margin: -30px 15px 20px 15px;
+                padding: 25px 15px;
+            }
+            
+            .title {
+                font-size: 22px;
+            }
+            
+            .main-text {
+                font-size: 15px;
+            }
+            
+            .breeding-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Zurück-Taste -->
+    <button class="back-button" onclick="history.back()">
+        ←
+    </button>
+    
+    <!-- Hauptbild -->
+    <div class="hero-image"></div>
+    
+    <!-- Hauptinhalt -->
+    <div class="content">
+        <h1 class="title">Vogel Zucht und Fortpflanzung</h1>
+        
+        <div class="quote-box">
+            <div class="quote-text">
+                Responsible Zucht requires Wissen, commitment, und preparation für der welfare von parent Vögel und offspring
+            </div>
+        </div>
+        
+        <div class="main-text">
+            Vogel Zucht is a komplex und rewarding Aspekt von aviculture das requires extensive Wissen, preparation, und commitment. Whether you're considering Zucht your Vögel oder simply wollen zu verstehen reproductive behaviors, dies Leitfaden covers wesentlich Information über avian reproduction <span class="emoji">🥚</span>. Responsible Zucht prioritizes der Gesundheit und welfare von both parent Vögel und their offspring.
+        </div>
+        
+        <div class="section-title">vor You Consider Zucht</div>
+        
+        <div class="main-text">
+            Zucht Vögel is not a Entscheidung zu take lightly. It requires significant Zeit, resources, und expertise. viele factors must be considered vor allowing your Vögel zu breed <span class="emoji">🤔</span>.
+        </div>
+
+        <div class="main-text">
+            <strong>wesentlich Prerequisites:</strong><br>
+            • Extensive Wissen von your Vogel Art<br>
+            • Established relationship mit avian veterinarian<br>
+            • Adequate Raum und resources für Zucht setup<br>
+            • Financial resources für veterinary Pflege und supplies<br>
+            • Plans für housing und caring für offspring<br>
+            • Understanding von genetics und potential Gesundheit issues
+        </div>
+
+        <div class="main-text">
+            <strong>Ethical Considerations:</strong><br>
+            • Overpopulation in viele Vogel Art<br>
+            • Responsibility für lifetime Pflege von offspring<br>
+            • Finding geeignet homes für babies<br>
+            • Impact auf parent Vögel' Gesundheit und lifespan<br>
+            • Contributing zu Naturschutz vs. Haustier trade<br>
+            • Avoiding Zucht Vögel mit genetic defects
+        </div>
+
+        <div class="warning-box">
+            <h4>⚠️ Zucht Responsibilities</h4>
+            <ul>
+                <li><strong>Lifetime commitment:</strong> You're responsible für alle offspring produced</li>
+                <li><strong>Gesundheit screening:</strong> Both parents should be tested für diseases</li>
+                <li><strong>Emergency preparedness:</strong> Zucht complications can be Leben-threatening</li>
+                <li><strong>Legal requirements:</strong> einige Art require permits oder documentation</li>
+                <li><strong>Market saturation:</strong> viele Art have limited demand</li>
+                <li><strong>Zeit investment:</strong> Hand-Fütterung babies requires 24/7 commitment</li>
+            </ul>
+        </div>
+        
+        <div class="section-title">Understanding Avian Reproduction</div>
+        
+        <div class="main-text">
+            Vögel have einzigartig reproductive systems und behaviors das differ bedeutend von mammals. Understanding diese natürlich processes is crucial für erfolgreich Zucht <span class="emoji">🔬</span>.
+        </div>
+
+        <div class="breeding-grid">
+            <div class="Zucht-card">
+                <h4>🌸 Sexual Maturity</h4>
+                <p><strong>klein Vögel:</strong> 6-12 months</p>
+                <p><strong>Medium Vögel:</strong> 1-3 years</p>
+                <p><strong>groß Vögel:</strong> 3-7 years</p>
+                <p>Vögel should be vollständig mature vor Zucht zu ensure healthy reproduction.</p>
+            </div>
+
+            <div class="breeding-card">
+                <h4>🌅 Zucht Jahreszeit</h4>
+                <p><strong>natürlich triggers:</strong> Daylight Länge, Temperatur</p>
+                <p><strong>künstlich triggers:</strong> Increased light, nesting materials</p>
+                <p><strong>Duration:</strong> Varies durch Art</p>
+                <p>meiste Vögel breed während spring wann conditions are optimal für raising young.</p>
+            </div>
+
+            <div class="breeding-card">
+                <h4>💑 Pair Bonding</h4>
+                <p><strong>Monogamous Art:</strong> Mate für Leben</p>
+                <p><strong>Seasonal pairs:</strong> neu partners jeder Jahreszeit</p>
+                <p><strong>Compatibility:</strong> Not alle Vögel will accept jeder andere</p>
+                <p>Strong pair bonds are wesentlich für erfolgreich Zucht und chick rearing.</p>
+            </div>
+
+            <div class="breeding-card">
+                <h4>🏠 Nesting Verhalten</h4>
+                <p><strong>Cavity nesters:</strong> Require Nest boxes</p>
+                <p><strong>Platform nesters:</strong> bauen nests auf flat surfaces</p>
+                <p><strong>Materials:</strong> Art-spezifische preferences</p>
+                <p>Providing angemessen nesting sites triggers Zucht Verhalten.</p>
+            </div>
+        </div>
+        
+        <div class="section-title">Pre-Zucht Gesundheit Bewertung</div>
+        
+        <div class="main-text">
+            Both potential parents should undergo thorough Gesundheit evaluations vor Zucht. dies ensures der beste möglich outcomes für parents und offspring <span class="emoji">🏥</span>.
+        </div>
+
+        <div class="main-text">
+            <strong>Pre-Zucht Veterinary Prüfung:</strong><br>
+            • vollständig physical examination<br>
+            • Blood Arbeit including vollständig blood count<br>
+            • Disease testing (PBFD, polyoma, chlamydia)<br>
+            • Fecal examination für parasites<br>
+            • Nutritional Bewertung und recommendations<br>
+            • Genetic screening if available
+        </div>
+
+        <div class="main-text">
+            <strong>Optimal Zucht Zustand:</strong><br>
+            • Ideal body Gewicht und Zustand<br>
+            • ausgezeichnet Feder Qualität<br>
+            • Active und alert Verhalten<br>
+            • gut appetite und normal droppings<br>
+            • No signs von illness oder stress<br>
+            • richtig age und sexual maturity
+        </div>
+
+        <div class="tip-box">
+            <div class="tip-title">📋 Gesundheit Records</div>
+            <p>Maintain detailed Gesundheit records für Zucht Vögel, including vaccination history, Test results, und any medical treatments.</p>
+        </div>
+        
+        <div class="section-title">Zucht Setup und Umgebung</div>
+        
+        <div class="main-text">
+            Creating der richtig Umgebung is crucial für erfolgreich Zucht. der setup must accommodate natürlich behaviors while ensuring safety und monitoring capabilities <span class="emoji">🏗️</span>.
+        </div>
+
+        <div class="main-text">
+            <strong>Zucht Cage Requirements:</strong><br>
+            • Larger than normal housing (minimum 4x2x2 feet für medium Vögel)<br>
+            • Horizontal Raum für Flug und exercise<br>
+            • Multiple perches bei unterschiedlich levels<br>
+            • einfach access für monitoring und cleaning<br>
+            • sicher but removable Nest box<br>
+            • Separate Fütterung stations
+        </div>
+
+        <div class="main-text">
+            <strong>Environmental Conditions:</strong><br>
+            • Temperatur: 70-80°F (21-27°C)<br>
+            • Humidity: 50-60% für meiste Art<br>
+            • Lighting: 12-14 hours von light daily<br>
+            • Quiet Standort mit minimal disturbances<br>
+            • gut ventilation without drafts<br>
+            • Privacy für nesting activities
+        </div>
+
+        <div class="main-text">
+            <strong>Nest Box Specifications:</strong><br>
+            • Größe angemessen für Art<br>
+            • Entrance hole sized zu exclude larger Vögel<br>
+            • Drainage holes in bottom<br>
+            • Removable top oder side für inspection<br>
+            • natürlich wood construction preferred<br>
+            • richtig nesting material provided
+        </div>
+        
+        <div class="section-title">Zucht Ernährung</div>
+        
+        <div class="main-text">
+            richtig Ernährung is critical während Zucht Jahreszeit. Both parents brauchen increased protein und spezifische nutrients zu support Ei production und chick development <span class="emoji">🥗</span>.
+        </div>
+
+        <div class="main-text">
+            <strong>Zucht Diet Requirements:</strong><br>
+            • Increased protein: 18-22% (vs. 14-16% maintenance)<br>
+            • hoch-Qualität pellets as base diet<br>
+            • Fresh vegetables rich in vitamin A<br>
+            • Calcium supplementation für Ei-laying females<br>
+            • Omega-3 fatty acids für development<br>
+            • Avoid hoch-fat foods das can Ursache problems
+        </div>
+
+        <div class="main-text">
+            <strong>Zucht Jahreszeit Foods:</strong><br>
+            • Cooked eggs (ausgezeichnet protein source)<br>
+            • Sprouted seeds und legumes<br>
+            • Dark leafy greens (kale, spinach)<br>
+            • Orange vegetables (carrots, sweet potato)<br>
+            • Whole grain breads und cereals<br>
+            • Art-angemessen hand-Fütterung formula
+        </div>
+
+        <div class="tip-box">
+            <div class="tip-title">🍼 Hand-Fütterung Preparation</div>
+            <p>lernen richtig hand-Fütterung techniques vor Zucht Jahreszeit. Have supplies ready und practice mit erfahren breeders if möglich.</p>
+        </div>
+        
+        <div class="section-title">der Zucht Prozess</div>
+        
+        <div class="main-text">
+            Understanding der Zucht timeline helps you bereitstellen angemessen Pflege bei jeder stage. unterschiedlich Art have varying incubation periods und development rates <span class="emoji">📅</span>.
+        </div>
+
+        <div class="main-text">
+            <strong>typisch Zucht Timeline:</strong><br>
+            • Courtship und pair bonding: 1-4 weeks<br>
+            • Nest Gebäude und preparation: 1-2 weeks<br>
+            • Ei laying: jeder andere Tag until clutch vollständig<br>
+            • Incubation period: 18-30 days (Art dependent)<br>
+            • Hatching: Over 1-3 days<br>
+            • Fledging: 3-12 weeks depending auf Art
+        </div>
+
+        <div class="main-text">
+            <strong>Ei Laying und Incubation:</strong><br>
+            • Females typischerweise lay 2-8 eggs per clutch<br>
+            • Incubation normalerweise begins mit second Ei<br>
+            • Both parents may share incubation duties<br>
+            • Maintain consistent Temperatur und humidity<br>
+            • Minimize disturbances während incubation<br>
+            • Monitor für signs von problems
+        </div>
+
+        <div class="main-text">
+            <strong>Hatching und Early Pflege:</strong><br>
+            • Chicks hatch mit Ei tooth für breaking shell<br>
+            • anfangs blind, naked, und vollständig dependent<br>
+            • Parents feed regurgitated Nahrung jeder 1-2 hours<br>
+            • Rapid growth und development<br>
+            • Eyes open around 7-14 days<br>
+            • Feathers anfangen developing bei 1-2 weeks
+        </div>
+        
+        <div class="section-title">Hand-Fütterung und Chick Pflege</div>
+        
+        <div class="main-text">
+            manchmal hand-Fütterung becomes notwendig due zu parental rejection, Gesundheit issues, oder Zucht goals. dies is an intensive Prozess requiring dedication und expertise <span class="emoji">🍼</span>.
+        </div>
+
+        <div class="main-text">
+            <strong>wann Hand-Fütterung is Needed:</strong><br>
+            • Parents abandon oder reject chicks<br>
+            • Insufficient parental Fütterung<br>
+            • Gesundheit problems in parents<br>
+            • Desire für tame, socialized babies<br>
+            • groß clutches requiring supplemental Fütterung<br>
+            • Emergency situations
+        </div>
+
+        <div class="main-text">
+            <strong>Hand-Fütterung Basics:</strong><br>
+            • Use Art-angemessen commercial formula<br>
+            • Maintain richtig Temperatur (104-106°F)<br>
+            • Feed jeder 2-4 hours anfangs<br>
+            • Use richtig Fütterung tools (syringes, spoons)<br>
+            • Monitor crop emptying between feedings<br>
+            • Maintain detailed Fütterung records
+        </div>
+
+        <div class="warning-box">
+            <h4>⚠️ Hand-Fütterung Risks</h4>
+            <ul>
+                <li><strong>Aspiration pneumonia:</strong> Formula entering lungs</li>
+                <li><strong>Crop burn:</strong> Formula auch hot causing tissue damage</li>
+                <li><strong>Crop stasis:</strong> Nahrung not moving through digestive System</li>
+                <li><strong>Dehydration:</strong> Inadequate fluid intake</li>
+                <li><strong>Malnutrition:</strong> Improper formula preparation</li>
+                <li><strong>Behavioral issues:</strong> Improper socialization</li>
+            </ul>
+        </div>
+        
+        <div class="section-title">Weaning und Fledgling Pflege</div>
+        
+        <div class="main-text">
+            der weaning Prozess is critical für developing independent, healthy Vögel. Rushing dies Prozess can lead zu behavioral und Gesundheit problems <span class="emoji">🌱</span>.
+        </div>
+
+        <div class="main-text">
+            <strong>Weaning Prozess:</strong><br>
+            • Gradual reduction in hand-Fütterung Häufigkeit<br>
+            • Introduction von solid foods<br>
+            • Monitoring Gewicht und body Zustand<br>
+            • Ensuring adequate Nahrung intake<br>
+            • Maintaining sozial interaction<br>
+            • Patience mit individuell development rates
+        </div>
+
+        <div class="main-text">
+            <strong>Signs von erfolgreich Weaning:</strong><br>
+            • Consistent Gewicht maintenance<br>
+            • Active eating von solid foods<br>
+            • normal droppings und Verhalten<br>
+            • Reduced begging für hand-Fütterung<br>
+            • Increased independence und exploration<br>
+            • richtig Feder development
+        </div>
+        
+        <div class="section-title">Finding Homes für Offspring</div>
+        
+        <div class="main-text">
+            Responsible breeders vorsichtig screen potential homes für their Vögel. dies ensures der beste möglich zukünftig für der animals you've brought into der Welt <span class="emoji">🏡</span>.
+        </div>
+
+        <div class="main-text">
+            <strong>Screening Potential Owners:</strong><br>
+            • Erfahrung mit Vögel und spezifische Art<br>
+            • angemessen housing und setup<br>
+            • Financial Fähigkeit zu bereitstellen richtig Pflege<br>
+            • lang-term commitment understanding<br>
+            • References von veterinarians oder andere breeders<br>
+            • Willingness zu maintain contact
+        </div>
+
+        <div class="main-text">
+            <strong>Providing Support:</strong><br>
+            • Detailed Pflege instructions und diet Information<br>
+            • Gesundheit records und veterinary contacts<br>
+            • Ongoing availability für questions<br>
+            • Take-back Politik if needed<br>
+            • Connection zu örtlich Vogel communities<br>
+            • Follow-up contact zu ensure well-being
+        </div>
+
+        <div class="main-text">
+            Remember, Zucht Vögel is a ernst responsibility das extends far beyond der initial pairing. Erfolg requires extensive Wissen, richtig facilities, financial resources, und a commitment zu der welfare von alle Vögel involved. Consider whether Zucht aligns mit Naturschutz goals und ethical practices in aviculture <span class="emoji">✨</span>.
+        </div>
+    </div>
+
+    <script>
+        // Simulate reading progress
+        function updateProgress() {
+            const scrolled = window.pageYOffset;
+            const maxHeight = document.body.scrollHeight - window.innerHeight;
+            const progress = Math.min((scrolled / maxHeight) * 100, 100);
+        }
+        
+        window.addEventListener('scroll', updateProgress);
+        updateProgress();
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vogel Unterbringung und Umgebung - Haustier Pflege Leitfaden</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+        
+        .back-button {
+            position: fixed;
+            top: 60px;
+            left: 20px;
+            width: 36px;
+            height: 36px;
+            background: rgba(0,0,0,0.6);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                        url('../../images/birds/species/bird-image-030.png') center/cover;
+            position: relative;
+            margin-top: 0;
+        }
+        
+        .content {
+            background: white;
+            margin: -30px 20px 20px 20px;
+            border-radius: 20px;
+            padding: 30px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            min-height: 80vh;
+        }
+        
+        .title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            margin-top: 15px;
+            line-height: 1.3;
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, #e8f5e8, #c8e6c9);
+            border-left: 4px solid #2E8B57;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .quote-box::before {
+            content: '"';
+            font-size: 48px;
+            color: #2E8B57;
+            position: absolute;
+            top: -5px;
+            left: 15px;
+            font-family: serif;
+            line-height: 1;
+        }
+        
+        .quote-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1b5e20;
+            margin-left: 25px;
+            line-height: 1.4;
+        }
+        
+        .main-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            margin: 20px 0;
+            text-align: justify;
+        }
+        
+        .main-text ul {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+
+        .main-text li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .main-text li:before {
+            content: "•";
+            position: absolute;
+            left: 8px;
+            color: #2E8B57;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #2E8B57;
+            margin: 30px 0 15px 0;
+            border-bottom: 2px solid #c8e6c9;
+            padding-bottom: 8px;
+        }
+        
+        .tip-box {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid #28a745;
+            box-shadow: 0 2px 6px rgba(40, 167, 69, 0.1);
+        }
+
+        .tip-title {
+            font-weight: 600;
+            color: #28a745;
+            margin-bottom: 12px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tip-box p {
+            margin: 0;
+            line-height: 1.6;
+            color: #495057;
+        }
+        
+        .warning-box {
+            background: #FFF8DC;
+            border: 2px solid #DAA520;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(218, 165, 32, 0.1);
+        }
+
+        .warning-box h4 {
+            color: #B8860B;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .warning-box ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .warning-box li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 12px;
+            line-height: 1.6;
+            color: #8B4513;
+        }
+
+        .warning-box li:before {
+            content: "•";
+            position: absolute;
+            left: 8px;
+            color: #DAA520;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .warning-box li:last-child {
+            margin-bottom: 0;
+        }
+        
+        .housing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .housing-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #c8e6c9;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .housing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+        }
+
+        .housing-card h4 {
+            color: #2E8B57;
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+        
+        .emoji {
+            font-size: 18px;
+            margin: 0 2px;
+        }
+        
+        @media (max-width: 375px) {
+            .content {
+                margin: -30px 15px 20px 15px;
+                padding: 25px 15px;
+            }
+            
+            .title {
+                font-size: 22px;
+            }
+            
+            .main-text {
+                font-size: 15px;
+            }
+            
+            .housing-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Zurück-Taste -->
+    <button class="back-button" onclick="history.back()">
+        ←
+    </button>
+    
+    <!-- Hauptbild -->
+    <div class="hero-image"></div>
+    
+    <!-- Hauptinhalt -->
+    <div class="content">
+        <h1 class="title">Vogel Unterbringung und Umgebung</h1>
+        
+        <div class="quote-box">
+            <div class="quote-text">
+                erstellen a sicher, bequem, und enriching Zuhause für your feathered Freund
+            </div>
+        </div>
+        
+        <div class="main-text">
+            Providing richtig Unterbringung und Umgebung is fundamental zu your Vogel's physical und mental well-being. A well-designed living Raum not nur keeps your Vogel sicher but auch promotes natürlich behaviors und reduces stress <span class="emoji">🏠</span>. der richtig Umgebung can bedeutend impact your Vogel's Gesundheit, happiness, und longevity.
+        </div>
+        
+        <div class="section-title">Choosing der richtig Cage</div>
+        
+        <div class="main-text">
+            der cage is your Vogel's primäre living Raum, so selecting der richtig one is crucial. Größe, shape, materials, und design alle play wichtig roles in your Vogel's comfort und safety <span class="emoji">🔍</span>. Remember das bigger is immer besser wann it comes zu Vogel cages.
+        </div>
+        
+        <div class="housing-grid">
+            <div class="housing-card">
+                <h4>📏 Größe Requirements</h4>
+                <p><strong>klein Vögel:</strong> 18" x 18" x 24" minimum</p>
+                <p><strong>Medium Vögel:</strong> 24" x 24" x 30" minimum</p>
+                <p><strong>groß Vögel:</strong> 36" x 24" x 48" minimum</p>
+                <p>Vögel should be able zu vollständig spread their wings without touching der sides.</p>
+            </div>
+
+            <div class="housing-card">
+                <h4>🔧 Bar Spacing</h4>
+                <p><strong>klein Vögel:</strong> 1/4" zu 1/2" spacing</p>
+                <p><strong>Medium Vögel:</strong> 1/2" zu 5/8" spacing</p>
+                <p><strong>groß Vögel:</strong> 5/8" zu 1" spacing</p>
+                <p>richtig spacing prevents escape und injury while allowing gut visibility.</p>
+            </div>
+
+            <div class="housing-card">
+                <h4>🏗️ Cage Shape</h4>
+                <p><strong>beste:</strong> Rectangular oder square</p>
+                <p><strong>Avoid:</strong> Round oder ornate shapes</p>
+                <p><strong>warum:</strong> Corners bereitstellen security</p>
+                <p>Vögel feel mehr sicher mit defined corners und straight lines.</p>
+            </div>
+
+            <div class="housing-card">
+                <h4>🔩 Materials</h4>
+                <p><strong>sicher:</strong> Stainless steel, powder-coated</p>
+                <p><strong>Avoid:</strong> Galvanized, brass, zinc</p>
+                <p><strong>Toxic:</strong> Lead-based paints</p>
+                <p>wählen non-toxic materials das won't harm your Vogel if chewed.</p>
+            </div>
+        </div>
+        
+        <div class="section-title">Cage Placement und Standort</div>
+        
+        <div class="main-text">
+            wo you Ort your Vogel's cage is gerade as wichtig as der cage itself. der Standort affects your Vogel's sense von security, sozial interaction, und overall well-being <span class="emoji">📍</span>.
+        </div>
+
+        <div class="main-text">
+            <strong>Ideal Placement Guidelines:</strong><br>
+            • Against a wall für security (not in der center von Zimmer)<br>
+            • bei Auge Niveau oder leicht higher<br>
+            • Away von kitchen (cooking fumes are toxic)<br>
+            • Near Familie Aktivität but not in hoch-traffic areas<br>
+            • Away von direct sunlight und drafts<br>
+            • Not near heating/cooling vents
+        </div>
+
+        <div class="tip-box">
+            <div class="tip-title">💡 Placement Tip</div>
+            <p>Vögel are prey animals und feel meiste sicher wann they can sehen their surroundings while having their back geschützt durch a wall.</p>
+        </div>
+        
+        <div class="section-title">wesentlich Cage Accessories</div>
+        
+        <div class="main-text">
+            der richtig accessories make your Vogel's cage functional und bequem. jeder item serves a spezifische Zweck in maintaining your Vogel's Gesundheit und happiness <span class="emoji">🛠️</span>.
+        </div>
+
+        <div class="main-text">
+            <strong>Must-Have Accessories:</strong><br>
+            • Perches von varying diameters und textures<br>
+            • Nahrung und Wasser dishes (stainless steel preferred)<br>
+            • Cuttlebone oder mineral block<br>
+            • sicher toys für mental stimulation<br>
+            • Cage cover für nighttime<br>
+            • Newspaper oder sicher cage liner
+        </div>
+        
+        <div class="section-title">Perches und Positioning</div>
+        
+        <div class="main-text">
+            richtig perches are wesentlich für foot Gesundheit und comfort. unterschiedlich sizes und textures helfen prevent foot problems und bereitstellen exercise <span class="emoji">🦶</span>.
+        </div>
+
+        <div class="main-text">
+            <strong>Perch Variety:</strong><br>
+            • natürlich wood branches (apple, willow, birch)<br>
+            • Rope perches für texture variation<br>
+            • Mineral perches für Schnabel maintenance<br>
+            • Avoid sandpaper perches (can Ursache sores)<br>
+            • Position bei unterschiedlich heights und angles<br>
+            • Ensure perches don't obstruct Nahrung/Wasser access
+        </div>
+
+        <div class="tip-box">
+            <div class="tip-title">🌳 natürlich Branch Tip</div>
+            <p>natürlich branches bereitstellen varying diameters das exercise foot muscles und helfen maintain richtig nail Länge naturally.</p>
+        </div>
+        
+        <div class="section-title">Lighting und Temperatur</div>
+        
+        <div class="main-text">
+            richtig lighting und Temperatur control are crucial für your Vogel's Gesundheit, Verhalten, und Zucht cycles <span class="emoji">🌡️</span>. Vögel are sensitive zu environmental changes und brauchen consistent conditions.
+        </div>
+
+        <div class="main-text">
+            <strong>Lighting Requirements:</strong><br>
+            • 10-12 hours von light, 10-12 hours von darkness<br>
+            • Full-spectrum UV lighting if no natürlich sunlight<br>
+            • Avoid sudden light changes<br>
+            • Use cage covers für consistent sleep schedule<br>
+            • natürlich sunlight is beste (through screened windows)
+        </div>
+
+        <div class="main-text">
+            <strong>Temperatur Guidelines:</strong><br>
+            • Ideal range: 65-80°F (18-27°C)<br>
+            • Avoid Temperatur fluctuations<br>
+            • schützen von drafts und direct heat<br>
+            • Monitor humidity levels (40-60%)<br>
+            • bereitstellen gradual seasonal adjustments
+        </div>
+        
+        <div class="section-title">Air Qualität und Ventilation</div>
+        
+        <div class="main-text">
+            Vögel have extrem sensitive respiratory systems und require clean, well-ventilated air. viele häufig household items can be toxic zu Vögel <span class="emoji">💨</span>.
+        </div>
+
+        <div class="warning-box">
+            <h4>⚠️ Toxic Air Hazards</h4>
+            <ul>
+                <li><strong>Teflon/Non-stick cookware:</strong> Releases deadly fumes wann overheated</li>
+                <li><strong>Aerosols:</strong> Air fresheners, cleaning products, hairspray</li>
+                <li><strong>Candles und incense:</strong> Smoke und chemical fumes</li>
+                <li><strong>Cigarette smoke:</strong> extrem harmful zu Vogel lungs</li>
+                <li><strong>Kitchen fumes:</strong> Cooking oils, burnt Nahrung</li>
+                <li><strong>Paint und solvents:</strong> VOCs are toxic zu Vögel</li>
+            </ul>
+        </div>
+
+        <div class="main-text">
+            <strong>Air Qualität Tips:</strong><br>
+            • Use air purifiers mit HEPA filters<br>
+            • Ensure gut ventilation without drafts<br>
+            • Keep Vögel away von kitchen während cooking<br>
+            • Use Vogel-sicher cleaning products nur<br>
+            • Avoid scented products near Vögel<br>
+            • Monitor für signs von respiratory distress
+        </div>
+        
+        <div class="section-title">Creating a Vogel-sicher Zimmer</div>
+        
+        <div class="main-text">
+            Vögel brauchen daily out-von-cage Zeit für exercise und mental stimulation. Creating a Vogel-sicher Zimmer is wesentlich für supervised free Flug Zeit <span class="emoji">🚪</span>.
+        </div>
+
+        <div class="main-text">
+            <strong>Vogel-Proofing Checklist:</strong><br>
+            • Cover oder remove mirrors (can Ursache obsessive Verhalten)<br>
+            • sicher oder remove toxic plants<br>
+            • Cover windows und ceiling fans<br>
+            • Remove oder sicher electrical cords<br>
+            • Close toilet lids und cover Wasser containers<br>
+            • Remove klein objects das could be swallowed<br>
+            • Ensure no escape routes (open doors/windows)
+        </div>
+
+        <div class="tip-box">
+            <div class="tip-title">🔒 Safety erste</div>
+            <p>immer supervise your Vogel während out-von-cage Zeit und do a safety check von der Zimmer vor jeder session.</p>
+        </div>
+        
+        <div class="section-title">Cleaning und Maintenance</div>
+        
+        <div class="main-text">
+            regelmäßig cleaning is wesentlich für preventing disease und maintaining a healthy Umgebung. Establish a cleaning routine das keeps your Vogel's Raum hygienic <span class="emoji">🧽</span>.
+        </div>
+
+        <div class="main-text">
+            <strong>Daily Cleaning Tasks:</strong><br>
+            • Change cage liner/newspaper<br>
+            • Clean und refill Nahrung und Wasser dishes<br>
+            • Remove uneaten fresh foods<br>
+            • Spot clean any messes<br>
+            • Quick visual Gesundheit check von your Vogel
+        </div>
+
+        <div class="main-text">
+            <strong>Weekly Cleaning Tasks:</strong><br>
+            • Wash alle perches und toys<br>
+            • Clean cage bars und bottom thoroughly<br>
+            • Disinfect Nahrung und Wasser dishes<br>
+            • Replace oder rotate toys<br>
+            • Deep clean der surrounding Fläche
+        </div>
+
+        <div class="main-text">
+            <strong>Monthly Deep Cleaning:</strong><br>
+            • vollständig cage disassembly und cleaning<br>
+            • Replace worn perches oder accessories<br>
+            • Check für wear und damage<br>
+            • Sanitize everything mit Vogel-sicher cleaners<br>
+            • Reorganize cage layout für variety
+        </div>
+        
+        <div class="section-title">Environmental Enrichment</div>
+        
+        <div class="main-text">
+            Mental stimulation is gerade as wichtig as physical comfort. Environmental enrichment prevents boredom und promotes natürlich behaviors <span class="emoji">🧩</span>.
+        </div>
+
+        <div class="main-text">
+            <strong>Enrichment Ideas:</strong><br>
+            • Rotate toys weekly zu maintain Interesse<br>
+            • bereitstellen foraging opportunities<br>
+            • Play Vogel-sicher music oder Natur sounds<br>
+            • Offer unterschiedlich textures und materials<br>
+            • erstellen climbing opportunities<br>
+            • bereitstellen sicher chewing materials
+        </div>
+
+        <div class="main-text">
+            Remember, your Vogel's Umgebung is their entire Welt. Taking Zeit zu erstellen a sicher, bequem, und stimulating Raum will reward you mit a healthier, happier companion. regelmäßig maintenance und attention zu environmental factors will helfen ensure your Vogel thrives in their Zuhause <span class="emoji">✨</span>.
+        </div>
+    </div>
+
+    <script>
+        // Simulate reading progress
+        function updateProgress() {
+            const scrolled = window.pageYOffset;
+            const maxHeight = document.body.scrollHeight - window.innerHeight;
+            const progress = Math.min((scrolled / maxHeight) * 100, 100);
+        }
+        
+        window.addEventListener('scroll', updateProgress);
+        updateProgress();
+    </script>
+
+</body>
+</html>

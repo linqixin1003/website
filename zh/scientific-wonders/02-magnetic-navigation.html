@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>鸟类磁场导航系统 - BirdAiSnap</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+        
+        
+        
+        .back-button {
+            position: fixed;
+            top: 60px;
+            left: 20px;
+            width: 36px;
+            height: 36px;
+            background: rgba(0,0,0,0.6);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                        url('../../images/birds/species/bird-image-011.png') center/cover;
+            position: relative;
+            margin-top: 0;
+        }
+        
+        .content {
+            background: white;
+            margin: -30px 20px 20px 20px;
+            border-radius: 20px;
+            padding: 40px 20px 30px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            min-height: 80vh;
+        }
+        
+        .title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            margin-top: 10px;
+            line-height: 1.3;
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            border-left: 4px solid #2196f3;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .quote-box::before {
+            content: '"';
+            font-size: 48px;
+            color: #2196f3;
+            position: absolute;
+            top: -5px;
+            left: 15px;
+            font-family: serif;
+            line-height: 1;
+        }
+        
+        .quote-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1565c0;
+            margin-left: 25px;
+            line-height: 1.4;
+        }
+        
+        .main-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            margin: 20px 0;
+            text-align: justify;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #2196f3;
+            margin: 30px 0 15px 0;
+            border-bottom: 2px solid #bbdefb;
+            padding-bottom: 8px;
+        }
+        
+        .tip-box {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            border-left: 4px solid #28a745;
+        }
+        
+        .tip-title {
+            font-weight: 600;
+            color: #28a745;
+            margin-bottom: 8px;
+        }
+        
+        .emoji {
+            font-size: 18px;
+            margin: 0 2px;
+        }
+        
+        .progress-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: linear-gradient(to top, rgba(255,255,255,0.95), transparent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 998;
+        }
+        
+        .progress-bar {
+            width: 200px;
+            height: 4px;
+            background: rgba(0,0,0,0.1);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #2196f3, #64b5f6);
+            width: 0%;
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+        
+        @media (max-width: 375px) {
+            .content {
+                margin: -30px 15px 20px 15px;
+                padding: 25px 15px;
+            }
+            
+            .title {
+                font-size: 22px;
+            }
+            
+            .main-text {
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 返回按钮 -->
+    <button class="back-button" onclick="history.back()">
+        ←
+    </button>
+    
+    <!-- 英雄图片 -->
+    <div class="hero-image"></div>
+    
+    <!-- 主要内容 -->
+    <div class="content">
+        <h1 class="title">鸟类磁场导航系统</h1>
+        
+        <div class="quote-box">
+            <div class="quote-text">
+                探索鸟类如何利用地球磁场进行精确导航
+            </div>
+        </div>
+        
+        <div class="main-text">
+            鸟类的长距离迁徙一直是自然界最令人惊叹的现象之一。它们能够跨越数千公里的距离，准确地找到目的地，这种精确的导航能力背后隐藏着一个神秘的生物指南针系统<span class="emoji">🧭</span>。科学研究发现，鸟类能够感知地球磁场，并将其作为导航的重要工具。
+        </div>
+        
+        <div class="section-title">磁感应的生物学基础</div>
+        
+        <div class="main-text">
+            鸟类的磁感应能力主要依赖于两个关键的生物学机制。首先是位于鸟类喙部的磁铁矿颗粒，这些微小的磁性物质能够感知磁场强度的变化<span class="emoji">⚡</span>。当鸟类移动时，这些磁铁矿颗粒会随着地球磁场的变化而产生相应的反应。
+        </div>
+        
+        <div class="main-text">
+            更为神奇的是，科学家在鸟类的眼部发现了一种名为隐花色素的蛋白质，这种蛋白质能够让鸟类"看见"磁场<span class="emoji">👁️</span>。在特定波长的光照射下，隐花色素会产生量子纠缠效应，使鸟类能够在视觉中感知到磁场的方向和强度。
+        </div>
+        
+        <div class="section-title">地球磁场的导航信息</div>
+        
+        <div class="main-text">
+            地球磁场为鸟类提供了丰富的导航信息。磁场的倾角（磁力线与水平面的夹角）随纬度变化，在赤道附近接近水平，在两极附近接近垂直<span class="emoji">🌍</span>。鸟类通过感知这种倾角变化，能够确定自己的纬度位置。
+        </div>
+        
+        <div class="tip-box">
+            <div class="tip-title">🔬 研究发现</div>
+            实验表明，当人工磁场干扰鸟类的磁感应系统时，它们的导航能力会显著下降，证实了磁场导航的重要性。
+        </div>
+        
+        <div class="main-text">
+            磁场强度的变化也为鸟类提供了位置信息。地球磁场在不同地区的强度并不均匀，这种差异形成了一张"磁场地图"<span class="emoji">🗺️</span>。经验丰富的迁徙鸟类能够记住这些磁场特征，就像人类记住地标一样。
+        </div>
+        
+        <div class="section-title">多重导航系统的协同作用</div>
+        
+        <div class="main-text">
+            虽然磁场导航是鸟类导航系统的重要组成部分，但它并不是唯一的导航方式。鸟类还会利用太阳的位置、星座的排列、地形特征和气味等多种信息源<span class="emoji">☀️</span>。这些不同的导航系统相互补充，确保了导航的准确性和可靠性。
+        </div>
+        
+        <div class="main-text">
+            在白天，鸟类主要依靠太阳指南针进行导航，同时结合磁场信息进行校正。在夜间，星座导航成为主要方式，磁场感应则提供持续的方向参考<span class="emoji">⭐</span>。这种多重导航系统的设计体现了自然选择的智慧。
+        </div>
+        
+        <div class="section-title">环境因素对磁导航的影响</div>
+        
+        <div class="main-text">
+            现代社会的电磁污染对鸟类的磁导航系统构成了新的挑战。城市中的电子设备、无线通信信号和电力线路产生的电磁场可能干扰鸟类的磁感应能力<span class="emoji">📡</span>。这种干扰可能是导致一些鸟类迁徙路线改变的原因之一。
+        </div>
+        
+        <div class="main-text">
+            气候变化也会影响地球磁场的局部特征，进而影响鸟类的导航。磁极的缓慢移动和磁场强度的变化需要鸟类不断调整其导航策略<span class="emoji">🌡️</span>。这种适应过程展现了生物系统的惊人弹性。
+        </div>
+        
+        <div class="section-title">科学研究的最新进展</div>
+        
+        <div class="main-text">
+            近年来，科学家利用先进的追踪技术和神经科学方法，对鸟类磁导航进行了更深入的研究。通过在鸟类身上安装微型GPS设备和生物传感器，研究人员能够实时监测鸟类的迁徙路径和生理反应<span class="emoji">📊</span>。
+        </div>
+        
+        <div class="tip-box">
+            <div class="tip-title">🚀 技术应用</div>
+            鸟类磁导航的研究成果正在被应用于开发新型的导航系统和无人机技术，为人类科技发展提供启发。
+        </div>
+        
+        <div class="main-text">
+            量子生物学的发展为理解鸟类磁感应提供了新的理论框架。科学家发现，鸟类眼部的量子效应可能比之前想象的更加复杂和精密<span class="emoji">⚛️</span>。这一发现不仅加深了我们对生物导航的理解，也为量子技术的生物应用开辟了新的可能性。
+        </div>
+        
+        <div class="main-text">
+            鸟类磁场导航系统的研究揭示了生命进化的神奇力量，也提醒我们保护自然环境的重要性<span class="emoji">🌿</span>。只有在清洁的电磁环境中，这些精密的生物导航系统才能继续发挥作用，指引着鸟类完成它们壮丽的迁徙之旅。
+        </div>
+    </div>
+    
+    <!-- 进度条 -->
+    <div class="progress-container">
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
+        </div>
+    </div>
+
+    <script>
+        // 更新时间
+        function updateTime() {
+            const now = new Date();
+            const timeString = now.getHours().toString().padStart(2, '0') + ':' + 
+                             now.getMinutes().toString().padStart(2, '0');
+            document.getElementById('current-time').textContent = timeString;
+        }
+        
+        // 模拟阅读进度
+        function updateProgress() {
+            const scrolled = window.pageYOffset;
+            const maxHeight = document.body.scrollHeight - window.innerHeight;
+            const progress = Math.min((scrolled / maxHeight) * 100, 100);
+            document.querySelector('.progress-fill').style.width = progress + '%';
+        }
+        
+        // 初始化
+        updateTime();
+        setInterval(updateTime, 60000);
+        
+        window.addEventListener('scroll', updateProgress);
+        updateProgress();
+    </script>
+
+</body>
+</html>

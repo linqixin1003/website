@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seasonal Bird Care - Pet Care Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+        
+        .back-button {
+            position: fixed;
+            top: 60px;
+            left: 20px;
+            width: 36px;
+            height: 36px;
+            background: rgba(0,0,0,0.6);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                        url('../../images/birds/species/bird-image-080.png') center/cover;
+            position: relative;
+            margin-top: 0;
+        }
+        
+        .content {
+            background: white;
+            margin: -30px 20px 20px 20px;
+            border-radius: 20px;
+            padding: 30px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            min-height: 80vh;
+        }
+        
+        .title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            margin-top: 15px;
+            line-height: 1.3;
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, #e8f5e8, #c8e6c9);
+            border-left: 4px solid #2E8B57;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .quote-box::before {
+            content: '"';
+            font-size: 48px;
+            color: #2E8B57;
+            position: absolute;
+            top: -5px;
+            left: 15px;
+            font-family: serif;
+            line-height: 1;
+        }
+        
+        .quote-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1b5e20;
+            margin-left: 25px;
+            line-height: 1.4;
+        }
+        
+        .main-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            margin: 20px 0;
+            text-align: justify;
+        }
+        
+        .main-text ul {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+
+        .main-text li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .main-text li:before {
+            content: "•";
+            position: absolute;
+            left: 8px;
+            color: #2E8B57;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #2E8B57;
+            margin: 30px 0 15px 0;
+            border-bottom: 2px solid #c8e6c9;
+            padding-bottom: 8px;
+        }
+        
+        .tip-box {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid #28a745;
+            box-shadow: 0 2px 6px rgba(40, 167, 69, 0.1);
+        }
+
+        .tip-title {
+            font-weight: 600;
+            color: #28a745;
+            margin-bottom: 12px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tip-box p {
+            margin: 0;
+            line-height: 1.6;
+            color: #495057;
+        }
+        
+        .warning-box {
+            background: #FFF8DC;
+            border: 2px solid #DAA520;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(218, 165, 32, 0.1);
+        }
+
+        .warning-box h4 {
+            color: #B8860B;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .warning-box ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .warning-box li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 12px;
+            line-height: 1.6;
+            color: #8B4513;
+        }
+
+        .warning-box li:before {
+            content: "•";
+            position: absolute;
+            left: 8px;
+            color: #DAA520;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .warning-box li:last-child {
+            margin-bottom: 0;
+        }
+        
+        .seasonal-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .seasonal-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #c8e6c9;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .seasonal-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+        }
+
+        .seasonal-card h4 {
+            color: #2E8B57;
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+        
+        .emoji {
+            font-size: 18px;
+            margin: 0 2px;
+        }
+        
+        @media (max-width: 375px) {
+            .content {
+                margin: -30px 15px 20px 15px;
+                padding: 25px 15px;
+            }
+            
+            .title {
+                font-size: 22px;
+            }
+            
+            .main-text {
+                font-size: 15px;
+            }
+            
+            .seasonal-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Back Button -->
+    <button class="back-button" onclick="history.back()">
+        ←
+    </button>
+    
+    <!-- Hero Image -->
+    <div class="hero-image"></div>
+    
+    <!-- Main Content -->
+    <div class="content">
+        <h1 class="title">Seasonal Bird Care</h1>
+        
+        <div class="quote-box">
+            <div class="quote-text">
+                Adapting your bird's care to seasonal changes ensures year-round health and comfort
+            </div>
+        </div>
+        
+        <div class="main-text">
+            Birds are naturally attuned to seasonal changes, and their care needs vary throughout the year. Understanding how to adapt your bird's environment, diet, and routine to seasonal variations helps maintain optimal health and prevents stress-related problems <span class="emoji">🌍</span>. From temperature adjustments to lighting changes, seasonal care is an essential aspect of responsible bird ownership.
+        </div>
+        
+        <div class="section-title">Understanding Seasonal Rhythms</div>
+        
+        <div class="main-text">
+            Birds have evolved with natural seasonal cycles that affect their behavior, metabolism, and health needs. Even indoor birds respond to changes in daylight, temperature, and humidity <span class="emoji">🔄</span>. Recognizing these natural rhythms helps you provide appropriate care year-round.
+        </div>
+
+        <div class="main-text">
+            <strong>Natural Seasonal Triggers:</strong><br>
+            • Daylight length (photoperiod)<br>
+            • Temperature fluctuations<br>
+            • Humidity changes<br>
+            • Barometric pressure variations<br>
+            • Food availability patterns<br>
+            • Social and breeding cues
+        </div>
+
+        <div class="main-text">
+            <strong>How Birds Respond to Seasons:</strong><br>
+            • Molting patterns and feather growth<br>
+            • Breeding behaviors and hormonal changes<br>
+            • Activity levels and sleep patterns<br>
+            • Appetite and dietary preferences<br>
+            • Social behaviors and vocalizations<br>
+            • Immune system fluctuations
+        </div>
+        
+        <div class="section-title">Spring Care Considerations</div>
+        
+        <div class="main-text">
+            Spring brings increased daylight and warmer temperatures, triggering natural breeding behaviors and increased activity in many birds <span class="emoji">🌸</span>. This season requires careful management of hormonal behaviors and environmental changes.
+        </div>
+
+        <div class="seasonal-grid">
+            <div class="seasonal-card">
+                <h4>☀️ Light Management</h4>
+                <p><strong>Challenge:</strong> Increased daylight triggers breeding</p>
+                <p><strong>Solution:</strong> Control artificial lighting</p>
+                <p><strong>Goal:</strong> 10-12 hours maximum light exposure</p>
+                <p>Use blackout curtains or cage covers to prevent excessive light exposure that can trigger unwanted breeding behaviors.</p>
+            </div>
+
+            <div class="seasonal-card">
+                <h4>🌡️ Temperature Control</h4>
+                <p><strong>Challenge:</strong> Fluctuating spring temperatures</p>
+                <p><strong>Solution:</strong> Gradual adjustments</p>
+                <p><strong>Goal:</strong> Stable 70-80°F environment</p>
+                <p>Avoid sudden temperature changes that can stress birds and compromise their immune systems.</p>
+            </div>
+
+            <div class="seasonal-card">
+                <h4>🥚 Breeding Behavior</h4>
+                <p><strong>Challenge:</strong> Hormonal aggression and nesting</p>
+                <p><strong>Solution:</strong> Remove triggers, increase exercise</p>
+                <p><strong>Goal:</strong> Calm, non-breeding behavior</p>
+                <p>Remove nesting materials, mirrors, and dark spaces that encourage breeding behaviors.</p>
+            </div>
+
+            <div class="seasonal-card">
+                <h4>🪶 Molting Season</h4>
+                <p><strong>Challenge:</strong> Increased nutritional needs</p>
+                <p><strong>Solution:</strong> Enhanced diet with protein</p>
+                <p><strong>Goal:</strong> Healthy feather regrowth</p>
+                <p>Provide extra protein and vitamins to support new feather growth during molting periods.</p>
+            </div>
+        </div>
+
+        <div class="main-text">
+            <strong>Spring Care Checklist:</strong><br>
+            • Increase protein in diet for molting birds<br>
+            • Monitor for hormonal behaviors<br>
+            • Provide extra bathing opportunities<br>
+            • Schedule annual veterinary checkup<br>
+            • Deep clean and reorganize cage setup<br>
+            • Gradually increase outdoor time if applicable
+        </div>
+        
+        <div class="section-title">Summer Care Essentials</div>
+        
+        <div class="main-text">
+            Summer heat can be dangerous for birds, who are more susceptible to overheating than many other pets. Proper cooling strategies and heat management are crucial during hot weather <span class="emoji">☀️</span>.
+        </div>
+
+        <div class="main-text">
+            <strong>Heat Management Strategies:</strong><br>
+            • Provide multiple water sources for drinking and bathing<br>
+            • Use fans for air circulation (not direct airflow)<br>
+            • Offer frozen treats like ice cubes with fruit<br>
+            • Ensure adequate shade and ventilation<br>
+            • Monitor for signs of overheating<br>
+            • Avoid direct sunlight exposure
+        </div>
+
+        <div class="main-text">
+            <strong>Signs of Overheating:</strong><br>
+            • Panting or open-mouth breathing<br>
+            • Wings held away from body<br>
+            • Lethargy or weakness<br>
+            • Loss of appetite<br>
+            • Seeking cool surfaces<br>
+            • Excessive water consumption
+        </div>
+
+        <div class="warning-box">
+            <h4>⚠️ Summer Dangers</h4>
+            <ul>
+                <li><strong>Hot cars:</strong> Never leave birds in vehicles</li>
+                <li><strong>Direct sunlight:</strong> Can cause rapid overheating</li>
+                <li><strong>Air conditioning:</strong> Avoid direct cold air streams</li>
+                <li><strong>Dehydration:</strong> Ensure constant fresh water access</li>
+                <li><strong>Power outages:</strong> Have backup cooling plans</li>
+                <li><strong>Open windows:</strong> Risk of escape or injury</li>
+            </ul>
+        </div>
+
+        <div class="tip-box">
+            <div class="tip-title">🧊 Cooling Tips</div>
+            <p>Freeze fruits in ice cubes, provide shallow water dishes for bathing, and use ceramic tiles as cool perching surfaces.</p>
+        </div>
+        
+        <div class="section-title">Fall Preparation</div>
+        
+        <div class="main-text">
+            Fall is a time of preparation for winter, with birds naturally increasing food intake and completing their molt. This season requires attention to dietary changes and environmental adjustments <span class="emoji">🍂</span>.
+        </div>
+
+        <div class="main-text">
+            <strong>Fall Care Priorities:</strong><br>
+            • Gradually reduce daylight hours<br>
+            • Increase caloric intake for winter preparation<br>
+            • Complete any remaining molting support<br>
+            • Prepare heating systems for winter<br>
+            • Stock up on emergency supplies<br>
+            • Schedule pre-winter health checkup
+        </div>
+
+        <div class="main-text">
+            <strong>Dietary Adjustments:</strong><br>
+            • Increase healthy fats (nuts, seeds in moderation)<br>
+            • Provide warming foods (cooked grains, legumes)<br>
+            • Maintain fresh fruit and vegetable variety<br>
+            • Ensure adequate vitamin D supplementation<br>
+            • Monitor weight gain to prevent obesity<br>
+            • Adjust portion sizes based on activity levels
+        </div>
+
+        <div class="main-text">
+            <strong>Environmental Preparations:</strong><br>
+            • Test heating systems before cold weather<br>
+            • Check for drafts around cage areas<br>
+            • Prepare backup heating options<br>
+            • Adjust humidity levels for indoor heating<br>
+            • Organize winter emergency supplies<br>
+            • Plan for shorter daylight hours
+        </div>
+        
+        <div class="section-title">Winter Care Challenges</div>
+        
+        <div class="main-text">
+            Winter presents unique challenges including dry air, reduced daylight, and heating concerns. Proper winter care focuses on maintaining warmth, humidity, and mental stimulation during darker months <span class="emoji">❄️</span>.
+        </div>
+
+        <div class="main-text">
+            <strong>Winter Environmental Needs:</strong><br>
+            • Maintain 70-80°F temperature range<br>
+            • Increase humidity to 40-60%<br>
+            • Provide 10-12 hours of artificial lighting<br>
+            • Ensure draft-free environment<br>
+            • Monitor for dry skin and respiratory issues<br>
+            • Maintain consistent daily routines
+        </div>
+
+        <div class="main-text">
+            <strong>Heating Safety:</strong><br>
+            • Use bird-safe heating devices only<br>
+            • Avoid space heaters near cages<br>
+            • Ensure proper ventilation with heating<br>
+            • Monitor temperature with reliable thermometers<br>
+            • Have backup heating plans for power outages<br>
+            • Check heating devices regularly for safety
+        </div>
+
+        <div class="main-text">
+            <strong>Combating Winter Blues:</strong><br>
+            • Provide full-spectrum lighting<br>
+            • Increase social interaction and playtime<br>
+            • Offer varied enrichment activities<br>
+            • Maintain exercise opportunities<br>
+            • Consider light therapy for seasonal depression<br>
+            • Monitor for behavioral changes
+        </div>
+
+        <div class="tip-box">
+            <div class="tip-title">💡 Light Therapy</div>
+            <p>Full-spectrum UV lights can help prevent seasonal affective disorder in birds. Use for 2-4 hours daily during winter months.</p>
+        </div>
+        
+        <div class="section-title">Holiday and Travel Considerations</div>
+        
+        <div class="main-text">
+            Seasonal holidays and travel plans require special preparation to ensure your bird's safety and comfort. Planning ahead prevents stress and potential emergencies <span class="emoji">🎄</span>.
+        </div>
+
+        <div class="main-text">
+            <strong>Holiday Safety:</strong><br>
+            • Keep birds away from holiday decorations<br>
+            • Avoid toxic plants (poinsettias, mistletoe)<br>
+            • Monitor for small decorative objects<br>
+            • Maintain normal routines despite festivities<br>
+            • Protect from holiday food hazards<br>
+            • Manage noise levels during celebrations
+        </div>
+
+        <div class="main-text">
+            <strong>Travel Planning:</strong><br>
+            • Arrange qualified pet sitters well in advance<br>
+            • Provide detailed care instructions<br>
+            • Leave emergency contact information<br>
+            • Ensure adequate food and supply stocks<br>
+            • Consider boarding at avian-experienced facilities<br>
+            • Plan for weather-related travel delays
+        </div>
+
+        <div class="main-text">
+            <strong>Emergency Preparedness:</strong><br>
+            • Stock extra food and water supplies<br>
+            • Have backup heating and lighting options<br>
+            • Keep emergency contact numbers accessible<br>
+            • Prepare portable carriers for evacuations<br>
+            • Maintain first aid supplies<br>
+            • Plan for power outages and severe weather
+        </div>
+        
+        <div class="section-title">Year-Round Health Monitoring</div>
+        
+        <div class="main-text">
+            Seasonal changes can affect your bird's health in subtle ways. Regular monitoring and seasonal health assessments help catch problems early <span class="emoji">📊</span>.
+        </div>
+
+        <div class="main-text">
+            <strong>Seasonal Health Indicators:</strong><br>
+            • Weight fluctuations with season changes<br>
+            • Feather quality and molting patterns<br>
+            • Activity levels and behavior changes<br>
+            • Appetite variations throughout the year<br>
+            • Respiratory health during weather changes<br>
+            • Skin and foot condition in different seasons
+        </div>
+
+        <div class="main-text">
+            <strong>Preventive Seasonal Care:</strong><br>
+            • Schedule veterinary checkups twice yearly<br>
+            • Adjust diet based on seasonal needs<br>
+            • Monitor and record weight regularly<br>
+            • Document behavioral changes<br>
+            • Maintain consistent exercise routines<br>
+            • Provide appropriate seasonal enrichment
+        </div>
+
+        <div class="main-text">
+            <strong>Record Keeping:</strong><br>
+            • Track weight changes throughout seasons<br>
+            • Note molting patterns and timing<br>
+            • Document behavioral variations<br>
+            • Record dietary preferences by season<br>
+            • Monitor health issues and treatments<br>
+            • Keep vaccination and checkup schedules
+        </div>
+
+        <div class="main-text">
+            Understanding and adapting to seasonal changes is an ongoing process that improves with experience. Each bird may respond differently to seasonal variations, so observe your individual bird's patterns and adjust care accordingly. Consistent attention to seasonal needs will help ensure your feathered friend remains healthy and happy throughout the year <span class="emoji">✨</span>.
+        </div>
+    </div>
+
+    <script>
+        // Simulate reading progress
+        function updateProgress() {
+            const scrolled = window.pageYOffset;
+            const maxHeight = document.body.scrollHeight - window.innerHeight;
+            const progress = Math.min((scrolled / maxHeight) * 100, 100);
+        }
+        
+        window.addEventListener('scroll', updateProgress);
+        updateProgress();
+    </script>
+
+</body>
+</html>

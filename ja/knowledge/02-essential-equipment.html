@@ -3,336 +3,178 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Essentil Bird Wでchでg Equipment - BirdAiSnp</title>
+    <title>鳥類研究機器と研究ツール - BirdAiSnap</title>
     <style>
-        * {
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
         }
         
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #f5f5f5;
-            color: #333;
-        }
-        
-        .back-button {
-            position: fixed;
-            top: 60px;
-            left: 20px;
-            width: 36px;
-            height: 36px;
-            background: rgba(0,0,0,0.6);
-            border: none;
-            border-radius: 50%;
-            color: white;
-            font-size: 18px;
-            cursor: pointer;
-            z-index: 999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .hero-image {
-            width: 100%;
-            height: 400px;
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
-                        url('../../images/birds/species/bird-image-002.png') center/cover;
-            position: relative;
-            margin-top: 0;
-        }
-        
-        .content {
-            background: white;
-            margin: -30px 20px 20px 20px;
-            border-radius: 20px;
-            padding: 40px 20px 30px 20px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            min-height: 80vh;
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
         
         .title {
-            font-size: 24px;
-            font-weight: 700;
-            color: #1a1a1a;
+            color: #2c3e50;
+            text-align: center;
             margin-bottom: 30px;
-            margin-top: 10px;
-            line-height: 1.3;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
         }
         
         .quote-box {
-            background: linear-gradient(135deg, #e8f5e8, #c8e6c9);
-            border-left: 4px solid #4caf50;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
             padding: 20px;
-            margin: 25px 0;
-            border-radius: 8px;
-            position: relative;
-        }
-        
-        .quote-box::before {
-            content: '"';
-            font-size: 48px;
-            color: #4caf50;
-            position: absolute;
-            top: -5px;
-            left: 15px;
-            font-family: serif;
-            line-height: 1;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
         
         .quote-text {
-            font-size: 18px;
-            font-weight: 600;
-            color: #2e7d32;
-            margin-left: 25px;
-            line-height: 1.4;
-        }
-        
-        .main-text {
-            font-size: 16px;
-            line-height: 1.8;
-            color: #333;
-            margin: 20px 0;
-            text-align: justify;
+            font-size: 1.2em;
+            font-style: italic;
         }
         
         .section-title {
-            font-size: 20px;
-            font-weight: 600;
-            color: #4caf50;
-            margin: 30px 0 15px 0;
-            border-bottom: 2px solid #c8e6c9;
-            padding-bottom: 8px;
+            color: #2c3e50;
+            font-size: 1.5em;
+            margin: 25px 0 15px 0;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+        
+        .main-text {
+            color: #34495e;
+            margin: 15px 0;
+            font-size: 1.1em;
+            text-align: justify;
         }
         
         .tip-box {
-            background: #f8f9fa;
-            border: 1px solid #e9ecef;
-            border-radius: 8px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
             padding: 15px;
+            border-radius: 8px;
             margin: 20px 0;
-            border-left: 4px solid #28a745;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
         }
         
         .tip-title {
-            font-weight: 600;
-            color: #28a745;
+            font-weight: bold;
             margin-bottom: 8px;
-        }
-        
-        .emoji {
-            font-size: 18px;
-            margin: 0 2px;
+            font-size: 1.1em;
         }
         
         .equipment-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
-            margin: 25px 0;
+            margin: 20px 0;
         }
         
         .equipment-card {
-            background: #f8f9fa;
-            border-radius: 12px;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
             padding: 20px;
-            border: 2px solid #e9ecef;
-            transition: transform 0.3s ease;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
         
-        .equipment-card:hover {
-            transform: translateY(-5px);
-            border-color: #4caf50;
-        }
-        
-        .equipment-card h4 {
-            color: #2e7d32;
+        .equipment-title {
+            color: #2c3e50;
+            font-size: 1.3em;
+            font-weight: bold;
             margin-bottom: 10px;
-            font-size: 18px;
         }
         
-        .equipment-card p {
-            color: #666;
+        .equipment-description {
+            color: #34495e;
+            font-size: 1em;
             line-height: 1.5;
-            margin: 0;
         }
         
-        .progress-container {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 60px;
-            background: linear-gradient(to top, rgba(255,255,255,0.95), transparent);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 998;
-        }
-        
-        .progress-bar {
-            width: 200px;
-            height: 4px;
-            background: rgba(0,0,0,0.1);
-            border-radius: 2px;
-            overflow: hidden;
-        }
-        
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #4caf50, #81c784);
-            width: 0%;
-            border-radius: 2px;
-            transition: width 0.3s ease;
-        }
-        
-        @media (max-width: 375px) {
-            .content {
-                margin: -30px 15px 20px 15px;
-                padding: 25px 15px;
-            }
-            
-            .title {
-                font-size: 22px;
-            }
-            
-            .main-text {
-                font-size: 15px;
-            }
-            
-            .equipment-grid {
-                grid-template-columns: 1fr;
-            }
+        .emoji {
+            font-size: 1.2em;
+            margin: 0 5px;
         }
     </style>
 </head>
 <body>
-    <!-- 戻るボタン -->
-    <button class="back-button" onclick="history.back()">
-        ←
-    </button>
-    
-    <!-- ヒーロー画像 -->
-    <div class="hero-image"></div>
-    
-    <!-- メインコンテンツ -->
-    <div class="content">
-        <h1 クラス="title">🔭 Essentil Bird Wでchでg Equipment</h1>
+    <div class="container">
+        <h1 class="title">🔬 鳥類研究機器と研究ツール</h1>
         
-        <div クラス="quote-box">
-            <div クラス="quote-テキスト">
-                Dです覆う  必要があります-持っています 道具s と 装備 のために 成功ful 鳥 見るでg 冒険s
+        <div class="quote-box">
+            <div class="quote-text">
+                鳥類学研究と専門的な鳥類研究で使用される科学的ツールと機器を探求しましょう
             </div>
         </div>
         
         <div class="main-text">
-            Bでoculrs です  ほとんどの 必須の 部分 の 装備 のために y 鳥 見るer<span class="emoji">🔍</span>. They 持ってくる dですtt 鳥類 でに 明確な view, 許可するでg you に 観察する de尾s その would be im可能な に 見る と  nked 目. The 権利 つがい の 双眼鏡 できます 作る  difference between  frustrででg 経験 と  re戦争dでg でe.
+            专业鸟类研究和鸟类学研究需要超越基本观鸟设备的专业设备。这些科学工具使研究人员能够进行详细研究、收集数据并推进我们对鸟类生物学的理解<span class="emoji">🔬</span>。本指南涵盖了专业鸟类研究和高级研究中使用的基本设备。
         </div>
         
-        <div class="section-title">Choo歌う  Right Bでoculrs</div>
-        
+        <div class="section-title">环志和标记设备</div>
         <div class="main-text">
-            When 選択するでg 双眼鏡 のために 鳥 見るでg, 考慮する  mgnificでiで と objective lens dimeter<span class="emoji">🎯</span>. The ほとんどの 人気の choice mでg 鳥ers です 8x42 双眼鏡, どの 提供する  良い blce の mgnificでiで, field の view, と light-集めるでg 能力.
+            鸟类环志是追踪个体鸟类随时间变化的重要研究技术。专业研究人员使用专门设备，包括编号金属环、彩色环和应用工具<span class="emoji">🏷️</span>。现代研究还采用GPS发射器和无线电遥测设备来追踪迁徙模式和行为。
         </div>
         
         <div class="equipment-grid">
-            <div クラス="装備-車d">
-                <h4>8x42 Bでoculrs</h4>
-                <p>Perfect のために 初心者s と 経験豊富な 鳥ers 好き. Offers 優秀な im年齢 品質 と 管理するble weight と サイズ.</p>
-            </div>
             <div class="equipment-card">
-                <h4>10x42 Bでoculrs</h4>
-                <p>Higher mgnificでiで のために dですtt 鳥類, but 必要とするs stedier 手s と 持っています  nrrower field の view.</p>
+                <div class="equipment-title">🏷️ 环志设备</div>
+                <div class="equipment-description">
+                    <strong>金属环:</strong> 用于永久识别的编号铝环<br>
+                    <strong>彩色环:</strong> 用于野外识别的塑料环<br>
+                    <strong>环志钳:</strong> 安全应用环的专用工具<br>
+                    <strong>环尺寸指南:</strong> 正确环尺寸的参考图表
+                </div>
             </div>
+            
             <div class="equipment-card">
-                <h4>Compct Bでoculrs</h4>
-                <p>Lightweight と pまたはテーブル, i対処する のために csul 鳥でg と 旅行する. Usuすべてy 8x25 または 10x25 cでfigu比率n.</p>
+                <div class="equipment-title">📡 追踪技术</div>
+                <div class="equipment-description">
+                    <strong>GPS发射器:</strong> 用于迁徙研究的卫星追踪设备<br>
+                    <strong>无线电发射器:</strong> 用于本地追踪的VHF发射器<br>
+                    <strong>地理定位器:</strong> 基于光线的位置记录器<br>
+                    <strong>接收设备:</strong> 用于信号检测的天线和接收器
+                </div>
             </div>
         </div>
         
-        <div class="section-title">Field Guides と Reference Mでerils</div>
-        
+        <div class="section-title">捕获和处理设备</div>
         <div class="main-text">
-            A comprehensive 野外ガイド です your compiで のために 識別するでg  鳥類 you enカウントer<span class="emoji">📚</span>. Modern 野外ガイドs 含む de尾ed illust比率ns, rge 地図s, と 行動l descriptiでs その 助ける you dですtでguですh between 似ている 種.
+            研究用的安全鸟类捕获需要专门设计的网具和陷阱，以最大限度地减少压力和伤害。雾网是最常见的捕获方法，需要适当的设置和持续监控<span class="emoji">🕸️</span>。专业的处理技术和设备确保研究过程中鸟类的安全。
         </div>
         
         <div class="tip-box">
-            <div クラス="tip-title">📱 Digitl vs. Physicl Guides</div>
-            While traditional printed field guides remain popular, smartphone apps like eBird, Merlin Bird ID, and BirdAiSnap offer interactive features, bird songs, and real-time sighting data.
+            <div class="tip-title">⚠️ 安全协议</div>
+            鸟类捕获和处理需要适当的培训、许可证和遵守严格的伦理准则。只有持证研究人员才应使用这些技术。
         </div>
         
-        <div class="section-title">Cmer Equipment のために Bird Phoにgrphy</div>
-        
+        <div class="section-title">测量和数据收集工具</div>
         <div class="main-text">
-            While not 必須の のために 鳥 見るでg,  カメラ 許可するs you に cpture と 共有する your 発見するies<span class="emoji">📷</span>. Bird 写真撮影 必要とするs 特定の 考慮するでiでs due に  のten dですtt と 速い-movでg 自然 の your 科目s.
+            精确测量对鸟类学研究至关重要。专为鸟类研究设计的专业卡尺、尺子和天平提供准确的形态学数据<span class="emoji">📏</span>。数字数据记录器和野外计算机简化数据收集并减少转录错误。
         </div>
         
-        <div class="equipment-grid">
-            <div クラス="装備-車d">
-                <h4>DSLR/Mirrまたはless + Telephoに</h4>
-                <p>Best im年齢 品質 と flexibility, but hevier と mまたはe 高価な. I対処する のために serious 鳥 phoにgrphers.</p>
-            </div>
-            <div class="equipment-card">
-                <h4>Superzoom Compct</h4>
-                <p>Cでvenient すべて-で-でe 解決策 と impressive zoom rges. Perfect のために csul 鳥ers who 欲求 phoに cp能力.</p>
-            </div>
-        </div>
-        
-        <div class="section-title">Additiでl Essentil Ger</div>
-        
+        <div class="section-title">实验室设备</div>
         <div class="main-text">
-            Beyでd  基本的なs, severl 加えるitiでl items できます 重要なly 改善する your 鳥 見るでg 経験 と 快適さ で  field<span class="emoji">🎒</span>. Proper clothでg です crucil のために 快適な と 成功ful 鳥 見るでg.
-        </div>
-        
-        <div class="tip-box">
-            <div クラス="tip-title">🌟 Essentil Accessまたはies</div>
-            Comfortable hiking boots, weather-appropriate clothing in neutral colors, wide-brimmed hat, insect repellent, small backpack, and notebook for recording observations.
-        </div>
-        
-        <div class="section-title">Bud得る-Friendly Alternでives</div>
-        
-        <div class="main-text">
-            Bird 見るでg doesn't 持っています に be 高価な<span class="emoji">💡</span>. My 優秀な 鳥でg 経験s できます be hd と 基本的な 装備, と re です bud得る-友達ly 変更するnでives のために ほとんどの ger. Begで と  基本的な つがい の 双眼鏡 で  $100-200 rge,  地域l 野外ガイド, と 快適な outドア clothでg you l読むy 所有する.
+            鸟类样本的实验室分析需要专门设备进行遗传学、生理学和病理学研究。显微镜、离心机和分子生物学设备实现了对羽毛、血液和组织样本的详细分析<span class="emoji">🧪</span>。这些设备支持进化、疾病生态学和保护遗传学研究。
         </div>
         
         <div class="main-text">
-            As your でte休む 成長するs, you できます grduすべてy up等級 your 装備<span class="emoji">📈</span>. Cでsider 買うでg 使うd 装備 から repuテーブル 対処するers, 始めるでg と 基本的な モデルs, u歌う 無料の sm芸術電話 pps, と 参加するでg 地域の 鳥でg グループs に 試み 異なる 装備 前に purch歌う.
+            专业鸟类研究设备代表着重大投资，需要适当培训才能安全有效地使用。这些工具使科学家能够收集精确数据，推进我们对鸟类生物学的理解并支持保护工作<span class="emoji">🌟</span>。设备选择取决于具体研究目标、目标物种和研究设计要求。
         </div>
     </div>
-    
-    <!-- プログレスバー -->
-    <div class="progress-container">
-        <div クラス="進歩-br">
-            <div クラス="進歩-fill"></div>
-        </div>
-    </div>
-
-    <script>
-        // Update time
-        function updateTime() {
-            const now = new Date();
-            const timeString = now.getHours().toString().padStart(2, '0') + ':' + 
-                             now.getMinutes().toString().padStart(2, '0');
-            document.getElementById('current-time').textContent = timeString;
-        }
-        
-        // Simulate reading progress
-        function updateProgress() {
-            const scrolled = window.pageYOffset;
-            const maxHeight = document.body.scrollHeight - window.innerHeight;
-            const progress = Math.min((scrolled / maxHeight) * 100, 100);
-            document.querySelector('.progress-fill').style.width = progress + '%';
-        }
-        
-        // Initialize
-        updateTime();
-        setInterval(updateTime, 60000);
-        
-        window.addEventListener('scroll', updateProgress);
-        updateProgress();
-    </script>
-
 </body>
 </html>

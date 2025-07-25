@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>选择合适的宠物鸟 - BirdAiSnap</title>
+    <title>Choosing the Right Bird - Pet Care Guide</title>
     <style>
         * {
             margin: 0;
@@ -39,7 +39,7 @@
             width: 100%;
             height: 400px;
             background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
-                        url('../../images/birds/species/bird-image-025.png') center/cover;
+                        url('../../images/birds/species/bird-image-015.png') center/cover;
             position: relative;
             margin-top: 0;
         }
@@ -62,8 +62,8 @@
         }
         
         .quote-box {
-            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
-            border-left: 4px solid #ff9800;
+            background: linear-gradient(135deg, #e8f5e8, #c8e6c9);
+            border-left: 4px solid #2E8B57;
             padding: 20px;
             margin: 25px 0;
             border-radius: 8px;
@@ -73,7 +73,7 @@
         .quote-box::before {
             content: '"';
             font-size: 48px;
-            color: #ff9800;
+            color: #2E8B57;
             position: absolute;
             top: -5px;
             left: 15px;
@@ -84,7 +84,7 @@
         .quote-text {
             font-size: 18px;
             font-weight: 600;
-            color: #e65100;
+            color: #1b5e20;
             margin-left: 25px;
             line-height: 1.4;
         }
@@ -100,9 +100,9 @@
         .section-title {
             font-size: 20px;
             font-weight: 600;
-            color: #ff9800;
+            color: #2E8B57;
             margin: 30px 0 15px 0;
-            border-bottom: 2px solid #ffe0b2;
+            border-bottom: 2px solid #c8e6c9;
             padding-bottom: 8px;
         }
         
@@ -125,36 +125,90 @@
             font-size: 18px;
             margin: 0 2px;
         }
-        
-        .progress-container {
-            position: fixed;
-            bottom: 0;
+
+        .bird-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .bird-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #c8e6c9;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .bird-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+        }
+
+        .bird-card h4 {
+            color: #2E8B57;
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+
+        .considerations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .consideration-item {
+            background: #c8e6c9;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            color: #1b5e20;
+        }
+
+        .checklist {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #c8e6c9;
+        }
+
+        .checklist ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .checklist li {
+            padding: 8px 0;
+            border-bottom: 1px solid #c8e6c9;
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .checklist li:before {
+            content: "✓";
+            position: absolute;
             left: 0;
-            right: 0;
-            height: 60px;
-            background: linear-gradient(to top, rgba(255,255,255,0.95), transparent);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 998;
+            color: #2E8B57;
+            font-weight: bold;
+            font-size: 1.2em;
         }
-        
-        .progress-bar {
-            width: 200px;
-            height: 4px;
-            background: rgba(0,0,0,0.1);
-            border-radius: 2px;
-            overflow: hidden;
+
+        .warning-box {
+            background: #FFF8DC;
+            border: 2px solid #DAA520;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
         }
-        
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #ff9800, #ffb74d);
-            width: 0%;
-            border-radius: 2px;
-            transition: width 0.3s ease;
+
+        .warning-box h4 {
+            color: #B8860B;
+            margin-top: 0;
         }
-        
+
         @media (max-width: 375px) {
             .content {
                 margin: -30px 15px 20px 15px;
@@ -168,51 +222,231 @@
             .main-text {
                 font-size: 15px;
             }
+            
+            .bird-types {
+                grid-template-columns: 1fr;
+            }
+            
+            .considerations-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- 返回按钮 -->
+    <!-- Back Button -->
     <button class="back-button" onclick="history.back()">
         ←
     </button>
     
-    <!-- 英雄图片 -->
+    <!-- Hero Image -->
     <div class="hero-image"></div>
     
-    <!-- 主要内容 -->
+    <!-- Main Content -->
     <div class="content">
-        <h1 class="title">选择合适的宠物鸟</h1>
-        <div class="quote-box"><div class="quote-text">找到与您生活方式完美匹配的羽毛伙伴
-    </div>
-    
-    <!-- 进度条 -->
-    <div class="progress-container">
-        <div class="progress-bar">
-            <div class="progress-fill"></div>
+        <h1 class="title">Choosing the Right Bird</h1>
+        
+        <div class="quote-box">
+            <div class="quote-text">
+                Find the perfect feathered companion that matches your lifestyle
+            </div>
+        </div>
+        
+        <div class="main-text">
+            Before choosing a bird, it's crucial to honestly assess your lifestyle, living situation, and commitment level. Birds are intelligent, social creatures that require daily interaction, proper care, and long-term dedication <span class="emoji">🐦</span>. Whether you're a first-time bird owner or looking to add another feathered friend to your family, making the right choice is essential for both you and your future companion.
+        </div>
+        
+        <div class="section-title">Understanding Your Lifestyle</div>
+        
+        <div class="main-text">
+            Different bird species have vastly different needs and personalities. Some birds are content with minimal interaction, while others require several hours of daily attention <span class="emoji">⏰</span>. Consider your daily schedule, living space, noise tolerance, and long-term commitment before making a decision.
+        </div>
+        
+        <div class="considerations-grid">
+            <div class="consideration-item">Time Availability</div>
+            <div class="consideration-item">Living Space</div>
+            <div class="consideration-item">Noise Tolerance</div>
+            <div class="consideration-item">Experience Level</div>
+            <div class="consideration-item">Budget Planning</div>
+            <div class="consideration-item">Family Situation</div>
+        </div>
+
+        <div class="main-text">
+            <strong>Daily Time Commitment varies significantly:</strong><br>
+            • Small birds (finches, canaries): 30-60 minutes daily<br>
+            • Medium birds (cockatiels, conures): 2-4 hours daily<br>
+            • Large birds (macaws, cockatoos): 4-6+ hours daily
+        </div>
+        
+        <div class="section-title">Popular Pet Bird Types</div>
+        
+        <div class="main-text">
+            Each bird species has unique characteristics, care requirements, and personality traits. Here's a comprehensive overview of popular pet birds to help you make an informed decision <span class="emoji">📚</span>:
+        </div>
+
+        <div class="bird-types">
+            <div class="bird-card">
+                <h4>🐤 Budgerigars (Budgies)</h4>
+                <p><strong>Size:</strong> Small (7-8 inches)</p>
+                <p><strong>Lifespan:</strong> 5-10 years</p>
+                <p><strong>Personality:</strong> Social, playful, can learn to talk</p>
+                <p><strong>Care Level:</strong> Beginner-friendly</p>
+                <p><strong>Noise Level:</strong> Moderate</p>
+                <p>Perfect for first-time bird owners. They're social, relatively quiet, and can learn simple words and tricks.</p>
+            </div>
+
+            <div class="bird-card">
+                <h4>🦜 Cockatiels</h4>
+                <p><strong>Size:</strong> Medium (12-13 inches)</p>
+                <p><strong>Lifespan:</strong> 15-25 years</p>
+                <p><strong>Personality:</strong> Gentle, affectionate, whistlers</p>
+                <p><strong>Care Level:</strong> Beginner to intermediate</p>
+                <p><strong>Noise Level:</strong> Moderate</p>
+                <p>Known for their distinctive crest and gentle nature. They're excellent whistlers and can learn melodies.</p>
+            </div>
+
+            <div class="bird-card">
+                <h4>🌈 Lovebirds</h4>
+                <p><strong>Size:</strong> Small (5-7 inches)</p>
+                <p><strong>Lifespan:</strong> 10-15 years</p>
+                <p><strong>Personality:</strong> Energetic, playful, can be territorial</p>
+                <p><strong>Care Level:</strong> Intermediate</p>
+                <p><strong>Noise Level:</strong> Moderate to high</p>
+                <p>Colorful and energetic birds that do well in pairs. They're active and require plenty of toys and stimulation.</p>
+            </div>
+
+            <div class="bird-card">
+                <h4>🎵 Canaries</h4>
+                <p><strong>Size:</strong> Small (4-5 inches)</p>
+                <p><strong>Lifespan:</strong> 10-15 years</p>
+                <p><strong>Personality:</strong> Independent, excellent singers</p>
+                <p><strong>Care Level:</strong> Beginner-friendly</p>
+                <p><strong>Noise Level:</strong> Low to moderate</p>
+                <p>Beautiful singers that don't require as much social interaction. Perfect for those who enjoy bird songs.</p>
+            </div>
+
+            <div class="bird-card">
+                <h4>🌺 Conures</h4>
+                <p><strong>Size:</strong> Medium (10-20 inches)</p>
+                <p><strong>Lifespan:</strong> 20-30 years</p>
+                <p><strong>Personality:</strong> Playful, loud, affectionate</p>
+                <p><strong>Care Level:</strong> Intermediate to advanced</p>
+                <p><strong>Noise Level:</strong> High</p>
+                <p>Colorful, playful birds with big personalities. They can be quite loud and require experienced owners.</p>
+            </div>
+
+            <div class="bird-card">
+                <h4>🧠 African Grey Parrots</h4>
+                <p><strong>Size:</strong> Large (12-14 inches)</p>
+                <p><strong>Lifespan:</strong> 40-60 years</p>
+                <p><strong>Personality:</strong> Highly intelligent, can be sensitive</p>
+                <p><strong>Care Level:</strong> Advanced</p>
+                <p><strong>Noise Level:</strong> Moderate to high</p>
+                <p>Extremely intelligent birds that require experienced owners and consistent mental stimulation.</p>
+            </div>
+        </div>
+        
+        <div class="section-title">Space and Housing Requirements</div>
+        
+        <div class="main-text">
+            Different birds have varying space requirements. Consider both cage size and out-of-cage time needs <span class="emoji">🏠</span>:
+        </div>
+
+        <div class="main-text">
+            <strong>Minimum Cage Sizes:</strong><br>
+            • Small birds: 18" x 18" x 24" (W x D x H)<br>
+            • Medium birds: 24" x 24" x 30"<br>
+            • Large birds: 36" x 24" x 48" or larger
+        </div>
+
+        <div class="tip-box">
+            <div class="tip-title">💡 Space Tip</div>
+            Birds need daily out-of-cage time in a bird-safe room. Larger birds require more flight space, and multiple birds need proportionally larger accommodations.
+        </div>
+        
+        <div class="section-title">Financial Considerations</div>
+        
+        <div class="main-text">
+            Owning a bird involves both initial setup costs and ongoing expenses. Budget planning is crucial for providing proper care throughout your bird's life <span class="emoji">💰</span>.
+        </div>
+
+        <div class="main-text">
+            <strong>Initial Costs:</strong><br>
+            • Bird purchase: $20-$3,000+ depending on species<br>
+            • Cage and setup: $100-$1,000+<br>
+            • Initial vet visit: $75-$200<br>
+            • Toys and accessories: $50-$200
+        </div>
+
+        <div class="main-text">
+            <strong>Monthly Expenses:</strong><br>
+            • Food: $15-$50<br>
+            • Toys and enrichment: $10-$30<br>
+            • Veterinary care: $20-$100 (averaged)<br>
+            • Bedding and supplies: $10-$25
+        </div>
+
+        <div class="warning-box">
+            <h4>⚠️ Important Considerations</h4>
+            <ul>
+                <li><strong>Longevity:</strong> Many birds live 15-80+ years - this is a lifetime commitment</li>
+                <li><strong>Noise:</strong> All birds make noise; some species are very loud</li>
+                <li><strong>Mess:</strong> Birds scatter food, drop feathers, and can be messy</li>
+                <li><strong>Social needs:</strong> Most birds are flock animals and need daily interaction</li>
+                <li><strong>Specialized care:</strong> Birds require avian veterinarians and specific diets</li>
+            </ul>
+        </div>
+
+        <div class="section-title">Pre-Adoption Checklist</div>
+        
+        <div class="checklist">
+            <ul>
+                <li>Research the specific species thoroughly</li>
+                <li>Find a qualified avian veterinarian in your area</li>
+                <li>Prepare appropriate housing and supplies</li>
+                <li>Budget for ongoing care and emergency expenses</li>
+                <li>Ensure all family members are on board</li>
+                <li>Consider adopting from rescues or shelters</li>
+                <li>Plan for care during vacations and emergencies</li>
+                <li>Bird-proof your home environment</li>
+                <li>Learn about proper bird nutrition</li>
+                <li>Understand the commitment involved</li>
+            </ul>
+        </div>
+
+        <div class="section-title">Where to Find Your Bird</div>
+        
+        <div class="main-text">
+            <strong>Recommended Sources:</strong><br>
+            • Bird rescues and shelters: Many birds need rehoming<br>
+            • Reputable breeders: Research thoroughly, visit facilities<br>
+            • Bird shows and expos: Meet breeders and see different species
+        </div>
+
+        <div class="tip-box">
+            <div class="tip-title">🚨 Red Flags to Avoid</div>
+            Pet stores with poor conditions, breeders who won't let you visit, birds that seem sick or stressed, unusually low prices, or no health guarantees.
+        </div>
+        
+        <div class="section-title">Making Your Final Decision</div>
+        
+        <div class="main-text">
+            Take time to consider all factors before making your decision. Match the bird to your lifestyle - not the other way around. Start with easier species if you're a beginner, and consider adopting an older bird that needs a home <span class="emoji">🎯</span>.
+        </div>
+
+        <div class="main-text">
+            Remember, choosing the right bird is about finding a companion that fits your lifestyle and that you can provide excellent care for throughout their entire life. Take your time, do your research, and choose wisely! This decision will impact both your life and your feathered friend's wellbeing for many years to come <span class="emoji">✨</span>.
         </div>
     </div>
 
     <script>
-        // 更新时间
-        function updateTime() {
-            const now = new Date();
-            const timeString = now.getHours().toString().padStart(2, '0') + ':' + 
-                             now.getMinutes().toString().padStart(2, '0');
-            document.getElementById('current-time').textContent = timeString;
-        }
-        
-        // 模拟阅读进度
+        // Simulate reading progress
         function updateProgress() {
             const scrolled = window.pageYOffset;
             const maxHeight = document.body.scrollHeight - window.innerHeight;
             const progress = Math.min((scrolled / maxHeight) * 100, 100);
-            document.querySelector('.progress-fill').style.width = progress + '%';
+            // Progress bar functionality can be added here if needed
         }
-        
-        // 初始化
-        updateTime();
-        setInterval(updateTime, 60000);
         
         window.addEventListener('scroll', updateProgress);
         updateProgress();

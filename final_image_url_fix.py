@@ -35,17 +35,17 @@ IMAGE_MAPPING = {
     "kn009": "bird-image-009.png",
     "kn010": "bird-image-010.png",
     
-    # ecology 分类 (使用修复后的唯一图片)
+    # ecology 分类 (使用专用头图)
     "ec001": "bird-image-075.png",
     "ec002": "bird-image-076.png",
     "ec003": "bird-image-077.png",
-    "ec004": "bird-image-078.png",
+    "ec004": "head_breeding_cology.png",        # 繁殖生态学
     "ec005": "bird-image-079.png",
-    "ec006": "bird-image-081.png",
-    "ec007": "bird-image-082.png",
-    "ec008": "bird-image-083.png",
-    "ec009": "bird-image-084.png",
-    "ec010": "bird-image-085.png",
+    "ec006": "head_urban_ecology.png",          # 城市鸟类生态学
+    "ec007": "head_conservation_biology.png",   # 鸟类保护生物学
+    "ec008": "head_island_biogeography.png",    # 岛屿生物地理学
+    "ec009": "head_pollination_seed_dispersal.png", # 授粉与种子传播
+    "ec010": "head_community_dynamics.png",     # 鸟类群落动态
     
     # petCare 分类
     "pc001": "bird-image-015.png",

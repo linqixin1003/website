@@ -1,89 +1,124 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-
-"""
-修复缺失图片 URL 的文章
-为没有头图的 HTML 文件设置合适的默认图片
-"""
-
-import json
 import os
+import json
 import re
+from bs4 import BeautifulSoup
 
-def fix_missing_images(json_file):
-    """修复缺失图片的文章"""
-    # 读取 JSON 文件
-    with open(json_file, 'r', encoding='utf-8') as f:
-        data = json.load(f)
-    
-    # 记录修改数量
-    changes_count = 0
-    
-    # 为不同分类设置默认图片映射
-    default_images = {
-        'knowledge': {
-            'kn002': 'bird-image-062.png'  # Essential Equipment
-        },
-        'ecology': {
-            'ec001': 'bird-image-075.png',  # Habitat Ecosystems
-            'ec002': 'bird-image-080.png',  # Food Webs
-            'ec003': 'bird-image-022.png',  # Migration Patterns
-            'ec004': 'bird-image-070.png',  # Breeding Ecology
-            'ec005': 'bird-image-006.png',  # Climate Change
-            'ec006': 'bird-image-071.png',  # Urban Ecology
-            'ec007': 'bird-image-042.png',  # Conservation Biology
-            'ec008': 'bird-image-014.png',  # Island Biogeography
-            'ec009': 'bird-image-034.png',  # Pollination
-            'ec010': 'bird-image-007.png'   # Community Dynamics
-        }
-    }
-    
-    # 遍历所有分类和文章
-    for category_key, category_data in data['articleCategories'].items():
-        if category_key in default_images:
-            for article in category_data.get('articles', []):
-                article_id = article.get('id')
-                
-                if article_id in default_images[category_key]:
-                    # 构建新的图片 URL
-                    image_filename = default_images[category_key][article_id]
-                    new_image_url = f"https://linqixin1003.github.io/website/images/birds/species/{image_filename}"
-                    
-                    # 检查当前 URL 是否需要更新
-                    current_url = article.get('imageUrl', '')
-                    if 'headers' in current_url or current_url != new_image_url:
-                        old_url = current_url
-                        article['imageUrl'] = new_image_url
-                        changes_count += 1
-                        print(f"✓ 更新 {article_id}: {article.get('title', 'Unknown')}")
-                        print(f"  旧 URL: {old_url}")
-                        print(f"  新 URL: {new_image_url}")
-    
-    # 保存修改后的 JSON 文件
-    if changes_count > 0:
-        with open(json_file, 'w', encoding='utf-8') as f:
-            json.dump(data, f, ensure_ascii=False, indent=2)
+def load_json_config(file_path):
+    """加载JSON配置文件"""
+    with open(file_path, 'r', encoding='utf-8') as f:
+        return json.load(f)
+
+def add_hero_image_to_html(html_path, image_url):
+    """向HTML文件添加头图元素"""
+    try:
+        with open(html_path, 'r', encoding='utf-8') as f:
+            content = f.read()
+            
+        # 使用BeautifulSoup解析HTML
+        soup = BeautifulSoup(content, 'html.parser')
         
-        print(f"\n✅ 总共修改了 {changes_count} 个图片 URL")
-    else:
-        print("没有需要修改的图片 URL")
+        # 检查是否已有hero-image元素
+        hero_image = soup.select_one('.hero-image')
+        if hero_image:
+            return False, "已存在头图元素"
+            
+        # 从JSON URL中提取相对路径
+        relative_url = image_url.replace('https://linqixin1003.github.io/website/', '../../')
+        
+        # 查找main-content元素，在其前面添加hero-image
+        main_content = soup.select_one('.main-content')
+        if main_content:
+            # 创建hero-image元素
+            hero_div = soup.new_tag('div')
+            hero_div['class'] = 'hero-image'
+            hero_div['style'] = f"width: 100%; height: 400px; background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('{relative_url}') center/cover; position: relative; margin-top: 0;"
+            
+            # 在main-content前插入hero-image
+            main_content.insert_before(hero_div)
+            
+            # 写回文件
+            with open(html_path, 'w', encoding='utf-8') as f:
+                f.write(str(soup))
+                
+            return True, "成功添加头图元素"
+        else:
+            # 查找body元素，在其第一个子元素前添加hero-image
+            body = soup.body
+            if body and body.contents:
+                # 创建hero-image元素
+                hero_div = soup.new_tag('div')
+                hero_div['class'] = 'hero-image'
+                hero_div['style'] = f"width: 100%; height: 400px; background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('{relative_url}') center/cover; position: relative; margin-top: 0;"
+                
+                # 在body的第一个子元素前插入hero-image
+                body.insert(0, hero_div)
+                
+                # 写回文件
+                with open(html_path, 'w', encoding='utf-8') as f:
+                    f.write(str(soup))
+                    
+                return True, "成功添加头图元素"
+            else:
+                return False, "找不到合适的位置添加头图元素"
+    except Exception as e:
+        return False, f"处理文件 {html_path} 时出错: {e}"
+
+def fix_missing_images(json_config, base_dir, language_code):
+    """修复所有缺失的头图"""
+    fixed_count = 0
+    failed_count = 0
+    
+    for category_key, category_data in json_config['articleCategories'].items():
+        base_url = category_data['baseUrl']
+        for article in category_data['articles']:
+            article_url = article['url'].lstrip('/')
+            html_path = os.path.join(base_dir, language_code, article_url)
+            
+            if os.path.exists(html_path):
+                # 检查HTML文件中是否有头图元素
+                with open(html_path, 'r', encoding='utf-8') as f:
+                    content = f.read()
+                    
+                soup = BeautifulSoup(content, 'html.parser')
+                hero_image = soup.select_one('.hero-image')
+                
+                if not hero_image:
+                    print(f"修复文章: {article['title']} ({article['id']})")
+                    print(f"  URL: {article_url}")
+                    print(f"  JSON中的图片URL: {article['imageUrl']}")
+                    print(f"  HTML中的图片URL: None")
+                    
+                    success, message = add_hero_image_to_html(html_path, article['imageUrl'])
+                    if success:
+                        fixed_count += 1
+                        print(f"  ✅ {message}")
+                    else:
+                        failed_count += 1
+                        print(f"  ❌ {message}")
+    
+    return fixed_count, failed_count
+
+def main():
+    base_dir = '.'  # 当前目录
+    
+    # 支持的语言代码
+    language_codes = ['en', 'zh', 'ja', 'ko', 'fr', 'de', 'es', 'it', 'pt', 'ru']
+    
+    for lang_code in language_codes:
+        json_config_path = f'android-article-urls-{lang_code}.json'
+        
+        if not os.path.exists(json_config_path):
+            print(f"跳过 {lang_code}，找不到配置文件: {json_config_path}")
+            continue
+            
+        try:
+            print(f"\n处理 {lang_code} 语言版本...")
+            json_config = load_json_config(json_config_path)
+            fixed_count, failed_count = fix_missing_images(json_config, base_dir, lang_code)
+            
+            print(f"{lang_code} 语言版本修复完成! 成功修复: {fixed_count}, 修复失败: {failed_count}")
+        except Exception as e:
+            print(f"处理 {lang_code} 语言版本时出错: {e}")
 
 if __name__ == "__main__":
-    json_files = [
-        "android-article-urls-en.json",
-        "android-article-urls-zh.json", 
-        "android-article-urls-ja.json",
-        "android-article-urls-ko.json",
-        "android-article-urls-fr.json",
-        "android-article-urls-de.json",
-        "android-article-urls-it.json",
-        "android-article-urls-pt.json",
-        "android-article-urls-ru.json",
-    ]
-    
-    for json_file in json_files:
-        if os.path.exists(json_file):
-            print(f"\n📝 处理文件: {json_file}")
-            fix_missing_images(json_file)
-        else:
-            print(f"❌ 文件不存在: {json_file}")
+    main()

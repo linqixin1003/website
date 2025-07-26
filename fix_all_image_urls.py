@@ -20,45 +20,32 @@ def extract_image_url_from_html(html_path):
         # 查找hero-image元素
         hero_image = soup.select_one('.hero-image')
         if not hero_image:
-            return None
+            return None, None, None
             
         # 检查是否有img标签
         img_tag = hero_image.find('img')
         if img_tag and img_tag.get('src'):
-            return img_tag['src']
+            return img_tag['src'], 'img_src', soup
             
         # 检查背景图片样式
         style = hero_image.get('style')
         if style:
             match = re.search(r'url\([\'"]?(.*?)[\'"]?\)', style)
             if match:
-                return match.group(1)
+                return match.group(1), 'inline_style', soup
                 
-        # 检查内联样式
-        background_image = None
-        for tag in soup.select('[style*="background"]'):
-            style = tag.get('style', '')
-            if 'url(' in style and '.hero-image' in str(tag):
-                match = re.search(r'url\([\'"]?(.*?)[\'"]?\)', style)
-                if match:
-                    background_image = match.group(1)
-                    break
-        
-        if background_image:
-            return background_image
-            
-        # 查找CSS样式中的背景图片
+        # 检查CSS样式中的背景图片
         style_tags = soup.find_all('style')
         for style_tag in style_tags:
             style_content = style_tag.string
             if style_content and '.hero-image' in style_content:
                 match = re.search(r'\.hero-image\s*{[^}]*background[^}]*url\([\'"]?(.*?)[\'"]?\)', style_content)
                 if match:
-                    return match.group(1)
+                    return match.group(1), 'css_style', soup
     except Exception as e:
         print(f"处理文件 {html_path} 时出错: {e}")
     
-    return None
+    return None, None, None
 
 def normalize_url(url):
     """标准化URL以便比较"""
@@ -94,9 +81,49 @@ def normalize_url(url):
     
     return url
 
-def verify_image_urls(json_config, base_dir, language_code):
-    """验证所有文章的头图URL"""
-    mismatches = []
+def update_html_image_url(html_path, json_image_url, url_type, soup):
+    """更新HTML文件中的头图URL"""
+    try:
+        # 从JSON URL中提取相对路径
+        relative_url = json_image_url.replace('https://linqixin1003.github.io/website/', '../../')
+        
+        if url_type == 'img_src':
+            # 更新img标签的src属性
+            hero_image = soup.select_one('.hero-image')
+            img_tag = hero_image.find('img')
+            img_tag['src'] = relative_url
+        elif url_type == 'inline_style':
+            # 更新内联样式
+            hero_image = soup.select_one('.hero-image')
+            style = hero_image.get('style', '')
+            new_style = re.sub(r'url\([\'"]?.*?[\'"]?\)', f'url(\'{relative_url}\')', style)
+            hero_image['style'] = new_style
+        elif url_type == 'css_style':
+            # 更新CSS样式
+            style_tags = soup.find_all('style')
+            for style_tag in style_tags:
+                if style_tag.string and '.hero-image' in style_tag.string:
+                    style_content = style_tag.string
+                    new_style = re.sub(
+                        r'(\.hero-image\s*{[^}]*background[^}]*url\()[\'"]?.*?[\'"]?(\))', 
+                        f'\\1\'{relative_url}\'\\2', 
+                        style_content
+                    )
+                    style_tag.string = new_style
+        
+        # 写回文件
+        with open(html_path, 'w', encoding='utf-8') as f:
+            f.write(str(soup))
+            
+        return True
+    except Exception as e:
+        print(f"更新文件 {html_path} 时出错: {e}")
+        return False
+
+def fix_image_urls(json_config, base_dir, language_code):
+    """修复所有不匹配的头图URL"""
+    fixed_count = 0
+    failed_count = 0
     
     for category_key, category_data in json_config['articleCategories'].items():
         base_url = category_data['baseUrl']
@@ -105,24 +132,31 @@ def verify_image_urls(json_config, base_dir, language_code):
             html_path = os.path.join(base_dir, language_code, article_url)
             
             if os.path.exists(html_path):
-                html_image_url = extract_image_url_from_html(html_path)
+                html_image_url, url_type, soup = extract_image_url_from_html(html_path)
                 json_image_url = article['imageUrl']
                 
                 norm_html_url = normalize_url(html_image_url)
                 norm_json_url = normalize_url(json_image_url)
                 
                 if norm_html_url != norm_json_url:
-                    mismatches.append({
-                        'article_id': article['id'],
-                        'title': article['title'],
-                        'url': article_url,
-                        'json_image_url': json_image_url,
-                        'html_image_url': html_image_url,
-                        'normalized_json_url': norm_json_url,
-                        'normalized_html_url': norm_html_url
-                    })
+                    print(f"修复文章: {article['title']} ({article['id']})")
+                    print(f"  URL: {article_url}")
+                    print(f"  JSON中的图片URL: {json_image_url}")
+                    print(f"  HTML中的图片URL: {html_image_url}")
+                    
+                    if url_type and soup:
+                        success = update_html_image_url(html_path, json_image_url, url_type, soup)
+                        if success:
+                            fixed_count += 1
+                            print(f"  ✅ 已修复")
+                        else:
+                            failed_count += 1
+                            print(f"  ❌ 修复失败")
+                    else:
+                        failed_count += 1
+                        print(f"  ❌ 无法确定如何修复")
     
-    return mismatches
+    return fixed_count, failed_count
 
 def main():
     base_dir = '.'  # 当前目录
@@ -138,18 +172,11 @@ def main():
             continue
             
         try:
+            print(f"\n处理 {lang_code} 语言版本...")
             json_config = load_json_config(json_config_path)
-            mismatches = verify_image_urls(json_config, base_dir, lang_code)
+            fixed_count, failed_count = fix_image_urls(json_config, base_dir, lang_code)
             
-            if mismatches:
-                print(f"\n{lang_code} 语言版本发现 {len(mismatches)} 个头图URL不匹配:")
-                for i, mismatch in enumerate(mismatches, 1):
-                    print(f"\n{i}. 文章: {mismatch['title']} ({mismatch['article_id']})")
-                    print(f"   URL: {mismatch['url']}")
-                    print(f"   JSON中的图片URL: {mismatch['json_image_url']}")
-                    print(f"   HTML中的图片URL: {mismatch['html_image_url']}")
-            else:
-                print(f"\n{lang_code} 语言版本的所有头图URL都匹配!")
+            print(f"{lang_code} 语言版本修复完成! 成功修复: {fixed_count}, 修复失败: {failed_count}")
         except Exception as e:
             print(f"处理 {lang_code} 语言版本时出错: {e}")
 

@@ -27,8 +27,6 @@
 </head>
 <body>
 
-    </div>
-
     <main class="article-content">
         
         <div class="hero-image" style="margin-bottom: 20px;">
@@ -390,27 +388,46 @@
                     <li></li>
                     <li>long</li>
                 </ul>
-            </div><div class="related-articles">
-            <h3>Articles connexesrecommandations</h3>
-            <div class="article-grid">
-                <a href="05-climate-change-impact.html" class="article-card">
-                    <img src="../../images/birds/species/bird-image-035.png" alt="">
-                    <h4>pourOiseauxde</h4>
-                    <p>comprendrede</p>
-                </a>
-                <a href="06-urban-ecology.html" class="article-card">
-                    <img src="../../images/birds/species/bird-image-035.png" alt="ville">
-                    <h4>Écologie urbaine des oiseaux</h4>
-                    <p>explorerVillemilieudeOiseaux</p>
-                </a>
-            </div>
+            </div>    </div>
+    
+    <!-- 进度条 -->
+    <div class="progress-container">
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
         </div>
-    </main>
+    </div>
+    
+    <script>
+        // 更新时间
+        function updateTime() {
+            const now = new Date();
+            const timeString = now.getHours().toString().padStart(2, '0') + ':' + 
+                             now.getMinutes().toString().padStart(2, '0');
+            document.getElementById('current-time').textContent = timeString;
+        }
+        
+        // 模拟阅读进度
+        function updateProgress() {
+            const scrolled = window.pageYOffset;
+            const maxHeight = document.body.scrollHeight - window.innerHeight;
+            const progress = Math.min((scrolled / maxHeight) * 100, 100);
+            document.querySelector('.progress-fill').style.width = progress + '%';
+        }
+        
+        // 初始化
+        updateTime();
+        setInterval(updateTime, 60000);
+        
+        window.addEventListener('scroll', updateProgress);
+        updateProgress();
+    </script>
+
+</body>
+</html>
 
     <div class="progress-bar">
         <div class="progress-fill" style="width: 100%"></div>
     </div>
 
-    
 </body>
 </html>

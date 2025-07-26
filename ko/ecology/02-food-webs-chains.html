@@ -27,8 +27,6 @@
 </head>
 <body>
 
-    </div>
-
     <!-- 主要内容 -->
     <main class="article-content">
         <!-- 主图 -->
@@ -306,25 +304,41 @@
                     <li>建立보호区보호완전한的食物网</li>
                 </ul>
             </div><!-- 相关文章추천 -->
-        <div class="related-articles">
-            <h3>相关文章추천</h3>
-            <div class="article-grid">
-                <a href="01-habitat-ecosystems.html" class="article-card">
-                    <img src="../../images/birds/species/bird-image-036.png" alt="서식지와 생태계">
-                    <h4>서식지와 생태계</h4>
-                    <p>了解조류生存的기초환경</p>
-                </a>
-                <a href="10-community-dynamics.html" class="article-card">
-                    <img src="../../images/birds/species/bird-image-036.png" alt="군집 역학">
-                    <h4>조류군집 역학</h4>
-                    <p>探索조류群落的结构和변화</p>
-                </a>
             </div>
-        </div>
-    </main>
-
-    </div>
-
     
+    <!-- 进度条 -->
+    <div class="progress-container">
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
+        </div>
+    </div>
+    
+    <script>
+        // 更新时间
+        function updateTime() {
+            const now = new Date();
+            const timeString = now.getHours().toString().padStart(2, '0') + ':' + 
+                             now.getMinutes().toString().padStart(2, '0');
+            document.getElementById('current-time').textContent = timeString;
+        }
+        
+        // 模拟阅读进度
+        function updateProgress() {
+            const scrolled = window.pageYOffset;
+            const maxHeight = document.body.scrollHeight - window.innerHeight;
+            const progress = Math.min((scrolled / maxHeight) * 100, 100);
+            document.querySelector('.progress-fill').style.width = progress + '%';
+        }
+        
+        // 初始化
+        updateTime();
+        setInterval(updateTime, 60000);
+        
+        window.addEventListener('scroll', updateProgress);
+        updateProgress();
+    </script>
+
+</body>
+</html>
 </body>
 </html>

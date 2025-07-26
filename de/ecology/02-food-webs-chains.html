@@ -27,8 +27,6 @@
 </head>
 <body>
 
-    </div>
-
     <!-- Hauptinhalt -->
     <Haupt- class="Artikel-content">
         <!-- Hero-Bild -->
@@ -305,29 +303,47 @@
                     <li>Reducing pollution maintains Nahrung Qualität</li>
                     <li>Establishing geschützt areas preserves vollständig Nahrung webs</li>
                 </ul>
-            </div><!-- 相关文章推荐 -->
-        <div class="related-articles">
-            <h3>Related Articles</h3>
-            <div class="Artikel-grid">
-                <a href="01-Lebensraum-ecosystems.html" class="Artikel-card">
-                    <img src="../../images/Vögel/Art/Vogel-image-036.png" alt="Habitats und Ecosystems">
-                    <h4>Habitats und Ecosystems</h4>
-                    <p>Understanding der fundamental environments für Vogel survival</p>
-                </a>
-                <a href="10-Gemeinschaft-dynamics.html" class="Artikel-card">
-                    <img src="../../images/Vögel/Art/Vogel-image-036.png" alt="Gemeinschaftsdynamik">
-                    <h4>Vogel Gemeinschaftsdynamik</h4>
-                    <p>Exploring der Struktur und changes in Vogel communities</p>
-                </a>
-            </div>
+            </div>    </div>
+    
+    <!-- 进度条 -->
+    <div class="progress-container">
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
         </div>
-    </main>
+    </div>
+    
+    <script>
+        // 更新时间
+        function updateTime() {
+            const now = new Date();
+            const timeString = now.getHours().toString().padStart(2, '0') + ':' + 
+                             now.getMinutes().toString().padStart(2, '0');
+            document.getElementById('current-time').textContent = timeString;
+        }
+        
+        // 模拟阅读进度
+        function updateProgress() {
+            const scrolled = window.pageYOffset;
+            const maxHeight = document.body.scrollHeight - window.innerHeight;
+            const progress = Math.min((scrolled / maxHeight) * 100, 100);
+            document.querySelector('.progress-fill').style.width = progress + '%';
+        }
+        
+        // 初始化
+        updateTime();
+        setInterval(updateTime, 60000);
+        
+        window.addEventListener('scroll', updateProgress);
+        updateProgress();
+    </script>
+
+</body>
+</html>
 
     <!-- Fortschrittsbalken -->
     <div class="progress-bar">
         <div class="progress-fill" style="Breite: 100%"></div>
     </div>
 
-    
 </body>
 </html>

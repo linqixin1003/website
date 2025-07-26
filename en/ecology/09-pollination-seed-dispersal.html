@@ -27,8 +27,6 @@
 </head>
 <body>
 
-    </div>
-
     <!-- 主要内容 -->
     <main class="article-content">
         <!-- 英雄图片 -->
@@ -394,26 +392,41 @@
             </div>
         </div>
 
-        <!-- 相关文章推荐 -->
-        <div class="related-articles">
-            <h3>Related Articles</h3>
-            <div class="article-grid">
-                <a href="02-food-webs-chains.html" class="article-card">
-                    <img src="../../images/birds/species/bird-image-041.png" alt="Food Webs and Food Chains">
-                    <h4>Food Webs and Food Chains</h4>
-                    <p>Understanding birds' nutritional relationships in ecosystems</p>
-                </a>
-                <a href="10-community-dynamics.html" class="article-card">
-                    <img src="../../images/birds/species/bird-image-041.png" alt="Community Dynamics">
-                    <h4>Bird Community Dynamics</h4>
-                    <p>Exploring interactions within bird communities</p>
-                </a>
             </div>
-        </div>
-    </main>
-
-    </div>
-
     
+    <!-- 进度条 -->
+    <div class="progress-container">
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
+        </div>
+    </div>
+    
+    <script>
+        // 更新时间
+        function updateTime() {
+            const now = new Date();
+            const timeString = now.getHours().toString().padStart(2, '0') + ':' + 
+                             now.getMinutes().toString().padStart(2, '0');
+            document.getElementById('current-time').textContent = timeString;
+        }
+        
+        // 模拟阅读进度
+        function updateProgress() {
+            const scrolled = window.pageYOffset;
+            const maxHeight = document.body.scrollHeight - window.innerHeight;
+            const progress = Math.min((scrolled / maxHeight) * 100, 100);
+            document.querySelector('.progress-fill').style.width = progress + '%';
+        }
+        
+        // 初始化
+        updateTime();
+        setInterval(updateTime, 60000);
+        
+        window.addEventListener('scroll', updateProgress);
+        updateProgress();
+    </script>
+
+</body>
+</html>
 </body>
 </html>

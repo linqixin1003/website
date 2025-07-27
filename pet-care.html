@@ -17,6 +17,29 @@
             color: #333;
         }
         
+        .language-selector {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 25px;
+            padding: 8px 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        .language-selector select {
+            border: none;
+            background: transparent;
+            font-size: 14px;
+            font-weight: 500;
+            color: #333;
+            cursor: pointer;
+            outline: none;
+            min-width: 120px;
+        }
+        
         .header {
             width: 100%;
             height: 200px;
@@ -121,6 +144,12 @@
             .header-title {
                 font-size: 28px;
             }
+            
+            .language-selector {
+                top: 10px;
+                right: 10px;
+                padding: 6px 12px;
+            }
         }
         
         @media (max-width: 480px) {
@@ -142,20 +171,36 @@
     <script src="language-redirect.js"></script>
 </head>
 <body>
+    <!-- 语言选择器 -->
+    <div class="language-selector">
+        <select id="languageSelect" onchange="changeLanguage()">
+            <option value="zh">🇨🇳 中文</option>
+            <option value="en">🇺🇸 English</option>
+            <option value="it">🇮🇹 Italiano</option>
+            <option value="ja">🇯🇵 日本語</option>
+            <option value="ru">🇷🇺 Русский</option>
+            <option value="fr">🇫🇷 Français</option>
+            <option value="de">🇩🇪 Deutsch</option>
+            <option value="es">🇪🇸 Español</option>
+            <option value="pt">🇵🇹 Português</option>
+            <option value="ko">🇰🇷 한국어</option>
+        </select>
+    </div>
+    
     <!-- 头部横幅 -->
     <div class="header">
-        <h1 class="header-title">宠物鸟护理指南</h1>
+        <h1 class="header-title" id="pageTitle">宠物鸟护理指南</h1>
     </div>
     
     <!-- 主要内容 -->
     <div class="content">
-        <p class="intro-text">
+        <p class="intro-text" id="introText">
             欢迎来到我们的宠物鸟护理专区。这里提供了全面的宠物鸟饲养指南，从选择合适的鸟类到日常护理、健康管理和行为训练。点击下方任意文章图片，深入了解如何为您的羽毛朋友提供最好的照顾。
         </p>
         
-        <div class="article-grid">
+        <div class="article-grid" id="articleGrid">
             <!-- 文章1 -->
-            <a href="en/pet-care/01-choosing-right-bird.html" class="article-card">
+            <a href="zh/pet-care/01-choosing-right-bird.html" class="article-card" data-article="01">
                 <img src="images/birds/species/bird-image-015.webp" class="article-image" alt="选择合适的鸟类">
                 <div class="article-overlay">
                     <h3 class="article-title">选择合适的鸟类</h3>
@@ -164,7 +209,7 @@
             </a>
             
             <!-- 文章2 -->
-            <a href="en/pet-care/02-nutrition-feeding.html" class="article-card">
+            <a href="zh/pet-care/02-nutrition-feeding.html" class="article-card" data-article="02">
                 <img src="images/birds/species/bird-image-016.webp" class="article-image" alt="营养与喂食">
                 <div class="article-overlay">
                     <h3 class="article-title">营养与喂食</h3>
@@ -173,7 +218,7 @@
             </a>
             
             <!-- 文章3 -->
-            <a href="en/pet-care/03-housing-environment.html" class="article-card">
+            <a href="zh/pet-care/03-housing-environment.html" class="article-card" data-article="03">
                 <img src="images/birds/species/bird-image-017.webp" class="article-image" alt="住所与环境">
                 <div class="article-overlay">
                     <h3 class="article-title">住所与环境</h3>
@@ -182,7 +227,7 @@
             </a>
             
             <!-- 文章4 -->
-            <a href="en/pet-care/04-health-veterinary.html" class="article-card">
+            <a href="zh/pet-care/04-health-veterinary.html" class="article-card" data-article="04">
                 <img src="images/birds/species/bird-image-018.webp" class="article-image" alt="健康与兽医护理">
                 <div class="article-overlay">
                     <h3 class="article-title">健康与兽医护理</h3>
@@ -191,7 +236,7 @@
             </a>
             
             <!-- 文章5 -->
-            <a href="en/pet-care/05-training-behavior.html" class="article-card">
+            <a href="zh/pet-care/05-training-behavior.html" class="article-card" data-article="05">
                 <img src="images/birds/species/bird-image-019.webp" class="article-image" alt="训练与行为">
                 <div class="article-overlay">
                     <h3 class="article-title">训练与行为</h3>
@@ -200,7 +245,7 @@
             </a>
             
             <!-- 文章6 -->
-            <a href="en/pet-care/06-breeding-reproduction.html" class="article-card">
+            <a href="zh/pet-care/06-breeding-reproduction.html" class="article-card" data-article="06">
                 <img src="images/birds/species/bird-image-020.webp" class="article-image" alt="繁殖与生殖">
                 <div class="article-overlay">
                     <h3 class="article-title">繁殖与生殖</h3>
@@ -209,7 +254,7 @@
             </a>
             
             <!-- 文章7 -->
-            <a href="en/pet-care/07-emergency-first-aid.html" class="article-card">
+            <a href="zh/pet-care/07-emergency-first-aid.html" class="article-card" data-article="07">
                 <img src="images/birds/species/bird-image-021.webp" class="article-image" alt="紧急救护">
                 <div class="article-overlay">
                     <h3 class="article-title">紧急救护</h3>
@@ -218,7 +263,7 @@
             </a>
             
             <!-- 文章8 -->
-            <a href="en/pet-care/08-seasonal-care.html" class="article-card">
+            <a href="zh/pet-care/08-seasonal-care.html" class="article-card" data-article="08">
                 <img src="images/birds/species/bird-image-022.webp" class="article-image" alt="季节性护理">
                 <div class="article-overlay">
                     <h3 class="article-title">季节性护理</h3>
@@ -227,7 +272,7 @@
             </a>
             
             <!-- 文章9 -->
-            <a href="en/pet-care/09-enrichment-activities.html" class="article-card">
+            <a href="zh/pet-care/09-enrichment-activities.html" class="article-card" data-article="09">
                 <img src="images/birds/species/bird-image-023.webp" class="article-image" alt="丰富活动">
                 <div class="article-overlay">
                     <h3 class="article-title">丰富活动</h3>
@@ -236,7 +281,7 @@
             </a>
             
             <!-- 文章10 -->
-            <a href="en/pet-care/10-species-profiles.html" class="article-card">
+            <a href="zh/pet-care/10-species-profiles.html" class="article-card" data-article="10">
                 <img src="images/birds/species/bird-image-024.webp" class="article-image" alt="物种档案">
                 <div class="article-overlay">
                     <h3 class="article-title">物种档案</h3>
@@ -245,5 +290,38 @@
             </a>
         </div>
     </div>
+
+    <script>
+        // 语言重定向功能
+        function handleLanguageRedirect() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const langParam = urlParams.get('lang');
+            
+            if (langParam) {
+                // 支持的语言列表
+                const supportedLanguages = ['zh', 'en', 'it', 'ja', 'ru', 'fr', 'de', 'es', 'pt', 'ko'];
+                
+                if (supportedLanguages.includes(langParam)) {
+                    // 重定向到对应语言版本
+                    const currentPath = window.location.pathname;
+                    const fileName = currentPath.split('/').pop();
+                    const newUrl = `${window.location.origin}/${langParam}/${fileName}`;
+                    
+                    // 立即重定向
+                    window.location.replace(newUrl);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        // 页面加载时初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            // 首先检查语言重定向
+            if (handleLanguageRedirect()) {
+                return; // 如果重定向了，就不继续执行
+            }
+        });
+    </script>
 </body>
 </html>

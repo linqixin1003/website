@@ -17,11 +17,34 @@
             color: #333;
         }
         
+        .language-selector {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 25px;
+            padding: 8px 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        .language-selector select {
+            border: none;
+            background: transparent;
+            font-size: 14px;
+            font-weight: 500;
+            color: #333;
+            cursor: pointer;
+            outline: none;
+            min-width: 120px;
+        }
+        
         .header {
             width: 100%;
             height: 200px;
             background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.6)), 
-                        url('images/birds/species/bird-image-030.webp') center/cover;
+                        url('images/birds/species/bird-image-001.webp') center/cover;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -121,6 +144,12 @@
             .header-title {
                 font-size: 28px;
             }
+            
+            .language-selector {
+                top: 10px;
+                right: 10px;
+                padding: 6px 12px;
+            }
         }
         
         @media (max-width: 480px) {
@@ -142,108 +171,157 @@
     <script src="language-redirect.js"></script>
 </head>
 <body>
+    <!-- 语言选择器 -->
+    <div class="language-selector">
+        <select id="languageSelect" onchange="changeLanguage()">
+            <option value="zh">🇨🇳 中文</option>
+            <option value="en">🇺🇸 English</option>
+            <option value="it">🇮🇹 Italiano</option>
+            <option value="ja">🇯🇵 日本語</option>
+            <option value="ru">🇷🇺 Русский</option>
+            <option value="fr">🇫🇷 Français</option>
+            <option value="de">🇩🇪 Deutsch</option>
+            <option value="es">🇪🇸 Español</option>
+            <option value="pt">🇵🇹 Português</option>
+            <option value="ko">🇰🇷 한국어</option>
+        </select>
+    </div>
+    
     <!-- 头部横幅 -->
     <div class="header">
-        <h1 class="header-title">鸟类科学奇观</h1>
+        <h1 class="header-title" id="pageTitle">鸟类科学奇观</h1>
     </div>
     
     <!-- 主要内容 -->
     <div class="content">
-        <p class="intro-text">
-            探索鸟类世界中令人惊叹的科学奇观。从飞行力学到磁场导航，从羽毛结构到认知能力，这里汇集了关于鸟类的最新科学发现和研究成果。点击下方任意文章图片，深入了解鸟类的科学奥秘。
+        <p class="intro-text" id="introText">
+            探索鸟类世界的科学奇迹。从飞行力学到导航系统，从羽毛结构到智能行为，深入了解这些令人惊叹的生物如何在自然界中展现出非凡的适应能力和生存智慧。
         </p>
         
-        <div class="article-grid">
+        <div class="article-grid" id="articleGrid">
             <!-- 文章1 -->
-            <a href="en/scientific-wonders/01-bird-flight-mechanics.html" class="article-card">
-                <img src="images/birds/species/bird-image-030.webp" class="article-image" alt="鸟类飞行力学">
+            <a href="zh/scientific-wonders/01-bird-flight-mechanics.html" class="article-card" data-article="01">
+                <img src="images/birds/species/bird-image-025.webp" class="article-image" alt="鸟类飞行力学">
                 <div class="article-overlay">
                     <h3 class="article-title">鸟类飞行力学</h3>
-                    <p class="article-description">探索鸟类飞行背后的物理学和生物力学原理</p>
+                    <p class="article-description">揭秘鸟类如何征服天空的物理原理</p>
                 </div>
             </a>
             
             <!-- 文章2 -->
-            <a href="en/scientific-wonders/02-magnetic-navigation.html" class="article-card">
-                <img src="images/birds/species/bird-image-031.webp" class="article-image" alt="鸟类磁场导航">
+            <a href="zh/scientific-wonders/02-magnetic-navigation.html" class="article-card" data-article="02">
+                <img src="images/birds/species/bird-image-026.webp" class="article-image" alt="磁场导航系统">
                 <div class="article-overlay">
-                    <h3 class="article-title">鸟类磁场导航</h3>
-                    <p class="article-description">了解鸟类如何利用地球磁场进行迁徙导航</p>
+                    <h3 class="article-title">磁场导航系统</h3>
+                    <p class="article-description">鸟类如何利用地球磁场进行精确导航</p>
                 </div>
             </a>
             
             <!-- 文章3 -->
-            <a href="en/scientific-wonders/03-hummingbird-mechanics.html" class="article-card">
-                <img src="images/birds/species/bird-image-032.webp" class="article-image" alt="蜂鸟飞行力学">
+            <a href="zh/scientific-wonders/03-hummingbird-mechanics.html" class="article-card" data-article="03">
+                <img src="images/birds/species/bird-image-027.webp" class="article-image" alt="蜂鸟悬停机制">
                 <div class="article-overlay">
-                    <h3 class="article-title">蜂鸟飞行力学</h3>
-                    <p class="article-description">揭秘蜂鸟独特的悬停和倒飞能力</p>
+                    <h3 class="article-title">蜂鸟悬停机制</h3>
+                    <p class="article-description">解析蜂鸟独特的悬停飞行技术</p>
                 </div>
             </a>
             
             <!-- 文章4 -->
-            <a href="en/scientific-wonders/04-bird-intelligence.html" class="article-card">
-                <img src="images/birds/species/bird-image-033.webp" class="article-image" alt="鸟类智能与认知">
+            <a href="zh/scientific-wonders/04-bird-intelligence.html" class="article-card" data-article="04">
+                <img src="images/birds/species/bird-image-028.webp" class="article-image" alt="鸟类智能研究">
                 <div class="article-overlay">
-                    <h3 class="article-title">鸟类智能与认知</h3>
-                    <p class="article-description">探索鸟类令人惊叹的智力和解决问题的能力</p>
+                    <h3 class="article-title">鸟类智能研究</h3>
+                    <p class="article-description">探索鸟类令人惊叹的认知能力</p>
                 </div>
             </a>
             
             <!-- 文章5 -->
-            <a href="en/scientific-wonders/05-feather-structure.html" class="article-card">
-                <img src="images/birds/species/bird-image-034.webp" class="article-image" alt="羽毛结构与功能">
+            <a href="zh/scientific-wonders/05-feather-structure.html" class="article-card" data-article="05">
+                <img src="images/birds/species/bird-image-029.webp" class="article-image" alt="羽毛微观结构">
                 <div class="article-overlay">
-                    <h3 class="article-title">羽毛结构与功能</h3>
-                    <p class="article-description">了解羽毛的复杂结构及其多种功能</p>
+                    <h3 class="article-title">羽毛微观结构</h3>
+                    <p class="article-description">羽毛的精密工程学原理</p>
                 </div>
             </a>
             
             <!-- 文章6 -->
-            <a href="en/scientific-wonders/06-bird-vision.html" class="article-card">
-                <img src="images/birds/species/bird-image-035.webp" class="article-image" alt="鸟类非凡视觉">
+            <a href="zh/scientific-wonders/06-bird-vision.html" class="article-card" data-article="06">
+                <img src="images/birds/species/bird-image-030.webp" class="article-image" alt="鸟类视觉系统">
                 <div class="article-overlay">
-                    <h3 class="article-title">鸟类非凡视觉</h3>
-                    <p class="article-description">探索鸟类如何通过超强视力感知世界</p>
+                    <h3 class="article-title">鸟类视觉系统</h3>
+                    <p class="article-description">超越人类的视觉感知能力</p>
                 </div>
             </a>
             
             <!-- 文章7 -->
-            <a href="en/scientific-wonders/07-egg-development.html" class="article-card">
-                <img src="images/birds/species/bird-image-036.webp" class="article-image" alt="蛋的发育科学">
+            <a href="zh/scientific-wonders/07-egg-development.html" class="article-card" data-article="07">
+                <img src="images/birds/species/bird-image-031.webp" class="article-image" alt="鸟蛋发育奇迹">
                 <div class="article-overlay">
-                    <h3 class="article-title">蛋的发育科学</h3>
-                    <p class="article-description">探索从受精到孵化的鸟类胚胎发育过程</p>
+                    <h3 class="article-title">鸟蛋发育奇迹</h3>
+                    <p class="article-description">从单细胞到完整生命的神奇过程</p>
                 </div>
             </a>
             
             <!-- 文章8 -->
-            <a href="en/scientific-wonders/08-bird-communication.html" class="article-card">
-                <img src="images/birds/species/bird-image-037.webp" class="article-image" alt="鸟类交流与发声">
+            <a href="zh/scientific-wonders/08-bird-communication.html" class="article-card" data-article="08">
+                <img src="images/birds/species/bird-image-032.webp" class="article-image" alt="鸟类通讯系统">
                 <div class="article-overlay">
-                    <h3 class="article-title">鸟类交流与发声</h3>
-                    <p class="article-description">了解鸟类复杂的交流系统和发声机制</p>
+                    <h3 class="article-title">鸟类通讯系统</h3>
+                    <p class="article-description">复杂的声音和视觉信号系统</p>
                 </div>
             </a>
             
             <!-- 文章9 -->
-            <a href="en/scientific-wonders/09-migration-physiology.html" class="article-card">
-                <img src="images/birds/species/bird-image-038.webp" class="article-image" alt="迁徙生理学">
+            <a href="zh/scientific-wonders/09-migration-physiology.html" class="article-card" data-article="09">
+                <img src="images/birds/species/bird-image-033.webp" class="article-image" alt="迁徙生理学">
                 <div class="article-overlay">
                     <h3 class="article-title">迁徙生理学</h3>
-                    <p class="article-description">探索使鸟类能够进行长距离迁徙的生理适应</p>
+                    <p class="article-description">长距离迁徙的生理适应机制</p>
                 </div>
             </a>
             
             <!-- 文章10 -->
-            <a href="en/scientific-wonders/10-biomechanics.html" class="article-card">
-                <img src="images/birds/species/bird-image-039.webp" class="article-image" alt="鸟类运动生物力学">
+            <a href="zh/scientific-wonders/10-biomechanics.html" class="article-card" data-article="10">
+                <img src="images/birds/species/bird-image-034.webp" class="article-image" alt="鸟类生物力学">
                 <div class="article-overlay">
-                    <h3 class="article-title">鸟类运动生物力学</h3>
-                    <p class="article-description">了解鸟类各种运动方式背后的生物力学原理</p>
+                    <h3 class="article-title">鸟类生物力学</h3>
+                    <p class="article-description">运动和结构的完美结合</p>
                 </div>
             </a>
         </div>
     </div>
+
+    <script>
+        // 语言重定向功能
+        function handleLanguageRedirect() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const langParam = urlParams.get('lang');
+            
+            if (langParam) {
+                // 支持的语言列表
+                const supportedLanguages = ['zh', 'en', 'it', 'ja', 'ru', 'fr', 'de', 'es', 'pt', 'ko'];
+                
+                if (supportedLanguages.includes(langParam)) {
+                    // 重定向到对应语言版本
+                    const currentPath = window.location.pathname;
+                    const fileName = currentPath.split('/').pop();
+                    const newUrl = `${window.location.origin}/${langParam}/${fileName}`;
+                    
+                    // 立即重定向
+                    window.location.replace(newUrl);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        // 页面加载时初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            // 首先检查语言重定向
+            if (handleLanguageRedirect()) {
+                return; // 如果重定向了，就不继续执行
+            }
+        });
+    </script>
 </body>
 </html>

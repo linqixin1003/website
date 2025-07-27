@@ -17,6 +17,82 @@
             color: #333;
         }
         
+        /* 语言切换器样式 */
+        .language-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        
+        .lang-dropdown {
+            position: relative;
+        }
+        
+        .lang-btn {
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 8px 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 14px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .lang-btn:hover {
+            background: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .lang-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            min-width: 200px;
+            max-height: 300px;
+            overflow-y: auto;
+            display: none;
+            z-index: 1001;
+        }
+        
+        .lang-dropdown.active .lang-menu {
+            display: block;
+        }
+        
+        .lang-option {
+            padding: 10px 15px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: background-color 0.2s ease;
+        }
+        
+        .lang-option:hover {
+            background: #f5f5f5;
+        }
+        
+        .lang-option.active {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+        
+        .dropdown-arrow {
+            transition: transform 0.3s ease;
+        }
+        
+        .lang-dropdown.active .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+        
         .header {
             width: 100%;
             height: 200px;
@@ -145,14 +221,17 @@
     <script src="language-redirect.js"></script>
 </head>
 <body>
+    <!-- 语言切换器 -->
+    <div class="language-switcher"></div>
+    
     <!-- 头部横幅 -->
     <div class="header">
-        <h1 class="header-title">鸟类文化象征</h1>
+        <h1 class="header-title" data-i18n="knowledge.categories.cultural">鸟类文化象征</h1>
     </div>
     
     <!-- 主要内容 -->
     <div class="content">
-        <p class="intro-text">
+        <p class="intro-text" data-i18n="knowledge.categories.cultural.desc">
             探索鸟类在世界各地文化、神话和艺术中的象征意义。从美洲原住民的精神信仰到现代文学和艺术，鸟类一直是人类文化表达的重要元素。点击下方任意文章图片，深入了解鸟类在文化中的丰富象征。
         </p>
         
@@ -248,5 +327,9 @@
             </a>
         </div>
     </div>
+    <!-- 引入多语言脚本 -->
+    <script src="script.js"></script>
+    <!-- 引入语言重定向脚本 -->
+    <script src="language-redirect.js"></script>
 </body>
 </html>

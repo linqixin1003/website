@@ -79,6 +79,12 @@ body {
 .language-switcher {
     margin-left: auto;
     margin-right: 2rem;
+    position: relative;
+}
+
+.lang-dropdown {
+    position: relative;
+    display: inline-block;
 }
 
 .lang-btn {
@@ -155,6 +161,90 @@ body {
     border-radius: 15px;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
     border: 1px solid rgba(102, 126, 234, 0.3);
+}
+
+.dropdown-arrow {
+    font-size: 0.7rem;
+    color: #667eea;
+    margin-left: 0.3rem;
+    transition: transform 0.3s ease;
+}
+
+.lang-dropdown.active .dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+.lang-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    min-width: 200px;
+    z-index: 1001;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    margin-top: 0.5rem;
+}
+
+.lang-dropdown.active .lang-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.lang-option {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.8rem 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 15px;
+    margin: 0.3rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #374151;
+}
+
+.lang-option:hover {
+    background: rgba(102, 126, 234, 0.1);
+    color: #1e293b;
+    transform: translateX(5px);
+}
+
+.lang-option.active {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    font-weight: 600;
+}
+
+.lang-option .flag {
+    font-size: 1.2rem;
+    width: 20px;
+    text-align: center;
+}
+
+.lang-option .name {
+    flex: 1;
+}
+
+.lang-option .code {
+    font-size: 0.7rem;
+    opacity: 0.7;
+    background: rgba(0, 0, 0, 0.1);
+    padding: 0.2rem 0.4rem;
+    border-radius: 8px;
+}
+
+.lang-option.active .code {
+    background: rgba(255, 255, 255, 0.2);
+    opacity: 1;
 }
 
 .nav-toggle {

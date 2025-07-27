@@ -17,6 +17,29 @@
             color: #333;
         }
         
+        .language-selector {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 25px;
+            padding: 8px 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        .language-selector select {
+            border: none;
+            background: transparent;
+            font-size: 14px;
+            font-weight: 500;
+            color: #333;
+            cursor: pointer;
+            outline: none;
+            min-width: 120px;
+        }
+        
         .header {
             width: 100%;
             height: 200px;
@@ -121,6 +144,12 @@
             .header-title {
                 font-size: 28px;
             }
+            
+            .language-selector {
+                top: 10px;
+                right: 10px;
+                padding: 6px 12px;
+            }
         }
         
         @media (max-width: 480px) {
@@ -140,20 +169,36 @@
     </style>
 </head>
 <body>
+    <!-- 语言选择器 -->
+    <div class="language-selector">
+        <select id="languageSelect" onchange="changeLanguage()">
+            <option value="zh">🇨🇳 中文</option>
+            <option value="en">🇺🇸 English</option>
+            <option value="it">🇮🇹 Italiano</option>
+            <option value="ja">🇯🇵 日本語</option>
+            <option value="ru">🇷🇺 Русский</option>
+            <option value="fr">🇫🇷 Français</option>
+            <option value="de">🇩🇪 Deutsch</option>
+            <option value="es">🇪🇸 Español</option>
+            <option value="pt">🇵🇹 Português</option>
+            <option value="ko">🇰🇷 한국어</option>
+        </select>
+    </div>
+    
     <!-- 头部横幅 -->
     <div class="header">
-        <h1 class="header-title">宠物鸟护理指南</h1>
+        <h1 class="header-title" id="pageTitle">宠物鸟护理指南</h1>
     </div>
     
     <!-- 主要内容 -->
     <div class="content">
-        <p class="intro-text">
+        <p class="intro-text" id="introText">
             欢迎来到我们的宠物鸟护理专区。这里提供了全面的宠物鸟饲养指南，从选择合适的鸟类到日常护理、健康管理和行为训练。点击下方任意文章图片，深入了解如何为您的羽毛朋友提供最好的照顾。
         </p>
         
-        <div class="article-grid">
+        <div class="article-grid" id="articleGrid">
             <!-- 文章1 -->
-            <a href="en/pet-care/01-choosing-right-bird.html" class="article-card">
+            <a href="zh/pet-care/01-choosing-right-bird.html" class="article-card" data-article="01">
                 <img src="images/birds/species/bird-image-015.webp" class="article-image" alt="选择合适的鸟类">
                 <div class="article-overlay">
                     <h3 class="article-title">选择合适的鸟类</h3>
@@ -162,7 +207,7 @@
             </a>
             
             <!-- 文章2 -->
-            <a href="en/pet-care/02-nutrition-feeding.html" class="article-card">
+            <a href="zh/pet-care/02-nutrition-feeding.html" class="article-card" data-article="02">
                 <img src="images/birds/species/bird-image-016.webp" class="article-image" alt="营养与喂食">
                 <div class="article-overlay">
                     <h3 class="article-title">营养与喂食</h3>
@@ -171,7 +216,7 @@
             </a>
             
             <!-- 文章3 -->
-            <a href="en/pet-care/03-housing-environment.html" class="article-card">
+            <a href="zh/pet-care/03-housing-environment.html" class="article-card" data-article="03">
                 <img src="images/birds/species/bird-image-017.webp" class="article-image" alt="住所与环境">
                 <div class="article-overlay">
                     <h3 class="article-title">住所与环境</h3>
@@ -180,7 +225,7 @@
             </a>
             
             <!-- 文章4 -->
-            <a href="en/pet-care/04-health-veterinary.html" class="article-card">
+            <a href="zh/pet-care/04-health-veterinary.html" class="article-card" data-article="04">
                 <img src="images/birds/species/bird-image-018.webp" class="article-image" alt="健康与兽医护理">
                 <div class="article-overlay">
                     <h3 class="article-title">健康与兽医护理</h3>
@@ -189,7 +234,7 @@
             </a>
             
             <!-- 文章5 -->
-            <a href="en/pet-care/05-training-behavior.html" class="article-card">
+            <a href="zh/pet-care/05-training-behavior.html" class="article-card" data-article="05">
                 <img src="images/birds/species/bird-image-019.webp" class="article-image" alt="训练与行为">
                 <div class="article-overlay">
                     <h3 class="article-title">训练与行为</h3>
@@ -198,7 +243,7 @@
             </a>
             
             <!-- 文章6 -->
-            <a href="en/pet-care/06-breeding-reproduction.html" class="article-card">
+            <a href="zh/pet-care/06-breeding-reproduction.html" class="article-card" data-article="06">
                 <img src="images/birds/species/bird-image-020.webp" class="article-image" alt="繁殖与生殖">
                 <div class="article-overlay">
                     <h3 class="article-title">繁殖与生殖</h3>
@@ -207,7 +252,7 @@
             </a>
             
             <!-- 文章7 -->
-            <a href="en/pet-care/07-emergency-first-aid.html" class="article-card">
+            <a href="zh/pet-care/07-emergency-first-aid.html" class="article-card" data-article="07">
                 <img src="images/birds/species/bird-image-021.webp" class="article-image" alt="紧急救护">
                 <div class="article-overlay">
                     <h3 class="article-title">紧急救护</h3>
@@ -216,7 +261,7 @@
             </a>
             
             <!-- 文章8 -->
-            <a href="en/pet-care/08-seasonal-care.html" class="article-card">
+            <a href="zh/pet-care/08-seasonal-care.html" class="article-card" data-article="08">
                 <img src="images/birds/species/bird-image-022.webp" class="article-image" alt="季节性护理">
                 <div class="article-overlay">
                     <h3 class="article-title">季节性护理</h3>
@@ -225,7 +270,7 @@
             </a>
             
             <!-- 文章9 -->
-            <a href="en/pet-care/09-enrichment-activities.html" class="article-card">
+            <a href="zh/pet-care/09-enrichment-activities.html" class="article-card" data-article="09">
                 <img src="images/birds/species/bird-image-023.webp" class="article-image" alt="丰富活动">
                 <div class="article-overlay">
                     <h3 class="article-title">丰富活动</h3>
@@ -234,7 +279,7 @@
             </a>
             
             <!-- 文章10 -->
-            <a href="en/pet-care/10-species-profiles.html" class="article-card">
+            <a href="zh/pet-care/10-species-profiles.html" class="article-card" data-article="10">
                 <img src="images/birds/species/bird-image-024.webp" class="article-image" alt="物种档案">
                 <div class="article-overlay">
                     <h3 class="article-title">物种档案</h3>
@@ -243,5 +288,275 @@
             </a>
         </div>
     </div>
+
+    <script>
+        // 完整的10种语言翻译数据
+        const translations = {
+            zh: {
+                pageTitle: "宠物鸟护理指南",
+                introText: "欢迎来到我们的宠物鸟护理专区。这里提供了全面的宠物鸟饲养指南，从选择合适的鸟类到日常护理、健康管理和行为训练。点击下方任意文章图片，深入了解如何为您的羽毛朋友提供最好的照顾。",
+                articles: {
+                    "01": { title: "选择合适的鸟类", desc: "找到与您生活方式相匹配的完美羽毛伙伴" },
+                    "02": { title: "营养与喂食", desc: "了解宠物鸟的均衡饮食和正确喂食方法" },
+                    "03": { title: "住所与环境", desc: "创造安全舒适的生活空间" },
+                    "04": { title: "健康与兽医护理", desc: "预防疾病和保持鸟类健康的关键" },
+                    "05": { title: "训练与行为", desc: "教导您的鸟类良好习惯和有趣技能" },
+                    "06": { title: "繁殖与生殖", desc: "了解鸟类繁殖的基本知识" },
+                    "07": { title: "紧急救护", desc: "应对紧急情况的必备知识" },
+                    "08": { title: "季节性护理", desc: "根据季节变化调整鸟类护理方式" },
+                    "09": { title: "丰富活动", desc: "保持鸟类身心健康的互动游戏" },
+                    "10": { title: "物种档案", desc: "常见宠物鸟种类的详细介绍" }
+                }
+            },
+            en: {
+                pageTitle: "Pet Bird Care Guide",
+                introText: "Welcome to our pet bird care section. Here you'll find comprehensive guides for bird ownership, from choosing the right bird to daily care, health management, and behavioral training. Click on any article image below to learn how to provide the best care for your feathered friend.",
+                articles: {
+                    "01": { title: "Choosing the Right Bird", desc: "Find the perfect feathered companion that matches your lifestyle" },
+                    "02": { title: "Nutrition & Feeding", desc: "Learn about balanced diets and proper feeding methods for pet birds" },
+                    "03": { title: "Housing & Environment", desc: "Create a safe and comfortable living space" },
+                    "04": { title: "Health & Veterinary Care", desc: "Key to preventing diseases and maintaining bird health" },
+                    "05": { title: "Training & Behavior", desc: "Teach your bird good habits and fun skills" },
+                    "06": { title: "Breeding & Reproduction", desc: "Understanding the basics of bird breeding" },
+                    "07": { title: "Emergency First Aid", desc: "Essential knowledge for handling emergencies" },
+                    "08": { title: "Seasonal Care", desc: "Adjust bird care according to seasonal changes" },
+                    "09": { title: "Enrichment Activities", desc: "Interactive games to keep birds physically and mentally healthy" },
+                    "10": { title: "Species Profiles", desc: "Detailed introduction to common pet bird species" }
+                }
+            },
+            it: {
+                pageTitle: "Guida alla Cura degli Uccelli Domestici",
+                introText: "Benvenuti nella nostra sezione dedicata alla cura degli uccelli domestici. Qui troverete guide complete per la proprietà degli uccelli, dalla scelta dell'uccello giusto alla cura quotidiana, gestione della salute e addestramento comportamentale. Cliccate su qualsiasi immagine dell'articolo qui sotto per imparare come fornire la migliore cura al vostro amico piumato.",
+                articles: {
+                    "01": { title: "Scegliere l'Uccello Giusto", desc: "Trova il compagno piumato perfetto che si adatta al tuo stile di vita" },
+                    "02": { title: "Nutrizione e Alimentazione", desc: "Impara le diete equilibrate e i metodi di alimentazione corretti per gli uccelli domestici" },
+                    "03": { title: "Alloggio e Ambiente", desc: "Crea uno spazio abitativo sicuro e confortevole" },
+                    "04": { title: "Salute e Cure Veterinarie", desc: "Chiave per prevenire malattie e mantenere la salute degli uccelli" },
+                    "05": { title: "Addestramento e Comportamento", desc: "Insegna al tuo uccello buone abitudini e abilità divertenti" },
+                    "06": { title: "Riproduzione e Allevamento", desc: "Comprendere le basi dell'allevamento degli uccelli" },
+                    "07": { title: "Primo Soccorso d'Emergenza", desc: "Conoscenze essenziali per gestire le emergenze" },
+                    "08": { title: "Cura Stagionale", desc: "Adatta la cura degli uccelli secondo i cambiamenti stagionali" },
+                    "09": { title: "Attività di Arricchimento", desc: "Giochi interattivi per mantenere gli uccelli fisicamente e mentalmente sani" },
+                    "10": { title: "Profili delle Specie", desc: "Introduzione dettagliata alle specie comuni di uccelli domestici" }
+                }
+            },
+            ja: {
+                pageTitle: "ペット鳥のケアガイド",
+                introText: "ペット鳥のケアセクションへようこそ。ここでは、適切な鳥の選び方から日常のケア、健康管理、行動訓練まで、鳥の飼育に関する包括的なガイドを見つけることができます。下の記事画像をクリックして、羽毛の友達に最高のケアを提供する方法を学びましょう。",
+                articles: {
+                    "01": { title: "適切な鳥の選び方", desc: "あなたのライフスタイルに合った完璧な羽毛の仲間を見つける" },
+                    "02": { title: "栄養と給餌", desc: "ペット鳥のバランスの取れた食事と適切な給餌方法について学ぶ" },
+                    "03": { title: "住居と環境", desc: "安全で快適な生活空間を作る" },
+                    "04": { title: "健康と獣医ケア", desc: "病気を予防し、鳥の健康を維持するための鍵" },
+                    "05": { title: "訓練と行動", desc: "あなたの鳥に良い習慣と楽しいスキルを教える" },
+                    "06": { title: "繁殖と生殖", desc: "鳥の繁殖の基本を理解する" },
+                    "07": { title: "緊急時の応急処置", desc: "緊急事態に対処するための必須知識" },
+                    "08": { title: "季節のケア", desc: "季節の変化に応じて鳥のケアを調整する" },
+                    "09": { title: "エンリッチメント活動", desc: "鳥を身体的・精神的に健康に保つインタラクティブゲーム" },
+                    "10": { title: "種のプロフィール", desc: "一般的なペット鳥種の詳細な紹介" }
+                }
+            },
+            ru: {
+                pageTitle: "Руководство по Уходу за Домашними Птицами",
+                introText: "Добро пожаловать в наш раздел по уходу за домашними птицами. Здесь вы найдете исчерпывающие руководства по содержанию птиц, от выбора подходящей птицы до ежедневного ухода, управления здоровьем и поведенческой дрессировки. Нажмите на любое изображение статьи ниже, чтобы узнать, как обеспечить лучший уход за вашим пернатым другом.",
+                articles: {
+                    "01": { title: "Выбор Подходящей Птицы", desc: "Найдите идеального пернатого компаньона, который подходит вашему образу жизни" },
+                    "02": { title: "Питание и Кормление", desc: "Изучите сбалансированные диеты и правильные методы кормления домашних птиц" },
+                    "03": { title: "Жилье и Окружающая Среда", desc: "Создайте безопасное и комфортное жилое пространство" },
+                    "04": { title: "Здоровье и Ветеринарный Уход", desc: "Ключ к предотвращению болезней и поддержанию здоровья птиц" },
+                    "05": { title: "Дрессировка и Поведение", desc: "Научите свою птицу хорошим привычкам и забавным навыкам" },
+                    "06": { title: "Разведение и Размножение", desc: "Понимание основ разведения птиц" },
+                    "07": { title: "Экстренная Первая Помощь", desc: "Необходимые знания для обработки чрезвычайных ситуаций" },
+                    "08": { title: "Сезонный Уход", desc: "Адаптируйте уход за птицами в соответствии с сезонными изменениями" },
+                    "09": { title: "Обогащающие Активности", desc: "Интерактивные игры для поддержания физического и психического здоровья птиц" },
+                    "10": { title: "Профили Видов", desc: "Подробное введение в распространенные виды домашних птиц" }
+                }
+            },
+            fr: {
+                pageTitle: "Guide de Soins pour Oiseaux Domestiques",
+                introText: "Bienvenue dans notre section dédiée aux soins des oiseaux domestiques. Vous trouverez ici des guides complets pour la possession d'oiseaux, du choix du bon oiseau aux soins quotidiens, à la gestion de la santé et à l'entraînement comportemental. Cliquez sur n'importe quelle image d'article ci-dessous pour apprendre comment fournir les meilleurs soins à votre ami à plumes.",
+                articles: {
+                    "01": { title: "Choisir le Bon Oiseau", desc: "Trouvez le compagnon à plumes parfait qui correspond à votre style de vie" },
+                    "02": { title: "Nutrition et Alimentation", desc: "Apprenez les régimes équilibrés et les méthodes d'alimentation appropriées pour les oiseaux domestiques" },
+                    "03": { title: "Logement et Environnement", desc: "Créez un espace de vie sûr et confortable" },
+                    "04": { title: "Santé et Soins Vétérinaires", desc: "Clé pour prévenir les maladies et maintenir la santé des oiseaux" },
+                    "05": { title: "Dressage et Comportement", desc: "Enseignez à votre oiseau de bonnes habitudes et des compétences amusantes" },
+                    "06": { title: "Reproduction et Élevage", desc: "Comprendre les bases de l'élevage d'oiseaux" },
+                    "07": { title: "Premiers Secours d'Urgence", desc: "Connaissances essentielles pour gérer les urgences" },
+                    "08": { title: "Soins Saisonniers", desc: "Adaptez les soins des oiseaux selon les changements saisonniers" },
+                    "09": { title: "Activités d'Enrichissement", desc: "Jeux interactifs pour maintenir les oiseaux physiquement et mentalement en bonne santé" },
+                    "10": { title: "Profils d'Espèces", desc: "Introduction détaillée aux espèces communes d'oiseaux domestiques" }
+                }
+            },
+            de: {
+                pageTitle: "Leitfaden für die Pflege von Heimvögeln",
+                introText: "Willkommen in unserem Bereich für die Pflege von Heimvögeln. Hier finden Sie umfassende Leitfäden für die Vogelhaltung, von der Auswahl des richtigen Vogels bis zur täglichen Pflege, Gesundheitsmanagement und Verhaltenstraining. Klicken Sie auf ein beliebiges Artikelbild unten, um zu erfahren, wie Sie Ihrem gefiederten Freund die beste Pflege bieten können.",
+                articles: {
+                    "01": { title: "Den Richtigen Vogel Wählen", desc: "Finden Sie den perfekten gefiederten Begleiter, der zu Ihrem Lebensstil passt" },
+                    "02": { title: "Ernährung und Fütterung", desc: "Lernen Sie ausgewogene Diäten und richtige Fütterungsmethoden für Heimvögel" },
+                    "03": { title: "Unterbringung und Umgebung", desc: "Schaffen Sie einen sicheren und komfortablen Lebensraum" },
+                    "04": { title: "Gesundheit und Tierärztliche Versorgung", desc: "Schlüssel zur Krankheitsprävention und Erhaltung der Vogelgesundheit" },
+                    "05": { title: "Training und Verhalten", desc: "Bringen Sie Ihrem Vogel gute Gewohnheiten und lustige Fähigkeiten bei" },
+                    "06": { title: "Zucht und Fortpflanzung", desc: "Die Grundlagen der Vogelzucht verstehen" },
+                    "07": { title: "Notfall-Erste Hilfe", desc: "Wesentliches Wissen für den Umgang mit Notfällen" },
+                    "08": { title: "Saisonale Pflege", desc: "Passen Sie die Vogelpflege an saisonale Veränderungen an" },
+                    "09": { title: "Bereicherungsaktivitäten", desc: "Interaktive Spiele, um Vögel körperlich und geistig gesund zu halten" },
+                    "10": { title: "Artenprofile", desc: "Detaillierte Einführung in häufige Heimvogelarten" }
+                }
+            },
+            es: {
+                pageTitle: "Guía de Cuidado de Aves Domésticas",
+                introText: "Bienvenidos a nuestra sección de cuidado de aves domésticas. Aquí encontrarán guías completas para la tenencia de aves, desde elegir el ave correcta hasta el cuidado diario, manejo de la salud y entrenamiento conductual. Hagan clic en cualquier imagen de artículo a continuación para aprender cómo brindar el mejor cuidado a su amigo emplumado.",
+                articles: {
+                    "01": { title: "Elegir el Ave Correcta", desc: "Encuentra el compañero emplumado perfecto que coincida con tu estilo de vida" },
+                    "02": { title: "Nutrición y Alimentación", desc: "Aprende sobre dietas equilibradas y métodos de alimentación adecuados para aves domésticas" },
+                    "03": { title: "Vivienda y Ambiente", desc: "Crea un espacio de vida seguro y cómodo" },
+                    "04": { title: "Salud y Cuidado Veterinario", desc: "Clave para prevenir enfermedades y mantener la salud de las aves" },
+                    "05": { title: "Entrenamiento y Comportamiento", desc: "Enseña a tu ave buenos hábitos y habilidades divertidas" },
+                    "06": { title: "Reproducción y Cría", desc: "Entender los fundamentos de la cría de aves" },
+                    "07": { title: "Primeros Auxilios de Emergencia", desc: "Conocimiento esencial para manejar emergencias" },
+                    "08": { title: "Cuidado Estacional", desc: "Ajusta el cuidado de las aves según los cambios estacionales" },
+                    "09": { title: "Actividades de Enriquecimiento", desc: "Juegos interactivos para mantener a las aves física y mentalmente saludables" },
+                    "10": { title: "Perfiles de Especies", desc: "Introducción detallada a especies comunes de aves domésticas" }
+                }
+            },
+            pt: {
+                pageTitle: "Guia de Cuidados com Aves Domésticas",
+                introText: "Bem-vindos à nossa seção de cuidados com aves domésticas. Aqui encontrarão guias abrangentes para a posse de aves, desde escolher a ave certa até cuidados diários, gestão de saúde e treinamento comportamental. Cliquem em qualquer imagem de artigo abaixo para aprender como fornecer o melhor cuidado ao seu amigo emplumado.",
+                articles: {
+                    "01": { title: "Escolher a Ave Certa", desc: "Encontre o companheiro emplumado perfeito que combine com seu estilo de vida" },
+                    "02": { title: "Nutrição e Alimentação", desc: "Aprenda sobre dietas equilibradas e métodos de alimentação adequados para aves domésticas" },
+                    "03": { title: "Habitação e Ambiente", desc: "Crie um espaço de vida seguro e confortável" },
+                    "04": { title: "Saúde e Cuidados Veterinários", desc: "Chave para prevenir doenças e manter a saúde das aves" },
+                    "05": { title: "Treinamento e Comportamento", desc: "Ensine à sua ave bons hábitos e habilidades divertidas" },
+                    "06": { title: "Reprodução e Criação", desc: "Entender os fundamentos da criação de aves" },
+                    "07": { title: "Primeiros Socorros de Emergência", desc: "Conhecimento essencial para lidar com emergências" },
+                    "08": { title: "Cuidados Sazonais", desc: "Ajuste os cuidados das aves de acordo com mudanças sazonais" },
+                    "09": { title: "Atividades de Enriquecimento", desc: "Jogos interativos para manter as aves física e mentalmente saudáveis" },
+                    "10": { title: "Perfis de Espécies", desc: "Introdução detalhada às espécies comuns de aves domésticas" }
+                }
+            },
+            ko: {
+                pageTitle: "반려조 돌봄 가이드",
+                introText: "반려조 돌봄 섹션에 오신 것을 환영합니다. 여기서는 올바른 새 선택부터 일상 돌봄, 건강 관리, 행동 훈련까지 조류 사육에 대한 포괄적인 가이드를 찾을 수 있습니다. 아래 기사 이미지를 클릭하여 깃털 친구에게 최고의 돌봄을 제공하는 방법을 배워보세요.",
+                articles: {
+                    "01": { title: "올바른 새 선택하기", desc: "당신의 라이프스타일에 맞는 완벽한 깃털 동반자를 찾으세요" },
+                    "02": { title: "영양과 급식", desc: "반려조를 위한 균형 잡힌 식단과 적절한 급식 방법에 대해 배우세요" },
+                    "03": { title: "주거와 환경", desc: "안전하고 편안한 생활 공간을 만드세요" },
+                    "04": { title: "건강과 수의학적 돌봄", desc: "질병 예방과 조류 건강 유지의 핵심" },
+                    "05": { title: "훈련과 행동", desc: "당신의 새에게 좋은 습관과 재미있는 기술을 가르치세요" },
+                    "06": { title: "번식과 생식", desc: "조류 번식의 기초 이해하기" },
+                    "07": { title: "응급 응급처치", desc: "응급상황 처리를 위한 필수 지식" },
+                    "08": { title: "계절별 돌봄", desc: "계절 변화에 따라 조류 돌봄을 조정하세요" },
+                    "09": { title: "풍부화 활동", desc: "새들을 신체적, 정신적으로 건강하게 유지하는 상호작용 게임" },
+                    "10": { title: "종 프로필", desc: "일반적인 반려조 종에 대한 자세한 소개" }
+                }
+            }
+        };
+
+        // 语言路径映射
+        const languagePaths = {
+            zh: 'zh',
+            en: 'en', 
+            it: 'it',
+            ja: 'ja',
+            ru: 'ru',
+            fr: 'fr',
+            de: 'de',
+            es: 'es',
+            pt: 'pt',
+            ko: 'ko'
+        };
+
+        // 获取当前语言
+        function getCurrentLanguage() {
+            return localStorage.getItem('selectedLanguage') || 'zh';
+        }
+
+        // 设置语言
+        function setLanguage(lang) {
+            localStorage.setItem('selectedLanguage', lang);
+            const langMap = {
+                'zh': 'zh-CN',
+                'en': 'en',
+                'it': 'it',
+                'ja': 'ja',
+                'ru': 'ru',
+                'fr': 'fr',
+                'de': 'de',
+                'es': 'es',
+                'pt': 'pt',
+                'ko': 'ko'
+            };
+            document.documentElement.lang = langMap[lang] || lang;
+        }
+
+        // 更新页面内容
+        function updateContent(lang) {
+            const t = translations[lang];
+            
+            // 更新页面标题和介绍文本
+            document.getElementById('pageTitle').textContent = t.pageTitle;
+            document.getElementById('introText').textContent = t.introText;
+            document.title = t.pageTitle + ' - BirdAiSnap';
+            
+            // 更新文章卡片
+            const articleCards = document.querySelectorAll('.article-card');
+            articleCards.forEach(card => {
+                const articleId = card.getAttribute('data-article');
+                const article = t.articles[articleId];
+                
+                if (article) {
+                    // 更新链接
+                    const basePath = languagePaths[lang];
+                    card.href = `${basePath}/pet-care/${articleId}-${getArticleSlug(articleId)}.html`;
+                    
+                    // 更新标题和描述
+                    const titleElement = card.querySelector('.article-title');
+                    const descElement = card.querySelector('.article-description');
+                    
+                    if (titleElement) titleElement.textContent = article.title;
+                    if (descElement) descElement.textContent = article.desc;
+                    
+                    // 更新图片alt属性
+                    const imgElement = card.querySelector('.article-image');
+                    if (imgElement) imgElement.alt = article.title;
+                }
+            });
+        }
+
+        // 获取文章slug
+        function getArticleSlug(articleId) {
+            const slugs = {
+                '01': 'choosing-right-bird',
+                '02': 'nutrition-feeding', 
+                '03': 'housing-environment',
+                '04': 'health-veterinary',
+                '05': 'training-behavior',
+                '06': 'breeding-reproduction',
+                '07': 'emergency-first-aid',
+                '08': 'seasonal-care',
+                '09': 'enrichment-activities',
+                '10': 'species-profiles'
+            };
+            return slugs[articleId] || 'article';
+        }
+
+        // 切换语言
+        function changeLanguage() {
+            const select = document.getElementById('languageSelect');
+            const selectedLang = select.value;
+            setLanguage(selectedLang);
+            updateContent(selectedLang);
+        }
+
+        // 页面加载时初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentLang = getCurrentLanguage();
+            document.getElementById('languageSelect').value = currentLang;
+            setLanguage(currentLang);
+            updateContent(currentLang);
+        });
+    </script>
 </body>
 </html>

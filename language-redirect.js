@@ -2,70 +2,50 @@
 (function() {
     // 获取URL参数
     function getUrlParameter(name) {
-        name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-        var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-        var results = regex.exec(location.search);
-        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(name);
     }
     
-    // 语言代码映射
-    const languageMap = {
-        'ko': 'ko',
-        'de': 'de', 
-        'en': 'en',
-        'es': 'es',
-        'fr': 'fr',
-        'it': 'it',
-        'ja': 'ja',
-        'pt': 'pt',
-        'ru': 'ru',
-        'zh': 'zh'
-    };
+    // 支持的语言列表
+    const supportedLanguages = ['ko', 'de', 'en', 'es', 'fr', 'it', 'ja', 'pt', 'ru', 'zh'];
     
-    // 获取当前页面名称
-    function getCurrentPageName() {
-        const path = window.location.pathname;
-        const fileName = path.split('/').pop();
-        return fileName || 'index.html';
-    }
+    // 获取lang参数
+    const langParam = getUrlParameter('lang');
     
-    // 执行重定向
-    function performRedirect() {
-        const langParam = getUrlParameter('lang');
+    if (langParam && supportedLanguages.includes(langParam)) {
+        // 获取当前页面路径
+        const currentPath = window.location.pathname;
+        const currentFilename = currentPath.split('/').pop();
         
-        if (langParam && languageMap[langParam]) {
-            const currentPage = getCurrentPageName();
-            const currentPath = window.location.pathname;
-            
-            // 检查是否已经在对应语言目录中
-            if (!currentPath.startsWith('/' + langParam + '/')) {
-                // 构建新的URL
-                let newUrl;
-                if (currentPage === 'index.html' || currentPage === '') {
-                    newUrl = '/' + langParam + '/';
-                } else {
-                    newUrl = '/' + langParam + '/' + currentPage;
-                }
-                
-                // 保留其他查询参数（除了lang参数）
-                const urlParams = new URLSearchParams(window.location.search);
-                urlParams.delete('lang');
-                const remainingParams = urlParams.toString();
-                
-                if (remainingParams) {
-                    newUrl += '?' + remainingParams;
-                }
-                
-                // 执行重定向
-                window.location.replace(newUrl);
-            }
+        // 检查是否已经在目标语言目录中
+        const pathParts = currentPath.split('/');
+        const currentLangInPath = pathParts[1];
+        
+        // 如果当前路径已经包含目标语言，则不重定向
+        if (currentLangInPath === langParam) {
+            return;
         }
-    }
-    
-    // 页面加载完成后执行重定向
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', performRedirect);
-    } else {
-        performRedirect();
+        
+        // 构建新的URL
+        let newUrl;
+        if (currentPath === '/' || currentPath === '/index.html') {
+            // 主页重定向
+            newUrl = `/${langParam}/index.html`;
+        } else {
+            // 其他页面重定向
+            newUrl = `/${langParam}/${currentFilename}`;
+        }
+        
+        // 保留其他查询参数（除了lang参数）
+        const urlParams = new URLSearchParams(window.location.search);
+        urlParams.delete('lang');
+        const remainingParams = urlParams.toString();
+        
+        if (remainingParams) {
+            newUrl += '?' + remainingParams;
+        }
+        
+        // 执行重定向
+        window.location.replace(newUrl);
     }
 })();

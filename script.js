@@ -13,9 +13,56 @@ const languages = {
             'hero.description': 'BirdAiSnap is an AI-powered intelligent recognition application that enables rapid bird identification in your surroundings while unveiling the mysteries of the natural world.',
             'hero.download': 'Download Now',
             'hero.learn': 'Learn More',
+            'mockup.ai': 'AI Enhance',
+            'mockup.scan': 'Scan',
+            'mockup.sound': 'Sound',
             'features.title': 'Core Features',
+            'features.scan.title': 'Capture & Identify',
+            'features.scan.desc': 'Simply capture a photograph or upload an existing image to instantly identify bird species with precision',
+            'features.sound.title': 'Acoustic Recognition',
+            'features.sound.desc': 'Record avian vocalizations and identify species through sophisticated AI acoustic analysis',
+            'features.nearby.title': 'Local Avian Species',
+            'features.nearby.desc': 'Discover bird species in your vicinity and explore regional ecological patterns',
+            'features.enhance.title': 'Intelligent Enhancement',
+            'features.enhance.desc': 'Utilize advanced AI algorithms to enhance photographic quality and showcase avian subjects with stunning clarity',
+            'features.collection.title': 'Personal Collections',
+            'features.collection.desc': 'Curate personalized avian collections and document every birdwatching expedition with detailed records',
+            'features.info.title': 'Comprehensive Database',
+            'features.info.desc': 'Access extensive ornithological information and scientific knowledge repositories anytime, anywhere',
+            'features.knowledge.title': 'Ornithological Insights',
+            'features.knowledge.desc': 'Explore comprehensive birdwatching guides, scientific discoveries, avian care, ecological relationships, and cultural significance',
             'about.title': 'About BirdAiSnap',
-            'contact.title': 'Contact Us'
+            'about.desc1': 'BirdAiSnap is an intelligent recognition application designed specifically for avian enthusiasts and nature explorers. We are dedicated to helping users develop deeper understanding and appreciation for the magnificent birds in nature through cutting-edge AI technology.',
+            'about.desc2': 'Whether you are a professional ornithologist or an inquisitive nature enthusiast, BirdAiSnap delivers precise and rapid bird identification services tailored to your needs.',
+            'about.stats.downloads': 'Downloads',
+            'about.stats.species': 'Bird Species',
+            'about.stats.accuracy': 'Accuracy Rate',
+            'contact.title': 'Contact Us',
+            'contact.subtitle': 'Get More Information',
+            'contact.desc': 'If you have any questions or suggestions, feel free to contact us',
+            'contact.email': 'Email:',
+            'contact.form.name': 'Your Name',
+            'contact.form.email': 'Your Email',
+            'contact.form.message': 'Your Message',
+            'contact.form.submit': 'Send Message',
+            'contact.email.title': '📧 Email Information',
+            'contact.email.recipient': 'Recipient:',
+            'contact.email.subject': 'Subject:',
+            'contact.email.content': 'Content:',
+            'contact.email.copy': 'Copy Email Information',
+            'contact.email.open': 'Open Email Client',
+            'footer.tagline': 'Smart Recognition, Explore Nature',
+            'footer.product': 'Product',
+            'footer.product.download': 'Download APP',
+            'footer.product.features': 'Features',
+            'footer.product.guide': 'User Guide',
+            'footer.support': 'Support',
+            'footer.support.help': 'Help Center',
+            'footer.support.feedback': 'Feedback',
+            'footer.support.privacy': 'Privacy Policy',
+            'footer.contact': 'Contact Us',
+            'footer.contact.email': 'Email Consultation',
+            'footer.copyright': '© 2024 BirdAiSnap. All rights reserved'
         }
     },
     'zh': { 
@@ -31,9 +78,56 @@ const languages = {
             'hero.description': 'BirdAiSnap是一款AI驱动的智能识别应用，帮助您快速识别周围的鸟类，探索自然世界的奥秘。',
             'hero.download': '立即下载',
             'hero.learn': '了解更多',
+            'mockup.ai': 'AI增强',
+            'mockup.scan': '扫描',
+            'mockup.sound': '声音',
             'features.title': '核心功能',
+            'features.scan.title': '拍摄识别',
+            'features.scan.desc': '只需拍摄照片或上传现有图像，即可精确识别鸟类物种',
+            'features.sound.title': '声音识别',
+            'features.sound.desc': '录制鸟类叫声，通过先进的AI声学分析识别物种',
+            'features.nearby.title': '附近鸟类',
+            'features.nearby.desc': '发现您附近的鸟类物种，探索区域生态模式',
+            'features.enhance.title': '智能增强',
+            'features.enhance.desc': '利用先进的AI算法增强照片质量，以惊人的清晰度展示鸟类主体',
+            'features.collection.title': '个人收藏',
+            'features.collection.desc': '策划个性化的鸟类收藏，详细记录每次观鸟探险',
+            'features.info.title': '综合数据库',
+            'features.info.desc': '随时随地访问广泛的鸟类学信息和科学知识库',
+            'features.knowledge.title': '鸟类学洞察',
+            'features.knowledge.desc': '探索全面的观鸟指南、科学发现、鸟类护理、生态关系和文化意义',
             'about.title': '关于BirdAiSnap',
-            'contact.title': '联系我们'
+            'about.desc1': 'BirdAiSnap是专为鸟类爱好者和自然探索者设计的智能识别应用。我们致力于通过尖端AI技术帮助用户更深入地理解和欣赏自然界中的美丽鸟类。',
+            'about.desc2': '无论您是专业鸟类学家还是好奇的自然爱好者，BirdAiSnap都能提供精确快速的鸟类识别服务。',
+            'about.stats.downloads': '下载量',
+            'about.stats.species': '鸟类物种',
+            'about.stats.accuracy': '准确率',
+            'contact.title': '联系我们',
+            'contact.subtitle': '获取更多信息',
+            'contact.desc': '如果您有任何问题或建议，请随时联系我们',
+            'contact.email': '邮箱：',
+            'contact.form.name': '您的姓名',
+            'contact.form.email': '您的邮箱',
+            'contact.form.message': '您的留言',
+            'contact.form.submit': '发送消息',
+            'contact.email.title': '📧 邮件信息',
+            'contact.email.recipient': '收件人：',
+            'contact.email.subject': '主题：',
+            'contact.email.content': '内容：',
+            'contact.email.copy': '复制邮件信息',
+            'contact.email.open': '打开邮件客户端',
+            'footer.tagline': '智能识别，探索自然',
+            'footer.product': '产品',
+            'footer.product.download': '下载应用',
+            'footer.product.features': '功能特色',
+            'footer.product.guide': '使用指南',
+            'footer.support': '支持',
+            'footer.support.help': '帮助中心',
+            'footer.support.feedback': '意见反馈',
+            'footer.support.privacy': '隐私政策',
+            'footer.contact': '联系我们',
+            'footer.contact.email': '邮件咨询',
+            'footer.copyright': '© 2024 BirdAiSnap. 保留所有权利'
         }
     },
     'ko': { 
@@ -240,40 +334,22 @@ function translatePage(langCode) {
     const translations = languages[langCode].translations;
     if (!translations) return;
 
-    // 翻译导航菜单
-    const navItems = {
-        'nav.home': 'nav a[href="#home"]',
-        'nav.features': 'nav a[href="#features"]', 
-        'nav.about': 'nav a[href="#about"]',
-        'nav.contact': 'nav a[href="#contact"]'
-    };
-
-    Object.keys(navItems).forEach(key => {
-        const element = document.querySelector(navItems[key]);
-        if (element && translations[key]) {
+    // 翻译所有带有data-i18n属性的元素
+    const elementsToTranslate = document.querySelectorAll('[data-i18n]');
+    
+    elementsToTranslate.forEach(element => {
+        const key = element.getAttribute('data-i18n');
+        if (translations[key]) {
             element.textContent = translations[key];
         }
     });
 
-    // 翻译主要内容区域
-    const contentSelectors = {
-        'hero.title': '.hero h1, .hero-title',
-        'hero.description': '.hero p, .hero-description', 
-        'hero.download': '.download-btn, .btn-download',
-        'hero.learn': '.learn-btn, .btn-learn',
-        'features.title': '#features h2, .features-title',
-        'about.title': '#about h2, .about-title',
-        'contact.title': '#contact h2, .contact-title'
-    };
-
-    Object.keys(contentSelectors).forEach(key => {
-        const elements = document.querySelectorAll(contentSelectors[key]);
+    // 翻译placeholder属性
+    const placeholderElements = document.querySelectorAll('[data-i18n-placeholder]');
+    placeholderElements.forEach(element => {
+        const key = element.getAttribute('data-i18n-placeholder');
         if (translations[key]) {
-            elements.forEach(element => {
-                if (element) {
-                    element.textContent = translations[key];
-                }
-            });
+            element.placeholder = translations[key];
         }
     });
 

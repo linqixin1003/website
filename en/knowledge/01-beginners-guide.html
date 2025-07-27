@@ -705,13 +705,17 @@
 <div class="progress-fill"></div>
 </div>
 </div>
-<script>
+    <script src="../../language-redirect.js"></script>
+    <script>
         // Update time
         function updateTime() {
             const now = new Date();
             const timeString = now.getHours().toString().padStart(2, '0') + ':' + 
                              now.getMinutes().toString().padStart(2, '0');
-            document.getElementById('current-time').textContent = timeString;
+            const timeElement = document.getElementById('current-time');
+            if (timeElement) {
+                timeElement.textContent = timeString;
+            }
         }
         
         // Simulate reading progress
@@ -719,7 +723,10 @@
             const scrolled = window.pageYOffset;
             const maxHeight = document.body.scrollHeight - window.innerHeight;
             const progress = Math.min((scrolled / maxHeight) * 100, 100);
-            document.querySelector('.progress-fill').style.width = progress + '%';
+            const progressFill = document.querySelector('.progress-fill');
+            if (progressFill) {
+                progressFill.style.width = progress + '%';
+            }
         }
         
         // Initialize

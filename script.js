@@ -135,7 +135,7 @@ const languages = {
         flag: '🇰🇷', 
         code: 'KO',
         translations: {
-            'nav.home': '홈',
+            'nav.home': '홈페이지',
             'nav.features': '기능',
             'nav.about': '소개',
             'nav.contact': '연락처',

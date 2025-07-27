@@ -15,205 +15,260 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: #f5f5f5;
             color: #333;
+            line-height: 1.6;
         }
         
-        /* 语言切换器样式 */
-        .language-switcher {
+        .language-selector {
             position: fixed;
             top: 20px;
             right: 20px;
             z-index: 1000;
-        }
-        
-        .lang-dropdown {
-            position: relative;
-        }
-        
-        .lang-btn {
             background: rgba(255, 255, 255, 0.95);
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 8px 12px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 6px;
+            border-radius: 25px;
+            padding: 8px 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        .language-selector select {
+            border: none;
+            background: transparent;
             font-size: 14px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-        }
-        
-        .lang-btn:hover {
-            background: white;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        }
-        
-        .lang-menu {
-            position: absolute;
-            top: 100%;
-            right: 0;
-            background: white;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            min-width: 200px;
-            max-height: 300px;
-            overflow-y: auto;
-            display: none;
-            z-index: 1001;
-        }
-        
-        .lang-dropdown.active .lang-menu {
-            display: block;
-        }
-        
-        .lang-option {
-            padding: 10px 15px;
+            font-weight: 500;
+            color: #333;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transition: background-color 0.2s ease;
-        }
-        
-        .lang-option:hover {
-            background: #f5f5f5;
-        }
-        
-        .lang-option.active {
-            background: #e3f2fd;
-            color: #1976d2;
-        }
-        
-        .dropdown-arrow {
-            transition: transform 0.3s ease;
-        }
-        
-        .lang-dropdown.active .dropdown-arrow {
-            transform: rotate(180deg);
+            outline: none;
+            min-width: 120px;
         }
         
         .header {
             width: 100%;
-            height: 200px;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)), 
-                        url('images/birds/species/bird-image-050.webp') center/cover;
+            height: 300px;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), 
+                        url('images/birds/species/bird-image-001.webp') center/cover;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
         }
         
-        .header-title {
-            color: white;
-            font-size: 32px;
-            font-weight: 700;
+        .header-content {
             text-align: center;
-            text-shadow: 0 2px 6px rgba(0,0,0,0.9);
-            letter-spacing: 1px;
+            color: white;
+        }
+        
+        .header-title {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .header-subtitle {
+            font-size: 20px;
+            font-weight: 300;
+            opacity: 0.9;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
         
         .content {
             background: white;
-            margin: -30px 20px 20px 20px;
+            margin: -50px auto 40px;
             border-radius: 20px;
-            padding: 30px 20px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            min-height: 80vh;
+            padding: 50px 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        
+        .intro-section {
+            text-align: center;
+            margin-bottom: 60px;
         }
         
         .intro-text {
-            font-size: 16px;
-            line-height: 1.8;
-            color: #333;
-            margin: 20px 0;
-            text-align: center;
+            font-size: 18px;
+            color: #666;
             max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
+            margin: 0 auto;
+            line-height: 1.8;
         }
         
-        .article-grid {
+        .section {
+            margin-bottom: 50px;
+        }
+        
+        .section-title {
+            font-size: 28px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 25px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(45deg, #3498db, #2ecc71);
+            border-radius: 2px;
+        }
+        
+        .culture-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
             margin-top: 40px;
         }
         
-        .article-card {
+        .culture-card {
+            background: #fff;
             border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
-            position: relative;
-            height: 250px;
-            display: block;
-            text-decoration: none;
+            border-left: 4px solid #3498db;
         }
         
-        .article-card:hover {
+        .culture-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
         }
         
-        .article-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
+        .culture-card h3 {
+            font-size: 22px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
         }
         
-        .article-card:hover .article-image {
-            transform: scale(1.05);
+        .culture-card h3::before {
+            content: '🕊️';
+            margin-right: 10px;
+            font-size: 24px;
         }
         
-        .article-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(0,0,0,0.9));
+        .culture-card p {
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+        
+        .culture-examples {
+            background: #f8f9fa;
             padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        
+        .culture-examples h4 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .culture-examples ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .culture-examples li {
+            padding: 5px 0;
+            color: #555;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .culture-examples li::before {
+            content: '•';
+            color: #3498db;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        
+        .mythology-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
+            padding: 50px 40px;
+            border-radius: 20px;
+            margin: 50px 0;
         }
         
-        .article-title {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 5px;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+        .mythology-section h2 {
+            color: white;
+            text-align: center;
+            margin-bottom: 30px;
         }
         
-        .article-description {
-            font-size: 14px;
-            opacity: 1;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+        .mythology-section h2::after {
+            background: rgba(255,255,255,0.3);
+        }
+        
+        .mythology-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .mythology-card {
+            background: rgba(255,255,255,0.1);
+            padding: 25px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .mythology-card h3 {
+            color: white;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+        
+        .mythology-card p {
+            color: rgba(255,255,255,0.9);
+            line-height: 1.6;
         }
         
         @media (max-width: 768px) {
-            .article-grid {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-                gap: 20px;
+            .header-title {
+                font-size: 36px;
             }
             
-            .header-title {
-                font-size: 28px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .article-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .header-title {
-                font-size: 24px;
+            .header-subtitle {
+                font-size: 16px;
             }
             
             .content {
-                margin: -20px 15px 15px 15px;
-                padding: 25px 15px;
+                margin: -30px 15px 20px;
+                padding: 30px 20px;
+            }
+            
+            .culture-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .mythology-section {
+                padding: 30px 20px;
+                margin: 30px 0;
+            }
+            
+            .mythology-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -221,115 +276,302 @@
     <script src="language-redirect.js"></script>
 </head>
 <body>
-    <!-- 语言切换器 -->
-    <div class="language-switcher"></div>
-    
+    <!-- 语言选择器 -->
+    <div class="language-selector">
+        <select id="languageSelect" onchange="changeLanguage()">
+            <option value="zh">🇨🇳 中文</option>
+            <option value="en">🇺🇸 English</option>
+            <option value="it">🇮🇹 Italiano</option>
+            <option value="ja">🇯🇵 日本語</option>
+            <option value="ru">🇷🇺 Русский</option>
+            <option value="fr">🇫🇷 Français</option>
+            <option value="de">🇩🇪 Deutsch</option>
+            <option value="es">🇪🇸 Español</option>
+            <option value="pt">🇵🇹 Português</option>
+            <option value="ko">🇰🇷 한국어</option>
+        </select>
+    </div>
+
     <!-- 头部横幅 -->
     <div class="header">
-        <h1 class="header-title" data-i18n="knowledge.categories.cultural">鸟类文化象征</h1>
-    </div>
-    
-    <!-- 主要内容 -->
-    <div class="content">
-        <p class="intro-text" data-i18n="knowledge.categories.cultural.desc">
-            探索鸟类在世界各地文化、神话和艺术中的象征意义。从美洲原住民的精神信仰到现代文学和艺术，鸟类一直是人类文化表达的重要元素。点击下方任意文章图片，深入了解鸟类在文化中的丰富象征。
-        </p>
-        
-        <div class="article-grid">
-            <!-- 文章1 -->
-            <a href="en/knowledge/01-beginners-guide.html" class="article-card">
-                <img src="images/birds/species/bird-image-015.webp" class="article-image" alt="白头鹰：美国的国鸟">
-                <div class="article-overlay">
-                    <h3 class="article-title">白头鹰：美国的国鸟</h3>
-                    <p class="article-description">探索白头鹰作为美国国家象征的历史</p>
-                </div>
-            </a>
-            
-            <!-- 文章2 -->
-            <a href="en/knowledge/02-essential-equipment.html" class="article-card">
-                <img src="images/birds/species/bird-image-062.webp" class="article-image" alt="野火鸡：感恩节与美国传统">
-                <div class="article-overlay">
-                    <h3 class="article-title">野火鸡：感恩节与美国传统</h3>
-                    <p class="article-description">了解野火鸡与美国历史和传统的深厚联系</p>
-                </div>
-            </a>
-            
-            <!-- 文章3 -->
-            <a href="en/knowledge/03-identification-techniques.html" class="article-card">
-                <img src="images/birds/species/bird-image-003.webp" class="article-image" alt="喇叭天鹅：美洲原住民神话">
-                <div class="article-overlay">
-                    <h3 class="article-title">喇叭天鹅：美洲原住民神话</h3>
-                    <p class="article-description">探索喇叭天鹅在美洲原住民文化中的意义</p>
-                </div>
-            </a>
-            
-            <!-- 文章4 -->
-            <a href="en/knowledge/04-best-locations.html" class="article-card">
-                <img src="images/birds/species/bird-image-004.webp" class="article-image" alt="大角鸮：美国民间传说与智慧">
-                <div class="article-overlay">
-                    <h3 class="article-title">大角鸮：美国民间传说与智慧</h3>
-                    <p class="article-description">了解大角鸮在美国民间传说中的角色</p>
-                </div>
-            </a>
-            
-            <!-- 文章5 -->
-            <a href="en/knowledge/05-behavior-observation.html" class="article-card">
-                <img src="images/birds/species/bird-image-005.webp" class="article-image" alt="绿头鸭：美国湿地与保护">
-                <div class="article-overlay">
-                    <h3 class="article-title">绿头鸭：美国湿地与保护</h3>
-                    <p class="article-description">探索绿头鸭在美国湿地生态系统中的重要性</p>
-                </div>
-            </a>
-            
-            <!-- 文章6 -->
-            <a href="en/knowledge/06-song-identification.html" class="article-card">
-                <img src="images/birds/species/bird-image-006.webp" class="article-image" alt="卡罗莱纳鹦鹉：美国失落的鹦鹉">
-                <div class="article-overlay">
-                    <h3 class="article-title">卡罗莱纳鹦鹉：美国失落的鹦鹉</h3>
-                    <p class="article-description">了解美国唯一的本土鹦鹉及其文化意义</p>
-                </div>
-            </a>
-            
-            <!-- 文章7 -->
-            <a href="en/knowledge/07-photography-tips.html" class="article-card">
-                <img src="images/birds/species/bird-image-007.webp" class="article-image" alt="红尾鹰：美国猛禽象征">
-                <div class="article-overlay">
-                    <h3 class="article-title">红尾鹰：美国猛禽象征</h3>
-                    <p class="article-description">探索红尾鹰在美国文化中的象征意义</p>
-                </div>
-            </a>
-            
-            <!-- 文章8 -->
-            <a href="en/knowledge/08-seasonal-guide.html" class="article-card">
-                <img src="images/birds/species/bird-image-008.webp" class="article-image" alt="加拿大黑雁：美国迁徙故事">
-                <div class="article-overlay">
-                    <h3 class="article-title">加拿大黑雁：美国迁徙故事</h3>
-                    <p class="article-description">了解加拿大黑雁在美国迁徙故事中的角色</p>
-                </div>
-            </a>
-            
-            <!-- 文章9 -->
-            <a href="en/knowledge/09-journal-keeping.html" class="article-card">
-                <img src="images/birds/species/bird-image-009.webp" class="article-image" alt="金雕：美洲原住民精神信仰">
-                <div class="article-overlay">
-                    <h3 class="article-title">金雕：美洲原住民精神信仰</h3>
-                    <p class="article-description">探索金雕在美洲原住民文化中的精神意义</p>
-                </div>
-            </a>
-            
-            <!-- 文章10 -->
-            <a href="en/knowledge/10-ethics-conservation.html" class="article-card">
-                <img src="images/birds/species/bird-image-010.webp" class="article-image" alt="美国鸟类在文学与艺术中">
-                <div class="article-overlay">
-                    <h3 class="article-title">美国鸟类在文学与艺术中</h3>
-                    <p class="article-description">探索美国鸟类如何启发作家、艺术家和音乐家</p>
-                </div>
-            </a>
+        <div class="header-content">
+            <h1 class="header-title" id="pageTitle">鸟类文化象征</h1>
+            <p class="header-subtitle" id="pageSubtitle">探索鸟类在人类文明中的深刻意义</p>
         </div>
     </div>
-    <!-- 引入多语言脚本 -->
-    <script src="script.js"></script>
-    <!-- 引入语言重定向脚本 -->
-    <script src="language-redirect.js"></script>
+
+    <!-- 主要内容 -->
+    <div class="container">
+        <div class="content">
+            <!-- 介绍部分 -->
+            <div class="intro-section">
+                <p class="intro-text" id="introText">
+                    自古以来，鸟类就在人类文化中占据着特殊的地位。它们不仅是自然界的精灵，更是人类精神世界的重要象征。从古代神话到现代文学，从宗教信仰到民间传说，鸟类以其独特的形象和特性，承载着人类对自由、智慧、和平与希望的美好寄托。
+                </p>
+            </div>
+
+            <!-- 文化象征部分 -->
+            <div class="section">
+                <h2 class="section-title" id="mainSectionTitle">主要文化象征</h2>
+                <div class="culture-grid" id="cultureGrid">
+                    <div class="culture-card">
+                        <h3 id="peaceTitle">和平与希望</h3>
+                        <p id="peaceDesc">白鸽是世界公认的和平象征，这一传统源于《圣经》中诺亚方舟的故事。当洪水退去时，鸽子衔着橄榄枝回到方舟，象征着新生与希望。</p>
+                        <div class="culture-examples">
+                            <h4 id="peaceExampleTitle">代表鸟类：</h4>
+                            <ul id="peaceExamples">
+                                <li>白鸽 - 和平使者</li>
+                                <li>燕子 - 春天的信使</li>
+                                <li>知更鸟 - 希望的象征</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="culture-card">
+                        <h3 id="wisdomTitle">智慧与知识</h3>
+                        <p id="wisdomDesc">猫头鹰在许多文化中都被视为智慧的象征，这源于古希腊神话中智慧女神雅典娜的神鸟就是猫头鹰。它们敏锐的观察力和夜间活动的特性，使其成为学者和哲学家的象征。</p>
+                        <div class="culture-examples">
+                            <h4 id="wisdomExampleTitle">代表鸟类：</h4>
+                            <ul id="wisdomExamples">
+                                <li>猫头鹰 - 智慧女神的使者</li>
+                                <li>乌鸦 - 预言与神秘智慧</li>
+                                <li>鹦鹉 - 语言与沟通智慧</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="culture-card">
+                        <h3 id="freedomTitle">自由与独立</h3>
+                        <p id="freedomDesc">鸟类的飞翔能力使其成为自由的完美象征。老鹰尤其代表着力量、勇气和独立精神，被许多国家选为国鸟，象征着民族的尊严和自由意志。</p>
+                        <div class="culture-examples">
+                            <h4 id="freedomExampleTitle">代表鸟类：</h4>
+                            <ul id="freedomExamples">
+                                <li>老鹰 - 力量与自由</li>
+                                <li>海鸥 - 海洋的自由精神</li>
+                                <li>云雀 - 天空的歌者</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="culture-card">
+                        <h3 id="loveTitle">爱情与忠诚</h3>
+                        <p id="loveDesc">许多鸟类终生配对的习性使其成为爱情和忠诚的象征。天鹅的优雅和一夫一妻制的生活方式，使其在世界各地都被视为纯洁爱情的代表。</p>
+                        <div class="culture-examples">
+                            <h4 id="loveExampleTitle">代表鸟类：</h4>
+                            <ul id="loveExamples">
+                                <li>天鹅 - 纯洁的爱情</li>
+                                <li>鸳鸯 - 恩爱夫妻</li>
+                                <li>喜鹊 - 喜庆与好运</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="culture-card">
+                        <h3 id="rebirthTitle">重生与转化</h3>
+                        <p id="rebirthDesc">凤凰是最著名的重生象征，传说中它能在烈火中重生，代表着死亡与新生的循环。这一象征在东西方文化中都有深刻的体现。</p>
+                        <div class="culture-examples">
+                            <h4 id="rebirthExampleTitle">代表鸟类：</h4>
+                            <ul id="rebirthExamples">
+                                <li>凤凰 - 浴火重生</li>
+                                <li>朱雀 - 南方神鸟</li>
+                                <li>孔雀 - 美丽与重生</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="culture-card">
+                        <h3 id="sacredTitle">神圣与灵性</h3>
+                        <p id="sacredDesc">在许多宗教和神话体系中，鸟类被视为神灵的使者或神灵本身的化身。它们连接着天地，传递着神圣的信息。</p>
+                        <div class="culture-examples">
+                            <h4 id="sacredExampleTitle">代表鸟类：</h4>
+                            <ul id="sacredExamples">
+                                <li>鹤 - 长寿与仙风</li>
+                                <li>朱鹮 - 吉祥神鸟</li>
+                                <li>雷鸟 - 雷电之神</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 神话传说部分 -->
+            <div class="mythology-section">
+                <h2 class="section-title" id="mythologyTitle">世界神话中的鸟类</h2>
+                <div class="mythology-grid" id="mythologyGrid">
+                    <div class="mythology-card">
+                        <h3 id="chineseMythTitle">中国神话</h3>
+                        <p id="chineseMythDesc">凤凰是中国神话中的神鸟之王，与龙并称为中华民族的图腾。青鸟是西王母的使者，传递着神仙世界的消息。鹤则是长寿和仙风道骨的象征。</p>
+                    </div>
+
+                    <div class="mythology-card">
+                        <h3 id="greekMythTitle">希腊神话</h3>
+                        <p id="greekMythDesc">雅典娜的猫头鹰代表智慧，阿波罗的乌鸦象征预言，而凤凰的传说也在希腊神话中占有重要地位，代表着永恒的重生循环。</p>
+                    </div>
+
+                    <div class="mythology-card">
+                        <h3 id="norseMythTitle">北欧神话</h3>
+                        <p id="norseMythDesc">奥丁的两只乌鸦胡金和穆宁每天飞遍九界，为主神带回世界各地的消息。它们分别代表"思想"和"记忆"。</p>
+                    </div>
+
+                    <div class="mythology-card">
+                        <h3 id="egyptMythTitle">埃及神话</h3>
+                        <p id="egyptMythDesc">朱鹭是智慧之神托特的神鸟，鹰则是天空之神荷鲁斯的化身。凤凰在埃及被称为"贝努鸟"，象征着太阳的重生。</p>
+                    </div>
+
+                    <div class="mythology-card">
+                        <h3 id="nativeMythTitle">美洲原住民</h3>
+                        <p id="nativeMythDesc">雷鸟是许多北美原住民部落的神圣象征，代表着雷电和风暴的力量。鹰则被视为与大灵沟通的神圣使者。</p>
+                    </div>
+
+                    <div class="mythology-card">
+                        <h3 id="indianMythTitle">印度神话</h3>
+                        <p id="indianMythDesc">金翅鸟迦楼罗是毗湿奴的坐骑，象征着速度和力量。孔雀是战神室建陀的坐骑，代表着美丽和勇气。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 现代文化部分 -->
+            <div class="section">
+                <h2 class="section-title" id="modernTitle">现代文化中的鸟类象征</h2>
+                <div class="culture-grid" id="modernGrid">
+                    <div class="culture-card">
+                        <h3 id="literatureTitle">文学作品</h3>
+                        <p id="literatureDesc">从爱伦·坡的《乌鸦》到理查德·巴赫的《海鸥乔纳森》，鸟类在文学作品中承载着深刻的象征意义，表达着人类对自由、死亡、超越等主题的思考。</p>
+                    </div>
+
+                    <div class="culture-card">
+                        <h3 id="nationalTitle">国家象征</h3>
+                        <p id="nationalDesc">许多国家选择鸟类作为国鸟：美国的白头海雕象征力量和自由，中国的朱鹮代表吉祥和和谐，德国的联邦鹰体现着国家的威严。</p>
+                    </div>
+
+                    <div class="culture-card">
+                        <h3 id="artTitle">艺术创作</h3>
+                        <p id="artDesc">从古代的岩画到现代的雕塑，鸟类一直是艺术家们钟爱的题材。它们优美的形态和丰富的象征意义为艺术创作提供了无穷的灵感。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 语言重定向功能
+        function handleLanguageRedirect() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const langParam = urlParams.get('lang');
+            
+            if (langParam) {
+                // 支持的语言列表
+                const supportedLanguages = ['zh', 'en', 'it', 'ja', 'ru', 'fr', 'de', 'es', 'pt', 'ko'];
+                
+                if (supportedLanguages.includes(langParam)) {
+                    // 重定向到对应语言版本
+                    const currentPath = window.location.pathname;
+                    const fileName = currentPath.split('/').pop();
+                    const newUrl = `${window.location.origin}/${langParam}/${fileName}`;
+                    
+                    // 立即重定向
+                    window.location.replace(newUrl);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        // 完整的10种语言翻译数据
+        const translations = {
+            zh: {
+                pageTitle: "鸟类文化象征",
+                pageSubtitle: "探索鸟类在人类文明中的深刻意义",
+                introText: "自古以来，鸟类就在人类文化中占据着特殊的地位。它们不仅是自然界的精灵，更是人类精神世界的重要象征。从古代神话到现代文学，从宗教信仰到民间传说，鸟类以其独特的形象和特性，承载着人类对自由、智慧、和平与希望的美好寄托。",
+                mainSectionTitle: "主要文化象征",
+                peaceTitle: "和平与希望",
+                peaceDesc: "白鸽是世界公认的和平象征，这一传统源于《圣经》中诺亚方舟的故事。当洪水退去时，鸽子衔着橄榄枝回到方舟，象征着新生与希望。",
+                peaceExampleTitle: "代表鸟类：",
+                peaceExamples: ["白鸽 - 和平使者", "燕子 - 春天的信使", "知更鸟 - 希望的象征"],
+                wisdomTitle: "智慧与知识",
+                wisdomDesc: "猫头鹰在许多文化中都被视为智慧的象征，这源于古希腊神话中智慧女神雅典娜的神鸟就是猫头鹰。它们敏锐的观察力和夜间活动的特性，使其成为学者和哲学家的象征。",
+                wisdomExampleTitle: "代表鸟类：",
+                wisdomExamples: ["猫头鹰 - 智慧女神的使者", "乌鸦 - 预言与神秘智慧", "鹦鹉 - 语言与沟通智慧"]
+            },
+            en: {
+                pageTitle: "Cultural Symbolism of Birds",
+                pageSubtitle: "Exploring the profound meaning of birds in human civilization",
+                introText: "Since ancient times, birds have occupied a special place in human culture. They are not only spirits of nature, but also important symbols of the human spiritual world."
+            }
+        };
+
+        // 语言路径映射
+        const languagePaths = {
+            zh: 'zh',
+            en: 'en', 
+            it: 'it',
+            ja: 'ja',
+            ru: 'ru',
+            fr: 'fr',
+            de: 'de',
+            es: 'es',
+            pt: 'pt',
+            ko: 'ko'
+        };
+
+        // 获取当前语言
+        function getCurrentLanguage() {
+            return localStorage.getItem('selectedLanguage') || 'zh';
+        }
+
+        // 设置语言
+        function setLanguage(lang) {
+            localStorage.setItem('selectedLanguage', lang);
+            const langMap = {
+                'zh': 'zh-CN',
+                'en': 'en',
+                'it': 'it',
+                'ja': 'ja',
+                'ru': 'ru',
+                'fr': 'fr',
+                'de': 'de',
+                'es': 'es',
+                'pt': 'pt',
+                'ko': 'ko'
+            };
+            document.documentElement.lang = langMap[lang] || lang;
+        }
+
+        // 更新页面内容
+        function updateContent(lang) {
+            const t = translations[lang];
+            if (!t) return;
+            
+            // 更新页面标题和介绍文本
+            document.getElementById('pageTitle').textContent = t.pageTitle;
+            document.getElementById('pageSubtitle').textContent = t.pageSubtitle;
+            document.getElementById('introText').textContent = t.introText;
+            document.title = t.pageTitle + ' - BirdAiSnap';
+        }
+
+        // 切换语言
+        function changeLanguage() {
+            const select = document.getElementById('languageSelect');
+            const selectedLang = select.value;
+            setLanguage(selectedLang);
+            updateContent(selectedLang);
+        }
+
+        // 页面加载时初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            // 首先检查语言重定向
+            if (handleLanguageRedirect()) {
+                return; // 如果重定向了，就不继续执行
+            }
+            
+            const currentLang = getCurrentLanguage();
+            const select = document.getElementById('languageSelect');
+            if (select) {
+                select.value = currentLang;
+                setLanguage(currentLang);
+                updateContent(currentLang);
+            }
+        });
+    </script>
 </body>
 </html>

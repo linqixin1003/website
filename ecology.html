@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>鸟类生态学 - BirdAiSnap</title>
+    <title data-i18n="ecology.title">鸟类生态学 - BirdAiSnap</title>
     <style>
         * {
             margin: 0;
@@ -17,11 +17,125 @@
             color: #333;
         }
         
+        .language-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        
+        .lang-dropdown {
+            position: relative;
+        }
+        
+        .lang-btn {
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid #e0e0e0;
+            border-radius: 25px;
+            padding: 8px 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #333;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .lang-btn:hover {
+            background: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+        
+        .lang-icon {
+            font-size: 16px;
+        }
+        
+        .dropdown-arrow {
+            font-size: 12px;
+            transition: transform 0.3s ease;
+        }
+        
+        .lang-dropdown.active .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+        
+        .lang-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1001;
+            margin-top: 5px;
+        }
+        
+        .lang-dropdown.active .lang-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .lang-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .lang-option:last-child {
+            border-bottom: none;
+        }
+        
+        .lang-option:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .lang-option.active {
+            background-color: #e3f2fd;
+            color: #1976d2;
+        }
+        
+        .lang-option .flag {
+            font-size: 18px;
+        }
+        
+        .lang-option .name {
+            flex: 1;
+            font-weight: 500;
+        }
+        
+        .lang-option .code {
+            font-size: 12px;
+            color: #666;
+            background: #f0f0f0;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+        
+        .lang-option.active .code {
+            background: #bbdefb;
+            color: #1976d2;
+        }
+        
         .header {
             width: 100%;
             height: 200px;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)), 
-                        url('images/birds/species/head_conservation_biology.webp') center/cover;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.6)), 
+                        url('images/birds/species/bird-image-015.webp') center/cover;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -33,8 +147,7 @@
             font-size: 32px;
             font-weight: 700;
             text-align: center;
-            text-shadow: 0 2px 6px rgba(0,0,0,0.9);
-            letter-spacing: 1px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
         
         .content {
@@ -97,22 +210,20 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: linear-gradient(transparent, rgba(0,0,0,0.9));
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
             padding: 20px;
             color: white;
         }
         
         .article-title {
             font-size: 18px;
-            font-weight: 700;
+            font-weight: 600;
             margin-bottom: 5px;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.8);
         }
         
         .article-description {
             font-size: 14px;
-            opacity: 1;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+            opacity: 0.9;
         }
         
         @media (max-width: 768px) {
@@ -143,108 +254,128 @@
     </style>
 </head>
 <body>
+    <!-- 语言切换器 -->
+    <div class="language-switcher"></div>
+    
     <!-- 头部横幅 -->
     <div class="header">
-        <h1 class="header-title">鸟类生态学</h1>
+        <h1 class="header-title" data-i18n="ecology.header.title">鸟类生态学</h1>
     </div>
     
     <!-- 主要内容 -->
     <div class="content">
-        <p class="intro-text">
-            探索鸟类在自然生态系统中的角色和影响。从栖息地和食物链到迁徙模式和繁殖生态，了解鸟类如何与环境互动以及它们对生态平衡的重要性。点击下方任意文章图片，深入了解鸟类生态学的各个方面。
+        <p class="intro-text" data-i18n="ecology.intro.text">
+            探索鸟类与环境之间复杂而迷人的关系。鸟类生态学研究鸟类如何适应不同的栖息地、它们在生态系统中的作用，以及环境变化对鸟类种群的影响。了解这些生态关系有助于我们更好地保护鸟类及其栖息地。
         </p>
         
         <div class="article-grid">
             <!-- 文章1 -->
-            <a href="en/ecology/01-habitat-ecosystems.html" class="article-card">
-                <img src="images/birds/species/bird-image-075.webp" class="article-image" alt="栖息地与生态系统">
+            <a href="en/ecology/01-habitat-ecosystems.html" class="article-card" onclick="addLanguageParam(event, this)">
+                <img src="images/birds/species/bird-image-015.webp" class="article-image" alt="栖息地与生态系统">
                 <div class="article-overlay">
-                    <h3 class="article-title">栖息地与生态系统</h3>
-                    <p class="article-description">探索鸟类生活的多样化栖息地及其生态系统互动</p>
+                    <h3 class="article-title" data-i18n="ecology.articles.habitat-ecosystems.title">栖息地与生态系统</h3>
+                    <p class="article-description" data-i18n="ecology.articles.habitat-ecosystems.desc">了解鸟类栖息地的多样性和生态系统功能</p>
                 </div>
             </a>
             
             <!-- 文章2 -->
-            <a href="en/ecology/02-food-webs-chains.html" class="article-card">
-                <img src="images/birds/species/bird-image-076.webp" class="article-image" alt="食物网与食物链">
+            <a href="en/ecology/02-food-webs-chains.html" class="article-card" onclick="addLanguageParam(event, this)">
+                <img src="images/birds/species/bird-image-016.webp" class="article-image" alt="食物网与食物链">
                 <div class="article-overlay">
-                    <h3 class="article-title">食物网与食物链</h3>
-                    <p class="article-description">了解鸟类在复杂食物网中的角色</p>
+                    <h3 class="article-title" data-i18n="ecology.articles.food-webs-chains.title">食物网与食物链</h3>
+                    <p class="article-description" data-i18n="ecology.articles.food-webs-chains.desc">探索鸟类在食物网中的重要地位和作用</p>
                 </div>
             </a>
             
             <!-- 文章3 -->
-            <a href="en/ecology/03-migration-patterns.html" class="article-card">
-                <img src="images/birds/species/bird-image-077.webp" class="article-image" alt="迁徙模式">
+            <a href="en/ecology/03-migration-patterns.html" class="article-card" onclick="addLanguageParam(event, this)">
+                <img src="images/birds/species/bird-image-017.webp" class="article-image" alt="迁徙模式">
                 <div class="article-overlay">
-                    <h3 class="article-title">迁徙模式</h3>
-                    <p class="article-description">探索候鸟的惊人旅程和季节性迁徙</p>
+                    <h3 class="article-title" data-i18n="ecology.articles.migration-patterns.title">迁徙模式</h3>
+                    <p class="article-description" data-i18n="ecology.articles.migration-patterns.desc">研究鸟类迁徙的复杂模式和生态意义</p>
                 </div>
             </a>
             
             <!-- 文章4 -->
-            <a href="en/ecology/04-breeding-ecology.html" class="article-card">
-                <img src="images/birds/species/head_breeding_cology.webp" class="article-image" alt="繁殖生态学">
+            <a href="en/ecology/04-breeding-ecology.html" class="article-card" onclick="addLanguageParam(event, this)">
+                <img src="images/birds/species/bird-image-018.webp" class="article-image" alt="繁殖生态学">
                 <div class="article-overlay">
-                    <h3 class="article-title">繁殖生态学</h3>
-                    <p class="article-description">了解鸟类的繁殖策略和育雏行为</p>
+                    <h3 class="article-title" data-i18n="ecology.articles.breeding-ecology.title">繁殖生态学</h3>
+                    <p class="article-description" data-i18n="ecology.articles.breeding-ecology.desc">了解鸟类繁殖行为和生态策略</p>
                 </div>
             </a>
             
             <!-- 文章5 -->
-            <a href="en/ecology/05-climate-change-impact.html" class="article-card">
-                <img src="images/birds/species/bird-image-079.webp" class="article-image" alt="气候变化影响">
+            <a href="en/ecology/05-climate-change-impact.html" class="article-card" onclick="addLanguageParam(event, this)">
+                <img src="images/birds/species/bird-image-019.webp" class="article-image" alt="气候变化影响">
                 <div class="article-overlay">
-                    <h3 class="article-title">气候变化影响</h3>
-                    <p class="article-description">研究气候变化如何影响鸟类种群和栖息地</p>
+                    <h3 class="article-title" data-i18n="ecology.articles.climate-change-impact.title">气候变化影响</h3>
+                    <p class="article-description" data-i18n="ecology.articles.climate-change-impact.desc">分析气候变化对鸟类生态的深远影响</p>
                 </div>
             </a>
             
             <!-- 文章6 -->
-            <a href="en/ecology/06-urban-ecology.html" class="article-card">
-                <img src="images/birds/species/head_urban_ecology.webp" class="article-image" alt="城市生态学">
+            <a href="en/ecology/06-urban-ecology.html" class="article-card" onclick="addLanguageParam(event, this)">
+                <img src="images/birds/species/bird-image-020.webp" class="article-image" alt="城市生态学">
                 <div class="article-overlay">
-                    <h3 class="article-title">城市生态学</h3>
-                    <p class="article-description">探索鸟类如何适应城市环境</p>
+                    <h3 class="article-title" data-i18n="ecology.articles.urban-ecology.title">城市生态学</h3>
+                    <p class="article-description" data-i18n="ecology.articles.urban-ecology.desc">探索鸟类如何适应城市环境</p>
                 </div>
             </a>
             
             <!-- 文章7 -->
-            <a href="en/ecology/07-conservation-biology.html" class="article-card">
-                <img src="images/birds/species/head_conservation_biology.webp" class="article-image" alt="保护生物学">
+            <a href="en/ecology/07-conservation-biology.html" class="article-card" onclick="addLanguageParam(event, this)">
+                <img src="images/birds/species/bird-image-021.webp" class="article-image" alt="保护生物学">
                 <div class="article-overlay">
-                    <h3 class="article-title">保护生物学</h3>
-                    <p class="article-description">了解鸟类保护策略和成功案例</p>
+                    <h3 class="article-title" data-i18n="ecology.articles.conservation-biology.title">保护生物学</h3>
+                    <p class="article-description" data-i18n="ecology.articles.conservation-biology.desc">学习鸟类保护的科学原理和实践方法</p>
                 </div>
             </a>
             
             <!-- 文章8 -->
-            <a href="en/ecology/08-island-biogeography.html" class="article-card">
-                <img src="images/birds/species/head_island_biogeography.webp" class="article-image" alt="岛屿生物地理学">
+            <a href="en/ecology/08-island-biogeography.html" class="article-card" onclick="addLanguageParam(event, this)">
+                <img src="images/birds/species/bird-image-022.webp" class="article-image" alt="岛屿生物地理学">
                 <div class="article-overlay">
-                    <h3 class="article-title">岛屿生物地理学</h3>
-                    <p class="article-description">探索岛屿环境如何塑造鸟类进化</p>
+                    <h3 class="article-title" data-i18n="ecology.articles.island-biogeography.title">岛屿生物地理学</h3>
+                    <p class="article-description" data-i18n="ecology.articles.island-biogeography.desc">研究岛屿环境中的鸟类分布和进化</p>
                 </div>
             </a>
             
             <!-- 文章9 -->
-            <a href="en/ecology/09-pollination-seed-dispersal.html" class="article-card">
-                <img src="images/birds/species/head_pollination_seed_dispersal.webp" class="article-image" alt="授粉与种子传播">
+            <a href="en/ecology/09-pollination-seed-dispersal.html" class="article-card" onclick="addLanguageParam(event, this)">
+                <img src="images/birds/species/bird-image-023.webp" class="article-image" alt="授粉与种子传播">
                 <div class="article-overlay">
-                    <h3 class="article-title">授粉与种子传播</h3>
-                    <p class="article-description">了解鸟类在植物繁殖中的关键作用</p>
+                    <h3 class="article-title" data-i18n="ecology.articles.pollination-seed-dispersal.title">授粉与种子传播</h3>
+                    <p class="article-description" data-i18n="ecology.articles.pollination-seed-dispersal.desc">了解鸟类在植物繁殖中的重要作用</p>
                 </div>
             </a>
             
             <!-- 文章10 -->
-            <a href="en/ecology/10-community-dynamics.html" class="article-card">
-                <img src="images/birds/species/head_community_dynamics.webp" class="article-image" alt="群落动态">
+            <a href="en/ecology/10-community-dynamics.html" class="article-card" onclick="addLanguageParam(event, this)">
+                <img src="images/birds/species/bird-image-024.webp" class="article-image" alt="群落动态">
                 <div class="article-overlay">
-                    <h3 class="article-title">群落动态</h3>
-                    <p class="article-description">探索鸟类群落的结构和物种互动</p>
+                    <h3 class="article-title" data-i18n="ecology.articles.community-dynamics.title">群落动态</h3>
+                    <p class="article-description" data-i18n="ecology.articles.community-dynamics.desc">探索鸟类群落的结构和动态变化</p>
                 </div>
             </a>
         </div>
     </div>
+
+    <!-- 引入多语言脚本 -->
+    <script src="script.js"></script>
+    <script>
+        // 为链接添加语言参数的函数
+        function addLanguageParam(event, element) {
+            event.preventDefault();
+            const currentLang = localStorage.getItem('selectedLanguage') || 'en';
+            const href = element.getAttribute('href');
+            
+            // 将 en/ 替换为当前语言
+            const newHref = href.replace(/^en\//, currentLang + '/');
+            
+            // 跳转到对应语言的页面
+            window.location.href = newHref;
+        }
+    </script>
 </body>
 </html>

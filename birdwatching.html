@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>观鸟指南 - BirdAiSnap</title>
+    <title data-i18n="birdwatching.title">观鸟指南 - BirdAiSnap</title>
     <style>
         * {
             margin: 0;
@@ -15,6 +15,120 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: #f5f5f5;
             color: #333;
+        }
+        
+        .language-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        
+        .lang-dropdown {
+            position: relative;
+        }
+        
+        .lang-btn {
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid #e0e0e0;
+            border-radius: 25px;
+            padding: 8px 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #333;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .lang-btn:hover {
+            background: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+        
+        .lang-icon {
+            font-size: 16px;
+        }
+        
+        .dropdown-arrow {
+            font-size: 12px;
+            transition: transform 0.3s ease;
+        }
+        
+        .lang-dropdown.active .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+        
+        .lang-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1001;
+            margin-top: 5px;
+        }
+        
+        .lang-dropdown.active .lang-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .lang-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .lang-option:last-child {
+            border-bottom: none;
+        }
+        
+        .lang-option:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .lang-option.active {
+            background-color: #e3f2fd;
+            color: #1976d2;
+        }
+        
+        .lang-option .flag {
+            font-size: 18px;
+        }
+        
+        .lang-option .name {
+            flex: 1;
+            font-weight: 500;
+        }
+        
+        .lang-option .code {
+            font-size: 12px;
+            color: #666;
+            background: #f0f0f0;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+        
+        .lang-option.active .code {
+            background: #bbdefb;
+            color: #1976d2;
         }
         
         .header {
@@ -140,108 +254,128 @@
     </style>
 </head>
 <body>
+    <!-- 语言切换器 -->
+    <div class="language-switcher"></div>
+    
     <!-- 头部横幅 -->
     <div class="header">
-        <h1 class="header-title">观鸟指南</h1>
+        <h1 class="header-title" data-i18n="birdwatching.header.title">观鸟指南</h1>
     </div>
     
     <!-- 主要内容 -->
     <div class="content">
-        <p class="intro-text">
+        <p class="intro-text" data-i18n="birdwatching.intro.text">
             欢迎来到我们的观鸟指南专区。这里提供了全面的观鸟技巧和知识，从入门基础到高级识别技术，帮助您更好地欣赏和了解鸟类世界。点击下方任意文章图片，深入探索观鸟的奥秘。
         </p>
         
         <div class="article-grid">
             <!-- 文章1 -->
-            <a href="en/birdwatching/01-getting-started.html" class="article-card">
+            <a href="en/birdwatching/01-getting-started.html" class="article-card" onclick="addLanguageParam(event, this)">
                 <img src="images/birds/species/bird-image-001.webp" class="article-image" alt="观鸟入门指南">
                 <div class="article-overlay">
-                    <h3 class="article-title">观鸟入门指南</h3>
-                    <p class="article-description">为初学者提供的全面观鸟介绍</p>
+                    <h3 class="article-title" data-i18n="birdwatching.articles.getting-started.title">观鸟入门指南</h3>
+                    <p class="article-description" data-i18n="birdwatching.articles.getting-started.desc">为初学者提供的全面观鸟介绍</p>
                 </div>
             </a>
             
             <!-- 文章2 -->
-            <a href="en/birdwatching/02-essential-equipment.html" class="article-card">
+            <a href="en/birdwatching/02-essential-equipment.html" class="article-card" onclick="addLanguageParam(event, this)">
                 <img src="images/birds/species/bird-image-002.webp" class="article-image" alt="观鸟必备装备">
                 <div class="article-overlay">
-                    <h3 class="article-title">观鸟必备装备</h3>
-                    <p class="article-description">了解观鸟所需的各种工具和装备</p>
+                    <h3 class="article-title" data-i18n="birdwatching.articles.essential-equipment.title">观鸟必备装备</h3>
+                    <p class="article-description" data-i18n="birdwatching.articles.essential-equipment.desc">了解观鸟所需的各种工具和装备</p>
                 </div>
             </a>
             
             <!-- 文章3 -->
-            <a href="en/birdwatching/03-identification-techniques.html" class="article-card">
+            <a href="en/birdwatching/03-identification-techniques.html" class="article-card" onclick="addLanguageParam(event, this)">
                 <img src="images/birds/species/bird-image-003.webp" class="article-image" alt="鸟类识别技巧">
                 <div class="article-overlay">
-                    <h3 class="article-title">鸟类识别技巧</h3>
-                    <p class="article-description">掌握鸟类识别的艺术和方法</p>
+                    <h3 class="article-title" data-i18n="birdwatching.articles.identification-techniques.title">鸟类识别技巧</h3>
+                    <p class="article-description" data-i18n="birdwatching.articles.identification-techniques.desc">掌握鸟类识别的艺术和方法</p>
                 </div>
             </a>
             
             <!-- 文章4 -->
-            <a href="en/birdwatching/04-best-locations.html" class="article-card">
+            <a href="en/birdwatching/04-best-locations.html" class="article-card" onclick="addLanguageParam(event, this)">
                 <img src="images/birds/species/bird-image-004.webp" class="article-image" alt="最佳观鸟地点">
                 <div class="article-overlay">
-                    <h3 class="article-title">最佳观鸟地点</h3>
-                    <p class="article-description">探索世界各地的观鸟胜地</p>
+                    <h3 class="article-title" data-i18n="birdwatching.articles.best-locations.title">最佳观鸟地点</h3>
+                    <p class="article-description" data-i18n="birdwatching.articles.best-locations.desc">探索世界各地的观鸟胜地</p>
                 </div>
             </a>
             
             <!-- 文章5 -->
-            <a href="en/birdwatching/05-seasonal-guide.html" class="article-card">
+            <a href="en/birdwatching/05-seasonal-guide.html" class="article-card" onclick="addLanguageParam(event, this)">
                 <img src="images/birds/species/bird-image-005.webp" class="article-image" alt="季节性观鸟指南">
                 <div class="article-overlay">
-                    <h3 class="article-title">季节性观鸟指南</h3>
-                    <p class="article-description">根据季节变化规划您的观鸟活动</p>
+                    <h3 class="article-title" data-i18n="birdwatching.articles.seasonal-guide.title">季节性观鸟指南</h3>
+                    <p class="article-description" data-i18n="birdwatching.articles.seasonal-guide.desc">根据季节变化规划您的观鸟活动</p>
                 </div>
             </a>
             
             <!-- 文章6 -->
-            <a href="en/birdwatching/06-photography-tips.html" class="article-card">
+            <a href="en/birdwatching/06-photography-tips.html" class="article-card" onclick="addLanguageParam(event, this)">
                 <img src="images/birds/species/bird-image-006.webp" class="article-image" alt="鸟类摄影技巧">
                 <div class="article-overlay">
-                    <h3 class="article-title">鸟类摄影技巧</h3>
-                    <p class="article-description">拍摄精彩鸟类照片的实用建议</p>
+                    <h3 class="article-title" data-i18n="birdwatching.articles.photography-tips.title">鸟类摄影技巧</h3>
+                    <p class="article-description" data-i18n="birdwatching.articles.photography-tips.desc">拍摄精彩鸟类照片的实用建议</p>
                 </div>
             </a>
             
             <!-- 文章7 -->
-            <a href="en/birdwatching/07-behavior-observation.html" class="article-card">
+            <a href="en/birdwatching/07-behavior-observation.html" class="article-card" onclick="addLanguageParam(event, this)">
                 <img src="images/birds/species/bird-image-008.webp" class="article-image" alt="鸟类行为观察">
                 <div class="article-overlay">
-                    <h3 class="article-title">鸟类行为观察</h3>
-                    <p class="article-description">学习观察和理解鸟类行为</p>
+                    <h3 class="article-title" data-i18n="birdwatching.articles.behavior-observation.title">鸟类行为观察</h3>
+                    <p class="article-description" data-i18n="birdwatching.articles.behavior-observation.desc">学习观察和理解鸟类行为</p>
                 </div>
             </a>
             
             <!-- 文章8 -->
-            <a href="en/birdwatching/08-song-identification.html" class="article-card">
+            <a href="en/birdwatching/08-song-identification.html" class="article-card" onclick="addLanguageParam(event, this)">
                 <img src="images/birds/species/bird-image-009.webp" class="article-image" alt="鸟鸣识别">
                 <div class="article-overlay">
-                    <h3 class="article-title">鸟鸣识别</h3>
-                    <p class="article-description">通过声音识别不同鸟类的技巧</p>
+                    <h3 class="article-title" data-i18n="birdwatching.articles.song-identification.title">鸟鸣识别</h3>
+                    <p class="article-description" data-i18n="birdwatching.articles.song-identification.desc">通过声音识别不同鸟类的技巧</p>
                 </div>
             </a>
             
             <!-- 文章9 -->
-            <a href="en/birdwatching/09-ethics-conservation.html" class="article-card">
+            <a href="en/birdwatching/09-ethics-conservation.html" class="article-card" onclick="addLanguageParam(event, this)">
                 <img src="images/birds/species/bird-image-010.webp" class="article-image" alt="观鸟伦理与保护">
                 <div class="article-overlay">
-                    <h3 class="article-title">观鸟伦理与保护</h3>
-                    <p class="article-description">负责任地观鸟并为鸟类保护做贡献</p>
+                    <h3 class="article-title" data-i18n="birdwatching.articles.ethics-conservation.title">观鸟伦理与保护</h3>
+                    <p class="article-description" data-i18n="birdwatching.articles.ethics-conservation.desc">负责任地观鸟并为鸟类保护做贡献</p>
                 </div>
             </a>
             
             <!-- 文章10 -->
-            <a href="en/birdwatching/10-journal-keeping.html" class="article-card">
+            <a href="en/birdwatching/10-journal-keeping.html" class="article-card" onclick="addLanguageParam(event, this)">
                 <img src="images/birds/species/bird-image-011.webp" class="article-image" alt="观鸟日志记录">
                 <div class="article-overlay">
-                    <h3 class="article-title">观鸟日志记录</h3>
-                    <p class="article-description">如何记录和整理您的观鸟经历</p>
+                    <h3 class="article-title" data-i18n="birdwatching.articles.journal-keeping.title">观鸟日志记录</h3>
+                    <p class="article-description" data-i18n="birdwatching.articles.journal-keeping.desc">如何记录和整理您的观鸟经历</p>
                 </div>
             </a>
         </div>
     </div>
+
+    <!-- 引入多语言脚本 -->
+    <script src="script.js"></script>
+    <script>
+        // 为链接添加语言参数的函数
+        function addLanguageParam(event, element) {
+            event.preventDefault();
+            const currentLang = localStorage.getItem('selectedLanguage') || 'en';
+            const href = element.getAttribute('href');
+            
+            // 将 en/ 替换为当前语言
+            const newHref = href.replace(/^en\//, currentLang + '/');
+            
+            // 跳转到对应语言的页面
+            window.location.href = newHref;
+        }
+    </script>
 </body>
 </html>

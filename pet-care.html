@@ -1,304 +1,247 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pet Bird Care - Bird Knowledge Center</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="knowledge.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>宠物鸟护理指南 - BirdAiSnap</title>
     <style>
-        .mobile-article-list {
-            padding: 1rem;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
         
-        .mobile-article-item {
-            background: white;
-            border-radius: 12px;
-            margin-bottom: 1rem;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            overflow: hidden;
-        }
-        
-        .mobile-article-header {
-            padding: 1rem;
-            border-bottom: 1px solid #f0f0f0;
-        }
-        
-        .mobile-article-title {
-            font-size: 1.1rem;
-            font-weight: 600;
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
             color: #333;
-            margin-bottom: 0.5rem;
         }
         
-        .mobile-article-meta {
-            font-size: 0.9rem;
-            color: #666;
-        }
-        
-        .mobile-article-content {
-            padding: 1rem;
-        }
-        
-        .mobile-article-excerpt {
-            color: #555;
-            line-height: 1.6;
-            margin-bottom: 1rem;
-        }
-        
-        .mobile-article-image {
+        .header {
             width: 100%;
             height: 200px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.6)), 
+                        url('images/birds/species/bird-image-001.webp') center/cover;
             display: flex;
             align-items: center;
             justify-content: center;
+            position: relative;
+        }
+        
+        .header-title {
             color: white;
-            font-size: 3rem;
-        }
-        
-        .mobile-read-more {
-            color: #667eea;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.9rem;
-        }
-        
-        .mobile-category-badge {
-            background: #667eea;
-            color: white;
-            padding: 0.3rem 0.8rem;
-            border-radius: 15px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            display: inline-block;
-            margin-bottom: 0.5rem;
-        }
-        
-        .knowledge-hero {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 3rem 1rem;
-            text-align: center;
-        }
-        
-        .knowledge-hero h1 {
-            font-size: 2rem;
+            font-size: 32px;
             font-weight: 700;
-            margin-bottom: 1rem;
+            text-align: center;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
         
-        .knowledge-hero p {
-            font-size: 1.1rem;
+        .content {
+            background: white;
+            margin: -30px 20px 20px 20px;
+            border-radius: 20px;
+            padding: 30px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            min-height: 80vh;
+        }
+        
+        .intro-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            margin: 20px 0;
+            text-align: center;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .article-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .article-card {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            height: 250px;
+            display: block;
+            text-decoration: none;
+        }
+        
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .article-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .article-card:hover .article-image {
+            transform: scale(1.05);
+        }
+        
+        .article-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            padding: 20px;
+            color: white;
+        }
+        
+        .article-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .article-description {
+            font-size: 14px;
             opacity: 0.9;
-            max-width: 600px;
-            margin: 0 auto;
+        }
+        
+        @media (max-width: 768px) {
+            .article-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 20px;
+            }
+            
+            .header-title {
+                font-size: 28px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .article-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header-title {
+                font-size: 24px;
+            }
+            
+            .content {
+                margin: -20px 15px 15px 15px;
+                padding: 25px 15px;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- 导航栏 -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <h2><a href="index.html">BirdAiSnap</a></h2>
-            </div>
-            <ul class="nav-menu">
-                <li><a href="index.html#home">Home</a></li>
-                <li><a href="index.html#features">Features</a></li>
-                <li><a href="index.html#about">About</a></li>
-                <li><a href="index.html#contact">Contact</a></li>
-                <li><a href="knowledge.html">Knowledge</a></li>
-            </ul>
-            <div class="language-switcher">
-                <button id="langSwitch" class="lang-btn" onclick="toggleLanguage()">
-                    <span class="lang-icon">🌐</span>
-                    <span class="lang-text">Language</span>
-                    <span id="currentLang">EN</span>
-                </button>
-            </div>
-            <div class="nav-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </nav>
-
-    <!-- 主要内容 -->
-    <main>
-        <!-- 页面头部 -->
-        <section class="knowledge-hero">
-            <div class="container">
-                <h1>🦜 Pet Bird Care</h1>
-                <p>Essential guides and tips for pet bird owners</p>
+    <!-- 头部横幅 -->
+    <div class="header">
+        <h1 class="header-title">宠物鸟护理指南</h1>
     </div>
-        </section>
     
-        <!-- 文章列表 -->
-        <section class="mobile-article-list">
-    <div class="container">
-                <div class="mobile-article-item">
-                    <div class="mobile-article-image">🐦</div>
-                    <div class="mobile-article-header">
-                        <div class="mobile-category-badge">Pet Bird Care</div>
-                        <h3 class="mobile-article-title">Choosing the Right Pet Bird</h3>
-                        <div class="mobile-article-meta">Published: January 2025 • Reading time: 8 minutes</div>
-                    </div>
-                    <div class="mobile-article-content">
-                        <p class="mobile-article-excerpt">Learn how to select the perfect pet bird for your lifestyle, living situation, and experience level. Comprehensive guide to different bird species and their care requirements.</p>
-                        <a href="en/pet-care/01-choosing-right-bird.html" class="mobile-read-more">Read More →</a>
-                    </div>
+    <!-- 主要内容 -->
+    <div class="content">
+        <p class="intro-text">
+            欢迎来到我们的宠物鸟护理专区。这里提供了全面的宠物鸟饲养指南，从选择合适的鸟类到日常护理、健康管理和行为训练。点击下方任意文章图片，深入了解如何为您的羽毛朋友提供最好的照顾。
+        </p>
+        
+        <div class="article-grid">
+            <!-- 文章1 -->
+            <a href="en/pet-care/01-choosing-right-bird.html" class="article-card">
+                <img src="images/birds/species/bird-image-015.webp" class="article-image" alt="选择合适的鸟类">
+                <div class="article-overlay">
+                    <h3 class="article-title">选择合适的鸟类</h3>
+                    <p class="article-description">找到与您生活方式相匹配的完美羽毛伙伴</p>
                 </div>
-
-                <div class="mobile-article-item">
-                    <div class="mobile-article-image">🍎</div>
-                    <div class="mobile-article-header">
-                        <div class="mobile-category-badge">Pet Bird Care</div>
-                        <h3 class="mobile-article-title">Bird Nutrition and Feeding</h3>
-                        <div class="mobile-article-meta">Published: January 2025 • Reading time: 6 minutes</div>
-                    </div>
-                    <div class="mobile-article-content">
-                        <p class="mobile-article-excerpt">Essential guide to proper bird nutrition, including diet requirements, feeding schedules, and foods to avoid for optimal health and longevity.</p>
-                        <a href="en/pet-care/02-nutrition-feeding.html" class="mobile-read-more">Read More →</a>
-                    </div>
+            </a>
+            
+            <!-- 文章2 -->
+            <a href="en/pet-care/02-nutrition-feeding.html" class="article-card">
+                <img src="images/birds/species/bird-image-016.webp" class="article-image" alt="营养与喂食">
+                <div class="article-overlay">
+                    <h3 class="article-title">营养与喂食</h3>
+                    <p class="article-description">了解宠物鸟的均衡饮食和正确喂食方法</p>
                 </div>
-
-                <div class="mobile-article-item">
-                    <div class="mobile-article-image">🏠</div>
-                    <div class="mobile-article-header">
-                        <div class="mobile-category-badge">Pet Bird Care</div>
-                        <h3 class="mobile-article-title">Housing and Environment Setup</h3>
-                        <div class="mobile-article-meta">Published: January 2025 • Reading time: 7 minutes</div>
-                    </div>
-                    <div class="mobile-article-content">
-                        <p class="mobile-article-excerpt">Create the perfect living environment for your pet bird with proper cage selection, placement, and environmental enrichment for their wellbeing.</p>
-                        <a href="en/pet-care/03-housing-environment.html" class="mobile-read-more">Read More →</a>
-                    </div>
+            </a>
+            
+            <!-- 文章3 -->
+            <a href="en/pet-care/03-housing-environment.html" class="article-card">
+                <img src="images/birds/species/bird-image-017.webp" class="article-image" alt="住所与环境">
+                <div class="article-overlay">
+                    <h3 class="article-title">住所与环境</h3>
+                    <p class="article-description">创造安全舒适的生活空间</p>
                 </div>
-
-                <div class="mobile-article-item">
-                    <div class="mobile-article-image">🏥</div>
-                    <div class="mobile-article-header">
-                        <div class="mobile-category-badge">Pet Bird Care</div>
-                        <h3 class="mobile-article-title">Health and Veterinary Care</h3>
-                        <div class="mobile-article-meta">Published: January 2025 • Reading time: 5 minutes</div>
-                    </div>
-                    <div class="mobile-article-content">
-                        <p class="mobile-article-excerpt">Maintain your bird's health with regular veterinary care, disease prevention, and recognizing signs of illness for early intervention.</p>
-                        <a href="en/pet-care/04-health-veterinary.html" class="mobile-read-more">Read More →</a>
-                    </div>
+            </a>
+            
+            <!-- 文章4 -->
+            <a href="en/pet-care/04-health-veterinary.html" class="article-card">
+                <img src="images/birds/species/bird-image-018.webp" class="article-image" alt="健康与兽医护理">
+                <div class="article-overlay">
+                    <h3 class="article-title">健康与兽医护理</h3>
+                    <p class="article-description">预防疾病和保持鸟类健康的关键</p>
                 </div>
-
-                <div class="mobile-article-item">
-                    <div class="mobile-article-image">🎓</div>
-                    <div class="mobile-article-header">
-                        <div class="mobile-category-badge">Pet Bird Care</div>
-                        <h3 class="mobile-article-title">Training and Behavior</h3>
-                        <div class="mobile-article-meta">Published: January 2025 • Reading time: 6 minutes</div>
-                    </div>
-                    <div class="mobile-article-content">
-                        <p class="mobile-article-excerpt">Effective training techniques and behavior management for pet birds, including socialization, basic commands, and addressing behavioral issues.</p>
-                        <a href="en/pet-care/05-training-behavior.html" class="mobile-read-more">Read More →</a>
-                    </div>
+            </a>
+            
+            <!-- 文章5 -->
+            <a href="en/pet-care/05-training-behavior.html" class="article-card">
+                <img src="images/birds/species/bird-image-019.webp" class="article-image" alt="训练与行为">
+                <div class="article-overlay">
+                    <h3 class="article-title">训练与行为</h3>
+                    <p class="article-description">教导您的鸟类良好习惯和有趣技能</p>
                 </div>
-
-                <div class="mobile-article-item">
-                    <div class="mobile-article-image">💕</div>
-                    <div class="mobile-article-header">
-                        <div class="mobile-category-badge">Pet Bird Care</div>
-                        <h3 class="mobile-article-title">Breeding and Reproduction</h3>
-                        <div class="mobile-article-meta">Published: January 2025 • Reading time: 8 minutes</div>
-                    </div>
-                    <div class="mobile-article-content">
-                        <p class="mobile-article-excerpt">Comprehensive guide to bird breeding, from preparation and mating to egg care and raising healthy chicks in captivity.</p>
-                        <a href="en/pet-care/06-breeding-reproduction.html" class="mobile-read-more">Read More →</a>
-                    </div>
+            </a>
+            
+            <!-- 文章6 -->
+            <a href="en/pet-care/06-breeding-reproduction.html" class="article-card">
+                <img src="images/birds/species/bird-image-020.webp" class="article-image" alt="繁殖与生殖">
+                <div class="article-overlay">
+                    <h3 class="article-title">繁殖与生殖</h3>
+                    <p class="article-description">了解鸟类繁殖的基本知识</p>
                 </div>
-
-                <div class="mobile-article-item">
-                    <div class="mobile-article-image">🚨</div>
-                    <div class="mobile-article-header">
-                        <div class="mobile-category-badge">Pet Bird Care</div>
-                        <h3 class="mobile-article-title">Emergency First Aid</h3>
-                        <div class="mobile-article-meta">Published: January 2025 • Reading time: 7 minutes</div>
-                    </div>
-                    <div class="mobile-article-content">
-                        <p class="mobile-article-excerpt">Essential first aid knowledge for bird emergencies, including injury assessment, basic treatment, and when to seek veterinary care.</p>
-                        <a href="en/pet-care/07-emergency-first-aid.html" class="mobile-read-more">Read More →</a>
-                    </div>
+            </a>
+            
+            <!-- 文章7 -->
+            <a href="en/pet-care/07-emergency-first-aid.html" class="article-card">
+                <img src="images/birds/species/bird-image-021.webp" class="article-image" alt="紧急救护">
+                <div class="article-overlay">
+                    <h3 class="article-title">紧急救护</h3>
+                    <p class="article-description">应对紧急情况的必备知识</p>
                 </div>
-
-                <div class="mobile-article-item">
-                    <div class="mobile-article-image">🍂</div>
-                    <div class="mobile-article-header">
-                        <div class="mobile-category-badge">Pet Bird Care</div>
-                        <h3 class="mobile-article-title">Seasonal Care Guide</h3>
-                        <div class="mobile-article-meta">Published: January 2025 • Reading time: 6 minutes</div>
-                    </div>
-                    <div class="mobile-article-content">
-                        <p class="mobile-article-excerpt">Adapt your bird care routine throughout the year with seasonal considerations for temperature, lighting, and environmental changes.</p>
-                        <a href="en/pet-care/08-seasonal-care.html" class="mobile-read-more">Read More →</a>
-                    </div>
+            </a>
+            
+            <!-- 文章8 -->
+            <a href="en/pet-care/08-seasonal-care.html" class="article-card">
+                <img src="images/birds/species/bird-image-022.webp" class="article-image" alt="季节性护理">
+                <div class="article-overlay">
+                    <h3 class="article-title">季节性护理</h3>
+                    <p class="article-description">根据季节变化调整鸟类护理方式</p>
                 </div>
-    
-                <div class="mobile-article-item">
-                    <div class="mobile-article-image">🎯</div>
-                    <div class="mobile-article-header">
-                        <div class="mobile-category-badge">Pet Bird Care</div>
-                        <h3 class="mobile-article-title">Enrichment Activities</h3>
-                        <div class="mobile-article-meta">Published: January 2025 • Reading time: 5 minutes</div>
-                    </div>
-                    <div class="mobile-article-content">
-                        <p class="mobile-article-excerpt">Keep your pet bird mentally stimulated and physically active with engaging enrichment activities, toys, and interactive games.</p>
-                        <a href="en/pet-care/09-enrichment-activities.html" class="mobile-read-more">Read More →</a>
-                    </div>
+            </a>
+            
+            <!-- 文章9 -->
+            <a href="en/pet-care/09-enrichment-activities.html" class="article-card">
+                <img src="images/birds/species/bird-image-023.webp" class="article-image" alt="丰富活动">
+                <div class="article-overlay">
+                    <h3 class="article-title">丰富活动</h3>
+                    <p class="article-description">保持鸟类身心健康的互动游戏</p>
                 </div>
-    
-                <div class="mobile-article-item">
-                    <div class="mobile-article-image">👴</div>
-                    <div class="mobile-article-header">
-                        <div class="mobile-category-badge">Pet Bird Care</div>
-                        <h3 class="mobile-article-title">Senior Bird Care</h3>
-                        <div class="mobile-article-meta">Published: January 2025 • Reading time: 7 minutes</div>
-                    </div>
-                    <div class="mobile-article-content">
-                        <p class="mobile-article-excerpt">Special care considerations for aging birds, including health monitoring, dietary adjustments, and comfort measures for senior pets.</p>
-                        <a href="en/pet-care/10-senior-bird-care.html" class="mobile-read-more">Read More →</a>
-                    </div>
+            </a>
+            
+            <!-- 文章10 -->
+            <a href="en/pet-care/10-species-profiles.html" class="article-card">
+                <img src="images/birds/species/bird-image-024.webp" class="article-image" alt="物种档案">
+                <div class="article-overlay">
+                    <h3 class="article-title">物种档案</h3>
+                    <p class="article-description">常见宠物鸟种类的详细介绍</p>
                 </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- 页脚 -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>BirdAiSnap</h3>
-                    <p>Smart bird recognition powered by AI technology</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="knowledge.html">Knowledge Center</a></li>
-                        <li><a href="https://play.google.com/store/apps/details?id=com.bird.ai.snap">Download App</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Contact</h4>
-                    <p>Email: lingjuetech@gmail.com</p>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Hangzhou Lingjue Technology Co., Ltd. All rights reserved.</p>
-            </div>
+            </a>
         </div>
-    </footer>
-
-    <script src="script.js"></script>
+    </div>
 </body>
 </html>

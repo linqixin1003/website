@@ -292,6 +292,29 @@
     </div>
 
     <script>
+        // 语言重定向功能
+        function handleLanguageRedirect() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const langParam = urlParams.get('lang');
+            
+            if (langParam) {
+                // 支持的语言列表
+                const supportedLanguages = ['zh', 'en', 'it', 'ja', 'ru', 'fr', 'de', 'es', 'pt', 'ko'];
+                
+                if (supportedLanguages.includes(langParam)) {
+                    // 重定向到对应语言版本
+                    const currentPath = window.location.pathname;
+                    const fileName = currentPath.split('/').pop();
+                    const newUrl = `${window.location.origin}/${langParam}/${fileName}`;
+                    
+                    // 立即重定向
+                    window.location.replace(newUrl);
+                    return true;
+                }
+            }
+            return false;
+        }
+
         // 完整的10种语言翻译数据
         const translations = {
             zh: {
@@ -554,6 +577,11 @@
 
         // 页面加载时初始化
         document.addEventListener('DOMContentLoaded', function() {
+            // 首先检查语言重定向
+            if (handleLanguageRedirect()) {
+                return; // 如果重定向了，就不继续执行
+            }
+            
             const currentLang = getCurrentLanguage();
             document.getElementById('languageSelect').value = currentLang;
             setLanguage(currentLang);

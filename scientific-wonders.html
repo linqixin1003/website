@@ -17,11 +17,34 @@
             color: #333;
         }
         
+        .language-selector {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 25px;
+            padding: 8px 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        .language-selector select {
+            border: none;
+            background: transparent;
+            font-size: 14px;
+            font-weight: 500;
+            color: #333;
+            cursor: pointer;
+            outline: none;
+            min-width: 120px;
+        }
+        
         .header {
             width: 100%;
             height: 200px;
             background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.6)), 
-                        url('images/birds/species/bird-image-030.webp') center/cover;
+                        url('images/birds/species/bird-image-001.webp') center/cover;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -121,6 +144,12 @@
             .header-title {
                 font-size: 28px;
             }
+            
+            .language-selector {
+                top: 10px;
+                right: 10px;
+                padding: 6px 12px;
+            }
         }
         
         @media (max-width: 480px) {
@@ -140,108 +169,422 @@
     </style>
 </head>
 <body>
+    <!-- 语言选择器 -->
+    <div class="language-selector">
+        <select id="languageSelect" onchange="changeLanguage()">
+            <option value="zh">🇨🇳 中文</option>
+            <option value="en">🇺🇸 English</option>
+            <option value="it">🇮🇹 Italiano</option>
+            <option value="ja">🇯🇵 日本語</option>
+            <option value="ru">🇷🇺 Русский</option>
+            <option value="fr">🇫🇷 Français</option>
+            <option value="de">🇩🇪 Deutsch</option>
+            <option value="es">🇪🇸 Español</option>
+            <option value="pt">🇵🇹 Português</option>
+            <option value="ko">🇰🇷 한국어</option>
+        </select>
+    </div>
+    
     <!-- 头部横幅 -->
     <div class="header">
-        <h1 class="header-title">鸟类科学奇观</h1>
+        <h1 class="header-title" id="pageTitle">鸟类科学奇观</h1>
     </div>
     
     <!-- 主要内容 -->
     <div class="content">
-        <p class="intro-text">
-            探索鸟类世界中令人惊叹的科学奇观。从飞行力学到磁场导航，从羽毛结构到认知能力，这里汇集了关于鸟类的最新科学发现和研究成果。点击下方任意文章图片，深入了解鸟类的科学奥秘。
+        <p class="intro-text" id="introText">
+            探索鸟类世界的科学奇迹。从飞行力学到导航系统，从羽毛结构到智能行为，深入了解这些令人惊叹的生物如何在自然界中展现出非凡的适应能力和生存智慧。
         </p>
         
-        <div class="article-grid">
+        <div class="article-grid" id="articleGrid">
             <!-- 文章1 -->
-            <a href="en/scientific-wonders/01-bird-flight-mechanics.html" class="article-card">
-                <img src="images/birds/species/bird-image-030.webp" class="article-image" alt="鸟类飞行力学">
+            <a href="zh/scientific-wonders/01-bird-flight-mechanics.html" class="article-card" data-article="01">
+                <img src="images/birds/species/bird-image-025.webp" class="article-image" alt="鸟类飞行力学">
                 <div class="article-overlay">
                     <h3 class="article-title">鸟类飞行力学</h3>
-                    <p class="article-description">探索鸟类飞行背后的物理学和生物力学原理</p>
+                    <p class="article-description">揭秘鸟类如何征服天空的物理原理</p>
                 </div>
             </a>
             
             <!-- 文章2 -->
-            <a href="en/scientific-wonders/02-magnetic-navigation.html" class="article-card">
-                <img src="images/birds/species/bird-image-031.webp" class="article-image" alt="鸟类磁场导航">
+            <a href="zh/scientific-wonders/02-magnetic-navigation.html" class="article-card" data-article="02">
+                <img src="images/birds/species/bird-image-026.webp" class="article-image" alt="磁场导航系统">
                 <div class="article-overlay">
-                    <h3 class="article-title">鸟类磁场导航</h3>
-                    <p class="article-description">了解鸟类如何利用地球磁场进行迁徙导航</p>
+                    <h3 class="article-title">磁场导航系统</h3>
+                    <p class="article-description">鸟类如何利用地球磁场进行精确导航</p>
                 </div>
             </a>
             
             <!-- 文章3 -->
-            <a href="en/scientific-wonders/03-hummingbird-mechanics.html" class="article-card">
-                <img src="images/birds/species/bird-image-032.webp" class="article-image" alt="蜂鸟飞行力学">
+            <a href="zh/scientific-wonders/03-hummingbird-mechanics.html" class="article-card" data-article="03">
+                <img src="images/birds/species/bird-image-027.webp" class="article-image" alt="蜂鸟悬停机制">
                 <div class="article-overlay">
-                    <h3 class="article-title">蜂鸟飞行力学</h3>
-                    <p class="article-description">揭秘蜂鸟独特的悬停和倒飞能力</p>
+                    <h3 class="article-title">蜂鸟悬停机制</h3>
+                    <p class="article-description">解析蜂鸟独特的悬停飞行技术</p>
                 </div>
             </a>
             
             <!-- 文章4 -->
-            <a href="en/scientific-wonders/04-bird-intelligence.html" class="article-card">
-                <img src="images/birds/species/bird-image-033.webp" class="article-image" alt="鸟类智能与认知">
+            <a href="zh/scientific-wonders/04-bird-intelligence.html" class="article-card" data-article="04">
+                <img src="images/birds/species/bird-image-028.webp" class="article-image" alt="鸟类智能研究">
                 <div class="article-overlay">
-                    <h3 class="article-title">鸟类智能与认知</h3>
-                    <p class="article-description">探索鸟类令人惊叹的智力和解决问题的能力</p>
+                    <h3 class="article-title">鸟类智能研究</h3>
+                    <p class="article-description">探索鸟类令人惊叹的认知能力</p>
                 </div>
             </a>
             
             <!-- 文章5 -->
-            <a href="en/scientific-wonders/05-feather-structure.html" class="article-card">
-                <img src="images/birds/species/bird-image-034.webp" class="article-image" alt="羽毛结构与功能">
+            <a href="zh/scientific-wonders/05-feather-structure.html" class="article-card" data-article="05">
+                <img src="images/birds/species/bird-image-029.webp" class="article-image" alt="羽毛微观结构">
                 <div class="article-overlay">
-                    <h3 class="article-title">羽毛结构与功能</h3>
-                    <p class="article-description">了解羽毛的复杂结构及其多种功能</p>
+                    <h3 class="article-title">羽毛微观结构</h3>
+                    <p class="article-description">羽毛的精密工程学原理</p>
                 </div>
             </a>
             
             <!-- 文章6 -->
-            <a href="en/scientific-wonders/06-bird-vision.html" class="article-card">
-                <img src="images/birds/species/bird-image-035.webp" class="article-image" alt="鸟类非凡视觉">
+            <a href="zh/scientific-wonders/06-bird-vision.html" class="article-card" data-article="06">
+                <img src="images/birds/species/bird-image-030.webp" class="article-image" alt="鸟类视觉系统">
                 <div class="article-overlay">
-                    <h3 class="article-title">鸟类非凡视觉</h3>
-                    <p class="article-description">探索鸟类如何通过超强视力感知世界</p>
+                    <h3 class="article-title">鸟类视觉系统</h3>
+                    <p class="article-description">超越人类的视觉感知能力</p>
                 </div>
             </a>
             
             <!-- 文章7 -->
-            <a href="en/scientific-wonders/07-egg-development.html" class="article-card">
-                <img src="images/birds/species/bird-image-036.webp" class="article-image" alt="蛋的发育科学">
+            <a href="zh/scientific-wonders/07-egg-development.html" class="article-card" data-article="07">
+                <img src="images/birds/species/bird-image-031.webp" class="article-image" alt="鸟蛋发育奇迹">
                 <div class="article-overlay">
-                    <h3 class="article-title">蛋的发育科学</h3>
-                    <p class="article-description">探索从受精到孵化的鸟类胚胎发育过程</p>
+                    <h3 class="article-title">鸟蛋发育奇迹</h3>
+                    <p class="article-description">从单细胞到完整生命的神奇过程</p>
                 </div>
             </a>
             
             <!-- 文章8 -->
-            <a href="en/scientific-wonders/08-bird-communication.html" class="article-card">
-                <img src="images/birds/species/bird-image-037.webp" class="article-image" alt="鸟类交流与发声">
+            <a href="zh/scientific-wonders/08-bird-communication.html" class="article-card" data-article="08">
+                <img src="images/birds/species/bird-image-032.webp" class="article-image" alt="鸟类通讯系统">
                 <div class="article-overlay">
-                    <h3 class="article-title">鸟类交流与发声</h3>
-                    <p class="article-description">了解鸟类复杂的交流系统和发声机制</p>
+                    <h3 class="article-title">鸟类通讯系统</h3>
+                    <p class="article-description">复杂的声音和视觉信号系统</p>
                 </div>
             </a>
             
             <!-- 文章9 -->
-            <a href="en/scientific-wonders/09-migration-physiology.html" class="article-card">
-                <img src="images/birds/species/bird-image-038.webp" class="article-image" alt="迁徙生理学">
+            <a href="zh/scientific-wonders/09-migration-physiology.html" class="article-card" data-article="09">
+                <img src="images/birds/species/bird-image-033.webp" class="article-image" alt="迁徙生理学">
                 <div class="article-overlay">
                     <h3 class="article-title">迁徙生理学</h3>
-                    <p class="article-description">探索使鸟类能够进行长距离迁徙的生理适应</p>
+                    <p class="article-description">长距离迁徙的生理适应机制</p>
                 </div>
             </a>
             
             <!-- 文章10 -->
-            <a href="en/scientific-wonders/10-biomechanics.html" class="article-card">
-                <img src="images/birds/species/bird-image-039.webp" class="article-image" alt="鸟类运动生物力学">
+            <a href="zh/scientific-wonders/10-biomechanics.html" class="article-card" data-article="10">
+                <img src="images/birds/species/bird-image-034.webp" class="article-image" alt="鸟类生物力学">
                 <div class="article-overlay">
-                    <h3 class="article-title">鸟类运动生物力学</h3>
-                    <p class="article-description">了解鸟类各种运动方式背后的生物力学原理</p>
+                    <h3 class="article-title">鸟类生物力学</h3>
+                    <p class="article-description">运动和结构的完美结合</p>
                 </div>
             </a>
         </div>
     </div>
+
+    <script>
+        // 语言重定向功能
+        function handleLanguageRedirect() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const langParam = urlParams.get('lang');
+            
+            if (langParam) {
+                // 支持的语言列表
+                const supportedLanguages = ['zh', 'en', 'it', 'ja', 'ru', 'fr', 'de', 'es', 'pt', 'ko'];
+                
+                if (supportedLanguages.includes(langParam)) {
+                    // 重定向到对应语言版本
+                    const currentPath = window.location.pathname;
+                    const fileName = currentPath.split('/').pop();
+                    const newUrl = `${window.location.origin}/${langParam}/${fileName}`;
+                    
+                    // 立即重定向
+                    window.location.replace(newUrl);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        // 完整的10种语言翻译数据
+        const translations = {
+            zh: {
+                pageTitle: "鸟类科学奇观",
+                introText: "探索鸟类世界的科学奇迹。从飞行力学到导航系统，从羽毛结构到智能行为，深入了解这些令人惊叹的生物如何在自然界中展现出非凡的适应能力和生存智慧。",
+                articles: {
+                    "01": { title: "鸟类飞行力学", desc: "揭秘鸟类如何征服天空的物理原理" },
+                    "02": { title: "磁场导航系统", desc: "鸟类如何利用地球磁场进行精确导航" },
+                    "03": { title: "蜂鸟悬停机制", desc: "解析蜂鸟独特的悬停飞行技术" },
+                    "04": { title: "鸟类智能研究", desc: "探索鸟类令人惊叹的认知能力" },
+                    "05": { title: "羽毛微观结构", desc: "羽毛的精密工程学原理" },
+                    "06": { title: "鸟类视觉系统", desc: "超越人类的视觉感知能力" },
+                    "07": { title: "鸟蛋发育奇迹", desc: "从单细胞到完整生命的神奇过程" },
+                    "08": { title: "鸟类通讯系统", desc: "复杂的声音和视觉信号系统" },
+                    "09": { title: "迁徙生理学", desc: "长距离迁徙的生理适应机制" },
+                    "10": { title: "鸟类生物力学", desc: "运动和结构的完美结合" }
+                }
+            },
+            en: {
+                pageTitle: "Scientific Wonders of Birds",
+                introText: "Explore the scientific marvels of the avian world. From flight mechanics to navigation systems, from feather structure to intelligent behavior, discover how these amazing creatures demonstrate extraordinary adaptation and survival wisdom in nature.",
+                articles: {
+                    "01": { title: "Bird Flight Mechanics", desc: "Unveiling the physics behind how birds conquer the skies" },
+                    "02": { title: "Magnetic Navigation System", desc: "How birds use Earth's magnetic field for precise navigation" },
+                    "03": { title: "Hummingbird Hovering Mechanism", desc: "Analyzing the unique hovering flight technology of hummingbirds" },
+                    "04": { title: "Bird Intelligence Research", desc: "Exploring the amazing cognitive abilities of birds" },
+                    "05": { title: "Feather Microstructure", desc: "The precision engineering principles of feathers" },
+                    "06": { title: "Bird Vision System", desc: "Visual perception abilities beyond humans" },
+                    "07": { title: "Egg Development Miracle", desc: "The miraculous process from single cell to complete life" },
+                    "08": { title: "Bird Communication System", desc: "Complex sound and visual signal systems" },
+                    "09": { title: "Migration Physiology", desc: "Physiological adaptation mechanisms for long-distance migration" },
+                    "10": { title: "Bird Biomechanics", desc: "Perfect combination of movement and structure" }
+                }
+            },
+            ru: {
+                pageTitle: "Научные Чудеса Птиц",
+                introText: "Исследуйте научные чудеса мира птиц. От механики полета до навигационных систем, от структуры перьев до разумного поведения, узнайте, как эти удивительные существа демонстрируют необычайную адаптацию и мудрость выживания в природе.",
+                articles: {
+                    "01": { title: "Механика Полета Птиц", desc: "Раскрытие физики того, как птицы покоряют небеса" },
+                    "02": { title: "Магнитная Навигационная Система", desc: "Как птицы используют магнитное поле Земли для точной навигации" },
+                    "03": { title: "Механизм Зависания Колибри", desc: "Анализ уникальной технологии зависающего полета колибри" },
+                    "04": { title: "Исследование Интеллекта Птиц", desc: "Изучение удивительных когнитивных способностей птиц" },
+                    "05": { title: "Микроструктура Перьев", desc: "Принципы точной инженерии перьев" },
+                    "06": { title: "Система Зрения Птиц", desc: "Способности зрительного восприятия, превосходящие человеческие" },
+                    "07": { title: "Чудо Развития Яйца", desc: "Чудесный процесс от одной клетки до полной жизни" },
+                    "08": { title: "Система Коммуникации Птиц", desc: "Сложные звуковые и визуальные сигнальные системы" },
+                    "09": { title: "Физиология Миграции", desc: "Механизмы физиологической адаптации для дальних миграций" },
+                    "10": { title: "Биомеханика Птиц", desc: "Идеальное сочетание движения и структуры" }
+                }
+            },
+            it: {
+                pageTitle: "Meraviglie Scientifiche degli Uccelli",
+                introText: "Esplora le meraviglie scientifiche del mondo aviario. Dalla meccanica del volo ai sistemi di navigazione, dalla struttura delle piume al comportamento intelligente, scopri come queste creature straordinarie dimostrano adattamento straordinario e saggezza di sopravvivenza in natura.",
+                articles: {
+                    "01": { title: "Meccanica del Volo degli Uccelli", desc: "Svelare la fisica di come gli uccelli conquistano i cieli" },
+                    "02": { title: "Sistema di Navigazione Magnetica", desc: "Come gli uccelli usano il campo magnetico terrestre per la navigazione precisa" },
+                    "03": { title: "Meccanismo di Sospensione del Colibrì", desc: "Analizzare la tecnologia unica di volo sospeso dei colibrì" },
+                    "04": { title: "Ricerca sull'Intelligenza degli Uccelli", desc: "Esplorare le straordinarie capacità cognitive degli uccelli" },
+                    "05": { title: "Microstruttura delle Piume", desc: "I principi di ingegneria di precisione delle piume" },
+                    "06": { title: "Sistema Visivo degli Uccelli", desc: "Capacità di percezione visiva oltre quelle umane" },
+                    "07": { title: "Miracolo dello Sviluppo dell'Uovo", desc: "Il processo miracoloso da singola cellula a vita completa" },
+                    "08": { title: "Sistema di Comunicazione degli Uccelli", desc: "Sistemi complessi di segnali sonori e visivi" },
+                    "09": { title: "Fisiologia della Migrazione", desc: "Meccanismi di adattamento fisiologico per migrazioni a lunga distanza" },
+                    "10": { title: "Biomeccanica degli Uccelli", desc: "Combinazione perfetta di movimento e struttura" }
+                }
+            },
+            ja: {
+                pageTitle: "鳥類の科学的驚異",
+                introText: "鳥類世界の科学的驚異を探索しましょう。飛行力学からナビゲーションシステム、羽毛構造から知的行動まで、これらの驚くべき生物が自然界でどのように並外れた適応能力と生存の知恵を示すかを深く理解しましょう。",
+                articles: {
+                    "01": { title: "鳥類飛行力学", desc: "鳥類がどのように空を征服するかの物理原理を解明" },
+                    "02": { title: "磁気ナビゲーションシステム", desc: "鳥類が地球の磁場を利用して精密なナビゲーションを行う方法" },
+                    "03": { title: "ハチドリのホバリングメカニズム", desc: "ハチドリの独特なホバリング飛行技術の分析" },
+                    "04": { title: "鳥類知能研究", desc: "鳥類の驚くべき認知能力の探索" },
+                    "05": { title: "羽毛微細構造", desc: "羽毛の精密工学原理" },
+                    "06": { title: "鳥類視覚システム", desc: "人間を超える視覚知覚能力" },
+                    "07": { title: "卵発達の奇跡", desc: "単細胞から完全な生命への神秘的なプロセス" },
+                    "08": { title: "鳥類コミュニケーションシステム", desc: "複雑な音響および視覚信号システム" },
+                    "09": { title: "渡り生理学", desc: "長距離渡りのための生理学的適応メカニズム" },
+                    "10": { title: "鳥類バイオメカニクス", desc: "運動と構造の完璧な組み合わせ" }
+                }
+            },
+            fr: {
+                pageTitle: "Merveilles Scientifiques des Oiseaux",
+                introText: "Explorez les merveilles scientifiques du monde aviaire. De la mécanique du vol aux systèmes de navigation, de la structure des plumes au comportement intelligent, découvrez comment ces créatures étonnantes démontrent une adaptation extraordinaire et une sagesse de survie dans la nature.",
+                articles: {
+                    "01": { title: "Mécanique du Vol des Oiseaux", desc: "Dévoiler la physique de comment les oiseaux conquièrent les cieux" },
+                    "02": { title: "Système de Navigation Magnétique", desc: "Comment les oiseaux utilisent le champ magnétique terrestre pour une navigation précise" },
+                    "03": { title: "Mécanisme de Vol Stationnaire du Colibri", desc: "Analyser la technologie unique de vol stationnaire des colibris" },
+                    "04": { title: "Recherche sur l'Intelligence des Oiseaux", desc: "Explorer les capacités cognitives étonnantes des oiseaux" },
+                    "05": { title: "Microstructure des Plumes", desc: "Les principes d'ingénierie de précision des plumes" },
+                    "06": { title: "Système Visuel des Oiseaux", desc: "Capacités de perception visuelle au-delà de l'humain" },
+                    "07": { title: "Miracle du Développement de l'Œuf", desc: "Le processus miraculeux d'une cellule unique à une vie complète" },
+                    "08": { title: "Système de Communication des Oiseaux", desc: "Systèmes complexes de signaux sonores et visuels" },
+                    "09": { title: "Physiologie de la Migration", desc: "Mécanismes d'adaptation physiologique pour les migrations longue distance" },
+                    "10": { title: "Biomécanique des Oiseaux", desc: "Combinaison parfaite de mouvement et de structure" }
+                }
+            },
+            de: {
+                pageTitle: "Wissenschaftliche Wunder der Vögel",
+                introText: "Erkunden Sie die wissenschaftlichen Wunder der Vogelwelt. Von der Flugmechanik bis zu Navigationssystemen, von der Federstruktur bis zum intelligenten Verhalten, entdecken Sie, wie diese erstaunlichen Kreaturen außergewöhnliche Anpassung und Überlebensweisheit in der Natur demonstrieren.",
+                articles: {
+                    "01": { title: "Vogelflug-Mechanik", desc: "Die Physik enthüllen, wie Vögel den Himmel erobern" },
+                    "02": { title: "Magnetisches Navigationssystem", desc: "Wie Vögel das Erdmagnetfeld für präzise Navigation nutzen" },
+                    "03": { title: "Kolibri-Schwebemechanismus", desc: "Die einzigartige Schwebeflug-Technologie der Kolibris analysieren" },
+                    "04": { title: "Vogelintelligenz-Forschung", desc: "Die erstaunlichen kognitiven Fähigkeiten der Vögel erforschen" },
+                    "05": { title: "Feder-Mikrostruktur", desc: "Die Präzisions-Ingenieursprinzipien der Federn" },
+                    "06": { title: "Vogel-Sehsystem", desc: "Visuelle Wahrnehmungsfähigkeiten jenseits des Menschen" },
+                    "07": { title: "Ei-Entwicklungswunder", desc: "Der wundersame Prozess von einer Zelle zu vollständigem Leben" },
+                    "08": { title: "Vogel-Kommunikationssystem", desc: "Komplexe Schall- und visuelle Signalsysteme" },
+                    "09": { title: "Migrations-Physiologie", desc: "Physiologische Anpassungsmechanismen für Langstreckenmigration" },
+                    "10": { title: "Vogel-Biomechanik", desc: "Perfekte Kombination von Bewegung und Struktur" }
+                }
+            },
+            es: {
+                pageTitle: "Maravillas Científicas de las Aves",
+                introText: "Explora las maravillas científicas del mundo aviario. Desde la mecánica del vuelo hasta los sistemas de navegación, desde la estructura de las plumas hasta el comportamiento inteligente, descubre cómo estas criaturas asombrosas demuestran adaptación extraordinaria y sabiduría de supervivencia en la naturaleza.",
+                articles: {
+                    "01": { title: "Mecánica del Vuelo de las Aves", desc: "Revelar la física de cómo las aves conquistan los cielos" },
+                    "02": { title: "Sistema de Navegación Magnética", desc: "Cómo las aves usan el campo magnético terrestre para navegación precisa" },
+                    "03": { title: "Mecanismo de Suspensión del Colibrí", desc: "Analizar la tecnología única de vuelo suspendido de los colibríes" },
+                    "04": { title: "Investigación de Inteligencia de Aves", desc: "Explorar las capacidades cognitivas asombrosas de las aves" },
+                    "05": { title: "Microestructura de Plumas", desc: "Los principios de ingeniería de precisión de las plumas" },
+                    "06": { title: "Sistema Visual de Aves", desc: "Capacidades de percepción visual más allá de los humanos" },
+                    "07": { title: "Milagro del Desarrollo del Huevo", desc: "El proceso milagroso de una sola célula a vida completa" },
+                    "08": { title: "Sistema de Comunicación de Aves", desc: "Sistemas complejos de señales sonoras y visuales" },
+                    "09": { title: "Fisiología de Migración", desc: "Mecanismos de adaptación fisiológica para migración de larga distancia" },
+                    "10": { title: "Biomecánica de Aves", desc: "Combinación perfecta de movimiento y estructura" }
+                }
+            },
+            pt: {
+                pageTitle: "Maravilhas Científicas das Aves",
+                introText: "Explore as maravilhas científicas do mundo aviário. Da mecânica do voo aos sistemas de navegação, da estrutura das penas ao comportamento inteligente, descubra como essas criaturas incríveis demonstram adaptação extraordinária e sabedoria de sobrevivência na natureza.",
+                articles: {
+                    "01": { title: "Mecânica do Voo das Aves", desc: "Revelar a física de como as aves conquistam os céus" },
+                    "02": { title: "Sistema de Navegação Magnética", desc: "Como as aves usam o campo magnético terrestre para navegação precisa" },
+                    "03": { title: "Mecanismo de Pairar do Beija-flor", desc: "Analisar a tecnologia única de voo pairado dos beija-flores" },
+                    "04": { title: "Pesquisa de Inteligência das Aves", desc: "Explorar as capacidades cognitivas surpreendentes das aves" },
+                    "05": { title: "Microestrutura das Penas", desc: "Os princípios de engenharia de precisão das penas" },
+                    "06": { title: "Sistema Visual das Aves", desc: "Capacidades de percepção visual além dos humanos" },
+                    "07": { title: "Milagre do Desenvolvimento do Ovo", desc: "O processo milagroso de uma única célula para vida completa" },
+                    "08": { title: "Sistema de Comunicação das Aves", desc: "Sistemas complexos de sinais sonoros e visuais" },
+                    "09": { title: "Fisiologia da Migração", desc: "Mecanismos de adaptação fisiológica para migração de longa distância" },
+                    "10": { title: "Biomecânica das Aves", desc: "Combinação perfeita de movimento e estrutura" }
+                }
+            },
+            ko: {
+                pageTitle: "새들의 과학적 경이로움",
+                introText: "조류 세계의 과학적 경이로움을 탐험하세요. 비행 역학부터 내비게이션 시스템까지, 깃털 구조부터 지능적 행동까지, 이 놀라운 생물들이 자연에서 어떻게 비범한 적응력과 생존 지혜를 보여주는지 발견하세요.",
+                articles: {
+                    "01": { title: "새의 비행 역학", desc: "새들이 어떻게 하늘을 정복하는지의 물리학 공개" },
+                    "02": { title: "자기 내비게이션 시스템", desc: "새들이 지구 자기장을 정밀한 내비게이션에 사용하는 방법" },
+                    "03": { title: "벌새 호버링 메커니즘", desc: "벌새의 독특한 호버링 비행 기술 분석" },
+                    "04": { title: "새 지능 연구", desc: "새들의 놀라운 인지 능력 탐구" },
+                    "05": { title: "깃털 미세구조", desc: "깃털의 정밀 공학 원리" },
+                    "06": { title: "새 시각 시스템", desc: "인간을 넘어서는 시각 지각 능력" },
+                    "07": { title: "알 발달의 기적", desc: "단일 세포에서 완전한 생명으로의 기적적인 과정" },
+                    "08": { title: "새 의사소통 시스템", desc: "복잡한 음향 및 시각 신호 시스템" },
+                    "09": { title: "이주 생리학", desc: "장거리 이주를 위한 생리학적 적응 메커니즘" },
+                    "10": { title: "새 생체역학", desc: "움직임과 구조의 완벽한 조합" }
+                }
+            }
+        };
+
+        // 语言路径映射
+        const languagePaths = {
+            zh: 'zh',
+            en: 'en', 
+            it: 'it',
+            ja: 'ja',
+            ru: 'ru',
+            fr: 'fr',
+            de: 'de',
+            es: 'es',
+            pt: 'pt',
+            ko: 'ko'
+        };
+
+        // 获取当前语言
+        function getCurrentLanguage() {
+            return localStorage.getItem('selectedLanguage') || 'zh';
+        }
+
+        // 设置语言
+        function setLanguage(lang) {
+            localStorage.setItem('selectedLanguage', lang);
+            const langMap = {
+                'zh': 'zh-CN',
+                'en': 'en',
+                'it': 'it',
+                'ja': 'ja',
+                'ru': 'ru',
+                'fr': 'fr',
+                'de': 'de',
+                'es': 'es',
+                'pt': 'pt',
+                'ko': 'ko'
+            };
+            document.documentElement.lang = langMap[lang] || lang;
+        }
+
+        // 更新页面内容
+        function updateContent(lang) {
+            const t = translations[lang];
+            
+            // 更新页面标题和介绍文本
+            document.getElementById('pageTitle').textContent = t.pageTitle;
+            document.getElementById('introText').textContent = t.introText;
+            document.title = t.pageTitle + ' - BirdAiSnap';
+            
+            // 更新文章卡片
+            const articleCards = document.querySelectorAll('.article-card');
+            articleCards.forEach(card => {
+                const articleId = card.getAttribute('data-article');
+                const article = t.articles[articleId];
+                
+                if (article) {
+                    // 更新链接
+                    const basePath = languagePaths[lang];
+                    card.href = `${basePath}/scientific-wonders/${articleId}-${getArticleSlug(articleId)}.html`;
+                    
+                    // 更新标题和描述
+                    const titleElement = card.querySelector('.article-title');
+                    const descElement = card.querySelector('.article-description');
+                    
+                    if (titleElement) titleElement.textContent = article.title;
+                    if (descElement) descElement.textContent = article.desc;
+                    
+                    // 更新图片alt属性
+                    const imgElement = card.querySelector('.article-image');
+                    if (imgElement) imgElement.alt = article.title;
+                }
+            });
+        }
+
+        // 获取文章slug
+        function getArticleSlug(articleId) {
+            const slugs = {
+                '01': 'bird-flight-mechanics',
+                '02': 'magnetic-navigation', 
+                '03': 'hummingbird-mechanics',
+                '04': 'bird-intelligence',
+                '05': 'feather-structure',
+                '06': 'bird-vision',
+                '07': 'egg-development',
+                '08': 'bird-communication',
+                '09': 'migration-physiology',
+                '10': 'biomechanics'
+            };
+            return slugs[articleId] || 'article';
+        }
+
+        // 切换语言
+        function changeLanguage() {
+            const select = document.getElementById('languageSelect');
+            const selectedLang = select.value;
+            setLanguage(selectedLang);
+            updateContent(selectedLang);
+        }
+
+        // 页面加载时初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            // 首先检查语言重定向
+            if (handleLanguageRedirect()) {
+                return; // 如果重定向了，就不继续执行
+            }
+            
+            const currentLang = getCurrentLanguage();
+            document.getElementById('languageSelect').value = currentLang;
+            setLanguage(currentLang);
+            updateContent(currentLang);
+        });
+    </script>
 </body>
 </html>

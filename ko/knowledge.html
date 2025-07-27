@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>조류 지식 - BirdAiSnap</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+        
+        .header {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.6)), 
+                        url('../images/birds/species/bird-image-020.webp') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .header-title {
+            color: white;
+            font-size: 32px;
+            font-weight: 700;
+            text-align: center;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .content {
+            background: white;
+            margin: -30px 20px 20px 20px;
+            border-radius: 20px;
+            padding: 30px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            min-height: 80vh;
+        }
+        
+        .intro-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            margin: 20px 0;
+            text-align: center;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .article-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .article-card {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            height: 250px;
+            display: block;
+            text-decoration: none;
+        }
+        
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .article-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .article-card:hover .article-image {
+            transform: scale(1.05);
+        }
+        
+        .article-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            padding: 20px;
+            color: white;
+        }
+        
+        .article-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .article-description {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .latest-articles {
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 2px solid #f0f0f0;
+        }
+        
+        .latest-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .latest-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        
+        .latest-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .latest-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+        }
+        
+        .latest-image {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+        }
+        
+        .latest-content {
+            padding: 20px;
+        }
+        
+        .latest-card-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+        
+        .latest-description {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.5;
+        }
+        
+        @media (max-width: 768px) {
+            .article-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 20px;
+            }
+            
+            .header-title {
+                font-size: 28px;
+            }
+            
+            .latest-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .article-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header-title {
+                font-size: 24px;
+            }
+            
+            .content {
+                margin: -20px 15px 15px 15px;
+                padding: 25px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 헤더 배너 -->
+    <div class="header">
+        <h1 class="header-title">조류 지식</h1>
+    </div>
+    
+    <!-- 주요 내용 -->
+    <div class="content">
+        <p class="intro-text">
+            조류 관찰과 연구에 필요한 포괄적인 지식을 탐구해보세요. 초보자 가이드부터 고급 기술까지, 여기에는 조류 애호가들을 위한 모든 필수 정보가 모여 있습니다. 아래의 아무 기사 이미지를 클릭하여 조류 지식의 세계를 깊이 알아보세요.
+        </p>
+        
+        <div class="article-grid">
+            <!-- 기사1 -->
+            <a href="knowledge/01-beginners-guide.html" class="article-card">
+                <img src="../images/birds/species/bird-image-020.webp" class="article-image" alt="조류 관찰 초보자 가이드">
+                <div class="article-overlay">
+                    <h3 class="article-title">조류 관찰 초보자 가이드</h3>
+                    <p class="article-description">조류 관찰을 시작하기 위한 완전한 초보자 가이드</p>
+                </div>
+            </a>
+            
+            <!-- 기사2 -->
+            <a href="knowledge/02-essential-equipment.html" class="article-card">
+                <img src="../images/birds/species/bird-image-021.webp" class="article-image" alt="조류 관찰 필수 장비">
+                <div class="article-overlay">
+                    <h3 class="article-title">조류 관찰 필수 장비</h3>
+                    <p class="article-description">성공적인 조류 관찰을 위한 필수 도구와 장비 가이드</p>
+                </div>
+            </a>
+            
+            <!-- 기사3 -->
+            <a href="knowledge/03-identification-techniques.html" class="article-card">
+                <img src="../images/birds/species/bird-image-022.webp" class="article-image" alt="조류 식별 기법">
+                <div class="article-overlay">
+                    <h3 class="article-title">조류 식별 기법</h3>
+                    <p class="article-description">다양한 조류 종을 정확하게 식별하는 방법과 기술</p>
+                </div>
+            </a>
+            
+            <!-- 기사4 -->
+            <a href="knowledge/04-best-locations.html" class="article-card">
+                <img src="../images/birds/species/bird-image-023.webp" class="article-image" alt="최고의 조류 관찰 장소">
+                <div class="article-overlay">
+                    <h3 class="article-title">최고의 조류 관찰 장소</h3>
+                    <p class="article-description">전 세계 최고의 조류 관찰 명소와 핫스팟 발견</p>
+                </div>
+            </a>
+            
+            <!-- 기사5 -->
+            <a href="knowledge/05-behavior-observation.html" class="article-card">
+                <img src="../images/birds/species/bird-image-024.webp" class="article-image" alt="조류 행동 관찰">
+                <div class="article-overlay">
+                    <h3 class="article-title">조류 행동 관찰</h3>
+                    <p class="article-description">조류 행동 패턴을 이해하고 관찰하는 방법</p>
+                </div>
+            </a>
+            
+            <!-- 기사6 -->
+            <a href="knowledge/06-song-identification.html" class="article-card">
+                <img src="../images/birds/species/bird-image-025.webp" class="article-image" alt="조류 울음소리 식별">
+                <div class="article-overlay">
+                    <h3 class="article-title">조류 울음소리 식별</h3>
+                    <p class="article-description">조류의 다양한 울음소리와 지저귐을 식별하는 방법</p>
+                </div>
+            </a>
+            
+            <!-- 기사7 -->
+            <a href="knowledge/07-photography-tips.html" class="article-card">
+                <img src="../images/birds/species/bird-image-026.webp" class="article-image" alt="조류 사진 촬영 팁">
+                <div class="article-overlay">
+                    <h3 class="article-title">조류 사진 촬영 팁</h3>
+                    <p class="article-description">아름다운 조류 사진을 촬영하기 위한 전문가 팁</p>
+                </div>
+            </a>
+            
+            <!-- 기사8 -->
+            <a href="knowledge/08-seasonal-guide.html" class="article-card">
+                <img src="../images/birds/species/bird-image-027.webp" class="article-image" alt="계절별 조류 관찰 가이드">
+                <div class="article-overlay">
+                    <h3 class="article-title">계절별 조류 관찰 가이드</h3>
+                    <p class="article-description">각 계절에 관찰할 수 있는 조류와 최적의 관찰 시기</p>
+                </div>
+            </a>
+            
+            <!-- 기사9 -->
+            <a href="knowledge/09-journal-keeping.html" class="article-card">
+                <img src="../images/birds/species/bird-image-028.webp" class="article-image" alt="조류 관찰 일지 작성">
+                <div class="article-overlay">
+                    <h3 class="article-title">조류 관찰 일지 작성</h3>
+                    <p class="article-description">효과적인 조류 관찰 기록과 일지 작성 방법</p>
+                </div>
+            </a>
+            
+            <!-- 기사10 -->
+            <a href="knowledge/10-ethics-conservation.html" class="article-card">
+                <img src="../images/birds/species/bird-image-029.webp" class="article-image" alt="조류 관찰 윤리와 보존">
+                <div class="article-overlay">
+                    <h3 class="article-title">조류 관찰 윤리와 보존</h3>
+                    <p class="article-description">책임감 있는 조류 관찰과 보존 노력의 중요성</p>
+                </div>
+            </a>
+        </div>
+        
+        <!-- 최신 기사 섹션 -->
+        <div class="latest-articles">
+            <h2 class="latest-title">최신 기사</h2>
+            <div class="latest-grid">
+                <a href="../scientific-wonders.html" class="latest-card">
+                    <img src="../images/birds/species/bird-image-030.webp" alt="조류 과학의 경이로움" class="latest-image">
+                    <div class="latest-content">
+                        <h3 class="latest-card-title">조류 과학의 경이로움</h3>
+                        <p class="latest-description">조류 세계의 놀라운 과학적 발견과 연구 성과를 탐구해보세요.</p>
+                    </div>
+                </a>
+                
+                <a href="../cultural-symbolism.html" class="latest-card">
+                    <img src="../images/birds/species/bird-image-040.webp" alt="문화적 상징주의" class="latest-image">
+                    <div class="latest-content">
+                        <h3 class="latest-card-title">문화적 상징주의</h3>
+                        <p class="latest-description">다양한 문화에서 조류가 가지는 상징적 의미를 알아보세요.</p>
+                    </div>
+                </a>
+                
+                <a href="../ecology.html" class="latest-card">
+                    <img src="../images/birds/species/bird-image-050.webp" alt="생태학과 환경" class="latest-image">
+                    <div class="latest-content">
+                        <h3 class="latest-card-title">생태학과 환경</h3>
+                        <p class="latest-description">조류 생태계와 환경 보존의 중요성을 이해해보세요.</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

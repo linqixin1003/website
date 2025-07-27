@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connaissances sur les Oiseaux - BirdAiSnap</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+        
+        .header {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.6)), 
+                        url('../images/birds/species/bird-image-020.webp') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .header-title {
+            color: white;
+            font-size: 32px;
+            font-weight: 700;
+            text-align: center;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .content {
+            background: white;
+            margin: -30px 20px 20px 20px;
+            border-radius: 20px;
+            padding: 30px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            min-height: 80vh;
+        }
+        
+        .intro-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            margin: 20px 0;
+            text-align: center;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .article-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .article-card {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            height: 250px;
+            display: block;
+            text-decoration: none;
+        }
+        
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .article-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .article-card:hover .article-image {
+            transform: scale(1.05);
+        }
+        
+        .article-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            padding: 20px;
+            color: white;
+        }
+        
+        .article-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .article-description {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .latest-articles {
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 2px solid #f0f0f0;
+        }
+        
+        .latest-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .latest-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        
+        .latest-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .latest-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+        }
+        
+        .latest-image {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+        }
+        
+        .latest-content {
+            padding: 20px;
+        }
+        
+        .latest-card-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+        
+        .latest-description {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.5;
+        }
+        
+        @media (max-width: 768px) {
+            .article-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 20px;
+            }
+            
+            .header-title {
+                font-size: 28px;
+            }
+            
+            .latest-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .article-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header-title {
+                font-size: 24px;
+            }
+            
+            .content {
+                margin: -20px 15px 15px 15px;
+                padding: 25px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Bannière d'en-tête -->
+    <div class="header">
+        <h1 class="header-title">Connaissances sur les Oiseaux</h1>
+    </div>
+    
+    <!-- Contenu Principal -->
+    <div class="content">
+        <p class="intro-text">
+            Explorez les connaissances complètes nécessaires pour l'observation et l'étude des oiseaux. Des guides pour débutants aux techniques avancées, vous trouverez ici toutes les informations essentielles pour les passionnés d'oiseaux. Cliquez sur n'importe quelle image d'article ci-dessous pour plonger dans le monde des connaissances ornithologiques.
+        </p>
+        
+        <div class="article-grid">
+            <!-- Article 1 -->
+            <a href="knowledge/01-beginners-guide.html" class="article-card">
+                <img src="../images/birds/species/bird-image-020.webp" class="article-image" alt="Guide du Débutant en Observation d'Oiseaux">
+                <div class="article-overlay">
+                    <h3 class="article-title">Guide du Débutant en Observation d'Oiseaux</h3>
+                    <p class="article-description">Guide complet pour débuter dans l'observation des oiseaux</p>
+                </div>
+            </a>
+            
+            <!-- Article 2 -->
+            <a href="knowledge/02-essential-equipment.html" class="article-card">
+                <img src="../images/birds/species/bird-image-021.webp" class="article-image" alt="Équipement Essentiel pour l'Observation d'Oiseaux">
+                <div class="article-overlay">
+                    <h3 class="article-title">Équipement Essentiel pour l'Observation d'Oiseaux</h3>
+                    <p class="article-description">Guide des outils et équipements essentiels pour une observation réussie</p>
+                </div>
+            </a>
+            
+            <!-- Article 3 -->
+            <a href="knowledge/03-identification-techniques.html" class="article-card">
+                <img src="../images/birds/species/bird-image-022.webp" class="article-image" alt="Techniques d'Identification des Oiseaux">
+                <div class="article-overlay">
+                    <h3 class="article-title">Techniques d'Identification des Oiseaux</h3>
+                    <p class="article-description">Méthodes et techniques pour identifier précisément différentes espèces d'oiseaux</p>
+                </div>
+            </a>
+            
+            <!-- Article 4 -->
+            <a href="knowledge/04-best-locations.html" class="article-card">
+                <img src="../images/birds/species/bird-image-023.webp" class="article-image" alt="Meilleurs Sites d'Observation d'Oiseaux">
+                <div class="article-overlay">
+                    <h3 class="article-title">Meilleurs Sites d'Observation d'Oiseaux</h3>
+                    <p class="article-description">Découverte des meilleurs sites et points chauds d'observation d'oiseaux dans le monde</p>
+                </div>
+            </a>
+            
+            <!-- Article 5 -->
+            <a href="knowledge/05-behavior-observation.html" class="article-card">
+                <img src="../images/birds/species/bird-image-024.webp" class="article-image" alt="Observation du Comportement des Oiseaux">
+                <div class="article-overlay">
+                    <h3 class="article-title">Observation du Comportement des Oiseaux</h3>
+                    <p class="article-description">Méthodes pour comprendre et observer les modèles comportementaux des oiseaux</p>
+                </div>
+            </a>
+            
+            <!-- Article 6 -->
+            <a href="knowledge/06-song-identification.html" class="article-card">
+                <img src="../images/birds/species/bird-image-025.webp" class="article-image" alt="Identification des Chants d'Oiseaux">
+                <div class="article-overlay">
+                    <h3 class="article-title">Identification des Chants d'Oiseaux</h3>
+                    <p class="article-description">Méthodes pour identifier les différents chants et cris d'oiseaux</p>
+                </div>
+            </a>
+            
+            <!-- Article 7 -->
+            <a href="knowledge/07-photography-tips.html" class="article-card">
+                <img src="../images/birds/species/bird-image-026.webp" class="article-image" alt="Conseils de Photographie d'Oiseaux">
+                <div class="article-overlay">
+                    <h3 class="article-title">Conseils de Photographie d'Oiseaux</h3>
+                    <p class="article-description">Conseils d'experts pour capturer de belles photographies d'oiseaux</p>
+                </div>
+            </a>
+            
+            <!-- Article 8 -->
+            <a href="knowledge/08-seasonal-guide.html" class="article-card">
+                <img src="../images/birds/species/bird-image-027.webp" class="article-image" alt="Guide Saisonnier d'Observation d'Oiseaux">
+                <div class="article-overlay">
+                    <h3 class="article-title">Guide Saisonnier d'Observation d'Oiseaux</h3>
+                    <p class="article-description">Oiseaux à observer chaque saison et moments optimaux d'observation</p>
+                </div>
+            </a>
+            
+            <!-- Article 9 -->
+            <a href="knowledge/09-journal-keeping.html" class="article-card">
+                <img src="../images/birds/species/bird-image-028.webp" class="article-image" alt="Tenue d'un Journal d'Observation d'Oiseaux">
+                <div class="article-overlay">
+                    <h3 class="article-title">Tenue d'un Journal d'Observation d'Oiseaux</h3>
+                    <p class="article-description">Méthodes pour tenir des registres et journaux d'observation efficaces</p>
+                </div>
+            </a>
+            
+            <!-- Article 10 -->
+            <a href="knowledge/10-ethics-conservation.html" class="article-card">
+                <img src="../images/birds/species/bird-image-029.webp" class="article-image" alt="Éthique et Conservation de l'Observation d'Oiseaux">
+                <div class="article-overlay">
+                    <h3 class="article-title">Éthique et Conservation de l'Observation d'Oiseaux</h3>
+                    <p class="article-description">Importance de l'observation responsable et des efforts de conservation</p>
+                </div>
+            </a>
+        </div>
+        
+        <!-- Section Articles Récents -->
+        <div class="latest-articles">
+            <h2 class="latest-title">Articles Récents</h2>
+            <div class="latest-grid">
+                <a href="../scientific-wonders.html" class="latest-card">
+                    <img src="../images/birds/species/bird-image-030.webp" alt="Merveilles Scientifiques des Oiseaux" class="latest-image">
+                    <div class="latest-content">
+                        <h3 class="latest-card-title">Merveilles Scientifiques des Oiseaux</h3>
+                        <p class="latest-description">Explorez les découvertes scientifiques étonnantes et les résultats de recherche du monde des oiseaux.</p>
+                    </div>
+                </a>
+                
+                <a href="../cultural-symbolism.html" class="latest-card">
+                    <img src="../images/birds/species/bird-image-040.webp" alt="Symbolisme Culturel" class="latest-image">
+                    <div class="latest-content">
+                        <h3 class="latest-card-title">Symbolisme Culturel</h3>
+                        <p class="latest-description">Découvrez les significations symboliques des oiseaux dans différentes cultures.</p>
+                    </div>
+                </a>
+                
+                <a href="../ecology.html" class="latest-card">
+                    <img src="../images/birds/species/bird-image-050.webp" alt="Écologie et Environnement" class="latest-image">
+                    <div class="latest-content">
+                        <h3 class="latest-card-title">Écologie et Environnement</h3>
+                        <p class="latest-description">Comprenez l'importance des écosystèmes aviaires et de la conservation environnementale.</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

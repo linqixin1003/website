@@ -70,7 +70,27 @@ const languages = {
             'knowledge.categories.scientific': 'Scientific Wonders',
             'knowledge.categories.scientific.desc': 'Discover amazing scientific facts and research about birds',
             'knowledge.categories.petcare': 'Pet Bird Care',
-            'knowledge.categories.petcare.desc': 'Essential care guides for pet bird owners and enthusiasts',
+            'knowledge.categories.petcare.desc': 'Essential care guides for pet bird owners and enthusiasts. From choosing the right bird to advanced care techniques, here\'s everything you need to know for the wellbeing of your feathered friends.',
+            'petcare.articles.choosing-right-bird.title': 'Choosing the Right Bird',
+            'petcare.articles.choosing-right-bird.desc': 'Guide to selecting the perfect bird species for your home',
+            'petcare.articles.nutrition-feeding.title': 'Nutrition and Feeding',
+            'petcare.articles.nutrition-feeding.desc': 'Balanced nutrition and proper feeding techniques',
+            'petcare.articles.housing-environment.title': 'Housing and Environment',
+            'petcare.articles.housing-environment.desc': 'Creating the ideal living environment for your birds',
+            'petcare.articles.health-veterinary.title': 'Health and Veterinary',
+            'petcare.articles.health-veterinary.desc': 'Health monitoring and veterinary care',
+            'petcare.articles.training-behavior.title': 'Training and Behavior',
+            'petcare.articles.training-behavior.desc': 'Behavior understanding and training techniques',
+            'petcare.articles.breeding-reproduction.title': 'Breeding and Reproduction',
+            'petcare.articles.breeding-reproduction.desc': 'Guide to responsible bird breeding',
+            'petcare.articles.emergency-first-aid.title': 'Emergency and First Aid',
+            'petcare.articles.emergency-first-aid.desc': 'Emergency procedures and first aid techniques',
+            'petcare.articles.seasonal-care.title': 'Seasonal Care',
+            'petcare.articles.seasonal-care.desc': 'Adapting care to different seasons',
+            'petcare.articles.enrichment-activities.title': 'Enrichment Activities',
+            'petcare.articles.enrichment-activities.desc': 'Mental stimulation and enrichment ideas',
+            'petcare.articles.species-profiles.title': 'Species Profiles',
+            'petcare.articles.species-profiles.desc': 'Detailed profiles of popular pet birds',
             'knowledge.categories.ecology': 'Bird Ecology',
             'knowledge.categories.ecology.desc': 'Understanding bird habitats, migration, and environmental roles',
             'knowledge.categories.cultural': 'Cultural Symbolism',
@@ -195,7 +215,27 @@ const languages = {
             'knowledge.categories.scientific': '科学奇观',
             'knowledge.categories.scientific.desc': '发现关于鸟类的惊人科学事实和研究',
             'knowledge.categories.petcare': '宠物鸟护理',
-            'knowledge.categories.petcare.desc': '为宠物鸟主人和爱好者提供的基本护理指南',
+            'knowledge.categories.petcare.desc': '为宠物鸟主人和爱好者提供的基本护理指南。从选择合适的鸟类到高级护理技术，这里有您需要了解的关于羽毛朋友健康的一切。',
+            'petcare.articles.choosing-right-bird.title': '选择合适的鸟类',
+            'petcare.articles.choosing-right-bird.desc': '为您的家庭选择完美鸟类品种的指南',
+            'petcare.articles.nutrition-feeding.title': '营养与喂养',
+            'petcare.articles.nutrition-feeding.desc': '均衡营养和正确的喂养技术',
+            'petcare.articles.housing-environment.title': '住房与环境',
+            'petcare.articles.housing-environment.desc': '为您的鸟类创造理想的生活环境',
+            'petcare.articles.health-veterinary.title': '健康与兽医',
+            'petcare.articles.health-veterinary.desc': '健康监测和兽医护理',
+            'petcare.articles.training-behavior.title': '训练与行为',
+            'petcare.articles.training-behavior.desc': '行为理解和训练技术',
+            'petcare.articles.breeding-reproduction.title': '繁殖与生殖',
+            'petcare.articles.breeding-reproduction.desc': '负责任的鸟类繁殖指南',
+            'petcare.articles.emergency-first-aid.title': '紧急情况与急救',
+            'petcare.articles.emergency-first-aid.desc': '紧急程序和急救技术',
+            'petcare.articles.seasonal-care.title': '季节性护理',
+            'petcare.articles.seasonal-care.desc': '根据不同季节调整护理',
+            'petcare.articles.enrichment-activities.title': '丰富活动',
+            'petcare.articles.enrichment-activities.desc': '心理刺激和丰富想法',
+            'petcare.articles.species-profiles.title': '物种档案',
+            'petcare.articles.species-profiles.desc': '流行宠物鸟的详细档案',
             'knowledge.categories.ecology': '鸟类生态学',
             'knowledge.categories.ecology.desc': '了解鸟类栖息地、迁徙和环境作用',
             'knowledge.categories.cultural': '文化象征',
@@ -320,7 +360,27 @@ const languages = {
             'knowledge.categories.scientific': '과학적 경이',
             'knowledge.categories.scientific.desc': '조류에 대한 놀라운 과학적 사실과 연구를 발견하세요',
             'knowledge.categories.petcare': '애완조 관리',
-            'knowledge.categories.petcare.desc': '애완조 주인과 애호가를 위한 필수 관리 가이드',
+            'knowledge.categories.petcare.desc': '애완조 주인과 애호가를 위한 필수 관리 가이드. 올바른 새 선택부터 고급 관리 기술까지, 깃털 친구들의 건강을 위해 알아야 할 모든 것이 여기 있습니다.',
+            'petcare.articles.choosing-right-bird.title': '올바른 새 선택',
+            'petcare.articles.choosing-right-bird.desc': '집에 완벽한 새 종을 선택하는 가이드',
+            'petcare.articles.nutrition-feeding.title': '영양과 급식',
+            'petcare.articles.nutrition-feeding.desc': '균형 잡힌 영양과 적절한 급식 기술',
+            'petcare.articles.housing-environment.title': '주거와 환경',
+            'petcare.articles.housing-environment.desc': '새들을 위한 이상적인 생활 환경 조성',
+            'petcare.articles.health-veterinary.title': '건강과 수의학',
+            'petcare.articles.health-veterinary.desc': '건강 모니터링과 수의학적 관리',
+            'petcare.articles.training-behavior.title': '훈련과 행동',
+            'petcare.articles.training-behavior.desc': '행동 이해와 훈련 기술',
+            'petcare.articles.breeding-reproduction.title': '번식과 생식',
+            'petcare.articles.breeding-reproduction.desc': '책임감 있는 새 번식 가이드',
+            'petcare.articles.emergency-first-aid.title': '응급상황과 응급처치',
+            'petcare.articles.emergency-first-aid.desc': '응급 절차와 응급처치 기술',
+            'petcare.articles.seasonal-care.title': '계절별 관리',
+            'petcare.articles.seasonal-care.desc': '다양한 계절에 맞는 관리 적응',
+            'petcare.articles.enrichment-activities.title': '풍부화 활동',
+            'petcare.articles.enrichment-activities.desc': '정신적 자극과 풍부화 아이디어',
+            'petcare.articles.species-profiles.title': '종 프로필',
+            'petcare.articles.species-profiles.desc': '인기 있는 애완조의 상세한 프로필',
             'knowledge.categories.ecology': '조류 생태학',
             'knowledge.categories.ecology.desc': '조류 서식지, 이주, 환경적 역할 이해하기',
             'knowledge.categories.cultural': '문화적 상징',
@@ -491,7 +551,27 @@ const languages = {
             'knowledge.categories.scientific': '科学的驚異',
             'knowledge.categories.scientific.desc': '鳥類に関する驚くべき科学的事実と研究を発見する',
             'knowledge.categories.petcare': 'ペット鳥のケア',
-            'knowledge.categories.petcare.desc': 'ペット鳥の飼い主と愛好家のための必須ケアガイド',
+            'knowledge.categories.petcare.desc': 'ペット鳥の飼い主と愛好家のための必須ケアガイド。適切な鳥の選択から高度なケア技術まで、羽毛の友達の健康のために知っておくべきすべてがここにあります。',
+            'petcare.articles.choosing-right-bird.title': '適切な鳥の選択',
+            'petcare.articles.choosing-right-bird.desc': '家庭に完璧な鳥種を選択するガイド',
+            'petcare.articles.nutrition-feeding.title': '栄養と給餌',
+            'petcare.articles.nutrition-feeding.desc': 'バランスの取れた栄養と適切な給餌技術',
+            'petcare.articles.housing-environment.title': '住居と環境',
+            'petcare.articles.housing-environment.desc': '鳥のための理想的な生活環境の創造',
+            'petcare.articles.health-veterinary.title': '健康と獣医学',
+            'petcare.articles.health-veterinary.desc': '健康監視と獣医ケア',
+            'petcare.articles.training-behavior.title': '訓練と行動',
+            'petcare.articles.training-behavior.desc': '行動理解と訓練技術',
+            'petcare.articles.breeding-reproduction.title': '繁殖と生殖',
+            'petcare.articles.breeding-reproduction.desc': '責任ある鳥の繁殖ガイド',
+            'petcare.articles.emergency-first-aid.title': '緊急事態と応急処置',
+            'petcare.articles.emergency-first-aid.desc': '緊急手順と応急処置技術',
+            'petcare.articles.seasonal-care.title': '季節ケア',
+            'petcare.articles.seasonal-care.desc': '異なる季節に合わせたケアの適応',
+            'petcare.articles.enrichment-activities.title': '豊富化活動',
+            'petcare.articles.enrichment-activities.desc': '精神的刺激と豊富化のアイデア',
+            'petcare.articles.species-profiles.title': '種プロファイル',
+            'petcare.articles.species-profiles.desc': '人気のペット鳥の詳細なプロファイル',
             'knowledge.categories.ecology': '鳥類生態学',
             'knowledge.categories.ecology.desc': '鳥類の生息地、移住、環境的役割を理解する',
             'knowledge.categories.cultural': '文化的象徴',
@@ -616,7 +696,27 @@ const languages = {
             'knowledge.categories.scientific': 'Wissenschaftliche Wunder',
             'knowledge.categories.scientific.desc': 'Entdecken Sie erstaunliche wissenschaftliche Fakten und Forschung über Vögel',
             'knowledge.categories.petcare': 'Haustiervogel-Pflege',
-            'knowledge.categories.petcare.desc': 'Wesentliche Pflegeanleitungen für Haustiervogel-Besitzer und Enthusiasten',
+            'knowledge.categories.petcare.desc': 'Wesentliche Pflegeanleitungen für Haustiervogel-Besitzer und Enthusiasten. Von der Auswahl des richtigen Vogels bis hin zu fortgeschrittenen Pflegetechniken - hier ist alles, was Sie für das Wohlbefinden Ihrer gefiederten Freunde wissen müssen.',
+            'petcare.articles.choosing-right-bird.title': 'Den richtigen Vogel wählen',
+            'petcare.articles.choosing-right-bird.desc': 'Leitfaden zur Auswahl der perfekten Vogelart für Ihr Zuhause',
+            'petcare.articles.nutrition-feeding.title': 'Ernährung und Fütterung',
+            'petcare.articles.nutrition-feeding.desc': 'Ausgewogene Ernährung und richtige Fütterungstechniken',
+            'petcare.articles.housing-environment.title': 'Unterbringung und Umgebung',
+            'petcare.articles.housing-environment.desc': 'Die ideale Lebensumgebung für Ihre Vögel schaffen',
+            'petcare.articles.health-veterinary.title': 'Gesundheit und Tierarzt',
+            'petcare.articles.health-veterinary.desc': 'Gesundheitsüberwachung und tierärztliche Versorgung',
+            'petcare.articles.training-behavior.title': 'Training und Verhalten',
+            'petcare.articles.training-behavior.desc': 'Verhaltensverständnis und Trainingstechniken',
+            'petcare.articles.breeding-reproduction.title': 'Zucht und Fortpflanzung',
+            'petcare.articles.breeding-reproduction.desc': 'Leitfaden für verantwortungsvolle Vogelzucht',
+            'petcare.articles.emergency-first-aid.title': 'Notfall und Erste Hilfe',
+            'petcare.articles.emergency-first-aid.desc': 'Notfallverfahren und Erste-Hilfe-Techniken',
+            'petcare.articles.seasonal-care.title': 'Saisonale Pflege',
+            'petcare.articles.seasonal-care.desc': 'Pflege an verschiedene Jahreszeiten anpassen',
+            'petcare.articles.enrichment-activities.title': 'Bereicherungsaktivitäten',
+            'petcare.articles.enrichment-activities.desc': 'Geistige Stimulation und Bereicherungsideen',
+            'petcare.articles.species-profiles.title': 'Artenprofile',
+            'petcare.articles.species-profiles.desc': 'Detaillierte Profile beliebter Haustiervögel',
             'knowledge.categories.ecology': 'Vogelökologie',
             'knowledge.categories.ecology.desc': 'Verstehen Sie Vogellebensräume, Migration und Umweltrollen',
             'knowledge.categories.cultural': 'Kulturelle Symbolik',
@@ -1368,10 +1468,180 @@ function handleArticleLanguageRedirect() {
     }
 }
 
+// 联系表单处理功能
+function initializeContactForm() {
+    const contactForm = document.getElementById('contactForm');
+    if (!contactForm) return;
+
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const userName = document.getElementById('userName').value;
+        const userEmail = document.getElementById('userEmail').value;
+        const userMessage = document.getElementById('userMessage').value;
+        
+        // 显示邮件信息
+        showEmailInfo(userName, userEmail, userMessage);
+    });
+}
+
+// 显示邮件信息
+function showEmailInfo(name, email, message) {
+    const emailInfo = document.getElementById('emailInfo');
+    const emailSubject = document.getElementById('emailSubject');
+    const emailContent = document.getElementById('emailContent');
+    
+    if (!emailInfo || !emailSubject || !emailContent) return;
+    
+    const subject = `BirdAiSnap Contact - ${name}`;
+    const content = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
+    
+    emailSubject.textContent = subject;
+    emailContent.textContent = content;
+    emailInfo.style.display = 'block';
+    
+    // 隐藏表单
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.style.display = 'none';
+    }
+}
+
+// 复制邮件信息
+function copyEmailInfo() {
+    const emailContent = document.getElementById('emailContent');
+    const emailSubject = document.getElementById('emailSubject');
+    
+    if (!emailContent || !emailSubject) return;
+    
+    const textToCopy = `Subject: ${emailSubject.textContent}\n\n${emailContent.textContent}`;
+    
+    navigator.clipboard.writeText(textToCopy).then(() => {
+        // 显示复制成功提示
+        showNotification('邮件信息已复制到剪贴板');
+    }).catch(() => {
+        // 降级处理
+        const textArea = document.createElement('textarea');
+        textArea.value = textToCopy;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        showNotification('邮件信息已复制到剪贴板');
+    });
+}
+
+// 打开邮件客户端
+function openEmailClient() {
+    const emailSubject = document.getElementById('emailSubject');
+    const emailContent = document.getElementById('emailContent');
+    
+    if (!emailSubject || !emailContent) return;
+    
+    const subject = encodeURIComponent(emailSubject.textContent);
+    const body = encodeURIComponent(emailContent.textContent);
+    const mailtoLink = `mailto:lingjuetech@gmail.com?subject=${subject}&body=${body}`;
+    
+    window.location.href = mailtoLink;
+}
+
+// 显示通知
+function showNotification(message) {
+    // 创建通知元素
+    const notification = document.createElement('div');
+    notification.className = 'notification';
+    notification.textContent = message;
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: #4CAF50;
+        color: white;
+        padding: 12px 24px;
+        border-radius: 4px;
+        z-index: 10000;
+        font-size: 14px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        transition: opacity 0.3s ease;
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // 3秒后自动移除
+    setTimeout(() => {
+        notification.style.opacity = '0';
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.parentNode.removeChild(notification);
+            }
+        }, 300);
+    }, 3000);
+}
+
+// 移动端导航菜单切换
+function initializeMobileNavigation() {
+    const navToggle = document.querySelector('.nav-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+    
+    if (!navToggle || !navMenu) return;
+    
+    navToggle.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+        navToggle.classList.toggle('active');
+    });
+    
+    // 点击菜单项时关闭菜单
+    const navLinks = document.querySelectorAll('.nav-menu a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            navMenu.classList.remove('active');
+            navToggle.classList.remove('active');
+        });
+    });
+}
+
+// 平滑滚动到锚点
+function initializeSmoothScrolling() {
+    const links = document.querySelectorAll('a[href^="#"]');
+    
+    links.forEach(link => {
+        link.addEventListener('click', (e) => {
+            const href = link.getAttribute('href');
+            if (href === '#') return;
+            
+            const target = document.querySelector(href);
+            if (target) {
+                e.preventDefault();
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+}
+
+// 知识中心卡片点击处理
+function initializeKnowledgeCard() {
+    const knowledgeCard = document.getElementById('knowledgeCard');
+    if (knowledgeCard) {
+        knowledgeCard.addEventListener('click', (e) => {
+            e.preventDefault();
+            const currentLang = localStorage.getItem('selectedLanguage') || 'en';
+            const url = currentLang === 'en' ? 'knowledge.html' : `${currentLang}/knowledge.html`;
+            window.location.href = url + '?lang=' + currentLang;
+        });
+    }
+}
+
 // 安全的页面加载处理
 function safeInitialize() {
     try {
         handleArticleLanguageRedirect();
+        initializeContactForm();
+        initializeMobileNavigation();
+        initializeSmoothScrolling();
+        initializeKnowledgeCard();
     } catch (error) {
         console.log('Initialization error:', error);
     }
@@ -1383,3 +1653,7 @@ if (document.readyState === 'loading') {
 } else {
     safeInitialize();
 }
+
+// 将函数暴露到全局作用域，以便HTML中的onclick可以调用
+window.copyEmailInfo = copyEmailInfo;
+window.openEmailClient = openEmailClient;

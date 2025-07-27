@@ -22,8 +22,21 @@ function handleLanguageRedirect() {
     const urlLang = urlParams.get('lang');
     const savedLang = localStorage.getItem('selectedLanguage') || 'en';
     
-    // 确定目标语言
-    const targetLang = urlLang || savedLang;
+    // 检查是否从knowledge.html跳转过来，如果是则继承其语言设置
+    const referrer = document.referrer;
+    let inheritedLang = null;
+    if (referrer && referrer.includes('knowledge.html')) {
+        try {
+            // 从referrer URL中提取语言参数
+            const referrerUrl = new URL(referrer);
+            inheritedLang = referrerUrl.searchParams.get('lang') || savedLang;
+        } catch (e) {
+            inheritedLang = savedLang;
+        }
+    }
+    
+    // 确定目标语言：URL参数 > 继承语言 > 保存的语言
+    const targetLang = urlLang || inheritedLang || savedLang;
     
     // 检查目标语言是否有效
     if (!languageMap[targetLang]) {
@@ -36,43 +49,47 @@ function handleLanguageRedirect() {
     
     // 处理根目录页面（如 /pet-care.html?lang=ru）
     if (path.startsWith('/') && path.includes('.html') && !languageMap[currentPageLang]) {
-        // 如果URL参数指定了非英文语言，检查对应语言版本是否存在
-        if (urlLang && urlLang !== 'en' && languageMap[urlLang]) {
-            const fileName = path.substring(1); // 去掉开头的 /
+        const fileName = path.substring(1); // 去掉开头的 /
+        
+        // 检查是否为知识分类页面
+        const categoryPages = ['birdwatching.html', 'pet-care.html', 'scientific-wonders.html', 'ecology.html', 'cultural-symbolism.html', 'knowledge.html'];
+        const isKnowledgePage = categoryPages.some(page => fileName === page);
+        
+        if (isKnowledgePage) {
+            // 对于分类页面，应用语言设置
+            const finalLang = targetLang;
             
-            // 检查是否为知识分类页面（这些页面可能没有多语言版本）
-            const categoryPages = ['birdwatching.html', 'pet-care.html', 'scientific-wonders.html', 'ecology.html', 'cultural-symbolism.html', 'knowledge.html'];
-            const isKnowledgePage = categoryPages.some(page => fileName === page);
+            // 保存语言设置
+            localStorage.setItem('selectedLanguage', finalLang);
             
-            if (!isKnowledgePage) {
-                // 对于非分类页面，尝试重定向到语言目录
-                const newPath = '/' + urlLang + '/' + fileName;
-                
-                // 移除lang参数，因为已经通过路径表示语言
+            // 如果有URL参数，移除它以避免重复处理
+            if (urlLang) {
                 const newParams = new URLSearchParams(window.location.search);
                 newParams.delete('lang');
                 const queryString = newParams.toString();
-                const newUrl = window.location.origin + newPath + (queryString ? '?' + queryString : '');
+                const newUrl = window.location.origin + path + (queryString ? '?' + queryString : '');
                 
-                // 保存语言设置并跳转
-                localStorage.setItem('selectedLanguage', urlLang);
-                window.location.replace(newUrl);
-                return;
-            } else {
-                // 对于分类页面，只保存语言设置，不进行重定向
-                localStorage.setItem('selectedLanguage', urlLang);
-                
-                // 移除URL中的lang参数以避免重复处理
-                if (urlLang) {
-                    const newParams = new URLSearchParams(window.location.search);
-                    newParams.delete('lang');
-                    const queryString = newParams.toString();
-                    const newUrl = window.location.origin + path + (queryString ? '?' + queryString : '');
-                    
-                    // 使用replaceState来更新URL而不重新加载页面
-                    window.history.replaceState({}, '', newUrl);
-                }
+                // 使用replaceState来更新URL而不重新加载页面
+                window.history.replaceState({}, '', newUrl);
             }
+            
+            // 应用语言设置
+            applyLanguageSettings(finalLang);
+            
+        } else if (urlLang && urlLang !== 'en' && languageMap[urlLang]) {
+            // 对于非分类页面，尝试重定向到语言目录
+            const newPath = '/' + urlLang + '/' + fileName;
+            
+            // 移除lang参数，因为已经通过路径表示语言
+            const newParams = new URLSearchParams(window.location.search);
+            newParams.delete('lang');
+            const queryString = newParams.toString();
+            const newUrl = window.location.origin + newPath + (queryString ? '?' + queryString : '');
+            
+            // 保存语言设置并跳转
+            localStorage.setItem('selectedLanguage', urlLang);
+            window.location.replace(newUrl);
+            return;
         }
     }
     
@@ -99,9 +116,87 @@ function handleLanguageRedirect() {
     }
 }
 
+// 应用语言设置的函数
+function applyLanguageSettings(lang) {
+    // 确保语言有效
+    if (!languageMap[lang]) {
+        lang = 'en';
+    }
+    
+    // 延迟应用语言设置，确保页面完全加载
+    setTimeout(() => {
+        // 应用翻译
+        if (window.translatePage && typeof window.translatePage === 'function') {
+            window.translatePage(lang);
+        }
+        
+        // 更新语言切换器显示
+        updateLanguageSwitcher(lang);
+        
+        // 触发自定义事件，通知其他脚本语言已更改
+        const event = new CustomEvent('languageChanged', { detail: { language: lang } });
+        document.dispatchEvent(event);
+        
+        console.log('语言设置已应用:', lang);
+    }, 300);
+}
+
+// 更新语言切换器显示
+function updateLanguageSwitcher(lang) {
+    const currentLangElement = document.getElementById('currentLang');
+    if (currentLangElement && window.languages && window.languages[lang]) {
+        currentLangElement.textContent = window.languages[lang].code;
+    }
+    
+    // 更新选中状态
+    const langOptions = document.querySelectorAll('.lang-option');
+    langOptions.forEach(option => {
+        option.classList.remove('active');
+        if (window.languages && window.languages[lang] && option.innerHTML.includes(window.languages[lang].code)) {
+            option.classList.add('active');
+        }
+    });
+}
+
+// 检查分类页面是否需要应用语言设置
+function checkCategoryPageLanguage() {
+    const path = window.location.pathname;
+    const fileName = path.split('/').pop();
+    const categoryPages = ['scientific-wonders.html', 'pet-care.html', 'ecology.html', 'cultural-symbolism.html'];
+    
+    if (categoryPages.includes(fileName)) {
+        const savedLang = localStorage.getItem('selectedLanguage') || 'en';
+        
+        // 检查是否从knowledge.html跳转过来
+        const referrer = document.referrer;
+        let inheritedLang = null;
+        if (referrer && referrer.includes('knowledge.html')) {
+            try {
+                const referrerUrl = new URL(referrer);
+                inheritedLang = referrerUrl.searchParams.get('lang');
+            } catch (e) {
+                // 忽略错误
+            }
+        }
+        
+        const targetLang = inheritedLang || savedLang;
+        
+        if (targetLang && targetLang !== 'en' && languageMap[targetLang]) {
+            console.log('检测到分类页面，应用语言设置:', targetLang);
+            localStorage.setItem('selectedLanguage', targetLang);
+            applyLanguageSettings(targetLang);
+        }
+    }
+}
+
 // 页面加载时执行语言检测
 document.addEventListener('DOMContentLoaded', function() {
     handleLanguageRedirect();
+    
+    // 额外检查分类页面的语言设置
+    setTimeout(() => {
+        checkCategoryPageLanguage();
+    }, 100);
 });
 
 // 为返回按钮添加语言参数

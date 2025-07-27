@@ -62,7 +62,67 @@ const languages = {
             'footer.support.privacy': 'Privacy Policy',
             'footer.contact': 'Contact Us',
             'footer.contact.email': 'Email Consultation',
-            'footer.copyright': '© 2024 BirdAiSnap. All rights reserved'
+            'footer.copyright': '© 2024 BirdAiSnap. All rights reserved',
+            'knowledge.hero.title': 'Bird Knowledge Center',
+            'knowledge.hero.description': 'Explore the fascinating world of birds through comprehensive knowledge resources',
+            'knowledge.categories.birdwatching': 'Bird Watching',
+            'knowledge.categories.birdwatching.desc': 'Learn the art of bird observation and identification techniques',
+            'knowledge.categories.scientific': 'Scientific Wonders',
+            'knowledge.categories.scientific.desc': 'Discover amazing scientific facts and research about birds',
+            'knowledge.categories.petcare': 'Pet Bird Care',
+            'knowledge.categories.petcare.desc': 'Essential care guides for pet bird owners and enthusiasts',
+            'knowledge.categories.ecology': 'Bird Ecology',
+            'knowledge.categories.ecology.desc': 'Understanding bird habitats, migration, and environmental roles',
+            'knowledge.categories.cultural': 'Cultural Symbolism',
+            'knowledge.categories.cultural.desc': 'Birds in mythology, art, literature, and cultural significance',
+            'knowledge.latest.title': 'Latest Articles',
+            'knowledge.articles.stats': 'Articles',
+            'birdwatching.title': 'Birdwatching Guide - BirdAiSnap',
+            'birdwatching.header.title': 'Birdwatching Guide',
+            'birdwatching.intro.text': 'Welcome to our comprehensive birdwatching guide section. Here you\'ll find extensive birdwatching techniques and knowledge, from beginner basics to advanced identification skills, helping you better appreciate and understand the world of birds. Click on any article image below to dive deep into the mysteries of birdwatching.',
+            'birdwatching.articles.getting-started.title': 'Getting Started Guide',
+            'birdwatching.articles.getting-started.desc': 'Comprehensive birdwatching introduction for beginners',
+            'birdwatching.articles.essential-equipment.title': 'Essential Equipment',
+            'birdwatching.articles.essential-equipment.desc': 'Learn about various tools and equipment needed for birdwatching',
+            'birdwatching.articles.identification-techniques.title': 'Identification Techniques',
+            'birdwatching.articles.identification-techniques.desc': 'Master the art and methods of bird identification',
+            'birdwatching.articles.best-locations.title': 'Best Locations',
+            'birdwatching.articles.best-locations.desc': 'Explore birdwatching hotspots around the world',
+            'birdwatching.articles.seasonal-guide.title': 'Seasonal Guide',
+            'birdwatching.articles.seasonal-guide.desc': 'Plan your birdwatching activities according to seasonal changes',
+            'birdwatching.articles.photography-tips.title': 'Photography Tips',
+            'birdwatching.articles.photography-tips.desc': 'Practical advice for capturing stunning bird photographs',
+            'birdwatching.articles.behavior-observation.title': 'Behavior Observation',
+            'birdwatching.articles.behavior-observation.desc': 'Learn to observe and understand bird behavior',
+            'birdwatching.articles.song-identification.title': 'Song Identification',
+            'birdwatching.articles.song-identification.desc': 'Techniques for identifying different bird species by sound',
+            'birdwatching.articles.ethics-conservation.title': 'Ethics & Conservation',
+            'birdwatching.articles.ethics-conservation.desc': 'Responsible birdwatching and contributing to bird conservation',
+            'birdwatching.articles.journal-keeping.title': 'Journal Keeping',
+            'birdwatching.articles.journal-keeping.desc': 'How to record and organize your birdwatching experiences',
+            'ecology.title': 'Bird Ecology - BirdAiSnap',
+            'ecology.header.title': 'Bird Ecology',
+            'ecology.intro.text': 'Explore the complex and fascinating relationships between birds and their environment. Bird ecology studies how birds adapt to different habitats, their roles in ecosystems, and the impact of environmental changes on bird populations. Understanding these ecological relationships helps us better protect birds and their habitats.',
+            'ecology.articles.habitat-ecosystems.title': 'Habitats & Ecosystems',
+            'ecology.articles.habitat-ecosystems.desc': 'Understanding the diversity of bird habitats and ecosystem functions',
+            'ecology.articles.food-webs-chains.title': 'Food Webs & Chains',
+            'ecology.articles.food-webs-chains.desc': 'Exploring the important position and role of birds in food webs',
+            'ecology.articles.migration-patterns.title': 'Migration Patterns',
+            'ecology.articles.migration-patterns.desc': 'Studying the complex patterns and ecological significance of bird migration',
+            'ecology.articles.breeding-ecology.title': 'Breeding Ecology',
+            'ecology.articles.breeding-ecology.desc': 'Understanding bird breeding behavior and ecological strategies',
+            'ecology.articles.climate-change-impact.title': 'Climate Change Impact',
+            'ecology.articles.climate-change-impact.desc': 'Analyzing the profound impact of climate change on bird ecology',
+            'ecology.articles.urban-ecology.title': 'Urban Ecology',
+            'ecology.articles.urban-ecology.desc': 'Exploring how birds adapt to urban environments',
+            'ecology.articles.conservation-biology.title': 'Conservation Biology',
+            'ecology.articles.conservation-biology.desc': 'Learning the scientific principles and practical methods of bird conservation',
+            'ecology.articles.island-biogeography.title': 'Island Biogeography',
+            'ecology.articles.island-biogeography.desc': 'Studying bird distribution and evolution in island environments',
+            'ecology.articles.pollination-seed-dispersal.title': 'Pollination & Seed Dispersal',
+            'ecology.articles.pollination-seed-dispersal.desc': 'Understanding the important role of birds in plant reproduction',
+            'ecology.articles.community-dynamics.title': 'Community Dynamics',
+            'ecology.articles.community-dynamics.desc': 'Exploring the structure and dynamic changes of bird communities'
         }
     },
     'zh': { 
@@ -127,7 +187,67 @@ const languages = {
             'footer.support.privacy': '隐私政策',
             'footer.contact': '联系我们',
             'footer.contact.email': '邮件咨询',
-            'footer.copyright': '© 2024 BirdAiSnap. 保留所有权利'
+            'footer.copyright': '© 2024 BirdAiSnap. 保留所有权利',
+            'knowledge.hero.title': '鸟类知识中心',
+            'knowledge.hero.description': '通过全面的知识资源探索鸟类的迷人世界',
+            'knowledge.categories.birdwatching': '观鸟指南',
+            'knowledge.categories.birdwatching.desc': '学习鸟类观察和识别技巧的艺术',
+            'knowledge.categories.scientific': '科学奇观',
+            'knowledge.categories.scientific.desc': '发现关于鸟类的惊人科学事实和研究',
+            'knowledge.categories.petcare': '宠物鸟护理',
+            'knowledge.categories.petcare.desc': '为宠物鸟主人和爱好者提供的基本护理指南',
+            'knowledge.categories.ecology': '鸟类生态学',
+            'knowledge.categories.ecology.desc': '了解鸟类栖息地、迁徙和环境作用',
+            'knowledge.categories.cultural': '文化象征',
+            'knowledge.categories.cultural.desc': '鸟类在神话、艺术、文学和文化意义中的体现',
+            'knowledge.latest.title': '最新文章',
+            'knowledge.articles.stats': '篇文章',
+            'birdwatching.title': '观鸟指南 - BirdAiSnap',
+            'birdwatching.header.title': '观鸟指南',
+            'birdwatching.intro.text': '欢迎来到我们的观鸟指南专区。这里提供了全面的观鸟技巧和知识，从入门基础到高级识别技术，帮助您更好地欣赏和了解鸟类世界。点击下方任意文章图片，深入探索观鸟的奥秘。',
+            'birdwatching.articles.getting-started.title': '观鸟入门指南',
+            'birdwatching.articles.getting-started.desc': '为初学者提供的全面观鸟介绍',
+            'birdwatching.articles.essential-equipment.title': '观鸟必备装备',
+            'birdwatching.articles.essential-equipment.desc': '了解观鸟所需的各种工具和装备',
+            'birdwatching.articles.identification-techniques.title': '鸟类识别技巧',
+            'birdwatching.articles.identification-techniques.desc': '掌握鸟类识别的艺术和方法',
+            'birdwatching.articles.best-locations.title': '最佳观鸟地点',
+            'birdwatching.articles.best-locations.desc': '探索世界各地的观鸟胜地',
+            'birdwatching.articles.seasonal-guide.title': '季节性观鸟指南',
+            'birdwatching.articles.seasonal-guide.desc': '根据季节变化规划您的观鸟活动',
+            'birdwatching.articles.photography-tips.title': '鸟类摄影技巧',
+            'birdwatching.articles.photography-tips.desc': '拍摄精彩鸟类照片的实用建议',
+            'birdwatching.articles.behavior-observation.title': '鸟类行为观察',
+            'birdwatching.articles.behavior-observation.desc': '学习观察和理解鸟类行为',
+            'birdwatching.articles.song-identification.title': '鸟鸣识别',
+            'birdwatching.articles.song-identification.desc': '通过声音识别不同鸟类的技巧',
+            'birdwatching.articles.ethics-conservation.title': '观鸟伦理与保护',
+            'birdwatching.articles.ethics-conservation.desc': '负责任地观鸟并为鸟类保护做贡献',
+            'birdwatching.articles.journal-keeping.title': '观鸟日志记录',
+            'birdwatching.articles.journal-keeping.desc': '如何记录和整理您的观鸟经历',
+            'ecology.title': '鸟类生态学 - BirdAiSnap',
+            'ecology.header.title': '鸟类生态学',
+            'ecology.intro.text': '探索鸟类与环境之间复杂而迷人的关系。鸟类生态学研究鸟类如何适应不同的栖息地、它们在生态系统中的作用，以及环境变化对鸟类种群的影响。了解这些生态关系有助于我们更好地保护鸟类及其栖息地。',
+            'ecology.articles.habitat-ecosystems.title': '栖息地与生态系统',
+            'ecology.articles.habitat-ecosystems.desc': '了解鸟类栖息地的多样性和生态系统功能',
+            'ecology.articles.food-webs-chains.title': '食物网与食物链',
+            'ecology.articles.food-webs-chains.desc': '探索鸟类在食物网中的重要地位和作用',
+            'ecology.articles.migration-patterns.title': '迁徙模式',
+            'ecology.articles.migration-patterns.desc': '研究鸟类迁徙的复杂模式和生态意义',
+            'ecology.articles.breeding-ecology.title': '繁殖生态学',
+            'ecology.articles.breeding-ecology.desc': '了解鸟类繁殖行为和生态策略',
+            'ecology.articles.climate-change-impact.title': '气候变化影响',
+            'ecology.articles.climate-change-impact.desc': '分析气候变化对鸟类生态的深远影响',
+            'ecology.articles.urban-ecology.title': '城市生态学',
+            'ecology.articles.urban-ecology.desc': '探索鸟类如何适应城市环境',
+            'ecology.articles.conservation-biology.title': '保护生物学',
+            'ecology.articles.conservation-biology.desc': '学习鸟类保护的科学原理和实践方法',
+            'ecology.articles.island-biogeography.title': '岛屿生物地理学',
+            'ecology.articles.island-biogeography.desc': '研究岛屿环境中的鸟类分布和进化',
+            'ecology.articles.pollination-seed-dispersal.title': '授粉与种子传播',
+            'ecology.articles.pollination-seed-dispersal.desc': '了解鸟类在植物繁殖中的重要作用',
+            'ecology.articles.community-dynamics.title': '群落动态',
+            'ecology.articles.community-dynamics.desc': '探索鸟类群落的结构和动态变化'
         }
     },
     'ko': { 
@@ -192,7 +312,67 @@ const languages = {
             'footer.support.privacy': '개인정보 보호정책',
             'footer.contact': '연락처',
             'footer.contact.email': '이메일 상담',
-            'footer.copyright': '© 2024 BirdAiSnap. 모든 권리 보유'
+            'footer.copyright': '© 2024 BirdAiSnap. 모든 권리 보유',
+            'knowledge.hero.title': '조류 지식 센터',
+            'knowledge.hero.description': '포괄적인 지식 자원을 통해 새들의 매혹적인 세계를 탐험하세요',
+            'knowledge.categories.birdwatching': '조류 관찰',
+            'knowledge.categories.birdwatching.desc': '조류 관찰과 식별 기술의 예술을 배우세요',
+            'knowledge.categories.scientific': '과학적 경이',
+            'knowledge.categories.scientific.desc': '조류에 대한 놀라운 과학적 사실과 연구를 발견하세요',
+            'knowledge.categories.petcare': '애완조 관리',
+            'knowledge.categories.petcare.desc': '애완조 주인과 애호가를 위한 필수 관리 가이드',
+            'knowledge.categories.ecology': '조류 생태학',
+            'knowledge.categories.ecology.desc': '조류 서식지, 이주, 환경적 역할 이해하기',
+            'knowledge.categories.cultural': '문화적 상징',
+            'knowledge.categories.cultural.desc': '신화, 예술, 문학, 문화적 의미에서의 조류',
+            'knowledge.latest.title': '최신 기사',
+            'knowledge.articles.stats': '기사',
+            'birdwatching.title': '조류 관찰 가이드 - BirdAiSnap',
+            'birdwatching.header.title': '조류 관찰 가이드',
+            'birdwatching.intro.text': '포괄적인 조류 관찰 가이드 섹션에 오신 것을 환영합니다. 여기서는 초보자 기초부터 고급 식별 기술까지 광범위한 조류 관찰 기법과 지식을 찾을 수 있으며, 조류 세계를 더 잘 감상하고 이해하는 데 도움이 됩니다. 아래 기사 이미지를 클릭하여 조류 관찰의 신비를 깊이 탐구해보세요.',
+            'birdwatching.articles.getting-started.title': '시작 가이드',
+            'birdwatching.articles.getting-started.desc': '초보자를 위한 포괄적인 조류 관찰 소개',
+            'birdwatching.articles.essential-equipment.title': '필수 장비',
+            'birdwatching.articles.essential-equipment.desc': '조류 관찰에 필요한 다양한 도구와 장비에 대해 알아보기',
+            'birdwatching.articles.identification-techniques.title': '식별 기법',
+            'birdwatching.articles.identification-techniques.desc': '조류 식별의 예술과 방법 마스터하기',
+            'birdwatching.articles.best-locations.title': '최고의 장소',
+            'birdwatching.articles.best-locations.desc': '전 세계 조류 관찰 명소 탐험하기',
+            'birdwatching.articles.seasonal-guide.title': '계절별 가이드',
+            'birdwatching.articles.seasonal-guide.desc': '계절 변화에 따른 조류 관찰 활동 계획하기',
+            'birdwatching.articles.photography-tips.title': '사진 촬영 팁',
+            'birdwatching.articles.photography-tips.desc': '멋진 조류 사진 촬영을 위한 실용적인 조언',
+            'birdwatching.articles.behavior-observation.title': '행동 관찰',
+            'birdwatching.articles.behavior-observation.desc': '조류 행동 관찰하고 이해하는 법 배우기',
+            'birdwatching.articles.song-identification.title': '울음소리 식별',
+            'birdwatching.articles.song-identification.desc': '소리로 다양한 조류 종을 식별하는 기법',
+            'birdwatching.articles.ethics-conservation.title': '윤리 및 보존',
+            'birdwatching.articles.ethics-conservation.desc': '책임감 있는 조류 관찰과 조류 보존에 기여하기',
+            'birdwatching.articles.journal-keeping.title': '일지 작성',
+            'birdwatching.articles.journal-keeping.desc': '조류 관찰 경험을 기록하고 정리하는 방법',
+            'ecology.title': '조류 생태학 - BirdAiSnap',
+            'ecology.header.title': '조류 생태학',
+            'ecology.intro.text': '조류와 환경 간의 복잡하고 매혹적인 관계를 탐구하세요. 조류 생태학은 조류가 다양한 서식지에 어떻게 적응하는지, 생태계에서의 역할, 환경 변화가 조류 개체군에 미치는 영향을 연구합니다. 이러한 생태학적 관계를 이해하면 조류와 그들의 서식지를 더 잘 보호할 수 있습니다.',
+            'ecology.articles.habitat-ecosystems.title': '서식지 및 생태계',
+            'ecology.articles.habitat-ecosystems.desc': '조류 서식지의 다양성과 생태계 기능 이해하기',
+            'ecology.articles.food-webs-chains.title': '먹이망 및 먹이사슬',
+            'ecology.articles.food-webs-chains.desc': '먹이망에서 조류의 중요한 위치와 역할 탐구하기',
+            'ecology.articles.migration-patterns.title': '이주 패턴',
+            'ecology.articles.migration-patterns.desc': '조류 이주의 복잡한 패턴과 생태학적 의미 연구하기',
+            'ecology.articles.breeding-ecology.title': '번식 생태학',
+            'ecology.articles.breeding-ecology.desc': '조류 번식 행동과 생태학적 전략 이해하기',
+            'ecology.articles.climate-change-impact.title': '기후 변화 영향',
+            'ecology.articles.climate-change-impact.desc': '기후 변화가 조류 생태에 미치는 심각한 영향 분석하기',
+            'ecology.articles.urban-ecology.title': '도시 생태학',
+            'ecology.articles.urban-ecology.desc': '조류가 도시 환경에 어떻게 적응하는지 탐구하기',
+            'ecology.articles.conservation-biology.title': '보전 생물학',
+            'ecology.articles.conservation-biology.desc': '조류 보전의 과학적 원리와 실용적 방법 학습하기',
+            'ecology.articles.island-biogeography.title': '섬 생물지리학',
+            'ecology.articles.island-biogeography.desc': '섬 환경에서 조류 분포와 진화 연구하기',
+            'ecology.articles.pollination-seed-dispersal.title': '수분 및 종자 산포',
+            'ecology.articles.pollination-seed-dispersal.desc': '식물 번식에서 조류의 중요한 역할 이해하기',
+            'ecology.articles.community-dynamics.title': '군집 역학',
+            'ecology.articles.community-dynamics.desc': '조류 군집의 구조와 동적 변화 탐구하기'
         }
     },
     'ja': { 
@@ -204,6 +384,52 @@ const languages = {
             'nav.features': '機能',
             'nav.about': '概要',
             'nav.contact': 'お問い合わせ',
+            'birdwatching.title': 'バードウォッチングガイド - BirdAiSnap',
+            'birdwatching.header.title': 'バードウォッチングガイド',
+            'birdwatching.intro.text': '包括的なバードウォッチングガイドセクションへようこそ。ここでは初心者の基礎から高度な識別技術まで、広範囲なバードウォッチング技法と知識を見つけることができ、鳥類の世界をより良く鑑賞し理解するのに役立ちます。下の記事画像をクリックして、バードウォッチングの神秘を深く探求してください。',
+            'birdwatching.articles.getting-started.title': '入門ガイド',
+            'birdwatching.articles.getting-started.desc': '初心者のための包括的なバードウォッチング紹介',
+            'birdwatching.articles.essential-equipment.title': '必須機器',
+            'birdwatching.articles.essential-equipment.desc': 'バードウォッチングに必要な様々なツールと機器について学ぶ',
+            'birdwatching.articles.identification-techniques.title': '識別技法',
+            'birdwatching.articles.identification-techniques.desc': '鳥類識別の芸術と方法をマスターする',
+            'birdwatching.articles.best-locations.title': '最高の場所',
+            'birdwatching.articles.best-locations.desc': '世界中のバードウォッチングホットスポットを探索する',
+            'birdwatching.articles.seasonal-guide.title': '季節ガイド',
+            'birdwatching.articles.seasonal-guide.desc': '季節の変化に応じてバードウォッチング活動を計画する',
+            'birdwatching.articles.photography-tips.title': '写真撮影のコツ',
+            'birdwatching.articles.photography-tips.desc': '素晴らしい鳥の写真を撮るための実用的なアドバイス',
+            'birdwatching.articles.behavior-observation.title': '行動観察',
+            'birdwatching.articles.behavior-observation.desc': '鳥の行動を観察し理解することを学ぶ',
+            'birdwatching.articles.song-identification.title': '鳴き声識別',
+            'birdwatching.articles.song-identification.desc': '音によって異なる鳥種を識別する技法',
+            'birdwatching.articles.ethics-conservation.title': '倫理と保護',
+            'birdwatching.articles.ethics-conservation.desc': '責任あるバードウォッチングと鳥類保護への貢献',
+            'birdwatching.articles.journal-keeping.title': '日誌の記録',
+            'birdwatching.articles.journal-keeping.desc': 'バードウォッチング体験を記録し整理する方法',
+            'ecology.title': '鳥類生態学 - BirdAiSnap',
+            'ecology.header.title': '鳥類生態学',
+            'ecology.intro.text': '鳥類と環境の間の複雑で魅力的な関係を探求してください。鳥類生態学は、鳥類がさまざまな生息地にどのように適応するか、生態系での役割、環境変化が鳥類個体群に与える影響を研究します。これらの生態学的関係を理解することで、鳥類とその生息地をより良く保護することができます。',
+            'ecology.articles.habitat-ecosystems.title': '生息地と生態系',
+            'ecology.articles.habitat-ecosystems.desc': '鳥類生息地の多様性と生態系機能の理解',
+            'ecology.articles.food-webs-chains.title': '食物網と食物連鎖',
+            'ecology.articles.food-webs-chains.desc': '食物網における鳥類の重要な位置と役割の探求',
+            'ecology.articles.migration-patterns.title': '渡りのパターン',
+            'ecology.articles.migration-patterns.desc': '鳥類の渡りの複雑なパターンと生態学的意義の研究',
+            'ecology.articles.breeding-ecology.title': '繁殖生態学',
+            'ecology.articles.breeding-ecology.desc': '鳥類の繁殖行動と生態学的戦略の理解',
+            'ecology.articles.climate-change-impact.title': '気候変動の影響',
+            'ecology.articles.climate-change-impact.desc': '気候変動が鳥類生態に与える深刻な影響の分析',
+            'ecology.articles.urban-ecology.title': '都市生態学',
+            'ecology.articles.urban-ecology.desc': '鳥類が都市環境にどのように適応するかの探求',
+            'ecology.articles.conservation-biology.title': '保全生物学',
+            'ecology.articles.conservation-biology.desc': '鳥類保全の科学的原理と実用的方法の学習',
+            'ecology.articles.island-biogeography.title': '島嶼生物地理学',
+            'ecology.articles.island-biogeography.desc': '島嶼環境における鳥類分布と進化の研究',
+            'ecology.articles.pollination-seed-dispersal.title': '受粉と種子散布',
+            'ecology.articles.pollination-seed-dispersal.desc': '植物繁殖における鳥類の重要な役割の理解',
+            'ecology.articles.community-dynamics.title': '群集動態',
+            'ecology.articles.community-dynamics.desc': '鳥類群集の構造と動的変化の探求',
             'hero.title': 'インテリジェント認識、撮影と発見',
             'hero.description': 'BirdAiSnapは、AI駆動のインテリジェント認識アプリケーションで、周囲の鳥類を迅速に識別し、自然界の神秘を解き明かします。',
             'hero.download': '今すぐダウンロード',
@@ -257,7 +483,21 @@ const languages = {
             'footer.support.privacy': 'プライバシーポリシー',
             'footer.contact': 'お問い合わせ',
             'footer.contact.email': 'メール相談',
-            'footer.copyright': '© 2024 BirdAiSnap. 全著作権所有'
+            'footer.copyright': '© 2024 BirdAiSnap. 全著作権所有',
+            'knowledge.hero.title': '鳥類知識センター',
+            'knowledge.hero.description': '包括的な知識リソースを通じて鳥類の魅力的な世界を探求する',
+            'knowledge.categories.birdwatching': 'バードウォッチング',
+            'knowledge.categories.birdwatching.desc': '鳥類観察と識別技術の芸術を学ぶ',
+            'knowledge.categories.scientific': '科学的驚異',
+            'knowledge.categories.scientific.desc': '鳥類に関する驚くべき科学的事実と研究を発見する',
+            'knowledge.categories.petcare': 'ペット鳥のケア',
+            'knowledge.categories.petcare.desc': 'ペット鳥の飼い主と愛好家のための必須ケアガイド',
+            'knowledge.categories.ecology': '鳥類生態学',
+            'knowledge.categories.ecology.desc': '鳥類の生息地、移住、環境的役割を理解する',
+            'knowledge.categories.cultural': '文化的象徴',
+            'knowledge.categories.cultural.desc': '神話、芸術、文学、文化的意義における鳥類',
+            'knowledge.latest.title': '最新記事',
+            'knowledge.articles.stats': '記事'
         }
     },
     'de': { 
@@ -269,6 +509,52 @@ const languages = {
             'nav.features': 'Funktionen',
             'nav.about': 'Über uns',
             'nav.contact': 'Kontakt',
+            'birdwatching.title': 'Vogelbeobachtungsführer - BirdAiSnap',
+            'birdwatching.header.title': 'Vogelbeobachtungsführer',
+            'birdwatching.intro.text': 'Willkommen in unserem umfassenden Vogelbeobachtungsführer-Bereich. Hier finden Sie umfangreiche Vogelbeobachtungstechniken und -wissen, von Anfängergrundlagen bis hin zu fortgeschrittenen Identifikationsfähigkeiten, die Ihnen helfen, die Welt der Vögel besser zu schätzen und zu verstehen. Klicken Sie auf eines der Artikelbilder unten, um tief in die Geheimnisse der Vogelbeobachtung einzutauchen.',
+            'birdwatching.articles.getting-started.title': 'Einsteigerführer',
+            'birdwatching.articles.getting-started.desc': 'Umfassende Vogelbeobachtungseinführung für Anfänger',
+            'birdwatching.articles.essential-equipment.title': 'Wesentliche Ausrüstung',
+            'birdwatching.articles.essential-equipment.desc': 'Lernen Sie über verschiedene Werkzeuge und Ausrüstung für die Vogelbeobachtung',
+            'birdwatching.articles.identification-techniques.title': 'Identifikationstechniken',
+            'birdwatching.articles.identification-techniques.desc': 'Meistern Sie die Kunst und Methoden der Vogelidentifikation',
+            'birdwatching.articles.best-locations.title': 'Beste Standorte',
+            'birdwatching.articles.best-locations.desc': 'Erkunden Sie Vogelbeobachtungs-Hotspots auf der ganzen Welt',
+            'birdwatching.articles.seasonal-guide.title': 'Saisonaler Führer',
+            'birdwatching.articles.seasonal-guide.desc': 'Planen Sie Ihre Vogelbeobachtungsaktivitäten entsprechend den saisonalen Veränderungen',
+            'birdwatching.articles.photography-tips.title': 'Fotografietipps',
+            'birdwatching.articles.photography-tips.desc': 'Praktische Ratschläge für das Aufnehmen atemberaubender Vogelfotos',
+            'birdwatching.articles.behavior-observation.title': 'Verhaltensbeobachtung',
+            'birdwatching.articles.behavior-observation.desc': 'Lernen Sie, Vogelverhalten zu beobachten und zu verstehen',
+            'birdwatching.articles.song-identification.title': 'Gesangsidentifikation',
+            'birdwatching.articles.song-identification.desc': 'Techniken zur Identifikation verschiedener Vogelarten durch Klang',
+            'birdwatching.articles.ethics-conservation.title': 'Ethik und Naturschutz',
+            'birdwatching.articles.ethics-conservation.desc': 'Verantwortungsvolle Vogelbeobachtung und Beitrag zum Vogelschutz',
+            'birdwatching.articles.journal-keeping.title': 'Tagebuchführung',
+            'birdwatching.articles.journal-keeping.desc': 'Wie Sie Ihre Vogelbeobachtungserfahrungen aufzeichnen und organisieren',
+            'ecology.title': 'Vogelökologie - BirdAiSnap',
+            'ecology.header.title': 'Vogelökologie',
+            'ecology.intro.text': 'Erkunden Sie die komplexen und faszinierenden Beziehungen zwischen Vögeln und ihrer Umwelt. Die Vogelökologie untersucht, wie sich Vögel an verschiedene Lebensräume anpassen, ihre Rollen in Ökosystemen und die Auswirkungen von Umweltveränderungen auf Vogelpopulationen. Das Verständnis dieser ökologischen Beziehungen hilft uns, Vögel und ihre Lebensräume besser zu schützen.',
+            'ecology.articles.habitat-ecosystems.title': 'Lebensräume und Ökosysteme',
+            'ecology.articles.habitat-ecosystems.desc': 'Die Vielfalt der Vogellebensräume und Ökosystemfunktionen verstehen',
+            'ecology.articles.food-webs-chains.title': 'Nahrungsnetze und Nahrungsketten',
+            'ecology.articles.food-webs-chains.desc': 'Die wichtige Position und Rolle der Vögel in Nahrungsnetzen erkunden',
+            'ecology.articles.migration-patterns.title': 'Wanderungsmuster',
+            'ecology.articles.migration-patterns.desc': 'Die komplexen Muster und ökologische Bedeutung der Vogelwanderung studieren',
+            'ecology.articles.breeding-ecology.title': 'Brutökologie',
+            'ecology.articles.breeding-ecology.desc': 'Vogelbrutverhaltensweisen und ökologische Strategien verstehen',
+            'ecology.articles.climate-change-impact.title': 'Klimawandel-Auswirkungen',
+            'ecology.articles.climate-change-impact.desc': 'Die tiefgreifenden Auswirkungen des Klimawandels auf die Vogelökologie analysieren',
+            'ecology.articles.urban-ecology.title': 'Stadtökologie',
+            'ecology.articles.urban-ecology.desc': 'Erkunden, wie sich Vögel an städtische Umgebungen anpassen',
+            'ecology.articles.conservation-biology.title': 'Naturschutzbiologie',
+            'ecology.articles.conservation-biology.desc': 'Die wissenschaftlichen Prinzipien und praktischen Methoden des Vogelschutzes lernen',
+            'ecology.articles.island-biogeography.title': 'Insel-Biogeographie',
+            'ecology.articles.island-biogeography.desc': 'Vogelverteilung und Evolution in Inselumgebungen studieren',
+            'ecology.articles.pollination-seed-dispersal.title': 'Bestäubung und Samenausbreitung',
+            'ecology.articles.pollination-seed-dispersal.desc': 'Die wichtige Rolle der Vögel bei der Pflanzenfortpflanzung verstehen',
+            'ecology.articles.community-dynamics.title': 'Gemeinschaftsdynamik',
+            'ecology.articles.community-dynamics.desc': 'Die Struktur und dynamischen Veränderungen von Vogelgemeinschaften erkunden',
             'hero.title': 'Intelligente Erkennung, Aufnahme und Entdeckung',
             'hero.description': 'BirdAiSnap ist eine KI-gestützte intelligente Erkennungsanwendung, die eine schnelle Vogelidentifikation in Ihrer Umgebung ermöglicht und die Geheimnisse der Natur enthüllt.',
             'hero.download': 'Jetzt herunterladen',
@@ -322,7 +608,21 @@ const languages = {
             'footer.support.privacy': 'Datenschutzrichtlinie',
             'footer.contact': 'Kontakt',
             'footer.contact.email': 'E-Mail-Beratung',
-            'footer.copyright': '© 2024 BirdAiSnap. Alle Rechte vorbehalten'
+            'footer.copyright': '© 2024 BirdAiSnap. Alle Rechte vorbehalten',
+            'knowledge.hero.title': 'Vogelwissen-Zentrum',
+            'knowledge.hero.description': 'Erkunden Sie die faszinierende Welt der Vögel durch umfassende Wissensressourcen',
+            'knowledge.categories.birdwatching': 'Vogelbeobachtung',
+            'knowledge.categories.birdwatching.desc': 'Lernen Sie die Kunst der Vogelbeobachtung und Identifikationstechniken',
+            'knowledge.categories.scientific': 'Wissenschaftliche Wunder',
+            'knowledge.categories.scientific.desc': 'Entdecken Sie erstaunliche wissenschaftliche Fakten und Forschung über Vögel',
+            'knowledge.categories.petcare': 'Haustiervogel-Pflege',
+            'knowledge.categories.petcare.desc': 'Wesentliche Pflegeanleitungen für Haustiervogel-Besitzer und Enthusiasten',
+            'knowledge.categories.ecology': 'Vogelökologie',
+            'knowledge.categories.ecology.desc': 'Verstehen Sie Vogellebensräume, Migration und Umweltrollen',
+            'knowledge.categories.cultural': 'Kulturelle Symbolik',
+            'knowledge.categories.cultural.desc': 'Vögel in Mythologie, Kunst, Literatur und kultureller Bedeutung',
+            'knowledge.latest.title': 'Neueste Artikel',
+            'knowledge.articles.stats': 'Artikel'
         }
     },
     'fr': { 
@@ -334,6 +634,29 @@ const languages = {
             'nav.features': 'Fonctionnalités',
             'nav.about': 'À propos',
             'nav.contact': 'Contact',
+            'birdwatching.title': 'Guide d\'observation des oiseaux - BirdAiSnap',
+            'birdwatching.header.title': 'Guide d\'observation des oiseaux',
+            'birdwatching.intro.text': 'Bienvenue dans notre section complète de guide d\'observation des oiseaux. Ici, vous trouverez des techniques et connaissances étendues d\'observation des oiseaux, des bases pour débutants aux compétences d\'identification avancées, vous aidant à mieux apprécier et comprendre le monde des oiseaux. Cliquez sur n\'importe quelle image d\'article ci-dessous pour plonger profondément dans les mystères de l\'observation des oiseaux.',
+            'birdwatching.articles.getting-started.title': 'Guide de démarrage',
+            'birdwatching.articles.getting-started.desc': 'Introduction complète à l\'observation des oiseaux pour débutants',
+            'birdwatching.articles.essential-equipment.title': 'Équipement essentiel',
+            'birdwatching.articles.essential-equipment.desc': 'Apprenez sur les divers outils et équipements nécessaires pour l\'observation des oiseaux',
+            'birdwatching.articles.identification-techniques.title': 'Techniques d\'identification',
+            'birdwatching.articles.identification-techniques.desc': 'Maîtrisez l\'art et les méthodes d\'identification des oiseaux',
+            'birdwatching.articles.best-locations.title': 'Meilleurs emplacements',
+            'birdwatching.articles.best-locations.desc': 'Explorez les points chauds d\'observation des oiseaux dans le monde entier',
+            'birdwatching.articles.seasonal-guide.title': 'Guide saisonnier',
+            'birdwatching.articles.seasonal-guide.desc': 'Planifiez vos activités d\'observation des oiseaux selon les changements saisonniers',
+            'birdwatching.articles.photography-tips.title': 'Conseils de photographie',
+            'birdwatching.articles.photography-tips.desc': 'Conseils pratiques pour capturer de superbes photographies d\'oiseaux',
+            'birdwatching.articles.behavior-observation.title': 'Observation du comportement',
+            'birdwatching.articles.behavior-observation.desc': 'Apprenez à observer et comprendre le comportement des oiseaux',
+            'birdwatching.articles.song-identification.title': 'Identification des chants',
+            'birdwatching.articles.song-identification.desc': 'Techniques pour identifier différentes espèces d\'oiseaux par le son',
+            'birdwatching.articles.ethics-conservation.title': 'Éthique et conservation',
+            'birdwatching.articles.ethics-conservation.desc': 'Observation responsable des oiseaux et contribution à la conservation des oiseaux',
+            'birdwatching.articles.journal-keeping.title': 'Tenue de journal',
+            'birdwatching.articles.journal-keeping.desc': 'Comment enregistrer et organiser vos expériences d\'observation des oiseaux',
             'hero.title': 'Reconnaissance intelligente, capture et découverte',
             'hero.description': 'BirdAiSnap est une application de reconnaissance intelligente alimentée par IA qui permet une identification rapide des oiseaux dans votre environnement tout en dévoilant les mystères du monde naturel.',
             'hero.download': 'Télécharger maintenant',
@@ -387,7 +710,21 @@ const languages = {
             'footer.support.privacy': 'Politique de confidentialité',
             'footer.contact': 'Contact',
             'footer.contact.email': 'Consultation par e-mail',
-            'footer.copyright': '© 2024 BirdAiSnap. Tous droits réservés'
+            'footer.copyright': '© 2024 BirdAiSnap. Tous droits réservés',
+            'knowledge.hero.title': 'Centre de connaissances aviaires',
+            'knowledge.hero.description': 'Explorez le monde fascinant des oiseaux à travers des ressources de connaissances complètes',
+            'knowledge.categories.birdwatching': 'Observation d\'oiseaux',
+            'knowledge.categories.birdwatching.desc': 'Apprenez l\'art de l\'observation et des techniques d\'identification des oiseaux',
+            'knowledge.categories.scientific': 'Merveilles scientifiques',
+            'knowledge.categories.scientific.desc': 'Découvrez des faits scientifiques étonnants et des recherches sur les oiseaux',
+            'knowledge.categories.petcare': 'Soins des oiseaux domestiques',
+            'knowledge.categories.petcare.desc': 'Guides de soins essentiels pour les propriétaires et passionnés d\'oiseaux domestiques',
+            'knowledge.categories.ecology': 'Écologie aviaire',
+            'knowledge.categories.ecology.desc': 'Comprendre les habitats, la migration et les rôles environnementaux des oiseaux',
+            'knowledge.categories.cultural': 'Symbolisme culturel',
+            'knowledge.categories.cultural.desc': 'Les oiseaux dans la mythologie, l\'art, la littérature et la signification culturelle',
+            'knowledge.latest.title': 'Derniers articles',
+            'knowledge.articles.stats': 'articles'
         }
     },
     'es': { 
@@ -395,6 +732,29 @@ const languages = {
         flag: '🇪🇸', 
         code: 'ES',
         translations: {
+            'birdwatching.title': 'Guía de observación de aves - BirdAiSnap',
+            'birdwatching.header.title': 'Guía de observación de aves',
+            'birdwatching.intro.text': 'Bienvenido a nuestra sección completa de guía de observación de aves. Aquí encontrará técnicas y conocimientos extensos de observación de aves, desde conceptos básicos para principiantes hasta habilidades de identificación avanzadas, ayudándole a apreciar y comprender mejor el mundo de las aves. Haga clic en cualquier imagen de artículo a continuación para sumergirse profundamente en los misterios de la observación de aves.',
+            'birdwatching.articles.getting-started.title': 'Guía de inicio',
+            'birdwatching.articles.getting-started.desc': 'Introducción completa a la observación de aves para principiantes',
+            'birdwatching.articles.essential-equipment.title': 'Equipo esencial',
+            'birdwatching.articles.essential-equipment.desc': 'Aprenda sobre varias herramientas y equipos necesarios para la observación de aves',
+            'birdwatching.articles.identification-techniques.title': 'Técnicas de identificación',
+            'birdwatching.articles.identification-techniques.desc': 'Domine el arte y los métodos de identificación de aves',
+            'birdwatching.articles.best-locations.title': 'Mejores ubicaciones',
+            'birdwatching.articles.best-locations.desc': 'Explore puntos calientes de observación de aves en todo el mundo',
+            'birdwatching.articles.seasonal-guide.title': 'Guía estacional',
+            'birdwatching.articles.seasonal-guide.desc': 'Planifique sus actividades de observación de aves según los cambios estacionales',
+            'birdwatching.articles.photography-tips.title': 'Consejos de fotografía',
+            'birdwatching.articles.photography-tips.desc': 'Consejos prácticos para capturar fotografías impresionantes de aves',
+            'birdwatching.articles.behavior-observation.title': 'Observación del comportamiento',
+            'birdwatching.articles.behavior-observation.desc': 'Aprenda a observar y comprender el comportamiento de las aves',
+            'birdwatching.articles.song-identification.title': 'Identificación de cantos',
+            'birdwatching.articles.song-identification.desc': 'Técnicas para identificar diferentes especies de aves por sonido',
+            'birdwatching.articles.ethics-conservation.title': 'Ética y conservación',
+            'birdwatching.articles.ethics-conservation.desc': 'Observación responsable de aves y contribución a la conservación de aves',
+            'birdwatching.articles.journal-keeping.title': 'Mantenimiento de diario',
+            'birdwatching.articles.journal-keeping.desc': 'Cómo registrar y organizar sus experiencias de observación de aves',
             'nav.home': 'Inicio',
             'nav.features': 'Características',
             'nav.about': 'Acerca de',
@@ -452,7 +812,21 @@ const languages = {
             'footer.support.privacy': 'Política de privacidad',
             'footer.contact': 'Contacto',
             'footer.contact.email': 'Consulta por correo electrónico',
-            'footer.copyright': '© 2024 BirdAiSnap. Todos los derechos reservados'
+            'footer.copyright': '© 2024 BirdAiSnap. Todos los derechos reservados',
+            'knowledge.hero.title': 'Centro de conocimiento de aves',
+            'knowledge.hero.description': 'Explore el fascinante mundo de las aves a través de recursos de conocimiento integral',
+            'knowledge.categories.birdwatching': 'Observación de aves',
+            'knowledge.categories.birdwatching.desc': 'Aprenda el arte de la observación de aves y técnicas de identificación',
+            'knowledge.categories.scientific': 'Maravillas científicas',
+            'knowledge.categories.scientific.desc': 'Descubra hechos científicos asombrosos e investigación sobre aves',
+            'knowledge.categories.petcare': 'Cuidado de aves mascotas',
+            'knowledge.categories.petcare.desc': 'Guías de cuidado esenciales para propietarios y entusiastas de aves mascotas',
+            'knowledge.categories.ecology': 'Ecología aviar',
+            'knowledge.categories.ecology.desc': 'Comprender los hábitats, migración y roles ambientales de las aves',
+            'knowledge.categories.cultural': 'Simbolismo cultural',
+            'knowledge.categories.cultural.desc': 'Aves en mitología, arte, literatura y significado cultural',
+            'knowledge.latest.title': 'Últimos artículos',
+            'knowledge.articles.stats': 'artículos'
         }
     },
     'it': { 
@@ -460,6 +834,29 @@ const languages = {
         flag: '🇮🇹', 
         code: 'IT',
         translations: {
+            'birdwatching.title': 'Guida all\'osservazione degli uccelli - BirdAiSnap',
+            'birdwatching.header.title': 'Guida all\'osservazione degli uccelli',
+            'birdwatching.intro.text': 'Benvenuti nella nostra sezione completa di guida all\'osservazione degli uccelli. Qui troverete tecniche e conoscenze estese di osservazione degli uccelli, dalle basi per principianti alle competenze di identificazione avanzate, aiutandovi ad apprezzare e comprendere meglio il mondo degli uccelli. Cliccate su qualsiasi immagine di articolo qui sotto per immergervi profondamente nei misteri dell\'osservazione degli uccelli.',
+            'birdwatching.articles.getting-started.title': 'Guida introduttiva',
+            'birdwatching.articles.getting-started.desc': 'Introduzione completa all\'osservazione degli uccelli per principianti',
+            'birdwatching.articles.essential-equipment.title': 'Attrezzatura essenziale',
+            'birdwatching.articles.essential-equipment.desc': 'Imparate sui vari strumenti e attrezzature necessari per l\'osservazione degli uccelli',
+            'birdwatching.articles.identification-techniques.title': 'Tecniche di identificazione',
+            'birdwatching.articles.identification-techniques.desc': 'Padroneggiate l\'arte e i metodi di identificazione degli uccelli',
+            'birdwatching.articles.best-locations.title': 'Migliori località',
+            'birdwatching.articles.best-locations.desc': 'Esplorate i punti caldi di osservazione degli uccelli in tutto il mondo',
+            'birdwatching.articles.seasonal-guide.title': 'Guida stagionale',
+            'birdwatching.articles.seasonal-guide.desc': 'Pianificate le vostre attività di osservazione degli uccelli secondo i cambiamenti stagionali',
+            'birdwatching.articles.photography-tips.title': 'Consigli di fotografia',
+            'birdwatching.articles.photography-tips.desc': 'Consigli pratici per catturare fotografie mozzafiato di uccelli',
+            'birdwatching.articles.behavior-observation.title': 'Osservazione del comportamento',
+            'birdwatching.articles.behavior-observation.desc': 'Imparate ad osservare e comprendere il comportamento degli uccelli',
+            'birdwatching.articles.song-identification.title': 'Identificazione dei canti',
+            'birdwatching.articles.song-identification.desc': 'Tecniche per identificare diverse specie di uccelli tramite il suono',
+            'birdwatching.articles.ethics-conservation.title': 'Etica e conservazione',
+            'birdwatching.articles.ethics-conservation.desc': 'Osservazione responsabile degli uccelli e contributo alla conservazione degli uccelli',
+            'birdwatching.articles.journal-keeping.title': 'Tenuta del diario',
+            'birdwatching.articles.journal-keeping.desc': 'Come registrare e organizzare le vostre esperienze di osservazione degli uccelli',
             'nav.home': 'Home',
             'nav.features': 'Caratteristiche',
             'nav.about': 'Chi siamo',
@@ -517,7 +914,21 @@ const languages = {
             'footer.support.privacy': 'Informativa sulla privacy',
             'footer.contact': 'Contatto',
             'footer.contact.email': 'Consulenza email',
-            'footer.copyright': '© 2024 BirdAiSnap. Tutti i diritti riservati'
+            'footer.copyright': '© 2024 BirdAiSnap. Tutti i diritti riservati',
+            'knowledge.hero.title': 'Centro di conoscenza degli uccelli',
+            'knowledge.hero.description': 'Esplora il mondo affascinante degli uccelli attraverso risorse di conoscenza complete',
+            'knowledge.categories.birdwatching': 'Birdwatching',
+            'knowledge.categories.birdwatching.desc': 'Impara l\'arte dell\'osservazione degli uccelli e le tecniche di identificazione',
+            'knowledge.categories.scientific': 'Meraviglie scientifiche',
+            'knowledge.categories.scientific.desc': 'Scopri fatti scientifici sorprendenti e ricerche sugli uccelli',
+            'knowledge.categories.petcare': 'Cura degli uccelli domestici',
+            'knowledge.categories.petcare.desc': 'Guide di cura essenziali per proprietari e appassionati di uccelli domestici',
+            'knowledge.categories.ecology': 'Ecologia aviaria',
+            'knowledge.categories.ecology.desc': 'Comprendere gli habitat, la migrazione e i ruoli ambientali degli uccelli',
+            'knowledge.categories.cultural': 'Simbolismo culturale',
+            'knowledge.categories.cultural.desc': 'Uccelli nella mitologia, arte, letteratura e significato culturale',
+            'knowledge.latest.title': 'Ultimi articoli',
+            'knowledge.articles.stats': 'articoli'
         }
     },
     'pt': { 
@@ -525,6 +936,29 @@ const languages = {
         flag: '🇵🇹', 
         code: 'PT',
         translations: {
+            'birdwatching.title': 'Guia de observação de aves - BirdAiSnap',
+            'birdwatching.header.title': 'Guia de observação de aves',
+            'birdwatching.intro.text': 'Bem-vindos à nossa seção abrangente de guia de observação de aves. Aqui encontrará técnicas e conhecimentos extensos de observação de aves, desde conceitos básicos para iniciantes até habilidades de identificação avançadas, ajudando-o a apreciar e compreender melhor o mundo das aves. Clique em qualquer imagem de artigo abaixo para mergulhar profundamente nos mistérios da observação de aves.',
+            'birdwatching.articles.getting-started.title': 'Guia de início',
+            'birdwatching.articles.getting-started.desc': 'Introdução abrangente à observação de aves para iniciantes',
+            'birdwatching.articles.essential-equipment.title': 'Equipamento essencial',
+            'birdwatching.articles.essential-equipment.desc': 'Aprenda sobre várias ferramentas e equipamentos necessários para observação de aves',
+            'birdwatching.articles.identification-techniques.title': 'Técnicas de identificação',
+            'birdwatching.articles.identification-techniques.desc': 'Domine a arte e os métodos de identificação de aves',
+            'birdwatching.articles.best-locations.title': 'Melhores localizações',
+            'birdwatching.articles.best-locations.desc': 'Explore pontos quentes de observação de aves ao redor do mundo',
+            'birdwatching.articles.seasonal-guide.title': 'Guia sazonal',
+            'birdwatching.articles.seasonal-guide.desc': 'Planeie as suas atividades de observação de aves de acordo com as mudanças sazonais',
+            'birdwatching.articles.photography-tips.title': 'Dicas de fotografia',
+            'birdwatching.articles.photography-tips.desc': 'Conselhos práticos para capturar fotografias deslumbrantes de aves',
+            'birdwatching.articles.behavior-observation.title': 'Observação de comportamento',
+            'birdwatching.articles.behavior-observation.desc': 'Aprenda a observar e compreender o comportamento das aves',
+            'birdwatching.articles.song-identification.title': 'Identificação de cantos',
+            'birdwatching.articles.song-identification.desc': 'Técnicas para identificar diferentes espécies de aves pelo som',
+            'birdwatching.articles.ethics-conservation.title': 'Ética e conservação',
+            'birdwatching.articles.ethics-conservation.desc': 'Observação responsável de aves e contribuição para a conservação de aves',
+            'birdwatching.articles.journal-keeping.title': 'Manutenção de diário',
+            'birdwatching.articles.journal-keeping.desc': 'Como registar e organizar as suas experiências de observação de aves',
             'nav.home': 'Início',
             'nav.features': 'Recursos',
             'nav.about': 'Sobre',
@@ -582,7 +1016,21 @@ const languages = {
             'footer.support.privacy': 'Política de privacidade',
             'footer.contact': 'Contato',
             'footer.contact.email': 'Consulta por e-mail',
-            'footer.copyright': '© 2024 BirdAiSnap. Todos os direitos reservados'
+            'footer.copyright': '© 2024 BirdAiSnap. Todos os direitos reservados',
+            'knowledge.hero.title': 'Centro de conhecimento de aves',
+            'knowledge.hero.description': 'Explore o mundo fascinante das aves através de recursos de conhecimento abrangentes',
+            'knowledge.categories.birdwatching': 'Observação de aves',
+            'knowledge.categories.birdwatching.desc': 'Aprenda a arte da observação de aves e técnicas de identificação',
+            'knowledge.categories.scientific': 'Maravilhas científicas',
+            'knowledge.categories.scientific.desc': 'Descubra fatos científicos surpreendentes e pesquisas sobre aves',
+            'knowledge.categories.petcare': 'Cuidados com aves de estimação',
+            'knowledge.categories.petcare.desc': 'Guias de cuidados essenciais para proprietários e entusiastas de aves de estimação',
+            'knowledge.categories.ecology': 'Ecologia aviária',
+            'knowledge.categories.ecology.desc': 'Compreender habitats, migração e papéis ambientais das aves',
+            'knowledge.categories.cultural': 'Simbolismo cultural',
+            'knowledge.categories.cultural.desc': 'Aves na mitologia, arte, literatura e significado cultural',
+            'knowledge.latest.title': 'Últimos artigos',
+            'knowledge.articles.stats': 'artigos'
         }
     },
     'ru': { 
@@ -590,6 +1038,29 @@ const languages = {
         flag: '🇷🇺', 
         code: 'RU',
         translations: {
+            'birdwatching.title': 'Руководство по наблюдению за птицами - BirdAiSnap',
+            'birdwatching.header.title': 'Руководство по наблюдению за птицами',
+            'birdwatching.intro.text': 'Добро пожаловать в наш всеобъемлющий раздел руководства по наблюдению за птицами. Здесь вы найдете обширные техники и знания наблюдения за птицами, от основ для начинающих до продвинутых навыков идентификации, помогающих вам лучше ценить и понимать мир птиц. Нажмите на любое изображение статьи ниже, чтобы глубоко погрузиться в тайны наблюдения за птицами.',
+            'birdwatching.articles.getting-started.title': 'Руководство для начинающих',
+            'birdwatching.articles.getting-started.desc': 'Всеобъемлющее введение в наблюдение за птицами для начинающих',
+            'birdwatching.articles.essential-equipment.title': 'Необходимое оборудование',
+            'birdwatching.articles.essential-equipment.desc': 'Узнайте о различных инструментах и оборудовании, необходимых для наблюдения за птицами',
+            'birdwatching.articles.identification-techniques.title': 'Техники идентификации',
+            'birdwatching.articles.identification-techniques.desc': 'Овладейте искусством и методами идентификации птиц',
+            'birdwatching.articles.best-locations.title': 'Лучшие места',
+            'birdwatching.articles.best-locations.desc': 'Исследуйте горячие точки наблюдения за птицами по всему миру',
+            'birdwatching.articles.seasonal-guide.title': 'Сезонное руководство',
+            'birdwatching.articles.seasonal-guide.desc': 'Планируйте свои активности наблюдения за птицами в соответствии с сезонными изменениями',
+            'birdwatching.articles.photography-tips.title': 'Советы по фотографии',
+            'birdwatching.articles.photography-tips.desc': 'Практические советы для съемки потрясающих фотографий птиц',
+            'birdwatching.articles.behavior-observation.title': 'Наблюдение за поведением',
+            'birdwatching.articles.behavior-observation.desc': 'Научитесь наблюдать и понимать поведение птиц',
+            'birdwatching.articles.song-identification.title': 'Идентификация песен',
+            'birdwatching.articles.song-identification.desc': 'Техники для идентификации различных видов птиц по звуку',
+            'birdwatching.articles.ethics-conservation.title': 'Этика и сохранение',
+            'birdwatching.articles.ethics-conservation.desc': 'Ответственное наблюдение за птицами и вклад в сохранение птиц',
+            'birdwatching.articles.journal-keeping.title': 'Ведение дневника',
+            'birdwatching.articles.journal-keeping.desc': 'Как записывать и организовывать ваши опыты наблюдения за птицами',
             'nav.home': 'Главная',
             'nav.features': 'Функции',
             'nav.about': 'О нас',
@@ -647,12 +1118,27 @@ const languages = {
             'footer.support.privacy': 'Политика конфиденциальности',
             'footer.contact': 'Контакты',
             'footer.contact.email': 'Консультация по электронной почте',
-            'footer.copyright': '© 2024 BirdAiSnap. Все права защищены'
+            'footer.copyright': '© 2024 BirdAiSnap. Все права защищены',
+            'knowledge.hero.title': 'Центр знаний о птицах',
+            'knowledge.hero.description': 'Исследуйте увлекательный мир птиц через комплексные ресурсы знаний',
+            'knowledge.categories.birdwatching': 'Наблюдение за птицами',
+            'knowledge.categories.birdwatching.desc': 'Изучите искусство наблюдения за птицами и техники идентификации',
+            'knowledge.categories.scientific': 'Научные чудеса',
+            'knowledge.categories.scientific.desc': 'Откройте для себя удивительные научные факты и исследования о птицах',
+            'knowledge.categories.petcare': 'Уход за домашними птицами',
+            'knowledge.categories.petcare.desc': 'Основные руководства по уходу для владельцев и любителей домашних птиц',
+            'knowledge.categories.ecology': 'Птичья экология',
+            'knowledge.categories.ecology.desc': 'Понимание среды обитания, миграции и экологических ролей птиц',
+            'knowledge.categories.cultural': 'Культурная символика',
+            'knowledge.categories.cultural.desc': 'Птицы в мифологии, искусстве, литературе и культурном значении',
+            'knowledge.latest.title': 'Последние статьи',
+            'knowledge.articles.stats': 'статей'
         }
     }
 };
 
-let currentLang = 'en';
+// 从 localStorage 获取保存的语言设置，如果没有则默认为英文
+let currentLang = localStorage.getItem('selectedLanguage') || 'en';
 
 // 创建语言下拉菜单
 function createLanguageDropdown() {
@@ -662,6 +1148,9 @@ function createLanguageDropdown() {
         return;
     }
 
+    // 清空现有内容
+    languageSwitcher.innerHTML = '';
+
     const dropdown = document.createElement('div');
     dropdown.className = 'lang-dropdown';
 
@@ -670,7 +1159,7 @@ function createLanguageDropdown() {
     button.innerHTML = `
         <span class="lang-icon">🌐</span>
         <span class="lang-text">Language</span>
-        <span id="currentLang">${languages[currentLang].code}</span>
+        <span id="currentLang">${languages[currentLang] ? languages[currentLang].code : 'EN'}</span>
         <span class="dropdown-arrow">▼</span>
     `;
 
@@ -707,8 +1196,12 @@ function createLanguageDropdown() {
 
 // 翻译页面内容
 function translatePage(langCode) {
+    if (!languages[langCode] || !languages[langCode].translations) {
+        console.log('Translation not found for language:', langCode);
+        return;
+    }
+
     const translations = languages[langCode].translations;
-    if (!translations) return;
 
     // 翻译所有带有data-i18n属性的元素
     const elementsToTranslate = document.querySelectorAll('[data-i18n]');
@@ -734,9 +1227,15 @@ function translatePage(langCode) {
 
 // 切换语言
 function switchLanguage(langCode) {
-    if (!languages[langCode]) return;
+    if (!languages[langCode]) {
+        console.log('Language not found:', langCode);
+        return;
+    }
     
     currentLang = langCode;
+    
+    // 保存语言设置到 localStorage
+    localStorage.setItem('selectedLanguage', langCode);
     
     // 更新下拉菜单显示
     const currentLangElement = document.getElementById('currentLang');
@@ -745,16 +1244,13 @@ function switchLanguage(langCode) {
     }
 
     // 更新选中状态
-    document.querySelectorAll('.lang-option').forEach(option => {
+    const langOptions = document.querySelectorAll('.lang-option');
+    langOptions.forEach(option => {
         option.classList.remove('active');
+        if (option.innerHTML.includes(languages[langCode].code)) {
+            option.classList.add('active');
+        }
     });
-    
-    const activeOption = Array.from(document.querySelectorAll('.lang-option')).find(option => 
-        option.innerHTML.includes(languages[langCode].code)
-    );
-    if (activeOption) {
-        activeOption.classList.add('active');
-    }
 
     // 关闭下拉菜单
     const dropdown = document.querySelector('.lang-dropdown');
@@ -771,7 +1267,119 @@ function switchLanguage(langCode) {
 // 页面加载完成后初始化
 document.addEventListener('DOMContentLoaded', function() {
     console.log('DOM loaded, creating language dropdown...');
+    
+    // 检查 URL 参数中是否有语言设置
+    const urlParams = new URLSearchParams(window.location.search);
+    const urlLang = urlParams.get('lang');
+    if (urlLang && languages[urlLang]) {
+        currentLang = urlLang;
+        localStorage.setItem('selectedLanguage', urlLang);
+    }
+    
     setTimeout(() => {
-        createLanguageDropdown();
+        // 只有在找到语言切换器容器时才创建下拉菜单
+        if (document.querySelector('.language-switcher')) {
+            createLanguageDropdown();
+        }
+        // 初始化时应用当前语言
+        translatePage(currentLang);
     }, 100);
 });
+
+// 为链接添加语言参数的函数
+function addLanguageParam(event, linkElement) {
+    try {
+        if (event) event.preventDefault();
+        if (!linkElement) return;
+        
+        const currentLang = localStorage.getItem('selectedLanguage') || 'en';
+        const originalHref = linkElement.getAttribute('href');
+        
+        if (!originalHref) return;
+        
+        // 根据当前语言构建对应的URL
+        let newHref = originalHref;
+        if (currentLang !== 'en') {
+            // 将 en/ 替换为对应语言的路径
+            newHref = originalHref.replace('en/', currentLang + '/');
+        }
+        
+        // 添加语言参数
+        const separator = newHref.includes('?') ? '&' : '?';
+        newHref += separator + 'lang=' + currentLang;
+        
+        // 跳转到新URL
+        window.location.href = newHref;
+    } catch (error) {
+        console.log('Link navigation error:', error);
+    }
+}
+
+// 为分类页面导航添加语言参数的函数
+function navigateWithLanguage(pageName) {
+    try {
+        if (!pageName) return;
+        
+        const currentLang = localStorage.getItem('selectedLanguage') || 'en';
+        
+        // 添加语言参数
+        const separator = pageName.includes('?') ? '&' : '?';
+        const newUrl = pageName + separator + 'lang=' + currentLang;
+        
+        // 跳转到新URL
+        window.location.href = newUrl;
+    } catch (error) {
+        console.log('Navigation error:', error);
+    }
+}
+
+// 为文章页面添加语言检测和跳转功能
+function handleArticleLanguageRedirect() {
+    try {
+        // 检查当前页面是否是文章页面
+        const path = window.location.pathname;
+        if (path.includes('/knowledge/') || path.includes('/birdwatching/') || 
+            path.includes('/pet-care/') || path.includes('/scientific-wonders/') || 
+            path.includes('/ecology/') || path.includes('/cultural-symbolism/')) {
+            
+            const urlParams = new URLSearchParams(window.location.search);
+            const urlLang = urlParams.get('lang');
+            const savedLang = localStorage.getItem('selectedLanguage') || 'en';
+            
+            // 如果URL中有语言参数，使用它；否则使用保存的语言
+            const targetLang = urlLang || savedLang;
+            
+            // 检查当前页面的语言是否与目标语言匹配
+            const pathParts = path.split('/').filter(part => part.length > 0);
+            const currentPageLang = pathParts[0]; // 获取路径中的语言代码
+            
+            if (currentPageLang !== targetLang && languages[targetLang] && pathParts.length > 1) {
+                // 构建正确的语言版本URL
+                pathParts[0] = targetLang;
+                const newPath = '/' + pathParts.join('/');
+                const newUrl = window.location.origin + newPath + window.location.search;
+                
+                // 跳转到正确的语言版本
+                window.location.href = newUrl;
+            }
+        }
+    } catch (error) {
+        console.log('Language redirect error:', error);
+    }
+}
+
+// 安全的页面加载处理
+function safeInitialize() {
+    try {
+        handleArticleLanguageRedirect();
+    } catch (error) {
+        console.log('Initialization error:', error);
+    }
+}
+
+// 在页面加载时检查语言跳转
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', safeInitialize);
+} else {
+    safeInitialize();
+}

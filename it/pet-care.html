@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cura degli uccelli domestici - BirdAiSnap</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+        
+        .language-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        
+        .lang-dropdown {
+            position: relative;
+        }
+        
+        .lang-btn {
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid #e0e0e0;
+            border-radius: 25px;
+            padding: 8px 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #333;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .lang-btn:hover {
+            background: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+        
+        .lang-icon {
+            font-size: 16px;
+        }
+        
+        .dropdown-arrow {
+            font-size: 12px;
+            transition: transform 0.3s ease;
+        }
+        
+        .lang-dropdown.active .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+        
+        .lang-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1001;
+            margin-top: 5px;
+        }
+        
+        .lang-dropdown.active .lang-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .lang-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .lang-option:last-child {
+            border-bottom: none;
+        }
+        
+        .lang-option:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .lang-option.active {
+            background-color: #e3f2fd;
+            color: #1976d2;
+        }
+        
+        .lang-option .flag {
+            font-size: 18px;
+        }
+        
+        .lang-option .name {
+            flex: 1;
+            font-weight: 500;
+        }
+        
+        .lang-option .code {
+            font-size: 12px;
+            color: #666;
+            background: #f0f0f0;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+        
+        .lang-option.active .code {
+            background: #bbdefb;
+            color: #1976d2;
+        }
+        
+        .header {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.6)), 
+                        url('../images/birds/species/bird-image-002.webp') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .header-title {
+            color: white;
+            font-size: 32px;
+            font-weight: 700;
+            text-align: center;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .content {
+            background: white;
+            margin: -30px 20px 20px 20px;
+            border-radius: 20px;
+            padding: 30px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            min-height: 80vh;
+        }
+        
+        .intro-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            margin: 20px 0;
+            text-align: center;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .article-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .article-card {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            height: 250px;
+            display: block;
+            text-decoration: none;
+        }
+        
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .article-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .article-card:hover .article-image {
+            transform: scale(1.05);
+        }
+        
+        .article-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            padding: 20px;
+            color: white;
+        }
+        
+        .article-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .article-description {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        @media (max-width: 768px) {
+            .article-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 20px;
+            }
+            
+            .header-title {
+                font-size: 28px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .article-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header-title {
+                font-size: 24px;
+            }
+            
+            .content {
+                margin: -20px 15px 15px 15px;
+                padding: 25px 15px;
+            }
+        }
+    </style>
+    <!-- 语言重定向脚本 -->
+    <script src="../language-redirect.js"></script>
+</head>
+<body>
+    <!-- 语言切换器 -->
+    <div class="language-switcher"></div>
+    
+    <!-- 头部横幅 -->
+    <div class="header">
+        <h1 class="header-title">Cura degli uccelli domestici</h1>
+    </div>
+    
+    <!-- 主要内容 -->
+    <div class="content">
+        <p class="intro-text">
+            Esplorate guide complete per la cura degli uccelli domestici. Dalla scelta dell'uccello giusto alle tecniche di cura avanzate, ecco tutto quello che dovete sapere sul benessere dei vostri amici piumati.
+        </p>
+        
+        <div class="article-grid">
+            <!-- 文章1 -->
+            <a href="pet-care/01-choosing-right-bird.html" class="article-card">
+                <img src="../images/birds/species/bird-image-011.webp" class="article-image" alt="Scegliere l'uccello giusto">
+                <div class="article-overlay">
+                    <h3 class="article-title">Scegliere l'uccello giusto</h3>
+                    <p class="article-description">Guida per selezionare la razza di uccello perfetta per la vostra casa</p>
+                </div>
+            </a>
+            
+            <!-- 文章2 -->
+            <a href="pet-care/02-nutrition-feeding.html" class="article-card">
+                <img src="../images/birds/species/bird-image-012.webp" class="article-image" alt="Nutrizione e alimentazione">
+                <div class="article-overlay">
+                    <h3 class="article-title">Nutrizione e alimentazione</h3>
+                    <p class="article-description">Nutrizione equilibrata e tecniche di alimentazione appropriate</p>
+                </div>
+            </a>
+            
+            <!-- 文章3 -->
+            <a href="pet-care/03-housing-environment.html" class="article-card">
+                <img src="../images/birds/species/bird-image-013.webp" class="article-image" alt="Alloggio e ambiente">
+                <div class="article-overlay">
+                    <h3 class="article-title">Alloggio e ambiente</h3>
+                    <p class="article-description">Creare un ambiente di vita ideale per i vostri uccelli</p>
+                </div>
+            </a>
+            
+            <!-- 文章4 -->
+            <a href="pet-care/04-health-veterinary.html" class="article-card">
+                <img src="../images/birds/species/bird-image-014.webp" class="article-image" alt="Salute e cure veterinarie">
+                <div class="article-overlay">
+                    <h3 class="article-title">Salute e cure veterinarie</h3>
+                    <p class="article-description">Monitoraggio della salute e cure veterinarie</p>
+                </div>
+            </a>
+            
+            <!-- 文章5 -->
+            <a href="pet-care/05-training-behavior.html" class="article-card">
+                <img src="../images/birds/species/bird-image-015.webp" class="article-image" alt="Addestramento e comportamento">
+                <div class="article-overlay">
+                    <h3 class="article-title">Addestramento e comportamento</h3>
+                    <p class="article-description">Comprensione del comportamento e tecniche di addestramento</p>
+                </div>
+            </a>
+            
+            <!-- 文章6 -->
+            <a href="pet-care/06-breeding-reproduction.html" class="article-card">
+                <img src="../images/birds/species/bird-image-016.webp" class="article-image" alt="Allevamento e riproduzione">
+                <div class="article-overlay">
+                    <h3 class="article-title">Allevamento e riproduzione</h3>
+                    <p class="article-description">Guida all'allevamento responsabile di uccelli</p>
+                </div>
+            </a>
+            
+            <!-- 文章7 -->
+            <a href="pet-care/07-emergency-first-aid.html" class="article-card">
+                <img src="../images/birds/species/bird-image-017.webp" class="article-image" alt="Soccorso di emergenza">
+                <div class="article-overlay">
+                    <h3 class="article-title">Soccorso di emergenza</h3>
+                    <p class="article-description">Procedure di emergenza e tecniche di primo soccorso</p>
+                </div>
+            </a>
+            
+            <!-- 文章8 -->
+            <a href="pet-care/08-seasonal-care.html" class="article-card">
+                <img src="../images/birds/species/bird-image-018.webp" class="article-image" alt="Cura stagionale">
+                <div class="article-overlay">
+                    <h3 class="article-title">Cura stagionale</h3>
+                    <p class="article-description">Regolare la cura secondo le stagioni</p>
+                </div>
+            </a>
+            
+            <!-- 文章9 -->
+            <a href="pet-care/09-enrichment-activities.html" class="article-card">
+                <img src="../images/birds/species/bird-image-019.webp" class="article-image" alt="Attività di arricchimento">
+                <div class="article-overlay">
+                    <h3 class="article-title">Attività di arricchimento</h3>
+                    <p class="article-description">Stimolazione mentale e idee di arricchimento</p>
+                </div>
+            </a>
+            
+            <!-- 文章10 -->
+            <a href="pet-care/10-species-profiles.html" class="article-card">
+                <img src="../images/birds/species/bird-image-020.webp" class="article-image" alt="Profili delle specie">
+                <div class="article-overlay">
+                    <h3 class="article-title">Profili delle specie</h3>
+                    <p class="article-description">Profili dettagliati di uccelli domestici popolari</p>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- 引入多语言脚本 -->
+    <script src="../script.js"></script>
+</body>
+</html>

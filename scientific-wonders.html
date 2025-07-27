@@ -1,305 +1,247 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scientific Wonders - Bird Knowledge Center</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="knowledge.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>鸟类科学奇观 - BirdAiSnap</title>
     <style>
-        .mobile-article-list {
-            padding: 1rem;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
         
-        .mobile-article-item {
-            background: white;
-            border-radius: 12px;
-            margin-bottom: 1rem;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            overflow: hidden;
-        }
-        
-        .mobile-article-header {
-            padding: 1rem;
-            border-bottom: 1px solid #f0f0f0;
-        }
-        
-        .mobile-article-title {
-            font-size: 1.1rem;
-            font-weight: 600;
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
             color: #333;
-            margin-bottom: 0.5rem;
         }
         
-        .mobile-article-meta {
-            font-size: 0.9rem;
-            color: #666;
-        }
-        
-        .mobile-article-content {
-            padding: 1rem;
-        }
-        
-        .mobile-article-excerpt {
-            color: #555;
-            line-height: 1.6;
-            margin-bottom: 1rem;
-        }
-        
-        .mobile-article-image {
+        .header {
             width: 100%;
             height: 200px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.6)), 
+                        url('images/birds/species/bird-image-030.webp') center/cover;
             display: flex;
             align-items: center;
             justify-content: center;
+            position: relative;
+        }
+        
+        .header-title {
             color: white;
-            font-size: 3rem;
-        }
-        
-        .mobile-read-more {
-            color: #667eea;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.9rem;
-        }
-        
-        .mobile-category-badge {
-            background: #667eea;
-            color: white;
-            padding: 0.3rem 0.8rem;
-            border-radius: 15px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            display: inline-block;
-            margin-bottom: 0.5rem;
-        }
-        
-        .knowledge-hero {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 3rem 1rem;
-            text-align: center;
-        }
-        
-        .knowledge-hero h1 {
-            font-size: 2rem;
+            font-size: 32px;
             font-weight: 700;
-            margin-bottom: 1rem;
+            text-align: center;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
         
-        .knowledge-hero p {
-            font-size: 1.1rem;
+        .content {
+            background: white;
+            margin: -30px 20px 20px 20px;
+            border-radius: 20px;
+            padding: 30px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            min-height: 80vh;
+        }
+        
+        .intro-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            margin: 20px 0;
+            text-align: center;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .article-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .article-card {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            height: 250px;
+            display: block;
+            text-decoration: none;
+        }
+        
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .article-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .article-card:hover .article-image {
+            transform: scale(1.05);
+        }
+        
+        .article-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            padding: 20px;
+            color: white;
+        }
+        
+        .article-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .article-description {
+            font-size: 14px;
             opacity: 0.9;
-            max-width: 600px;
-            margin: 0 auto;
+        }
+        
+        @media (max-width: 768px) {
+            .article-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 20px;
+            }
+            
+            .header-title {
+                font-size: 28px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .article-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header-title {
+                font-size: 24px;
+            }
+            
+            .content {
+                margin: -20px 15px 15px 15px;
+                padding: 25px 15px;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- 导航栏 -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <h2><a href="index.html">BirdAiSnap</a></h2>
-            </div>
-            <ul class="nav-menu">
-                <li><a href="index.html#home">Home</a></li>
-                <li><a href="index.html#features">Features</a></li>
-                <li><a href="index.html#about">About</a></li>
-                <li><a href="index.html#contact">Contact</a></li>
-                <li><a href="knowledge.html">Knowledge</a></li>
-            </ul>
-            <div class="language-switcher">
-                <button id="langSwitch" class="lang-btn" onclick="toggleLanguage()">
-                    <span class="lang-icon">🌐</span>
-                    <span class="lang-text">Language</span>
-                    <span id="currentLang">EN</span>
-                </button>
-            </div>
-            <div class="nav-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </nav>
-
+    <!-- 头部横幅 -->
+    <div class="header">
+        <h1 class="header-title">鸟类科学奇观</h1>
+    </div>
+    
     <!-- 主要内容 -->
-    <main>
-        <!-- 页面头部 -->
-        <section class="knowledge-hero">
-            <div class="container">
-                <h1>🔬 Scientific Wonders</h1>
-                <p>Amazing discoveries and scientific insights about birds</p>
-            </div>
-        </section>
-
-        <!-- 文章列表 -->
-        <section class="mobile-article-list">
-            <div class="container">
-                <div class="mobile-article-item">
-                    <div class="mobile-article-image">✈️</div>
-                    <div class="mobile-article-header">
-                        <div class="mobile-category-badge">Scientific Wonders</div>
-                        <h3 class="mobile-article-title">The Mechanics of Bird Flight</h3>
-                        <div class="mobile-article-meta">Published: January 2025 • Reading time: 8 minutes</div>
-                    </div>
-                    <div class="mobile-article-content">
-                        <p class="mobile-article-excerpt">Discover the fascinating physics and biomechanics behind bird flight, from wing structure to aerodynamic principles that enable birds to soar through the skies.</p>
-                        <a href="en/scientific-wonders/01-bird-flight-mechanics.html" class="mobile-read-more">Read More →</a>
-                    </div>
+    <div class="content">
+        <p class="intro-text">
+            探索鸟类世界中令人惊叹的科学奇观。从飞行力学到磁场导航，从羽毛结构到认知能力，这里汇集了关于鸟类的最新科学发现和研究成果。点击下方任意文章图片，深入了解鸟类的科学奥秘。
+        </p>
+        
+        <div class="article-grid">
+            <!-- 文章1 -->
+            <a href="en/scientific-wonders/01-bird-flight-mechanics.html" class="article-card">
+                <img src="images/birds/species/bird-image-030.webp" class="article-image" alt="鸟类飞行力学">
+                <div class="article-overlay">
+                    <h3 class="article-title">鸟类飞行力学</h3>
+                    <p class="article-description">探索鸟类飞行背后的物理学和生物力学原理</p>
                 </div>
-
-                <div class="mobile-article-item">
-                    <div class="mobile-article-image">🧭</div>
-                    <div class="mobile-article-header">
-                        <div class="mobile-category-badge">Scientific Wonders</div>
-                        <h3 class="mobile-article-title">Magnetic Navigation in Birds</h3>
-                        <div class="mobile-article-meta">Published: January 2025 • Reading time: 7 minutes</div>
-                    </div>
-                    <div class="mobile-article-content">
-                        <p class="mobile-article-excerpt">Explore how birds use Earth's magnetic field for navigation during migration, including the latest research on magnetoreception and internal compass systems.</p>
-                        <a href="en/scientific-wonders/02-magnetic-navigation.html" class="mobile-read-more">Read More →</a>
-                    </div>
+            </a>
+            
+            <!-- 文章2 -->
+            <a href="en/scientific-wonders/02-magnetic-navigation.html" class="article-card">
+                <img src="images/birds/species/bird-image-031.webp" class="article-image" alt="鸟类磁场导航">
+                <div class="article-overlay">
+                    <h3 class="article-title">鸟类磁场导航</h3>
+                    <p class="article-description">了解鸟类如何利用地球磁场进行迁徙导航</p>
                 </div>
-
-                <div class="mobile-article-item">
-                    <div class="mobile-article-image">🌺</div>
-                    <div class="mobile-article-header">
-                        <div class="mobile-category-badge">Scientific Wonders</div>
-                        <h3 class="mobile-article-title">Hummingbird Flight Mechanics</h3>
-                        <div class="mobile-article-meta">Published: January 2025 • Reading time: 6 minutes</div>
-                    </div>
-                    <div class="mobile-article-content">
-                        <p class="mobile-article-excerpt">Uncover the unique flight capabilities of hummingbirds, including their ability to hover, fly backwards, and achieve incredible wing beat frequencies.</p>
-                        <a href="en/scientific-wonders/03-hummingbird-mechanics.html" class="mobile-read-more">Read More →</a>
-                    </div>
+            </a>
+            
+            <!-- 文章3 -->
+            <a href="en/scientific-wonders/03-hummingbird-mechanics.html" class="article-card">
+                <img src="images/birds/species/bird-image-032.webp" class="article-image" alt="蜂鸟飞行力学">
+                <div class="article-overlay">
+                    <h3 class="article-title">蜂鸟飞行力学</h3>
+                    <p class="article-description">揭秘蜂鸟独特的悬停和倒飞能力</p>
                 </div>
-
-                <div class="mobile-article-item">
-                    <div class="mobile-article-image">🧠</div>
-                    <div class="mobile-article-header">
-                        <div class="mobile-category-badge">Scientific Wonders</div>
-                        <h3 class="mobile-article-title">Bird Intelligence and Cognition</h3>
-                        <div class="mobile-article-meta">Published: January 2025 • Reading time: 9 minutes</div>
-                    </div>
-                    <div class="mobile-article-content">
-                        <p class="mobile-article-excerpt">Delve into the remarkable intelligence of birds, from problem-solving abilities to tool use, memory, and complex social behaviors that rival mammals.</p>
-                        <a href="en/scientific-wonders/04-bird-intelligence.html" class="mobile-read-more">Read More →</a>
-                    </div>
+            </a>
+            
+            <!-- 文章4 -->
+            <a href="en/scientific-wonders/04-bird-intelligence.html" class="article-card">
+                <img src="images/birds/species/bird-image-033.webp" class="article-image" alt="鸟类智能与认知">
+                <div class="article-overlay">
+                    <h3 class="article-title">鸟类智能与认知</h3>
+                    <p class="article-description">探索鸟类令人惊叹的智力和解决问题的能力</p>
                 </div>
-
-                <div class="mobile-article-item">
-                    <div class="mobile-article-image">🪶</div>
-                    <div class="mobile-article-header">
-                        <div class="mobile-category-badge">Scientific Wonders</div>
-                        <h3 class="mobile-article-title">The Structure and Function of Feathers</h3>
-                        <div class="mobile-article-meta">Published: January 2025 • Reading time: 7 minutes</div>
-                    </div>
-                    <div class="mobile-article-content">
-                        <p class="mobile-article-excerpt">Learn about the complex structure of feathers and their multiple functions, from flight and insulation to display and waterproofing.</p>
-                        <a href="en/scientific-wonders/05-feather-structure.html" class="mobile-read-more">Read More →</a>
-                    </div>
+            </a>
+            
+            <!-- 文章5 -->
+            <a href="en/scientific-wonders/05-feather-structure.html" class="article-card">
+                <img src="images/birds/species/bird-image-034.webp" class="article-image" alt="羽毛结构与功能">
+                <div class="article-overlay">
+                    <h3 class="article-title">羽毛结构与功能</h3>
+                    <p class="article-description">了解羽毛的复杂结构及其多种功能</p>
                 </div>
-
-                <div class="mobile-article-item">
-                    <div class="mobile-article-image">👁️</div>
-                    <div class="mobile-article-header">
-                        <div class="mobile-category-badge">Scientific Wonders</div>
-                        <h3 class="mobile-article-title">Extraordinary Bird Vision</h3>
-                        <div class="mobile-article-meta">Published: January 2025 • Reading time: 8 minutes</div>
-                    </div>
-                    <div class="mobile-article-content">
-                        <p class="mobile-article-excerpt">Discover how birds see the world with their superior vision, including UV perception, magnetic field detection, and incredible visual acuity.</p>
-                        <a href="en/scientific-wonders/06-bird-vision.html" class="mobile-read-more">Read More →</a>
-                    </div>
+            </a>
+            
+            <!-- 文章6 -->
+            <a href="en/scientific-wonders/06-bird-vision.html" class="article-card">
+                <img src="images/birds/species/bird-image-035.webp" class="article-image" alt="鸟类非凡视觉">
+                <div class="article-overlay">
+                    <h3 class="article-title">鸟类非凡视觉</h3>
+                    <p class="article-description">探索鸟类如何通过超强视力感知世界</p>
                 </div>
-
-                <div class="mobile-article-item">
-                    <div class="mobile-article-image">🥚</div>
-                    <div class="mobile-article-header">
-                        <div class="mobile-category-badge">Scientific Wonders</div>
-                        <h3 class="mobile-article-title">The Science of Egg Development</h3>
-                        <div class="mobile-article-meta">Published: January 2025 • Reading time: 6 minutes</div>
-                    </div>
-                    <div class="mobile-article-content">
-                        <p class="mobile-article-excerpt">Explore the remarkable process of avian embryonic development, from fertilization to hatching, and the evolutionary advantages of egg-laying.</p>
-                        <a href="en/scientific-wonders/07-egg-development.html" class="mobile-read-more">Read More →</a>
-                    </div>
+            </a>
+            
+            <!-- 文章7 -->
+            <a href="en/scientific-wonders/07-egg-development.html" class="article-card">
+                <img src="images/birds/species/bird-image-036.webp" class="article-image" alt="蛋的发育科学">
+                <div class="article-overlay">
+                    <h3 class="article-title">蛋的发育科学</h3>
+                    <p class="article-description">探索从受精到孵化的鸟类胚胎发育过程</p>
                 </div>
-
-                <div class="mobile-article-item">
-                    <div class="mobile-article-image">🎵</div>
-                    <div class="mobile-article-header">
-                        <div class="mobile-category-badge">Scientific Wonders</div>
-                        <h3 class="mobile-article-title">Bird Communication and Vocalizations</h3>
-                        <div class="mobile-article-meta">Published: January 2025 • Reading time: 7 minutes</div>
-                    </div>
-                    <div class="mobile-article-content">
-                        <p class="mobile-article-excerpt">Understand the complex world of bird communication, from song learning and dialects to the neurological basis of vocal production.</p>
-                        <a href="en/scientific-wonders/08-bird-communication.html" class="mobile-read-more">Read More →</a>
-                    </div>
+            </a>
+            
+            <!-- 文章8 -->
+            <a href="en/scientific-wonders/08-bird-communication.html" class="article-card">
+                <img src="images/birds/species/bird-image-037.webp" class="article-image" alt="鸟类交流与发声">
+                <div class="article-overlay">
+                    <h3 class="article-title">鸟类交流与发声</h3>
+                    <p class="article-description">了解鸟类复杂的交流系统和发声机制</p>
                 </div>
-
-                <div class="mobile-article-item">
-                    <div class="mobile-article-image">🌍</div>
-                    <div class="mobile-article-header">
-                        <div class="mobile-category-badge">Scientific Wonders</div>
-                        <h3 class="mobile-article-title">Migration Physiology</h3>
-                        <div class="mobile-article-meta">Published: January 2025 • Reading time: 8 minutes</div>
-                    </div>
-                    <div class="mobile-article-content">
-                        <p class="mobile-article-excerpt">Learn about the incredible physiological adaptations that enable birds to undertake long-distance migrations, including energy storage and navigation.</p>
-                        <a href="en/scientific-wonders/09-migration-physiology.html" class="mobile-read-more">Read More →</a>
-                    </div>
+            </a>
+            
+            <!-- 文章9 -->
+            <a href="en/scientific-wonders/09-migration-physiology.html" class="article-card">
+                <img src="images/birds/species/bird-image-038.webp" class="article-image" alt="迁徙生理学">
+                <div class="article-overlay">
+                    <h3 class="article-title">迁徙生理学</h3>
+                    <p class="article-description">探索使鸟类能够进行长距离迁徙的生理适应</p>
                 </div>
-
-                <div class="mobile-article-item">
-                    <div class="mobile-article-image">⚙️</div>
-                    <div class="mobile-article-header">
-                        <div class="mobile-category-badge">Scientific Wonders</div>
-                        <h3 class="mobile-article-title">Biomechanics of Bird Movement</h3>
-                        <div class="mobile-article-meta">Published: January 2025 • Reading time: 7 minutes</div>
-                    </div>
-                    <div class="mobile-article-content">
-                        <p class="mobile-article-excerpt">Explore the biomechanical principles behind various bird movements, from walking and swimming to diving and perching adaptations.</p>
-                        <a href="en/scientific-wonders/10-biomechanics.html" class="mobile-read-more">Read More →</a>
-                    </div>
+            </a>
+            
+            <!-- 文章10 -->
+            <a href="en/scientific-wonders/10-biomechanics.html" class="article-card">
+                <img src="images/birds/species/bird-image-039.webp" class="article-image" alt="鸟类运动生物力学">
+                <div class="article-overlay">
+                    <h3 class="article-title">鸟类运动生物力学</h3>
+                    <p class="article-description">了解鸟类各种运动方式背后的生物力学原理</p>
                 </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- 页脚 -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>BirdAiSnap</h3>
-                    <p>Smart bird recognition powered by AI technology</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="knowledge.html">Knowledge Center</a></li>
-                        <li><a href="https://play.google.com/store/apps/details?id=com.bird.ai.snap">Download App</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Contact</h4>
-                    <p>Email: lingjuetech@gmail.com</p>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Hangzhou Lingjue Technology Co., Ltd. All rights reserved.</p>
-            </div>
+            </a>
         </div>
-    </footer>
-
-    <script src="language-router.js"></script>
-    <script src="script.js"></script>
+    </div>
 </body>
-</html> 
+</html>

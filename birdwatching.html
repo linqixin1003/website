@@ -1,304 +1,247 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bird Watching - Bird Knowledge Center</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="knowledge.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>观鸟指南 - BirdAiSnap</title>
     <style>
-        .mobile-article-list {
-            padding: 1rem;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
         
-        .mobile-article-item {
-            background: white;
-            border-radius: 12px;
-            margin-bottom: 1rem;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            overflow: hidden;
-        }
-        
-        .mobile-article-header {
-            padding: 1rem;
-            border-bottom: 1px solid #f0f0f0;
-        }
-        
-        .mobile-article-title {
-            font-size: 1.1rem;
-            font-weight: 600;
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
             color: #333;
-            margin-bottom: 0.5rem;
         }
         
-        .mobile-article-meta {
-            font-size: 0.9rem;
-            color: #666;
-        }
-        
-        .mobile-article-content {
-            padding: 1rem;
-        }
-        
-        .mobile-article-excerpt {
-            color: #555;
-            line-height: 1.6;
-            margin-bottom: 1rem;
-        }
-        
-        .mobile-article-image {
+        .header {
             width: 100%;
             height: 200px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.6)), 
+                        url('images/birds/species/bird-image-007.webp') center/cover;
             display: flex;
             align-items: center;
             justify-content: center;
+            position: relative;
+        }
+        
+        .header-title {
             color: white;
-            font-size: 3rem;
-        }
-        
-        .mobile-read-more {
-            color: #667eea;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.9rem;
-        }
-        
-        .mobile-category-badge {
-            background: #667eea;
-            color: white;
-            padding: 0.3rem 0.8rem;
-            border-radius: 15px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            display: inline-block;
-            margin-bottom: 0.5rem;
-        }
-        
-        .knowledge-hero {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 3rem 1rem;
-            text-align: center;
-        }
-        
-        .knowledge-hero h1 {
-            font-size: 2rem;
+            font-size: 32px;
             font-weight: 700;
-            margin-bottom: 1rem;
+            text-align: center;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
         
-        .knowledge-hero p {
-            font-size: 1.1rem;
+        .content {
+            background: white;
+            margin: -30px 20px 20px 20px;
+            border-radius: 20px;
+            padding: 30px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            min-height: 80vh;
+        }
+        
+        .intro-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            margin: 20px 0;
+            text-align: center;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .article-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .article-card {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            height: 250px;
+            display: block;
+            text-decoration: none;
+        }
+        
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .article-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .article-card:hover .article-image {
+            transform: scale(1.05);
+        }
+        
+        .article-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            padding: 20px;
+            color: white;
+        }
+        
+        .article-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .article-description {
+            font-size: 14px;
             opacity: 0.9;
-            max-width: 600px;
-            margin: 0 auto;
+        }
+        
+        @media (max-width: 768px) {
+            .article-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 20px;
+            }
+            
+            .header-title {
+                font-size: 28px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .article-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header-title {
+                font-size: 24px;
+            }
+            
+            .content {
+                margin: -20px 15px 15px 15px;
+                padding: 25px 15px;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- 导航栏 -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <h2><a href="index.html">BirdAiSnap</a></h2>
-            </div>
-            <ul class="nav-menu">
-                <li><a href="index.html#home">Home</a></li>
-                <li><a href="index.html#features">Features</a></li>
-                <li><a href="index.html#about">About</a></li>
-                <li><a href="index.html#contact">Contact</a></li>
-                <li><a href="knowledge.html">Knowledge</a></li>
-            </ul>
-            <div class="language-switcher">
-                <button id="langSwitch" class="lang-btn" onclick="toggleLanguage()">
-                    <span class="lang-icon">🌐</span>
-                    <span class="lang-text">Language</span>
-                    <span id="currentLang">EN</span>
-                </button>
-            </div>
-            <div class="nav-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </nav>
-
+    <!-- 头部横幅 -->
+    <div class="header">
+        <h1 class="header-title">观鸟指南</h1>
+    </div>
+    
     <!-- 主要内容 -->
-    <main>
-        <!-- 页面头部 -->
-        <section class="knowledge-hero">
-            <div class="container">
-                <h1>🔍 Bird Watching</h1>
-                <p>Essential guides and tips for bird watching enthusiasts</p>
-            </div>
-        </section>
-
-        <!-- 文章列表 -->
-        <section class="mobile-article-list">
-            <div class="container">
-                <div class="mobile-article-item">
-                    <div class="mobile-article-image">📖</div>
-                    <div class="mobile-article-header">
-                        <div class="mobile-category-badge">Bird Watching</div>
-                        <h3 class="mobile-article-title">Beginners Guide to Bird Watching</h3>
-                        <div class="mobile-article-meta">Published: January 2025 • Reading time: 8 minutes</div>
-                    </div>
-                    <div class="mobile-article-content">
-                        <p class="mobile-article-excerpt">A comprehensive introduction to bird watching for beginners. Learn the basics of identification, equipment, and techniques to get started in this rewarding hobby.</p>
-                        <a href="en/birdwatching/01-getting-started.html" class="mobile-read-more">Read More →</a>
-                    </div>
+    <div class="content">
+        <p class="intro-text">
+            欢迎来到我们的观鸟指南专区。这里提供了全面的观鸟技巧和知识，从入门基础到高级识别技术，帮助您更好地欣赏和了解鸟类世界。点击下方任意文章图片，深入探索观鸟的奥秘。
+        </p>
+        
+        <div class="article-grid">
+            <!-- 文章1 -->
+            <a href="en/birdwatching/01-getting-started.html" class="article-card">
+                <img src="images/birds/species/bird-image-001.webp" class="article-image" alt="观鸟入门指南">
+                <div class="article-overlay">
+                    <h3 class="article-title">观鸟入门指南</h3>
+                    <p class="article-description">为初学者提供的全面观鸟介绍</p>
                 </div>
-                
-                <div class="mobile-article-item">
-                    <div class="mobile-article-image">🔧</div>
-                    <div class="mobile-article-header">
-                        <div class="mobile-category-badge">Bird Watching</div>
-                        <h3 class="mobile-article-title">Essential Equipment for Bird Watching</h3>
-                        <div class="mobile-article-meta">Published: January 2025 • Reading time: 6 minutes</div>
-                    </div>
-                    <div class="mobile-article-content">
-                        <p class="mobile-article-excerpt">Discover the essential equipment every bird watcher needs, from binoculars and field guides to clothing and accessories that enhance your birding experience.</p>
-                        <a href="en/birdwatching/02-essential-equipment.html" class="mobile-read-more">Read More →</a>
-                    </div>
+            </a>
+            
+            <!-- 文章2 -->
+            <a href="en/birdwatching/02-essential-equipment.html" class="article-card">
+                <img src="images/birds/species/bird-image-002.webp" class="article-image" alt="观鸟必备装备">
+                <div class="article-overlay">
+                    <h3 class="article-title">观鸟必备装备</h3>
+                    <p class="article-description">了解观鸟所需的各种工具和装备</p>
                 </div>
-                
-                <div class="mobile-article-item">
-                    <div class="mobile-article-image">🔍</div>
-                    <div class="mobile-article-header">
-                        <div class="mobile-category-badge">Bird Watching</div>
-                        <h3 class="mobile-article-title">Bird Identification Techniques</h3>
-                        <div class="mobile-article-meta">Published: January 2025 • Reading time: 7 minutes</div>
-                    </div>
-                    <div class="mobile-article-content">
-                        <p class="mobile-article-excerpt">Master the art of bird identification using size, shape, color, behavior, and vocalizations. Learn systematic approaches to identify birds in the field.</p>
-                        <a href="en/birdwatching/03-identification-techniques.html" class="mobile-read-more">Read More →</a>
-                    </div>
+            </a>
+            
+            <!-- 文章3 -->
+            <a href="en/birdwatching/03-identification-techniques.html" class="article-card">
+                <img src="images/birds/species/bird-image-003.webp" class="article-image" alt="鸟类识别技巧">
+                <div class="article-overlay">
+                    <h3 class="article-title">鸟类识别技巧</h3>
+                    <p class="article-description">掌握鸟类识别的艺术和方法</p>
                 </div>
-                
-                <div class="mobile-article-item">
-                    <div class="mobile-article-image">🗺️</div>
-                    <div class="mobile-article-header">
-                        <div class="mobile-category-badge">Bird Watching</div>
-                        <h3 class="mobile-article-title">Best Bird Watching Locations</h3>
-                        <div class="mobile-article-meta">Published: January 2025 • Reading time: 5 minutes</div>
-                    </div>
-                    <div class="mobile-article-content">
-                        <p class="mobile-article-excerpt">Explore the best bird watching locations, from local parks and nature reserves to famous birding hotspots around the world.</p>
-                        <a href="en/birdwatching/04-best-locations.html" class="mobile-read-more">Read More →</a>
-                    </div>
+            </a>
+            
+            <!-- 文章4 -->
+            <a href="en/birdwatching/04-best-locations.html" class="article-card">
+                <img src="images/birds/species/bird-image-004.webp" class="article-image" alt="最佳观鸟地点">
+                <div class="article-overlay">
+                    <h3 class="article-title">最佳观鸟地点</h3>
+                    <p class="article-description">探索世界各地的观鸟胜地</p>
                 </div>
-                
-                <div class="mobile-article-item">
-                    <div class="mobile-article-image">👁️</div>
-                    <div class="mobile-article-header">
-                        <div class="mobile-category-badge">Bird Watching</div>
-                        <h3 class="mobile-article-title">Seasonal Bird Watching Guide</h3>
-                        <div class="mobile-article-meta">Published: January 2025 • Reading time: 6 minutes</div>
-                    </div>
-                    <div class="mobile-article-content">
-                        <p class="mobile-article-excerpt">Plan your bird watching activities throughout the year with this comprehensive seasonal guide to bird behavior and migration patterns.</p>
-                        <a href="en/birdwatching/05-seasonal-guide.html" class="mobile-read-more">Read More →</a>
-                    </div>
+            </a>
+            
+            <!-- 文章5 -->
+            <a href="en/birdwatching/05-seasonal-guide.html" class="article-card">
+                <img src="images/birds/species/bird-image-005.webp" class="article-image" alt="季节性观鸟指南">
+                <div class="article-overlay">
+                    <h3 class="article-title">季节性观鸟指南</h3>
+                    <p class="article-description">根据季节变化规划您的观鸟活动</p>
                 </div>
-                
-                <div class="mobile-article-item">
-                    <div class="mobile-article-image">🎵</div>
-                    <div class="mobile-article-header">
-                        <div class="mobile-category-badge">Bird Watching</div>
-                        <h3 class="mobile-article-title">Bird Photography Tips</h3>
-                        <div class="mobile-article-meta">Published: January 2025 • Reading time: 7 minutes</div>
-                    </div>
-                    <div class="mobile-article-content">
-                        <p class="mobile-article-excerpt">Capture stunning bird photographs with these essential tips on equipment, techniques, and ethical considerations for bird photography.</p>
-                        <a href="en/birdwatching/06-photography-tips.html" class="mobile-read-more">Read More →</a>
-                    </div>
+            </a>
+            
+            <!-- 文章6 -->
+            <a href="en/birdwatching/06-photography-tips.html" class="article-card">
+                <img src="images/birds/species/bird-image-006.webp" class="article-image" alt="鸟类摄影技巧">
+                <div class="article-overlay">
+                    <h3 class="article-title">鸟类摄影技巧</h3>
+                    <p class="article-description">拍摄精彩鸟类照片的实用建议</p>
                 </div>
-                
-                <div class="mobile-article-item">
-                    <div class="mobile-article-image">👁️</div>
-                    <div class="mobile-article-header">
-                        <div class="mobile-category-badge">Bird Watching</div>
-                        <h3 class="mobile-article-title">Bird Behavior Observation</h3>
-                        <div class="mobile-article-meta">Published: January 2025 • Reading time: 6 minutes</div>
-                    </div>
-                    <div class="mobile-article-content">
-                        <p class="mobile-article-excerpt">Learn to observe and interpret bird behavior, from courtship displays to feeding strategies and social interactions.</p>
-                        <a href="en/birdwatching/07-behavior-observation.html" class="mobile-read-more">Read More →</a>
-                    </div>
+            </a>
+            
+            <!-- 文章7 -->
+            <a href="en/birdwatching/07-behavior-observation.html" class="article-card">
+                <img src="images/birds/species/bird-image-008.webp" class="article-image" alt="鸟类行为观察">
+                <div class="article-overlay">
+                    <h3 class="article-title">鸟类行为观察</h3>
+                    <p class="article-description">学习观察和理解鸟类行为</p>
                 </div>
-                
-                <div class="mobile-article-item">
-                    <div class="mobile-article-image">🎵</div>
-                    <div class="mobile-article-header">
-                        <div class="mobile-category-badge">Bird Watching</div>
-                        <h3 class="mobile-article-title">Bird Song Identification</h3>
-                        <div class="mobile-article-meta">Published: January 2025 • Reading time: 8 minutes</div>
-                    </div>
-                    <div class="mobile-article-content">
-                        <p class="mobile-article-excerpt">Master the art of identifying birds by their songs and calls. Learn techniques for recognizing different vocalizations and their meanings.</p>
-                        <a href="en/birdwatching/08-song-identification.html" class="mobile-read-more">Read More →</a>
-                    </div>
+            </a>
+            
+            <!-- 文章8 -->
+            <a href="en/birdwatching/08-song-identification.html" class="article-card">
+                <img src="images/birds/species/bird-image-009.webp" class="article-image" alt="鸟鸣识别">
+                <div class="article-overlay">
+                    <h3 class="article-title">鸟鸣识别</h3>
+                    <p class="article-description">通过声音识别不同鸟类的技巧</p>
                 </div>
-                
-                <div class="mobile-article-item">
-                    <div class="mobile-article-image">📝</div>
-                    <div class="mobile-article-header">
-                        <div class="mobile-category-badge">Bird Watching</div>
-                        <h3 class="mobile-article-title">Bird Watching Ethics and Conservation</h3>
-                        <div class="mobile-article-meta">Published: January 2025 • Reading time: 7 minutes</div>
-                    </div>
-                    <div class="mobile-article-content">
-                        <p class="mobile-article-excerpt">Understand the ethical principles of bird watching and how to contribute to bird conservation while enjoying your hobby responsibly.</p>
-                        <a href="en/birdwatching/09-ethics-conservation.html" class="mobile-read-more">Read More →</a>
-                    </div>
+            </a>
+            
+            <!-- 文章9 -->
+            <a href="en/birdwatching/09-ethics-conservation.html" class="article-card">
+                <img src="images/birds/species/bird-image-010.webp" class="article-image" alt="观鸟伦理与保护">
+                <div class="article-overlay">
+                    <h3 class="article-title">观鸟伦理与保护</h3>
+                    <p class="article-description">负责任地观鸟并为鸟类保护做贡献</p>
                 </div>
-                
-                <div class="mobile-article-item">
-                    <div class="mobile-article-image">📝</div>
-                    <div class="mobile-article-header">
-                        <div class="mobile-category-badge">Bird Watching</div>
-                        <h3 class="mobile-article-title">Keeping a Bird Watching Journal</h3>
-                        <div class="mobile-article-meta">Published: January 2025 • Reading time: 5 minutes</div>
-                    </div>
-                    <div class="mobile-article-content">
-                        <p class="mobile-article-excerpt">Learn how to keep a detailed bird watching journal to record your observations, track your progress, and enhance your birding experience.</p>
-                        <a href="en/birdwatching/10-journal-keeping.html" class="mobile-read-more">Read More →</a>
-                    </div>
+            </a>
+            
+            <!-- 文章10 -->
+            <a href="en/birdwatching/10-journal-keeping.html" class="article-card">
+                <img src="images/birds/species/bird-image-011.webp" class="article-image" alt="观鸟日志记录">
+                <div class="article-overlay">
+                    <h3 class="article-title">观鸟日志记录</h3>
+                    <p class="article-description">如何记录和整理您的观鸟经历</p>
                 </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- 页脚 -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>BirdAiSnap</h3>
-                    <p>Smart bird recognition powered by AI technology</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="knowledge.html">Knowledge Center</a></li>
-                        <li><a href="https://play.google.com/store/apps/details?id=com.bird.ai.snap">Download App</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Contact</h4>
-                    <p>Email: lingjuetech@gmail.com</p>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Hangzhou Lingjue Technology Co., Ltd. All rights reserved.</p>
-            </div>
+            </a>
         </div>
-    </footer>
-
-    <script src="script.js"></script>
+    </div>
 </body>
-</html> 
+</html>

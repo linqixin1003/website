@@ -1,304 +1,247 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bird Ecology - Bird Knowledge Center</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="knowledge.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>鸟类生态学 - BirdAiSnap</title>
     <style>
-        .mobile-article-list {
-            padding: 1rem;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
         
-        .mobile-article-item {
-            background: white;
-            border-radius: 12px;
-            margin-bottom: 1rem;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            overflow: hidden;
-        }
-        
-        .mobile-article-header {
-            padding: 1rem;
-            border-bottom: 1px solid #f0f0f0;
-        }
-        
-        .mobile-article-title {
-            font-size: 1.1rem;
-            font-weight: 600;
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
             color: #333;
-            margin-bottom: 0.5rem;
         }
         
-        .mobile-article-meta {
-            font-size: 0.9rem;
-            color: #666;
-        }
-        
-        .mobile-article-content {
-            padding: 1rem;
-        }
-        
-        .mobile-article-excerpt {
-            color: #555;
-            line-height: 1.6;
-            margin-bottom: 1rem;
-        }
-        
-        .mobile-article-image {
+        .header {
             width: 100%;
             height: 200px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.6)), 
+                        url('images/birds/species/head_conservation_biology.webp') center/cover;
             display: flex;
             align-items: center;
             justify-content: center;
+            position: relative;
+        }
+        
+        .header-title {
             color: white;
-            font-size: 3rem;
-        }
-        
-        .mobile-read-more {
-            color: #667eea;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.9rem;
-        }
-        
-        .mobile-category-badge {
-            background: #667eea;
-            color: white;
-            padding: 0.3rem 0.8rem;
-            border-radius: 15px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            display: inline-block;
-            margin-bottom: 0.5rem;
-        }
-        
-        .knowledge-hero {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 3rem 1rem;
-            text-align: center;
-        }
-        
-        .knowledge-hero h1 {
-            font-size: 2rem;
+            font-size: 32px;
             font-weight: 700;
-            margin-bottom: 1rem;
+            text-align: center;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
         
-        .knowledge-hero p {
-            font-size: 1.1rem;
+        .content {
+            background: white;
+            margin: -30px 20px 20px 20px;
+            border-radius: 20px;
+            padding: 30px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            min-height: 80vh;
+        }
+        
+        .intro-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            margin: 20px 0;
+            text-align: center;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .article-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .article-card {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            height: 250px;
+            display: block;
+            text-decoration: none;
+        }
+        
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .article-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .article-card:hover .article-image {
+            transform: scale(1.05);
+        }
+        
+        .article-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            padding: 20px;
+            color: white;
+        }
+        
+        .article-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .article-description {
+            font-size: 14px;
             opacity: 0.9;
-            max-width: 600px;
-            margin: 0 auto;
+        }
+        
+        @media (max-width: 768px) {
+            .article-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 20px;
+            }
+            
+            .header-title {
+                font-size: 28px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .article-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header-title {
+                font-size: 24px;
+            }
+            
+            .content {
+                margin: -20px 15px 15px 15px;
+                padding: 25px 15px;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- 导航栏 -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <h2><a href="index.html">BirdAiSnap</a></h2>
-            </div>
-            <ul class="nav-menu">
-                <li><a href="index.html#home">Home</a></li>
-                <li><a href="index.html#features">Features</a></li>
-                <li><a href="index.html#about">About</a></li>
-                <li><a href="index.html#contact">Contact</a></li>
-                <li><a href="knowledge.html">Knowledge</a></li>
-            </ul>
-            <div class="language-switcher">
-                <button id="langSwitch" class="lang-btn" onclick="toggleLanguage()">
-                    <span class="lang-icon">🌐</span>
-                    <span class="lang-text">Language</span>
-                    <span id="currentLang">EN</span>
-                </button>
-            </div>
-            <div class="nav-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </nav>
-
+    <!-- 头部横幅 -->
+    <div class="header">
+        <h1 class="header-title">鸟类生态学</h1>
+    </div>
+    
     <!-- 主要内容 -->
-    <main>
-        <!-- 页面头部 -->
-        <section class="knowledge-hero">
-            <div class="container">
-                <h1>🌿 Bird Ecology</h1>
-                <p>Understanding birds in their natural ecosystems</p>
-            </div>
-        </section>
-
-        <!-- 文章列表 -->
-        <section class="mobile-article-list">
-            <div class="container">
-                <div class="mobile-article-item">
-                    <div class="mobile-article-image">🏠</div>
-                    <div class="mobile-article-header">
-                        <div class="mobile-category-badge">Bird Ecology</div>
-                        <h3 class="mobile-article-title">Habitat and Ecosystems</h3>
-                        <div class="mobile-article-meta">Published: January 2025 • Reading time: 8 minutes</div>
-                    </div>
-                    <div class="mobile-article-content">
-                        <p class="mobile-article-excerpt">Explore the diverse habitats where birds live and how they interact with their ecosystems. Learn about forest, wetland, grassland, and urban environments.</p>
-                        <a href="en/ecology/01-habitat-ecosystems.html" class="mobile-read-more">Read More →</a>
-                    </div>
+    <div class="content">
+        <p class="intro-text">
+            探索鸟类在自然生态系统中的角色和影响。从栖息地和食物链到迁徙模式和繁殖生态，了解鸟类如何与环境互动以及它们对生态平衡的重要性。点击下方任意文章图片，深入了解鸟类生态学的各个方面。
+        </p>
+        
+        <div class="article-grid">
+            <!-- 文章1 -->
+            <a href="en/ecology/01-habitat-ecosystems.html" class="article-card">
+                <img src="images/birds/species/bird-image-040.webp" class="article-image" alt="栖息地与生态系统">
+                <div class="article-overlay">
+                    <h3 class="article-title">栖息地与生态系统</h3>
+                    <p class="article-description">探索鸟类生活的多样化栖息地及其生态系统互动</p>
                 </div>
-
-                <div class="mobile-article-item">
-                    <div class="mobile-article-image">🍃</div>
-                    <div class="mobile-article-header">
-                        <div class="mobile-category-badge">Bird Ecology</div>
-                        <h3 class="mobile-article-title">Food Webs and Chains</h3>
-                        <div class="mobile-article-meta">Published: January 2025 • Reading time: 6 minutes</div>
-                    </div>
-                    <div class="mobile-article-content">
-                        <p class="mobile-article-excerpt">Understand how birds fit into complex food webs and their role as predators, prey, and ecosystem engineers in maintaining ecological balance.</p>
-                        <a href="en/ecology/02-food-webs-chains.html" class="mobile-read-more">Read More →</a>
-                    </div>
+            </a>
+            
+            <!-- 文章2 -->
+            <a href="en/ecology/02-food-webs-chains.html" class="article-card">
+                <img src="images/birds/species/bird-image-041.webp" class="article-image" alt="食物网与食物链">
+                <div class="article-overlay">
+                    <h3 class="article-title">食物网与食物链</h3>
+                    <p class="article-description">了解鸟类在复杂食物网中的角色</p>
                 </div>
-
-                <div class="mobile-article-item">
-                    <div class="mobile-article-image">✈️</div>
-                    <div class="mobile-article-header">
-                        <div class="mobile-category-badge">Bird Ecology</div>
-                        <h3 class="mobile-article-title">Migration Patterns</h3>
-                        <div class="mobile-article-meta">Published: January 2025 • Reading time: 7 minutes</div>
-                    </div>
-                    <div class="mobile-article-content">
-                        <p class="mobile-article-excerpt">Discover the incredible journeys of migratory birds, their navigation methods, and the ecological significance of seasonal movements.</p>
-                        <a href="en/ecology/03-migration-patterns.html" class="mobile-read-more">Read More →</a>
-                    </div>
+            </a>
+            
+            <!-- 文章3 -->
+            <a href="en/ecology/03-migration-patterns.html" class="article-card">
+                <img src="images/birds/species/bird-image-042.webp" class="article-image" alt="迁徙模式">
+                <div class="article-overlay">
+                    <h3 class="article-title">迁徙模式</h3>
+                    <p class="article-description">探索候鸟的惊人旅程和季节性迁徙</p>
                 </div>
-
-                <div class="mobile-article-item">
-                    <div class="mobile-article-image">🥚</div>
-                    <div class="mobile-article-header">
-                        <div class="mobile-category-badge">Bird Ecology</div>
-                        <h3 class="mobile-article-title">Breeding Ecology</h3>
-                        <div class="mobile-article-meta">Published: January 2025 • Reading time: 5 minutes</div>
-                    </div>
-                    <div class="mobile-article-content">
-                        <p class="mobile-article-excerpt">Learn about bird reproduction strategies, nesting behaviors, courtship displays, and parental care in different species.</p>
-                        <a href="en/ecology/04-breeding-ecology.html" class="mobile-read-more">Read More →</a>
-                    </div>
+            </a>
+            
+            <!-- 文章4 -->
+            <a href="en/ecology/04-breeding-ecology.html" class="article-card">
+                <img src="images/birds/species/head_breeding_cology.webp" class="article-image" alt="繁殖生态学">
+                <div class="article-overlay">
+                    <h3 class="article-title">繁殖生态学</h3>
+                    <p class="article-description">了解鸟类的繁殖策略和育雏行为</p>
                 </div>
-
-                <div class="mobile-article-item">
-                    <div class="mobile-article-image">🌡️</div>
-                    <div class="mobile-article-header">
-                        <div class="mobile-category-badge">Bird Ecology</div>
-                        <h3 class="mobile-article-title">Climate Change Impact</h3>
-                        <div class="mobile-article-meta">Published: January 2025 • Reading time: 6 minutes</div>
-                    </div>
-                    <div class="mobile-article-content">
-                        <p class="mobile-article-excerpt">Examine how climate change affects bird populations, migration timing, breeding success, and habitat distribution worldwide.</p>
-                        <a href="en/ecology/05-climate-change-impact.html" class="mobile-read-more">Read More →</a>
-                    </div>
+            </a>
+            
+            <!-- 文章5 -->
+            <a href="en/ecology/05-climate-change-impact.html" class="article-card">
+                <img src="images/birds/species/bird-image-043.webp" class="article-image" alt="气候变化影响">
+                <div class="article-overlay">
+                    <h3 class="article-title">气候变化影响</h3>
+                    <p class="article-description">研究气候变化如何影响鸟类种群和栖息地</p>
                 </div>
-
-                <div class="mobile-article-item">
-                    <div class="mobile-article-image">🏙️</div>
-                    <div class="mobile-article-header">
-                        <div class="mobile-category-badge">Bird Ecology</div>
-                        <h3 class="mobile-article-title">Urban Ecology</h3>
-                        <div class="mobile-article-meta">Published: January 2025 • Reading time: 8 minutes</div>
-                    </div>
-                    <div class="mobile-article-content">
-                        <p class="mobile-article-excerpt">Explore how birds adapt to urban environments, the challenges they face, and opportunities for urban bird conservation.</p>
-                        <a href="en/ecology/06-urban-ecology.html" class="mobile-read-more">Read More →</a>
-                    </div>
+            </a>
+            
+            <!-- 文章6 -->
+            <a href="en/ecology/06-urban-ecology.html" class="article-card">
+                <img src="images/birds/species/head_urban_ecology.webp" class="article-image" alt="城市生态学">
+                <div class="article-overlay">
+                    <h3 class="article-title">城市生态学</h3>
+                    <p class="article-description">探索鸟类如何适应城市环境</p>
                 </div>
-
-                <div class="mobile-article-item">
-                    <div class="mobile-article-image">🛡️</div>
-                    <div class="mobile-article-header">
-                        <div class="mobile-category-badge">Bird Ecology</div>
-                        <h3 class="mobile-article-title">Conservation Biology</h3>
-                        <div class="mobile-article-meta">Published: January 2025 • Reading time: 7 minutes</div>
-                    </div>
-                    <div class="mobile-article-content">
-                        <p class="mobile-article-excerpt">Learn about bird conservation strategies, threats to bird populations, and successful conservation programs around the world.</p>
-                        <a href="en/ecology/07-conservation-biology.html" class="mobile-read-more">Read More →</a>
-                    </div>
+            </a>
+            
+            <!-- 文章7 -->
+            <a href="en/ecology/07-conservation-biology.html" class="article-card">
+                <img src="images/birds/species/head_conservation_biology.webp" class="article-image" alt="保护生物学">
+                <div class="article-overlay">
+                    <h3 class="article-title">保护生物学</h3>
+                    <p class="article-description">了解鸟类保护策略和成功案例</p>
                 </div>
-
-                <div class="mobile-article-item">
-                    <div class="mobile-article-image">🏝️</div>
-                    <div class="mobile-article-header">
-                        <div class="mobile-category-badge">Bird Ecology</div>
-                        <h3 class="mobile-article-title">Island Biogeography</h3>
-                        <div class="mobile-article-meta">Published: January 2025 • Reading time: 6 minutes</div>
-                    </div>
-                    <div class="mobile-article-content">
-                        <p class="mobile-article-excerpt">Understand how island environments shape bird evolution, endemism, and the unique challenges of island bird conservation.</p>
-                        <a href="en/ecology/08-island-biogeography.html" class="mobile-read-more">Read More →</a>
-                    </div>
+            </a>
+            
+            <!-- 文章8 -->
+            <a href="en/ecology/08-island-biogeography.html" class="article-card">
+                <img src="images/birds/species/head_island_biogeography.webp" class="article-image" alt="岛屿生物地理学">
+                <div class="article-overlay">
+                    <h3 class="article-title">岛屿生物地理学</h3>
+                    <p class="article-description">探索岛屿环境如何塑造鸟类进化</p>
                 </div>
-
-                <div class="mobile-article-item">
-                    <div class="mobile-article-image">🌺</div>
-                    <div class="mobile-article-header">
-                        <div class="mobile-category-badge">Bird Ecology</div>
-                        <h3 class="mobile-article-title">Pollination and Seed Dispersal</h3>
-                        <div class="mobile-article-meta">Published: January 2025 • Reading time: 5 minutes</div>
-                    </div>
-                    <div class="mobile-article-content">
-                        <p class="mobile-article-excerpt">Discover the crucial role birds play in pollination and seed dispersal, supporting plant reproduction and forest regeneration.</p>
-                        <a href="en/ecology/09-pollination-seed-dispersal.html" class="mobile-read-more">Read More →</a>
-                    </div>
+            </a>
+            
+            <!-- 文章9 -->
+            <a href="en/ecology/09-pollination-seed-dispersal.html" class="article-card">
+                <img src="images/birds/species/head_pollination_seed_dispersal.webp" class="article-image" alt="授粉与种子传播">
+                <div class="article-overlay">
+                    <h3 class="article-title">授粉与种子传播</h3>
+                    <p class="article-description">了解鸟类在植物繁殖中的关键作用</p>
                 </div>
-
-                <div class="mobile-article-item">
-                    <div class="mobile-article-image">🌿</div>
-                    <div class="mobile-article-header">
-                        <div class="mobile-category-badge">Bird Ecology</div>
-                        <h3 class="mobile-article-title">Community Dynamics</h3>
-                        <div class="mobile-article-meta">Published: January 2025 • Reading time: 7 minutes</div>
-                    </div>
-                    <div class="mobile-article-content">
-                        <p class="mobile-article-excerpt">Explore how bird communities are structured, species interactions, competition, and the factors that influence community composition.</p>
-                        <a href="en/ecology/10-community-dynamics.html" class="mobile-read-more">Read More →</a>
-                    </div>
+            </a>
+            
+            <!-- 文章10 -->
+            <a href="en/ecology/10-community-dynamics.html" class="article-card">
+                <img src="images/birds/species/head_community_dynamics.webp" class="article-image" alt="群落动态">
+                <div class="article-overlay">
+                    <h3 class="article-title">群落动态</h3>
+                    <p class="article-description">探索鸟类群落的结构和物种互动</p>
                 </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- 页脚 -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>BirdAiSnap</h3>
-                    <p>Smart bird recognition powered by AI technology</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="knowledge.html">Knowledge Center</a></li>
-                        <li><a href="https://play.google.com/store/apps/details?id=com.bird.ai.snap">Download App</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Contact</h4>
-                    <p>Email: lingjuetech@gmail.com</p>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Hangzhou Lingjue Technology Co., Ltd. All rights reserved.</p>
-            </div>
+            </a>
         </div>
-    </footer>
-
-    <script src="script.js"></script>
+    </div>
 </body>
 </html>

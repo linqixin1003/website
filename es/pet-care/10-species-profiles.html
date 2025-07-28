@@ -1,1 +1,672 @@
-[NOTE] Tool Results has been ignored to save space in the context window. Recall if necessary
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfiles de Especies Populares de Aves Mascotas - Guía de Cuidado de Mascotas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                        url('../../images/birds/species/bird-image-025.webp') center/cover;
+            position: relative;
+            margin-top: 0;
+        }
+        
+        .content {
+            background: white;
+            margin: -30px 20px 20px 20px;
+            border-radius: 20px;
+            padding: 50px 20px 30px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            min-height: 80vh;
+        }
+        
+        .title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            margin-top: 20px;
+            line-height: 1.3;
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, #e8f5e8, #c8e6c9);
+            border-left: 4px solid #2E8B57;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .quote-box::before {
+            content: '"';
+            font-size: 48px;
+            color: #2E8B57;
+            position: absolute;
+            top: -5px;
+            left: 15px;
+            font-family: serif;
+            line-height: 1;
+        }
+        
+        .quote-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1b5e20;
+            margin-left: 25px;
+            line-height: 1.4;
+        }
+        
+        .main-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            margin: 20px 0;
+            text-align: justify;
+        }
+        
+        .main-text ul {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+
+        .main-text li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .main-text li:before {
+            content: "•";
+            position: absolute;
+            left: 8px;
+            color: #2E8B57;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #2E8B57;
+            margin: 30px 0 15px 0;
+            border-bottom: 2px solid #c8e6c9;
+            padding-bottom: 8px;
+        }
+        
+        .species-profile {
+            background: #f8f9fa;
+            border: 2px solid #c8e6c9;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .species-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            gap: 15px;
+        }
+
+        .species-emoji {
+            font-size: 32px;
+        }
+
+        .species-name {
+            font-size: 22px;
+            font-weight: 700;
+            color: #2E8B57;
+            margin: 0;
+        }
+
+        .species-subtitle {
+            font-size: 14px;
+            color: #666;
+            font-style: italic;
+        }
+
+        .species-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .stat-value {
+            font-size: 14px;
+            font-weight: 700;
+            color: #2E8B57;
+        }
+
+        .species-description {
+            font-size: 15px;
+            line-height: 1.6;
+            color: #444;
+            margin: 15px 0;
+        }
+
+        .care-requirements {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+
+        .care-title {
+            font-weight: 600;
+            color: #2E8B57;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .care-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .care-list li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .care-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #28a745;
+            font-weight: bold;
+        }
+        
+        .tip-box {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid #28a745;
+            box-shadow: 0 2px 6px rgba(40, 167, 69, 0.1);
+        }
+
+        .tip-title {
+            font-weight: 600;
+            color: #28a745;
+            margin-bottom: 12px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tip-box p {
+            margin: 0;
+            line-height: 1.6;
+            color: #495057;
+        }
+        
+        .emoji {
+            font-size: 18px;
+            margin: 0 2px;
+        }
+        
+        @media (max-width: 375px) {
+            .content {
+                margin: -30px 15px 20px 15px;
+                padding: 25px 15px;
+            }
+            
+            .title {
+                font-size: 22px;
+            }
+            
+            .main-text {
+                font-size: 15px;
+            }
+            
+            .species-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .species-header {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Image -->
+    <div class="hero-image"></div>
+    
+    <!-- Main Content -->
+    <div class="content">
+        <h1 class="title">Perfiles de Especies Populares de Aves Mascotas</h1>
+        
+        <div class="quote-box">
+            <div class="quote-text">
+                Cada especie aviar tiene características, necesidades y personalidades únicas - elige la que coincida con tu estilo de vida
+            </div>
+        </div>
+        
+        <div class="main-text">
+            Comprender las diferentes especies aviares es crucial para tomar una decisión informada sobre qué compañero emplumado es adecuado para ti. Cada especie tiene requisitos de cuidado distintos, rasgos de personalidad y características que las hacen adecuadas para diferentes tipos de propietarios <span class="emoji">🦜</span>. Esta guía completa perfila las especies de aves mascotas más populares para ayudarte a tomar la mejor decisión.
+        </div>
+        
+        <div class="section-title">Especies Amigables para Principiantes</div>
+        
+        <div class="species-profile">
+            <div class="species-header">
+                <div class="species-emoji">🐤</div>
+                <div>
+                    <h3 class="species-name">Periquito Australiano (Budgie)</h3>
+                    <div class="species-subtitle">Melopsittacus undulatus</div>
+                </div>
+            </div>
+            
+            <div class="species-stats">
+                <div class="stat-item">
+                    <div class="stat-label">Tamaño</div>
+                    <div class="stat-value">7-8 pulgadas</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Esperanza de Vida</div>
+                    <div class="stat-value">5-10 años</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Nivel de Ruido</div>
+                    <div class="stat-value">Moderado</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Nivel de Cuidado</div>
+                    <div class="stat-value">Principiante</div>
+                </div>
+            </div>
+            
+            <div class="species-description">
+                Los periquitos australianos están entre las aves mascotas más populares del mundo, y por buena razón. Estos pequeños loros coloridos son inteligentes, sociales y relativamente fáciles de cuidar. Pueden aprender a imitar palabras y sonidos, disfrutan del juego interactivo y prosperan en parejas o grupos pequeños. Su disposición alegre y adaptabilidad los convierte en excelentes primeras aves.
+            </div>
+            
+            <div class="care-requirements">
+                <div class="care-title">Requisitos de Cuidado:</div>
+                <ul class="care-list">
+                    <li>Tamaño mínimo de jaula: 18" x 18" x 24"</li>
+                    <li>Mezcla de semillas y pellets de alta calidad</li>
+                    <li>Verduras frescas diarias y frutas ocasionales</li>
+                    <li>2-3 horas de interacción social diaria</li>
+                    <li>Rango de temperatura: 65-80°F</li>
+                    <li>Corte regular de alas y uñas</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="species-profile">
+            <div class="species-header">
+                <div class="species-emoji">🎵</div>
+                <div>
+                    <h3 class="species-name">Canario</h3>
+                    <div class="species-subtitle">Serinus canaria</div>
+                </div>
+            </div>
+            
+            <div class="species-stats">
+                <div class="stat-item">
+                    <div class="stat-label">Tamaño</div>
+                    <div class="stat-value">4-5 pulgadas</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Esperanza de Vida</div>
+                    <div class="stat-value">10-15 años</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Nivel de Ruido</div>
+                    <div class="stat-value">Bajo-Moderado</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Nivel de Cuidado</div>
+                    <div class="stat-value">Principiante</div>
+                </div>
+            </div>
+            
+            <div class="species-description">
+                Los canarios son reconocidos por sus hermosas voces cantoras y colores vibrantes. Estos pequeños pinzones son relativamente independientes y no requieren tanta interacción social como los loros. Los canarios machos son típicamente los cantores, especialmente durante la temporada de reproducción. Son perfectos para personas que disfrutan de los cantos de aves pero prefieren una mascota menos demandante.
+            </div>
+            
+            <div class="care-requirements">
+                <div class="care-title">Requisitos de Cuidado:</div>
+                <ul class="care-list">
+                    <li>Tamaño mínimo de jaula: 16" x 16" x 20"</li>
+                    <li>Mezcla de semillas para canarios de alta calidad</li>
+                    <li>Verduras frescas y vegetales diarios</li>
+                    <li>Manejo mínimo requerido</li>
+                    <li>Rango de temperatura: 60-75°F</li>
+                    <li>Apoyo anual durante la muda con nutrición extra</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="section-title">Especies Intermedias</div>
+
+        <div class="species-profile">
+            <div class="species-header">
+                <div class="species-emoji">🦜</div>
+                <div>
+                    <h3 class="species-name">Cacatúa Ninfa</h3>
+                    <div class="species-subtitle">Nymphicus hollandicus</div>
+                </div>
+            </div>
+            
+            <div class="species-stats">
+                <div class="stat-item">
+                    <div class="stat-label">Tamaño</div>
+                    <div class="stat-value">12-13 pulgadas</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Esperanza de Vida</div>
+                    <div class="stat-value">15-25 años</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Nivel de Ruido</div>
+                    <div class="stat-value">Moderado</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Nivel de Cuidado</div>
+                    <div class="stat-value">Intermedio</div>
+                </div>
+            </div>
+            
+            <div class="species-description">
+                Las cacatúas ninfa son aves gentiles y cariñosas conocidas por sus crestas distintivas y habilidades de silbido. Son excelentes compañeras que se vinculan estrechamente con sus propietarios mientras permanecen relativamente fáciles de cuidar. Los machos son típicamente mejores silbadores y pueden aprender melodías simples, mientras que ambos sexos pueden ser enseñados trucos y comandos básicos.
+            </div>
+            
+            <div class="care-requirements">
+                <div class="care-title">Requisitos de Cuidado:</div>
+                <ul class="care-list">
+                    <li>Tamaño mínimo de jaula: 24" x 24" x 30"</li>
+                    <li>Dieta de pellets con suplementos de semillas</li>
+                    <li>Verduras frescas diarias y frutas limitadas</li>
+                    <li>3-4 horas de interacción y ejercicio</li>
+                    <li>Rango de temperatura: 68-78°F</li>
+                    <li>Mantenimiento regular de pico y uñas</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="species-profile">
+            <div class="species-header">
+                <div class="species-emoji">🌈</div>
+                <div>
+                    <h3 class="species-name">Agapornis</h3>
+                    <div class="species-subtitle">Agapornis species</div>
+                </div>
+            </div>
+            
+            <div class="species-stats">
+                <div class="stat-item">
+                    <div class="stat-label">Tamaño</div>
+                    <div class="stat-value">5-7 pulgadas</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Esperanza de Vida</div>
+                    <div class="stat-value">10-15 años</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Nivel de Ruido</div>
+                    <div class="stat-value">Moderado-Alto</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Nivel de Cuidado</div>
+                    <div class="stat-value">Intermedio</div>
+                </div>
+            </div>
+            
+            <div class="species-description">
+                Los agapornis son pequeños loros coloridos con grandes personalidades. Son enérgicos, juguetones y pueden ser bastante temperamentales. Aunque pueden mantenerse solos con atención adecuada, a menudo les va mejor en parejas. Son inteligentes y pueden aprender trucos, aunque típicamente no son buenos habladores. Sus colores vibrantes y naturaleza activa los convierten en compañeros entretenidos.
+            </div>
+            
+            <div class="care-requirements">
+                <div class="care-title">Requisitos de Cuidado:</div>
+                <ul class="care-list">
+                    <li>Tamaño mínimo de jaula: 24" x 16" x 20"</li>
+                    <li>Dieta de pellets y semillas de alta calidad</li>
+                    <li>Variedad de frutas y verduras frescas</li>
+                    <li>4-5 horas de interacción activa</li>
+                    <li>Rango de temperatura: 70-80°F</li>
+                    <li>Muchos juguetes para estimulación mental</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="section-title">Especies Avanzadas</div>
+
+        <div class="species-profile">
+            <div class="species-header">
+                <div class="species-emoji">🌺</div>
+                <div>
+                    <h3 class="species-name">Conuro del Sol</h3>
+                    <div class="species-subtitle">Aratinga solstitialis</div>
+                </div>
+            </div>
+            
+            <div class="species-stats">
+                <div class="stat-item">
+                    <div class="stat-label">Tamaño</div>
+                    <div class="stat-value">12 pulgadas</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Esperanza de Vida</div>
+                    <div class="stat-value">20-30 años</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Nivel de Ruido</div>
+                    <div class="stat-value">Muy Alto</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Nivel de Cuidado</div>
+                    <div class="stat-value">Avanzado</div>
+                </div>
+            </div>
+            
+            <div class="species-description">
+                Los conuros del sol son aves impresionantes con plumaje brillante amarillo y naranja. Son extremadamente sociales, inteligentes y cariñosos, pero también muy ruidosos y demandantes. Estas aves requieren propietarios experimentados que puedan proporcionar entrenamiento y socialización consistentes. Pueden aprender a hablar y realizar trucos, pero su naturaleza vocal los hace inadecuados para apartamentos o ambientes sensibles al ruido.
+            </div>
+            
+            <div class="care-requirements">
+                <div class="care-title">Requisitos de Cuidado:</div>
+                <ul class="care-list">
+                    <li>Jaula grande: 36" x 24" x 48" mínimo</li>
+                    <li>Dieta de pellets premium con variedad</li>
+                    <li>Amplia variedad de alimentos frescos diarios</li>
+                    <li>6+ horas de interacción y ejercicio</li>
+                    <li>Rango de temperatura: 70-80°F</li>
+                    <li>Entrenamiento y socialización consistentes</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="species-profile">
+            <div class="species-header">
+                <div class="species-emoji">🧠</div>
+                <div>
+                    <h3 class="species-name">Loro Gris Africano</h3>
+                    <div class="species-subtitle">Psittacus erithacus</div>
+                </div>
+            </div>
+            
+            <div class="species-stats">
+                <div class="stat-item">
+                    <div class="stat-label">Tamaño</div>
+                    <div class="stat-value">12-14 pulgadas</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Esperanza de Vida</div>
+                    <div class="stat-value">40-60 años</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Nivel de Ruido</div>
+                    <div class="stat-value">Moderado-Alto</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Nivel de Cuidado</div>
+                    <div class="stat-value">Experto</div>
+                </div>
+            </div>
+            
+            <div class="species-description">
+                Los loros grises africanos son considerados entre las aves más inteligentes del mundo. Pueden aprender vocabularios extensos, entender contexto e incluso participar en conversaciones simples. Sin embargo, también son sensibles, propensos al estrés y requieren propietarios experimentados que entiendan sus necesidades complejas. Pueden ser aves de una sola persona y pueden volverse agresivos hacia otros si no se socializan adecuadamente.
+            </div>
+            
+            <div class="care-requirements">
+                <div class="care-title">Requisitos de Cuidado:</div>
+                <ul class="care-list">
+                    <li>Jaula extra grande: 36" x 24" x 48" mínimo</li>
+                    <li>Dieta de pellets premium, semillas mínimas</li>
+                    <li>Amplia variedad de alimentos frescos</li>
+                    <li>6-8 horas de estimulación mental diaria</li>
+                    <li>Temperatura estable: 70-78°F</li>
+                    <li>Rutina consistente y manejo experimentado</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="species-profile">
+            <div class="species-header">
+                <div class="species-emoji">🌟</div>
+                <div>
+                    <h3 class="species-name">Guacamayo Azul y Amarillo</h3>
+                    <div class="species-subtitle">Ara ararauna</div>
+                </div>
+            </div>
+            
+            <div class="species-stats">
+                <div class="stat-item">
+                    <div class="stat-label">Tamaño</div>
+                    <div class="stat-value">32-34 pulgadas</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Esperanza de Vida</div>
+                    <div class="stat-value">50-80 años</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Nivel de Ruido</div>
+                    <div class="stat-value">Muy Alto</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Nivel de Cuidado</div>
+                    <div class="stat-value">Experto</div>
+                </div>
+            </div>
+            
+            <div class="species-description">
+                Los guacamayos azul y amarillo son loros grandes magníficos que requieren cuidado experto y compromiso significativo. Son inteligentes, sociales y pueden ser compañeros maravillosos para propietarios de aves experimentados. Sin embargo, son extremadamente ruidosos, destructivos y requieren enormes cantidades de espacio y atención. Sus picos poderosos pueden causar lesiones graves, y necesitan entrenamiento consistente desde una edad temprana.
+            </div>
+            
+            <div class="care-requirements">
+                <div class="care-title">Requisitos de Cuidado:</div>
+                <ul class="care-list">
+                    <li>Jaula masiva: 48" x 36" x 60" mínimo</li>
+                    <li>Dieta de pellets premium con nueces</li>
+                    <li>Gran variedad de alimentos frescos diarios</li>
+                    <li>8+ horas de interacción y ejercicio</li>
+                    <li>Rango de temperatura: 70-80°F</li>
+                    <li>Entrenamiento y socialización profesional</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="section-title">Eligiendo la Especie Correcta</div>
+        
+        <div class="main-text">
+            Seleccionar la especie aviar correcta es una de las decisiones más importantes que tomarás como propietario de aves. Considera estos factores cuidadosamente antes de hacer tu elección <span class="emoji">🤔</span>:
+        </div>
+
+        <div class="main-text">
+            <strong>Coincidencia de Nivel de Experiencia:</strong><br>
+            • Principiantes: Periquitos, canarios, cacatúas ninfa<br>
+            • Intermedio: Agapornis, conuros pequeños, parrotlets<br>
+            • Avanzado: Conuros grandes, guacamayos pequeños, amazonas<br>
+            • Experto: Loros grises africanos, guacamayos grandes, cacatúas<br>
+            • Considera empezar más pequeño y avanzar<br>
+            • Gana experiencia antes de intentar especies difíciles
+        </div>
+
+        <div class="main-text">
+            <strong>Compatibilidad de Estilo de Vida:</strong><br>
+            • Tolerancia al ruido y situación de vivienda<br>
+            • Tiempo disponible para interacción diaria<br>
+            • Espacio disponible para jaula y ejercicio<br>
+            • Capacidad de compromiso a largo plazo<br>
+            • Recursos financieros para cuidado<br>
+            • Situación familiar y otras mascotas
+        </div>
+
+        <div class="tip-box">
+            <div class="tip-title">🏠 Visita Antes de Decidir</div>
+            <p>Pasa tiempo con diferentes especies en rescates de aves, tiendas de mascotas o espectáculos de aves antes de tomar tu decisión. Cada especie tiene una personalidad y nivel de energía únicos.</p>
+        </div>
+
+        <div class="main-text">
+            <strong>Consideraciones Especiales:</strong><br>
+            • Algunas especies funcionan mejor en parejas<br>
+            • Las aves más grandes requieren más espacio y recursos<br>
+            • La capacidad de hablar varía mucho entre especies<br>
+            • Los niveles de ruido pueden ser un factor importante<br>
+            • El compromiso de esperanza de vida varía dramáticamente<br>
+            • Algunas especies tienen necesidades dietéticas específicas
+        </div>
+
+        <div class="main-text">
+            Recuerda, cada ave individual tiene su propia personalidad, independientemente de la especie. Aunque estos perfiles proporcionan pautas generales, tu ave específica puede tener diferentes rasgos y necesidades. La clave es elegir una especie que coincida con tu nivel de experiencia, estilo de vida y capacidad de compromiso a largo plazo. Tómate tu tiempo, haz una investigación exhaustiva y considera adoptar de rescates donde puedas aprender sobre las personalidades de aves individuales <span class="emoji">✨</span>.
+        </div>
+    </div>
+
+    <script>
+        // Simulate reading progress
+        function updateProgress() {
+            const scrolled = window.pageYOffset;
+            const maxHeight = document.body.scrollHeight - window.innerHeight;
+            const progress = Math.min((scrolled / maxHeight) * 100, 100);
+        }
+        
+        window.addEventListener('scroll', updateProgress);
+        updateProgress();
+    </script>
+    <script src="../language-redirect.js"></script>
+</body>
+</html>

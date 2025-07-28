@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>鳥類の文化的象徴 - BirdAiSnap</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+        
+        .language-selector {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 25px;
+            padding: 8px 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        .language-selector select {
+            border: none;
+            background: transparent;
+            font-size: 14px;
+            font-weight: 500;
+            color: #333;
+            cursor: pointer;
+            outline: none;
+            min-width: 120px;
+        }
+        
+        .header {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)), 
+                        url('../images/birds/species/bird-image-001.webp') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .header-title {
+            color: white;
+            font-size: 36px;
+            font-weight: 700;
+            text-align: center;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .content {
+            background: white;
+            margin: -30px 20px 20px 20px;
+            border-radius: 20px;
+            padding: 40px 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            min-height: 80vh;
+        }
+        
+        .intro-text {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #555;
+            margin: 30px 0;
+            text-align: center;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .culture-section {
+            margin: 50px 0;
+            padding: 30px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 15px;
+            border-left: 5px solid #007bff;
+        }
+        
+        .culture-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #007bff;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .culture-content {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+        }
+        
+        .symbol-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+        
+        .symbol-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .symbol-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .symbol-icon {
+            font-size: 48px;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        
+        .symbol-name {
+            font-size: 20px;
+            font-weight: 600;
+            color: #007bff;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        
+        .symbol-description {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #666;
+            text-align: center;
+        }
+        
+        @media (max-width: 768px) {
+            .header-title {
+                font-size: 28px;
+            }
+            
+            .content {
+                margin: -20px 15px 15px 15px;
+                padding: 30px 20px;
+            }
+            
+            .culture-section {
+                padding: 20px;
+            }
+            
+            .symbol-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 語言選択器 -->
+    <div class="language-selector">
+        <select id="languageSelect" onchange="changeLanguage()">
+            <option value="ja">🇯🇵 日本語</option>
+            <option value="en">🇺🇸 English</option>
+            <option value="es">🇪🇸 Español</option>
+            <option value="fr">🇫🇷 Français</option>
+            <option value="de">🇩🇪 Deutsch</option>
+            <option value="zh">🇨🇳 中文</option>
+            <option value="it">🇮🇹 Italiano</option>
+            <option value="ko">🇰🇷 한국어</option>
+            <option value="pt">🇵🇹 Português</option>
+            <option value="ru">🇷🇺 Русский</option>
+        </select>
+    </div>
+    
+    <!-- ヘッダーバナー -->
+    <div class="header">
+        <h1 class="header-title">鳥類の文化的象徴</h1>
+    </div>
+    
+    <!-- メインコンテンツ -->
+    <div class="content">
+        <p class="intro-text">
+            古来より、鳥類は人類の文化において特別な地位を占めてきました。それらは自然界の精霊であるだけでなく、様々な文化的伝統における重要な象徴でもあります。古代神話から現代芸術まで、宗教的儀式から民間伝承まで、鳥類はその独特な姿と特性により、人類の自由、知恵、平和、希望への美しい願いを担ってきました。
+        </p>
+        
+        <div class="culture-section">
+            <h2 class="culture-title">
+                🏛️ 古代文明における鳥類の象徴
+            </h2>
+            <div class="culture-content">
+                古代エジプト文明では、トキは知恵の神トートの化身とされ、知識と学問を象徴していました。古代ギリシャ神話では、フクロウはアテナ女神の聖鳥であり、知恵と戦略を表していました。中国古代文化では、鳳凰は百鳥の王とされ、吉祥、調和、皇権の威厳を象徴していました。これらの古い象徴的意味は、今日でも私たちの文化的認識に深く影響を与えています。
+            </div>
+        </div>
+        
+        <div class="culture-section">
+            <h2 class="culture-title">
+                🕊️ 宗教と精神的象徴
+            </h2>
+            <div class="culture-content">
+                キリスト教の伝統では、白い鳩は聖霊と平和を象徴し、神と人間のコミュニケーションの神聖な使者です。イスラム教では、鳥類は神の創造の奇跡とされ、自然の調和と美しさを体現しています。仏教文化では、孔雀は慈悲と知恵を象徴し、その美しい羽根は菩薩の荘厳さを表しています。これらの宗教的象徴は鳥類に深い精神的内容を与えています。
+            </div>
+        </div>
+        
+        <div class="symbol-grid">
+            <div class="symbol-card">
+                <div class="symbol-icon">🦅</div>
+                <div class="symbol-name">ワシ</div>
+                <div class="symbol-description">
+                    力と勇気の象徴であり、不屈の精神と自由への憧れを表しています。多くの国の国章にワシの姿を見ることができます。
+                </div>
+            </div>
+            
+            <div class="symbol-card">
+                <div class="symbol-icon">🕊️</div>
+                <div class="symbol-name">白い鳩</div>
+                <div class="symbol-description">
+                    平和と希望の使者であり、純粋な愛と神聖な精神を象徴しています。オリンピック開会式での白い鳩の放鳥は伝統となっています。
+                </div>
+            </div>
+            
+            <div class="symbol-card">
+                <div class="symbol-icon">🦉</div>
+                <div class="symbol-name">フクロウ</div>
+                <div class="symbol-description">
+                    知恵と知識の象徴であり、夜間活動の特性により神秘学と哲学的思考の代表となっています。
+                </div>
+            </div>
+            
+            <div class="symbol-card">
+                <div class="symbol-icon">🦢</div>
+                <div class="symbol-name">白鳥</div>
+                <div class="symbol-description">
+                    優雅さと純粋さの化身であり、高貴な品格と永遠の愛を象徴しています。バレエ「白鳥の湖」で完璧に表現されています。
+                </div>
+            </div>
+            
+            <div class="symbol-card">
+                <div class="symbol-icon">🐦</div>
+                <div class="symbol-name">鳳凰</div>
+                <div class="symbol-description">
+                    再生と永遠の象徴であり、困難から立ち上がる力と不滅の精神を表しています。中華文化の神鳥です。
+                </div>
+            </div>
+            
+            <div class="symbol-card">
+                <div class="symbol-icon">🦆</div>
+                <div class="symbol-name">オシドリ</div>
+                <div class="symbol-description">
+                    忠実な愛の象徴であり、つがいで生活する習性により、円満な結婚と愛し合う夫婦の代表となっています。
+                </div>
+            </div>
+        </div>
+        
+        <div class="culture-section">
+            <h2 class="culture-title">
+                🎨 現代文化における鳥類のイメージ
+            </h2>
+            <div class="culture-content">
+                現代社会では、鳥類の象徴的意味がさらに発展し拡張されています。環境保護運動では、鳥類は生態保護の重要な標識となっています。文学芸術では、鳥類はしばしば自由な魂と束縛されない精神を表しています。商業ブランドでは、鳥類のイメージが速度、優雅さ、革新の理念を伝えるために広く使用されています。これらの現代的解釈は鳥類文化象徴の内容を豊かにしています。
+            </div>
+        </div>
+        
+        <div class="culture-section">
+            <h2 class="culture-title">
+                🌍 異文化共通の象徴
+            </h2>
+            <div class="culture-content">
+                異なる文化における鳥類の具体的な象徴的意味は異なる場合がありますが、いくつかの核心概念は異文化共通の認識です。自由に飛翔する能力により、鳥類は普遍的に自由の象徴とされています。天と地を結ぶ特性により、人々は鳥類を神聖と世俗の間の橋渡しと見なしています。そして、その歌声と美しさは芸術と美の追求を象徴しています。これらの共通の象徴的意味は、人類の美しいものへの普遍的憧れを体現しています。
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 言語切り替え機能
+        function changeLanguage() {
+            const select = document.getElementById('languageSelect');
+            const selectedLang = select.value;
+            
+            // 目標URLを構築
+            let targetUrl;
+            if (selectedLang === 'ja') {
+                targetUrl = '../cultural-symbolism.html';
+            } else {
+                targetUrl = `../${selectedLang}/cultural-symbolism.html`;
+            }
+            
+            // 対応する言語版にジャンプ
+            window.location.href = targetUrl;
+        }
+
+        // ページ読み込み時に現在の言語を設定
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('languageSelect').value = 'ja';
+        });
+    </script>
+</body>
+</html>

@@ -1,66 +1,282 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>观鸟日志记录 - BirdAiSnap</title>
+    <title>Mantenimiento de Diario de Observación de Aves - BirdAiSnap</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f5; color: #333; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
 
-        .hero-image { width: 100%; height: 400px; background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('../../images/birds/species/bird-image-004.webp') center/cover; position: relative; margin-top: 0; }
-        .content { background: white; margin: -30px 20px 20px 20px; border-radius: 20px; padding: 40px 20px 30px 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); min-height: 80vh; }
-        .title { font-size: 24px; font-weight: 700; color: #1a1a1a; margin-bottom: 30px; margin-top: 10px; line-height: 1.3; }
-        .quote-box { background: linear-gradient(135deg, #f3e5f5, #e1bee7); border-left: 4px solid #9c27b0; padding: 20px; margin: 25px 0; border-radius: 8px; position: relative; }
-        .quote-box::before { content: '"'; font-size: 48px; color: #9c27b0; position: absolute; top: -5px; left: 15px; font-family: serif; line-height: 1; }
-        .quote-text { font-size: 18px; font-weight: 600; color: #6a1b9a; margin-left: 25px; line-height: 1.4; }
-        .main-text { font-size: 16px; line-height: 1.8; color: #333; margin: 20px 0; text-align: justify; }
-        .section-title { font-size: 20px; font-weight: 600; color: #9c27b0; margin: 30px 0 15px 0; border-bottom: 2px solid #e1bee7; padding-bottom: 8px; }
-        .tip-box { background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px; padding: 15px; margin: 20px 0; border-left: 4px solid #28a745; }
-        .tip-title { font-weight: 600; color: #28a745; margin-bottom: 8px; }
-        .emoji { font-size: 18px; margin: 0 2px; }
-        .progress-container { position: fixed; bottom: 0; left: 0; right: 0; height: 60px; background: linear-gradient(to top, rgba(255,255,255,0.95), transparent); display: flex; align-items: center; justify-content: center; z-index: 998; }
-        .progress-bar { width: 200px; height: 4px; background: rgba(0,0,0,0.1); border-radius: 2px; overflow: hidden; }
-        .progress-fill { height: 100%; background: linear-gradient(90deg, #9c27b0, #ba68c8); width: 0%; border-radius: 2px; transition: width 0.3s ease; }
-        @media (max-width: 375px) { .content { margin: -30px 15px 20px 15px; padding: 25px 15px; } .title { font-size: 22px; } .main-text { font-size: 15px; } }
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                        url('../../images/birds/species/bird-image-004.webp') center/cover;
+            position: relative;
+            margin-top: 0;
+        }
+        
+        .content {
+            background: white;
+            margin: -30px 20px 20px 20px;
+            border-radius: 20px;
+            padding: 30px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            min-height: 80vh;
+        }
+        
+        .title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            margin-top: 15px;
+            line-height: 1.3;
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, #e8f5e8, #c8e6c9);
+            border-left: 4px solid #2E8B57;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .quote-box::before {
+            content: '"';
+            font-size: 48px;
+            color: #2E8B57;
+            position: absolute;
+            top: -5px;
+            left: 15px;
+            font-family: serif;
+            line-height: 1;
+        }
+        
+        .quote-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1b5e20;
+            margin-left: 25px;
+            line-height: 1.4;
+        }
+        
+        .main-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            margin: 20px 0;
+            text-align: justify;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #2E8B57;
+            margin: 30px 0 15px 0;
+            border-bottom: 2px solid #c8e6c9;
+            padding-bottom: 8px;
+        }
+        
+        .tip-box {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            border-left: 4px solid #28a745;
+        }
+        
+        .tip-title {
+            font-weight: 600;
+            color: #28a745;
+            margin-bottom: 8px;
+        }
+        
+        .emoji {
+            font-size: 18px;
+            margin: 0 2px;
+        }
+        
+        .progress-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: linear-gradient(to top, rgba(255,255,255,0.95), transparent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 998;
+        }
+        
+        .progress-bar {
+            width: 200px;
+            height: 4px;
+            background: rgba(0,0,0,0.1);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #2E8B57, #90EE90);
+            width: 0%;
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+        
+        @media (max-width: 375px) {
+            .content {
+                margin: -30px 15px 20px 15px;
+                padding: 25px 15px;
+            }
+            
+            .title {
+                font-size: 22px;
+            }
+            
+            .main-text {
+                font-size: 15px;
+            }
+        }
     </style>
 </head>
 <body>
-    
-    </div>
-    
+
+    <!-- Imagen principal -->
     <div class="hero-image"></div>
+    
+    <!-- Contenido principal -->
     <div class="content">
-        <h1 class="title">观鸟日志记录</h1>
-        <div class="quote-box"><div class="quote-text">记录您的观鸟冒险并建立个人发现记录</div></div>
-        <div class="main-text">观鸟日志将随意的观察转化为有价值的个人体验、模式和发现数据库。系统化的记录不仅有助于个人学习和技能提升，还能为科学研究和保护工作提供宝贵数据<span class="emoji">📔</span>。</div>
-        <div class="section-title">为什么要记录观鸟日志？</div>
-        <div class="main-text">观鸟日志帮助您追踪个人的观鸟历程，记录首次观察到的物种，分析季节性模式和行为变化<span class="emoji">📈</span>。长期记录能揭示当地鸟类群落的变化趋势，为环境监测提供基础数据。</div>
-        <div class="section-title">记录的基本信息</div>
-        <div class="main-text">有效的观鸟日志应包含日期、时间、地点、天气条件、观察到的物种、数量、行为描述等基本信息<span class="emoji">📋</span>。详细的栖息环境描述和个人观察心得也很有价值。</div>
-        <div class="tip-box"><div class="tip-title">✏️ 记录技巧</div>使用简洁明了的符号和缩写提高记录效率。现场快速记录要点，回家后补充详细信息。</div>
-        <div class="section-title">数字 vs 纸质日志</div>
-        <div class="main-text">数字日志便于搜索、统计和分享，还能添加照片和GPS位置<span class="emoji">📱</span>。纸质日志在野外使用更可靠，不受电池和信号限制。许多观鸟者选择两者结合使用。</div>
-        <div class="section-title">添加素描和视觉元素</div>
-        <div class="main-text">简单的素描能记录重要的识别特征，比文字描述更直观<span class="emoji">🎨</span>。不需要专业绘画技能，重点是记录关键特征和比例关系。</div>
-        <div class="section-title">分析您的记录</div>
-        <div class="main-text">定期回顾和分析日志记录，寻找模式和趋势。统计不同季节的物种数量变化，分析天气对鸟类活动的影响<span class="emoji">📊</span>。这些分析能提高您的观鸟技能和生态理解。</div>
-        <div class="section-title">分享和贡献您的记录</div>
-        <div class="main-text">考虑将您的观察记录提交给公民科学项目，如eBird等平台<span class="emoji">🌐</span>。这些数据对鸟类研究和保护工作具有重要价值，同时也能与全球观鸟社区分享您的发现。</div>
-        <div class="main-text">观鸟日志是您与自然世界对话的记录，也是个人成长和学习的见证<span class="emoji">🌟</span>。坚持记录，您将发现观鸟不仅是一种爱好，更是一种深度的自然体验和科学探索。</div>
+        <h1 class="title">Mantenimiento de Diario de Observación de Aves</h1>
+        
+        <div class="quote-box">
+            <div class="quote-text">
+                Documenta tus aventuras aviares y construye un tesoro de recuerdos ornitológicos
+            </div>
+        </div>
+        
+        <div class="main-text">
+            Mantener un diario de observación de aves es una de las prácticas más gratificantes y valiosas para cualquier ornitólogo, desde principiantes hasta expertos experimentados. Un diario bien mantenido no solo sirve como registro personal de tus encuentros con aves, sino que también contribuye a la ciencia ciudadana y se convierte en un tesoro de recuerdos que puedes atesorar durante toda la vida <span class="emoji">📖</span>. La práctica de documentar tus observaciones mejora tus habilidades de observación, profundiza tu conexión con la naturaleza y crea un valioso recurso para futuras referencias.
+        </div>
+        
+        <div class="section-title">Beneficios de Mantener un Diario de Aves</div>
+        
+        <div class="main-text">
+            Los beneficios de mantener un diario de observación de aves se extienden mucho más allá del simple mantenimiento de registros. Documentar regularmente tus observaciones mejora significativamente tus habilidades de identificación de aves, ya que te obliga a prestar atención a detalles específicos y características distintivas <span class="emoji">🔍</span>. Con el tiempo, comenzarás a notar patrones en el comportamiento de las aves, patrones de migración y cambios estacionales que de otro modo podrían pasar desapercibidos.
+        </div>
+        
+        <div class="main-text">
+            Tu diario también sirve como una herramienta poderosa para rastrear tu progreso personal como observador de aves. Puedes ver cómo han evolucionado tus habilidades, cuántas especies nuevas has agregado a tu lista de vida y qué ubicaciones han sido más productivas para tus esfuerzos de observación <span class="emoji">📈</span>. Además, tus registros detallados pueden contribuir a proyectos de ciencia ciudadana como eBird, ayudando a los científicos a comprender mejor las poblaciones de aves y los patrones de distribución.
+        </div>
+        
+        <div class="section-title">Información Esencial para Registrar</div>
+        
+        <div class="main-text">
+            Un diario de aves efectivo debe incluir cierta información básica para cada observación. Siempre registra la fecha, hora y ubicación de tu avistamiento, siendo lo más específico posible sobre la ubicación <span class="emoji">📍</span>. Incluye las condiciones climáticas, ya que esto puede influir significativamente en la actividad de las aves y ayudarte a entender por qué ciertas especies estaban presentes o ausentes.
+        </div>
+        
+        <div class="main-text">
+            Para cada especie observada, registra el número de individuos, su comportamiento y cualquier característica notable que observes. Describe el hábitat donde encontraste las aves y cualquier interacción interesante entre especies <span class="emoji">🐦</span>. Si eres nuevo en la observación de aves, no te preocupes por identificar cada ave perfectamente; es mejor registrar una descripción detallada de un ave no identificada que omitir la observación por completo.
+        </div>
+        
+        <div class="tip-box">
+            <div class="tip-title">💡 Consejo Profesional</div>
+            Desarrolla un sistema de abreviaciones para información comúnmente registrada (por ejemplo, "M" para macho, "H" para hembra, "Juv" para juvenil) para hacer que el registro en el campo sea más rápido y eficiente.
+        </div>
+        
+        <div class="section-title">Formatos de Diario Digital vs. Físico</div>
+        
+        <div class="main-text">
+            Los observadores de aves modernos tienen la opción de mantener diarios digitales o físicos, cada uno con sus propias ventajas. Los diarios digitales, como aplicaciones de teléfonos inteligentes o software de computadora, ofrecen conveniencia, capacidades de búsqueda y la capacidad de sincronizar datos en múltiples dispositivos <span class="emoji">📱</span>. Muchas aplicaciones digitales también incluyen funciones como mapas GPS, grabaciones de sonidos e integración con bases de datos de ciencia ciudadana.
+        </div>
+        
+        <div class="main-text">
+            Los diarios físicos, por otro lado, ofrecen una experiencia táctil que muchos observadores de aves encuentran más personal y satisfactoria. No requieren batería, funcionan en todas las condiciones climáticas y te permiten incluir bocetos, mapas dibujados a mano y notas en los márgenes <span class="emoji">✏️</span>. Muchos observadores de aves experimentados prefieren un enfoque híbrido, usando un cuaderno de campo para registros inmediatos y transfiriendo la información a un sistema digital más tarde para almacenamiento y análisis a largo plazo.
+        </div>
+        
+        <div class="section-title">Técnicas de Registro en el Campo</div>
+        
+        <div class="main-text">
+            El registro efectivo en el campo requiere equilibrar la velocidad con la precisión. Desarrolla un sistema de taquigrafía que te permita capturar rápidamente información esencial sin perder observaciones importantes <span class="emoji">⚡</span>. Usa abreviaciones para especies comunes, condiciones climáticas y comportamientos, pero asegúrate de que tu sistema sea consistente y comprensible para ti más tarde.
+        </div>
+        
+        <div class="main-text">
+            Considera usar páginas pre-formateadas o plantillas que incluyan espacios para toda la información esencial. Esto puede acelerar tu proceso de registro y asegurar que no olvides elementos importantes <span class="emoji">📋</span>. Algunos observadores de aves crean sus propias plantillas personalizadas adaptadas a sus intereses específicos, como migración, comportamiento reproductivo o ecología urbana.
+        </div>
+        
+        <div class="section-title">Incorporando Bocetos y Diagramas</div>
+        
+        <div class="main-text">
+            Los elementos visuales pueden mejorar enormemente el valor de tu diario de aves. Incluso bocetos simples pueden capturar detalles importantes que podrían ser difíciles de describir con palabras solas <span class="emoji">🎨</span>. No necesitas ser un artista talentoso; bocetos básicos que muestren la forma del cuerpo, patrones de marcas o posturas distintivas pueden ser increíblemente valiosos para futuras referencias e identificación.
+        </div>
+        
+        <div class="main-text">
+            Los diagramas también pueden ser útiles para registrar ubicaciones de avistamientos, rutas de vuelo o disposiciones de bandadas. Un mapa simple de tu área de observación con ubicaciones de especies marcadas puede ayudarte a entender los patrones de uso del hábitat y planificar futuras excursiones de observación <span class="emoji">🗺️</span>. Con el tiempo, estos elementos visuales se convierten en una parte preciada de tu diario, agregando profundidad y contexto a tus registros escritos.
+        </div>
+        
+        <div class="section-title">Usando Tu Diario para Análisis</div>
+        
+        <div class="main-text">
+            Un diario bien mantenido se convierte en una poderosa herramienta analítica que puede revelar patrones fascinantes en tus datos de observación de aves. Revisa regularmente tus entradas para identificar tendencias estacionales, ubicaciones productivas y cambios en las poblaciones locales de aves <span class="emoji">📊</span>. Puedes crear gráficos simples o tablas para visualizar estos patrones, como rastrear las fechas de llegada de migrantes primaverales o comparar la diversidad de especies en diferentes hábitats.
+        </div>
+        
+        <div class="main-text">
+            Tu diario también puede ayudarte a convertirte en un mejor observador de aves al identificar brechas en tu conocimiento o experiencia. Si notas que rara vez observas ciertas familias de aves, puedes enfocar tus esfuerzos futuros en aprender más sobre esos grupos o visitar hábitats donde es más probable encontrarlos <span class="emoji">🎯</span>. Esta autorreflexión es una parte valiosa del crecimiento como ornitólogo.
+        </div>
+        
+        <div class="tip-box">
+            <div class="tip-title">🌟 Consejo Avanzado</div>
+            Considera mantener listas separadas para diferentes propósitos: una lista de vida general, listas anuales, listas de ubicaciones específicas y listas especializadas como "aves fotografiadas" o "nuevas especies este año".
+        </div>
+        
+        <div class="section-title">Compartiendo y Contribuyendo a la Ciencia</div>
+        
+        <div class="main-text">
+            Tus registros de diario de aves pueden hacer contribuciones valiosas a la comprensión científica de las poblaciones y comportamientos de las aves. Plataformas como eBird permiten a los observadores de aves subir sus observaciones a una base de datos global utilizada por investigadores de todo el mundo <span class="emoji">🌍</span>. Tus datos pueden ayudar a rastrear patrones de migración, monitorear la salud de las poblaciones y identificar áreas importantes para la conservación.
+        </div>
+        
+        <div class="main-text">
+            Compartir tus experiencias con otros observadores de aves también puede enriquecer la comunidad de observación de aves. Considera unirte a clubes locales de observación de aves, participar en foros en línea o contribuir a publicaciones de observación de aves <span class="emoji">🤝</span>. Tus observaciones únicas y perspectivas pueden inspirar a otros y contribuir al conocimiento colectivo de la comunidad de observación de aves.
+        </div>
+        
+        <div class="section-title">Preservando Tu Diario para el Futuro</div>
+        
+        <div class="main-text">
+            Tu diario de observación de aves representa años de experiencias y observaciones dedicadas, por lo que es importante tomar medidas para preservarlo para las generaciones futuras. Para diarios físicos, considera hacer copias digitales de páginas importantes o escanear todo el diario periódicamente <span class="emoji">💾</span>. Almacena las copias de seguridad en múltiples ubicaciones para proteger contra pérdida o daño.
+        </div>
+        
+        <div class="main-text">
+            Para registros digitales, mantén copias de seguridad regulares y considera usar servicios de almacenamiento en la nube para protección adicional. Documenta tu sistema de organización y cualquier abreviación o código que uses para que otros puedan entender tus registros si es necesario <span class="emoji">🔒</span>. Algunos observadores de aves incluso donan sus diarios a museos de historia natural o instituciones de investigación donde pueden continuar contribuyendo al conocimiento científico mucho después de que el observador haya dejado de mantenerlos activamente.
+        </div>
+        
+        <div class="main-text">
+            Recuerda, tu diario de observación de aves es más que solo un registro de datos; es una crónica personal de tu viaje a través del mundo de las aves. Cada entrada representa un momento en el tiempo, una conexión con la naturaleza y una pieza del rompecabezas más grande de entender nuestro mundo natural <span class="emoji">🧩</span>. Abraza el proceso, sé consistente en tus esfuerzos de registro y observa cómo tu diario se convierte en uno de tus recursos más valiosos como observador de aves.
+        </div>
     </div>
-    <div class="progress-container"><div class="progress-bar"><div class="progress-fill"></div></div></div>
+
+    <!-- Barra de progreso -->
+    <div class="progress-container">
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
+        </div>
+    </div>
 
     <script>
-        // 更新时间
-        function updateTime() {
-            const now = new Date();
-            const timeString = now.getHours().toString().padStart(2, '0') + ':' + 
-                             now.getMinutes().toString().padStart(2, '0');
-            document.getElementById('current-time').textContent = timeString;
-        }
-        
-        // 模拟阅读进度
+        // Simular progreso de lectura
         function updateProgress() {
             const scrolled = window.pageYOffset;
             const maxHeight = document.body.scrollHeight - window.innerHeight;
@@ -68,15 +284,10 @@
             document.querySelector('.progress-fill').style.width = progress + '%';
         }
         
-        // 初始化
-        updateTime();
-        setInterval(updateTime, 60000);
-        
         window.addEventListener('scroll', updateProgress);
         updateProgress();
     </script>
     <script src="../language-redirect.js"></script>
-
 
 </body>
 </html>

@@ -400,6 +400,37 @@
     <script src="script.js"></script>
     <script src="language-redirect.js"></script>
     <script>
+        // 语言切换功能
+        function toggleLanguageMenu() {
+            const dropdown = document.querySelector('.lang-dropdown');
+            dropdown.classList.toggle('active');
+        }
+
+        function changeLanguage(langCode) {
+            localStorage.setItem('selectedLanguage', langCode);
+            
+            // 更新按钮显示
+            const langText = document.querySelector('.lang-text');
+            const languages = {
+                'en': 'English',
+                'es': 'Español', 
+                'fr': 'Français',
+                'de': 'Deutsch',
+                'zh': '中文'
+            };
+            langText.textContent = languages[langCode] || 'English';
+            
+            // 关闭下拉菜单
+            document.querySelector('.lang-dropdown').classList.remove('active');
+            
+            // 跳转到对应语言版本
+            if (langCode === 'en') {
+                window.location.href = 'ecology.html';
+            } else {
+                window.location.href = langCode + '/ecology.html?lang=' + langCode;
+            }
+        }
+
         // 为链接添加语言参数的函数
         function addLanguageParam(event, element) {
             event.preventDefault();
@@ -412,6 +443,36 @@
             // 跳转到对应语言的页面
             window.location.href = newHref;
         }
+
+        // 点击外部关闭下拉菜单
+        document.addEventListener('click', function(event) {
+            const dropdown = document.querySelector('.lang-dropdown');
+            if (!dropdown.contains(event.target)) {
+                dropdown.classList.remove('active');
+            }
+        });
+
+        // 页面加载时设置语言
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const urlLang = urlParams.get('lang');
+            const savedLang = localStorage.getItem('selectedLanguage') || 'en';
+            const currentLang = urlLang || savedLang;
+            
+            // 更新按钮显示
+            const langText = document.querySelector('.lang-text');
+            const languages = {
+                'en': 'English',
+                'es': 'Español', 
+                'fr': 'Français',
+                'de': 'Deutsch',
+                'zh': '中文'
+            };
+            langText.textContent = languages[currentLang] || 'English';
+            
+            // 保存当前语言
+            localStorage.setItem('selectedLanguage', currentLang);
+        });
     </script>
 </body>
 </html>

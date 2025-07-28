@@ -4,439 +4,279 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mecánica del Vuelo de las Aves - BirdAiSnap</title>
-    <link rel="stylesheet" href="../../styles.css">
-    <link rel="icon" type="image/x-icon" href="../../favicon.ico">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                        url('../../images/birds/species/bird-image-016.webp') center/cover;
+            position: relative;
+            margin-top: 0;
+        }
+        
+        .content {
+            background: white;
+            margin: -30px 20px 20px 20px;
+            border-radius: 20px;
+            padding: 40px 20px 30px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            min-height: 80vh;
+        }
+        
+        .title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            margin-top: 10px;
+            line-height: 1.3;
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            border-left: 4px solid #2196f3;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .quote-box::before {
+            content: '"';
+            font-size: 48px;
+            color: #2196f3;
+            position: absolute;
+            top: -5px;
+            left: 15px;
+            font-family: serif;
+            line-height: 1;
+        }
+        
+        .quote-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1565c0;
+            margin-left: 25px;
+            line-height: 1.4;
+        }
+        
+        .main-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            margin: 20px 0;
+            text-align: justify;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #2196f3;
+            margin: 30px 0 15px 0;
+            border-bottom: 2px solid #bbdefb;
+            padding-bottom: 8px;
+        }
+        
+        .tip-box {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            border-left: 4px solid #28a745;
+        }
+        
+        .tip-title {
+            font-weight: 600;
+            color: #28a745;
+            margin-bottom: 8px;
+        }
+        
+        .emoji {
+            font-size: 18px;
+            margin: 0 2px;
+        }
+        
+        .progress-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: linear-gradient(to top, rgba(255,255,255,0.95), transparent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 998;
+        }
+        
+        .progress-bar {
+            width: 200px;
+            height: 4px;
+            background: rgba(0,0,0,0.1);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #2196f3, #64b5f6);
+            width: 0%;
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+        
+        @media (max-width: 375px) {
+            .content {
+                margin: -30px 15px 20px 15px;
+                padding: 25px 15px;
+            }
+            
+            .title {
+                font-size: 22px;
+            }
+            
+            .main-text {
+                font-size: 15px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Navegación -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <a href="../../es/index.html">BirdAiSnap</a>
-            </div>
-            <ul class="nav-menu">
-                <li class="nav-item">
-                    <a href="../../es/index.html" class="nav-link" data-i18n="nav.home">Inicio</a>
-                </li>
-                <li class="nav-item">
-                    <a href="../../es/index.html#features" class="nav-link" data-i18n="nav.features">Características</a>
-                </li>
-                <li class="nav-item">
-                    <a href="../../es/index.html#about" class="nav-link" data-i18n="nav.about">Acerca de</a>
-                </li>
-                <li class="nav-item">
-                    <a href="../../es/index.html#contact" class="nav-link" data-i18n="nav.contact">Contacto</a>
-                </li>
-            </ul>
-            <div class="language-switcher">
-                <!-- El contenido del selector de idioma se generará dinámicamente -->
-            </div>
-            <div class="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
+
+    </div>
+    
+    <!-- 返回按钮 -->
+
+    <!-- 英雄图片 -->
+    <div class="hero-image"></div>
+    
+    <!-- 主要内容 -->
+    <div class="content">
+        <h1 class="title">Mecánica del Vuelo de las Aves</h1>
+        
+        <div class="quote-box">
+            <div class="quote-text">
+                Desvelando los Misterios Científicos de Cómo las Aves Conquistan el Cielo
             </div>
         </div>
-    </nav>
-
-    <!-- Encabezado del Artículo -->
-    <header class="article-header">
-        <div class="header-content">
-            <div class="header-text">
-                <h1>Mecánica del Vuelo de las Aves</h1>
-                <p class="article-subtitle">Descifrando los Secretos de la Locomoción Aérea Aviar</p>
-                <div class="article-meta">
-                    <span class="reading-time">⏱️ 8 min de lectura</span>
-                    <span class="article-category">🔬 Maravillas Científicas</span>
-                    <span class="difficulty-level">🎓 Intermedio</span>
-                </div>
-            </div>
-            <div class="header-image">
-                <img src="../../images/bird-image-025.webp" alt="Ave en vuelo mostrando mecánica de vuelo" loading="lazy">
-            </div>
+        
+        <div class="main-text">
+            La capacidad de vuelo de las aves es uno de los fenómenos más asombrosos de la naturaleza, permitiéndoles moverse libremente a través del espacio tridimensional con notable maniobrabilidad y eficiencia<span class="emoji">🛩️</span>. Detrás de este vuelo aparentemente sin esfuerzo se encuentran principios complejos e intrincados de física y biología.
         </div>
-    </header>
-
-    <!-- Contenido Principal -->
-    <main class="article-content">
-        <div class="container">
-            <!-- Introducción -->
-            <section class="content-section">
-                <p class="lead-paragraph">
-                    El vuelo de las aves representa una de las hazañas más extraordinarias de la ingeniería natural. Durante millones de años, las aves han perfeccionado el arte del vuelo, desarrollando mecanismos sofisticados que continúan inspirando a ingenieros aeronáuticos y científicos de todo el mundo. Desde el colibrí que puede flotar en el aire hasta el albatros que planea sin esfuerzo sobre los océanos, cada especie ha evolucionado adaptaciones únicas para conquistar los cielos.
-                </p>
-            </section>
-
-            <!-- Fundamentos de la Aerodinámica Aviar -->
-            <section class="content-section">
-                <h2>🌪️ Fundamentos de la Aerodinámica Aviar</h2>
-                
-                <div class="info-box">
-                    <h3>Las Cuatro Fuerzas del Vuelo</h3>
-                    <ul>
-                        <li><strong>Sustentación:</strong> Fuerza ascendente que contrarresta la gravedad</li>
-                        <li><strong>Peso:</strong> Fuerza gravitacional que tira del ave hacia abajo</li>
-                        <li><strong>Empuje:</strong> Fuerza propulsora que mueve al ave hacia adelante</li>
-                        <li><strong>Resistencia:</strong> Fuerza opuesta que resiste el movimiento hacia adelante</li>
-                    </ul>
-                </div>
-
-                <p>
-                    El vuelo exitoso requiere un equilibrio delicado entre estas cuatro fuerzas fundamentales. Las aves han desarrollado estructuras anatómicas especializadas y técnicas de vuelo que les permiten manipular estas fuerzas con precisión extraordinaria.
-                </p>
-
-                <h3>Generación de Sustentación</h3>
-                <p>
-                    Las aves generan sustentación principalmente a través de dos mecanismos:
-                </p>
-                
-                <div class="highlight-box">
-                    <h4>1. Principio de Bernoulli</h4>
-                    <p>La forma curvada del ala crea diferentes velocidades de flujo de aire por encima y por debajo del ala, resultando en diferencias de presión que generan sustentación.</p>
-                    
-                    <h4>2. Deflexión del Flujo de Aire</h4>
-                    <p>El ala desvía el aire hacia abajo (según la tercera ley de Newton), creando una fuerza de reacción igual y opuesta hacia arriba.</p>
-                </div>
-            </section>
-
-            <!-- Anatomía Especializada para el Vuelo -->
-            <section class="content-section">
-                <h2>🦴 Anatomía Especializada para el Vuelo</h2>
-                
-                <h3>Estructura del Ala</h3>
-                <p>
-                    Las alas de las aves son maravillas de la ingeniería biológica, compuestas por múltiples componentes que trabajan en armonía:
-                </p>
-
-                <div class="feature-grid">
-                    <div class="feature-card">
-                        <h4>🪶 Plumas de Vuelo</h4>
-                        <p>Las plumas primarias y secundarias forman la superficie de sustentación, mientras que las coberteras proporcionan un perfil aerodinámico suave.</p>
-                    </div>
-                    
-                    <div class="feature-card">
-                        <h4>🦴 Esqueleto Ligero</h4>
-                        <p>Los huesos huecos (neumáticos) reducen el peso mientras mantienen la resistencia estructural necesaria para el vuelo.</p>
-                    </div>
-                    
-                    <div class="feature-card">
-                        <h4>💪 Músculos de Vuelo</h4>
-                        <p>Los músculos pectorales potentes proporcionan la fuerza necesaria para el batido de alas, representando hasta el 25% del peso corporal total.</p>
-                    </div>
-                    
-                    <div class="feature-card">
-                        <h4>🫁 Sistema Respiratorio</h4>
-                        <p>Los sacos aéreos únicos proporcionan un flujo de aire unidireccional a través de los pulmones, maximizando la eficiencia del intercambio de oxígeno.</p>
-                    </div>
-                </div>
-
-                <h3>Adaptaciones del Esqueleto</h3>
-                <p>
-                    El esqueleto aviar ha sufrido modificaciones extensas para el vuelo:
-                </p>
-                
-                <ul class="detailed-list">
-                    <li><strong>Fusión de Huesos:</strong> Muchos huesos se han fusionado para crear una estructura rígida pero ligera</li>
-                    <li><strong>Quilla del Esternón:</strong> Proporciona un área de inserción amplia para los músculos de vuelo</li>
-                    <li><strong>Fúrcula (Hueso de la Suerte):</strong> Actúa como un resorte, almacenando y liberando energía durante el batido de alas</li>
-                    <li><strong>Huesos Neumáticos:</strong> Contienen espacios aéreos conectados al sistema respiratorio</li>
-                </ul>
-            </section>
-
-            <!-- Tipos de Vuelo -->
-            <section class="content-section">
-                <h2>✈️ Tipos de Vuelo</h2>
-                
-                <p>
-                    Las aves han desarrollado varios estilos de vuelo, cada uno optimizado para diferentes condiciones ambientales y necesidades ecológicas:
-                </p>
-
-                <div class="comparison-table">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Tipo de Vuelo</th>
-                                <th>Características</th>
-                                <th>Ejemplos de Especies</th>
-                                <th>Ventajas</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>Vuelo Batido</strong></td>
-                                <td>Batido continuo de alas</td>
-                                <td>Gorriones, Petirrojos</td>
-                                <td>Control preciso, maniobrabilidad</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Planeo</strong></td>
-                                <td>Alas extendidas, sin batir</td>
-                                <td>Águilas, Buitres</td>
-                                <td>Eficiencia energética</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Vuelo Ondulado</strong></td>
-                                <td>Patrón de subida y bajada</td>
-                                <td>Carpinteros, Pinzones</td>
-                                <td>Ahorro de energía en vuelos largos</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Cernido</strong></td>
-                                <td>Permanecer inmóvil en el aire</td>
-                                <td>Colibríes, Cernícalos</td>
-                                <td>Alimentación de precisión</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Vuelo de Formación</strong></td>
-                                <td>Vuelo coordinado en grupo</td>
-                                <td>Gansos, Pelícanos</td>
-                                <td>Reducción de resistencia</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-
-            <!-- Eficiencia Energética -->
-            <section class="content-section">
-                <h2>⚡ Eficiencia Energética en el Vuelo</h2>
-                
-                <p>
-                    Las aves han desarrollado numerosas estrategias para minimizar el gasto energético durante el vuelo:
-                </p>
-
-                <h3>Aprovechamiento de Corrientes de Aire</h3>
-                <div class="info-box">
-                    <h4>Tipos de Corrientes Utilizadas:</h4>
-                    <ul>
-                        <li><strong>Térmicas:</strong> Columnas de aire caliente ascendente</li>
-                        <li><strong>Corrientes Orográficas:</strong> Aire forzado hacia arriba por montañas</li>
-                        <li><strong>Corrientes Dinámicas:</strong> Viento deflectado por obstáculos</li>
-                        <li><strong>Ondas de Montaña:</strong> Oscilaciones atmosféricas a gran altitud</li>
-                    </ul>
-                </div>
-
-                <h3>Optimización del Batido de Alas</h3>
-                <p>
-                    Las aves ajustan continuamente la frecuencia, amplitud y ángulo de sus alas para maximizar la eficiencia:
-                </p>
-                
-                <ul class="detailed-list">
-                    <li><strong>Frecuencia Variable:</strong> Desde 5 Hz en águilas hasta 80 Hz en colibríes</li>
-                    <li><strong>Cambio de Forma del Ala:</strong> Modificación activa del perfil aerodinámico</li>
-                    <li><strong>Control de Vórtices:</strong> Manipulación de turbulencias en las puntas de las alas</li>
-                    <li><strong>Recuperación de Energía:</strong> Aprovechamiento de la energía elástica almacenada</li>
-                </ul>
-            </section>
-
-            <!-- Adaptaciones Especializadas -->
-            <section class="content-section">
-                <h2>🎯 Adaptaciones Especializadas</h2>
-                
-                <h3>Vuelo del Colibrí</h3>
-                <div class="highlight-box">
-                    <p>
-                        Los colibríes representan el pináculo de la especialización en vuelo. Sus alas pueden rotar 180 grados en el hombro, permitiendo vuelo hacia atrás y cernido prolongado. Su frecuencia de batido extremadamente alta (hasta 80 batidos por segundo) genera sustentación tanto en el movimiento ascendente como descendente del ala.
-                    </p>
-                </div>
-
-                <h3>Vuelo de Larga Distancia</h3>
-                <p>
-                    Las aves migratorias han desarrollado adaptaciones extraordinarias para vuelos de miles de kilómetros:
-                </p>
-                
-                <div class="feature-grid">
-                    <div class="feature-card">
-                        <h4>🔋 Almacenamiento de Energía</h4>
-                        <p>Acumulación de grasa que puede representar hasta el 50% del peso corporal antes de la migración.</p>
-                    </div>
-                    
-                    <div class="feature-card">
-                        <h4>🧠 Navegación</h4>
-                        <p>Sistemas de navegación múltiples incluyendo brújula magnética, navegación estelar y puntos de referencia.</p>
-                    </div>
-                    
-                    <div class="feature-card">
-                        <h4>💤 Vuelo-Sueño</h4>
-                        <p>Capacidad de dormir durante el vuelo mediante el descanso de un hemisferio cerebral a la vez.</p>
-                    </div>
-                    
-                    <div class="feature-card">
-                        <h4>🌊 Vuelo Sobre Agua</h4>
-                        <p>Aprovechamiento del efecto suelo para reducir la resistencia al volar cerca de la superficie del agua.</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Innovaciones Inspiradas en las Aves -->
-            <section class="content-section">
-                <h2>🚁 Innovaciones Inspiradas en las Aves</h2>
-                
-                <p>
-                    El estudio de la mecánica del vuelo aviar ha inspirado numerosos avances tecnológicos:
-                </p>
-
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-date">1903</div>
-                        <div class="timeline-content">
-                            <h4>Hermanos Wright</h4>
-                            <p>Estudiaron el vuelo de las palomas para desarrollar el primer avión motorizado exitoso.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-date">1970s</div>
-                        <div class="timeline-content">
-                            <h4>Winglets</h4>
-                            <p>Inspirados en las plumas de las puntas de las alas de las aves para reducir la resistencia inducida.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-date">2000s</div>
-                        <div class="timeline-content">
-                            <h4>Drones Biomimétricos</h4>
-                            <p>Desarrollo de vehículos aéreos no tripulados que imitan el batido de alas de los insectos y aves pequeñas.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-date">2010s</div>
-                        <div class="timeline-content">
-                            <h4>Alas Morfológicas</h4>
-                            <p>Investigación en alas que pueden cambiar de forma durante el vuelo, imitando la flexibilidad de las alas de las aves.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Investigación Actual -->
-            <section class="content-section">
-                <h2>🔬 Investigación Actual y Futuro</h2>
-                
-                <p>
-                    La investigación moderna en mecánica del vuelo aviar utiliza tecnologías avanzadas para descubrir nuevos secretos:
-                </p>
-
-                <div class="research-grid">
-                    <div class="research-card">
-                        <h4>📹 Videografía de Alta Velocidad</h4>
-                        <p>Cámaras que capturan hasta 100,000 fotogramas por segundo revelan detalles microscópicos del movimiento de las alas.</p>
-                    </div>
-                    
-                    <div class="research-card">
-                        <h4>💨 Túneles de Viento Avanzados</h4>
-                        <p>Instalaciones que pueden simular condiciones de vuelo complejas para estudiar la aerodinámica aviar.</p>
-                    </div>
-                    
-                    <div class="research-card">
-                        <h4>🖥️ Simulación Computacional</h4>
-                        <p>Modelos CFD (Dinámica de Fluidos Computacional) que predicen patrones de flujo de aire alrededor de las aves.</p>
-                    </div>
-                    
-                    <div class="research-card">
-                        <h4>📡 Telemetría GPS</h4>
-                        <p>Seguimiento de aves en vuelo libre para entender estrategias de vuelo en condiciones naturales.</p>
-                    </div>
-                </div>
-
-                <div class="future-box">
-                    <h3>🔮 Direcciones Futuras</h3>
-                    <ul>
-                        <li>Desarrollo de materiales inteligentes que imiten las propiedades de las plumas</li>
-                        <li>Sistemas de control de vuelo adaptativos basados en el comportamiento aviar</li>
-                        <li>Vehículos aéreos híbridos que combinan vuelo batido y propulsión convencional</li>
-                        <li>Aplicaciones en exploración espacial y vuelo en atmósferas extraterrestres</li>
-                    </ul>
-                </div>
-            </section>
-
-            <!-- Conclusión -->
-            <section class="content-section">
-                <h2>🎯 Conclusión</h2>
-                
-                <p>
-                    La mecánica del vuelo de las aves representa una síntesis extraordinaria de física, biología e ingeniería. Después de 150 millones de años de evolución, las aves han perfeccionado soluciones elegantes a los desafíos del vuelo que continúan inspirando y desafiando a los ingenieros humanos.
-                </p>
-                
-                <p>
-                    Desde las adaptaciones microscópicas en la estructura de las plumas hasta las estrategias de navegación a escala continental, cada aspecto del vuelo aviar revela nuevas capas de complejidad y sofisticación. A medida que nuestras herramientas de investigación se vuelven más avanzadas, continuamos descubriendo secretos que podrían revolucionar la aviación humana y abrir nuevas fronteras en la exploración aérea.
-                </p>
-
-                <div class="key-takeaways">
-                    <h3>🔑 Puntos Clave</h3>
-                    <ul>
-                        <li>El vuelo aviar equilibra cuatro fuerzas fundamentales: sustentación, peso, empuje y resistencia</li>
-                        <li>Las adaptaciones anatómicas incluyen huesos huecos, músculos especializados y sistemas respiratorios únicos</li>
-                        <li>Diferentes especies han desarrollado estilos de vuelo optimizados para sus nichos ecológicos</li>
-                        <li>La eficiencia energética se logra mediante el aprovechamiento de corrientes de aire y la optimización del batido</li>
-                        <li>La investigación del vuelo aviar continúa inspirando innovaciones tecnológicas</li>
-                    </ul>
-                </div>
-            </section>
-
-            <!-- Navegación del Artículo -->
-            <nav class="article-navigation">
-                <div class="nav-previous">
-                    <a href="../scientific-wonders.html">
-                        <span class="nav-label">← Anterior</span>
-                        <span class="nav-title">Maravillas Científicas</span>
-                    </a>
-                </div>
-                <div class="nav-next">
-                    <a href="02-magnetic-navigation.html">
-                        <span class="nav-label">Siguiente →</span>
-                        <span class="nav-title">Navegación Magnética</span>
-                    </a>
-                </div>
-            </nav>
+        
+        <div class="section-title">Principios Básicos de la Generación de Sustentación</div>
+        
+        <div class="main-text">
+            El núcleo del vuelo de las aves radica en la generación de sustentación. Según el principio de Bernoulli, cuando el aire fluye sobre la superficie superior del ala de un ave, el flujo de aire se acelera debido al diseño curvado del ala, resultando en menor presión<span class="emoji">💨</span>. Mientras tanto, el flujo de aire debajo del ala es relativamente más lento con mayor presión, y esta diferencia de presión crea una sustentación hacia arriba.
         </div>
-    </main>
-
-    <!-- Pie de página -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <div class="footer-logo">
-                        <h3>BirdAiSnap</h3>
-                        <p data-i18n="footer.tagline">Reconocimiento inteligente, explorar la naturaleza</p>
-                    </div>
-                </div>
-                
-                <div class="footer-section">
-                    <h4 data-i18n="footer.product">Producto</h4>
-                    <ul>
-                        <li><a href="#" data-i18n="footer.product.download">Descargar aplicación</a></li>
-                        <li><a href="#features" data-i18n="footer.product.features">Características</a></li>
-                        <li><a href="#" data-i18n="footer.product.guide">Guía del usuario</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h4 data-i18n="footer.support">Soporte</h4>
-                    <ul>
-                        <li><a href="#" data-i18n="footer.support.help">Centro de ayuda</a></li>
-                        <li><a href="#" data-i18n="footer.support.feedback">Comentarios</a></li>
-                        <li><a href="#" data-i18n="footer.support.privacy">Política de privacidad</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h4 data-i18n="footer.contact">Contacto</h4>
-                    <ul>
-                        <li><a href="#contact" data-i18n="footer.contact.email">Consulta por correo electrónico</a></li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p data-i18n="footer.copyright">&copy; 2024 BirdAiSnap. Todos los derechos reservados</p>
-            </div>
+        
+        <div class="main-text">
+            Sin embargo, la generación de sustentación no depende únicamente de la forma del ala. Las aves pueden controlar efectivamente la cantidad de sustentación ajustando el ángulo de ataque (el ángulo entre el ala y el plano horizontal)<span class="emoji">📐</span>. Cuando el ángulo de ataque aumenta, la sustentación aumenta, pero la resistencia también aumenta, requiriendo que las aves hagan constantemente ajustes precisos durante el vuelo.
         </div>
-    </footer>
+        
+        <div class="section-title">Mecanismos Complejos del Batido de Alas</div>
+        
+        <div class="main-text">
+            El batido de las alas de las aves no es un simple movimiento de arriba hacia abajo, sino un movimiento tridimensional complejo. Durante la fase de batido descendente, las alas se mueven hacia abajo y hacia adelante, generando tanto sustentación como empuje<span class="emoji">⬇️</span>. Durante la fase de batido ascendente, las alas se mueven hacia arriba y hacia atrás, con las alas plegándose parcialmente para reducir la resistencia.
+        </div>
+        
+        <div class="tip-box">
+            <div class="tip-title">🔬 Descubrimiento Científico</div>
+            La investigación ha encontrado que los colibríes pueden batir sus alas 80 veces por segundo, mientras que las aves grandes como los albatros pueden planear durante largos períodos con casi ningún batido de alas.
+        </div>
+        
+        <div class="main-text">
+            La estructura de las plumas de las alas juega un papel crucial en la eficiencia del vuelo. Las plumas primarias son responsables de generar empuje, las plumas secundarias producen principalmente sustentación, y las coberteras ayudan a mantener la suavidad de la superficie del ala<span class="emoji">🪶</span>. Este sistema preciso de disposición de plumas permite a las aves controlar con precisión el flujo de aire y lograr un vuelo eficiente.
+        </div>
+        
+        <div class="section-title">Adaptabilidad de Diferentes Modos de Vuelo</div>
+        
+        <div class="main-text">
+            Diferentes aves han evolucionado varios modos de vuelo según sus ambientes de vida y necesidades de alimentación. Las aves rapaces tienen alas anchas adecuadas para planear y elevarse<span class="emoji">🦅</span>. Aves como las golondrinas tienen alas esbeltas, ideales para vuelo de maniobra rápida y captura de insectos en el aire.
+        </div>
+        
+        <div class="main-text">
+            Las aves acuáticas típicamente tienen alas estrechas y alargadas, un diseño beneficioso para vuelo de larga distancia y despegue y aterrizaje en superficies de agua. Aunque los pingüinos no pueden volar, sus "alas" funcionan como aletas de pez en el agua, demostrando principios similares de dinámica de fluidos<span class="emoji">🐧</span>.
+        </div>
+        
+        <div class="section-title">Eficiencia Energética y Adaptaciones Metabólicas</div>
+        
+        <div class="main-text">
+            El vuelo es una actividad de alta energía, y las aves deben tener sistemas de metabolismo energético eficientes para soportar este modo de movimiento. Las aves tienen corazones relativamente grandes y sistemas circulatorios altamente desarrollados que pueden transportar rápidamente oxígeno y nutrientes<span class="emoji">❤️</span>.
+        </div>
+        
+        <div class="main-text">
+            El sistema esquelético de las aves también ha sufrido adaptaciones evolutivas especiales. Muchos huesos son huecos, lo que no solo reduce el peso sino que también mejora la resistencia ósea<span class="emoji">🦴</span>. La quilla bien desarrollada en el esternón proporciona puntos de inserción para los poderosos músculos de vuelo, permitiendo a las aves generar fuerza suficiente para el vuelo.
+        </div>
+        
+        <div class="section-title">Inspiración para la Tecnología Moderna</div>
+        
+        <div class="main-text">
+            El estudio del vuelo de las aves ha proporcionado inspiración importante para la tecnología de aviación moderna. Desde el diseño temprano de aeronaves hasta la tecnología moderna de drones, todos han extraído de los principios del vuelo de las aves<span class="emoji">✈️</span>. La investigación biomimética está desarrollando aeronaves más eficientes y flexibles imitando los mecanismos de batido de alas de las aves.
+        </div>
+        
+        <div class="tip-box">
+            <div class="tip-title">🚀 Perspectiva Futura</div>
+            Los científicos están estudiando cómo aplicar los principios del vuelo de las aves para desarrollar nuevos tipos de aeronaves personales y vehículos de transporte urbano.
+        </div>
+        
+        <div class="main-text">
+            Al comprender profundamente los principios mecánicos del vuelo de las aves, no solo podemos apreciar mejor la elegancia de estos espíritus aéreos, sino también proporcionar nuevas ideas y direcciones para el desarrollo tecnológico humano<span class="emoji">🌟</span>. Cada vez que un ave se eleva con el batido de alas, demuestra perfectamente la sabiduría de miles de millones de años de evolución natural.
+        </div>
+    </div>
+    
+    <!-- 进度条 -->
+    <div class="progress-container">
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
+        </div>
+    </div>
 
-    <script src="../../script.js"></script>
+    <script>
+        // 更新时间
+        function updateTime() {
+            const now = new Date();
+            const timeString = now.getHours().toString().padStart(2, '0') + ':' + 
+                             now.getMinutes().toString().padStart(2, '0');
+            const timeElement = document.getElementById('current-time');
+            if (timeElement) {
+                timeElement.textContent = timeString;
+            }
+        }
+        
+        // 模拟阅读进度
+        function updateProgress() {
+            const scrolled = window.pageYOffset;
+            const maxHeight = document.body.scrollHeight - window.innerHeight;
+            const progress = Math.min((scrolled / maxHeight) * 100, 100);
+            const progressFill = document.querySelector('.progress-fill');
+            if (progressFill) {
+                progressFill.style.width = progress + '%';
+            }
+        }
+        
+        // 初始化
+        updateTime();
+        setInterval(updateTime, 60000);
+        
+        window.addEventListener('scroll', updateProgress);
+        updateProgress();
+    </script>
+    <script src="../language-redirect.js"></script>
+
+
 </body>
 </html>

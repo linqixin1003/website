@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="ecology.title">Vogelökologie - BirdAiSnap</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+        
+        .language-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        
+        .lang-dropdown {
+            position: relative;
+        }
+        
+        .lang-btn {
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid #e0e0e0;
+            border-radius: 25px;
+            padding: 8px 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #333;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .lang-btn:hover {
+            background: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+        
+        .lang-icon {
+            font-size: 16px;
+        }
+        
+        .dropdown-arrow {
+            font-size: 12px;
+            transition: transform 0.3s ease;
+        }
+        
+        .lang-dropdown.active .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+        
+        .lang-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1001;
+            margin-top: 5px;
+        }
+        
+        .lang-dropdown.active .lang-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .lang-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .lang-option:last-child {
+            border-bottom: none;
+        }
+        
+        .lang-option:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .lang-option.active {
+            background-color: #e3f2fd;
+            color: #1976d2;
+        }
+        
+        .lang-option .flag {
+            font-size: 18px;
+        }
+        
+        .lang-option .name {
+            flex: 1;
+            font-weight: 500;
+        }
+        
+        .lang-option .code {
+            font-size: 12px;
+            color: #666;
+            background: #f0f0f0;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+        
+        .lang-option.active .code {
+            background: #bbdefb;
+            color: #1976d2;
+        }
+        
+        .header {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.6)), 
+                        url('../images/birds/species/bird-image-015.webp') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .header-title {
+            color: white;
+            font-size: 32px;
+            font-weight: 700;
+            text-align: center;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .content {
+            background: white;
+            margin: -30px 20px 20px 20px;
+            border-radius: 20px;
+            padding: 30px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            min-height: 80vh;
+        }
+        
+        .intro-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            margin: 20px 0;
+            text-align: center;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .article-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .article-card {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            height: 250px;
+            display: block;
+            text-decoration: none;
+        }
+        
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .article-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .article-card:hover .article-image {
+            transform: scale(1.05);
+        }
+        
+        .article-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            padding: 20px;
+            color: white;
+        }
+        
+        .article-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .article-description {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        @media (max-width: 768px) {
+            .article-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 20px;
+            }
+            
+            .header-title {
+                font-size: 28px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .article-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header-title {
+                font-size: 24px;
+            }
+            
+            .content {
+                margin: -20px 15px 15px 15px;
+                padding: 25px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 语言切换器 -->
+    <div class="language-switcher">
+        <div class="lang-dropdown">
+            <button class="lang-btn" onclick="toggleLanguageMenu()">
+                <span class="lang-icon">🌐</span>
+                <span class="lang-text">Deutsch</span>
+                <span class="dropdown-arrow">▼</span>
+            </button>
+            <div class="lang-menu">
+                <div class="lang-option" onclick="changeLanguage('en')">
+                    <span class="flag">🇺🇸</span>
+                    <span class="name">English</span>
+                    <span class="code">EN</span>
+                </div>
+                <div class="lang-option" onclick="changeLanguage('es')">
+                    <span class="flag">🇪🇸</span>
+                    <span class="name">Español</span>
+                    <span class="code">ES</span>
+                </div>
+                <div class="lang-option" onclick="changeLanguage('fr')">
+                    <span class="flag">🇫🇷</span>
+                    <span class="name">Français</span>
+                    <span class="code">FR</span>
+                </div>
+                <div class="lang-option active" onclick="changeLanguage('de')">
+                    <span class="flag">🇩🇪</span>
+                    <span class="name">Deutsch</span>
+                    <span class="code">DE</span>
+                </div>
+                <div class="lang-option" onclick="changeLanguage('it')">
+                    <span class="flag">🇮🇹</span>
+                    <span class="name">Italiano</span>
+                    <span class="code">IT</span>
+                </div>
+                <div class="lang-option" onclick="changeLanguage('ja')">
+                    <span class="flag">🇯🇵</span>
+                    <span class="name">日本語</span>
+                    <span class="code">JA</span>
+                </div>
+                <div class="lang-option" onclick="changeLanguage('ko')">
+                    <span class="flag">🇰🇷</span>
+                    <span class="name">한국어</span>
+                    <span class="code">KO</span>
+                </div>
+                <div class="lang-option" onclick="changeLanguage('pt')">
+                    <span class="flag">🇵🇹</span>
+                    <span class="name">Português</span>
+                    <span class="code">PT</span>
+                </div>
+                <div class="lang-option" onclick="changeLanguage('ru')">
+                    <span class="flag">🇷🇺</span>
+                    <span class="name">Русский</span>
+                    <span class="code">RU</span>
+                </div>
+                <div class="lang-option" onclick="changeLanguage('zh')">
+                    <span class="flag">🇨🇳</span>
+                    <span class="name">中文</span>
+                    <span class="code">ZH</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 头部横幅 -->
+    <div class="header">
+        <h1 class="header-title" data-i18n="ecology.header.title">Vogelökologie</h1>
+    </div>
+    
+    <!-- 主要内容 -->
+    <div class="content">
+        <p class="intro-text" data-i18n="ecology.intro.text">
+            Erkunden Sie die komplexen und faszinierenden Beziehungen zwischen Vögeln und ihrer Umwelt. Die Vogelökologie untersucht, wie sich Vögel an verschiedene Lebensräume anpassen, ihre Rollen in Ökosystemen und die Auswirkungen von Umweltveränderungen auf Vogelpopulationen. Das Verständnis dieser ökologischen Beziehungen hilft uns, Vögel und ihre Lebensräume besser zu schützen.
+        </p>
+        
+        <div class="article-grid">
+            <!-- 文章1 -->
+            <a href="ecology/01-habitat-ecosystems.html" class="article-card" onclick="addLanguageParam(event, this)">
+                <img src="../images/birds/species/bird-image-075.webp" class="article-image" alt="Lebensräume und Ökosysteme">
+                <div class="article-overlay">
+                    <h3 class="article-title" data-i18n="ecology.articles.habitat-ecosystems.title">Lebensräume und Ökosysteme</h3>
+                    <p class="article-description" data-i18n="ecology.articles.habitat-ecosystems.desc">Die Vielfalt der Vogellebensräume und Ökosystemfunktionen verstehen</p>
+                </div>
+            </a>
+            
+            <!-- 文章2 -->
+            <a href="ecology/02-food-webs-chains.html" class="article-card" onclick="addLanguageParam(event, this)">
+                <img src="../images/birds/species/bird-image-076.webp" class="article-image" alt="Nahrungsnetze und Nahrungsketten">
+                <div class="article-overlay">
+                    <h3 class="article-title" data-i18n="ecology.articles.food-webs-chains.title">Nahrungsnetze und Nahrungsketten</h3>
+                    <p class="article-description" data-i18n="ecology.articles.food-webs-chains.desc">Die wichtige Position und Rolle der Vögel in Nahrungsnetzen erkunden</p>
+                </div>
+            </a>
+            
+            <!-- 文章3 -->
+            <a href="ecology/03-migration-patterns.html" class="article-card" onclick="addLanguageParam(event, this)">
+                <img src="../images/birds/species/bird-image-077.webp" class="article-image" alt="Wanderungsmuster">
+                <div class="article-overlay">
+                    <h3 class="article-title" data-i18n="ecology.articles.migration-patterns.title">Wanderungsmuster</h3>
+                    <p class="article-description" data-i18n="ecology.articles.migration-patterns.desc">Die komplexen Muster und ökologische Bedeutung der Vogelwanderung studieren</p>
+                </div>
+            </a>
+            
+            <!-- 文章4 -->
+            <a href="ecology/04-breeding-ecology.html" class="article-card" onclick="addLanguageParam(event, this)">
+                <img src="../images/birds/species/bird-image-078.webp" class="article-image" alt="Brutökologie">
+                <div class="article-overlay">
+                    <h3 class="article-title" data-i18n="ecology.articles.breeding-ecology.title">Brutökologie</h3>
+                    <p class="article-description" data-i18n="ecology.articles.breeding-ecology.desc">Vogelbrutverhaltensweisen und ökologische Strategien verstehen</p>
+                </div>
+            </a>
+            
+            <!-- 文章5 -->
+            <a href="ecology/05-climate-change-impact.html" class="article-card" onclick="addLanguageParam(event, this)">
+                <img src="../images/birds/species/bird-image-079.webp" class="article-image" alt="Klimawandel-Auswirkungen">
+                <div class="article-overlay">
+                    <h3 class="article-title" data-i18n="ecology.articles.climate-change-impact.title">Klimawandel-Auswirkungen</h3>
+                    <p class="article-description" data-i18n="ecology.articles.climate-change-impact.desc">Die tiefgreifenden Auswirkungen des Klimawandels auf die Vogelökologie analysieren</p>
+                </div>
+            </a>
+            
+            <!-- 文章6 -->
+            <a href="ecology/06-urban-ecology.html" class="article-card" onclick="addLanguageParam(event, this)">
+                <img src="../images/birds/species/bird-image-080.webp" class="article-image" alt="Stadtökologie">
+                <div class="article-overlay">
+                    <h3 class="article-title" data-i18n="ecology.articles.urban-ecology.title">Stadtökologie</h3>
+                    <p class="article-description" data-i18n="ecology.articles.urban-ecology.desc">Erkunden, wie sich Vögel an städtische Umgebungen anpassen</p>
+                </div>
+            </a>
+            
+            <!-- 文章7 -->
+            <a href="ecology/07-conservation-biology.html" class="article-card" onclick="addLanguageParam(event, this)">
+                <img src="../images/birds/species/bird-image-081.webp" class="article-image" alt="Naturschutzbiologie">
+                <div class="article-overlay">
+                    <h3 class="article-title" data-i18n="ecology.articles.conservation-biology.title">Naturschutzbiologie</h3>
+                    <p class="article-description" data-i18n="ecology.articles.conservation-biology.desc">Die wissenschaftlichen Prinzipien und praktischen Methoden des Vogelschutzes lernen</p>
+                </div>
+            </a>
+            
+            <!-- 文章8 -->
+            <a href="ecology/08-island-biogeography.html" class="article-card" onclick="addLanguageParam(event, this)">
+                <img src="../images/birds/species/bird-image-082.webp" class="article-image" alt="Insel-Biogeographie">
+                <div class="article-overlay">
+                    <h3 class="article-title" data-i18n="ecology.articles.island-biogeography.title">Insel-Biogeographie</h3>
+                    <p class="article-description" data-i18n="ecology.articles.island-biogeography.desc">Vogelverteilung und Evolution in Inselumgebungen studieren</p>
+                </div>
+            </a>
+            
+            <!-- 文章9 -->
+            <a href="ecology/09-pollination-seed-dispersal.html" class="article-card" onclick="addLanguageParam(event, this)">
+                <img src="../images/birds/species/bird-image-083.webp" class="article-image" alt="Bestäubung und Samenausbreitung">
+                <div class="article-overlay">
+                    <h3 class="article-title" data-i18n="ecology.articles.pollination-seed-dispersal.title">Bestäubung und Samenausbreitung</h3>
+                    <p class="article-description" data-i18n="ecology.articles.pollination-seed-dispersal.desc">Die wichtige Rolle der Vögel bei der Pflanzenfortpflanzung verstehen</p>
+                </div>
+            </a>
+            
+            <!-- 文章10 -->
+            <a href="ecology/10-community-dynamics.html" class="article-card" onclick="addLanguageParam(event, this)">
+                <img src="../images/birds/species/bird-image-084.webp" class="article-image" alt="Gemeinschaftsdynamik">
+                <div class="article-overlay">
+                    <h3 class="article-title" data-i18n="ecology.articles.community-dynamics.title">Gemeinschaftsdynamik</h3>
+                    <p class="article-description" data-i18n="ecology.articles.community-dynamics.desc">Die Struktur und dynamischen Veränderungen von Vogelgemeinschaften erkunden</p>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- 引入多语言脚本 -->
+    <script src="../script.js"></script>
+    <script src="language-redirect.js"></script>
+    <script>
+        // 语言切换功能
+        function toggleLanguageMenu() {
+            const dropdown = document.querySelector('.lang-dropdown');
+            dropdown.classList.toggle('active');
+        }
+
+        function changeLanguage(langCode) {
+            localStorage.setItem('selectedLanguage', langCode);
+            
+            // 更新按钮显示
+            const langText = document.querySelector('.lang-text');
+            const languages = {
+                'en': 'English',
+                'es': 'Español', 
+                'fr': 'Français',
+                'de': 'Deutsch',
+                'it': 'Italiano',
+                'ja': '日本語',
+                'ko': '한국어',
+                'pt': 'Português',
+                'ru': 'Русский',
+                'zh': '中文'
+            };
+            langText.textContent = languages[langCode] || 'English';
+            
+            // 关闭下拉菜单
+            document.querySelector('.lang-dropdown').classList.remove('active');
+            
+            // 跳转到对应语言版本
+            if (langCode === 'en') {
+                window.location.href = '../ecology.html';
+            } else {
+                window.location.href = '../' + langCode + '/ecology.html?lang=' + langCode;
+            }
+        }
+
+        // 为链接添加语言参数的函数
+        function addLanguageParam(event, element) {
+            event.preventDefault();
+            const currentLang = localStorage.getItem('selectedLanguage') || 'de';
+            const href = element.getAttribute('href');
+            
+            // 跳转到对应语言的页面
+            window.location.href = href;
+        }
+
+        // 点击外部关闭下拉菜单
+        document.addEventListener('click', function(event) {
+            const dropdown = document.querySelector('.lang-dropdown');
+            if (!dropdown.contains(event.target)) {
+                dropdown.classList.remove('active');
+            }
+        });
+
+        // 页面加载时设置语言
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const urlLang = urlParams.get('lang');
+            const savedLang = localStorage.getItem('selectedLanguage') || 'de';
+            const currentLang = urlLang || savedLang;
+            
+            // 更新按钮显示
+            const langText = document.querySelector('.lang-text');
+            const languages = {
+                'en': 'English',
+                'es': 'Español', 
+                'fr': 'Français',
+                'de': 'Deutsch',
+                'it': 'Italiano',
+                'ja': '日本語',
+                'ko': '한국어',
+                'pt': 'Português',
+                'ru': 'Русский',
+                'zh': '中文'
+            };
+            langText.textContent = languages[currentLang] || 'Deutsch';
+            
+            // 保存当前语言
+            localStorage.setItem('selectedLanguage', currentLang);
+        });
+    </script>
+</body>
+</html>

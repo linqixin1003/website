@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>鸟类文化象征 - BirdAiSnap</title>
+    <title data-i18n="cultural.title">Cultural Symbolism of Birds - BirdAiSnap</title>
     <style>
         * {
             margin: 0;
@@ -12,9 +12,124 @@
         }
         
         body {
+        body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: #f5f5f5;
             color: #333;
+        }
+        
+        .language-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        
+        .lang-dropdown {
+            position: relative;
+        }
+        
+        .lang-btn {
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid #e0e0e0;
+            border-radius: 25px;
+            padding: 8px 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #333;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .lang-btn:hover {
+            background: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+        
+        .lang-icon {
+            font-size: 16px;
+        }
+        
+        .dropdown-arrow {
+            font-size: 12px;
+            transition: transform 0.3s ease;
+        }
+        
+        .lang-dropdown.active .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+        
+        .lang-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1001;
+            margin-top: 5px;
+        }
+        
+        .lang-dropdown.active .lang-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .lang-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .lang-option:last-child {
+            border-bottom: none;
+        }
+        
+        .lang-option:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .lang-option.active {
+            background-color: #e3f2fd;
+            color: #1976d2;
+        }
+        
+        .lang-option .flag {
+            font-size: 18px;
+        }
+        
+        .lang-option .name {
+            flex: 1;
+            font-weight: 500;
+        }
+        
+        .lang-option .code {
+            font-size: 12px;
+            color: #666;
+            background: #f0f0f0;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+        
+        .lang-option.active .code {
+            background: #bbdefb;
+            color: #1976d2;
         }
         
         .header {
@@ -143,15 +258,53 @@
     </style>
 </head>
 <body>
+    <!-- 语言切换器 -->
+    <div class="language-switcher">
+        <div class="lang-dropdown">
+            <button class="lang-btn" onclick="toggleLanguageMenu()">
+                <span class="lang-icon">🌐</span>
+                <span class="lang-text">English</span>
+                <span class="dropdown-arrow">▼</span>
+            </button>
+            <div class="lang-menu">
+                <div class="lang-option" onclick="changeLanguage('en')">
+                    <span class="flag">🇺🇸</span>
+                    <span class="name">English</span>
+                    <span class="code">EN</span>
+                </div>
+                <div class="lang-option" onclick="changeLanguage('es')">
+                    <span class="flag">🇪🇸</span>
+                    <span class="name">Español</span>
+                    <span class="code">ES</span>
+                </div>
+                <div class="lang-option" onclick="changeLanguage('fr')">
+                    <span class="flag">🇫🇷</span>
+                    <span class="name">Français</span>
+                    <span class="code">FR</span>
+                </div>
+                <div class="lang-option" onclick="changeLanguage('de')">
+                    <span class="flag">🇩🇪</span>
+                    <span class="name">Deutsch</span>
+                    <span class="code">DE</span>
+                </div>
+                <div class="lang-option" onclick="changeLanguage('zh')">
+                    <span class="flag">🇨🇳</span>
+                    <span class="name">中文</span>
+                    <span class="code">ZH</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- 头部横幅 -->
     <div class="header">
-        <h1 class="header-title">鸟类文化象征</h1>
+        <h1 class="header-title" data-i18n="cultural.header.title">Cultural Symbolism of Birds</h1>
     </div>
     
     <!-- 主要内容 -->
     <div class="content">
-        <p class="intro-text">
-            探索鸟类在世界各地文化、神话和艺术中的象征意义。从美洲原住民的精神信仰到现代文学和艺术，鸟类一直是人类文化表达的重要元素。点击下方任意文章图片，深入了解鸟类在文化中的丰富象征。
+        <p class="intro-text" data-i18n="cultural.intro.text">
+            Explore the symbolic meanings of birds in cultures, myths, and arts around the world. From Native American spiritual beliefs to modern literature and art, birds have always been important elements of human cultural expression.
         </p>
         
         <div class="article-grid">
@@ -246,5 +399,9 @@
             </a>
         </div>
     </div>
+
+    <!-- 引入多语言脚本 -->
+    <script src="script.js"></script>
+    <script src="language-redirect.js"></script>
 </body>
 </html>

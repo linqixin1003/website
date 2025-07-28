@@ -400,7 +400,202 @@
     </div>
 
     <!-- 引入多语言脚本 -->
-    <script src="script.js"></script>
-    <script src="language-redirect.js"></script>
+    <script>
+        // 多语言内容
+        const translations = {
+            en: {
+                title: "Cultural Symbolism of Birds - BirdAiSnap",
+                headerTitle: "Cultural Symbolism of Birds",
+                introText: "Explore the symbolic meanings of birds in cultures, myths, and arts around the world. From Native American spiritual beliefs to modern literature and art, birds have always been important elements of human cultural expression.",
+                articles: [
+                    {
+                        title: "Bald Eagle: America's National Bird",
+                        description: "Explore the history of the bald eagle as America's national symbol"
+                    },
+                    {
+                        title: "Wild Turkey: Thanksgiving and American Tradition",
+                        description: "Learn about the wild turkey's deep connection to American history and tradition"
+                    },
+                    {
+                        title: "Trumpeter Swan: Native American Mythology",
+                        description: "Explore the significance of trumpeter swans in Native American culture"
+                    },
+                    {
+                        title: "Great Horned Owl: American Folklore and Wisdom",
+                        description: "Learn about the great horned owl's role in American folklore"
+                    },
+                    {
+                        title: "Mallard Duck: American Wetlands and Conservation",
+                        description: "Explore the importance of mallard ducks in American wetland ecosystems"
+                    },
+                    {
+                        title: "Carolina Parakeet: America's Lost Parrot",
+                        description: "Learn about America's only native parrot and its cultural significance"
+                    },
+                    {
+                        title: "Red-tailed Hawk: American Raptor Symbol",
+                        description: "Explore the symbolic meaning of red-tailed hawks in American culture"
+                    },
+                    {
+                        title: "Canada Goose: American Migration Stories",
+                        description: "Learn about the Canada goose's role in American migration stories"
+                    },
+                    {
+                        title: "Golden Eagle: Native American Spiritual Beliefs",
+                        description: "Explore the spiritual significance of golden eagles in Native American culture"
+                    },
+                    {
+                        title: "American Birds in Literature and Art",
+                        description: "Explore how American birds have inspired writers, artists, and musicians"
+                    }
+                ]
+            },
+            es: {
+                title: "Simbolismo Cultural de las Aves - BirdAiSnap",
+                headerTitle: "Simbolismo Cultural de las Aves",
+                introText: "Explora los significados simbólicos de las aves en culturas, mitos y artes de todo el mundo. Desde las creencias espirituales de los nativos americanos hasta la literatura y el arte moderno, las aves siempre han sido elementos importantes de la expresión cultural humana.",
+                articles: [
+                    {
+                        title: "Águila Calva: Ave Nacional de América",
+                        description: "Explora la historia del águila calva como símbolo nacional de América"
+                    },
+                    {
+                        title: "Pavo Salvaje: Acción de Gracias y Tradición Americana",
+                        description: "Aprende sobre la profunda conexión del pavo salvaje con la historia y tradición americana"
+                    },
+                    {
+                        title: "Cisne Trompetero: Mitología Nativa Americana",
+                        description: "Explora el significado de los cisnes trompeteros en la cultura nativa americana"
+                    },
+                    {
+                        title: "Búho Cornudo: Folclore Americano y Sabiduría",
+                        description: "Aprende sobre el papel del búho cornudo en el folclore americano"
+                    },
+                    {
+                        title: "Pato Real: Humedales Americanos y Conservación",
+                        description: "Explora la importancia de los patos reales en los ecosistemas de humedales americanos"
+                    },
+                    {
+                        title: "Periquito de Carolina: El Loro Perdido de América",
+                        description: "Aprende sobre el único loro nativo de América y su significado cultural"
+                    },
+                    {
+                        title: "Halcón de Cola Roja: Símbolo de Rapaz Americana",
+                        description: "Explora el significado simbólico de los halcones de cola roja en la cultura americana"
+                    },
+                    {
+                        title: "Ganso de Canadá: Historias de Migración Americana",
+                        description: "Aprende sobre el papel del ganso de Canadá en las historias de migración americana"
+                    },
+                    {
+                        title: "Águila Dorada: Creencias Espirituales Nativas Americanas",
+                        description: "Explora el significado espiritual de las águilas doradas en la cultura nativa americana"
+                    },
+                    {
+                        title: "Aves Americanas en Literatura y Arte",
+                        description: "Explora cómo las aves americanas han inspirado a escritores, artistas y músicos"
+                    }
+                ]
+            }
+        };
+
+        // 获取当前语言
+        function getCurrentLanguage() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('lang') || 'en';
+        }
+
+        // 更新页面内容
+        function updateContent() {
+            const lang = getCurrentLanguage();
+            const content = translations[lang] || translations.en;
+            
+            // 更新标题
+            document.title = content.title;
+            document.querySelector('.header-title').textContent = content.headerTitle;
+            document.querySelector('.intro-text').textContent = content.introText;
+            
+            // 更新文章卡片
+            const articleCards = document.querySelectorAll('.article-card');
+            articleCards.forEach((card, index) => {
+                if (content.articles[index]) {
+                    const title = card.querySelector('.article-title');
+                    const description = card.querySelector('.article-description');
+                    
+                    if (title) title.textContent = content.articles[index].title;
+                    if (description) description.textContent = content.articles[index].description;
+                    
+                    // 更新链接URL以包含语言参数
+                    const originalHref = card.getAttribute('href');
+                    if (originalHref && !originalHref.includes('lang=')) {
+                        // 根据语言更新链接
+                        let newHref = originalHref;
+                        if (lang !== 'en') {
+                            // 将en/替换为对应语言/
+                            newHref = originalHref.replace('en/', lang + '/');
+                        }
+                        card.setAttribute('href', newHref);
+                    }
+                }
+            });
+            
+            // 更新语言切换器显示
+            updateLanguageSwitcher();
+        }
+
+        // 更新语言切换器
+        function updateLanguageSwitcher() {
+            const lang = getCurrentLanguage();
+            const langText = document.querySelector('.lang-text');
+            const langOptions = document.querySelectorAll('.lang-option');
+            
+            // 更新当前语言显示
+            const langNames = {
+                'en': 'English',
+                'es': 'Español',
+                'fr': 'Français',
+                'de': 'Deutsch',
+                'zh': '中文'
+            };
+            
+            if (langText) {
+                langText.textContent = langNames[lang] || 'English';
+            }
+            
+            // 更新选项状态
+            langOptions.forEach(option => {
+                option.classList.remove('active');
+                const optionLang = option.getAttribute('onclick').match(/'(\w+)'/)[1];
+                if (optionLang === lang) {
+                    option.classList.add('active');
+                }
+            });
+        }
+
+        // 语言切换功能
+        function toggleLanguageMenu() {
+            const dropdown = document.querySelector('.lang-dropdown');
+            dropdown.classList.toggle('active');
+        }
+
+        function changeLanguage(lang) {
+            const url = new URL(window.location);
+            url.searchParams.set('lang', lang);
+            window.location.href = url.toString();
+        }
+
+        // 点击外部关闭下拉菜单
+        document.addEventListener('click', function(event) {
+            const dropdown = document.querySelector('.lang-dropdown');
+            if (!dropdown.contains(event.target)) {
+                dropdown.classList.remove('active');
+            }
+        });
+
+        // 页面加载时初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            updateContent();
+        });
+    </script>
 </body>
 </html>

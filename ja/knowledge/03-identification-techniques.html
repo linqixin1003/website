@@ -3,20 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>鳥類識別テクニック - BirdAiSnap</title>
+    <title>鳥類識別技術 - 鳥類知識センター</title>
+    <link href="../../mobile-styles.css" rel="stylesheet"/>
+    <link href="../../mobile-enhancement.css" rel="stylesheet"/>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #f5f5f5;
-            color: #333;
-        }
-
         .hero-image {
             width: 100%;
             height: 400px;
@@ -26,97 +16,14 @@
             margin-top: 0;
         }
         
-        .content {
-            background: white;
-            margin: -30px 20px 20px 20px;
-            border-radius: 20px;
-            padding: 40px 20px 30px 20px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            min-height: 80vh;
-        }
-        
-        .title {
-            font-size: 24px;
-            font-weight: 700;
-            color: #1a1a1a;
-            margin-bottom: 30px;
-            margin-top: 10px;
-            line-height: 1.3;
-        }
-        
-        .quote-box {
-            background: linear-gradient(135deg, #e8f5e8, #c8e6c9);
-            border-left: 4px solid #4caf50;
-            padding: 20px;
-            margin: 25px 0;
-            border-radius: 8px;
-            position: relative;
-        }
-        
-        .quote-box::before {
-            content: '"';
-            font-size: 48px;
-            color: #4caf50;
-            position: absolute;
-            top: -5px;
-            left: 15px;
-            font-family: serif;
-            line-height: 1;
-        }
-        
-        .quote-text {
-            font-size: 18px;
-            font-weight: 600;
-            color: #2e7d32;
-            margin-left: 25px;
-            line-height: 1.4;
-        }
-        
-        .main-text {
-            font-size: 16px;
-            line-height: 1.8;
-            color: #333;
-            margin: 20px 0;
-            text-align: justify;
-        }
-        
-        .section-title {
-            font-size: 20px;
-            font-weight: 600;
-            color: #4caf50;
-            margin: 30px 0 15px 0;
-            border-bottom: 2px solid #c8e6c9;
-            padding-bottom: 8px;
-        }
-        
-        .tip-box {
-            background: #f8f9fa;
-            border: 1px solid #e9ecef;
-            border-radius: 8px;
-            padding: 15px;
-            margin: 20px 0;
-            border-left: 4px solid #28a745;
-        }
-        
-        .tip-title {
-            font-weight: 600;
-            color: #28a745;
-            margin-bottom: 8px;
-        }
-        
-        .emoji {
-            font-size: 18px;
-            margin: 0 2px;
-        }
-        
-        .equipment-grid {
+        .identification-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
             margin: 25px 0;
         }
         
-        .equipment-card {
+        .identification-card {
             background: #f8f9fa;
             border-radius: 12px;
             padding: 20px;
@@ -124,246 +31,223 @@
             transition: transform 0.3s ease;
         }
         
-        .equipment-card:hover {
+        .identification-card:hover {
             transform: translateY(-5px);
             border-color: #4caf50;
         }
         
-        .equipment-card h4 {
+        .identification-card h4 {
             color: #2e7d32;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             font-size: 18px;
         }
         
-        .equipment-card p {
-            color: #666;
-            line-height: 1.5;
-            margin: 0;
+        .identification-card ul {
+            list-style: none;
+            padding: 0;
         }
         
-        .step-container {
+        .identification-card li {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .identification-card li::before {
+            content: "•";
+            color: #4caf50;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        
+        .technique-section {
             background: #f8f9fa;
             border-radius: 15px;
             padding: 25px;
             margin: 25px 0;
         }
         
-        .step-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 20px;
-            padding: 15px;
+        .feature-comparison {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .feature-item {
             background: white;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #4caf50;
         }
         
-        .step-item:last-child {
-            margin-bottom: 0;
-        }
-        
-        .step-number {
-            background: #4caf50;
-            color: white;
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            margin-right: 15px;
-            flex-shrink: 0;
-        }
-        
-        .step-content h4 {
+        .feature-item h5 {
             color: #2e7d32;
             margin-bottom: 8px;
             font-size: 16px;
         }
         
-        .step-content p {
-            margin: 0;
-            color: #555;
-            line-height: 1.5;
-            font-size: 14px;
+        .behavior-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
         }
         
-        .progress-container {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 60px;
-            background: linear-gradient(to top, rgba(255,255,255,0.95), transparent);
+        .behavior-item {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .behavior-item .emoji {
+            font-size: 24px;
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        .season-guide {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .season-item {
+            background: linear-gradient(135deg, #e8f5e8, #c8e6c9);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        
+        .season-item h4 {
+            color: #2e7d32;
+            margin-bottom: 10px;
+        }
+        
+        .difficulty-levels {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 998;
+            justify-content: space-around;
+            margin: 20px 0;
+            flex-wrap: wrap;
+            gap: 15px;
         }
         
-        .progress-bar {
-            width: 200px;
-            height: 4px;
-            background: rgba(0,0,0,0.1);
-            border-radius: 2px;
-            overflow: hidden;
+        .difficulty-item {
+            background: white;
+            padding: 15px 20px;
+            border-radius: 20px;
+            text-align: center;
+            min-width: 120px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
         
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #4caf50, #81c784);
-            width: 0%;
-            border-radius: 2px;
-            transition: width 0.3s ease;
-        }
-        
-        @media (max-width: 375px) {
-            .content {
-                margin: -30px 15px 20px 15px;
-                padding: 25px 15px;
-            }
-            
-            .title {
-                font-size: 22px;
-            }
-            
-            .main-text {
-                font-size: 15px;
-            }
-            
-            .equipment-grid {
-                grid-template-columns: 1fr;
-            }
-        }
+        .difficulty-beginner { border-left: 4px solid #4caf50; }
+        .difficulty-intermediate { border-left: 4px solid #ff9800; }
+        .difficulty-advanced { border-left: 4px solid #f44336; }
     </style>
 </head>
 <body>
-    <!-- 戻るボタン -->
-
-    <!-- ヒーロー画像 -->
+    <!-- Hero Image -->
     <div class="hero-image"></div>
     
-    <!-- メインコンテンツ -->
+    <!-- Main Content -->
     <div class="content">
-        <h1 class="title">🔍 鳥類識別テクニック</h1>
+        <h1 class="title">鳥類識別技術</h1>
         
         <div class="quote-box">
             <div class="quote-text">
-                効果的な鳥類識別のための実践的なテクニックとコツ
-            </div><div class="main-text">
-            鳥類の正確な識別は、バードウォッチングの核心です。形態、行動、生息環境、鳴き声など、複数の特徴を組み合わせて観察することで、確実な識別が可能になります<span class="emoji">🔍</span>。このガイドでは、初心者から上級者まで役立つ識別テクニックを詳しく解説します。
-        </div>
-        
-        <div class="section-title">基本的な識別要素</div>
-        
-        <div class="main-text">
-            鳥類識別の基礎となる主要な特徴を理解することが重要です。サイズ、形状、色彩パターン、行動の4つの基本要素を組み合わせて観察します<span class="emoji">📏</span>。これらの要素を体系的に観察することで、識別の精度が大幅に向上します。
-        </div>
-        
-        <div class="equipment-grid">
-            <div class="equipment-card">
-                <h4>🦅 サイズと形状</h4>
-                <p>全体的なサイズ、体型、翼の形状、尾の長さ、脚の長さなど、鳥の基本的な体型を観察します。</p>
+                系統的な観察と実証された技術を通じて鳥類識別の技術を習得する
             </div>
-            <div class="equipment-card">
-                <h4>🎨 色彩パターン</h4>
-                <p>羽毛の色、模様、特徴的なマーキング、季節による変化を詳細に観察します。</p>
+        </div>
+        
+        <div class="main-text">
+            鳥類の識別は芸術であり科学でもあり、忍耐、練習、系統的な観察が必要です。この包括的なガイドでは、鳥類学者や経験豊富なバードウォッチャーが野外で鳥を正確に識別するために使用する基本的な技術を教えます <span class="emoji">🔍</span>。
+        </div>
+
+        <div class="article-meta">
+            <span class="category knowledge">鳥類知識</span>
+            <span class="read-time">📖 12分間の読書</span>
+            <span class="difficulty">🟡 中級</span>
+        </div>
+
+        <!-- 基本识别特征 -->
+        <div class="section-title">🎯 Key Identification Features</div>
+        <div class="main-text">
+            Successful bird identification relies on observing specific physical and behavioral characteristics. Learn to focus on these key features for accurate identification.
+        </div>
+
+        <div class="identification-grid">
+            <div class="identification-card">
+                <h4>🦅 Size and Shape</h4>
+                <ul>
+                    <li>Overall body size comparison</li>
+                    <li>Bill shape and length</li>
+                    <li>Leg length and thickness</li>
+                    <li>Wing shape and proportions</li>
+                    <li>Tail length and shape</li>
+                    <li>Neck length and thickness</li>
+                </ul>
             </div>
-            <div class="equipment-card">
-                <h4>🏃 行動特性</h4>
-                <p>飛行パターン、採餌行動、群れの形成、警戒行動など、種特有の行動を観察します。</p>
+            
+            <div class="identification-card">
+                <h4>🌈 Color and Patterns</h4>
+                <ul>
+                    <li>Primary body colors</li>
+                    <li>Wing bars and patches</li>
+                    <li>Eye rings and stripes</li>
+                    <li>Breast and belly markings</li>
+                    <li>Tail patterns and tips</li>
+                    <li>Seasonal color changes</li>
+                </ul>
             </div>
-            <div class="equipment-card">
-                <h4>🎵 鳴き声</h4>
-                <p>さえずり、地鳴き、警戒音など、音声による識別は非常に有効な手段です。</p>
-            </div><div class="section-title">段階的識別プロセス</div>
-        
-        <div class="step-container">
-            <div class="step-item">
-                <div class="step-number">1</div>
-                <div class="step-content">
-                    <h4>初期観察</h4>
-                    <p>まず鳥の全体的なサイズと形状を把握します。スズメサイズ、ハトサイズ、カラスサイズなど、身近な鳥と比較して大きさを判断します。</p>
-                </div><div class="step-item">
-                <div class="step-number">2</div>
-                <div class="step-content">
-                    <h4>詳細観察</h4>
-                    <p>双眼鏡を使用して、頭部、翼、尾、脚の詳細な特徴を観察します。特徴的なマーキングや色彩パターンに注目します。</p>
-                </div><div class="step-item">
-                <div class="step-number">3</div>
-                <div class="step-content">
-                    <h4>行動観察</h4>
-                    <p>鳥の行動パターンを観察します。地上での歩き方、飛行スタイル、採餌方法などは重要な識別要素です。</p>
-                </div><div class="step-item">
-                <div class="step-number">4</div>
-                <div class="step-content">
-                    <h4>環境確認</h4>
-                    <p>観察場所の環境（森林、水辺、草原など）と季節を考慮します。多くの鳥は特定の環境を好みます。</p>
-                </div><div class="step-item">
-                <div class="step-number">5</div>
-                <div class="step-content">
-                    <h4>図鑑照合</h4>
-                    <p>観察した特徴を図鑑やアプリと照合し、候補種を絞り込みます。複数の特徴が一致することを確認します。</p>
-                </div>
-            </div><div class="section-title">困難な識別への対処</div>
-        
-        <div class="main-text">
-            似た種の識別や遠距離での観察など、困難な状況での識別テクニックを身につけることが重要です<span class="emoji">🎯</span>。部分的な観察でも、重要な特徴を見逃さないよう注意深く観察します。
+            
+            <!-- 更多识别卡片会在这里添加 -->
         </div>
-        
-        <div class="tip-box">
-            <div class="tip-title">💡 識別のコツ</div>
-            不確実な場合は「可能性が高い」として記録し、完全に確信できない識別は避けましょう。経験を積むことで識別能力は向上します。
+
+        <!-- 进度条 -->
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
         </div>
-        
-        <div class="section-title">季節と年齢による変化</div>
-        
-        <div class="main-text">
-            多くの鳥は季節や年齢によって外見が変化します。繁殖羽と非繁殖羽の違い、幼鳥と成鳥の違いを理解することで、より正確な識別が可能になります<span class="emoji">🔄</span>。これらの変化パターンを学習することは、上級者への重要なステップです。
-        </div>
-        
-        <div class="section-title">記録と学習</div>
-        
-        <div class="main-text">
-            観察記録を詳細に残すことで、識別スキルが向上します。写真、スケッチ、音声記録、行動メモなどを組み合わせて包括的な記録を作成しましょう<span class="emoji">📝</span>。後で見返すことで、新たな発見や学習につながります。
-        </div>
-        
-        <div class="main-text">
-            鳥類識別は継続的な学習プロセスです。基本的なテクニックを身につけ、経験を積むことで、より多くの種を正確に識別できるようになります<span class="emoji">🌟</span>。忍耐強く観察を続け、疑問があれば経験豊富なバードウォッチャーや専門家に相談することをお勧めします。
-        </div><!-- 进度条 -->
-    <div class="progress-container">
-        <div class="progress-bar">
-            <div class="progress-fill"></div>
-        </div>
+
+        <script>
+            // 更新时间
+            function updateTime() {
+                const now = new Date();
+                const timeString = now.getHours().toString().padStart(2, '0') + ':' + 
+                                 now.getMinutes().toString().padStart(2, '0');
+                const timeElement = document.getElementById('current-time');
+                if (timeElement) {
+                    timeElement.textContent = timeString;
+                }
+            }
+            
+            // 模拟阅读进度
+            function updateProgress() {
+                const scrolled = window.pageYOffset;
+                const maxHeight = document.body.scrollHeight - window.innerHeight;
+                const progress = Math.min((scrolled / maxHeight) * 100, 100);
+                const progressFill = document.querySelector('.progress-fill');
+                if (progressFill) {
+                    progressFill.style.width = progress + '%';
+                }
+            }
+            
+            // 初始化
+            updateTime();
+            setInterval(updateTime, 60000);
+            
+            window.addEventListener('scroll', updateProgress);
+            updateProgress();
+        </script>
+        <script src="../language-redirect.js"></script>
     </div>
-
-    <script>
-        // 更新时间
-        function updateTime() {
-            const now = new Date();
-            const timeString = now.getHours().toString().padStart(2, '0') + ':' + 
-                             now.getMinutes().toString().padStart(2, '0');
-            document.getElementById('current-time').textContent = timeString;
-        }
-        
-        // 模拟阅读进度
-        function updateProgress() {
-            const scrolled = window.pageYOffset;
-            const maxHeight = document.body.scrollHeight - window.innerHeight;
-            const progress = Math.min((scrolled / maxHeight) * 100, 100);
-            document.querySelector('.progress-fill').style.width = progress + '%';
-        }
-        
-        // 初始化
-        updateTime();
-        setInterval(updateTime, 60000);
-        
-        window.addEventListener('scroll', updateProgress);
-        updateProgress();
-    </script>
-    <script src="../language-redirect.js"></script>
-
-
 </body>
 </html>

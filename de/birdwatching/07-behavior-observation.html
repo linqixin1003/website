@@ -1,254 +1,76 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover, shrink-to-fit=no" name="viewport"/>
-    <title>Vogel- Verhalten Beobachtung - BirdAiSnap</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verhaltensbeobachtung - BirdAiSnap</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #f5f5f5;
-            color: #333;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f5; color: #333; }
 
-        .hero-image {
-            width: 100%;
-            height: 400px;
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
-                        url('../../images/birds/species/bird-image-006.webp') center/cover;
-            position: relative;
-            margin-top: 0;
-        }
-        
-        .content {
-            background: white;
-            margin: -30px 20px 20px 20px;
-            border-radius: 20px;
-            padding: 50px 20px 30px 20px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            min-height: 80vh;
-        }
-        
-        .title {
-            font-size: 24px;
-            font-weight: 700;
-            color: #1a1a1a;
-            margin-bottom: 30px;
-            margin-top: 20px;
-            line-height: 1.3;
-        }
-        
-        .quote-box {
-            background: linear-gradient(135deg, #e8f5e8, #c8e6c9);
-            border-left: 4px solid #2E8B57;
-            padding: 20px;
-            margin: 25px 0;
-            border-radius: 8px;
-            position: relative;
-        }
-        
-        .quote-box::before {
-            content: '"';
-            font-size: 48px;
-            color: #2E8B57;
-            position: absolute;
-            top: -5px;
-            left: 15px;
-            font-family: serif;
-            line-height: 1;
-        }
-        
-        .quote-text {
-            font-size: 18px;
-            font-weight: 600;
-            color: #1b5e20;
-            margin-left: 25px;
-            line-height: 1.4;
-        }
-        
-        .main-text {
-            font-size: 16px;
-            line-height: 1.8;
-            color: #333;
-            margin: 20px 0;
-            text-align: justify;
-        }
-        
-        .section-title {
-            font-size: 20px;
-            font-weight: 600;
-            color: #2E8B57;
-            margin: 30px 0 15px 0;
-            border-bottom: 2px solid #c8e6c9;
-            padding-bottom: 8px;
-        }
-        
-        .tip-box {
-            background: #f8f9fa;
-            border: 1px solid #e9ecef;
-            border-radius: 12px;
-            padding: 20px;
-            margin: 20px 0;
-            border-left: 4px solid #28a745;
-            box-shadow: 0 2px 6px rgba(40, 167, 69, 0.1);
-        }
-
-        .tip-title {
-            font-weight: 600;
-            color: #28a745;
-            margin-bottom: 12px;
-            font-size: 16px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .tip-box p {
-            margin: 0;
-            line-height: 1.6;
-            color: #495057;
-        }
-        
-        .emoji {
-            font-size: 18px;
-            margin: 0 2px;
-        }
-        
-        .progress-container {
-            width: 100%;
-            height: 8px;
-            background: #f0f0f0;
-            border-radius: 4px;
-            margin: 30px 0 10px 0;
-            overflow: hidden;
-        }
-        
-        .progress-bar {
-            height: 100%;
-            width: 100%;
-            background: #f0f0f0;
-            border-radius: 4px;
-            position: relative;
-        }
-        
-        .progress-fill {
-            height: 100%;
-            width: 0%;
-            background: linear-gradient(90deg, #2E8B57, #43A047);
-            border-radius: 4px;
-            transition: width 0.3s ease;
-        }
-        
-        @media (max-width: 375px) {
-            .content {
-                margin: -30px 15px 20px 15px;
-                padding: 25px 15px;
-            }
-            
-            .title {
-                font-size: 22px;
-            }
-            
-            .main-text {
-                font-size: 15px;
-            }
-        }
+        .hero-image { width: 100%; height: 400px; background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('../../images/birds/species/bird-image-006.webp') center/cover; position: relative; margin-top: 0; }
+        .content { background: white; margin: -30px 20px 20px 20px; border-radius: 20px; padding: 30px 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); min-height: 80vh; }
+        .title { font-size: 24px; font-weight: 700; color: #1a1a1a; margin-bottom: 30px; margin-top: 15px; line-height: 1.3; }
+        .quote-box { background: linear-gradient(135deg, #f3e5f5, #e1bee7); border-left: 4px solid #9c27b0; padding: 20px; margin: 25px 0; border-radius: 8px; position: relative; }
+        .quote-box::before { content: '"'; font-size: 48px; color: #9c27b0; position: absolute; top: -5px; left: 15px; font-family: serif; line-height: 1; }
+        .quote-text { font-size: 18px; font-weight: 600; color: #6a1b9a; margin-left: 25px; line-height: 1.4; }
+        .main-text { font-size: 16px; line-height: 1.8; color: #333; margin: 20px 0; text-align: justify; }
+        .section-title { font-size: 20px; font-weight: 600; color: #9c27b0; margin: 30px 0 15px 0; border-bottom: 2px solid #e1bee7; padding-bottom: 8px; }
+        .tip-box { background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px; padding: 15px; margin: 20px 0; border-left: 4px solid #28a745; }
+        .tip-title { font-weight: 600; color: #28a745; margin-bottom: 8px; }
+        .emoji { font-size: 18px; margin: 0 2px; }
+        .progress-container { position: fixed; bottom: 0; left: 0; right: 0; height: 60px; background: linear-gradient(to top, rgba(255,255,255,0.95), transparent); display: flex; align-items: center; justify-content: center; z-index: 998; }
+        .progress-bar { width: 200px; height: 4px; background: rgba(0,0,0,0.1); border-radius: 2px; overflow: hidden; }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, #9c27b0, #ba68c8); width: 0%; border-radius: 2px; transition: width 0.3s ease; }
+        @media (max-width: 375px) { .content { margin: -30px 15px 20px 15px; padding: 25px 15px; } .title { font-size: 22px; } .main-text { font-size: 15px; } }
     </style>
 </head>
 <body>
-    <div class="wissenschaftlich-note">Diese Informationen basieren auf aktueller ornithologischer Forschung und wissenschaftlich bewährten Methoden der Vogelbeobachtung.</div>
-    
-    <!-- Hero Image -->
-    <div class="hero-image"></div>
-    
-    <!-- Main Content -->
-    <div class="content">
-        <h1 class="title">Vogel- Verhalten Beobachtung</h1>
-        
-        <div class="quote-box">
-            <div class="quote-text">Interpret Vogel Verhaltensweisen und analytisch durchdringen their fascinating Welt</div>
-        </div>
-        
-        <div class="main-text">
-            Vogel Verhaltensbeobachtung erweist sich durch systematische wissenschaftliche Untersuchungen als one von der meiste wissenschaftlich bemerkenswert und valuable parts von Vogelbeobachtung. durch observing verschiedene behavioral patterns von Vögel, we können gewinnen deeper insights into their lisolidyles, sozial erreicht werden kann, und Überleben strategies<span class="emoji">🎭</span>.
-        </div>
-        
-        <div class="section-title">Fütterung Verhalten Analyse</div>
-        
-        <div class="main-text">
-            unterschiedlich Vögel haben einzigartig Fütterung strategies und Techniken. Woodpeckers klettern vertically auf tree trunks searching für insects, herons patiently warten für fish durch der Wasser, und swallows skillfully fangen fliegend insects in der air<span class="emoji">🍽️</span>. Observing Fütterung Verhaltensweisen helps identifizieren Vögel und analytisch durchdringen their ökologisch niches.
-        </div>
-        
-        <div class="section-title">sozial Verhalten Patterns</div>
-        
-        <div class="main-text">
-            Vögel' sozial Verhaltensweisen sind komplex und diverse, ranging von solitary zu gregarious, von cooperative zu competitive. Observing Vögel' Gruppe dynamics, hierarchical Beziehungen, und interaction patterns können reveal their sozial erreicht werden kann<span class="emoji">👥</span>.
-        </div>
-        
-        <div class="tip-box">
-            <div class="tip-title">🔍 Beobachtung Key Points</div>
-            <p>bezahlen attention zu Vögel' Körper language, wie beispielsweise Feder erection, Flügel spreading, Kopf postures, usw., als diese sind wissenschaftlich relevant behavioral signals.</p>
-        </div>
-        
-        <div class="section-title">Zucht Verhaltensbeobachtung</div>
-        
-        <div class="main-text">
-            Zucht Jahreszeit erweist sich durch systematische wissenschaftliche Untersuchungen als der beste Zeit zu beobachten Vogel Verhaltensweisen. Balz displays, Nest-Gebäude activities, incubation Verhaltensweisen, und Küken-rearing processes sämtliche showcase fascinating aspects von Vögel' lives<span class="emoji">💕</span>.
-        </div>
-        
-        <div class="section-title">Defense und Alert Verhaltensweisen</div>
-        
-        <div class="main-text">
-            Vögel exhibit verschiedene defensiv Verhaltensweisen wann facing threats, wie beispielsweise alarm Rufe, injury-feigning Verhaltensweisen, und mobbing<span class="emoji">🛡️</span>. Understanding diese Verhaltensweisen helps us maintain angemessen distances wann Vogelbeobachtung.
-        </div>
-        
-        <div class="main-text">
-            Verhaltensbeobachtung requires patience und attentiveness. It's recommended zu wählen a bequem Beobachtung Punkt und verwenden Fernglas für extended Beobachtung<span class="emoji">⏰</span>. Recording observed behavioral patterns erweist sich durch systematische wissenschaftliche Untersuchungen als valuable für both persönlich wissenschaftlich erfassen und wissenschaftlich Forschung.
-        </div>
-        
-        <div class="progress-container">
-            <div class="progress-bar">
-                <div class="progress-fill"></div>
-            </div>
-        </div>
-    </div>
 
-    <section class="practical-science">
-        <h3>Wissenschaftlich fundierte Praxis</h3>
-        <p>Diese Techniken wurden durch jahrzehntelange ornithologische Feldforschung entwickelt und in wissenschaftlichen Publikationen validiert. Citizen Science-Projekte bestätigen ihre Effektivität.</p>
-    </section>
+    </div>
     
-    <footer class="wissenschaftlich-references">
-        <section class="references">
-            <h4>Wissenschaftliche Grundlagen</h4>
-            <ul class="reference-list"></ul>
-        </section>
-    </footer>
+    <div class="hero-image"></div>
+    <div class="content">
+        <h1 class="title">Verhaltensbeobachtung</h1>
+        <div class="quote-box"><div class="quote-text">Interpretieren Sie Vogelverhalten und verstehen Sie ihre faszinierende Welt</div></div>
+        <div class="main-text">Die Verhaltensbeobachtung von Vögeln ist einer der faszinierendsten und wertvollsten Teile der Vogelbeobachtung. Durch die Beobachtung verschiedener Verhaltensmuster von Vögeln können wir tiefere Einblicke in ihre Lebensweisen, sozialen Strukturen und Überlebensstrategien gewinnen<span class="emoji">🎭</span>.</div>
+        <div class="section-title">Fressverhalten-Analyse</div>
+        <div class="main-text">Verschiedene Vögel haben einzigartige Fütterungsstrategien und -techniken. Spechte klettern vertikal an Baumstämmen und suchen nach Insekten, Reiher warten geduldig auf Fische im Wasser, und Schwalben fangen geschickt fliegende Insekten in der Luft<span class="emoji">🍽️</span>. Die Beobachtung von Fressverhalten hilft bei der Identifizierung von Vögeln und dem Verständnis ihrer ökologischen Nischen.</div>
+        <div class="section-title">Soziale Verhaltensmuster</div>
+        <div class="main-text">Das Sozialverhalten von Vögeln ist komplex und vielfältig, von einzelgängerisch bis gesellig, von kooperativ bis konkurrierend. Die Beobachtung der Gruppendynamik, hierarchischen Beziehungen und Interaktionsmuster von Vögeln kann ihre sozialen Strukturen offenbaren<span class="emoji">👥</span>.</div>
+        <div class="tip-box"><div class="tip-title">🔍 Beobachtungsschlüsselpunkte</div>Achten Sie auf die Körpersprache der Vögel, wie Federaufstellung, Flügelausbreitung, Kopfhaltungen usw., da dies wichtige Verhaltenssignale sind.</div>
+        <div class="section-title">Brutverhalten-Beobachtung</div>
+        <div class="main-text">Die Brutzeit ist die beste Zeit, um Vogelverhalten zu beobachten. Balzrituale, Nestbauaktivitäten, Brutverhalten und Jungenaufzucht zeigen alle faszinierende Aspekte des Vogellebens<span class="emoji">💕</span>.</div>
+        <div class="section-title">Verteidigungs- und Alarmverhalten</div>
+        <div class="main-text">Vögel zeigen verschiedene Verteidigungsverhalten bei Bedrohungen, wie Alarmrufe, Verletzungsvorspielung und Mobbing<span class="emoji">🛡️</span>. Das Verständnis dieser Verhaltensweisen hilft uns, angemessene Abstände bei der Vogelbeobachtung einzuhalten.</div>
+        <div class="main-text">Verhaltensbeobachtung erfordert Geduld und Aufmerksamkeit. Es wird empfohlen, einen bequemen Beobachtungsplatz zu wählen und Ferngläser für längere Beobachtungen zu verwenden<span class="emoji">⏰</span>. Die Aufzeichnung beobachteter Verhaltensmuster ist sowohl für das persönliche Lernen als auch für die wissenschaftliche Forschung wertvoll.</div>
+    </div>
+    <div class="progress-container"><div class="progress-bar"><div class="progress-fill"></div></div></div>
 
     <script>
-        // Update time
+        // 更新时间
         function updateTime() {
             const now = new Date();
             const timeString = now.getHours().toString().padStart(2, '0') + ':' + 
                              now.getMinutes().toString().padStart(2, '0');
-            // document.getElementById('current-time').textContent = timeString;
+            const timeElement = document.getElementById('current-time');
+            if (timeElement) {
+                timeElement.textContent = timeString;
+            }
         }
         
-        // Simulate reading progress
+        // 模拟阅读进度
         function updateProgress() {
             const scrolled = window.pageYOffset;
             const maxHeight = document.body.scrollHeight - window.innerHeight;
             const progress = Math.min((scrolled / maxHeight) * 100, 100);
-            document.querySelector('.progress-fill').style.width = progress + '%';
+            const progressFill = document.querySelector('.progress-fill');
+            if (progressFill) {
+                progressFill.style.width = progress + '%';
+            }
         }
         
-        // Initialize
+        // 初始化
         updateTime();
         setInterval(updateTime, 60000);
         
@@ -256,5 +78,7 @@
         updateProgress();
     </script>
     <script src="../language-redirect.js"></script>
+
+
 </body>
 </html>

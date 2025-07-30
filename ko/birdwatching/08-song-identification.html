@@ -3,59 +3,288 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>조류鸣声식별 - BirdAiSnap</title>
+    <title>조류 울음소리 식별 - BirdAiSnap</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f5; color: #333; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
 
-        .hero-image { width: 100%; height: 400px; background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('../../images/birds/species/bird-image-003.webp') center/cover; position: relative; margin-top: 0; }
-        .content { background: white; margin: -30px 20px 20px 20px; border-radius: 20px; padding: 40px 20px 30px 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); min-height: 80vh; }
-        .title { font-size: 24px; font-weight: 700; color: #1a1a1a; margin-bottom: 30px; margin-top: 10px; line-height: 1.3; }
-        .quote-box { background: linear-gradient(135deg, #f3e5f5, #e1bee7); border-left: 4px solid #9c27b0; padding: 20px; margin: 25px 0; border-radius: 8px; position: relative; }
-        .quote-box::before { content: '"'; font-size: 48px; color: #9c27b0; position: absolute; top: -5px; left: 15px; font-family: serif; line-height: 1; }
-        .quote-text { font-size: 18px; font-weight: 600; color: #6a1b9a; margin-left: 25px; line-height: 1.4; }
-        .main-text { font-size: 16px; line-height: 1.8; color: #333; margin: 20px 0; text-align: justify; }
-        .section-title { font-size: 20px; font-weight: 600; color: #9c27b0; margin: 30px 0 15px 0; border-bottom: 2px solid #e1bee7; padding-bottom: 8px; }
-        .tip-box { background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px; padding: 15px; margin: 20px 0; border-left: 4px solid #28a745; }
-        .tip-title { font-weight: 600; color: #28a745; margin-bottom: 8px; }
-        .emoji { font-size: 18px; margin: 0 2px; }
-        .progress-container { position: fixed; bottom: 0; left: 0; right: 0; height: 60px; background: linear-gradient(to top, rgba(255,255,255,0.95), transparent); display: flex; align-items: center; justify-content: center; z-index: 998; }
-        .progress-bar { width: 200px; height: 4px; background: rgba(0,0,0,0.1); border-radius: 2px; overflow: hidden; }
-        .progress-fill { height: 100%; background: linear-gradient(90deg, #9c27b0, #ba68c8); width: 0%; border-radius: 2px; transition: width 0.3s ease; }
-        @media (max-width: 375px) { .content { margin: -30px 15px 20px 15px; padding: 25px 15px; } .title { font-size: 22px; } .main-text { font-size: 15px; } }
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                        url('../../images/birds/species/bird-image-003.webp') center/cover;
+            position: relative;
+            margin-top: 0;
+        }
+        
+        .content {
+            background: white;
+            margin: -30px 20px 20px 20px;
+            border-radius: 20px;
+            padding: 30px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            min-height: 80vh;
+        }
+        
+        .title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            margin-top: 15px;
+            line-height: 1.3;
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, #f3e5f5, #e1bee7);
+            border-left: 4px solid #9c27b0;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .quote-box::before {
+            content: '"';
+            font-size: 48px;
+            color: #9c27b0;
+            position: absolute;
+            top: -5px;
+            left: 15px;
+            font-family: serif;
+            line-height: 1;
+        }
+        
+        .quote-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: #6a1b9a;
+            margin-left: 25px;
+            line-height: 1.4;
+        }
+        
+        .main-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            margin: 20px 0;
+            text-align: justify;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #9c27b0;
+            margin: 30px 0 15px 0;
+            border-bottom: 2px solid #e1bee7;
+            padding-bottom: 8px;
+        }
+        
+        .tip-box {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            border-left: 4px solid #28a745;
+        }
+        
+        .tip-title {
+            font-weight: 600;
+            color: #28a745;
+            margin-bottom: 8px;
+        }
+        
+        .emoji {
+            font-size: 18px;
+            margin: 0 2px;
+        }
+        
+        .progress-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: linear-gradient(to top, rgba(255,255,255,0.95), transparent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 998;
+        }
+        
+        .progress-bar {
+            width: 200px;
+            height: 4px;
+            background: rgba(0,0,0,0.1);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #9c27b0, #ba68c8);
+            width: 0%;
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+        
+        @media (max-width: 375px) {
+            .content {
+                margin: -30px 15px 20px 15px;
+                padding: 25px 15px;
+            }
+            
+            .title {
+                font-size: 22px;
+            }
+            
+            .main-text {
+                font-size: 15px;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- 주요 이미지 -->
+    <div class="hero-image"></div>
     
+    <!-- 주요 내용 -->
+    <div class="content">
+        <h1 class="title">조류 울음소리 식별</h1>
+        
+        <div class="quote-box">
+            <div class="quote-text">
+                울음소리와 지저귐을 통해 조류를 식별하는 예술을 익히세요
+            </div>
+        </div>
+        
+        <div class="main-text">
+            조류의 울음소리와 지저귐은 식별의 중요한 도구로, 특히 시야가 가려지거나 조류가 숨어 있을 때 유용합니다. 각 조류 종은 독특한 소리 특징을 가지고 있으며, 이러한 소리를 식별하는 법을 배우면 조류 관찰 효율을 크게 향상시킬 수 있습니다<span class="emoji">🎵</span>. 소리 식별은 시각적 관찰을 보완하는 강력한 기술입니다.
+        </div>
+        
+        <div class="section-title">조류 발성 이해하기</div>
+        
+        <div class="main-text">
+            조류의 발성은 크게 지저귐(song)과 울음소리(call)로 나눌 수 있습니다. 지저귐은 보통 구애와 영역 선언에 사용되며, 구조가 복잡하고 선율이 아름답습니다<span class="emoji">🎼</span>. 울음소리는 일상적인 의사소통에 사용되며, 경계, 연락, 먹이 찾기 등의 목적을 가집니다.
+        </div>
+        
+        <div class="main-text">
+            지저귐은 주로 번식기 수컷이 내는 소리로, 암컷을 유혹하고 다른 수컷에게 영역을 알리는 역할을 합니다. 울음소리는 연중 내내 들을 수 있으며, 상황에 따라 다양한 의미를 가집니다<span class="emoji">🗣️</span>. 이 두 가지를 구분하는 것이 정확한 식별의 첫 단계입니다.
+        </div>
+        
+        <div class="section-title">울음소리 패턴 학습</div>
+        
+        <div class="main-text">
+            각 조류 종의 울음소리는 특정한 음조, 리듬, 반복 패턴을 가지고 있습니다. 기억하기 쉬운 단어나 구문을 사용하는 것이 효과적인 방법입니다<span class="emoji">🗣️</span>. 예를 들어, 뻐꾸기는 "뻐꾹뻐꾹", 직박구리는 "삐리리리", 박새는 "치치치치"와 같은 소리를 냅니다.
+        </div>
+        
+        <div class="main-text">
+            소리의 높낮이, 길이, 간격, 반복 횟수 등을 주의 깊게 관찰하세요. 일부 조류는 매우 규칙적인 패턴을 가지고 있고, 다른 조류는 더 변화가 많습니다<span class="emoji">📊</span>. 이러한 특징들을 체계적으로 기록하면 식별 능력이 향상됩니다.
+        </div>
+        
+        <div class="tip-box">
+            <div class="tip-title">🎧 연습 제안</div>
+            조류 소리 앱을 사용하여 흔한 조류의 울음소리를 반복해서 들어보세요. 야외에서 들었을 때 기억하고 비교할 수 있도록 연습하세요.
+        </div>
+        
+        <div class="section-title">청력 기술 발달</div>
+        
+        <div class="main-text">
+            효과적인 조류 울음소리 식별을 위해서는 예민한 청력 기술을 발달시켜야 합니다. 서로 다른 음조, 음량, 리듬 변화를 구분하는 연습을 하세요<span class="emoji">👂</span>. 복잡한 소리 환경에서 특정 조류의 소리를 분리해내는 법을 배우는 것이 중요합니다.
+        </div>
+        
+        <div class="main-text">
+            조용한 환경에서 시작하여 점차 더 복잡한 소리 환경에서 연습하세요. 여러 조류가 동시에 우는 상황에서도 개별 종을 구분할 수 있게 되면 고급 수준에 도달한 것입니다<span class="emoji">🎯</span>. 집중력과 인내심이 필요한 과정입니다.
+        </div>
+        
+        <div class="section-title">시간대별 소리 패턴</div>
+        
+        <div class="main-text">
+            조류의 발성 활동은 시간대에 따라 다릅니다. 새벽과 황혼 시간대는 가장 활발한 지저귐을 들을 수 있는 시간입니다<span class="emoji">🌅</span>. 이 시간을 "새벽 합창(dawn chorus)"이라고 부르며, 많은 종의 소리를 한 번에 들을 수 있는 최고의 기회입니다.
+        </div>
+        
+        <div class="main-text">
+            계절에 따른 소리 변화도 주목해야 합니다. 번식기에는 지저귐이 더 빈번하고 복잡해지며, 겨울철에는 주로 울음소리만 들을 수 있습니다<span class="emoji">❄️</span>. 이러한 패턴을 이해하면 더 효과적으로 조류를 찾을 수 있습니다.
+        </div>
+        
+        <div class="section-title">지역 변이와 방언</div>
+        
+        <div class="main-text">
+            같은 종의 조류라도 서로 다른 지역에서는 소리 변이가 있을 수 있으며, 이는 인간의 방언과 유사합니다. 지역 조류의 소리 특징을 이해하는 것이 정확한 식별에 중요합니다<span class="emoji">🌍</span>. 특히 이동성이 적은 텃새들에서 이러한 지역 차이가 더 뚜렷하게 나타납니다.
+        </div>
+        
+        <div class="main-text">
+            새로운 지역을 방문할 때는 현지 조류의 소리가 익숙한 것과 다를 수 있음을 염두에 두세요. 현지 조류 관찰자들과 교류하거나 지역별 소리 자료를 참고하는 것이 도움이 됩니다<span class="emoji">🤝</span>.
+        </div>
+        
+        <div class="section-title">기술 도구 활용</div>
+        
+        <div class="main-text">
+            현대 기술은 조류 소리 학습에 큰 편의를 제공합니다. 스마트폰 앱, 온라인 데이터베이스, 녹음 장비 등이 모두 유용한 도구입니다<span class="emoji">📱</span>. 하지만 기술은 보조 수단일 뿐이며, 진정한 기술은 야외 실습을 통해 길러야 합니다.
+        </div>
+        
+        <div class="main-text">
+            녹음 기능을 활용하여 야외에서 들은 소리를 기록하고, 나중에 집에서 자료와 비교해보세요. 이는 학습 효과를 크게 높일 수 있는 방법입니다<span class="emoji">🎙️</span>. 단, 조류를 방해하지 않도록 적절한 거리를 유지해야 합니다.
+        </div>
+        
+        <div class="section-title">소리와 행동의 연관성</div>
+        
+        <div class="main-text">
+            조류의 소리는 그들의 행동과 밀접한 관련이 있습니다. 경계 울음소리를 들으면 주변에 위험이 있음을 의미하고, 먹이 찾기 소리를 들으면 조류가 활발히 활동 중임을 알 수 있습니다<span class="emoji">🔍</span>. 이러한 연관성을 이해하면 조류의 위치와 행동을 더 잘 예측할 수 있습니다.
+        </div>
+        
+        <div class="section-title">야간 조류 소리</div>
+        
+        <div class="main-text">
+            밤에 활동하는 조류들도 독특한 소리를 냅니다. 올빼미류의 부엉거림, 쏙독새의 특이한 울음소리 등은 야간 조류 관찰의 중요한 단서입니다<span class="emoji">🌙</span>. 야간 소리 식별은 낮과는 다른 특별한 경험을 제공합니다.
+        </div>
+        
+        <div class="tip-box">
+            <div class="tip-title">🌟 전문가 조언</div>
+            소리 일지를 작성하여 들은 소리, 시간, 장소, 날씨 조건을 기록하세요. 이러한 기록은 패턴을 파악하고 식별 능력을 향상시키는 데 도움이 됩니다.
+        </div>
+        
+        <div class="section-title">연습과 인내</div>
+        
+        <div class="main-text">
+            조류 울음소리 식별은 시간과 인내심이 필요한 기술입니다. 흔한 조류부터 시작하여 점차 더 많은 종으로 확장해나가세요<span class="emoji">🎯</span>. 경험이 쌓일수록 소리 식별이 조류 관찰 활동에서 없어서는 안 될 기술이 된다는 것을 발견하게 될 것입니다.
+        </div>
+        
+        <div class="main-text">
+            완벽한 식별을 위해서는 시각적 확인과 소리 식별을 함께 사용하는 것이 가장 좋습니다. 소리로 조류의 존재를 파악하고, 시각적으로 확인하는 과정을 통해 더욱 정확하고 풍부한 조류 관찰 경험을 얻을 수 있습니다<span class="emoji">👁️</span>.
+        </div>
     </div>
     
-    <div class="hero-image"></div>
-    <div class="content">
-        <h1 class="title">조류鸣声식별</h1>
-        <div class="quote-box"><div class="quote-text">掌握~을 통해鸣声和叫声식별조류的艺术</div><div class="main-text">조류的鸣声和叫声是식별的중요한도구，특별한是在视线受阻或조류隐藏时。每种조류都有독특한的声音특징，学会식별这些声音能够大大향상조류 관찰效率<span class="emoji">🎵</span>。</div>
-        <div class="section-title">理解조류发声</div>
-        <div class="main-text">조류的发声可以分为鸣声和叫声两大类。鸣声보통用于求偶和宣示领域，结构복잡한，旋律优美<span class="emoji">🎼</span>。叫声则用于日常교류，如警戒、联络和觅食。</div>
-        <div class="section-title">학습鸣声模式</div>
-        <div class="main-text">每种조류的鸣声都有特定的音调、节奏和반복模式。사용助记词来도움记忆是효과적인的방법<span class="emoji">🗣️</span>。例如，大山雀的叫声听起来像"老师傅"，布谷鸟就是"布谷布谷"。</div>
-        <div class="tip-box"><div class="tip-title">🎧 연습제안</div>사용조류声音적용프로그램反复听取흔한조류的叫声，在野外听到时尝试回忆和대비。</div>
-        <div class="section-title">발전听力기술</div>
-        <div class="main-text">효과적인的조류鸣声식별필요발전敏锐的听力기술。연습区分다른的音调、音量和节奏변화<span class="emoji">👂</span>。学会在복잡한的声音환경中分离出特定조류的声音。</div>
-        <div class="section-title">地区变异和方言</div>
-        <div class="main-text">同一种조류在다른地区可能有声音变异，유사人类的方言。了解当地조류的声音특징对정확한식별很중요한<span class="emoji">🌍</span>。</div>
-        <div class="section-title">기술도구辅助</div>
-        <div class="main-text">现代기술为조류声音학습提供了便利。手机적용프로그램、在线데이터库和录音장비都是유용한的도구<span class="emoji">📱</span>。但要记住，기술只是辅助，真正的기술필요在野外实践中培养。</div>
-        <div class="main-text">조류鸣声식별是一个필요시간和耐心的기술。从흔한조류시작，逐步확장到更多物种<span class="emoji">🎯</span>。随着경험积累，您将发现소리 식별成为조류 관찰활동中不可或缺的기술。</div><div class="progress-container"><div class="progress-bar"><div class="progress-fill"></div></div></div>
+    <!-- 진행률 표시줄 -->
+    <div class="progress-container">
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
+        </div>
+    </div>
 
     <script>
-        // 更新时间
+        // 시간 업데이트
         function updateTime() {
             const now = new Date();
             const timeString = now.getHours().toString().padStart(2, '0') + ':' + 
                              now.getMinutes().toString().padStart(2, '0');
-            document.getElementById('current-time').textContent = timeString;
+            const timeElement = document.getElementById('current-time');
+            if (timeElement) {
+                timeElement.textContent = timeString;
+            }
         }
         
-        // 读取进度模拟
+        // 읽기 진행률 시뮬레이션
         function updateProgress() {
             const scrolled = window.pageYOffset;
             const maxHeight = document.body.scrollHeight - window.innerHeight;
@@ -63,7 +292,7 @@
             document.querySelector('.progress-fill').style.width = progress + '%';
         }
         
-        // 初始化
+        // 초기화
         updateTime();
         setInterval(updateTime, 60000);
         
@@ -71,7 +300,5 @@
         updateProgress();
     </script>
     <script src="../language-redirect.js"></script>
-
-
 </body>
 </html>

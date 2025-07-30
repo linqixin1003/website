@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Best Bird Watching Locations - BirdAiSnap</title>
+    <title>최적의 조류 관찰 장소 - BirdAiSnap</title>
     <style>
         * {
             margin: 0;
@@ -30,7 +30,7 @@
             background: white;
             margin: -30px 20px 20px 20px;
             border-radius: 20px;
-            padding: 40px 20px 30px 20px;
+            padding: 30px 20px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.1);
             min-height: 80vh;
         }
@@ -40,7 +40,7 @@
             font-weight: 700;
             color: #1a1a1a;
             margin-bottom: 30px;
-            margin-top: 10px;
+            margin-top: 15px;
             line-height: 1.3;
         }
         
@@ -121,7 +121,7 @@
             border-radius: 12px;
             padding: 20px;
             border: 2px solid #e9ecef;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, border-color 0.3s ease;
         }
         
         .location-card:hover {
@@ -131,50 +131,185 @@
         
         .location-card h4 {
             color: #2e7d32;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             font-size: 18px;
+            display: flex;
+            align-items: center;
         }
         
-        .location-card .habitat-type {
+        .habitat-type {
             color: #4caf50;
             font-size: 14px;
             font-weight: 600;
             margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         
         .location-card p {
-            color: #666;
-            line-height: 1.5;
+            color: #555;
+            line-height: 1.6;
             margin: 0;
+            font-size: 14px;
         }
         
-        .progress-container {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 60px;
-            background: linear-gradient(to top, rgba(255,255,255,0.95), transparent);
+        .location-features {
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid #e9ecef;
+        }
+        
+        .feature-tag {
+            display: inline-block;
+            background: #e8f5e8;
+            color: #2e7d32;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            margin: 2px 4px 2px 0;
+        }
+        
+        .timing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 25px 0;
+        }
+        
+        .timing-card {
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            border-left: 4px solid #ff9800;
+        }
+        
+        .timing-card h4 {
+            color: #f57c00;
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+        
+        .timing-card p {
+            color: #555;
+            font-size: 14px;
+            margin: 0;
+            line-height: 1.4;
+        }
+        
+        .seasonal-guide {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        
+        .season-item {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 998;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
         
-        .progress-bar {
-            width: 200px;
-            height: 4px;
-            background: rgba(0,0,0,0.1);
-            border-radius: 2px;
+        .season-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .season-icon {
+            font-size: 24px;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .season-content h4 {
+            color: #2e7d32;
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+        
+        .season-content p {
+            margin: 0;
+            color: #555;
+            line-height: 1.5;
+            font-size: 14px;
+        }
+        
+        .habitat-comparison {
+            background: white;
+            border-radius: 12px;
             overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin: 25px 0;
         }
         
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #4caf50, #81c784);
-            width: 0%;
-            border-radius: 2px;
-            transition: width 0.3s ease;
+        .habitat-comparison table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .habitat-comparison th {
+            background: #4caf50;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .habitat-comparison td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e9ecef;
+            color: #555;
+        }
+        
+        .habitat-comparison tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .research-tips {
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 25px 0;
+            border-left: 4px solid #2196f3;
+        }
+        
+        .research-tips h4 {
+            color: #1976d2;
+            margin-bottom: 15px;
+        }
+        
+        .research-item {
+            background: rgba(255,255,255,0.8);
+            margin: 10px 0;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 3px solid #2196f3;
+        }
+        
+        .research-item h5 {
+            color: #1976d2;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+        
+        .research-item p {
+            color: #555;
+            font-size: 13px;
+            margin: 0;
+            line-height: 1.4;
+        }
+        
+        @media (max-width: 768px) {
+            .location-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .timing-grid {
+                grid-template-columns: 1fr;
+            }
         }
         
         @media (max-width: 375px) {
@@ -190,144 +325,243 @@
             .main-text {
                 font-size: 15px;
             }
-            
-            .location-grid {
-                grid-template-columns: 1fr;
-            }
         }
     </style>
 </head>
 <body>
-
-    <!-- 主图 -->
     <div class="hero-image"></div>
     
-    <!-- 主要内容 -->
     <div class="content">
-        <h1 class="title">📍 Best Bird Watching Locations</h1>
+        <h1 class="title">최적의 조류 관찰 장소</h1>
         
         <div class="quote-box">
             <div class="quote-text">
-                Discover prime birding destinations and learn how to find the best spots for bird watching
-            </div><div class="main-text">
-            도시 공원부터 야생 지역까지 훌륭한 조류 관찰 장소가 어디에나 존재합니다<span class="emoji">🌍</span>. 집 가까이에서 시작하면 더 먼 곳으로 모험을 떠나기 전에 지역 종을 배우는 데 도움이 됩니다. The key is understanding different habitat types and what birds they attract.
+                완벽한 조류 관찰 장소를 찾고 각 서식지의 특성을 이해해보세요
+            </div>
         </div>
         
-        <div class="section-title">Types of Birding Habitats</div>
+        <div class="main-text">
+            성공적인 조류 관찰의 핵심은 올바른 장소 선택에 있습니다. 도시 공원부터 원시 자연까지, 각 환경은 고유한 조류 군집과 관찰 기회를 제공합니다<span class="emoji">🌍</span>. 가까운 곳에서 시작하여 점차 활동 범위를 넓혀가는 것이 조류 관찰 기술을 체계적으로 발전시키는 가장 효과적인 방법입니다.
+        </div>
+        
+        <div class="section-title">서식지 유형별 특성</div>
         
         <div class="main-text">
-            Different bird species prefer different habitats, so understanding these environments is crucial for successful birding<span class="emoji">🏞️</span>. Each habitat type offers unique opportunities to observe specific bird communities and behaviors.
+            서로 다른 조류 종들은 각기 다른 서식지를 선호하므로, 이러한 환경의 특성을 이해하는 것이 성공적인 조류 관찰의 기초입니다<span class="emoji">🏞️</span>. 각 서식지 유형은 특정한 조류 군집과 행동 양상을 관찰할 수 있는 독특한 기회를 제공합니다.
         </div>
         
         <div class="location-grid">
             <div class="location-card">
-                <div class="habitat-type">Wetlands & Water Bodies</div>
-                <h4>Lakes, Ponds & Marshes</h4>
-                <p>Excellent for waterfowl, herons, egrets, and shorebirds. Early morning and evening are prime times for activity.</p>
+                <div class="habitat-type">수변 환경</div>
+                <h4>🏞️ 호수, 연못, 습지</h4>
+                <p>물새류, 백로류, 도요새류 관찰에 최적입니다. 이른 아침과 저녁 시간대에 가장 활발한 활동을 보입니다.</p>
+                <div class="location-features">
+                    <span class="feature-tag">물새류</span>
+                    <span class="feature-tag">섭금류</span>
+                    <span class="feature-tag">이른 아침</span>
+                </div>
             </div>
+            
             <div class="location-card">
-                <div class="habitat-type">Forest & Woodland</div>
-                <h4>Deciduous & Mixed Forests</h4>
-                <p>Home to woodpeckers, warblers, and many songbirds. Spring migration offers the best diversity.</p>
+                <div class="habitat-type">산림 환경</div>
+                <h4>🌲 활엽수림과 혼합림</h4>
+                <p>딱따구리류, 명금류, 다양한 명금류의 서식지입니다. 봄철 이주 시기에 가장 높은 다양성을 보입니다.</p>
+                <div class="location-features">
+                    <span class="feature-tag">딱따구리류</span>
+                    <span class="feature-tag">명금류</span>
+                    <span class="feature-tag">봄철 이주</span>
+                </div>
             </div>
+            
             <div class="location-card">
-                <div class="habitat-type">Open Areas</div>
-                <h4>Grasslands & Fields</h4>
-                <p>Great for raptors, sparrows, and ground-dwelling birds. Look for fence posts and scattered trees.</p>
+                <div class="habitat-type">개방 지역</div>
+                <h4>🌾 초원과 농경지</h4>
+                <p>맹금류, 참새류, 지상 서식 조류 관찰에 적합합니다. 울타리 기둥과 산재한 나무들을 주의 깊게 살펴보세요.</p>
+                <div class="location-features">
+                    <span class="feature-tag">맹금류</span>
+                    <span class="feature-tag">참새류</span>
+                    <span class="feature-tag">지상성 조류</span>
+                </div>
             </div>
+            
             <div class="location-card">
-                <div class="habitat-type">Urban Areas</div>
-                <h4>Parks & Gardens</h4>
-                <p>Surprisingly diverse with adapted species. Often the most accessible for regular observation.</p>
-            </div><div class="section-title">Your Backyard - The Perfect Starting Point</div>
+                <div class="habitat-type">도시 환경</div>
+                <h4>🏙️ 공원과 정원</h4>
+                <p>도시 적응 종들의 놀라운 다양성을 보여줍니다. 정기적인 관찰이 가장 용이한 접근성을 제공합니다.</p>
+                <div class="location-features">
+                    <span class="feature-tag">도시 적응종</span>
+                    <span class="feature-tag">접근성</span>
+                    <span class="feature-tag">연중 관찰</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section-title">뒷마당 - 완벽한 시작점</div>
         
         <div class="main-text">
-            Your own backyard is often the best place to begin birding<span class="emoji">🏡</span>. Set up feeders and water sources to attract birds, and spend time observing their daily patterns. Regular observation builds familiarity with common species and their behaviors.
+            자신의 뒷마당은 조류 관찰을 시작하기에 가장 이상적인 장소입니다<span class="emoji">🏡</span>. 급이대와 물그릇을 설치하여 조류를 유인하고, 그들의 일상적인 패턴을 관찰하는 시간을 가져보세요. 정기적인 관찰을 통해 일반적인 종들과 그들의 행동에 대한 친숙함을 기를 수 있습니다.
         </div>
         
         <div class="tip-box">
-            <div class="tip-title">🌱 Creating Bird-Friendly Spaces</div>
-            Plant native vegetation, provide fresh water, offer different types of feeders, and create shelter with shrubs and trees to attract more bird species to your yard.
+            <div class="tip-title">🌱 조류 친화적 공간 조성법</div>
+            토착 식물 재배, 신선한 물 공급, 다양한 유형의 급이대 설치, 관목과 나무를 통한 은신처 제공을 통해 더 많은 조류 종을 마당으로 유인할 수 있습니다.
         </div>
         
-        <div class="section-title">Local Parks and Nature Centers</div>
+        <div class="section-title">지역 공원과 자연 센터</div>
         
         <div class="main-text">
-            City and county parks often have diverse habitats and good bird populations<span class="emoji">🌳</span>. Many have walking trails, benches, and interpretive signs. Nature centers frequently offer guided walks and have knowledgeable staff who can provide local birding tips.
+            시립 공원과 군립 공원은 종종 다양한 서식지와 풍부한 조류 개체군을 보유하고 있습니다<span class="emoji">🌳</span>. 많은 공원들이 산책로, 벤치, 해설 표지판을 갖추고 있습니다. 자연 센터들은 가이드 투어를 제공하고 지역 조류 관찰 팁을 제공할 수 있는 전문 지식을 가진 직원들이 있습니다.
         </div>
         
-        <div class="location-grid">
-            <div class="location-card">
-                <div class="habitat-type">Urban Parks</div>
-                <h4>City Parks</h4>
-                <p>Accessible locations with surprising diversity. Often have ponds, mature trees, and varied habitats in small areas.</p>
+        <div class="habitat-comparison">
+            <table>
+                <thead>
+                    <tr>
+                        <th>장소 유형</th>
+                        <th>주요 특징</th>
+                        <th>관찰 가능 조류</th>
+                        <th>최적 시기</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>도시 공원</strong></td>
+                        <td>접근성 좋음, 다양한 미세 서식지</td>
+                        <td>참새류, 비둘기류, 까치, 까마귀</td>
+                        <td>연중</td>
+                    </tr>
+                    <tr>
+                        <td><strong>자연 보호구역</strong></td>
+                        <td>인간 간섭 최소화, 특화된 서식지</td>
+                        <td>희귀종, 특화 서식지 의존종</td>
+                        <td>번식기, 이주기</td>
+                    </tr>
+                    <tr>
+                        <td><strong>식물원</strong></td>
+                        <td>다양한 식생, 관리된 환경</td>
+                        <td>명금류, 벌새류, 과실 섭취 조류</td>
+                        <td>개화기, 결실기</td>
+                    </tr>
+                    <tr>
+                        <td><strong>해안 지역</strong></td>
+                        <td>조수 간만, 다양한 수심</td>
+                        <td>바다새, 도요새류, 갈매기류</td>
+                        <td>이주기, 간조 시</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="section-title">관찰 시기의 중요성</div>
+        
+        <div class="main-text">
+            언제 조류 관찰을 하느냐는 어디서 하느냐만큼이나 중요합니다<span class="emoji">🕐</span>. 조류들은 특정한 시간대와 계절에 가장 활발하며, 이러한 패턴을 이해하면 성공률을 크게 향상시킬 수 있습니다.
+        </div>
+        
+        <div class="timing-grid">
+            <div class="timing-card">
+                <h4>🌅 이른 아침</h4>
+                <p>일출 후 2-3시간이 가장 활발한 시간대입니다. 조류들이 밤새 금식 후 먹이를 찾는 시간입니다.</p>
             </div>
-            <div class="location-card">
-                <div class="habitat-type">Nature Preserves</div>
-                <h4>Protected Areas</h4>
-                <p>Dedicated wildlife areas with minimal human disturbance. Often have specialized habitats and rare species.</p>
-            </div><div class="section-title">Timing Your Birding Adventures</div>
+            
+            <div class="timing-card">
+                <h4>🌇 늦은 오후</h4>
+                <p>일몰 전 시간대에 두 번째 활동 피크가 나타납니다. 잠자리로 이동하기 전 마지막 먹이 활동입니다.</p>
+            </div>
+            
+            <div class="timing-card">
+                <h4>🌤️ 흐린 날씨</div>
+                <p>맑고 밝은 날보다 흐린 날에 더 많은 조류 활동을 관찰할 수 있습니다.</p>
+            </div>
+            
+            <div class="timing-card">
+                <h4>⛈️ 날씨 변화 후</h4>
+                <p>폭풍 후나 날씨 변화 시 조류 이동과 먹이 활동이 증가합니다.</p>
+            </div>
+        </div>
+        
+        <div class="section-title">계절별 관찰 전략</div>
         
         <div class="main-text">
-            When you go birding is just as important as where you go<span class="emoji">🕐</span>. Birds are most active during certain times of day and seasons, and understanding these patterns greatly improves your success rate.
+            각 계절은 서로 다른 조류 관찰 기회를 제공합니다<span class="emoji">🍂</span>. 계절적 패턴을 이해하면 언제 어디서 특정 종들을 찾을 수 있는지 예측할 수 있습니다.
+        </div>
+        
+        <div class="seasonal-guide">
+            <h4 style="color: #2e7d32; margin-bottom: 20px; font-size: 18px;">계절별 조류 관찰 가이드:</h4>
+            
+            <div class="season-item">
+                <div class="season-icon">🌸</div>
+                <div class="season-content">
+                    <h4>봄 (3-5월)</h4>
+                    <p>이주 조류의 도착과 번식 활동으로 가장 다양한 종을 관찰할 수 있습니다. 영역 노래가 활발하고 구애 행동을 관찰할 기회가 많습니다.</p>
+                </div>
+            </div>
+            
+            <div class="season-item">
+                <div class="season-icon">☀️</div>
+                <div class="season-content">
+                    <h4>여름 (6-8월)</h4>
+                    <p>가족 단위 활동과 어린 개체들을 관찰할 수 있습니다. 이른 아침 관찰이 특히 중요한 시기입니다.</p>
+                </div>
+            </div>
+            
+            <div class="season-item">
+                <div class="season-icon">🍂</div>
+                <div class="season-content">
+                    <h4>가을 (9-11월)</h4>
+                    <p>두 번째 이주 시기로 다시 높은 다양성을 보입니다. 혼합 무리와 길잃은새 관찰 기회가 있습니다.</p>
+                </div>
+            </div>
+            
+            <div class="season-item">
+                <div class="season-icon">❄️</div>
+                <div class="season-content">
+                    <h4>겨울 (12-2월)</h4>
+                    <p>먹이원 주변에 조류가 집중되어 관찰이 용이합니다. 북방계 조류의 남하를 관찰할 수 있습니다.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section-title">새로운 장소 발굴하기</div>
+        
+        <div class="main-text">
+            eBird와 같은 온라인 자원을 활용하여 주변의 생산적인 조류 관찰 장소를 찾아보세요<span class="emoji">📱</span>. 지역 조류 관찰 그룹과 오듀본 지부는 해당 지역 최고의 장소에 대한 정보의 훌륭한 원천입니다. 많은 경험 있는 조류 관찰자들이 기꺼이 자신들이 좋아하는 장소를 신규 관찰자들과 공유합니다.
+        </div>
+        
+        <div class="research-tips">
+            <h4>🔍 장소 조사 방법</h4>
+            <div class="research-item">
+                <h5>온라인 플랫폼 활용</h5>
+                <p>eBird, iNaturalist 등의 시민 과학 플랫폼에서 지역별 관찰 기록을 확인하여 유망한 장소를 파악할 수 있습니다.</p>
+            </div>
+            <div class="research-item">
+                <h5>지역 조류 동호회 참여</h5>
+                <p>지역 조류 관찰 동호회나 자연 보호 단체에 가입하여 경험자들의 조언과 정보를 얻을 수 있습니다.</p>
+            </div>
+            <div class="research-item">
+                <h5>가이드북과 지도 활용</h5>
+                <p>지역별 조류 관찰 가이드북과 서식지 지도를 참고하여 체계적으로 장소를 탐색할 수 있습니다.</p>
+            </div>
+            <div class="research-item">
+                <h5>계절별 핫스팟 파악</h5>
+                <p>계절에 따라 달라지는 조류 분포를 고려하여 시기별 최적 장소를 미리 조사해두는 것이 중요합니다.</p>
+            </div>
+        </div>
+        
+        <div class="section-title">지속적인 관찰의 가치</div>
+        
+        <div class="main-text">
+            가장 좋은 조류 관찰 장소는 종종 정기적으로 방문할 수 있는 곳입니다<span class="emoji">🔄</span>. 한 장소를 계절에 걸쳐 지속적으로 관찰하는 것은 가끔씩 먼 "핫스팟"을 방문하는 것보다 조류 행동과 생태에 대해 더 많은 것을 가르쳐줄 것입니다.
+        </div>
+        
+        <div class="main-text">
+            정기적인 관찰을 통해 계절적 변화, 개체군 동향, 행동 패턴을 파악할 수 있으며, 이는 조류 관찰 기술 향상에 매우 중요한 경험이 됩니다<span class="emoji">📈</span>. 또한 익숙한 장소에서의 변화를 감지하는 능력은 새로운 종이나 특이한 행동을 발견하는 데 도움이 됩니다.
         </div>
         
         <div class="tip-box">
-            <div class="tip-title">⏰ 조류 관찰 최적 시간</div>
-            Early morning (first 2-3 hours after sunrise) and late afternoon before sunset are peak activity times. Spring migration (April-May) offers the greatest diversity in most areas.
-        </div>
-        
-        <div class="section-title">Seasonal Considerations</div>
-        
-        <div class="main-text">
-            Each season offers different birding opportunities<span class="emoji">🍂</span>. Spring brings migrants and breeding activity, summer offers family groups and fledglings, fall provides another migration wave, and winter concentrates birds around food sources.
-        </div>
-        
-        <div class="main-text">
-            Weather also plays a crucial role in bird activity<span class="emoji">🌤️</span>. Overcast days often see more bird activity than bright, sunny days. After storms, weather changes can trigger increased bird movement and feeding activity.
-        </div>
-        
-        <div class="section-title">Finding New Locations</div>
-        
-        <div class="main-text">
-            Use online resources like eBird to find productive birding locations near you<span class="emoji">📱</span>. Local birding groups and Audubon chapters are excellent sources of information about the best spots in your area. Many experienced birders are happy to share their favorite locations with newcomers.
-        </div>
-        
-        <div class="main-text">
-            Remember that the best birding location is often the one you can visit regularly<span class="emoji">🔄</span>. Consistent observation of a single location throughout the seasons will teach you more about bird behavior and ecology than occasional visits to distant "hotspots."
-        </div><!-- 进度条 -->
-    <div class="progress-container">
-        <div class="progress-bar">
-            <div class="progress-fill"></div>
+            <div class="tip-title">💡 성공적인 장소 선택 팁</div>
+            접근성, 안전성, 다양한 서식지의 존재, 계절별 변화의 풍부함을 종합적으로 고려하여 자신만의 최적 관찰 장소를 개발해보세요. 가까운 곳에서 시작하여 점차 범위를 넓혀가는 것이 가장 효과적인 접근법입니다.
         </div>
     </div>
-
-    <script>
-        // 更新时间
-        function updateTime() {
-            const now = new Date();
-            const timeString = now.getHours().toString().padStart(2, '0') + ':' + 
-                             now.getMinutes().toString().padStart(2, '0');
-            document.getElementById('current-time').textContent = timeString;
-        }
-        
-        // 读取进度模拟
-        function updateProgress() {
-            const scrolled = window.pageYOffset;
-            const maxHeight = document.body.scrollHeight - window.innerHeight;
-            const progress = Math.min((scrolled / maxHeight) * 100, 100);
-            document.querySelector('.progress-fill').style.width = progress + '%';
-        }
-        
-        // 初始化
-        updateTime();
-        setInterval(updateTime, 60000);
-        
-        window.addEventListener('scroll', updateProgress);
-        updateProgress();
-    </script>
-    <script src="../language-redirect.js"></script>
-
-
 </body>
 </html>

@@ -3,57 +3,276 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>조류 관찰 사진 촬영 기법 - BirdAiSnap</title>
+    <title>조류 사진 촬영 기법 - BirdAiSnap</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f5; color: #333; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
 
-        .hero-image { width: 100%; height: 400px; background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('../../images/birds/species/bird-image-005.webp') center/cover; position: relative; margin-top: 0; }
-        .content { background: white; margin: -30px 20px 20px 20px; border-radius: 20px; padding: 30px 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); min-height: 80vh; }
-        .title { font-size: 24px; font-weight: 700; color: #1a1a1a; margin-bottom: 30px; margin-top: 15px; line-height: 1.3; }
-        .quote-box { background: linear-gradient(135deg, #f3e5f5, #e1bee7); border-left: 4px solid #9c27b0; padding: 20px; margin: 25px 0; border-radius: 8px; position: relative; }
-        .quote-box::before { content: '"'; font-size: 48px; color: #9c27b0; position: absolute; top: -5px; left: 15px; font-family: serif; line-height: 1; }
-        .quote-text { font-size: 18px; font-weight: 600; color: #6a1b9a; margin-left: 25px; line-height: 1.4; }
-        .main-text { font-size: 16px; line-height: 1.8; color: #333; margin: 20px 0; text-align: justify; }
-        .section-title { font-size: 20px; font-weight: 600; color: #9c27b0; margin: 30px 0 15px 0; border-bottom: 2px solid #e1bee7; padding-bottom: 8px; }
-        .tip-box { background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px; padding: 15px; margin: 20px 0; border-left: 4px solid #28a745; }
-        .tip-title { font-weight: 600; color: #28a745; margin-bottom: 8px; }
-        .emoji { font-size: 18px; margin: 0 2px; }
-        .progress-container { position: fixed; bottom: 0; left: 0; right: 0; height: 60px; background: linear-gradient(to top, rgba(255,255,255,0.95), transparent); display: flex; align-items: center; justify-content: center; z-index: 998; }
-        .progress-bar { width: 200px; height: 4px; background: rgba(0,0,0,0.1); border-radius: 2px; overflow: hidden; }
-        .progress-fill { height: 100%; background: linear-gradient(90deg, #9c27b0, #ba68c8); width: 0%; border-radius: 2px; transition: width 0.3s ease; }
-        @media (max-width: 375px) { .content { margin: -30px 15px 20px 15px; padding: 25px 15px; } .title { font-size: 22px; } .main-text { font-size: 15px; } }
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                        url('../../images/birds/species/bird-image-005.webp') center/cover;
+            position: relative;
+            margin-top: 0;
+        }
+        
+        .content {
+            background: white;
+            margin: -30px 20px 20px 20px;
+            border-radius: 20px;
+            padding: 30px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            min-height: 80vh;
+        }
+        
+        .title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            margin-top: 15px;
+            line-height: 1.3;
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, #f3e5f5, #e1bee7);
+            border-left: 4px solid #9c27b0;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .quote-box::before {
+            content: '"';
+            font-size: 48px;
+            color: #9c27b0;
+            position: absolute;
+            top: -5px;
+            left: 15px;
+            font-family: serif;
+            line-height: 1;
+        }
+        
+        .quote-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: #6a1b9a;
+            margin-left: 25px;
+            line-height: 1.4;
+        }
+        
+        .main-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            margin: 20px 0;
+            text-align: justify;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #9c27b0;
+            margin: 30px 0 15px 0;
+            border-bottom: 2px solid #e1bee7;
+            padding-bottom: 8px;
+        }
+        
+        .tip-box {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            border-left: 4px solid #28a745;
+        }
+        
+        .tip-title {
+            font-weight: 600;
+            color: #28a745;
+            margin-bottom: 8px;
+        }
+        
+        .emoji {
+            font-size: 18px;
+            margin: 0 2px;
+        }
+        
+        .progress-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: linear-gradient(to top, rgba(255,255,255,0.95), transparent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 998;
+        }
+        
+        .progress-bar {
+            width: 200px;
+            height: 4px;
+            background: rgba(0,0,0,0.1);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #9c27b0, #ba68c8);
+            width: 0%;
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+        
+        @media (max-width: 375px) {
+            .content {
+                margin: -30px 15px 20px 15px;
+                padding: 25px 15px;
+            }
+            
+            .title {
+                font-size: 22px;
+            }
+            
+            .main-text {
+                font-size: 15px;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- 주요 이미지 -->
+    <div class="hero-image"></div>
     
+    <!-- 주요 내용 -->
+    <div class="content">
+        <h1 class="title">조류 사진 촬영 기법</h1>
+        
+        <div class="quote-box">
+            <div class="quote-text">
+                렌즈로 조류의 아름다운 순간을 포착하세요
+            </div>
+        </div>
+        
+        <div class="main-text">
+            조류 사진 촬영은 조류 관찰 활동의 중요한 확장으로, 아름다운 조류 관찰 시간을 기록할 뿐만 아니라 다른 사람들과 발견을 공유할 수 있게 해줍니다<span class="emoji">📸</span>. 성공적인 조류 사진 촬영에는 기술적 기법, 인내심, 그리고 조류 행동에 대한 깊은 이해가 필요합니다.
+        </div>
+        
+        <div class="section-title">카메라 장비 선택</div>
+        
+        <div class="main-text">
+            조류 사진 촬영은 장비에 특별한 요구사항이 있습니다. 망원렌즈는 필수이며, 최소 300mm 초점거리를 권장합니다<span class="emoji">🔍</span>. DSLR 카메라나 미러리스 카메라 모두 적합하지만, 핵심은 빠른 자동 초점 시스템과 고속 연속 촬영 기능을 갖추는 것입니다.
+        </div>
+        
+        <div class="main-text">
+            삼각대는 안정성을 제공하지만 조류 사진 촬영에서는 기동성이 더 중요할 수 있습니다. 일각대나 손으로 들고 촬영하는 것이 더 실용적일 수 있습니다<span class="emoji">📷</span>. 추가 배터리와 메모리 카드를 준비하는 것도 중요합니다.
+        </div>
+        
+        <div class="section-title">촬영 기법 요점</div>
+        
+        <div class="main-text">
+            고속 셔터를 사용하여 조류의 동작을 정지시키세요. 일반적으로 1/500초 이상이 필요합니다<span class="emoji">⚡</span>. 적절한 조리개를 선택하여 피사계 심도와 셔터 속도의 균형을 맞추세요. 연속 촬영 모드는 멋진 순간을 포착할 기회를 증가시킵니다.
+        </div>
+        
+        <div class="main-text">
+            ISO 설정은 조명 조건에 따라 조정해야 합니다. 현대 카메라는 높은 ISO에서도 좋은 화질을 제공하므로, 적절한 셔터 속도를 유지하기 위해 ISO를 높이는 것을 두려워하지 마세요<span class="emoji">🌟</span>.
+        </div>
+        
+        <div class="tip-box">
+            <div class="tip-title">📷 촬영 제안</div>
+            조류의 눈 부분에 초점을 맞추세요. 눈빛은 사진의 영혼입니다. 깨끗한 배경을 선택하여 주제를 방해하는 잡다한 요소를 피하세요.
+        </div>
+        
+        <div class="section-title">구도와 조명</div>
+        
+        <div class="main-text">
+            삼분할 법칙을 따라 구도를 잡고, 조류를 화면의 황금분할점에 배치하세요<span class="emoji">🎨</span>. 부드러운 측면광이나 역광은 더 층차가 있는 사진 효과를 만들어낼 수 있습니다.
+        </div>
+        
+        <div class="main-text">
+            황금 시간(일출 후와 일몰 전)은 가장 아름다운 자연광을 제공합니다. 이 시간대의 따뜻하고 부드러운 빛은 조류의 깃털 질감과 색상을 완벽하게 표현할 수 있습니다<span class="emoji">🌅</span>.
+        </div>
+        
+        <div class="section-title">행동 사진 촬영</div>
+        
+        <div class="main-text">
+            조류의 자연스러운 행동을 포착하는 것이 정적인 초상보다 더 스토리가 있습니다. 먹이 찾기, 비행, 상호작용 등의 행동 순간은 모두 훌륭한 촬영 소재입니다<span class="emoji">🎭</span>.
+        </div>
+        
+        <div class="main-text">
+            조류의 행동 패턴을 관찰하고 예측하는 것이 성공적인 행동 사진의 핵심입니다. 인내심을 갖고 기다리며, 조류가 흥미로운 행동을 보일 때를 대비해 준비하세요<span class="emoji">⏰</span>.
+        </div>
+        
+        <div class="section-title">비행 사진 촬영</div>
+        
+        <div class="main-text">
+            비행 중인 조류를 촬영하는 것은 가장 도전적이지만 보람 있는 조류 사진 중 하나입니다. 연속 자동 초점 모드를 사용하고, 조류의 비행 경로를 예측하여 미리 초점을 맞추세요<span class="emoji">🦅</span>.
+        </div>
+        
+        <div class="main-text">
+            패닝 기법을 사용하여 조류를 따라가며 촬영하면 동적인 효과를 얻을 수 있습니다. 배경이 흐려지면서 조류의 움직임이 강조됩니다<span class="emoji">💨</span>.
+        </div>
+        
+        <div class="section-title">윤리적 촬영</div>
+        
+        <div class="main-text">
+            조류의 복지가 항상 사진보다 우선되어야 합니다. 조류를 방해하거나 스트레스를 주지 않도록 적절한 거리를 유지하세요<span class="emoji">🤝</span>. 특히 번식기에는 더욱 주의해야 합니다.
+        </div>
+        
+        <div class="main-text">
+            인공적인 미끼나 소리를 사용하여 조류를 유인하는 것은 피해야 합니다. 자연스러운 행동을 관찰하고 촬영하는 것이 더 가치 있고 윤리적입니다<span class="emoji">🌿</span>.
+        </div>
+        
+        <div class="tip-box">
+            <div class="tip-title">🌟 전문가 조언</div>
+            지역 조류 사진 촬영 단체에 가입하여 경험을 공유하고 기술을 향상시키세요. 다른 사진작가들의 작품을 연구하고 영감을 얻으세요.
+        </div>
+        
+        <div class="section-title">후처리와 공유</div>
+        
+        <div class="main-text">
+            적절한 후처리는 사진의 품질을 향상시킬 수 있지만, 과도한 편집은 피해야 합니다. 자연스러운 색상과 대비를 유지하면서 사진의 최고의 면을 끌어내세요<span class="emoji">🎨</span>.
+        </div>
+        
+        <div class="main-text">
+            조류 사진 촬영은 많은 연습과 인내심이 필요합니다. 흔하고 촬영하기 쉬운 조류부터 시작하여 점차 기술 수준을 향상시키세요<span class="emoji">🎯</span>. 기억하세요. 좋은 조류 사진은 기술적으로 뛰어날 뿐만 아니라 감정과 스토리를 담고 있어야 합니다.
+        </div>
     </div>
     
-    <div class="hero-image"></div>
-    <div class="content">
-        <h1 class="title">조류 관찰 사진 촬영 기법</h1>
-        <div class="quote-box"><div class="quote-text">用镜头捕捉조류的精彩순간</div><div class="main-text">조류사진 촬영是조류 관찰활동的중요한연장，它不仅能기록美好的조류 관찰时光，还能与他人공유您的发现<span class="emoji">📸</span>。성공적인的조류사진 촬영필요기술기법、耐心和对조류행동的深入了解。</div>
-        <div class="section-title">相机장비选择</div>
-        <div class="main-text">조류사진 촬영对장비有특수한요구。长焦镜头是必需的，제안至少300mm焦距<span class="emoji">🔍</span>。单反相机或无反相机都适合，핵심是要有빠른的自动对焦시스템和高速连拍기능。</div>
-        <div class="section-title">拍摄기법요점</div>
-        <div class="main-text">사용高速快门冻结조류动作，일반적인필요1/500秒以上<span class="emoji">⚡</span>。选择적합한的光圈平衡景深和快门速度。连拍模式能증가捕捉精彩순간的기회。</div>
-        <div class="tip-box"><div class="tip-title">📷 拍摄제안</div>关注조류的眼部对焦，眼神是照片的灵魂。选择干净的背景，避免杂乱元素干扰主体。</div>
-        <div class="section-title">构图和光线</div>
-        <div class="main-text">遵循三分法则构图，将조류放在画面的黄金分割点<span class="emoji">🎨</span>。柔和的侧光或逆光能创造出更有층차的照片효과。</div>
-        <div class="section-title">행동사진 촬영</div>
-        <div class="main-text">捕捉조류的자연행동比静态肖像更有故事性。觅食、飞行、互动等행동순간都是很好的拍摄题材<span class="emoji">🎭</span>。</div>
-        <div class="main-text">조류사진 촬영필요大量연습和耐心。从흔한易拍的조류시작，逐步향상기술수준<span class="emoji">🎯</span>。记住，好的조류照片不仅기술过硬，更要有情感和故事。</div><div class="progress-container"><div class="progress-bar"><div class="progress-fill"></div></div></div>
+    <!-- 진행률 표시줄 -->
+    <div class="progress-container">
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
+        </div>
+    </div>
 
     <script>
-        // 更新时间
+        // 시간 업데이트
         function updateTime() {
             const now = new Date();
             const timeString = now.getHours().toString().padStart(2, '0') + ':' + 
                              now.getMinutes().toString().padStart(2, '0');
-            document.getElementById('current-time').textContent = timeString;
+            const timeElement = document.getElementById('current-time');
+            if (timeElement) {
+                timeElement.textContent = timeString;
+            }
         }
         
-        // 读取进度模拟
+        // 읽기 진행률 시뮬레이션
         function updateProgress() {
             const scrolled = window.pageYOffset;
             const maxHeight = document.body.scrollHeight - window.innerHeight;
@@ -61,7 +280,7 @@
             document.querySelector('.progress-fill').style.width = progress + '%';
         }
         
-        // 初始化
+        // 초기화
         updateTime();
         setInterval(updateTime, 60000);
         
@@ -69,7 +288,5 @@
         updateProgress();
     </script>
     <script src="../language-redirect.js"></script>
-
-
 </body>
 </html>

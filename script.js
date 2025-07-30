@@ -672,59 +672,79 @@ let currentLang = localStorage.getItem('selectedLanguage') || 'en';
 
 // 创建语言下拉菜单
 function createLanguageDropdown() {
-    const languageSwitcher = document.querySelector('.language-switcher');
-    if (!languageSwitcher) {
-        console.log('Language switcher container not found');
-        return;
-    }
+    try {
+        const languageSwitcher = document.querySelector('.language-switcher');
+        if (!languageSwitcher) {
+            console.log('Language switcher container not found');
+            return;
+        }
 
-    // 清空现有内容
-    languageSwitcher.innerHTML = '';
+        // 清空现有内容
+        languageSwitcher.innerHTML = '';
 
-    const dropdown = document.createElement('div');
-    dropdown.className = 'lang-dropdown';
+        const dropdown = document.createElement('div');
+        dropdown.className = 'lang-dropdown';
 
-    const button = document.createElement('button');
-    button.className = 'lang-btn';
-    button.innerHTML = `
-        <span class="lang-icon">🌐</span>
-        <span id="currentLang">${languages[currentLang] ? languages[currentLang].code : 'EN'}</span>
-        <span class="dropdown-arrow">▼</span>
-    `;
-
-    const menu = document.createElement('div');
-    menu.className = 'lang-menu';
-
-    // 显示所有可用语言
-    Object.keys(languages).forEach(langCode => {
-        const option = document.createElement('div');
-        option.className = `lang-option ${langCode === currentLang ? 'active' : ''}`;
-        option.innerHTML = `
-            <span class="flag">${languages[langCode].flag}</span>
-            <span class="lang-name">${languages[langCode].name}</span>
-            <span class="lang-code">${languages[langCode].code}</span>
+        const button = document.createElement('button');
+        button.className = 'lang-btn';
+        button.innerHTML = `
+            <span class="lang-icon">🌐</span>
+            <span id="currentLang">${languages[currentLang] ? languages[currentLang].code : 'EN'}</span>
+            <span class="dropdown-arrow">▼</span>
         `;
-        option.addEventListener('click', () => switchLanguage(langCode));
-        menu.appendChild(option);
-    });
 
-    dropdown.appendChild(button);
-    dropdown.appendChild(menu);
-    languageSwitcher.appendChild(dropdown);
+        const menu = document.createElement('div');
+        menu.className = 'lang-menu';
 
-    // 修复点击事件
-    button.addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
-    });
+        // 显示所有可用语言
+        Object.keys(languages).forEach(langCode => {
+            try {
+                const option = document.createElement('div');
+                option.className = `lang-option ${langCode === currentLang ? 'active' : ''}`;
+                option.innerHTML = `
+                    <span class="flag">${languages[langCode].flag}</span>
+                    <span class="lang-name">${languages[langCode].name}</span>
+                    <span class="lang-code">${languages[langCode].code}</span>
+                `;
+                option.addEventListener('click', () => switchLanguage(langCode));
+                menu.appendChild(option);
+            } catch (error) {
+                console.log('Error creating language option:', error);
+            }
+        });
 
-    // 点击页面其他地方关闭下拉菜单
-    document.addEventListener('click', function() {
-        menu.style.display = 'none';
-    });
+        dropdown.appendChild(button);
+        dropdown.appendChild(menu);
+        languageSwitcher.appendChild(dropdown);
 
-    console.log('Language dropdown created successfully');
+        // 修复点击事件
+        button.addEventListener('click', function(e) {
+            try {
+                e.preventDefault();
+                e.stopPropagation();
+                if (menu) {
+                    menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+                }
+            } catch (error) {
+                console.log('Button click error:', error);
+            }
+        });
+
+        // 点击页面其他地方关闭下拉菜单
+        document.addEventListener('click', function() {
+            try {
+                if (menu) {
+                    menu.style.display = 'none';
+                }
+            } catch (error) {
+                console.log('Document click error:', error);
+            }
+        });
+
+        console.log('Language dropdown created successfully');
+    } catch (error) {
+        console.log('Language dropdown creation error:', error);
+    }
 }
 
 // 翻译页面内容
@@ -1011,37 +1031,45 @@ function safeInitialize() {
     }
 }
 
-
-
 // 初始化页面语言
 function initializeLanguage() {
-    // 如果是主页，使用保存的语言但不跳转
-    if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
-        const savedLang = localStorage.getItem('selectedLanguage') || 'en';
-        currentLang = savedLang;
-        
-        // 更新当前语言显示
-        const currentLangElement = document.getElementById('currentLang');
-        if (currentLangElement) {
-            currentLangElement.textContent = languages[currentLang].code;
+    try {
+        // 如果是主页，使用保存的语言但不跳转
+        if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
+            const savedLang = localStorage.getItem('selectedLanguage') || 'en';
+            currentLang = savedLang;
+            
+            // 更新当前语言显示
+            const currentLangElement = document.getElementById('currentLang');
+            if (currentLangElement) {
+                currentLangElement.textContent = languages[currentLang].code;
+            }
+            
+            // 翻译页面内容
+            translatePage(currentLang);
+            
+            console.log('页面初始化语言:', languages[currentLang].name);
         }
-        
-        // 翻译页面内容
-        translatePage(currentLang);
-        
-        console.log('页面初始化语言:', languages[currentLang].name);
+    } catch (error) {
+        console.log('Language initialization error:', error);
+    }
+}
+
+// 安全的DOM加载处理
+function safeDOMContentLoaded() {
+    try {
+        safeInitialize();
+        createLanguageDropdown();
+        initializeLanguage();
+    } catch (error) {
+        console.log('DOM content loaded error:', error);
     }
 }
 
 // 在页面加载时检查语言跳转
 if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-        safeInitialize();
-        createLanguageDropdown();
-        initializeLanguage();
-    });
+    document.addEventListener('DOMContentLoaded', safeDOMContentLoaded);
 } else {
-    safeInitialize();
-    createLanguageDropdown();
-    initializeLanguage();
+    // 延迟执行以确保DOM完全加载
+    setTimeout(safeDOMContentLoaded, 100);
 }

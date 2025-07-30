@@ -34,7 +34,9 @@ function handleLanguageRedirect() {
             const newUrl = window.location.origin + newPath;
             
             // 重定向到纯路径版本
-            window.location.replace(newUrl);
+            // 禁用强制重定向，尊重用户直接访问意图
+
+            // window.location.replace(newUrl);
             return;
         }
     }
@@ -78,5 +80,8 @@ function goBackWithLanguage() {
         backUrl = `/${currentLang}/knowledge.html`;
     }
     
-    window.location.href = backUrl;
+    // 禁用强制重定向，尊重用户直接访问意图
+
+    
+    // window.location.href = backUrl;
 }

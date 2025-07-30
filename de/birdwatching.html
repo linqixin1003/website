@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vogelbeobachtungsführer - BirdAiSnap</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+        
+        .language-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        
+        .lang-dropdown {
+            position: relative;
+        }
+        
+        .lang-btn {
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid #e0e0e0;
+            border-radius: 25px;
+            padding: 8px 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #333;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .lang-btn:hover {
+            background: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+        
+        .lang-icon {
+            font-size: 16px;
+        }
+        
+        .dropdown-arrow {
+            font-size: 12px;
+            transition: transform 0.3s ease;
+        }
+        
+        .lang-dropdown.active .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+        
+        .lang-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1001;
+            margin-top: 5px;
+        }
+        
+        .lang-dropdown.active .lang-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .lang-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .lang-option:last-child {
+            border-bottom: none;
+        }
+        
+        .lang-option:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .lang-option.active {
+            background-color: #e3f2fd;
+            color: #1976d2;
+        }
+        
+        .lang-option .flag {
+            font-size: 18px;
+        }
+        
+        .lang-option .name {
+            flex: 1;
+            font-weight: 500;
+        }
+        
+        .lang-option .code {
+            font-size: 12px;
+            color: #666;
+            background: #f0f0f0;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+        
+        .lang-option.active .code {
+            background: #bbdefb;
+            color: #1976d2;
+        }
+        
+        .header {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.6)), 
+                        url('../images/birds/species/bird-image-007.webp') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .header-title {
+            color: white;
+            font-size: 32px;
+            font-weight: 700;
+            text-align: center;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .content {
+            background: white;
+            margin: -30px 20px 20px 20px;
+            border-radius: 20px;
+            padding: 30px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            min-height: 80vh;
+        }
+        
+        .intro-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            margin: 20px 0;
+            text-align: center;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .article-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .article-card {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            height: 250px;
+            display: block;
+            text-decoration: none;
+        }
+        
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .article-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .article-card:hover .article-image {
+            transform: scale(1.05);
+        }
+        
+        .article-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            padding: 20px;
+            color: white;
+        }
+        
+        .article-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .article-description {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        @media (max-width: 768px) {
+            .article-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 20px;
+            }
+            
+            .header-title {
+                font-size: 28px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .article-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header-title {
+                font-size: 24px;
+            }
+            
+            .content {
+                margin: -20px 15px 15px 15px;
+                padding: 25px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 语言切换器 -->
+    <div class="language-switcher"></div>
+    
+    <!-- 头部横幅 -->
+    <div class="header">
+        <h1 class="header-title">Vogelbeobachtungsführer</h1>
+    </div>
+    
+    <!-- 主要内容 -->
+    <div class="content">
+        <p class="intro-text">
+            Willkommen in unserem Vogelbeobachtungsführer-Bereich. Hier finden Sie umfassende Vogelbeobachtungstechniken und -wissen, von den Grundlagen für Anfänger bis hin zu fortgeschrittenen Identifikationstechniken, die Ihnen helfen, die Vogelwelt besser zu schätzen und zu verstehen. Klicken Sie auf eines der Artikelbilder unten, um die Geheimnisse der Vogelbeobachtung zu erkunden.
+        </p>
+        
+        <div class="article-grid">
+            <!-- 文章1 -->
+            <a href="birdwatching/01-getting-started.html" class="article-card">
+                <img src="../images/birds/species/bird-image-002.webp" class="article-image" alt="Erste Schritte bei der Vogelbeobachtung">
+                <div class="article-overlay">
+                    <h3 class="article-title">Erste Schritte bei der Vogelbeobachtung</h3>
+                    <p class="article-description">Eine umfassende Einführung in die Vogelbeobachtung für Anfänger</p>
+                </div>
+            </a>
+            
+            <!-- 文章2 -->
+            <a href="birdwatching/02-essential-equipment.html" class="article-card">
+                <img src="../images/birds/species/bird-image-001.webp" class="article-image" alt="Wesentliche Ausrüstung">
+                <div class="article-overlay">
+                    <h3 class="article-title">Wesentliche Ausrüstung</h3>
+                    <p class="article-description">Lernen Sie die verschiedenen Werkzeuge und Ausrüstungen kennen, die für die Vogelbeobachtung benötigt werden</p>
+                </div>
+            </a>
+            
+            <!-- 文章3 -->
+            <a href="birdwatching/03-identification-techniques.html" class="article-card">
+                <img src="../images/birds/species/bird-image-007.webp" class="article-image" alt="Identifikationstechniken">
+                <div class="article-overlay">
+                    <h3 class="article-title">Identifikationstechniken</h3>
+                    <p class="article-description">Meistern Sie die Kunst und Methoden der Vogelidentifikation</p>
+                </div>
+            </a>
+            
+            <!-- 文章4 -->
+            <a href="birdwatching/04-best-locations.html" class="article-card">
+                <img src="../images/birds/species/bird-image-001-alt-1.webp" class="article-image" alt="Beste Standorte">
+                <div class="article-overlay">
+                    <h3 class="article-title">Beste Standorte</h3>
+                    <p class="article-description">Erkunden Sie Vogelbeobachtungsparadiese auf der ganzen Welt</p>
+                </div>
+            </a>
+            
+            <!-- 文章5 -->
+            <a href="birdwatching/05-seasonal-guide.html" class="article-card">
+                <img src="../images/birds/species/bird-image-006.webp" class="article-image" alt="Saisonaler Leitfaden">
+                <div class="article-overlay">
+                    <h3 class="article-title">Saisonaler Leitfaden</h3>
+                    <p class="article-description">Planen Sie Ihre Vogelbeobachtungsaktivitäten entsprechend den saisonalen Veränderungen</p>
+                </div>
+            </a>
+            
+            <!-- 文章6 -->
+            <a href="birdwatching/06-photography-tips.html" class="article-card">
+                <img src="../images/birds/species/bird-image-005.webp" class="article-image" alt="Fotografietipps">
+                <div class="article-overlay">
+                    <h3 class="article-title">Fotografietipps</h3>
+                    <p class="article-description">Praktische Ratschläge für das Aufnehmen großartiger Vogelfotos</p>
+                </div>
+            </a>
+            
+            <!-- 文章7 -->
+            <a href="birdwatching/07-behavior-observation.html" class="article-card">
+                <img src="../images/birds/species/bird-image-008.webp" class="article-image" alt="Verhaltensbeobachtung">
+                <div class="article-overlay">
+                    <h3 class="article-title">Verhaltensbeobachtung</h3>
+                    <p class="article-description">Lernen Sie, Vogelverhalten zu beobachten und zu verstehen</p>
+                </div>
+            </a>
+            
+            <!-- 文章8 -->
+            <a href="birdwatching/08-song-identification.html" class="article-card">
+                <img src="../images/birds/species/bird-image-003.webp" class="article-image" alt="Gesangsidentifikation">
+                <div class="article-overlay">
+                    <h3 class="article-title">Gesangsidentifikation</h3>
+                    <p class="article-description">Techniken zur Identifikation verschiedener Vögel durch Klänge</p>
+                </div>
+            </a>
+            
+            <!-- 文章9 -->
+            <a href="birdwatching/09-ethics-conservation.html" class="article-card">
+                <img src="../images/birds/species/bird-image-009.webp" class="article-image" alt="Ethik und Naturschutz">
+                <div class="article-overlay">
+                    <h3 class="article-title">Ethik und Naturschutz</h3>
+                    <p class="article-description">Verantwortungsvolle Vogelbeobachtung und Beitrag zum Vogelschutz</p>
+                </div>
+            </a>
+            
+            <!-- 文章10 -->
+            <a href="birdwatching/10-journal-keeping.html" class="article-card">
+                <img src="../images/birds/species/bird-image-004.webp" class="article-image" alt="Tagebuchführung">
+                <div class="article-overlay">
+                    <h3 class="article-title">Tagebuchführung</h3>
+                    <p class="article-description">Wie Sie Ihre Vogelbeobachtungserfahrungen aufzeichnen und organisieren</p>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- 引入多语言脚本 -->
+    <script src="../script.js"></script>
+    <script src="language-redirect.js"></script>
+</body>
+</html>

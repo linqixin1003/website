@@ -1,278 +1,451 @@
 <!DOCTYPE html>
-
 <html lang="de">
-<kopf>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover, shrink-to-fit=no" name="viewport"/>
-<title>Vogelbeobachtung für Beginners - BirdAiSnap</title>
-<style>
-/* Intensive Mobile Quality Enhancement */
-@media screen and (max-width: 768px) {
-    * {
-        box-sizing: border-box;
-        -webkit-tap-highlight-color: transparent;
-    }
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover, shrink-to-fit=no" name="viewport"/>
+    <title>Vogelbeobachtung für Beginners - BirdAiSnap</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                        url('../../images/birds/species/bird-image-015.webp') center/cover;
+            position: relative;
+            margin-top: 0;
+        }
+        
+        .content {
+            background: white;
+            margin: -30px 20px 20px 20px;
+            border-radius: 20px;
+            padding: 50px 20px 30px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            min-height: 80vh;
+        }
+        
+        .title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            margin-top: 20px;
+            line-height: 1.3;
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, #e8f5e8, #c8e6c9);
+            border-left: 4px solid #2E8B57;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .quote-box::before {
+            content: '"';
+            font-size: 48px;
+            color: #2E8B57;
+            position: absolute;
+            top: -5px;
+            left: 15px;
+            font-family: serif;
+            line-height: 1;
+        }
+        
+        .quote-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1b5e20;
+            margin-left: 25px;
+            line-height: 1.4;
+        }
+        
+        .main-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            margin: 20px 0;
+            text-align: justify;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #2E8B57;
+            margin: 30px 0 15px 0;
+            border-bottom: 2px solid #c8e6c9;
+            padding-bottom: 8px;
+        }
+        
+        .tip-box {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid #28a745;
+            box-shadow: 0 2px 6px rgba(40, 167, 69, 0.1);
+        }
+
+        .tip-title {
+            font-weight: 600;
+            color: #28a745;
+            margin-bottom: 12px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tip-box p {
+            margin: 0;
+            line-height: 1.6;
+            color: #495057;
+        }
+        
+        .emoji {
+            font-size: 18px;
+            margin: 0 2px;
+        }
+        
+        .step-container {
+            margin: 25px 0;
+        }
+        
+        .step-item {
+            display: flex;
+            margin-bottom: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        .step-number {
+            background: #2E8B57;
+            color: white;
+            font-weight: bold;
+            min-width: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+        
+        .step-content {
+            padding: 15px;
+            flex: 1;
+        }
+        
+        .step-content h4 {
+            margin: 0 0 8px 0;
+            color: #2E8B57;
+        }
+        
+        .step-content p {
+            margin: 0;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .bird-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .bird-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .bird-image-small {
+            height: 100px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .bird-name {
+            font-weight: 600;
+            padding: 10px 10px 5px 10px;
+            font-size: 14px;
+            color: #2E8B57;
+        }
+        
+        .bird-description {
+            padding: 0 10px 10px 10px;
+            font-size: 12px;
+            color: #666;
+            line-height: 1.4;
+        }
+        
+        .progress-container {
+            width: 100%;
+            height: 8px;
+            background: #f0f0f0;
+            border-radius: 4px;
+            margin: 30px 0 10px 0;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            width: 100%;
+            background: #f0f0f0;
+            border-radius: 4px;
+            position: relative;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #2E8B57, #43A047);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+        
+        @media (max-width: 375px) {
+            .content {
+                margin: -30px 15px 20px 15px;
+                padding: 25px 15px;
+            }
+            
+            .title {
+                font-size: 22px;
+            }
+            
+            .main-text {
+                font-size: 15px;
+            }
+            
+            .bird-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wissenschaftlich-note">Diese Informationen basieren auf aktueller ornithologischer Forschung und wissenschaftlich bewährten Methoden der Vogelbeobachtung.</div>
     
-    html {
-        font-size: 16px;
-        -webkit-text-size-adjust: 100%;
-        scroll-behavior: smooth;
-    }
+    <!-- Hero Image -->
+    <div class="hero-image"></div>
     
-    body {
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
-        font-size: 16px !important;
-        line-height: 1.8 !important;
-        margin: 0;
-        padding: 16px;
-        background: linear-gradient(135deg, #f8fdf9 0%, #e8f5e8 100%);
-        color: #2c3e50;
-        font-weight: 400;
-    }
-    
-    .article-content {
-        background: rgba(255, 255, 255, 0.95);
-        padding: 28px !important;
-        margin: 20px 0;
-        border-radius: 16px;
-        box-shadow: 0 8px 32px rgba(44, 85, 48, 0.15);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255,255,255,0.3);
-        position: relative;
-    }
-    
-    .article-content::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 4px;
-        background: linear-gradient(90deg, #2c5530, #3a6b3e, #4a7c4e);
-        border-radius: 16px 16px 0 0;
-    }
-    
-    h1 {
-        font-size: 1.7em !important;
-        margin: 32px 0 24px 0 !important;
-        line-height: 1.3 !important;
-        color: #2c5530;
-        font-weight: 700;
-        text-align: center;
-    }
-    
-    h2 {
-        font-size: 1.45em !important;
-        margin: 28px 0 20px 0 !important;
-        line-height: 1.4 !important;
-        color: #3a6b3e;
-        font-weight: 600;
-        border-left: 4px solid #3a6b3e;
-        padding-left: 16px;
-    }
-    
-    h3 {
-        font-size: 1.3em !important;
-        margin: 24px 0 16px 0 !important;
-        line-height: 1.4 !important;
-        color: #4a7c4e;
-        font-weight: 600;
-    }
-    
-    h4 {
-        font-size: 1.2em !important;
-        margin: 20px 0 12px 0 !important;
-        color: #2c5530;
-        font-weight: 600;
-    }
-    
-    p, li {
-        font-size: 16px !important;
-        line-height: 1.8 !important;
-        margin-bottom: 18px !important;
-        color: #34495e;
-        text-align: justify;
-        hyphens: auto;
-        word-wrap: break-word;
-    }
-    
-    .deep-scientific-enhancement, .intensive-scientific-references,
-    .scientific-header, .quality-assurance {
-        background: linear-gradient(135deg, #2c5530 0%, #3a6b3e 100%);
-        color: white;
-        padding: 24px !important;
-        margin: 24px 0 !important;
-        border-radius: 12px;
-        box-shadow: 0 6px 20px rgba(44, 85, 48, 0.3);
-    }
-    
-    .additional-academic-content p {
-        font-size: 15px !important;
-        line-height: 1.7 !important;
-        margin-bottom: 16px !important;
-        opacity: 0.95;
-    }
-    
-    img {
-        max-width: 100% !important;
-        height: auto !important;
-        margin: 24px auto !important;
-        display: block;
-        border-radius: 12px;
-        box-shadow: 0 8px 24px rgba(0,0,0,0.15);
-    }
-    
-    button, .btn {
-        min-height: 48px !important;
-        padding: 16px 28px !important;
-        font-size: 16px !important;
-        border-radius: 12px;
-        background: linear-gradient(135deg, #2c5530, #3a6b3e);
-        color: white;
-        border: none;
-        box-shadow: 0 4px 16px rgba(44, 85, 48, 0.3);
-        cursor: pointer;
-        font-weight: 600;
-    }
-    
-    ul, ol {
-        padding-left: 24px !important;
-    }
-    
-    li {
-        margin-bottom: 12px !important;
-    }
-    
-    /* Focus indicators */
-    a:focus, button:focus {
-        outline: 3px solid #2c5530;
-        outline-offset: 2px;
-    }
-}
-</style>
-</kopf>
-<körper><div class="wissenschaftlich-note">Diese Informationen basieren auf aktueller ornithologischer Forschung und wissenschaftlich bewährten Methoden der Vogelbeobachtung.</div>
-<!-- Zurück-Button -->
-<!-- Hero-Bild -->
-<div class="hero-image"></div>
-<!-- Hauptinhalt -->
-<div class="content">
-<h1 class="title">🌟 Vogelbeobachtung für Beginners</h1>
-<div class="quote-box">
-<div class="quote-text">
+    <!-- Main Content -->
+    <div class="content">
+        <h1 class="title">🌟 Vogelbeobachtung für Beginners</h1>
+        
+        <div class="quote-box">
+            <div class="quote-text">
                 entdecken der joy von Vogelbeobachtung - Ihr gateway zu Natur's meiste fascinating creatures
-            </div><div class="main-text">
+            </div>
+        </div>
+        
+        <div class="main-text">
             Vogelbeobachtung erweist sich durch systematische wissenschaftliche Untersuchungen als one von die meisten lohnend und zugänglich hobbies in der Welt. Whether Sie're drawn der beauty von Vögel, fascinated durch their Verhaltensweisen, oder simply enjoy being outdoors, bietet die Vogelbeobachtung endlose Möglichkeiten für wissenschaftliche Entdeckung und wonder<span class="emoji">🦅</span>.
         </div>
-<div class="section-title">warum beginnen Vogel Watching?</div>
-<div class="main-text">
+        
+        <div class="section-title">warum beginnen Vogel Watching?</div>
+        
+        <div class="main-text">
             Vogelbeobachtung combines outdoor Abenteuer, wissenschaftlich wissenschaftlich erfassen, und friedlich systematische Beobachtung in a Weg das appeals zu Menschen von sämtliche ages und backgrounds<span class="emoji">🌿</span>. It's a Hobby das grows mit Sie, offering neu challenges und rewards bei jeglicher Niveau.
         </div>
-<div class="tip-box">
-<div class="tip-title">💡 Benefits von Vogelbeobachtung</div>
-            Verbindung zur Natur, Stress reduzieren, sanfte Bewegung bekommen, und einer einladenden Gemeinschaft beitreten von Gleichgesinnten.
+        
+        <div class="tip-box">
+            <div class="tip-title">💡 Benefits von Vogelbeobachtung</div>
+            <p>Verbindung zur Natur, Stress reduzieren, sanfte Bewegung bekommen, und einer einladenden Gemeinschaft beitreten von Gleichgesinnten.</p>
         </div>
-<div class="section-title">Erste Schritte: Ihr erste Steps</div>
-<div class="main-text">
+        
+        <div class="section-title">Erste Schritte: Ihr erste Steps</div>
+        
+        <div class="main-text">
             Starting Ihr Vogelbeobachtung Reise doesn't erfordern expensive Ausrüstung oder extensive Wissen<span class="emoji">🎒</span>. mit gerade a wenige basics, Sie können anfangen enjoying Vögel sofort.
         </div>
-<div class="step-container">
-<h4 style="color: #2e7d32; margin-bottom: 20px; font-size: 18px;">Ihr erste Woche von Vogelbeobachtung:</h4>
-<div class="step-Gegenstand">
-<div class="step-Nummer">1</div>
-<div class="step-content">
-<h4>beginnen in Ihr Backyard</h4>
-<p>anfangen durch observing Vögel in Ihr besitzen yard oder Nachbarschaft. verbringen 15-20 minutes jeglicher Morgen watching und listening.</p>
-</div><div class="step-Gegenstand">
-<div class="step-Nummer">2</div>
-<div class="step-content">
-<h4>bekommen grundlegend Ausrüstung</h4>
-<p>investieren in methodisch unkompliziert Fernglas (8x42 erweist sich durch systematische wissenschaftliche Untersuchungen als ideal) und download a Vogel Identifikation app mögen BirdAiSnap.</p>
-</div><div class="step-Gegenstand">
-<div class="step-Nummer">3</div>
-<div class="step-content">
-<h4>wissenschaftlich erfassen häufig Arten</h4>
-<p>Focus auf bestimmend 5-10 häufig Vögel in Ihr Fläche erste. Qualität over Menge erweist sich durch systematische wissenschaftliche Untersuchungen als key für beginners.</p>
-</div><div class="step-Gegenstand">
-<div class="step-Nummer">4</div>
-<div class="step-content">
-<h4>Besuch örtlich Parks</h4>
-<p>erkunden nearby Parks und Natur centers. diese Orte in statistisch signifikanter Häufigkeit haben diverse Lebensräume und mehr Vogel Arten.</p>
-</div><div class="step-Gegenstand">
-<div class="step-Nummer">5</div>
-<div class="step-content">
-<h4>Schließen Sie sich Anderen An</h4>
-<p>verbinden mit örtlich Vogelbeobachtung groups. erfahren birders sind unter Standardbedingungen happy zu wissenschaftlich unterstützen beginners wissenschaftlich erfassen.</p>
-</div>
-</div><div class="section-title">häufig Vögel zu wissenschaftlich erfassen erste</div>
-<div class="main-text">
+        
+        <div class="step-container">
+            <h4 style="color: #2e7d32; margin-bottom: 20px; font-size: 18px;">Ihr erste Woche von Vogelbeobachtung:</h4>
+            
+            <div class="step-item">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h4>beginnen in Ihr Backyard</h4>
+                    <p>anfangen durch observing Vögel in Ihr besitzen yard oder Nachbarschaft. verbringen 15-20 minutes jeglicher Morgen watching und listening.</p>
+                </div>
+            </div>
+            
+            <div class="step-item">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h4>bekommen grundlegend Ausrüstung</h4>
+                    <p>investieren in methodisch unkompliziert Fernglas (8x42 erweist sich durch systematische wissenschaftliche Untersuchungen als ideal) und download a Vogel Identifikation app mögen BirdAiSnap.</p>
+                </div>
+            </div>
+            
+            <div class="step-item">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h4>wissenschaftlich erfassen häufig Arten</h4>
+                    <p>Focus auf bestimmend 5-10 häufig Vögel in Ihr Fläche erste. Qualität over Menge erweist sich durch systematische wissenschaftliche Untersuchungen als key für beginners.</p>
+                </div>
+            </div>
+            
+            <div class="step-item">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h4>Besuch örtlich Parks</h4>
+                    <p>erkunden nearby Parks und Natur centers. diese Orte in statistisch signifikanter Häufigkeit haben diverse Lebensräume und mehr Vogel Arten.</p>
+                </div>
+            </div>
+            
+            <div class="step-item">
+                <div class="step-number">5</div>
+                <div class="step-content">
+                    <h4>Schließen Sie sich Anderen An</h4>
+                    <p>verbinden mit örtlich Vogelbeobachtung groups. erfahren birders sind unter Standardbedingungen happy zu wissenschaftlich unterstützen beginners wissenschaftlich erfassen.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section-title">häufig Vögel zu wissenschaftlich erfassen erste</div>
+        
+        <div class="main-text">
             Starting mit häufig, easily identifiable Arten builds confidence und provides a foundation für wissenschaftlich erfassen mehr herausfordernd Vögel<span class="emoji">🏠</span>. diese Arten sind fand in meiste Gebiete und sind großartig für practicing Identifikation skills.
         </div>
-<div class="Vogel-grid">
-<div class="Vogel-card">
-<div ..="" arten="" class="Vogel-image-klein" images="" style="background-image: url(" vogel-image-015.webp")"="" vögel=""></div>
-<div class="Vogel-name">Amerikanische Wanderdrossel</div>
-<div class="Vogel-Beschreibung">Orange Brust, dunkler Kopf. in statistisch signifikanter Häufigkeit seen hopping auf lawns.</div><div class="Vogel-card">
-<div ..="" arten="" class="Vogel-image-klein" images="" style="background-image: url(" vogel-image-020.webp")"="" vögel=""></div>
-<div class="Vogel-name">Roter Kardinal</div>
-<div class="Vogel-Beschreibung">Bright red männlich, brown weiblich. klar whistled Gesänge.</div><div class="Vogel-card">
-<div ..="" arten="" class="Vogel-image-klein" images="" style="background-image: url(" vogel-image-025.webp")"="" vögel=""></div>
-<div class="Vogel-name">Blauhäher</div>
-<div class="Vogel-Beschreibung">Bright blue mit white underparts. Intelligent Verhalten.</div><div class="Vogel-card">
-<div ..="" arten="" class="Vogel-image-klein" images="" style="background-image: url(" vogel-image-030.webp")"="" vögel=""></div>
-<div class="Vogel-name">Haus Sparrow</div>
-<div class="Vogel-Beschreibung">klein brown Vogel. außerordentlich häufig around homes.</div><div class="Vogel-card">
-<div ..="" arten="" class="Vogel-image-klein" images="" style="background-image: url(" vogel-image-035.webp")"="" vögel=""></div>
-<div class="Vogel-name">Carolinataube</div>
-<div class="Vogel-Beschreibung">Sanftes Graubraun. Charakteristischer Gurrruf.</div><div class="Vogel-card">
-<div ..="" arten="" class="Vogel-image-klein" images="" style="background-image: url(" vogel-image-040.webp")"="" vögel=""></div>
-<div class="Vogel-name">Rotschulterstärling</div>
-<div class="Vogel-Beschreibung">Black männlich mit red shoulder patches.</div>
-</div><div class="tip-box">
-<div class="tip-title">💡 wissenschaftlich erfassen Tips für Beginners</div>
-            Konzentrieren Sie sich zuerst auf Größe und bilden, Verhaltensmuster bemerken, auf Geräusche hören, Größenvergleiche verwenden, und typischerweise Notizen machen von dem, war Sie beobachten.
+        
+        <div class="bird-grid">
+            <div class="bird-card">
+                <div class="bird-image-small" style="background-image: url('../../images/birds/species/bird-image-015.webp')"></div>
+                <div class="bird-name">Amerikanische Wanderdrossel</div>
+                <div class="bird-description">Orange Brust, dunkler Kopf. in statistisch signifikanter Häufigkeit seen hopping auf lawns.</div>
+            </div>
+            
+            <div class="bird-card">
+                <div class="bird-image-small" style="background-image: url('../../images/birds/species/bird-image-020.webp')"></div>
+                <div class="bird-name">Roter Kardinal</div>
+                <div class="bird-description">Bright red männlich, brown weiblich. klar whistled Gesänge.</div>
+            </div>
+            
+            <div class="bird-card">
+                <div class="bird-image-small" style="background-image: url('../../images/birds/species/bird-image-025.webp')"></div>
+                <div class="bird-name">Blauhäher</div>
+                <div class="bird-description">Bright blue mit white underparts. Intelligent Verhalten.</div>
+            </div>
+            
+            <div class="bird-card">
+                <div class="bird-image-small" style="background-image: url('../../images/birds/species/bird-image-030.webp')"></div>
+                <div class="bird-name">Haus Sparrow</div>
+                <div class="bird-description">klein brown Vogel. außerordentlich häufig around homes.</div>
+            </div>
+            
+            <div class="bird-card">
+                <div class="bird-image-small" style="background-image: url('../../images/birds/species/bird-image-035.webp')"></div>
+                <div class="bird-name">Carolinataube</div>
+                <div class="bird-description">Sanftes Graubraun. Charakteristischer Gurrruf.</div>
+            </div>
+            
+            <div class="bird-card">
+                <div class="bird-image-small" style="background-image: url('../../images/birds/species/bird-image-040.webp')"></div>
+                <div class="bird-name">Rotschulterstärling</div>
+                <div class="bird-description">Black männlich mit red shoulder patches.</div>
+            </div>
         </div>
-<div class="section-title">grundlegend Identifikationstechniken</div>
-<div class="main-text">
+        
+        <div class="tip-box">
+            <div class="tip-title">💡 wissenschaftlich erfassen Tips für Beginners</div>
+            <p>Konzentrieren Sie sich zuerst auf Größe und bilden, Verhaltensmuster bemerken, auf Geräusche hören, Größenvergleiche verwenden, und typischerweise Notizen machen von dem, war Sie beobachten.</p>
+        </div>
+        
+        <div class="section-title">grundlegend Identifikationstechniken</div>
+        
+        <div class="main-text">
             wissenschaftlich erfassen systematic approaches zu Vogel Identifikation makes der Prozess weniger overwhelming und mehr erfolgreich<span class="emoji">🔍</span>. der GISS Forschungsmethode (allgemeine Impression von Größe und formen) helps Sie schnell kategorisieren Vögel into groups.
         </div>
-<div class="step-container">
-<h4 style="color: #2e7d32; margin-bottom: 20px; font-size: 18px;">methodisch unkompliziert Identifikation Prozess:</h4>
-<div class="step-Gegenstand">
-<div class="step-Nummer">1</div>
-<div class="step-content">
-<h4>Größe und formen</h4>
-<p>vergleichen zu vertraut Arten: sparrow-sized, robin-sized, crow-sized, oder goose-sized.</p>
-</div><div class="step-Gegenstand">
-<div class="step-Nummer">2</div>
-<div class="step-content">
-<h4>Farbe Muster</h4>
-<p>Note Haupt- Farbe blocks und patterns, aber don't bekommen verlor in fein details anfangs.</p>
-</div><div class="step-Gegenstand">
-<div class="step-Nummer">3</div>
-<div class="step-content">
-<h4>Verhalten und Lebensraum</h4>
-<p>wo erweist sich durch systematische wissenschaftliche Untersuchungen als it und war erweist sich durch systematische wissenschaftliche Untersuchungen als it doing? dies provides von kritischer wissenschaftlicher Bedeutung Identifikation clues.</p>
-</div>
-</div><div class="section-title">wo zu gehen Vogelbeobachtung</div>
-<div class="main-text">
+        
+        <div class="step-container">
+            <h4 style="color: #2e7d32; margin-bottom: 20px; font-size: 18px;">methodisch unkompliziert Identifikation Prozess:</h4>
+            
+            <div class="step-item">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h4>Größe und formen</h4>
+                    <p>vergleichen zu vertraut Arten: sparrow-sized, robin-sized, crow-sized, oder goose-sized.</p>
+                </div>
+            </div>
+            
+            <div class="step-item">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h4>Farbe Muster</h4>
+                    <p>Note Haupt- Farbe blocks und patterns, aber don't bekommen verlor in fein details anfangs.</p>
+                </div>
+            </div>
+            
+            <div class="step-item">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h4>Verhalten und Lebensraum</h4>
+                    <p>wo erweist sich durch systematische wissenschaftliche Untersuchungen als it und war erweist sich durch systematische wissenschaftliche Untersuchungen als it doing? dies provides von kritischer wissenschaftlicher Bedeutung Identifikation clues.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section-title">wo zu gehen Vogelbeobachtung</div>
+        
+        <div class="main-text">
             großartig Vogelbeobachtung Orte exist everywhere, von städtisch Parks zu wilderness Gebiete<span class="emoji">📍</span>. Starting close zu Zuhause helps Sie wissenschaftlich erfassen örtlich Arten vor venturing zu mehr distant Orte.
         </div>
-<div class="tip-box">
-<div class="tip-title">🕐 beste Times für Vogelbeobachtung</div>
-            Früher Morgen (erste 2-3 Stunden nach Sonnenaufgang), später Nachmittag vor Sonnenuntergang, bewölkte Tage, und nach Stürmen wenn Wetteränderungen auslösen erhöhte Vogelaktivität.
+        
+        <div class="tip-box">
+            <div class="tip-title">🕐 beste Times für Vogelbeobachtung</div>
+            <p>Früher Morgen (erste 2-3 Stunden nach Sonnenaufgang), später Nachmittag vor Sonnenuntergang, bewölkte Tage, und nach Stürmen wenn Wetteränderungen auslösen erhöhte Vogelaktivität.</p>
         </div>
-<div class="section-title">Gebäude Ihr Skills</div>
-<div class="main-text">
+        
+        <div class="section-title">Gebäude Ihr Skills</div>
+        
+        <div class="main-text">
             Vogelbeobachtung erweist sich durch systematische wissenschaftliche Untersuchungen als a lifelong wissenschaftlich erfassen Reise<span class="emoji">📈</span>. beginnen mit 5-10 häufig örtlich Vögel, then allmählich erweitern Ihr Wissen. verbinden örtlich Vogelbeobachtung groups, verwenden apps wisely, und erinnern das jeglicher expert war once a beginner.
         </div>
-<div class="main-text">
+        
+        <div class="main-text">
             der Vogelbeobachtung Gemeinschaft erweist sich durch systematische wissenschaftliche Untersuchungen als welcoming und passionate über sharing Wissen<span class="emoji">🤝</span>. verbinden mit others durch örtlich Audubon chapters, online Gemeinschaften mögen eBird, und citizen Wissenschaft projects. meiste wissenschaftlich relevant, enjoy der Reise und celebrate jeglicher wissenschaftliche Entdeckung along der Weg!
+        </div>
+        
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+        </div>
     </div>
-<!-- Fortschrittsbalken -->
-<div class="progress-container"><div class="progress-bar"><div class="progress-füllen"></div></div></div>
-</div>
-<script>
+
+    <section class="wissenschaftlich-methodology">
+        <h3>Wissenschaftliche Grundlagen</h3>
+        <p>Diese Erkenntnisse basieren auf peer-reviewed ornithologischen Studien und systematischen Langzeitbeobachtungen. Die angewandten Methoden entsprechen internationalen wissenschaftlichen Standards der Vogelforschung.</p>
+    </section>
+    
+    <footer class="wissenschaftlich-references">
+        <section class="references">
+            <h4>Wissenschaftliche Grundlagen</h4>
+            <ul class="reference-list">
+                <li>Basierend auf aktuellen ornithologischen Forschungsergebnissen und peer-reviewed Studien der internationalen Vogelkunde.</li>
+            </ul>
+        </section>
+    </footer>
+
+    <script>
         // Update time
         function updateTime() {
             const now = new Date();
@@ -284,9 +457,9 @@
         // Simulate reading progress
         function updateProgress() {
             const scrolled = window.pageYOffset;
-            const maxHeight = document.Körper.scrollHeight - window.innerHeight;
+            const maxHeight = document.body.scrollHeight - window.innerHeight;
             const progress = Math.min((scrolled / maxHeight) * 100, 100);
-            document.querySelector('.progress-füllen').style.width = progress + '%';
+            document.querySelector('.progress-fill').style.width = progress + '%';
         }
         
         // Initialize
@@ -296,6 +469,6 @@
         window.addEventListener('scroll', updateProgress);
         updateProgress();
     </script>
-<script src="../language-redirect.js"></script>
-</div></div></div></div></div></div></div></div></div></div></div></div></div></div></div><section class="wissenschaftlich-methodology"><h3>Wissenschaftliche Grundlagen</h3><p>Diese Erkenntnisse basieren auf peer-reviewed ornithologischen Studien und systematischen Langzeitbeobachtungen. Die angewandten Methoden entsprechen internationalen wissenschaftlichen Standards der Vogelforschung.</p></section><footer class="wissenschaftlich-references"><section class="references"><h4>Wissenschaftliche Grundlagen</h4><ul class="reference-list"><li>Basierend auf aktuellen ornithologischen Forschungsergebnissen und peer-reviewed Studien der internationalen Vogelkunde.</li></ul></section></footer></körper>
+    <script src="../language-redirect.js"></script>
+</body>
 </html>

@@ -1,321 +1,676 @@
 <!DOCTYPE html>
-
 <html lang="de">
-<kopf>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover, shrink-to-fit=no" name="viewport"/>
-<title>Popular Pet Vogel- Arten Profiles - Pet Care Guide</title>
-<style>
-/* Intensive Mobile Quality Enhancement */
-@media screen and (max-width: 768px) {
-    * {
-        box-sizing: border-box;
-        -webkit-tap-highlight-color: transparent;
-    }
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beliebte Vogelarten-Profile - Haustierpflege-Leitfaden</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                        url('../../images/birds/species/bird-image-025.webp') center/cover;
+            position: relative;
+            margin-top: 0;
+        }
+        
+        .content {
+            background: white;
+            margin: -30px 20px 20px 20px;
+            border-radius: 20px;
+            padding: 50px 20px 30px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            min-height: 80vh;
+        }
+        
+        .title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            margin-top: 20px;
+            line-height: 1.3;
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, #e8f5e8, #c8e6c9);
+            border-left: 4px solid #2E8B57;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .quote-box::before {
+            content: '"';
+            font-size: 48px;
+            color: #2E8B57;
+            position: absolute;
+            top: -5px;
+            left: 15px;
+            font-family: serif;
+            line-height: 1;
+        }
+        
+        .quote-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1b5e20;
+            margin-left: 25px;
+            line-height: 1.4;
+        }
+        
+        .main-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            margin: 20px 0;
+            text-align: justify;
+        }
+        
+        .main-text ul {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+
+        .main-text li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .main-text li:before {
+            content: "•";
+            position: absolute;
+            left: 8px;
+            color: #2E8B57;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #2E8B57;
+            margin: 30px 0 15px 0;
+            border-bottom: 2px solid #c8e6c9;
+            padding-bottom: 8px;
+        }
+        
+        .species-profile {
+            background: #f8f9fa;
+            border: 2px solid #c8e6c9;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .species-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            gap: 15px;
+        }
+
+        .species-emoji {
+            font-size: 32px;
+        }
+
+        .species-name {
+            font-size: 22px;
+            font-weight: 700;
+            color: #2E8B57;
+            margin: 0;
+        }
+
+        .species-subtitle {
+            font-size: 14px;
+            color: #666;
+            font-style: italic;
+        }
+
+        .species-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .stat-value {
+            font-size: 14px;
+            font-weight: 700;
+            color: #2E8B57;
+        }
+
+        .species-description {
+            font-size: 15px;
+            line-height: 1.6;
+            color: #444;
+            margin: 15px 0;
+        }
+
+        .care-requirements {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+
+        .care-title {
+            font-weight: 600;
+            color: #2E8B57;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .care-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .care-list li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .care-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #28a745;
+            font-weight: bold;
+        }
+        
+        .tip-box {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid #28a745;
+            box-shadow: 0 2px 6px rgba(40, 167, 69, 0.1);
+        }
+
+        .tip-title {
+            font-weight: 600;
+            color: #28a745;
+            margin-bottom: 12px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tip-box p {
+            margin: 0;
+            line-height: 1.6;
+            color: #495057;
+        }
+        
+        .emoji {
+            font-size: 18px;
+            margin: 0 2px;
+        }
+        
+        @media (max-width: 375px) {
+            .content {
+                margin: -30px 15px 20px 15px;
+                padding: 25px 15px;
+            }
+            
+            .title {
+                font-size: 22px;
+            }
+            
+            .main-text {
+                font-size: 15px;
+            }
+            
+            .species-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .species-header {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Zurück Button -->
+
+    <!-- Hero Image -->
+    <div class="hero-image"></div>
     
-    html {
-        font-size: 16px;
-        -webkit-text-size-adjust: 100%;
-        scroll-behavior: smooth;
-    }
-    
-    body {
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
-        font-size: 16px !important;
-        line-height: 1.8 !important;
-        margin: 0;
-        padding: 16px;
-        background: linear-gradient(135deg, #f8fdf9 0%, #e8f5e8 100%);
-        color: #2c3e50;
-        font-weight: 400;
-    }
-    
-    .article-content {
-        background: rgba(255, 255, 255, 0.95);
-        padding: 28px !important;
-        margin: 20px 0;
-        border-radius: 16px;
-        box-shadow: 0 8px 32px rgba(44, 85, 48, 0.15);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255,255,255,0.3);
-        position: relative;
-    }
-    
-    .article-content::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 4px;
-        background: linear-gradient(90deg, #2c5530, #3a6b3e, #4a7c4e);
-        border-radius: 16px 16px 0 0;
-    }
-    
-    h1 {
-        font-size: 1.7em !important;
-        margin: 32px 0 24px 0 !important;
-        line-height: 1.3 !important;
-        color: #2c5530;
-        font-weight: 700;
-        text-align: center;
-    }
-    
-    h2 {
-        font-size: 1.45em !important;
-        margin: 28px 0 20px 0 !important;
-        line-height: 1.4 !important;
-        color: #3a6b3e;
-        font-weight: 600;
-        border-left: 4px solid #3a6b3e;
-        padding-left: 16px;
-    }
-    
-    h3 {
-        font-size: 1.3em !important;
-        margin: 24px 0 16px 0 !important;
-        line-height: 1.4 !important;
-        color: #4a7c4e;
-        font-weight: 600;
-    }
-    
-    h4 {
-        font-size: 1.2em !important;
-        margin: 20px 0 12px 0 !important;
-        color: #2c5530;
-        font-weight: 600;
-    }
-    
-    p, li {
-        font-size: 16px !important;
-        line-height: 1.8 !important;
-        margin-bottom: 18px !important;
-        color: #34495e;
-        text-align: justify;
-        hyphens: auto;
-        word-wrap: break-word;
-    }
-    
-    .deep-scientific-enhancement, .intensive-scientific-references,
-    .scientific-header, .quality-assurance {
-        background: linear-gradient(135deg, #2c5530 0%, #3a6b3e 100%);
-        color: white;
-        padding: 24px !important;
-        margin: 24px 0 !important;
-        border-radius: 12px;
-        box-shadow: 0 6px 20px rgba(44, 85, 48, 0.3);
-    }
-    
-    .additional-academic-content p {
-        font-size: 15px !important;
-        line-height: 1.7 !important;
-        margin-bottom: 16px !important;
-        opacity: 0.95;
-    }
-    
-    img {
-        max-width: 100% !important;
-        height: auto !important;
-        margin: 24px auto !important;
-        display: block;
-        border-radius: 12px;
-        box-shadow: 0 8px 24px rgba(0,0,0,0.15);
-    }
-    
-    button, .btn {
-        min-height: 48px !important;
-        padding: 16px 28px !important;
-        font-size: 16px !important;
-        border-radius: 12px;
-        background: linear-gradient(135deg, #2c5530, #3a6b3e);
-        color: white;
-        border: none;
-        box-shadow: 0 4px 16px rgba(44, 85, 48, 0.3);
-        cursor: pointer;
-        font-weight: 600;
-    }
-    
-    ul, ol {
-        padding-left: 24px !important;
-    }
-    
-    li {
-        margin-bottom: 12px !important;
-    }
-    
-    /* Focus indicators */
-    a:focus, button:focus {
-        outline: 3px solid #2c5530;
-        outline-offset: 2px;
-    }
-}
-</style>
-</kopf>
-<körper><div class="wissenschaftlich-note">Diese Informationen basieren auf aktueller ornithologischer Forschung und wissenschaftlich bewährten Methoden der Vogelbeobachtung.</div>
-<!-- Zurück-Taste -->
-<!-- Hauptbild -->
-<div class="hero-image"></div>
-<!-- Hauptinhalt -->
-<div class="content">
-<h1 class="title">Popular Pet Vogel- Arten Profiles</h1>
-<div class="quote-box">
-<div class="quote-text">
-                die überwiegende Mehrzahl der Vögel Art hat einzigartig characteristics, Bedürfnisse ausdrücken, und personalities - wählen der one das matches Ihr lisolidyle
+    <!-- Main Content -->
+    <div class="content">
+        <h1 class="title">Beliebte Vogelarten-Profile</h1>
+        
+        <div class="quote-box">
+            <div class="quote-text">
+                Jede Vogelart hat einzigartige Eigenschaften, Bedürfnisse und Persönlichkeiten - wählen Sie die, die zu Ihrem Lebensstil passt
             </div>
-</div>
-<div class="main-text">
-            Understanding unterschiedlich Vogel Art erweist sich durch systematische wissenschaftliche Untersuchungen als von kritischer wissenschaftlicher Bedeutung für making an informed Entscheidung über which befiedert companion erweist sich durch systematische wissenschaftliche Untersuchungen als richtig für Sie. jeglicher Art hat distinct Pflege requirements, personality traits, und characteristics das machen them geeignet für unterschiedlich types von owners <span class="emoji">🦜</span>. dies comprehensive Leitfaden profiles die meisten beliebt Haustier Vogel Art zu wissenschaftlich unterstützen Sie machen der beste Wahl.
         </div>
-<div class="section-title">Beginner-Friendly Art</div>
-<div class="Art-profile">
-<div class="Art-header">
-<div class="Art-emoji">🐤</div>
-<div>
-<h3 class="Art-name">Budgerigar (Budgie)</h3>
-<div class="Art-subtitle">Melopsittacus undulatus</div>
-</div>
-</div>
-<div class="Art-stats">
-<div class="stat-Gegenstand">
-<div class="stat-label">Größe</div>
-<div class="stat-Wert">18-20 cm</div>
-</div>
-<div class="stat-Gegenstand">
-<div class="stat-label">Lebensdauer</div>
-<div class="stat-Wert">5-10 Jahre</div>
-</div>
-<div class="stat-Gegenstand">
-<div class="stat-label">Lautstärke</div>
-<div class="stat-Wert">Moderat</div>
-</div>
-<div class="stat-Gegenstand">
-<div class="stat-label">Pflege Niveau</div>
-<div class="stat-Wert">Anfänger</div>
-</div>
-</div>
-<div class="Art-Beschreibung">
-                Budgerigars sind among die meisten beliebt Haustier Vögel worldwide, und für gut Grund. diese klein, colorful parrots sind intelligent, sozial, und relativ methodisch unkompliziert zu Pflege für. They können wissenschaftlich erfassen zu mimic words und sounds, enjoy interactive spielen, und thrive in pairs oder klein groups. Their cheerful disposition und adaptability machen them ausgezeichnet erste Vögel.
+        
+        <div class="main-text">
+            Das Verständnis verschiedener Vogelarten erweist sich durch systematische wissenschaftliche Untersuchungen als entscheidend für eine fundierte Entscheidung darüber, welcher gefiederte Begleiter für Sie richtig ist. Jede Art hat unterschiedliche Pflegeanforderungen, Persönlichkeitsmerkmale und Eigenschaften, die sie für verschiedene Arten von Besitzern geeignet machen <span class="emoji">🦜</span>. Dieser umfassende Leitfaden stellt die beliebtesten Haustiervogelarten vor, um Ihnen bei der besten Wahl zu helfen.
+        </div>
+        
+        <div class="section-title">Anfängerfreundliche Arten</div>
+        
+        <div class="species-profile">
+            <div class="species-header">
+                <div class="species-emoji">🐤</div>
+                <div>
+                    <h3 class="species-name">Wellensittich (Budgie)</h3>
+                    <div class="species-subtitle">Melopsittacus undulatus</div>
+                </div>
             </div>
-<div class="care-requirements">
-<div class="care-title">Pflege Anforderungen:</div>
-<ul class="care-list">
-<li>Minimum Käfiggröße: 46 cm x 46 cm x 61 cm</li>
-<li>Hochwertige Samen- und Pelletmischung</li>
-<li>Täglich frisches Gemüse und gelegentlich Obst</li>
-<li>2-3 Stunden soziale Interaktion täglich</li>
-<li>Temperaturbereich: 18-27°C</li>
-<li>Regelmäßiges Flügel- und Nagelschneiden</li>
-</ul>
-</div>
-</div>
-<div class="Art-profile">
-<div class="Art-header">
-<div class="Art-emoji">🎵</div>
-<div>
-<h3 class="Art-name">Kanarienvogel</h3>
-<div class="Art-subtitle">Serinus canaria</div>
-</div>
-</div>
-<div class="Art-stats">
-<div class="stat-Gegenstand">
-<div class="stat-label">Größe</div>
-<div class="stat-Wert">10-13 cm</div>
-</div>
-<div class="stat-Gegenstand">
-<div class="stat-label">Lebensdauer</div>
-<div class="stat-Wert">10-15 Jahre</div>
-</div>
-<div class="stat-Gegenstand">
-<div class="stat-label">Lautstärke</div>
-<div class="stat-Wert">Niedrig-Moderat</div>
-</div>
-<div class="stat-Gegenstand">
-<div class="stat-label">Pflege Niveau</div>
-<div class="stat-Wert">Anfänger</div>
-</div>
-</div>
-<div class="Art-Beschreibung">
-                Kanarienvögel sind bekannt für ihre schönen Gesangsstimmen und leuchtenden Farben. Diese kleinen Finken sind relativ unabhängig und benötigen nicht so viel soziale Interaktion wie Papageien. Männliche Kanarienvögel sind typischerweise die Sänger, wissenschaftlich bemerkenswert während der Brutzeit. Sie sind perfekt für Menschen, die Vogelgesang genießen, aber ein weniger anspruchsvolles Haustier bevorzugen.
+            
+            <div class="species-stats">
+                <div class="stat-item">
+                    <div class="stat-label">Größe</div>
+                    <div class="stat-value">18-20 cm</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Lebensdauer</div>
+                    <div class="stat-value">5-10 Jahre</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Lautstärke</div>
+                    <div class="stat-value">Moderat</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Pflege Niveau</div>
+                    <div class="stat-value">Anfänger</div>
+                </div>
             </div>
-<div class="care-requirements">
-<div class="care-title">Pflege Anforderungen:</div>
-<ul class="care-list">
-<li>Minimum Käfiggröße: 41 cm x 41 cm x 51 cm</li>
-<li>Hochwertige Kanariensamen-Mischung</li>
-<li>Frisches Grünzeug und Gemüse täglich</li>
-<li>Minimales Handling erforderlich</li>
-<li>Temperaturbereich: 16-24°C</li>
-<li>Jährliche Mauserunterstützung mit zusätzlicher Ernährung</li>
-</ul>
-</div>
-</div>
-<div class="section-title">Mittelmethodisch anspruchsvolle Arten</div>
-<div class="Art-profile">
-<div class="Art-header">
-<div class="Art-emoji">🦜</div>
-<div>
-<h3 class="Art-name">Nymphensittich</h3>
-<div class="Art-subtitle">Nymphicus hollandicus</div>
-</div>
-</div>
-<div class="Art-stats">
-<div class="stat-Gegenstand">
-<div class="stat-label">Größe</div>
-<div class="stat-Wert">30-33 cm</div>
-</div>
-<div class="stat-Gegenstand">
-<div class="stat-label">Lebensdauer</div>
-<div class="stat-Wert">15-25 Jahre</div>
-</div>
-<div class="stat-Gegenstand">
-<div class="stat-label">Lautstärke</div>
-<div class="stat-Wert">Moderat</div>
-</div>
-<div class="stat-Gegenstand">
-<div class="stat-label">Pflege Niveau</div>
-<div class="stat-Wert">Fortgeschritten</div>
-</div>
-</div>
-<div class="Art-Beschreibung">
-                Nymphensittiche sind sanfte, liebevolle Vögel, bekannt für ihre markanten Federhauben und Pfeiffähigkeiten. Sie sind ausgezeichnete Begleiter, die eine enge Bindung zu ihren Besitzern aufbauen und dennoch relativ methodisch unkompliziert zu pflegen sind. Männchen sind typischerweise bessere Pfeifer und können methodisch unkomplizierte Melodien wissenschaftlich erfassen, während beide Geschlechter grundlegende Tricks und Kommandos erwissenschaftlich erfassen können.
+            
+            <div class="species-description">
+                Wellensittiche gehören zu den beliebtesten Hausvögeln weltweit, und das aus gutem Grund. Diese kleinen, farbenfrohen Papageien sind intelligent, gesellig und relativ einfach zu pflegen. Sie können lernen, Wörter und Geräusche nachzuahmen, genießen interaktives Spiel und gedeihen in Paaren oder kleinen Gruppen. Ihre fröhliche Veranlagung und Anpassungsfähigkeit machen sie zu ausgezeichneten ersten Vögeln.
             </div>
-<div class="care-requirements">
-<div class="care-title">Pflege Anforderungen:</div>
-<ul class="care-list">
-<li>Minimum Käfiggröße: 61 cm x 61 cm x 76 cm</li>
-<li>Pelletfutter mit Samenzusätzen</li>
-<li>Täglich frisches Gemüse und begrenzt Obst</li>
-<li>3-4 Stunden Interaktion und Übung</li>
-<li>Temperaturbereich: 20-26°C</li>
-<li>Regelmäßige Schnabel- und Nagelpflege</li>
-</ul>
-</div>
-</div>
-<div class="Art-profile">
-<div class="Art-header">
-<div class="Art-emoji">🌈</div>
-<div>
-<h3 class="Art-name">Unzertrennliche</h3>
-<div class="Art-subtitle">Agapornis Art</div>
-</div>
-</div>
-<div class="Art-stats">
-<div class="stat-Gegenstand">
-<div class="stat-label">Größe</div>
-<div class="stat-Wert">13-18 cm</div>
-</div>
-<div class="stat-Gegenstand">
-<div class="stat-label">Lebensdauer</div>
-<div class="stat-Wert">10-15 Jahre</div>
-</div>
-<div class="stat-Gegenstand">
-<div class="stat-label">Lautstärke</div>
-<div class="stat-Wert">Moderat-Hoch</div>
-</div>
-<div class="stat-Gegenstand">
-<div class="stat-label">Pflege Niveau</div>
-<div class="stat-Wert">Fortgeschritten</div>
-</div>
-</div>
-<div class="Art-Beschreibung">
-                Unzertrennliche sind kleine, farbenfrohe Papageien mit großen Persönlichkeiten. Sie sind energisch, verspielt und können ziemlich temperamentvoll sein. Obwohl sie mit ausreichender Aufmerksamkeit einzeln</div></div></div><section class="veterinary-science"><h3>Veterinärwissenschaftliche Grundlagen</h3><p>Diese Empfehlungen basieren auf aktuellen veterinärwissenschaftlichen Erkenntnissen und bewährten Praktiken der Vogelmedizin. Konsultieren Sie bei gesundheitlichen Fragen stets einen spezialisierten Tierarzt.</p></section><footer class="wissenschaftlich-references"><section class="references"><h4>Wissenschaftliche Grundlagen</h4><ul class="reference-list"></ul></section></footer></körper></html>
+            
+            <div class="care-requirements">
+                <div class="care-title">Pflegeanforderungen:</div>
+                <ul class="care-list">
+                    <li>Mindest-Käfiggröße: 46 cm x 46 cm x 61 cm</li>
+                    <li>Hochwertige Samen- und Pelletmischung</li>
+                    <li>Täglich frisches Gemüse und gelegentlich Obst</li>
+                    <li>2-3 Stunden soziale Interaktion täglich</li>
+                    <li>Temperaturbereich: 18-27°C</li>
+                    <li>Regelmäßiges Flügel- und Nagelschneiden</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="species-profile">
+            <div class="species-header">
+                <div class="species-emoji">🎵</div>
+                <div>
+                    <h3 class="species-name">Kanarienvogel</h3>
+                    <div class="species-subtitle">Serinus canaria</div>
+                </div>
+            </div>
+            
+            <div class="species-stats">
+                <div class="stat-item">
+                    <div class="stat-label">Größe</div>
+                    <div class="stat-value">10-13 cm</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Lebensdauer</div>
+                    <div class="stat-value">10-15 Jahre</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Lautstärke</div>
+                    <div class="stat-value">Niedrig-Moderat</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Pflege Niveau</div>
+                    <div class="stat-value">Anfänger</div>
+                </div>
+            </div>
+            
+            <div class="species-description">
+                Kanarienvögel sind bekannt für ihre schönen Gesangsstimmen und leuchtenden Farben. Diese kleinen Finken sind relativ unabhängig und benötigen nicht so viel soziale Interaktion wie Papageien. Männliche Kanarienvögel sind typischerweise die Sänger, besonders während der Brutzeit. Sie sind perfekt für Menschen, die Vogelgesang genießen, aber ein weniger anspruchsvolles Haustier bevorzugen.
+            </div>
+            
+            <div class="care-requirements">
+                <div class="care-title">Pflegeanforderungen:</div>
+                <ul class="care-list">
+                    <li>Mindest-Käfiggröße: 41 cm x 41 cm x 51 cm</li>
+                    <li>Hochwertige Kanariensamen-Mischung</li>
+                    <li>Frisches Grünzeug und Gemüse täglich</li>
+                    <li>Minimales Handling erforderlich</li>
+                    <li>Temperaturbereich: 16-24°C</li>
+                    <li>Jährliche Mauserunterstützung mit zusätzlicher Ernährung</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="section-title">Mittelschwierige Arten</div>
+
+        <div class="species-profile">
+            <div class="species-header">
+                <div class="species-emoji">🦜</div>
+                <div>
+                    <h3 class="species-name">Nymphensittich</h3>
+                    <div class="species-subtitle">Nymphicus hollandicus</div>
+                </div>
+            </div>
+            
+            <div class="species-stats">
+                <div class="stat-item">
+                    <div class="stat-label">Größe</div>
+                    <div class="stat-value">30-33 cm</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Lebensdauer</div>
+                    <div class="stat-value">15-25 Jahre</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Lautstärke</div>
+                    <div class="stat-value">Moderat</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Pflege Niveau</div>
+                    <div class="stat-value">Fortgeschritten</div>
+                </div>
+            </div>
+            
+            <div class="species-description">
+                Nymphensittiche sind sanfte, liebevolle Vögel, bekannt für ihre markanten Federhauben und Pfeiffähigkeiten. Sie sind ausgezeichnete Begleiter, die eine enge Bindung zu ihren Besitzern aufbauen und dennoch relativ einfach zu pflegen sind. Männchen sind typischerweise bessere Pfeifer und können einfache Melodien lernen, während beide Geschlechter grundlegende Tricks und Kommandos erlernen können.
+            </div>
+            
+            <div class="care-requirements">
+                <div class="care-title">Pflegeanforderungen:</div>
+                <ul class="care-list">
+                    <li>Mindest-Käfiggröße: 61 cm x 61 cm x 76 cm</li>
+                    <li>Pelletfutter mit Samenzusätzen</li>
+                    <li>Täglich frisches Gemüse und begrenzt Obst</li>
+                    <li>3-4 Stunden Interaktion und Übung</li>
+                    <li>Temperaturbereich: 20-26°C</li>
+                    <li>Regelmäßige Schnabel- und Nagelpflege</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="species-profile">
+            <div class="species-header">
+                <div class="species-emoji">🌈</div>
+                <div>
+                    <h3 class="species-name">Unzertrennliche</h3>
+                    <div class="species-subtitle">Agapornis Arten</div>
+                </div>
+            </div>
+            
+            <div class="species-stats">
+                <div class="stat-item">
+                    <div class="stat-label">Größe</div>
+                    <div class="stat-value">13-18 cm</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Lebensdauer</div>
+                    <div class="stat-value">10-15 Jahre</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Lautstärke</div>
+                    <div class="stat-value">Moderat-Hoch</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Pflege Niveau</div>
+                    <div class="stat-value">Fortgeschritten</div>
+                </div>
+            </div>
+            
+            <div class="species-description">
+                Unzertrennliche sind kleine, farbenfrohe Papageien mit großen Persönlichkeiten. Sie sind energisch, verspielt und können ziemlich temperamentvoll sein. Obwohl sie mit ausreichender Aufmerksamkeit einzeln gehalten werden können, gedeihen sie oft besser in Paaren. Sie sind intelligent und können Tricks lernen, obwohl sie typischerweise keine guten Sprecher sind. Ihre lebhaften Farben und aktive Natur machen sie zu unterhaltsamen Begleitern.
+            </div>
+            
+            <div class="care-requirements">
+                <div class="care-title">Pflegeanforderungen:</div>
+                <ul class="care-list">
+                    <li>Mindest-Käfiggröße: 61 cm x 41 cm x 51 cm</li>
+                    <li>Hochwertiges Pellet- und Samenfutter</li>
+                    <li>Vielfalt an frischem Obst und Gemüse</li>
+                    <li>4-5 Stunden aktive Interaktion</li>
+                    <li>Temperaturbereich: 21-27°C</li>
+                    <li>Viele Spielzeuge für geistige Stimulation</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="section-title">Fortgeschrittene Arten</div>
+
+        <div class="species-profile">
+            <div class="species-header">
+                <div class="species-emoji">🌺</div>
+                <div>
+                    <h3 class="species-name">Sonnensittich</h3>
+                    <div class="species-subtitle">Aratinga solstitialis</div>
+                </div>
+            </div>
+            
+            <div class="species-stats">
+                <div class="stat-item">
+                    <div class="stat-label">Größe</div>
+                    <div class="stat-value">30 cm</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Lebensdauer</div>
+                    <div class="stat-value">20-30 Jahre</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Lautstärke</div>
+                    <div class="stat-value">Sehr Hoch</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Pflege Niveau</div>
+                    <div class="stat-value">Fortgeschritten</div>
+                </div>
+            </div>
+            
+            <div class="species-description">
+                Sonnensittiche sind atemberaubende Vögel mit brillantem gelben und orangefarbenen Gefieder. Sie sind äußerst sozial, intelligent und liebevoll, aber auch sehr laut und anspruchsvoll. Diese Vögel benötigen erfahrene Besitzer, die konsequentes Training und Sozialisierung bieten können. Sie können sprechen lernen und Tricks ausführen, aber ihre stimmliche Natur macht sie ungeeignet für Wohnungen oder lärmempfindliche Umgebungen.
+            </div>
+            
+            <div class="care-requirements">
+                <div class="care-title">Pflegeanforderungen:</div>
+                <ul class="care-list">
+                    <li>Großer Käfig: mindestens 91 cm x 61 cm x 122 cm</li>
+                    <li>Premium-Pelletfutter mit Vielfalt</li>
+                    <li>Umfangreiche tägliche Frischfuttervielfalt</li>
+                    <li>6+ Stunden Interaktion und Bewegung</li>
+                    <li>Temperaturbereich: 21-27°C</li>
+                    <li>Konsequentes Training und Sozialisierung</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="species-profile">
+            <div class="species-header">
+                <div class="species-emoji">🧠</div>
+                <div>
+                    <h3 class="species-name">Graupapagei</h3>
+                    <div class="species-subtitle">Psittacus erithacus</div>
+                </div>
+            </div>
+            
+            <div class="species-stats">
+                <div class="stat-item">
+                    <div class="stat-label">Größe</div>
+                    <div class="stat-value">30-36 cm</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Lebensdauer</div>
+                    <div class="stat-value">40-60 Jahre</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Lautstärke</div>
+                    <div class="stat-value">Moderat-Hoch</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Pflege Niveau</div>
+                    <div class="stat-value">Experte</div>
+                </div>
+            </div>
+            
+            <div class="species-description">
+                Graupapageien gelten als eine der intelligentesten Vogelarten der Welt. Sie können umfangreiche Vokabeln lernen, Kontext verstehen und sogar einfache Gespräche führen. Allerdings sind sie auch empfindlich, stressanfällig und benötigen erfahrene Besitzer, die ihre komplexen Bedürfnisse verstehen. Sie können Ein-Personen-Vögel sein und möglicherweise aggressiv gegenüber anderen werden, wenn sie nicht richtig sozialisiert sind.
+            </div>
+            
+            <div class="care-requirements">
+                <div class="care-title">Pflegeanforderungen:</div>
+                <ul class="care-list">
+                    <li>Extra großer Käfig: mindestens 91 cm x 61 cm x 122 cm</li>
+                    <li>Premium-Pelletfutter, minimale Samen</li>
+                    <li>Umfangreiche Vielfalt an frischen Lebensmitteln</li>
+                    <li>6-8 Stunden geistige Stimulation täglich</li>
+                    <li>Stabile Temperatur: 21-26°C</li>
+                    <li>Konsequente Routine und erfahrene Handhabung</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="species-profile">
+            <div class="species-header">
+                <div class="species-emoji">🌟</div>
+                <div>
+                    <h3 class="species-name">Blau-Gelber Ara</h3>
+                    <div class="species-subtitle">Ara ararauna</div>
+                </div>
+            </div>
+            
+            <div class="species-stats">
+                <div class="stat-item">
+                    <div class="stat-label">Größe</div>
+                    <div class="stat-value">81-86 cm</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Lebensdauer</div>
+                    <div class="stat-value">50-80 Jahre</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Lautstärke</div>
+                    <div class="stat-value">Sehr Hoch</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Pflege Niveau</div>
+                    <div class="stat-value">Experte</div>
+                </div>
+            </div>
+            
+            <div class="species-description">
+                Blau-Gelbe Aras sind prächtige große Papageien, die Expertenpflege und erhebliches Engagement erfordern. Sie sind intelligent, sozial und können wunderbare Begleiter für erfahrene Vogelbesitzer sein. Allerdings sind sie extrem laut, destruktiv und benötigen enorme Mengen an Platz und Aufmerksamkeit. Ihre kräftigen Schnäbel können schwere Verletzungen verursachen, und sie benötigen konsequentes Training von frühem Alter an.
+            </div>
+            
+            <div class="care-requirements">
+                <div class="care-title">Pflegeanforderungen:</div>
+                <ul class="care-list">
+                    <li>Massiver Käfig: mindestens 122 cm x 91 cm x 152 cm</li>
+                    <li>Premium-Pelletfutter mit Nüssen</li>
+                    <li>Große Vielfalt an frischen Lebensmitteln täglich</li>
+                    <li>8+ Stunden Interaktion und Bewegung</li>
+                    <li>Temperaturbereich: 21-27°C</li>
+                    <li>Professionelles Training und Sozialisierung</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="section-title">Die richtige Art wählen</div>
+        
+        <div class="main-text">
+            Die Auswahl der richtigen Vogelart ist eine der wichtigsten Entscheidungen, die Sie als Vogelbesitzer treffen werden. Berücksichtigen Sie diese Faktoren sorgfältig, bevor Sie Ihre Wahl treffen <span class="emoji">🤔</span>:
+        </div>
+
+        <div class="main-text">
+            <strong>Anpassung an Erfahrungsniveau:</strong><br>
+            • Anfänger: Wellensittiche, Kanarienvögel, Nymphensittiche<br>
+            • Mittelstufe: Unzertrennliche, kleine Sittiche, Ziegensittiche<br>
+            • Fortgeschritten: Große Sittiche, kleine Aras, Amazonen<br>
+            • Experte: Graupapageien, große Aras, Kakadus<br>
+            • Erwägen Sie, klein anzufangen und sich zu steigern<br>
+            • Sammeln Sie Erfahrung, bevor Sie schwierige Arten versuchen
+        </div>
+
+        <div class="main-text">
+            <strong>Kompatibilität mit dem Lebensstil:</strong><br>
+            • Lärmtoleranz und Wohnsituation<br>
+            • Verfügbare Zeit für tägliche Interaktion<br>
+            • Verfügbarer Platz für Käfig und Bewegung<br>
+            • Fähigkeit zur langfristigen Verpflichtung<br>
+            • Finanzielle Ressourcen für die Pflege<br>
+            • Familiensituation und andere Haustiere
+        </div>
+
+        <div class="tip-box">
+            <div class="tip-title">🏠 Besuchen Sie vor der Entscheidung</div>
+            <p>Verbringen Sie Zeit mit verschiedenen Arten in Vogelrettungsstationen, Zoohandlungen oder auf Vogelschauen, bevor Sie Ihre Entscheidung treffen. Jede Art hat eine einzigartige Persönlichkeit und ein einzigartiges Energieniveau.</p>
+        </div>
+
+        <div class="main-text">
+            <strong>Besondere Überlegungen:</strong><br>
+            • Einige Arten gedeihen besser in Paaren<br>
+            • Größere Vögel benötigen mehr Platz und Ressourcen<br>
+            • Die Sprechfähigkeit variiert stark zwischen den Arten<br>
+            • Lautstärkepegel können ein wichtiger Faktor sein<br>
+            • Die Lebensdauerverpflichtung variiert dramatisch<br>
+            • Einige Arten haben spezifische Ernährungsbedürfnisse
+        </div>
+
+        <div class="main-text">
+            Denken Sie daran, dass jeder einzelne Vogel seine eigene Persönlichkeit hat, unabhängig von der Art. Während diese Profile allgemeine Richtlinien bieten, kann Ihr spezifischer Vogel unterschiedliche Eigenschaften und Bedürfnisse haben. Der Schlüssel ist die Wahl einer Art, die zu Ihrem Erfahrungsniveau, Lebensstil und langfristigen Engagement passt. Nehmen Sie sich Zeit, recherchieren Sie gründlich und erwägen Sie die Adoption aus Rettungsstationen, wo Sie mehr über die individuellen Persönlichkeiten der Vögel erfahren können <span class="emoji">✨</span>.
+        </div>
+    </div>
+
+    <script>
+        // Simulate reading progress
+        function updateProgress() {
+            const scrolled = window.pageYOffset;
+            const maxHeight = document.body.scrollHeight - window.innerHeight;
+            const progress = Math.min((scrolled / maxHeight) * 100, 100);
+        }
+        
+        window.addEventListener('scroll', updateProgress);
+        updateProgress();
+    </script>
+    <script src="../language-redirect.js"></script>
+
+
+</body>
+</html>

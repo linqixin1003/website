@@ -56,6 +56,16 @@ function handleLanguageRedirect() {
     }
 }
 
+// 检查文件是否存在
+async function fileExists(url) {
+    try {
+        const response = await fetch(url, { method: 'HEAD' });
+        return response.ok;
+    } catch (error) {
+        return false;
+    }
+}
+
 // 页面加载时执行语言检测
 document.addEventListener('DOMContentLoaded', function() {
     handleLanguageRedirect();
@@ -71,6 +81,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 为所有内部链接添加当前语言参数
     addLanguageToLinks();
+    
+    // 为语言切换器添加事件监听
+    setupLanguageSwitcher();
 });
 
 // 为返回按钮添加正确的语言路径
@@ -85,13 +98,55 @@ function goBackWithLanguage() {
     window.location.href = backUrl;
 }
 
+// 设置语言切换器
+function setupLanguageSwitcher() {
+    const languageSwitchers = document.querySelectorAll('.language-switcher a, .language-selector a');
+    if (languageSwitchers.length === 0) return;
+    
+    languageSwitchers.forEach(link => {
+        link.addEventListener('click', async function(e) {
+            e.preventDefault();
+            const lang = this.getAttribute('data-lang');
+            if (!lang || !languageMap[lang]) return;
+            
+            localStorage.setItem('selectedLanguage', lang);
+            
+            // 获取当前页面的基本路径（不包含语言代码）
+            let basePath = window.location.pathname;
+            const pathParts = basePath.split('/');
+            if (pathParts.length > 1 && languageMap[pathParts[1]]) {
+                pathParts.splice(1, 1); // 移除语言代码部分
+                basePath = pathParts.join('/');
+            }
+            
+            // 构建新的URL
+            let newUrl;
+            if (lang === 'en') {
+                newUrl = window.location.origin + basePath;
+            } else {
+                // 首先尝试查询参数格式
+                newUrl = window.location.origin + basePath + (basePath.includes('?') ? '&' : '?') + 'lang=' + lang;
+                
+                // 如果查询参数格式不存在，尝试子目录格式
+                const subDirUrl = window.location.origin + '/' + lang + basePath;
+                const exists = await fileExists(subDirUrl);
+                if (exists) {
+                    newUrl = subDirUrl;
+                }
+            }
+            
+            window.location.href = newUrl;
+        });
+    });
+}
+
 // 为页面上的所有内部链接添加语言参数
 function addLanguageToLinks() {
     const currentLang = localStorage.getItem('selectedLanguage') || 'en';
     if (currentLang === 'en') return; // 英语是默认语言，不需要添加参数
     
     const links = document.querySelectorAll('a[href]');
-    links.forEach(link => {
+    links.forEach(async link => {
         const href = link.getAttribute('href');
         
         // 只处理内部链接，不处理外部链接、锚点链接和已有lang参数的链接
@@ -105,11 +160,35 @@ function addLanguageToLinks() {
                 
                 // 添加lang参数
                 newHref += (newHref.includes('?') ? '&' : '?') + 'lang=' + currentLang;
-                link.setAttribute('href', newHref);
+                
+                // 检查文件是否存在
+                const exists = await fileExists(window.location.origin + newHref);
+                if (exists) {
+                    link.setAttribute('href', newHref);
+                } else {
+                    // 如果查询参数格式不存在，尝试使用子目录格式
+                    const subDirUrl = '/' + currentLang + hrefParts.join('/');
+                    const subDirExists = await fileExists(window.location.origin + subDirUrl);
+                    if (subDirExists) {
+                        link.setAttribute('href', subDirUrl);
+                    }
+                }
             } else {
-                // 直接添加lang参数
+                // 构建查询参数格式的URL
                 const newHref = href + (href.includes('?') ? '&' : '?') + 'lang=' + currentLang;
-                link.setAttribute('href', newHref);
+                
+                // 检查文件是否存在
+                const exists = await fileExists(window.location.origin + newHref);
+                if (exists) {
+                    link.setAttribute('href', newHref);
+                } else {
+                    // 如果查询参数格式不存在，尝试使用子目录格式
+                    const subDirUrl = '/' + currentLang + href;
+                    const subDirExists = await fileExists(window.location.origin + subDirUrl);
+                    if (subDirExists) {
+                        link.setAttribute('href', subDirUrl);
+                    }
+                }
             }
         }
     });

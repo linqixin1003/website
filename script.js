@@ -717,29 +717,28 @@ function createLanguageDropdown() {
         dropdown.appendChild(menu);
         languageSwitcher.appendChild(dropdown);
 
-        // 修复点击事件
-        button.addEventListener('click', function(e) {
+        // 修复点击事件 - 使用更简单的方法
+        button.onclick = function(e) {
             try {
                 e.preventDefault();
                 e.stopPropagation();
-                if (menu) {
-                    menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
-                }
+                console.log('Language button clicked');
+                dropdown.classList.toggle('active');
             } catch (error) {
                 console.log('Button click error:', error);
             }
-        });
+        };
 
         // 点击页面其他地方关闭下拉菜单
-        document.addEventListener('click', function() {
+        document.onclick = function(e) {
             try {
-                if (menu) {
-                    menu.style.display = 'none';
+                if (!dropdown.contains(e.target)) {
+                    dropdown.classList.remove('active');
                 }
             } catch (error) {
                 console.log('Document click error:', error);
             }
-        });
+        };
 
         console.log('Language dropdown created successfully');
     } catch (error) {
@@ -813,10 +812,10 @@ function switchLanguage(langCode) {
         }
     });
 
-    // 关闭下拉菜单
-    const menu = document.querySelector('.lang-menu');
-    if (menu) {
-        menu.style.display = 'none';
+    // 关闭下拉菜单 - 使用统一的CSS类控制
+    const dropdown = document.querySelector('.lang-dropdown');
+    if (dropdown) {
+        dropdown.classList.remove('active');
     }
 
     // 在主页上只进行翻译，不跳转
@@ -855,71 +854,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // 初始化时应用当前语言
     translatePage(currentLang);
     
-    // 添加CSS样式以确保下拉菜单正确显示
-    const style = document.createElement('style');
-    style.textContent = `
-        .lang-dropdown {
-            position: relative;
-            display: inline-block;
-        }
-        .lang-btn {
-            display: flex;
-            align-items: center;
-            background: transparent;
-            border: 1px solid rgba(255,255,255,0.3);
-            border-radius: 4px;
-            color: white;
-            padding: 5px 10px;
-            cursor: pointer;
-            font-size: 14px;
-        }
-        .lang-menu {
-            display: none;
-            position: absolute;
-            right: 0;
-            top: 100%;
-            background: white;
-            border-radius: 4px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-            z-index: 1000;
-            min-width: 150px;
-            margin-top: 5px;
-        }
-        .lang-option {
-            padding: 8px 12px;
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-            color: #333;
-        }
-        .lang-option:hover {
-            background: #f5f5f5;
-        }
-        .lang-option.active {
-            background: #e8f5e8;
-        }
-        .flag {
-            margin-right: 8px;
-            font-size: 16px;
-        }
-        .lang-name {
-            flex-grow: 1;
-            font-size: 14px;
-        }
-        .lang-code {
-            font-size: 12px;
-            color: #666;
-            margin-left: 5px;
-        }
-        .lang-icon {
-            margin-right: 5px;
-        }
-        .dropdown-arrow {
-            margin-left: 5px;
-            font-size: 10px;
-        }
-    `;
-    document.head.appendChild(style);
 });
 
 // 为链接添加语言参数的函数

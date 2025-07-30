@@ -1,324 +1,620 @@
 <!DOCTYPE html>
-
 <html lang="fr">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Observation des Oiseaux pour Débutants - BirdAiSnap</title>
-<link href="../../mobile-styles.css" rel="stylesheet"/>
-<link href="../../mobile-enhancement.css" rel="stylesheet"/>
-<link href="../../ecology-theme.css" rel="stylesheet"/>
-<style>
-        .hero-image img {
-            max-height: 200px;
-            width: 100%;
-            object-fit: cover;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Réseaux et Chaînes Alimentaires - BirdAiSnap</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        .article-card img {
-            max-height: 120px;
-            width: 100%;
-            object-fit: cover;
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
         }
+        
+        .language-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        
+        .lang-dropdown {
+            position: relative;
+        }
+        
+        .lang-btn {
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid #e0e0e0;
+            border-radius: 25px;
+            padding: 8px 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #333;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .lang-btn:hover {
+            background: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+        
+        .lang-icon {
+            font-size: 16px;
+        }
+        
+        .dropdown-arrow {
+            font-size: 12px;
+            transition: transform 0.3s ease;
+        }
+        
+        .lang-dropdown.active .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+        
+        .lang-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1001;
+            margin-top: 5px;
+        }
+        
+        .lang-dropdown.active .lang-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .lang-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .lang-option:last-child {
+            border-bottom: none;
+        }
+        
+        .lang-option:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .lang-option.active {
+            background-color: #e3f2fd;
+            color: #1976d2;
+        }
+        
+        .lang-option .flag {
+            font-size: 18px;
+        }
+        
+        .lang-option .name {
+            flex: 1;
+            font-weight: 500;
+        }
+        
+        .lang-option .code {
+            font-size: 12px;
+            color: #666;
+            background: #f0f0f0;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+        
+        .lang-option.active .code {
+            background: #bbdefb;
+            color: #1976d2;
+        }
+        
         .hero-image {
-            margin-bottom: 20px !important;
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                        url('../../images/birds/species/bird-image-076.webp') center/cover;
+            position: relative;
+            margin-top: 0;
         }
-        .article-meta {
-            margin-top: 15px !important;
+        
+        .content {
+            background: white;
+            margin: -30px 20px 20px 20px;
+            border-radius: 20px;
+            padding: 40px 20px 30px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            min-height: 80vh;
+        }
+        
+        .title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            margin-top: 10px;
+            line-height: 1.3;
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, #e8f5e8, #c8e6c9);
+            border-left: 4px solid #4caf50;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .quote-box::before {
+            content: '"';
+            font-size: 48px;
+            color: #4caf50;
+            position: absolute;
+            top: -5px;
+            left: 15px;
+            font-family: serif;
+            line-height: 1;
+        }
+        
+        .quote-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2e7d32;
+            margin-left: 25px;
+            line-height: 1.4;
+        }
+        
+        .main-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            margin: 20px 0;
+            text-align: justify;
+        }
+        
+        .section-title {
+            font-size: 22px;
+            font-weight: 600;
+            color: #4caf50;
+            margin: 35px 0 20px 0;
+            border-bottom: 2px solid #c8e6c9;
+            padding-bottom: 10px;
+        }
+        
+        .tip-box {
+            background: #f1f8e9;
+            border: 1px solid #dcedc8;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+            border-left: 4px solid #66bb6a;
+        }
+        
+        .tip-title {
+            font-weight: 600;
+            color: #388e3c;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        
+        .emoji {
+            font-size: 18px;
+            margin: 0 2px;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            border-left: 4px solid #ff9800;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+        
+        .highlight-title {
+            font-weight: 600;
+            color: #e65100;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .info-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            border-left: 4px solid #4caf50;
+        }
+        
+        .info-card h3 {
+            color: #2e7d32;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        
+        .progress-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: linear-gradient(to top, rgba(255,255,255,0.95), transparent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 998;
+        }
+        
+        .progress-bar {
+            width: 200px;
+            height: 4px;
+            background: rgba(0,0,0,0.1);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4caf50, #81c784);
+            width: 0%;
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                margin: -20px 15px 15px 15px;
+                padding: 25px 15px;
+            }
+            
+            .title {
+                font-size: 24px;
+            }
+            
+            .section-title {
+                font-size: 20px;
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
         }
     </style>
 </head>
 <body>
-<div class="content">
-    <h1 class="title">Observation des Oiseaux pour Débutants</h1>
-    <div class="quote-box">
-        <div class="quote-text">Exploring Nature's Ecological Relationships</div>
+    <!-- 语言切换器 -->
+    <div class="language-switcher">
+        <div class="lang-dropdown">
+            <button class="lang-btn" onclick="toggleLanguageMenu()">
+                <span class="lang-icon">🌐</span>
+                <span class="lang-text">Français</span>
+                <span class="dropdown-arrow">▼</span>
+            </button>
+            <div class="lang-menu">
+                <div class="lang-option" onclick="changeLanguage('en')">
+                    <span class="flag">🇺🇸</span>
+                    <span class="name">English</span>
+                    <span class="code">EN</span>
+                </div>
+                <div class="lang-option" onclick="changeLanguage('es')">
+                    <span class="flag">🇪🇸</span>
+                    <span class="name">Español</span>
+                    <span class="code">ES</span>
+                </div>
+                <div class="lang-option active" onclick="changeLanguage('fr')">
+                    <span class="flag">🇫🇷</span>
+                    <span class="name">Français</span>
+                    <span class="code">FR</span>
+                </div>
+                <div class="lang-option" onclick="changeLanguage('de')">
+                    <span class="flag">🇩🇪</span>
+                    <span class="name">Deutsch</span>
+                    <span class="code">DE</span>
+                </div>
+                <div class="lang-option" onclick="changeLanguage('it')">
+                    <span class="flag">🇮🇹</span>
+                    <span class="name">Italiano</span>
+                    <span class="code">IT</span>
+                </div>
+                <div class="lang-option" onclick="changeLanguage('ja')">
+                    <span class="flag">🇯🇵</span>
+                    <span class="name">日本語</span>
+                    <span class="code">JA</span>
+                </div>
+                <div class="lang-option" onclick="changeLanguage('ko')">
+                    <span class="flag">🇰🇷</span>
+                    <span class="name">한국어</span>
+                    <span class="code">KO</span>
+                </div>
+                <div class="lang-option" onclick="changeLanguage('pt')">
+                    <span class="flag">🇵🇹</span>
+                    <span class="name">Português</span>
+                    <span class="code">PT</span>
+                </div>
+                <div class="lang-option" onclick="changeLanguage('ru')">
+                    <span class="flag">🇷🇺</span>
+                    <span class="name">Русский</span>
+                    <span class="code">RU</span>
+                </div>
+                <div class="lang-option" onclick="changeLanguage('zh')">
+                    <span class="flag">🇨🇳</span>
+                    <span class="name">中文</span>
+                    <span class="code">ZH</span>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="main-text">
-        Understanding the complex relationships between birds and their environment is essential for conservation and ecological balance<span class="emoji">🌿</span>.
-    </div>
-<div class="hero-image" style="margin-bottom: 20px;">
-<img alt="avec" src="../../images/birds/species/bird-image-076.webp"/>
-<div class="hero-overlay">
-<h2 style="margin-top: 30px;">milieudepeut</h2>
-</div><div class="article-meta" style="margin-top: 15px;">
-<span class="category ecology">Oiseaux</span>
-<span class="read-time">📖 9</span>
-<span class="difficulty">🟡 milieu</span>
-</div>
-<div class="quote-box">
-<div class="main-text">"dansnaturedemilieu, Oiseauxestaussiestêtre, de. "</div>
-<cite>— </cite>
-</div>
-<div class="article-body">
-<div class="section-title">🔗 de</div>
-<div class="main-text">estmilieupeutetde, ""de. Oiseauxdansmilieune pasde, deà. </div>
-<div class="food-chain-levels">
-<div class="trophic-level">
-<h4>🌱  (premier)</h4>
-<div class="main-text">grâce àavoir, pourpeut</div>
-<ul>
-<li>、、</li>
-<li>、</li>
-<li>pourOiseaux</li>
-</ul>
-</div>
-<div class="trophic-level">
-<h4>🦆  (deuxième)</h4>
-<div class="main-text">avecpourdeOiseaux</div>
-<ul>
-<li>: 、、</li>
-<li>: 、、</li>
-<li>: 、、</li>
-<li>: 、trop、</li>
-</ul>
-</div>
-<div class="trophic-level">
-<h4>🐛  (troisième)</h4>
-<div class="main-text">avecetpetitpourdeOiseaux</div>
-<ul>
-<li>Oiseaux: 、、</li>
-<li>Oiseaux: 、、</li>
-<li>petit: 、、</li>
-</ul>
-</div>
-<div class="trophic-level">
-<h4>🦅  (quatrième)</h4>
-<div class="main-text">avecOiseauxetmilieupourde</div>
-<ul>
-<li>: 、、</li>
-<li>: 、</li>
-<li>grand: 、、</li>
-</ul>
-</div>
-<div class="trophic-level">
-<h4>🦴 </h4>
-<div class="main-text">avecpour, avecdeOiseaux</div>
-<ul>
-<li>: grand</li>
-<li>: avoir</li>
-<li>: milieude</li>
-</ul>
-</div>
-</div>
-<div class="section-title">🕸️ de</div>
-<div class="main-text">milieudesimplebeaucoup. beaucoupde, milieucomplexe. </div>
-<div class="food-web-characteristics">
-<div class="characteristic">
-<h4>🔄 beaucoup</h4>
-<div class="main-text">grandbeaucoupOiseauxne pas, aussine pasêtre</div>
-<ul>
-<li>Oiseauxen même tempsbeaucoup</li>
-<li>saisonniers</li>
-<li>de</li>
-</ul>
-</div>
-<div class="characteristic">
-<h4>⚖️ </h4>
-<div class="main-text">milieude, </div>
-<ul>
-<li></li>
-<li>Se reproduire</li>
-<li></li>
-</ul>
-</div>
-<div class="characteristic">
-<h4>🌊 peut</h4>
-<div class="main-text">peutdansmilieuvers, </div>
-<ul>
-<li>chaquepeutsous10%depeut</li>
-<li>avoir</li>
-<li>peu</li>
-</ul>
-</div>
-</div>
-<div class="section-title">🎯 Oiseauxdespécialement</div>
-<div class="main-text">ne pasOiseauxdansmilieuunique, : </div>
-<div class="ecological-niches">
-<div class="niche-category">
-<h4>🕐 </h4>
-<div class="niche-examples">
-<div class="niche-item">
-<h5>Oiseaux</h5>
-<div class="main-text">grandbeaucoup、dansactivitéChercher de la nourriture</div>
-</div>
-<div class="niche-item">
-<h5>Oiseaux</h5>
-<div class="main-text">、dans</div>
-</div>
-<div class="niche-item">
-<h5>activité</h5>
-<div class="main-text">Oiseauxdansaubeetcrépusculele plus</div>
-</div>
-</div><div class="niche-category">
-<h4>📍 </h4>
-<div class="niche-examples">
-<div class="niche-item">
-<h5></h5>
-<div class="main-text">、dans</div>
-</div>
-<div class="niche-item">
-<h5></h5>
-<div class="main-text">、dansChercher de la nourriture</div>
-</div>
-<div class="niche-item">
-<h5></h5>
-<div class="main-text">、danschercher</div>
-</div>
-<div class="niche-item">
-<h5></h5>
-<div class="main-text">、dansoumilieuChercher de la nourriture</div>
-</div>
-</div><div class="niche-category">
-<h4>🍽️ </h4>
-<div class="niche-examples">
-<div class="niche-item">
-<h5>grandpetit</h5>
-<div class="main-text">ne pasOiseauxne pasgrandpetitde</div>
-</div>
-<div class="niche-item">
-<h5></h5>
-<div class="main-text">Becdepeutde</div>
-</div>
-<div class="niche-item">
-<h5></h5>
-<div class="main-text">milieu、、milieu</div>
-</div>
-</div>
-</div>
-</div>
-<div class="section-title">🔄 saisonniers</div>
-<div class="main-text">devasaison: </div>
-<div class="seasonal-food-web">
-<div class="season-changes">
-<h4>🌸 Printemps</h4>
-<ul>
-<li>commencer, Oiseaux</li>
-<li>, Oiseauxactivité</li>
-<li>Se reproduirecommencer, pour</li>
-<li>MigrerOiseauxRetour, </li>
-</ul>
-</div>
-<div class="season-changes">
-<h4>☀️ Été</h4>
-<ul>
-<li>le plusdesaison</li>
-<li>avons besoinénormément</li>
-<li>commencer</li>
-<li>énormémentSe reproduire</li>
-</ul>
-</div>
-<div class="season-changes">
-<h4>🍂 Automne</h4>
-<ul>
-<li>eténormément</li>
-<li>OiseauxMigrer</li>
-<li>commencerpeu</li>
-<li>peu, Chercher de la nourriturebeaucoup</li>
-</ul>
-</div>
-<div class="season-changes">
-<h4>❄️ Hiver</h4>
-<ul>
-<li>le plusdesaison</li>
-<li>beaucoupOiseaux</li>
-<li>le plus</li>
-<li>le plus</li>
-</ul>
-</div>
-</div>
-<div class="section-title">⚡ peut</div>
-<div class="main-text">comprendrepeutdansmilieudepourFonctionnalitésimportant: </div>
-<div class="energy-flow">
-<div class="efficiency-data">
-<h4>📊 peut</h4>
-<div class="efficiency-chart">
-<div class="efficiency-level">
-<span class="level-name"></span>
-<div class="energy-bar" style="width: 100%">100%</div><div class="efficiency-level">
-<span class="level-name"></span>
-<div class="energy-bar" style="width: 10%">10%</div><div class="efficiency-level">
-<span class="level-name"></span>
-<div class="energy-bar" style="width: 1%">1%</div><div class="efficiency-level">
-<span class="level-name"></span>
-<div class="energy-bar" style="width: 0.1%">0.1%</div>
-</div>
-</div><div class="energy-loss">
-<h4>💨 peut</h4>
-<ul>
-<li>: activité</li>
-<li>: Chercher de la nourriture、Migrer、</li>
-<li>: </li>
-<li>: pas encoredeet</li>
-<li>Se reproduire: 、Construire un nid、</li>
-</ul>
-</div>
-</div>
-<div class="section-title">🌍 activitéde</div>
-<div class="main-text">activitépourOiseauxloin: </div>
-<div class="human-impacts">
-<div class="impact-category">
-<h4>🏭 </h4>
-<ul>
-<li>Utiliserpeu</li>
-<li>Oiseaux</li>
-<li>Se perchermauvais</li>
-<li></li>
-</ul>
-</div>
-<div class="impact-category">
-<h4>🔄 </h4>
-<ul>
-<li></li>
-<li>extérieur</li>
-<li>Villenouveaude</li>
-<li>naturepour</li>
-</ul>
-</div><div class="conservation-implications">
-<h4>🛡️ </h4>
-<div class="main-text">pourOiseauxavoirimportant: </div>
-<ul>
-<li></li>
-<li>Se percher</li>
-<li></li>
-<li>peu</li>
-<li>de</li>
-</ul>
-</div> </div>
-<!-- 进度条 -->
-<div class="progress-container">
-<div class="progress-bar">
-<div class="progress-fill"></div>
-</div>
-</div>
-<script>
-        // 更新时间
-        function updateTime() {
-            const now = new Date();
-            const timeString = now.getHours().toString().padStart(2, '0') + ':' + 
-                             now.getMinutes().toString().padStart(2, '0');
-            document.getElementById('current-time').textContent = timeString;
-        }
+    
+    <div class="hero-image"></div>
+    <div class="content">
+        <h1 class="title">Réseaux et Chaînes Alimentaires</h1>
+        <div class="quote-box">
+            <div class="quote-text">Les oiseaux : architectes des réseaux alimentaires de la nature</div>
+        </div>
         
+        <div class="main-text">
+            Les oiseaux occupent des positions cruciales dans les réseaux alimentaires complexes de la nature, servant à la fois de prédateurs, de proies et de facilitateurs écologiques<span class="emoji">🕸️</span>. Comprendre leur rôle dans ces systèmes interconnectés révèle l'importance fondamentale des oiseaux pour maintenir l'équilibre écologique et la stabilité des écosystèmes.
+        </div>
+        
+        <div class="section-title">Niveaux Trophiques et Positionnement</div>
+        <div class="main-text">
+            Les oiseaux occupent plusieurs niveaux trophiques dans les réseaux alimentaires, depuis les consommateurs primaires qui se nourrissent de graines et de nectar, jusqu'aux prédateurs apex qui chassent d'autres vertébrés<span class="emoji">🦅</span>. Cette diversité de niches alimentaires permet aux oiseaux de servir de liens critiques entre différents composants de l'écosystème.
+        </div>
+        
+        <div class="info-grid">
+            <div class="info-card">
+                <h3>🌱 Consommateurs Primaires</h3>
+                <p>Les oiseaux granivores, nectarivores et frugivores convertissent l'énergie végétale en biomasse animale, formant la base de nombreuses chaînes alimentaires aviaires.</p>
+            </div>
+            <div class="info-card">
+                <h3>🐛 Consommateurs Secondaires</h3>
+                <p>Les oiseaux insectivores contrôlent les populations d'invertébrés, régulant les herbivores et maintenant l'équilibre entre les plantes et leurs consommateurs.</p>
+            </div>
+            <div class="info-card">
+                <h3>🦅 Prédateurs Supérieurs</h3>
+                <p>Les rapaces et autres prédateurs aviaires régulent les populations de proies, influençant la structure et la dynamique de communautés entières.</p>
+            </div>
+        </div>
+        
+        <div class="section-title">Flux d'Énergie et Transfert de Nutriments</div>
+        <div class="main-text">
+            Les oiseaux facilitent le flux d'énergie efficace à travers les écosystèmes grâce à leurs taux métaboliques élevés et leurs comportements alimentaires diversifiés<span class="emoji">⚡</span>. Leur capacité à voler leur permet de transporter des nutriments sur de vastes distances, connectant des habitats distants et redistribuant les ressources à travers les paysages.
+        </div>
+        
+        <div class="tip-box">
+            <div class="tip-title">💡 Transport de Nutriments</div>
+            Les oiseaux marins transportent des nutriments marins vers les écosystèmes terrestres par leurs excréments, enrichissant les sols côtiers et soutenant la croissance végétale dans des environnements autrement pauvres en nutriments.
+        </div>
+        
+        <div class="section-title">Interactions Complexes et Effets en Cascade</div>
+        <div class="main-text">
+            Les réseaux alimentaires aviaires présentent des interactions complexes qui peuvent déclencher des effets en cascade à travers les écosystèmes<span class="emoji">🌊</span>. La perte ou l'introduction d'espèces d'oiseaux clés peut avoir des conséquences profondes et souvent inattendues sur la structure et la fonction de l'écosystème.
+        </div>
+        
+        <div class="highlight-box">
+            <div class="highlight-title">🔄 Exemple d'Effet en Cascade</div>
+            <p>Le déclin des populations de rapaces peut entraîner une augmentation des populations de rongeurs, conduisant à une pression accrue sur la végétation et des changements dans la composition des communautés végétales, affectant finalement d'autres espèces animales qui dépendent de ces plantes.</p>
+        </div>
+        
+        <div class="section-title">Spécialisations Alimentaires et Coévolution</div>
+        <div class="main-text">
+            De nombreux oiseaux ont développé des spécialisations alimentaires hautement spécifiques qui reflètent des millions d'années de coévolution avec leurs sources de nourriture<span class="emoji">🧬</span>. Ces relations spécialisées créent des liens étroits dans les réseaux alimentaires qui sont essentiels pour la stabilité de l'écosystème.
+        </div>
+        
+        <div class="info-grid">
+            <div class="info-card">
+                <h3>🌺 Pollinisateurs Spécialisés</h3>
+                <p>Les colibris et les souimangas ont coévolué avec des fleurs spécifiques, créant des relations mutualistes critiques pour la reproduction des plantes.</p>
+            </div>
+            <div class="info-card">
+                <h3>🐟 Piscivores Adaptés</h3>
+                <p>Les oiseaux pêcheurs comme les martins-pêcheurs et les hérons ont développé des techniques de chasse spécialisées qui les rendent efficaces dans des niches aquatiques spécifiques.</p>
+            </div>
+            <div class="info-card">
+                <h3>🦴 Charognards Essentiels</h3>
+                <p>Les vautours et autres charognards jouent des rôles cruciaux dans le recyclage des nutriments et la prévention de la propagation des maladies.</p>
+            </div>
+        </div>
+        
+        <div class="section-title">Variations Saisonnières et Dynamiques Temporelles</div>
+        <div class="main-text">
+            Les réseaux alimentaires aviaires présentent des variations saisonnières significatives qui reflètent les changements dans la disponibilité des ressources et les besoins énergétiques<span class="emoji">🗓️</span>. Ces fluctuations temporelles ajoutent de la complexité aux interactions écologiques et nécessitent une flexibilité adaptative de la part des espèces d'oiseaux.
+        </div>
+        
+        <div class="tip-box">
+            <div class="tip-title">🔄 Changements Saisonniers</div>
+            Pendant la saison de reproduction, de nombreux oiseaux normalement granivores passent à un régime riche en protéines pour nourrir leurs petits, modifiant temporairement leur position dans le réseau alimentaire et leurs impacts écologiques.
+        </div>
+        
+        <div class="section-title">Impacts Humains et Perturbations</div>
+        <div class="main-text">
+            Les activités humaines perturbent de plus en plus les réseaux alimentaires aviaires par la destruction d'habitats, la pollution, le changement climatique et l'introduction d'espèces invasives<span class="emoji">⚠️</span>. Ces perturbations peuvent déstabiliser des réseaux alimentaires entiers et conduire à des changements écologiques imprévisibles.
+        </div>
+        
+        <div class="highlight-box">
+            <div class="highlight-title">🏭 Défis de Conservation</div>
+            <p>La conservation efficace des réseaux alimentaires aviaires nécessite une approche holistique qui considère non seulement les espèces d'oiseaux individuelles, mais aussi leurs interactions complexes avec d'autres organismes et leur environnement physique.</p>
+        </div>
+        
+        <div class="section-title">Recherche et Méthodologies d'Étude</div>
+        <div class="main-text">
+            L'étude des réseaux alimentaires aviaires utilise diverses méthodologies, depuis l'analyse du contenu stomacal traditionnelle jusqu'aux techniques isotopiques modernes et à la modélisation écologique<span class="emoji">🔬</span>. Ces approches révèlent les connexions cachées et quantifient les flux d'énergie dans les systèmes écologiques complexes.
+        </div>
+        
+        <div class="info-grid">
+            <div class="info-card">
+                <h3>🧪 Analyse Isotopique</h3>
+                <p>Les signatures isotopiques révèlent les sources alimentaires et les niveaux trophiques, fournissant des informations sur les habitudes alimentaires à long terme.</p>
+            </div>
+            <div class="info-card">
+                <h3>📊 Modélisation de Réseau</h3>
+                <p>Les modèles mathématiques aident à prédire les effets en cascade et à identifier les espèces clés dans les réseaux alimentaires complexes.</p>
+            </div>
+            <div class="info-card">
+                <h3>📱 Technologie de Suivi</h3>
+                <p>Les dispositifs GPS et les accéléromètres révèlent les comportements de recherche de nourriture et les interactions prédateur-proie en temps réel.</p>
+            </div>
+        </div>
+        
+        <div class="section-title">Implications pour la Gestion des Écosystèmes</div>
+        <div class="main-text">
+            Comprendre les réseaux alimentaires aviaires est essentiel pour une gestion efficace des écosystèmes et des efforts de conservation<span class="emoji">🌍</span>. Cette connaissance informe les stratégies de restauration d'habitats, les programmes de réintroduction d'espèces et les évaluations d'impact environnemental.
+        </div>
+        
+        <div class="tip-box">
+            <div class="tip-title">🎯 Applications Pratiques</div>
+            Les gestionnaires d'écosystèmes utilisent la connaissance des réseaux alimentaires aviaires pour prédire les conséquences des changements environnementaux et concevoir des interventions qui maintiennent la stabilité écologique et la biodiversité.
+        </div>
+    </div>
+    
+    <div class="progress-container">
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
+        </div>
+    </div>
+
+    <!-- 引入多语言脚本 -->
+    <script src="../../script.js"></script>
+    <script src="../language-redirect.js"></script>
+    <script>
         // 模拟阅读进度
         function updateProgress() {
             const scrolled = window.pageYOffset;
             const maxHeight = document.body.scrollHeight - window.innerHeight;
             const progress = Math.min((scrolled / maxHeight) * 100, 100);
-            document.querySelector('.progress-fill').style.width = progress + '%';
+            const progressFill = document.querySelector('.progress-fill');
+            if (progressFill) {
+                progressFill.style.width = progress + '%';
+            }
         }
         
         // 初始化
-        updateTime();
-        setInterval(updateTime, 60000);
-        
         window.addEventListener('scroll', updateProgress);
         updateProgress();
     </script>
-    <script src="../language-redirect.js"></script>
+    <script>
+        // 语言切换功能
+        function toggleLanguageMenu() {
+            try {
+                const dropdown = document.querySelector('.lang-dropdown');
+                if (dropdown) {
+                    dropdown.classList.toggle('active');
+                }
+            } catch (error) {
+                console.log('Toggle menu error:', error);
+            }
+        }
 
-</div></div></div></div></div></div></div></div></main></body>
+        function changeLanguage(langCode) {
+            try {
+                localStorage.setItem('selectedLanguage', langCode);
+                
+                // 更新按钮显示
+                const langText = document.querySelector('.lang-text');
+                const languages = {
+                    'en': 'English',
+                    'es': 'Español', 
+                    'fr': 'Français',
+                    'de': 'Deutsch',
+                    'it': 'Italiano',
+                    'ja': '日本語',
+                    'ko': '한국어',
+                    'pt': 'Português',
+                    'ru': 'Русский',
+                    'zh': '中文'
+                };
+                
+                if (langText) {
+                    langText.textContent = languages[langCode] || 'English';
+                }
+                
+                // 关闭下拉菜单
+                const dropdown = document.querySelector('.lang-dropdown');
+                if (dropdown) {
+                    dropdown.classList.remove('active');
+                }
+                
+                // 跳转到对应语言版本
+                if (langCode === 'en') {
+                    window.location.href = '../../en/ecology/02-food-webs-chains.html';
+                } else {
+                    window.location.href = '../../' + langCode + '/ecology/02-food-webs-chains.html';
+                }
+            } catch (error) {
+                console.log('Language change error:', error);
+            }
+        }
+
+        // 点击外部关闭下拉菜单
+        document.addEventListener('click', function(event) {
+            const dropdown = document.querySelector('.lang-dropdown');
+            if (!dropdown.contains(event.target)) {
+                dropdown.classList.remove('active');
+            }
+        });
+
+        // 页面加载时设置语言
+        document.addEventListener('DOMContentLoaded', function() {
+            try {
+                const urlParams = new URLSearchParams(window.location.search);
+                const urlLang = urlParams.get('lang');
+                const savedLang = localStorage.getItem('selectedLanguage') || 'fr';
+                const currentLang = urlLang || savedLang;
+                
+                // 更新按钮显示
+                const langText = document.querySelector('.lang-text');
+                const languages = {
+                    'en': 'English',
+                    'es': 'Español', 
+                    'fr': 'Français',
+                    'de': 'Deutsch',
+                    'it': 'Italiano',
+                    'ja': '日本語',
+                    'ko': '한국어',
+                    'pt': 'Português',
+                    'ru': 'Русский',
+                    'zh': '中文'
+                };
+                
+                if (langText) {
+                    langText.textContent = languages[currentLang] || 'Français';
+                }
+                
+                // 保存当前语言
+                localStorage.setItem('selectedLanguage', currentLang);
+            } catch (error) {
+                console.log('Language initialization error:', error);
+            }
+        });
+    </script>
+</body>
 </html>
-<div class="progress-bar">
-<div class="progress-fill" style="width: 100%"></div>
-</div>
-

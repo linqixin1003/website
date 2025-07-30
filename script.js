@@ -712,13 +712,16 @@ function createLanguageDropdown() {
     dropdown.appendChild(menu);
     languageSwitcher.appendChild(dropdown);
 
-    button.addEventListener('click', (e) => {
+    // 修复点击事件
+    button.addEventListener('click', function(e) {
+        e.preventDefault();
         e.stopPropagation();
-        dropdown.classList.toggle('active');
+        menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
     });
 
-    document.addEventListener('click', () => {
-        dropdown.classList.remove('active');
+    // 点击页面其他地方关闭下拉菜单
+    document.addEventListener('click', function() {
+        menu.style.display = 'none';
     });
 
     console.log('Language dropdown created successfully');
@@ -791,35 +794,22 @@ function switchLanguage(langCode) {
     });
 
     // 关闭下拉菜单
-    const dropdown = document.querySelector('.lang-dropdown');
-    if (dropdown) {
-        dropdown.classList.remove('active');
+    const menu = document.querySelector('.lang-menu');
+    if (menu) {
+        menu.style.display = 'none';
     }
 
-        // 在主页上只进行翻译，不跳转
+    // 在主页上只进行翻译，不跳转
     if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
         // 主页 - 仅翻译内容，不跳转
         translatePage(langCode);
     } else {
-        // 其他页面根据语言跳转
-        if (langCode !== 'en') {
-            const currentPath = window.location.pathname;
-            const pathParts = currentPath.split('/').filter(part => part.length > 0);
-            
-            // 如果已经在某个语言路径下，替换语言部分
-            if (pathParts.length > 0 && languages[pathParts[0]]) {
-                pathParts[0] = langCode;
-            } else {
-                // 否则在开头添加语言
-                pathParts.unshift(langCode);
-            }
-            
-            const newPath = '/' + pathParts.join('/');
-            window.location.href = newPath;
-        } else {
-            // 英语页面
-            translatePage(langCode);
-        }
+        // 其他页面使用查询参数格式
+        const currentPath = window.location.pathname;
+        const currentSearch = window.location.search.replace(/[?&]lang=[^&]*/, '');
+        const separator = currentSearch ? '&' : '?';
+        const newUrl = currentPath + currentSearch + separator + 'lang=' + langCode;
+        window.location.href = newUrl;
     }
 
     console.log('切换到语言:', languages[langCode].name);
@@ -837,14 +827,79 @@ document.addEventListener('DOMContentLoaded', function() {
         localStorage.setItem('selectedLanguage', urlLang);
     }
     
-    setTimeout(() => {
-        // 只有在找到语言切换器容器时才创建下拉菜单
-        if (document.querySelector('.language-switcher')) {
-            createLanguageDropdown();
+    // 立即创建语言下拉菜单，不使用延迟
+    if (document.querySelector('.language-switcher')) {
+        createLanguageDropdown();
+    }
+    
+    // 初始化时应用当前语言
+    translatePage(currentLang);
+    
+    // 添加CSS样式以确保下拉菜单正确显示
+    const style = document.createElement('style');
+    style.textContent = `
+        .lang-dropdown {
+            position: relative;
+            display: inline-block;
         }
-        // 初始化时应用当前语言
-        translatePage(currentLang);
-    }, 100);
+        .lang-btn {
+            display: flex;
+            align-items: center;
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 4px;
+            color: white;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .lang-menu {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 100%;
+            background: white;
+            border-radius: 4px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            z-index: 1000;
+            min-width: 150px;
+            margin-top: 5px;
+        }
+        .lang-option {
+            padding: 8px 12px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            color: #333;
+        }
+        .lang-option:hover {
+            background: #f5f5f5;
+        }
+        .lang-option.active {
+            background: #e8f5e8;
+        }
+        .flag {
+            margin-right: 8px;
+            font-size: 16px;
+        }
+        .lang-name {
+            flex-grow: 1;
+            font-size: 14px;
+        }
+        .lang-code {
+            font-size: 12px;
+            color: #666;
+            margin-left: 5px;
+        }
+        .lang-icon {
+            margin-right: 5px;
+        }
+        .dropdown-arrow {
+            margin-left: 5px;
+            font-size: 10px;
+        }
+    `;
+    document.head.appendChild(style);
 });
 
 // 为链接添加语言参数的函数

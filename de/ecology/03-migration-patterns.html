@@ -1,44 +1,463 @@
 <!DOCTYPE html>
-
 <html lang="de">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Wanderung Patterns und Routes - BirdAiSnap</title>
-<style>
-        .hero-image img {
-            max-height: 200px;
-            width: 100%;
-            object-fit: cover;
-        }
-        .article-card img {
-            max-height: 120px;
-            width: 100%;
-            object-fit: cover;
-        }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wanderungsmuster und Routen - BirdAiSnap</title>
+    <link rel="stylesheet" href="../../mobile-styles.css">
+    <link rel="stylesheet" href="../../mobile-enhancement.css">
+    <link rel="stylesheet" href="../../ecology-theme.css">
+    <style>
         .hero-image {
-            margin-bottom: 20px !important;
+            width: 100%;
+            height: 300px;
             background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
                         url('../../images/birds/species/bird-image-077.webp') center/cover;
+            position: relative;
+            margin-bottom: 20px;
         }
+        
+        .hero-overlay {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            color: white;
+        }
+        
+        .hero-overlay h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .article-content {
+            background: white;
+            margin: -30px 20px 20px 20px;
+            border-radius: 20px;
+            padding: 40px 20px 30px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            min-height: 80vh;
+        }
+        
         .article-meta {
-            margin-top: 15px !important;
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+        
+        .category {
+            background: #4caf50;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .read-time, .difficulty {
+            background: #f5f5f5;
+            color: #666;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .difficulty.intermediate {
+            background: #fff3e0;
+            color: #f57c00;
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, #e8f5e8, #c8e6c9);
+            border-left: 4px solid #4caf50;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .quote-box::before {
+            content: '"';
+            font-size: 48px;
+            color: #4caf50;
+            position: absolute;
+            top: -5px;
+            left: 15px;
+            font-family: serif;
+            line-height: 1;
+        }
+        
+        .quote-text {
+            font-size: 16px;
+            font-weight: 600;
+            color: #2e7d32;
+            margin-left: 25px;
+            line-height: 1.4;
+            margin-bottom: 10px;
+        }
+        
+        .quote-author {
+            font-size: 14px;
+            color: #388e3c;
+            margin-left: 25px;
+            font-style: italic;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #4caf50;
+            margin: 30px 0 15px 0;
+            border-bottom: 2px solid #c8e6c9;
+            padding-bottom: 8px;
+        }
+        
+        .main-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            margin: 20px 0;
+            text-align: justify;
+        }
+        
+        .migration-section {
+            background: #f9f9f9;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .migration-factors, .migration-routes {
+            margin-bottom: 25px;
+        }
+        
+        .migration-factors h4, .migration-routes h4 {
+            color: #2e7d32;
+            font-size: 16px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        
+        .migration-factors ul, .migration-routes ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .migration-factors li, .migration-routes li {
+            background: white;
+            margin: 8px 0;
+            padding: 10px 15px;
+            border-radius: 8px;
+            border-left: 3px solid #81c784;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .progress-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: linear-gradient(to top, rgba(255,255,255,0.95), transparent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 998;
+        }
+        
+        .progress-bar {
+            width: 200px;
+            height: 4px;
+            background: rgba(0,0,0,0.1);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4caf50, #81c784);
+            width: 0%;
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-overlay h1 {
+                font-size: 24px;
+            }
+            
+            .article-content {
+                margin: -20px 15px 15px 15px;
+                padding: 25px 15px;
+            }
         }
     </style>
-<link href="../../mobile-styles.css" rel="stylesheet"/>
-<link href="../../mobile-enhancement.css" rel="stylesheet"/>
-<link href="../../ecology-theme.css" rel="stylesheet"/>
 </head>
 <body>
-<div class="hero-image"></div>
-<!-- Hauptinhalt -->
-<div class="content">
-<h1 class="title">Wanderung Patterns und Routes</h1>
-<div class="quote-box">
-<div class="quote-text">
-                Entdecken Sie die erstaunlichen Reisen der Zugvögel
+    <div class="hero-image">
+        <div class="hero-overlay">
+            <h1>Die erstaunlichen Reisen der Zugvögel</h1>
+        </div>
+    </div>
+    
+    <main class="article-content">
+        <div class="article-meta">
+            <span class="category">Vogelökologie</span>
+            <span class="read-time">📖 10 Minuten Lesezeit</span>
+            <span class="difficulty intermediate">🟡 Mittelstufe</span>
+        </div>
+        
+        <div class="quote-box">
+            <div class="quote-text">Der Vogelzug ist eines der spektakulärsten Naturphänomene der Erde und verbindet verschiedene Ökosysteme zur Erhaltung der globalen Biodiversität.</div>
+            <div class="quote-author">— Zugökologe</div>
+        </div>
+        
+        <div class="section-title">🌍 Ökologische Bedeutung der Migration</div>
+        <div class="main-text">
+            Der Vogelzug ist ein adaptives Verhalten, das es Vögeln ermöglicht, saisonale Ressourcen in verschiedenen Regionen zu nutzen und harten Umweltbedingungen zu entgehen. Dieses Verhalten hat tiefgreifende Auswirkungen auf das individuelle Überleben, die Populationsdynamik und die Ökosystemfunktionen.
+        </div>
+        
+        <div class="migration-section">
+            <div class="migration-factors">
+                <h4>🍎 Optimierte Ressourcennutzung</h4>
+                <ul>
+                    <li>Brutzeit: Reichliche Insekten in hohen Breitengraden</li>
+                    <li>Überwinterung: Mildes Klima in niedrigen Breitengraden</li>
+                    <li>Vermeidung von Ressourcenknappheit</li>
+                    <li>Maximierung der Energieeffizienz</li>
+                </ul>
             </div>
-</div>
+            
+            <div class="migration-routes">
+                <h4>🌡️ Klimaanpassung</h4>
+                <ul>
+                    <li>Flucht vor extremer Kälte und Nahrungsknappheit</li>
+                    <li>Suche nach geeigneten Brutbedingungen</li>
+                    <li>Reduzierung des Energieverbrauchs</li>
+                    <li>Vermeidung ungünstiger Wetterbedingungen</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="section-title">🗺️ Hauptzugrouten</div>
+        <div class="main-text">
+            Der globale Vogelzug folgt mehreren Hauptflugrouten, die als "Zugwege" bekannt sind:
+        </div>
+        
+        <div class="migration-section">
+            <div class="migration-factors">
+                <h4>🌏 Ostasiatisch-Australasischer Zugweg</h4>
+                <ul>
+                    <li>Verbindet Alaska und Sibirien mit Südostasien und Australien</li>
+                    <li>Hauptarten: Watvögel, Gänse und Enten, Greifvögel</li>
+                    <li>Wichtige Rastplätze: Feuchtgebiete des Gelben Meeres</li>
+                    <li>Bedrohungen: Feuchtgebietsverlust, Meeresspiegelanstieg</li>
+                </ul>
+            </div>
+            
+            <div class="migration-routes">
+                <h4>🌍 Europäisch-Afrikanischer Zugweg</h4>
+                <ul>
+                    <li>Verbindet Europa mit dem subsaharischen Afrika</li>
+                    <li>Hauptarten: Schwalben, Fliegenschnäpper, Störche</li>
+                    <li>Wichtige Rastplätze: Mittelmeerküste</li>
+                    <li>Bedrohungen: Wüstenbildung, menschliche Störungen</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="section-title">📅 Zeitliche Zugmuster</div>
+        <div class="main-text">
+            Verschiedene Vögel haben unterschiedliche Muster in ihrem Zugverhalten:
+        </div>
+        
+        <div class="migration-section">
+            <div class="migration-factors">
+                <h4>🌸 Frühjahrszug (Februar-Mai)</h4>
+                <ul>
+                    <li>Frühe Zugvögel: Gänse und Enten, Kraniche</li>
+                    <li>Mittlere Zugzeit: Die meisten Singvögel, Watvögel</li>
+                    <li>Späte Zugvögel: Fliegenschnäpper, Grasmücken, Schwalben</li>
+                    <li>Timing abhängig von Nahrungsverfügbarkeit</li>
+                </ul>
+            </div>
+            
+            <div class="migration-routes">
+                <h4>🍂 Herbstzug (August-November)</h4>
+                <ul>
+                    <li>Frühe Zugvögel: Watvögel, einige Singvögel</li>
+                    <li>Mittlere Zugzeit: Die meisten Singvögel, Greifvögel</li>
+                    <li>Späte Zugvögel: Gänse und Enten, Kraniche</li>
+                    <li>Weniger synchronisiert als Frühjahrszug</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="section-title">🧭 Navigationsmechanismen</div>
+        <div class="main-text">
+            Vögel haben mehrere Navigationsmechanismen, um Langstreckenwanderungen zu vollenden:
+        </div>
+        
+        <div class="migration-section">
+            <div class="migration-factors">
+                <h4>☀️ Himmelsnavigation</h4>
+                <ul>
+                    <li>Sonnenkompass: Nutzung der Sonnenposition zur Richtungsbestimmung</li>
+                    <li>Sternnavigation: Verwendung von Sternbildern zur nächtlichen Orientierung</li>
+                    <li>Polarisiertes Licht: Wahrnehmung von Lichtmustern am Himmel</li>
+                    <li>Zeitkompensation für Sonnenbewegung</li>
+                </ul>
+            </div>
+            
+            <div class="migration-routes">
+                <h4>🧲 Magnetfeldnavigation</h4>
+                <ul>
+                    <li>Magnetkompass: Wahrnehmung der Erdmagnetfeldrichtung</li>
+                    <li>Magnetische Inklination: Bestimmung des Breitengrades</li>
+                    <li>Magnetische Anomalien: Identifikation besonderer Gebiete</li>
+                    <li>Spezielle Magnetrezeptoren in Augen und Schnabel</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="section-title">⛽ Energiestrategien</div>
+        <div class="main-text">
+            Langstreckenzug erfordert clevere Energiemanagement-Strategien:
+        </div>
+        
+        <div class="migration-section">
+            <div class="migration-factors">
+                <h4>🥜 Fettreserven</h4>
+                <ul>
+                    <li>Intensive Nahrungsaufnahme vor dem Zug</li>
+                    <li>Körpergewicht kann um 50-100% zunehmen</li>
+                    <li>Fett als effiziente Energiequelle</li>
+                    <li>Gewichtsreduktion während des Fluges</li>
+                </ul>
+            </div>
+            
+            <div class="migration-routes">
+                <h4>🛑 Rastplatz-Strategien</h4>
+                <ul>
+                    <li>Auswahl nahrungsreicher Rastplätze</li>
+                    <li>Schnelle Energieauffüllung</li>
+                    <li>Ruhe und Krafterholung</li>
+                    <li>Warten auf günstige Wetterbedingungen</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="section-title">🌊 Ökosystemverbindungen</div>
+        <div class="main-text">
+            Zugvögel verbinden verschiedene Ökosysteme und erfüllen wichtige ökologische Funktionen:
+        </div>
+        
+        <div class="migration-section">
+            <div class="migration-factors">
+                <h4>🌰 Nährstofftransport</h4>
+                <ul>
+                    <li>Übertragung von Meeresnährstoffen an Land</li>
+                    <li>Transport von Nährstoffen zwischen Breitengraden</li>
+                    <li>Vogelkot reich an Stickstoff und Phosphor</li>
+                    <li>Düngung entlegener Ökosysteme</li>
+                </ul>
+            </div>
+            
+            <div class="migration-routes">
+                <h4>🌱 Samenausbreitung</h4>
+                <ul>
+                    <li>Langstrecken-Samenverbreitung</li>
+                    <li>Pflanzenaustausch zwischen Ökosystemen</li>
+                    <li>Förderung der Pflanzenvielfalt</li>
+                    <li>Kolonisierung neuer Lebensräume</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="section-title">⚠️ Bedrohungen für Zugvögel</div>
+        <div class="main-text">
+            Moderne Zugvögel stehen vor beispiellosen Bedrohungen:
+        </div>
+        
+        <div class="migration-section">
+            <div class="migration-factors">
+                <h4>🏗️ Lebensraumverlust</h4>
+                <ul>
+                    <li>Entwaldung in Brutgebieten</li>
+                    <li>Feuchtgebietszerstörung an Rastplätzen</li>
+                    <li>Entwicklung in Überwinterungsgebieten</li>
+                    <li>Fragmentierung wichtiger Lebensräume</li>
+                </ul>
+            </div>
+            
+            <div class="migration-routes">
+                <h4>🌡️ Klimawandel</h4>
+                <ul>
+                    <li>Mismatch zwischen Zugzeit und Nahrungsverfügbarkeit</li>
+                    <li>Zunahme extremer Wetterereignisse</li>
+                    <li>Meeresspiegelanstieg überflutet Rastplätze</li>
+                    <li>Veränderungen der Lebensraumverteilung</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="section-title">🛡️ Naturschutzstrategien</div>
+        <div class="main-text">
+            Der Schutz von Zugvögeln erfordert internationale Zusammenarbeit und umfassende Maßnahmen:
+        </div>
+        
+        <div class="migration-section">
+            <div class="migration-factors">
+                <h4>🌐 Internationale Zusammenarbeit</h4>
+                <ul>
+                    <li>Unterzeichnung internationaler Schutzabkommen</li>
+                    <li>Aufbau transnationaler Schutznetze</li>
+                    <li>Austausch von Überwachungsdaten</li>
+                    <li>Koordinierung von Schutzmaßnahmen</li>
+                </ul>
+            </div>
+            
+            <div class="migration-routes">
+                <h4>🏞️ Lebensraumschutz</h4>
+                <ul>
+                    <li>Einrichtung von Schutzgebietsnetzwerken</li>
+                    <li>Schutz wichtiger Rastplätze</li>
+                    <li>Wiederherstellung degradierter Lebensräume</li>
+                    <li>Schaffung ökologischer Korridore</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+    
+    <div class="progress-container">
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
+        </div>
+    </div>
+
+    <script>
+        // 阅读进度更新
+        function updateProgress() {
+            const scrolled = window.pageYOffset;
+            const maxHeight = document.body.scrollHeight - window.innerHeight;
+            const progress = Math.min((scrolled / maxHeight) * 100, 100);
+            const progressFill = document.querySelector('.progress-fill');
+            if (progressFill) {
+                progressFill.style.width = progress + '%';
+            }
+        }
+        
+        // 初始化
+        window.addEventListener('scroll', updateProgress);
+        updateProgress();
+    </script>
+    <script src="../language-redirect.js"></script>
+</body>
+</html>
 <div class="main-text">
             Vogelzug erweist sich durch systematische wissenschaftliche Untersuchungen als eines der von außergewöhnlicher wissenschaftlicher Relevanzsten Naturphänomene unseres Planeten. Millionen von Vögeln unternehmen jedes Jahr epische Reisen über Tausende von Kilometern, um optimale Brut- und Überwinterungsgebiete zu erreichen<span class="emoji">🌍</span>. Diese bemerkenswerten Wanderungen verbinden Ökosysteme auf der ganzen Welt und spielen eine entscheidende Rolle für die globale Biodiversität.
         </div>

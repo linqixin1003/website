@@ -4,9 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vogelbestimmungstechniken - Vogelwissenszentrum</title>
-    <link href="../../mobile-styles.css" rel="stylesheet"/>
-    <link href="../../mobile-enhancement.css" rel="stylesheet"/>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+
         .hero-image {
             width: 100%;
             height: 400px;
@@ -15,45 +25,210 @@
             position: relative;
             margin-top: 0;
         }
-        .identification-grid, .feature-comparison, .behavior-grid, .season-guide {
+        
+        .content {
+            background: white;
+            margin: -30px 20px 20px 20px;
+            border-radius: 20px;
+            padding: 30px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            min-height: 80vh;
+        }
+        
+        .title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            margin-top: 15px;
+            line-height: 1.3;
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, #e8f5e8, #c8e6c9);
+            border-left: 4px solid #2E8B57;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .quote-box::before {
+            content: '"';
+            font-size: 48px;
+            color: #2E8B57;
+            position: absolute;
+            top: -5px;
+            left: 15px;
+            font-family: serif;
+            line-height: 1;
+        }
+        
+        .quote-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1b5e20;
+            margin-left: 25px;
+            line-height: 1.4;
+        }
+        
+        .main-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            margin: 20px 0;
+            text-align: justify;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #2E8B57;
+            margin: 30px 0 15px 0;
+            border-bottom: 2px solid #c8e6c9;
+            padding-bottom: 8px;
+        }
+        
+        .tip-box {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            border-left: 4px solid #28a745;
+        }
+        
+        .tip-title {
+            font-weight: 600;
+            color: #28a745;
+            margin-bottom: 8px;
+        }
+        
+        .emoji {
+            font-size: 18px;
+            margin: 0 2px;
+        }
+        
+        .identification-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
             margin: 25px 0;
         }
-        .identification-card, .feature-item, .behavior-item, .season-item {
+        
+        .identification-card {
             background: #f8f9fa;
             border-radius: 12px;
             padding: 20px;
             border: 1px solid #e9ecef;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .identification-card:hover, .feature-item:hover, .behavior-item:hover, .season-item:hover {
+        
+        .identification-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
-        h4 { color: #2e7d32; margin-bottom: 15px; font-size: 1.2rem; }
-        ul { list-style: none; padding: 0; }
-        li { color: #555; line-height: 1.6; margin-bottom: 8px; padding-left: 20px; position: relative; }
-        li::before { content: "✔"; color: #4caf50; position: absolute; left: 0; }
+        
+        .identification-card h4 {
+            color: #2e7d32;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .identification-card ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .identification-card li {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .identification-card li::before {
+            content: "✔";
+            color: #4caf50;
+            position: absolute;
+            left: 0;
+        }
+        
+        .progress-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: linear-gradient(to top, rgba(255,255,255,0.95), transparent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 998;
+        }
+        
+        .progress-bar {
+            width: 200px;
+            height: 4px;
+            background: rgba(0,0,0,0.1);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #2E8B57, #4caf50);
+            width: 0%;
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+        
+        @media (max-width: 375px) {
+            .content {
+                margin: -30px 15px 20px 15px;
+                padding: 25px 15px;
+            }
+            
+            .title {
+                font-size: 22px;
+            }
+            
+            .main-text {
+                font-size: 15px;
+            }
+            
+            .identification-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- Hero Image -->
     <div class="hero-image"></div>
+    
+    <!-- Main Content -->
     <div class="content">
         <h1 class="title">Vogelbestimmungstechniken</h1>
+        
         <div class="quote-box">
-            <div class="quote-text">Meistern Sie die Kunst der Vogelbestimmung durch systematische Beobachtung und bewährte Techniken.</div>
+            <div class="quote-text">
+                Meistern Sie die Kunst der Vogelbestimmung durch systematische Beobachtung und bewährte Techniken
+            </div>
         </div>
-        <div class="main-text">Die Vogelbestimmung ist sowohl eine Kunst als auch eine Wissenschaft, die Geduld, Übung und systematische Beobachtung erfordert. Dieser umfassende Leitfaden vermittelt Ihnen die grundlegenden Techniken, die von Ornithologen und erfahrenen Vogelbeobachtern zur genauen Bestimmung von Vögeln im Freien verwendet werden.</div>
-        <div class="article-meta">
-            <span class="category knowledge">Vogelwissen</span>
-            <span class="read-time">📖 12 Minuten Lesezeit</span>
-            <span class="difficulty">🟡 Mittelstufe</span>
+        
+        <div class="main-text">
+            Die Vogelbestimmung ist sowohl eine Kunst als auch eine Wissenschaft, die Geduld, Übung und systematische Beobachtung erfordert <span class="emoji">🔍</span>. Dieser umfassende Leitfaden vermittelt Ihnen die grundlegenden Techniken, die von Ornithologen und erfahrenen Vogelbeobachtern zur genauen Bestimmung von Vögeln im Freien verwendet werden.
         </div>
-
+        
         <div class="section-title">🎯 Wichtige Bestimmungsmerkmale</div>
-        <div class="main-text">Eine erfolgreiche Vogelbestimmung beruht auf der Beobachtung spezifischer physischer und verhaltensbezogener Merkmale. Lernen Sie, sich auf diese Schlüsselmerkmale für eine genaue Identifizierung zu konzentrieren.</div>
+        
+        <div class="main-text">
+            Eine erfolgreiche Vogelbestimmung beruht auf der Beobachtung spezifischer physischer und verhaltensbezogener Merkmale. Lernen Sie, sich auf diese Schlüsselmerkmale für eine genaue Identifizierung zu konzentrieren.
+        </div>
+        
         <div class="identification-grid">
             <div class="identification-card">
                 <h4>🦅 Größe und Form</h4>
@@ -63,8 +238,10 @@
                     <li>Beinlänge und -dicke</li>
                     <li>Flügelform und -proportionen</li>
                     <li>Schwanzlänge und -form</li>
+                    <li>Halslänge und -dicke</li>
                 </ul>
             </div>
+            
             <div class="identification-card">
                 <h4>🌈 Farbe und Muster</h4>
                 <ul>
@@ -73,124 +250,244 @@
                     <li>Augenringe und -streifen</li>
                     <li>Brust- und Bauchzeichnungen</li>
                     <li>Schwanzmuster und -spitzen</li>
+                    <li>Saisonale Farbveränderungen</li>
                 </ul>
             </div>
+            
             <div class="identification-card">
                 <h4>🎵 Laute und Rufe</h4>
                 <ul>
                     <li>Gesangsmuster und Rhythmus</li>
                     <li>Rufnoten und Frequenz</li>
-                    <li>Warnrufe und Flugrufe</li>
+                    <li>Warnrufe</li>
+                    <li>Flugrufe</li>
                     <li>Territorialgesänge</li>
                     <li>Kontaktrufe</li>
                 </ul>
             </div>
+            
             <div class="identification-card">
                 <h4>🏃 Verhalten und Bewegung</h4>
                 <ul>
-                    <li>Flugmuster (wellenförmig, direkt)</li>
-                    <li>Fressverhalten (am Boden, in der Luft)</li>
+                    <li>Flugmuster</li>
+                    <li>Fressverhalten</li>
                     <li>Sitzgewohnheiten</li>
-                    <li>Bodenbewegung (hüpfen, laufen)</li>
-                    <li>Sozialverhalten (allein, in Schwärmen)</li>
+                    <li>Bodenbewegung</li>
+                    <li>Sozialverhalten</li>
+                    <li>Lebensraumpräferenzen</li>
                 </ul>
             </div>
         </div>
-
-        <div class="section-title">🗓️ Saisonale Identifizierung</div>
-        <div class="main-text">Das Aussehen und Verhalten von Vögeln ändert sich mit den Jahreszeiten dramatisch. Das Verständnis dieser Variationen ist für die ganzjährige Identifizierung von entscheidender Bedeutung.</div>
-        <div class="season-guide">
-            <div class="season-item">
-                <h4>🌸 Frühling</h4>
-                <p>Brutkleid, Reviergesang, Balzverhalten und Zugaktivität.</p>
+        
+        <div class="section-title">📏 Größenvergleichsmethoden</div>
+        
+        <div class="main-text">
+            Die genaue Beurteilung der Vogelgröße ist entscheidend für die Bestimmung. Verwenden Sie diese Referenzpunkte und Vergleichstechniken <span class="emoji">📐</span>.
+        </div>
+        
+        <div class="main-text">
+            Vergleichen Sie unbekannte Vögel mit vertrauten Arten wie Spatzen, Rotkehlchen oder Krähen als Größenreferenz. Beachten Sie das Verhältnis zwischen Kopfgröße, Körperlänge und Beinlänge für eine genaue Identifizierung.
+        </div>
+        
+        <div class="section-title">🦆 Schnabelform und Funktion</div>
+        
+        <div class="main-text">
+            Die Schnabelform ist eines der zuverlässigsten Bestimmungsmerkmale, da sie direkt mit dem Fressverhalten und Lebensraum zusammenhängt <span class="emoji">🌾</span>.
+        </div>
+        
+        <div class="identification-grid">
+            <div class="identification-card">
+                <h4>🌾 Samenfresserschnäbel</h4>
+                <ul>
+                    <li>Kurz, dick, kegelförmig</li>
+                    <li>Stark zum Knacken von Samen</li>
+                    <li>Beispiele: Finken, Spatzen</li>
+                    <li>Saisonale Größenvariationen</li>
+                </ul>
             </div>
-            <div class="season-item">
-                <h4>☀️ Sommer</h4>
-                <p>Höhepunkt der Brutfarben, Familiengruppen, Beginn der Mauser und Auftreten von Jungvögeln.</p>
+            
+            <div class="identification-card">
+                <h4>🐛 Insektenfresserschnäbel</h4>
+                <ul>
+                    <li>Dünn, spitz und scharf</li>
+                    <li>Perfekt zum Insektenfang</li>
+                    <li>Beispiele: Grasmücken, Fliegenschnäpper</li>
+                    <li>Oft mit Borsten an der Basis</li>
+                </ul>
             </div>
-            <div class="season-item">
-                <h4>🍂 Herbst</h4>
-                <p>Herbstzug, gemischte Schwärme, Mauser ins Winterkleid und seltene Gastvögel.</p>
+            
+            <div class="identification-card">
+                <h4>🌸 Nektarfresserschnäbel</h4>
+                <ul>
+                    <li>Lang, dünn und gebogen</li>
+                    <li>Angepasst für Blütenfütterung</li>
+                    <li>Beispiele: Kolibris, Nektarvögel</li>
+                    <li>Ko-Evolution mit Blüten</li>
+                </ul>
             </div>
-            <div class="season-item">
-                <h4>❄️ Winter</h4>
-                <p>Schlichtes Winterkleid, Schwarmverhalten und Zuzug nördlicher Arten.</p>
+            
+            <div class="identification-card">
+                <h4>🐟 Fischfresserschnäbel</h4>
+                <ul>
+                    <li>Lang, scharf und spitz</li>
+                    <li>Oft mit gezackten Rändern</li>
+                    <li>Beispiele: Reiher, Eisvögel</li>
+                    <li>Speerartig zum Fischfang</li>
+                </ul>
             </div>
         </div>
-
+        
+        <div class="section-title">🗓️ Saisonale Bestimmungsherausforderungen</div>
+        
+        <div class="main-text">
+            Das Aussehen und Verhalten von Vögeln ändert sich mit den Jahreszeiten dramatisch. Das Verständnis dieser Variationen ist für die ganzjährige Bestimmung entscheidend <span class="emoji">🌸</span>.
+        </div>
+        
+        <div class="identification-grid">
+            <div class="identification-card">
+                <h4>🌸 Frühling</h4>
+                <ul>
+                    <li>Brutkleid erscheint</li>
+                    <li>Reviergesang beginnt</li>
+                    <li>Balzverhalten sichtbar</li>
+                    <li>Zugaktivität intensiv</li>
+                </ul>
+            </div>
+            
+            <div class="identification-card">
+                <h4>☀️ Sommer</h4>
+                <ul>
+                    <li>Höhepunkt der Brutfarben</li>
+                    <li>Familiengruppen bilden sich</li>
+                    <li>Mauser beginnt</li>
+                    <li>Jungvögel erscheinen</li>
+                </ul>
+            </div>
+            
+            <div class="identification-card">
+                <h4>🍂 Herbst</h4>
+                <ul>
+                    <li>Herbstzug setzt ein</li>
+                    <li>Gemischte Schwärme</li>
+                    <li>Mauser ins Winterkleid</li>
+                    <li>Seltene Gastvögel</li>
+                </ul>
+            </div>
+            
+            <div class="identification-card">
+                <h4>❄️ Winter</h4>
+                <ul>
+                    <li>Schlichtes Winterkleid</li>
+                    <li>Schwarmverhalten</li>
+                    <li>Zuzug nördlicher Arten</li>
+                    <li>Reduzierte Aktivität</li>
+                </ul>
+            </div>
+        </div>
+        
         <div class="section-title">⚠️ Häufige Bestimmungsfehler</div>
-        <div class="main-text">Vermeiden Sie diese häufigen Fallstricke, die zu Fehlbestimmungen führen können, und verbessern Sie Ihre Genauigkeit im Feld.</div>
+        
+        <div class="main-text">
+            Vermeiden Sie diese häufigen Fallstricke, die zu Fehlbestimmungen führen können, und verbessern Sie Ihre Genauigkeit im Feld <span class="emoji">🎯</span>.
+        </div>
+        
         <div class="identification-grid">
             <div class="identification-card">
                 <h4>🎨 Farbvoreingenommenheit</h4>
                 <ul>
-                    <li>Licht beeinflusst die Farbwahrnehmung.</li>
-                    <li>Fokus auf Muster, nicht nur auf Farben.</li>
+                    <li>Licht beeinflusst Farbwahrnehmung</li>
+                    <li>Entfernung verändert Farbintensität</li>
+                    <li>Individuelle Variation existiert</li>
+                    <li>Fokus auf Muster, nicht nur Farben</li>
                 </ul>
             </div>
+            
             <div class="identification-card">
                 <h4>📏 Fehleinschätzung der Größe</h4>
                 <ul>
-                    <li>Entfernung beeinflusst die Größenwahrnehmung.</li>
-                    <li>Verwenden Sie Referenzobjekte.</li>
+                    <li>Entfernung beeinflusst Größenwahrnehmung</li>
+                    <li>Mangel an Referenzobjekten</li>
+                    <li>Haltung verändert scheinbare Größe</li>
+                    <li>Verwenden Sie mehrere Größenhinweise</li>
                 </ul>
             </div>
+            
             <div class="identification-card">
                 <h4>🎵 Klangverwechslung</h4>
                 <ul>
-                    <li>Ähnliche Gesänge zwischen Arten.</li>
-                    <li>Mimikry bei einigen Arten.</li>
+                    <li>Ähnliche Gesänge zwischen Arten</li>
+                    <li>Individuelle Gesangsvariationen</li>
+                    <li>Mimikry bei einigen Arten</li>
+                    <li>Umweltgeräusche stören</li>
                 </ul>
             </div>
+            
             <div class="identification-card">
                 <h4>🏃 Verhaltensannahmen</h4>
                 <ul>
-                    <li>Ungewöhnliches Verhalten kann auftreten.</li>
-                    <li>Verhalten ändert sich saisonal.</li>
+                    <li>Ungewöhnliches Verhalten kann auftreten</li>
+                    <li>Lebensraumflexibilität existiert</li>
+                    <li>Saisonale Verhaltensänderungen</li>
+                    <li>Individuelle Persönlichkeitsunterschiede</li>
                 </ul>
             </div>
         </div>
-
+        
         <div class="tip-box">
             <div class="tip-title">🎓 Expertentipps für den Erfolg</div>
             <div class="main-text">
-                • Beginnen Sie mit häufigen lokalen Arten, bevor Sie seltene Vögel versuchen.<br>
-                • Üben Sie beim Lernen unter guten Lichtverhältnissen.<br>
-                • Führen Sie ein Feldnotizbuch, um Ihre Beobachtungen und Fortschritte zu verfolgen.<br>
-                • Haben Sie keine Angst zu sagen „Ich weiß es nicht" - das ist Teil des Lernens.<br>
-                • Konzentrieren Sie sich ebenso auf das Verhalten wie auf das äußere Erscheinungsbild.
+                • Beginnen Sie mit häufigen lokalen Arten, bevor Sie seltene Vögel versuchen<br>
+                • Üben Sie beim Lernen unter guten Lichtverhältnissen<br>
+                • Führen Sie ein Feldnotizbuch, um Ihre Beobachtungen und Fortschritte zu verfolgen<br>
+                • Haben Sie keine Angst zu sagen „Ich weiß es nicht" - das ist Teil des Lernens<br>
+                • Verwenden Sie mehrere Feldführer und Ressourcen zum Vergleich<br>
+                • Konzentrieren Sie sich ebenso auf das Verhalten wie auf das äußere Erscheinungsbild<br>
+                • Lernen Sie zuerst die häufigen Arten in Ihrer Gegend gründlich kennen
             </div>
         </div>
+        
+        <div class="main-text">
+            Die Vogelbestimmung ist ein lebenslanger Lernprozess. Mit zunehmender Erfahrung werden Sie feststellen, dass jeder Feldausflug neue Entdeckungen und Herausforderungen bringt <span class="emoji">✨</span>. Von der grundlegenden Artenbestimmung bis zur anspruchsvollen Verhaltensanalyse bietet die Welt der Vogelbestimmung endlose Möglichkeiten für Erkundung und persönliche Bereicherung.
+        </div>
     </div>
+    
+    <!-- Progress Bar -->
     <div class="progress-container">
         <div class="progress-bar">
             <div class="progress-fill"></div>
         </div>
     </div>
+
     <script>
+        // Update time
+        function updateTime() {
+            const now = new Date();
+            const timeString = now.getHours().toString().padStart(2, '0') + ':' + 
+                             now.getMinutes().toString().padStart(2, '0');
+            const timeElement = document.getElementById('current-time');
+            if (timeElement) {
+                timeElement.textContent = timeString;
+            }
+        }
+        
+        // Simulate reading progress
         function updateProgress() {
-            try {
-                const scrolled = window.pageYOffset || document.documentElement.scrollTop || 0;
-                const maxHeight = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight) - window.innerHeight;
-                if (maxHeight > 0) {
-                    const progress = Math.min((scrolled / maxHeight) * 100, 100);
-                    const progressFill = document.querySelector('.progress-fill');
-                    if (progressFill) progressFill.style.width = progress + '%';
-                }
-            } catch (e) { /* silent fail */ }
+            const scrolled = window.pageYOffset;
+            const maxHeight = document.body.scrollHeight - window.innerHeight;
+            const progress = Math.min((scrolled / maxHeight) * 100, 100);
+            const progressFill = document.querySelector('.progress-fill');
+            if (progressFill) {
+                progressFill.style.width = progress + '%';
+            }
         }
-        function init() {
-            try {
-                window.addEventListener('scroll', updateProgress, { passive: true });
-                window.addEventListener('resize', updateProgress);
-                updateProgress();
-            } catch (e) { /* silent fail */ }
-        }
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', init);
-        } else {
-            init();
-        }
+        
+        // Initialize
+        updateTime();
+        setInterval(updateTime, 60000);
+        
+        window.addEventListener('scroll', updateProgress);
+        updateProgress();
     </script>
+    <script src="../language-redirect.js"></script>
 </body>
 </html>

@@ -3,226 +3,514 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ecología Aviar - BirdAiSnap</title>
-    <link rel="stylesheet" href="../styles.css">
-    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <title>Ecología de Aves - BirdAiSnap</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+        
+        .language-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        
+        .lang-dropdown {
+            position: relative;
+        }
+        
+        .lang-btn {
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid #e0e0e0;
+            border-radius: 25px;
+            padding: 8px 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #333;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .lang-btn:hover {
+            background: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+        
+        .lang-icon {
+            font-size: 16px;
+        }
+        
+        .dropdown-arrow {
+            font-size: 12px;
+            transition: transform 0.3s ease;
+        }
+        
+        .lang-dropdown.active .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+        
+        .lang-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1001;
+            margin-top: 5px;
+        }
+        
+        .lang-dropdown.active .lang-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .lang-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .lang-option:last-child {
+            border-bottom: none;
+        }
+        
+        .lang-option:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .lang-option.active {
+            background-color: #e3f2fd;
+            color: #1976d2;
+        }
+        
+        .lang-option .flag {
+            font-size: 18px;
+        }
+        
+        .lang-option .name {
+            flex: 1;
+            font-weight: 500;
+        }
+        
+        .lang-option .code {
+            font-size: 12px;
+            color: #666;
+            background: #f0f0f0;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+        
+        .lang-option.active .code {
+            background: #bbdefb;
+            color: #1976d2;
+        }
+        
+        .header {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.6)), 
+                        url('../images/birds/species/bird-image-015.webp') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .header-title {
+            color: white;
+            font-size: 32px;
+            font-weight: 700;
+            text-align: center;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .content {
+            background: white;
+            margin: -30px 20px 20px 20px;
+            border-radius: 20px;
+            padding: 30px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            min-height: 80vh;
+        }
+        
+        .article-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .article-card {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            height: 250px;
+            display: block;
+            text-decoration: none;
+        }
+        
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .article-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .article-card:hover .article-image {
+            transform: scale(1.05);
+        }
+        
+        .article-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            padding: 20px;
+            color: white;
+        }
+        
+        .article-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .article-description {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        @media (max-width: 768px) {
+            .article-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 20px;
+            }
+            
+            .header-title {
+                font-size: 28px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .article-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header-title {
+                font-size: 24px;
+            }
+            
+            .content {
+                margin: -20px 15px 15px 15px;
+                padding: 25px 15px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Navegación -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <img src="../images/logo.png" alt="BirdAiSnap Logo" class="logo-img">
-                <span class="logo-text">BirdAiSnap</span>
-            </div>
-            <ul class="nav-menu">
-                <li class="nav-item">
-                    <a href="../index.html?lang=es" class="nav-link">Inicio</a>
-                </li>
-                <li class="nav-item">
-                    <a href="../index.html?lang=es#features" class="nav-link">Características</a>
-                </li>
-                <li class="nav-item">
-                    <a href="../index.html?lang=es#about" class="nav-link">Acerca de</a>
-                </li>
-                <li class="nav-item">
-                    <a href="../index.html?lang=es#contact" class="nav-link">Contacto</a>
-                </li>
-            </ul>
-            <div class="language-switcher">
-                <!-- El selector de idioma se generará dinámicamente -->
-            </div>
-            <div class="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Sección Hero -->
-    <section class="knowledge-hero">
-        <div class="hero-content">
-            <h1>Ecología Aviar</h1>
-            <p>Explora las complejas y fascinantes relaciones entre las aves y su entorno. La ecología aviar estudia cómo las aves se adaptan a diferentes hábitats, sus roles en los ecosistemas y el impacto de los cambios ambientales en las poblaciones aviares. Comprender estas relaciones ecológicas nos ayuda a proteger mejor a las aves y sus hábitats.</p>
-        </div>
-    </section>
-
-    <!-- Cuadrícula de Artículos -->
-    <section class="articles-grid">
-        <div class="container">
-            <div class="grid">
-                <!-- Artículo 1: Hábitats y Ecosistemas -->
-                <article class="article-card" onclick="navigateToArticle('ecology/01-habitat-ecosystems.html')">
-                    <div class="article-image">
-                        <img src="../images/birds/species/habitat-ecosystems.webp" alt="Hábitats y Ecosistemas" loading="lazy">
-                    </div>
-                    <div class="article-content">
-                        <h3>Hábitats y Ecosistemas</h3>
-                        <p>Comprende la diversidad de hábitats aviares y las funciones de los ecosistemas</p>
-                    </div>
-                </article>
-
-                <!-- Artículo 2: Redes y Cadenas Alimentarias -->
-                <article class="article-card" onclick="navigateToArticle('ecology/02-food-webs-chains.html')">
-                    <div class="article-image">
-                        <img src="../images/birds/species/food-webs-chains.webp" alt="Redes y Cadenas Alimentarias" loading="lazy">
-                    </div>
-                    <div class="article-content">
-                        <h3>Redes y Cadenas Alimentarias</h3>
-                        <p>Explora la posición importante y el papel de las aves en las redes alimentarias</p>
-                    </div>
-                </article>
-
-                <!-- Artículo 3: Patrones de Migración -->
-                <article class="article-card" onclick="navigateToArticle('ecology/03-migration-patterns.html')">
-                    <div class="article-image">
-                        <img src="../images/birds/species/migration-patterns.webp" alt="Patrones de Migración" loading="lazy">
-                    </div>
-                    <div class="article-content">
-                        <h3>Patrones de Migración</h3>
-                        <p>Estudia los patrones complejos y el significado ecológico de la migración aviar</p>
-                    </div>
-                </article>
-
-                <!-- Artículo 4: Ecología Reproductiva -->
-                <article class="article-card" onclick="navigateToArticle('ecology/04-breeding-ecology.html')">
-                    <div class="article-image">
-                        <img src="../images/birds/species/breeding-ecology.webp" alt="Ecología Reproductiva" loading="lazy">
-                    </div>
-                    <div class="article-content">
-                        <h3>Ecología Reproductiva</h3>
-                        <p>Comprende los comportamientos reproductivos y las estrategias ecológicas de las aves</p>
-                    </div>
-                </article>
-
-                <!-- Artículo 5: Impacto del Cambio Climático -->
-                <article class="article-card" onclick="navigateToArticle('ecology/05-climate-change-impact.html')">
-                    <div class="article-image">
-                        <img src="../images/birds/species/climate-change-impact.webp" alt="Impacto del Cambio Climático" loading="lazy">
-                    </div>
-                    <div class="article-content">
-                        <h3>Impacto del Cambio Climático</h3>
-                        <p>Analiza el profundo impacto del cambio climático en la ecología aviar</p>
-                    </div>
-                </article>
-
-                <!-- Artículo 6: Ecología Urbana -->
-                <article class="article-card" onclick="navigateToArticle('ecology/06-urban-ecology.html')">
-                    <div class="article-image">
-                        <img src="../images/birds/species/urban-ecology.webp" alt="Ecología Urbana" loading="lazy">
-                    </div>
-                    <div class="article-content">
-                        <h3>Ecología Urbana</h3>
-                        <p>Explora cómo las aves se adaptan a los entornos urbanos</p>
-                    </div>
-                </article>
-
-                <!-- Artículo 7: Biología de la Conservación -->
-                <article class="article-card" onclick="navigateToArticle('ecology/07-conservation-biology.html')">
-                    <div class="article-image">
-                        <img src="../images/birds/species/conservation-biology.webp" alt="Biología de la Conservación" loading="lazy">
-                    </div>
-                    <div class="article-content">
-                        <h3>Biología de la Conservación</h3>
-                        <p>Aprende los principios científicos y métodos prácticos de la conservación aviar</p>
-                    </div>
-                </article>
-
-                <!-- Artículo 8: Biogeografía Insular -->
-                <article class="article-card" onclick="navigateToArticle('ecology/08-island-biogeography.html')">
-                    <div class="article-image">
-                        <img src="../images/birds/species/island-biogeography.webp" alt="Biogeografía Insular" loading="lazy">
-                    </div>
-                    <div class="article-content">
-                        <h3>Biogeografía Insular</h3>
-                        <p>Estudia la distribución y evolución de las aves en entornos insulares</p>
-                    </div>
-                </article>
-
-                <!-- Artículo 9: Polinización y Dispersión de Semillas -->
-                <article class="article-card" onclick="navigateToArticle('ecology/09-pollination-seed-dispersal.html')">
-                    <div class="article-image">
-                        <img src="../images/birds/species/pollination-seed-dispersal.webp" alt="Polinización y Dispersión de Semillas" loading="lazy">
-                    </div>
-                    <div class="article-content">
-                        <h3>Polinización y Dispersión de Semillas</h3>
-                        <p>Comprende el papel importante de las aves en la reproducción vegetal</p>
-                    </div>
-                </article>
-
-                <!-- Artículo 10: Dinámicas Comunitarias -->
-                <article class="article-card" onclick="navigateToArticle('ecology/10-community-dynamics.html')">
-                    <div class="article-image">
-                        <img src="../images/birds/species/community-dynamics.webp" alt="Dinámicas Comunitarias" loading="lazy">
-                    </div>
-                    <div class="article-content">
-                        <h3>Dinámicas Comunitarias</h3>
-                        <p>Explora la estructura y los cambios dinámicos de las comunidades aviares</p>
-                    </div>
-                </article>
+    <!-- Selector de idioma -->
+    <div class="language-switcher">
+        <div class="lang-dropdown">
+            <button class="lang-btn" onclick="toggleLanguageMenu()">
+                <span class="lang-icon">🌐</span>
+                <span class="lang-text">Español</span>
+                <span class="dropdown-arrow">▼</span>
+            </button>
+            <div class="lang-menu">
+                <div class="lang-option" onclick="changeLanguage('en')">
+                    <span class="flag">🇺🇸</span>
+                    <span class="name">English</span>
+                    <span class="code">EN</span>
+                </div>
+                <div class="lang-option active" onclick="changeLanguage('es')">
+                    <span class="flag">🇪🇸</span>
+                    <span class="name">Español</span>
+                    <span class="code">ES</span>
+                </div>
+                <div class="lang-option" onclick="changeLanguage('fr')">
+                    <span class="flag">🇫🇷</span>
+                    <span class="name">Français</span>
+                    <span class="code">FR</span>
+                </div>
+                <div class="lang-option" onclick="changeLanguage('de')">
+                    <span class="flag">🇩🇪</span>
+                    <span class="name">Deutsch</span>
+                    <span class="code">DE</span>
+                </div>
+                <div class="lang-option" onclick="changeLanguage('it')">
+                    <span class="flag">🇮🇹</span>
+                    <span class="name">Italiano</span>
+                    <span class="code">IT</span>
+                </div>
+                <div class="lang-option" onclick="changeLanguage('ja')">
+                    <span class="flag">🇯🇵</span>
+                    <span class="name">日本語</span>
+                    <span class="code">JA</span>
+                </div>
+                <div class="lang-option" onclick="changeLanguage('ko')">
+                    <span class="flag">🇰🇷</span>
+                    <span class="name">한국어</span>
+                    <span class="code">KO</span>
+                </div>
+                <div class="lang-option" onclick="changeLanguage('pt')">
+                    <span class="flag">🇵🇹</span>
+                    <span class="name">Português</span>
+                    <span class="code">PT</span>
+                </div>
+                <div class="lang-option" onclick="changeLanguage('ru')">
+                    <span class="flag">🇷🇺</span>
+                    <span class="name">Русский</span>
+                    <span class="code">RU</span>
+                </div>
+                <div class="lang-option" onclick="changeLanguage('zh')">
+                    <span class="flag">🇨🇳</span>
+                    <span class="name">中文</span>
+                    <span class="code">ZH</span>
+                </div>
             </div>
         </div>
-    </section>
-
-    <!-- Pie de página -->
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>Producto</h3>
-                <ul>
-                    <li><a href="../index.html?lang=es#download">Descargar aplicación</a></li>
-                    <li><a href="../index.html?lang=es#features">Características</a></li>
-                    <li><a href="../knowledge.html?lang=es">Guía del usuario</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>Soporte</h3>
-                <ul>
-                    <li><a href="#">Centro de ayuda</a></li>
-                    <li><a href="#">Comentarios</a></li>
-                    <li><a href="#">Política de privacidad</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>Contacto</h3>
-                <ul>
-                    <li><a href="../index.html?lang=es#contact">Consulta por correo electrónico</a></li>
-                </ul>
-            </div>
+    </div>
+    
+    <!-- Encabezado -->
+    <div class="header">
+        <h1 class="header-title">Ecología de Aves</h1>
+    </div>
+    
+    <!-- Contenido principal -->
+    <div class="content">
+        <div class="article-grid">
+            <!-- Artículo 1 -->
+            <a href="ecology/01-habitat-ecosystems.html" class="article-card" onclick="addLanguageParam(event, this)">
+                <img src="../images/birds/species/bird-image-075.webp" class="article-image" alt="Hábitats y Ecosistemas">
+                <div class="article-overlay">
+                    <h3 class="article-title">Hábitats y Ecosistemas</h3>
+                    <p class="article-description">Comprender la diversidad de hábitats de aves y funciones ecosistémicas</p>
+                </div>
+            </a>
+            
+            <!-- Artículo 2 -->
+            <a href="ecology/02-food-webs-chains.html" class="article-card" onclick="addLanguageParam(event, this)">
+                <img src="../images/birds/species/bird-image-076.webp" class="article-image" alt="Redes y Cadenas Alimentarias">
+                <div class="article-overlay">
+                    <h3 class="article-title">Redes y Cadenas Alimentarias</h3>
+                    <p class="article-description">Explorar la posición importante y el papel de las aves en las redes alimentarias</p>
+                </div>
+            </a>
+            
+            <!-- Artículo 3 -->
+            <a href="ecology/03-migration-patterns.html" class="article-card" onclick="addLanguageParam(event, this)">
+                <img src="../images/birds/species/bird-image-077.webp" class="article-image" alt="Patrones de Migración">
+                <div class="article-overlay">
+                    <h3 class="article-title">Patrones de Migración</h3>
+                    <p class="article-description">Estudiar los patrones complejos y el significado ecológico de la migración de aves</p>
+                </div>
+            </a>
+            
+            <!-- Artículo 4 -->
+            <a href="ecology/04-breeding-ecology.html" class="article-card" onclick="addLanguageParam(event, this)">
+                <img src="../images/birds/species/head_breeding_cology.webp" class="article-image" alt="Ecología de Reproducción">
+                <div class="article-overlay">
+                    <h3 class="article-title">Ecología de Reproducción</h3>
+                    <p class="article-description">Comprender los comportamientos reproductivos y estrategias ecológicas de las aves</p>
+                </div>
+            </a>
+            
+            <!-- Artículo 5 -->
+            <a href="ecology/05-climate-change-impact.html" class="article-card" onclick="addLanguageParam(event, this)">
+                <img src="../images/birds/species/bird-image-079.webp" class="article-image" alt="Impacto del Cambio Climático">
+                <div class="article-overlay">
+                    <h3 class="article-title">Impacto del Cambio Climático</h3>
+                    <p class="article-description">Analizar los impactos profundos del cambio climático en la ecología de aves</p>
+                </div>
+            </a>
+            
+            <!-- Artículo 6 -->
+            <a href="ecology/06-urban-ecology.html" class="article-card" onclick="addLanguageParam(event, this)">
+                <img src="../images/birds/species/head_urban_ecology.webp" class="article-image" alt="Ecología Urbana">
+                <div class="article-overlay">
+                    <h3 class="article-title">Ecología Urbana</h3>
+                    <p class="article-description">Explorar cómo las aves se adaptan a los entornos urbanos</p>
+                </div>
+            </a>
+            
+            <!-- Artículo 7 -->
+            <a href="ecology/07-conservation-biology.html" class="article-card" onclick="addLanguageParam(event, this)">
+                <img src="../images/birds/species/head_conservation_biology.webp" class="article-image" alt="Biología de la Conservación">
+                <div class="article-overlay">
+                    <h3 class="article-title">Biología de la Conservación</h3>
+                    <p class="article-description">Aprender los principios científicos y métodos prácticos de conservación de aves</p>
+                </div>
+            </a>
+            
+            <!-- Artículo 8 -->
+            <a href="ecology/08-island-biogeography.html" class="article-card" onclick="addLanguageParam(event, this)">
+                <img src="../images/birds/species/head_island_biogeography.webp" class="article-image" alt="Biogeografía Insular">
+                <div class="article-overlay">
+                    <h3 class="article-title">Biogeografía Insular</h3>
+                    <p class="article-description">Estudiar la distribución y evolución de aves en ambientes insulares</p>
+                </div>
+            </a>
+            
+            <!-- Artículo 9 -->
+            <a href="ecology/09-pollination-seed-dispersal.html" class="article-card" onclick="addLanguageParam(event, this)">
+                <img src="../images/birds/species/head_pollination_seed_dispersal.webp" class="article-image" alt="Polinización y Dispersión de Semillas">
+                <div class="article-overlay">
+                    <h3 class="article-title">Polinización y Dispersión de Semillas</h3>
+                    <p class="article-description">Comprender el papel importante de las aves en la reproducción de plantas</p>
+                </div>
+            </a>
+            
+            <!-- Artículo 10 -->
+            <a href="ecology/10-community-dynamics.html" class="article-card" onclick="addLanguageParam(event, this)">
+                <img src="../images/birds/species/head_community_dynamics.webp" class="article-image" alt="Dinámicas Comunitarias">
+                <div class="article-overlay">
+                    <h3 class="article-title">Dinámicas Comunitarias</h3>
+                    <p class="article-description">Explorar la estructura y cambios dinámicos de las comunidades de aves</p>
+                </div>
+            </a>
         </div>
-        <div class="footer-bottom">
-            <p>© 2024 BirdAiSnap. Todos los derechos reservados</p>
-        </div>
-    </footer>
+    </div>
 
-    <!-- Scripts -->
+    <!-- Incluir script multiidioma -->
+    <script src="../script.js"></script>
     <script src="language-redirect.js"></script>
     <script>
-        // Función para navegar a artículos con parámetros de idioma
-        function navigateToArticle(articlePath) {
-            const currentLang = localStorage.getItem('selectedLanguage') || 'es';
-            const fullPath = currentLang + '/' + articlePath;
-            const separator = fullPath.includes('?') ? '&' : '?';
-            window.location.href = fullPath + separator + 'lang=' + currentLang;
+        // Funcionalidad de cambio de idioma
+        function toggleLanguageMenu() {
+            try {
+                const dropdown = document.querySelector('.lang-dropdown');
+                if (dropdown) {
+                    dropdown.classList.toggle('active');
+                }
+            } catch (error) {
+                console.log('Toggle menu error:', error);
+            }
         }
 
-        // Inicializar navegación móvil
+        function changeLanguage(langCode) {
+            try {
+                localStorage.setItem('selectedLanguage', langCode);
+                
+                // Actualizar visualización del botón
+                const langText = document.querySelector('.lang-text');
+                const languages = {
+                    'en': 'English',
+                    'es': 'Español', 
+                    'fr': 'Français',
+                    'de': 'Deutsch',
+                    'it': 'Italiano',
+                    'ja': '日本語',
+                    'ko': '한국어',
+                    'pt': 'Português',
+                    'ru': 'Русский',
+                    'zh': '中文'
+                };
+                
+                if (langText) {
+                    langText.textContent = languages[langCode] || 'English';
+                }
+                
+                // Cerrar menú desplegable
+                const dropdown = document.querySelector('.lang-dropdown');
+                if (dropdown) {
+                    dropdown.classList.remove('active');
+                }
+                
+                // Navegar a la versión de idioma correspondiente
+                if (langCode === 'en') {
+                    window.location.href = '../ecology.html';
+                } else {
+                    window.location.href = '../' + langCode + '/ecology.html?lang=' + langCode;
+                }
+            } catch (error) {
+                console.log('Language change error:', error);
+            }
+        }
+
+        // Función para agregar parámetro de idioma a enlaces
+        function addLanguageParam(event, element) {
+            event.preventDefault();
+            const currentLang = localStorage.getItem('selectedLanguage') || 'es';
+            const href = element.getAttribute('href');
+            
+            // Navegar a la página de idioma correspondiente
+            window.location.href = href;
+        }
+
+        // Cerrar menú desplegable al hacer clic fuera
+        document.addEventListener('click', function(event) {
+            const dropdown = document.querySelector('.lang-dropdown');
+            if (!dropdown.contains(event.target)) {
+                dropdown.classList.remove('active');
+            }
+        });
+
+        // Establecer idioma al cargar la página
         document.addEventListener('DOMContentLoaded', function() {
-            const hamburger = document.querySelector('.hamburger');
-            const navMenu = document.querySelector('.nav-menu');
-
-            if (hamburger && navMenu) {
-                hamburger.addEventListener('click', function() {
-                    hamburger.classList.toggle('active');
-                    navMenu.classList.toggle('active');
-                });
-
-                // Cerrar menú al hacer clic en un enlace
-                document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
-                    hamburger.classList.remove('active');
-                    navMenu.classList.remove('active');
-                }));
+            try {
+                const urlParams = new URLSearchParams(window.location.search);
+                const urlLang = urlParams.get('lang');
+                const savedLang = localStorage.getItem('selectedLanguage') || 'es';
+                const currentLang = urlLang || savedLang;
+                
+                // Actualizar visualización del botón
+                const langText = document.querySelector('.lang-text');
+                const languages = {
+                    'en': 'English',
+                    'es': 'Español', 
+                    'fr': 'Français',
+                    'de': 'Deutsch',
+                    'it': 'Italiano',
+                    'ja': '日本語',
+                    'ko': '한국어',
+                    'pt': 'Português',
+                    'ru': 'Русский',
+                    'zh': '中文'
+                };
+                
+                if (langText) {
+                    langText.textContent = languages[currentLang] || 'Español';
+                }
+                
+                // Guardar idioma actual
+                localStorage.setItem('selectedLanguage', currentLang);
+            } catch (error) {
+                console.log('Language initialization error:', error);
             }
         });
     </script>

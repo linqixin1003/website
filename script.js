@@ -928,7 +928,7 @@ function addLanguageParam(event, linkElement) {
     }
 }
 
-// 为分类页面导航的函数（直接使用路径，不添加URL参数）
+// 为分类页面导航的函数（根据语言跳转到对应页面）
 function navigateWithLanguage(pageName) {
     try {
         if (!pageName) return;
@@ -936,9 +936,12 @@ function navigateWithLanguage(pageName) {
         const currentLang = localStorage.getItem('selectedLanguage') || 'en';
         
         // 对于分类页面，根据当前语言构建正确的URL
-        let newUrl = pageName;
-        if (currentLang !== 'en') {
-            // 如果页面名称不包含语言前缀，添加语言参数
+        let newUrl;
+        if (currentLang === 'en') {
+            // 英文版本直接使用原页面名
+            newUrl = pageName;
+        } else {
+            // 其他语言版本使用查询参数格式，让服务器重定向到对应的语言目录
             const separator = pageName.includes('?') ? '&' : '?';
             newUrl = pageName + separator + 'lang=' + currentLang;
         }

@@ -1297,34 +1297,34 @@ function addLanguageParam(event, linkElement) {
         
         if (!originalHref) return;
         
-        // 根据当前语言构建对应的URL
+        // 根据当前语言构建对应的URL路径（不使用URL参数）
         let newHref = originalHref;
         if (currentLang !== 'en') {
             // 将 en/ 替换为对应语言的路径
             newHref = originalHref.replace('en/', currentLang + '/');
         }
         
-        // 添加语言参数
-        const separator = newHref.includes('?') ? '&' : '?';
-        newHref += separator + 'lang=' + currentLang;
-        
-        // 跳转到新URL
+        // 直接跳转到新URL路径，不添加lang参数
         window.location.href = newHref;
     } catch (error) {
         console.log('Link navigation error:', error);
     }
 }
 
-// 为分类页面导航添加语言参数的函数
+// 为分类页面导航的函数（直接使用路径，不添加URL参数）
 function navigateWithLanguage(pageName) {
     try {
         if (!pageName) return;
         
         const currentLang = localStorage.getItem('selectedLanguage') || 'en';
         
-        // 添加语言参数
-        const separator = pageName.includes('?') ? '&' : '?';
-        const newUrl = pageName + separator + 'lang=' + currentLang;
+        // 对于分类页面，如果不是英文，需要检查是否已经包含语言前缀
+        let newUrl = pageName;
+        if (currentLang !== 'en' && !pageName.startsWith(currentLang + '/')) {
+            // 如果页面名称不包含语言前缀，添加语言参数
+            const separator = pageName.includes('?') ? '&' : '?';
+            newUrl = pageName + separator + 'lang=' + currentLang;
+        }
         
         // 跳转到新URL
         window.location.href = newUrl;
@@ -1342,26 +1342,37 @@ function handleArticleLanguageRedirect() {
             path.includes('/pet-care/') || path.includes('/scientific-wonders/') || 
             path.includes('/ecology/') || path.includes('/cultural-symbolism/')) {
             
-            const urlParams = new URLSearchParams(window.location.search);
-            const urlLang = urlParams.get('lang');
-            const savedLang = localStorage.getItem('selectedLanguage') || 'en';
-            
-            // 如果URL中有语言参数，使用它；否则使用保存的语言
-            const targetLang = urlLang || savedLang;
-            
-            // 检查当前页面的语言是否与目标语言匹配
             const pathParts = path.split('/').filter(part => part.length > 0);
             const currentPageLang = pathParts[0]; // 获取路径中的语言代码
+            const savedLang = localStorage.getItem('selectedLanguage') || 'en';
             
-            if (currentPageLang !== targetLang && languages[targetLang] && pathParts.length > 1) {
-                // 构建正确的语言版本URL
-                pathParts[0] = targetLang;
-                const newPath = '/' + pathParts.join('/');
-                const newUrl = window.location.origin + newPath + window.location.search;
-                
-                // 跳转到正确的语言版本
-                window.location.href = newUrl;
+            // 优先使用路径中的语言，如果路径中没有语言或语言不匹配，则使用保存的语言
+            let targetLang = savedLang;
+            
+            // 检查URL参数中是否有语言设置（用于兼容旧链接）
+            const urlParams = new URLSearchParams(window.location.search);
+            const urlLang = urlParams.get('lang');
+            if (urlLang && languages[urlLang]) {
+                targetLang = urlLang;
+                // 如果URL参数中有语言，更新localStorage并重定向到纯路径版本
+                localStorage.setItem('selectedLanguage', urlLang);
+                if (pathParts.length > 0) {
+                    pathParts[0] = urlLang;
+                    const newPath = '/' + pathParts.join('/');
+                    const newUrl = window.location.origin + newPath;
+                    window.location.href = newUrl;
+                    return;
+                }
             }
+            
+            // 如果当前页面有有效的语言代码，更新localStorage为当前语言
+            if (languages[currentPageLang]) {
+                // 用户直接访问了特定语言页面，更新localStorage为当前语言
+                localStorage.setItem('selectedLanguage', currentPageLang);
+                console.log(`Article page language updated to: ${currentPageLang}`);
+            }
+            
+            // 不再进行自动语言跳转，尊重用户的直接访问意图
         }
     } catch (error) {
         console.log('Language redirect error:', error);

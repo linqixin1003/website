@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Language Redirect Test - BirdAiSnap</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .test-container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2d5a27;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .test-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        .test-title {
+            font-weight: bold;
+            color: #2d5a27;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        .test-link {
+            display: block;
+            margin: 10px 0;
+            padding: 10px 15px;
+            background-color: #e8f5e8;
+            border: 1px solid #c3e6c3;
+            border-radius: 5px;
+            text-decoration: none;
+            color: #2d5a27;
+            transition: background-color 0.3s;
+        }
+        .test-link:hover {
+            background-color: #d4edda;
+        }
+        .description {
+            font-size: 14px;
+            color: #666;
+            margin-top: 5px;
+        }
+        .current-info {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .note {
+            background-color: #d1ecf1;
+            border: 1px solid #bee5eb;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🔗 Language Redirect Test</h1>
+        
+        <div class="current-info">
+            <strong>Current Language Setting:</strong> <span id="currentLang">Loading...</span><br>
+            <strong>Current URL:</strong> <span id="currentUrl">Loading...</span>
+        </div>
+
+        <div class="test-section">
+            <div class="test-title">📚 Knowledge Section Tests</div>
+            <a href="ja/knowledge/02-essential-equipment.html" class="test-link">
+                Japanese Knowledge Article (Pure Path)
+                <div class="description">Should go to: ja/knowledge/02-essential-equipment.html</div>
+            </a>
+            <a href="ja/knowledge/02-essential-equipment.html?lang=ja" class="test-link">
+                Japanese Knowledge Article (With Query Param)
+                <div class="description">Should redirect to: ja/knowledge/02-essential-equipment.html (no query param)</div>
+            </a>
+            <a href="en/knowledge/02-essential-equipment.html?lang=zh" class="test-link">
+                English Article with Chinese Lang Param
+                <div class="description">Should redirect to: zh/knowledge/02-essential-equipment.html</div>
+            </a>
+        </div>
+
+        <div class="test-section">
+            <div class="test-title">🐦 Birdwatching Section Tests</div>
+            <a href="ko/birdwatching/01-getting-started.html" class="test-link">
+                Korean Birdwatching Article (Pure Path)
+                <div class="description">Should go to: ko/birdwatching/01-getting-started.html</div>
+            </a>
+            <a href="en/birdwatching/01-getting-started.html?lang=ko" class="test-link">
+                English Article with Korean Lang Param
+                <div class="description">Should redirect to: ko/birdwatching/01-getting-started.html</div>
+            </a>
+        </div>
+
+        <div class="test-section">
+            <div class="test-title">🔬 Scientific Wonders Tests</div>
+            <a href="de/scientific-wonders/01-bird-flight-mechanics.html" class="test-link">
+                German Scientific Article (Pure Path)
+                <div class="description">Should go to: de/scientific-wonders/01-bird-flight-mechanics.html</div>
+            </a>
+            <a href="fr/scientific-wonders/02-magnetic-navigation.html?lang=fr" class="test-link">
+                French Article with Query Param
+                <div class="description">Should redirect to: fr/scientific-wonders/02-magnetic-navigation.html (no query param)</div>
+            </a>
+        </div>
+
+        <div class="test-section">
+            <div class="test-title">🌿 Ecology Section Tests</div>
+            <a href="es/ecology/01-habitat-ecosystems.html" class="test-link">
+                Spanish Ecology Article (Pure Path)
+                <div class="description">Should go to: es/ecology/01-habitat-ecosystems.html</div>
+            </a>
+            <a href="it/ecology/03-migration-patterns.html?lang=it" class="test-link">
+                Italian Article with Query Param
+                <div class="description">Should redirect to: it/ecology/03-migration-patterns.html (no query param)</div>
+            </a>
+        </div>
+
+        <div class="test-section">
+            <div class="test-title">🏠 Pet Care Section Tests</div>
+            <a href="pt/pet-care/01-choosing-right-bird.html" class="test-link">
+                Portuguese Pet Care Article (Pure Path)
+                <div class="description">Should go to: pt/pet-care/01-choosing-right-bird.html</div>
+            </a>
+            <a href="ru/pet-care/02-nutrition-feeding.html?lang=ru" class="test-link">
+                Russian Article with Query Param
+                <div class="description">Should redirect to: ru/pet-care/02-nutrition-feeding.html (no query param)</div>
+            </a>
+        </div>
+
+        <div class="note">
+            <strong>Testing Instructions:</strong>
+            <ol>
+                <li>Click on each link above</li>
+                <li>Check that URLs with query parameters (?lang=xx) redirect to pure path format</li>
+                <li>Verify that pure path links work directly without redirection</li>
+                <li>Confirm that the language setting is maintained in localStorage</li>
+                <li>Test that language mismatches redirect to the correct language version</li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        // Display current settings
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentLang = localStorage.getItem('selectedLanguage') || 'en';
+            const currentUrl = window.location.href;
+            
+            document.getElementById('currentLang').textContent = currentLang;
+            document.getElementById('currentUrl').textContent = currentUrl;
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>No Redirect Test - BirdAiSnap</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .test-container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2d5a27;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .test-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        .test-link {
+            display: block;
+            margin: 10px 0;
+            padding: 15px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .test-link:hover {
+            background-color: #0056b3;
+        }
+        .status {
+            background-color: #e8f5e8;
+            border: 1px solid #c3e6c3;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .console-log {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 14px;
+            white-space: pre-wrap;
+            margin-top: 20px;
+        }
+        .success {
+            color: #28a745;
+            font-weight: bold;
+        }
+        .instructions {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🚫 No Redirect Test</h1>
+        
+        <div class="status">
+            <strong>Current localStorage Language:</strong> <span id="currentLang">Loading...</span><br>
+            <strong>Test Time:</strong> <span id="testTime">Loading...</span>
+        </div>
+
+        <div class="instructions">
+            <h3>🧪 Test Instructions:</h3>
+            <p>Set localStorage to Chinese ('zh'), then click the Japanese links below. If fixed correctly:</p>
+            <ul>
+                <li>✅ Pages should load without redirecting</li>
+                <li>✅ localStorage should update to 'ja'</li>
+                <li>❌ No automatic redirect to Chinese pages should occur</li>
+            </ul>
+        </div>
+
+        <div class="test-section">
+            <h3>🔧 Setup Test Environment</h3>
+            <button onclick="setLanguageToChinese()" style="padding: 10px 20px; background: #dc3545; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                Set localStorage to Chinese (zh)
+            </button>
+            <p><small>This simulates the scenario where user has Chinese set but wants to access Japanese pages</small></p>
+        </div>
+
+        <div class="test-section">
+            <h3>🇯🇵 Japanese Page Tests</h3>
+            <p>After setting language to Chinese, these links should NOT redirect:</p>
+            
+            <a href="ja/knowledge/02-essential-equipment.html" class="test-link">
+                Japanese Knowledge: Essential Equipment
+                <small style="display: block; margin-top: 5px; font-weight: normal;">
+                    Should stay at: /ja/knowledge/02-essential-equipment.html
+                </small>
+            </a>
+            
+            <a href="ja/birdwatching/01-getting-started.html" class="test-link">
+                Japanese Birdwatching: Getting Started
+                <small style="display: block; margin-top: 5px; font-weight: normal;">
+                    Should stay at: /ja/birdwatching/01-getting-started.html
+                </small>
+            </a>
+            
+            <a href="ja/ecology/01-habitat-ecosystems.html" class="test-link">
+                Japanese Ecology: Habitat Ecosystems  
+                <small style="display: block; margin-top: 5px; font-weight: normal;">
+                    Should stay at: /ja/ecology/01-habitat-ecosystems.html
+                </small>
+            </a>
+        </div>
+
+        <div class="console-log" id="consoleLog">Console logs will appear here...</div>
+
+        <div class="test-section">
+            <h3 class="success">✅ Success Criteria</h3>
+            <ul>
+                <li>✅ Clicking Japanese links loads Japanese pages (no redirect)</li>
+                <li>✅ localStorage updates from 'zh' to 'ja'</li>
+                <li>✅ Console shows: "Article page language updated to: ja"</li>
+                <li>✅ URL remains exactly as clicked (no query parameters added)</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function updateStatus() {
+            const currentLang = localStorage.getItem('selectedLanguage') || 'en';
+            const now = new Date().toLocaleTimeString();
+            
+            document.getElementById('currentLang').textContent = currentLang;
+            document.getElementById('testTime').textContent = now;
+        }
+
+        function setLanguageToChinese() {
+            localStorage.setItem('selectedLanguage', 'zh');
+            updateStatus();
+            logMessage('✅ localStorage set to Chinese (zh)');
+        }
+
+        function logMessage(message) {
+            const consoleLog = document.getElementById('consoleLog');
+            const timestamp = new Date().toLocaleTimeString();
+            const logEntry = `[${timestamp}] ${message}\n`;
+            consoleLog.textContent += logEntry;
+            consoleLog.scrollTop = consoleLog.scrollHeight;
+        }
+
+        // Capture console.log messages
+        const originalLog = console.log;
+        console.log = function(...args) {
+            originalLog.apply(console, args);
+            logMessage(args.join(' '));
+        };
+
+        // Update status on page load
+        document.addEventListener('DOMContentLoaded', updateStatus);
+        
+        // Update status when returning to page
+        window.addEventListener('focus', updateStatus);
+        window.addEventListener('pageshow', updateStatus);
+
+        // Initial log
+        logMessage('🧪 Test page loaded. Ready for testing!');
+    </script>
+</body>
+</html> 

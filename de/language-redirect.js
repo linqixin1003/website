@@ -22,63 +22,48 @@ function handleLanguageRedirect() {
     const urlLang = urlParams.get('lang');
     const savedLang = localStorage.getItem('selectedLanguage') || 'en';
     
-    // 如果URL中有lang参数，使用它并更新localStorage，然后重定向到纯路径
+    // 检查是否是语言子目录格式的URL
+    const pathParts = path.split('/');
+    const potentialLangCode = pathParts[1];
+    
+    // 如果是语言子目录格式，只保存语言设置，不进行重定向
+    if (languageMap[potentialLangCode]) {
+        // 保存语言设置
+        localStorage.setItem('selectedLanguage', potentialLangCode);
+        console.log(`Language set from subdirectory: ${potentialLangCode}`);
+        return; // 不进行重定向，直接显示当前页面
+    }
+    
+    // 如果URL中有lang参数，使用它并更新localStorage
     if (urlLang && languageMap[urlLang]) {
         localStorage.setItem('selectedLanguage', urlLang);
-        
-        // 构建纯路径URL（移除查询参数）
-        const pathParts = path.split('/');
-        if (pathParts.length > 1) {
-            pathParts[1] = urlLang;
-            const newPath = pathParts.join('/');
-            const newUrl = window.location.origin + newPath;
-            
-            // 重定向到纯路径版本
-            // 禁用强制重定向，尊重用户直接访问意图
+        console.log(`Language set from URL parameter: ${urlLang}`);
+        return; // 不进行重定向，直接显示当前页面
+    }
+    
+    // 只有在没有任何语言指示的情况下，才根据保存的语言设置进行重定向
+    if (!urlLang && !languageMap[potentialLangCode] && savedLang && savedLang !== 'en') {
+        const newUrl = window.location.origin + path + (path.includes('?') ? '&' : '?') + 'lang=' + savedLang;
+        window.location.replace(newUrl);
+        return;
+    }
+}
 
-            // window.location.replace(newUrl);
-            return;
-        }
+// 检查文件是否存在
+async function fileExists(url) {
+    try {
+        const response = await fetch(url, { method: 'HEAD' });
+        return response.ok;
+    } catch (error) {
+        return false;
     }
-    
-    // 获取当前页面的语言代码
-    const pathParts = path.split('/');
-    const currentPageLang = pathParts[1];
-    
-    // 如果当前页面有有效的语言代码，更新localStorage
-    if (languageMap[currentPageLang]) {
-        // 用户直接访问了特定语言页面，更新localStorage为当前语言
-        localStorage.setItem('selectedLanguage', currentPageLang);
-        console.log(`Language updated to: ${currentPageLang}`);
-    }
-    
-    // 不再进行自动语言跳转，尊重用户的直接访问意图
 }
 
 // 页面加载时执行语言检测
 document.addEventListener('DOMContentLoaded', function() {
     handleLanguageRedirect();
-});
-
-// 为返回按钮添加正确的语言路径
-function goBackWithLanguage() {
-    const currentLang = localStorage.getItem('selectedLanguage') || 'en';
-    let backUrl;
     
-    if (currentLang === 'en') {
-        backUrl = '/knowledge.html';
-    } else {
-        backUrl = `/${currentLang}/knowledge.html`;
-    }
-    
-    // 禁用强制重定向，尊重用户直接访问意图
-
-    
-    // window.location.href = backUrl;
-}
-
-// 如果页面有返回按钮，为其添加点击事件
-document.addEventListener('DOMContentLoaded', function() {
+    // 为返回按钮添加语言参数（如果存在）
     const backButton = document.querySelector('.back-button');
     if (backButton) {
         backButton.addEventListener('click', function(e) {
@@ -86,4 +71,118 @@ document.addEventListener('DOMContentLoaded', function() {
             goBackWithLanguage();
         });
     }
+    
+    // 为所有内部链接添加当前语言参数
+    addLanguageToLinks();
+    
+    // 为语言切换器添加事件监听
+    setupLanguageSwitcher();
 });
+
+// 为返回按钮添加正确的语言路径
+function goBackWithLanguage() {
+    const currentLang = localStorage.getItem('selectedLanguage') || 'en';
+    let backUrl = '/knowledge.html';
+    
+    if (currentLang !== 'en') {
+        backUrl += '?lang=' + currentLang;
+    }
+    
+    window.location.href = backUrl;
+}
+
+// 设置语言切换器
+function setupLanguageSwitcher() {
+    const languageSwitchers = document.querySelectorAll('.language-switcher a, .language-selector a');
+    if (languageSwitchers.length === 0) return;
+    
+    languageSwitchers.forEach(link => {
+        link.addEventListener('click', async function(e) {
+            e.preventDefault();
+            const lang = this.getAttribute('data-lang');
+            if (!lang || !languageMap[lang]) return;
+            
+            localStorage.setItem('selectedLanguage', lang);
+            
+            // 获取当前页面的基本路径（不包含语言代码）
+            let basePath = window.location.pathname;
+            const pathParts = basePath.split('/');
+            if (pathParts.length > 1 && languageMap[pathParts[1]]) {
+                pathParts.splice(1, 1); // 移除语言代码部分
+                basePath = pathParts.join('/');
+            }
+            
+            // 构建新的URL
+            let newUrl;
+            if (lang === 'en') {
+                newUrl = window.location.origin + basePath;
+            } else {
+                // 首先尝试查询参数格式
+                newUrl = window.location.origin + basePath + (basePath.includes('?') ? '&' : '?') + 'lang=' + lang;
+                
+                // 如果查询参数格式不存在，尝试子目录格式
+                const subDirUrl = window.location.origin + '/' + lang + basePath;
+                const exists = await fileExists(subDirUrl);
+                if (exists) {
+                    newUrl = subDirUrl;
+                }
+            }
+            
+            window.location.href = newUrl;
+        });
+    });
+}
+
+// 为页面上的所有内部链接添加语言参数
+function addLanguageToLinks() {
+    const currentLang = localStorage.getItem('selectedLanguage') || 'en';
+    if (currentLang === 'en') return; // 英语是默认语言，不需要添加参数
+    
+    const links = document.querySelectorAll('a[href]');
+    links.forEach(async link => {
+        const href = link.getAttribute('href');
+        
+        // 只处理内部链接，不处理外部链接、锚点链接和已有lang参数的链接
+        if (href && !href.startsWith('http') && !href.startsWith('#') && !href.includes('lang=')) {
+            // 检查链接是否包含语言子目录
+            const hrefParts = href.split('/');
+            if (hrefParts.length > 1 && languageMap[hrefParts[1]]) {
+                // 移除语言子目录
+                hrefParts.splice(1, 1);
+                let newHref = hrefParts.join('/');
+                
+                // 添加lang参数
+                newHref += (newHref.includes('?') ? '&' : '?') + 'lang=' + currentLang;
+                
+                // 检查文件是否存在
+                const exists = await fileExists(window.location.origin + newHref);
+                if (exists) {
+                    link.setAttribute('href', newHref);
+                } else {
+                    // 如果查询参数格式不存在，尝试使用子目录格式
+                    const subDirUrl = '/' + currentLang + hrefParts.join('/');
+                    const subDirExists = await fileExists(window.location.origin + subDirUrl);
+                    if (subDirExists) {
+                        link.setAttribute('href', subDirUrl);
+                    }
+                }
+            } else {
+                // 构建查询参数格式的URL
+                const newHref = href + (href.includes('?') ? '&' : '?') + 'lang=' + currentLang;
+                
+                // 检查文件是否存在
+                const exists = await fileExists(window.location.origin + newHref);
+                if (exists) {
+                    link.setAttribute('href', newHref);
+                } else {
+                    // 如果查询参数格式不存在，尝试使用子目录格式
+                    const subDirUrl = '/' + currentLang + href;
+                    const subDirExists = await fileExists(window.location.origin + subDirUrl);
+                    if (subDirExists) {
+                        link.setAttribute('href', subDirUrl);
+                    }
+                }
+            }
+        }
+    });
+}

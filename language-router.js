@@ -100,7 +100,9 @@ class LanguageRouter {
         const newUrl = this.buildLanguageUrl(currentPath, newLanguage);
         
         // 跳转到新URL
-        window.location.href = newUrl;
+        // 禁用强制重定向，尊重用户直接访问意图
+
+        // window.location.href = newUrl;
     }
 
     // 获取当前页面的基础路径（去除语言前缀）

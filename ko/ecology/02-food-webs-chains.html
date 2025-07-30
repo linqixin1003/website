@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-
 <html lang="ko">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>서식지와 생태계 - BirdAiSnap</title>
-<link href="../../mobile-styles.css" rel="stylesheet"/>
-<link href="../../mobile-enhancement.css" rel="stylesheet"/>
-<link href="../../ecology-theme.css" rel="stylesheet"/>
-<style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>먹이망 및 먹이사슬 - BirdAiSnap</title>
+    <link rel="stylesheet" href="../../mobile-styles.css">
+    <link rel="stylesheet" href="../../mobile-enhancement.css">
+    <link rel="stylesheet" href="../../ecology-theme.css">
+    <style>
         .hero-image img {
             max-height: 200px;
             width: 100%;
@@ -22,224 +21,316 @@
         .hero-image {
             margin-bottom: 20px !important;
             background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
-                        url('../../images/birds/species/bird-image-075.webp') center/cover;
+                        url('../../images/birds/species/bird-image-076.webp') center/cover;
         }
         .article-meta {
             margin-top: 15px !important;
         }
+        .food-web-diagram, .trophic-levels, .energy-flow, .predator-prey {
+            margin: 20px 0;
+        }
+        .trophic-level, .energy-item, .predator-item, .web-component {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            border-left: 4px solid #28a745;
+        }
+        .level-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .species-examples {
+            background: #e8f5e8;
+            border-radius: 6px;
+            padding: 10px;
+            margin: 8px 0;
+            border-left: 3px solid #28a745;
+        }
+        .interaction-types {
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 25px 0;
+            border-left: 4px solid #ff9800;
+        }
+        .interaction-types h4 {
+            color: #f57c00;
+            margin-bottom: 15px;
+        }
+        .interaction-item {
+            background: rgba(255,255,255,0.8);
+            margin: 10px 0;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 3px solid #ff9800;
+        }
+        .cascade-effects {
+            background: linear-gradient(135deg, #fce4ec, #f8bbd9);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 25px 0;
+            border-left: 4px solid #e91e63;
+        }
+        .cascade-effects h4 {
+            color: #c2185b;
+            margin-bottom: 15px;
+        }
+        .cascade-item {
+            background: rgba(255,255,255,0.8);
+            margin: 10px 0;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 3px solid #e91e63;
+        }
     </style>
 </head>
 <body>
-<div class="hero-image"></div>
-<div class="content">
-    <h1 class="title">서식지와 생태계</h1>
-    <div class="quote-box">
-        <div class="quote-text">자연의 복잡한 생태학적 관계 탐구</div>
-    </div>
-    <div class="main-text">
-        Habitat is the foundation of bird survival, and ecosystems are the stage for their reproduction. Understanding the intricate relationships between birds and their environments is crucial for conservation efforts and ecological balance<span class="emoji">🌿</span>.
-    </div>
-    <div class="article-meta">
-        <span class="category ecology">Bird Ecology</span>
-        <span class="read-time">📖 8 minute read</span>
-        <span class="difficulty">🟢 Beginner</span>
-    </div>
-    <div class="section-title">What is a Bird Habitat</div>
-    <div class="main-text">
-        A habitat is the natural environment where birds live and breed, including food sources, nesting sites, water sources, and shelter. Different birds have vastly different habitat requirements, and this diversity creates rich bird ecosystems<span class="emoji">🏠</span>.
-    </div>
-    <div class="tip-box">
-        <div class="tip-title">🌱 Habitat Essentials</div>
-        모든 조류 서식지는 네 가지 기본 요소를 제공해야 합니다: 먹이, 물, 은신처, 적절한 둥지터. The quality and availability of these elements determine the carrying capacity of the habitat.
-    </div>
-    <div class="section-title">산림 서식지</div>
-    <div class="main-text">
-        Forest habitats provide rich food resources and nesting sites, supporting numerous avian species<span class="emoji">🌲</span>. These complex ecosystems offer multiple vertical layers that different bird species utilize for feeding, nesting, and shelter.
-    </div>
-    <div class="habitat-types">
-        <div class="habitat-item">
-            <h4>침엽수림</h4>
-            <div class="main-text">Home to grouse, woodpeckers, and corvids that have adapted to needle-bearing trees</div>
+    <div class="hero-image"></div>
+    <div class="content">
+        <h1 class="title">먹이망 및 먹이사슬</h1>
+        
+        <div class="quote-box">
+            <div class="quote-text">생태계 내 에너지 흐름과 조류의 중요한 위치를 탐구하세요</div>
         </div>
-        <div class="habitat-item">
-            <h4>활엽수림</h4>
-            <div class="main-text">Support songbirds, raptors, and climbing birds with seasonal leaf changes</div>
+        
+        <div class="main-text">
+            먹이망과 먹이사슬은 생태계 내에서 에너지와 영양소가 어떻게 전달되는지를 보여주는 중요한 생태학적 개념입니다. 조류는 이러한 복잡한 네트워크에서 핵심적인 역할을 하며, 다양한 영양 단계에서 생태계의 균형을 유지하는 데 기여합니다<span class="emoji">🕸️</span>. 먹이망을 이해하는 것은 조류 보전과 생태계 관리에 필수적입니다.
         </div>
-        <div class="habitat-item">
-            <h4>혼합림</h4>
-            <div class="main-text">Habitats with the highest species diversity, combining benefits of both forest types</div>
+        
+        <div class="article-meta">
+            <span class="category ecology">조류 생태학</span>
+            <span class="read-time">📖 7분 읽기</span>
+            <span class="difficulty">🟡 중급</span>
         </div>
-    </div>
-    
-    <div class="section-title">습지 생태계</div>
-    <div class="main-text">
-        습지 서식지는 지구상에서 가장 생산적인 생태계 중 하나입니다, supporting an incredible diversity of waterbirds<span class="emoji">💧</span>. These areas serve as critical stopover points during migration and provide essential breeding grounds.
-    </div>
-    <div class="tip-box">
-        <div class="tip-title">🦆 Wetland Importance</div>
-        Wetlands support over 40% of all bird species despite covering only 6% of Earth's surface, making them crucial for global bird conservation.
-    </div>
-    <div class="section-title">Birds' Roles in Ecosystems</div>
-    <div class="main-text">
-        조류는 생태계에서 여러 역할을 수행합니다, serving as both consumers and providers of essential ecosystem services<span class="emoji">🌍</span>. Their diverse feeding strategies and behaviors create complex ecological networks that support biodiversity.
-    </div>
-    
-    <div class="ecological-roles">
-        <div class="role-category">
-            <h4>Consumer Roles</h4>
-            <div class="role-grid">
-                <div class="role-item">
-                    <h5>Primary Consumers</h5>
-                    <div class="main-text">Herbivorous birds: Geese, ducks, pigeons</div>
+        
+        <div class="section-title">먹이사슬과 먹이망의 차이</div>
+        
+        <div class="main-text">
+            먹이사슬은 생산자에서 최상위 포식자까지의 선형적인 에너지 전달 경로를 나타내는 반면, 먹이망은 생태계 내의 모든 먹이사슬이 상호 연결된 복잡한 네트워크를 의미합니다<span class="emoji">🔗</span>. 실제 자연에서는 대부분의 동물이 여러 종류의 먹이를 섭취하고, 여러 포식자에게 먹이가 되므로 먹이망이 더 현실적인 모델입니다.
+        </div>
+        
+        <div class="main-text">
+            조류는 특히 복잡한 먹이망 관계를 보여줍니다. 많은 조류 종들이 계절에 따라 먹이를 바꾸고, 생활사의 다른 단계에서 서로 다른 영양 단계를 차지합니다<span class="emoji">🔄</span>. 예를 들어, 어린 새들은 주로 곤충을 먹지만 성체가 되면 종자나 과실을 주로 섭취하는 경우가 많습니다.
+        </div>
+        
+        <div class="section-title">영양 단계에서 조류의 위치</div>
+        
+        <div class="main-text">
+            조류는 먹이망의 거의 모든 영양 단계에서 발견되며, 이는 그들의 생태학적 중요성을 보여줍니다<span class="emoji">🏗️</span>. 각 영양 단계에서 조류는 고유한 역할을 수행하며, 생태계의 에너지 흐름과 영양소 순환에 기여합니다.
+        </div>
+        
+        <div class="trophic-levels">
+            <div class="level-grid">
+                <div class="trophic-level">
+                    <h4>1차 소비자 (초식성 조류)</h4>
+                    <div class="main-text">식물의 잎, 줄기, 종자, 과실을 직접 섭취하는 조류들입니다.</div>
+                    <div class="species-examples">
+                        <strong>대표 종:</strong> 거위류, 오리류, 비둘기류, 앵무새류, 핀치류
+                    </div>
+                    <div class="species-examples">
+                        <strong>생태적 역할:</strong> 식물 개체군 조절, 종자 산포, 수분 매개
+                    </div>
                 </div>
-                <div class="role-item">
-                    <h5>Secondary Consumers</h5>
-                    <div class="main-text">Insectivorous birds: Swallows, flycatchers, wrens</div>
+                
+                <div class="trophic-level">
+                    <h4>2차 소비자 (곤충식성 조류)</h4>
+                    <div class="main-text">곤충과 기타 무척추동물을 주로 섭취하는 조류들입니다.</div>
+                    <div class="species-examples">
+                        <strong>대표 종:</strong> 제비류, 파리잡이류, 딱따구리류, 굴뚝새류
+                    </div>
+                    <div class="species-examples">
+                        <strong>생태적 역할:</strong> 곤충 개체군 조절, 해충 방제, 생물학적 균형 유지
+                    </div>
                 </div>
-                <div class="role-item">
-                    <h5>Top Consumers</h5>
-                    <div class="main-text">Raptors: Hawks, falcons, owls</div>
+                
+                <div class="trophic-level">
+                    <h4>3차 소비자 (어식성 조류)</h4>
+                    <div class="main-text">물고기와 수생 동물을 주로 섭취하는 조류들입니다.</div>
+                    <div class="species-examples">
+                        <strong>대표 종:</strong> 왜가리류, 가마우지류, 물총새류, 갈매기류
+                    </div>
+                    <div class="species-examples">
+                        <strong>생태적 역할:</strong> 어류 개체군 조절, 수생 생태계와 육상 생태계 연결
+                    </div>
                 </div>
-                <div class="role-item">
-                    <h5>Decomposer Assistants</h5>
-                    <div class="main-text">Scavenging birds: Vultures, crows, magpies</div>
+                
+                <div class="trophic-level">
+                    <h4>최상위 포식자 (맹금류)</h4>
+                    <div class="main-text">다른 조류와 포유동물을 사냥하는 최상위 포식자들입니다.</div>
+                    <div class="species-examples">
+                        <strong>대표 종:</strong> 독수리류, 매류, 송골매류, 올빼미류
+                    </div>
+                    <div class="species-examples">
+                        <strong>생태적 역할:</strong> 개체군 조절, 자연 선택 압력 제공, 생태계 안정성 유지
+                    </div>
                 </div>
             </div>
         </div>
         
-        <div class="role-category">
-            <h4>Ecosystem Service Providers</h4>
-            <div class="service-list">
-                <div class="service-item">
-                    <h5>🌸 Pollination Services</h5>
-                    <div class="main-text">Hummingbirds, sunbirds, and honeyeaters pollinate plants, maintaining plant diversity</div>
-                </div>
-                <div class="service-item">
-                    <h5>🌰 Seed Dispersal</h5>
-                    <div class="main-text">Frugivorous birds help plants disperse seeds, promoting forest regeneration</div>
-                </div>
-                <div class="service-item">
-                    <h5>🐛 Pest Control</h5>
-                    <div class="main-text">Insectivorous birds control pest populations, maintaining agricultural and forest ecological balance</div>
-                </div>
-                <div class="service-item">
-                    <h5>💩 Nutrient Cycling</h5>
-                    <div class="main-text">Bird droppings provide important nutrients for ecosystems</div>
-                </div>
+        <div class="section-title">에너지 흐름과 효율성</div>
+        
+        <div class="main-text">
+            생태계에서 에너지는 한 방향으로만 흐르며, 각 영양 단계에서 약 90%의 에너지가 손실됩니다<span class="emoji">⚡</span>. 이러한 에너지 손실은 생태 피라미드의 형태를 만들어내며, 상위 영양 단계로 갈수록 개체수와 생물량이 급격히 감소합니다.
+        </div>
+        
+        <div class="energy-flow">
+            <div class="energy-item">
+                <h4>🌱 생산자 단계</h4>
+                <div class="main-text">식물이 태양 에너지를 화학 에너지로 전환합니다. 전체 에너지의 약 1%만이 식물 조직으로 저장됩니다.</div>
+            </div>
+            <div class="energy-item">
+                <h4>🐛 1차 소비자 단계</h4>
+                <div class="main-text">초식성 조류가 식물 에너지의 약 10%를 자신의 조직으로 전환합니다. 나머지는 호흡, 배설, 열로 손실됩니다.</div>
+            </div>
+            <div class="energy-item">
+                <h4>🐦 2차 소비자 단계</h4>
+                <div class="main-text">곤충식성 조류가 1차 소비자 에너지의 약 10%를 이용합니다. 에너지 효율성이 더욱 감소합니다.</div>
+            </div>
+            <div class="energy-item">
+                <h4>🦅 최상위 포식자 단계</h4>
+                <div class="main-text">맹금류는 가장 적은 에너지를 받으며, 이는 그들의 개체수가 적은 이유를 설명합니다.</div>
             </div>
         </div>
-    </div>
-<div class="section-title">🔄 Seasonal Changes in Habitats</div>
-<div class="main-text">Habitats change with the seasons, and birds must adapt to these changes or migrate:</div>
-<div class="seasonal-changes">
-<div class="season-item">
-<h4>🌸 Spring</h4>
-<ul>
-<li>Vegetation emerges, insects become active</li>
-<li>Breeding season begins</li>
-<li>Migratory birds return to breeding grounds</li>
-<li>Intense territorial disputes</li>
-</ul>
-</div>
-<div class="season-item">
-<h4>☀️ Summer</h4>
-<ul>
-<li>Abundant food resources</li>
-<li>Breeding activities peak</li>
-<li>Young birds learn survival skills</li>
-<li>Some species begin molting</li>
-</ul>
-</div>
-<div class="season-item">
-<h4>🍂 Autumn</h4>
-<ul>
-<li>Fruits ripen, seeds become abundant</li>
-<li>Migration preparation and commencement</li>
-<li>Fat reserves increase</li>
-<li>Group behaviors increase</li>
-</ul>
-</div>
-<div class="season-item">
-<h4>❄️ Winter</h4>
-<ul>
-<li>Food resources become scarce</li>
-<li>Habitat quality decreases</li>
-<li>Competition intensifies</li>
-<li>Adaptive behaviors strengthen</li>
-</ul>
-</div>
-</div>
-    <div class="section-title">Threats to Habitats</div>
-    <div class="main-text">
-        인간 활동은 조류 서식지에 심각한 위협을 가합니다, requiring urgent conservation action<span class="emoji">⚠️</span>. Understanding these threats is the first step toward effective habitat protection.
-    </div>
-    
-    <div class="threats-grid">
-        <div class="threat-item">
-            <h4>🏗️ Habitat Loss</h4>
-            <div class="main-text">Urbanization and agricultural expansion reduce natural habitat area</div>
+        
+        <div class="tip-box">
+            <div class="tip-title">⚡ 10% 법칙</div>
+            생태학의 10% 법칙에 따르면, 각 영양 단계에서 다음 단계로 전달되는 에너지는 약 10%에 불과합니다. 이는 먹이망에서 상위 포식자의 개체수가 제한되는 이유를 설명합니다.
         </div>
-        <div class="threat-item">
-            <h4>🧩 Habitat Fragmentation</h4>
-            <div class="main-text">Roads and buildings divide continuous habitats into smaller patches</div>
+        
+        <div class="section-title">조류 간 상호작용 유형</div>
+        
+        <div class="main-text">
+            먹이망 내에서 조류들은 다양한 형태의 상호작용을 보입니다. 이러한 상호작용은 단순한 포식-피식 관계를 넘어서 복잡한 생태학적 네트워크를 형성합니다<span class="emoji">🤝</span>.
         </div>
-        <div class="threat-item">
-            <h4>🏭 Environmental Pollution</h4>
-            <div class="main-text">Chemical and noise pollution affect habitat quality</div>
+        
+        <div class="interaction-types">
+            <h4>🔄 주요 상호작용 유형</h4>
+            <div class="interaction-item">
+                <h5>포식 관계 (Predation)</h5>
+                <div class="main-text">맹금류가 작은 조류를 사냥하는 직접적인 포식 관계입니다. 매가 참새를 사냥하거나, 올빼미가 쥐를 잡는 것이 대표적인 예입니다.</div>
+            </div>
+            <div class="interaction-item">
+                <h5>경쟁 관계 (Competition)</h5>
+                <div class="main-text">같은 자원을 놓고 경쟁하는 관계입니다. 둥지터, 먹이, 영역을 두고 벌어지는 종간 또는 종내 경쟁이 있습니다.</div>
+            </div>
+            <div class="interaction-item">
+                <h5>공생 관계 (Mutualism)</h5>
+                <div class="main-text">서로에게 이익이 되는 관계입니다. 꿀빨이새와 꽃의 관계처럼 조류는 꿀을 얻고 식물은 수분을 받습니다.</div>
+            </div>
+            <div class="interaction-item">
+                <h5>편리공생 (Commensalism)</h5>
+                <div class="main-text">한쪽은 이익을 얻고 다른 쪽은 영향을 받지 않는 관계입니다. 소가 풀을 뜯을 때 놀라는 곤충을 잡는 소쩍새의 행동이 예입니다.</div>
+            </div>
         </div>
-        <div class="threat-item">
-            <h4>🌡️ Climate Change</h4>
-            <div class="main-text">Changes in temperature and precipitation patterns affect habitat suitability</div>
+        
+        <div class="section-title">먹이망의 복잡성과 안정성</div>
+        
+        <div class="main-text">
+            복잡한 먹이망은 생태계의 안정성을 높입니다. 여러 먹이원과 포식자를 가진 종들은 환경 변화에 더 잘 적응할 수 있으며, 한 종의 감소가 전체 시스템에 미치는 영향을 완충할 수 있습니다<span class="emoji">🛡️</span>.
         </div>
-    </div>
-    
-    <div class="section-title">보전 전략</div>
-    <div class="main-text">
-        조류 서식지 보호에는 포괄적인 보전 전략이 필요합니다 that address multiple scales and stakeholders<span class="emoji">🛡️</span>. Effective conservation combines scientific research, policy implementation, and community engagement.
-    </div>
-    
-    <div class="conservation-strategies">
-        <div class="strategy-category">
-            <h4>🏞️ Protected Area Establishment</h4>
+        
+        <div class="main-text">
+            그러나 먹이망의 복잡성은 때로는 예측하기 어려운 연쇄 효과를 만들어낼 수 있습니다. 한 종의 개체수 변화가 여러 단계를 거쳐 예상치 못한 종에게 영향을 미칠 수 있습니다<span class="emoji">🌊</span>.
+        </div>
+        
+        <div class="section-title">핵심종과 연쇄 효과</div>
+        
+        <div class="main-text">
+            일부 조류 종은 먹이망에서 핵심종(keystone species) 역할을 합니다. 이들의 존재나 부재는 전체 생태계에 불균형적으로 큰 영향을 미칩니다<span class="emoji">🗝️</span>. 핵심종의 보전은 전체 생태계 보전에 매우 중요합니다.
+        </div>
+        
+        <div class="cascade-effects">
+            <h4>🌊 연쇄 효과의 예</h4>
+            <div class="cascade-item">
+                <h5>맹금류 감소의 영향</h5>
+                <div class="main-text">맹금류가 감소하면 → 설치류 개체수 증가 → 식물 종자 피해 증가 → 식물 다양성 감소 → 곤충식성 조류 서식지 악화</div>
+            </div>
+            <div class="cascade-item">
+                <h5>수분 조류 감소의 영향</h5>
+                <div class="main-text">벌새류 감소 → 특정 식물의 수분 부족 → 식물 번식 실패 → 과실식성 조류 먹이 부족 → 종자 산포 감소</div>
+            </div>
+            <div class="cascade-item">
+                <h5>청소부 조류 감소의 영향</h5>
+                <div class="main-text">독수리류 감소 → 사체 분해 지연 → 질병 확산 위험 증가 → 다른 야생동물 건강 위협 → 생태계 전반 불안정</div>
+            </div>
+        </div>
+        
+        <div class="section-title">계절적 먹이망 변화</div>
+        
+        <div class="main-text">
+            먹이망은 계절에 따라 동적으로 변화합니다. 조류의 이주, 번식 주기, 먹이 가용성의 변화가 먹이망 구조를 지속적으로 재편합니다<span class="emoji">🔄</span>. 이러한 변화를 이해하는 것은 조류 보전 계획 수립에 중요합니다.
+        </div>
+        
+        <div class="main-text">
+            봄과 여름에는 곤충 개체수가 증가하여 곤충식성 조류가 번성하고, 가을에는 과실과 종자가 풍부해져 과실식성 조류의 활동이 활발해집니다. 겨울에는 먹이 부족으로 인해 먹이망이 단순해지고 경쟁이 치열해집니다<span class="emoji">❄️</span>.
+        </div>
+        
+        <div class="section-title">인간 활동이 먹이망에 미치는 영향</div>
+        
+        <div class="main-text">
+            인간 활동은 조류 먹이망에 다양한 방식으로 영향을 미칩니다. 서식지 파괴, 오염, 기후 변화, 외래종 도입 등이 먹이망의 구조와 기능을 변화시킵니다<span class="emoji">⚠️</span>.
+        </div>
+        
+        <div class="predator-prey">
+            <div class="predator-item">
+                <h4>🏭 농약 사용의 영향</h4>
+                <div class="main-text">농약은 곤충 개체수를 감소시켜 곤충식성 조류의 먹이를 줄입니다. 또한 생물 농축을 통해 상위 포식자에게 독성 물질이 축적됩니다.</div>
+            </div>
+            <div class="predator-item">
+                <h4>🌆 도시화의 영향</h4>
+                <div class="main-text">도시화는 자연 먹이망을 단순화시키고, 일부 적응력이 강한 종들이 우점하게 만듭니다. 인공 먹이원에 의존하는 조류가 증가합니다.</div>
+            </div>
+            <div class="predator-item">
+                <h4>🌡️ 기후 변화의 영향</h4>
+                <div class="main-text">기후 변화는 먹이 가용성의 시기를 변화시켜 조류의 번식 주기와 먹이 공급 시기 간의 불일치를 야기합니다.</div>
+            </div>
+        </div>
+        
+        <div class="section-title">먹이망 보전 전략</div>
+        
+        <div class="main-text">
+            효과적인 조류 보전을 위해서는 개별 종이 아닌 전체 먹이망을 고려한 생태계 접근법이 필요합니다<span class="emoji">🌐</span>. 이는 서식지 보전, 핵심종 보호, 연결성 유지를 포함합니다.
+        </div>
+        
+        <div class="web-component">
+            <h4>🔗 통합적 보전 접근법</h4>
             <ul>
-                <li>Establishing nature reserves and national parks</li>
-                <li>Designating Important Bird Areas</li>
-                <li>Protecting critical migration stopover sites</li>
-                <li>Creating habitat corridors to connect fragmented areas</li>
+                <li><strong>서식지 다양성 유지:</strong> 다양한 영양 단계의 조류가 서식할 수 있는 서식지 보전</li>
+                <li><strong>핵심종 우선 보호:</strong> 먹이망에서 중요한 역할을 하는 종들의 우선적 보전</li>
+                <li><strong>연결성 확보:</strong> 서식지 간 연결 통로 확보로 먹이망 연결성 유지</li>
+                <li><strong>오염 저감:</strong> 농약과 화학 오염물질 사용 감소</li>
+                <li><strong>모니터링 강화:</strong> 먹이망 변화를 추적하는 장기 모니터링 시스템 구축</li>
             </ul>
         </div>
-        <div class="strategy-category">
-            <h4>🌱 Ecological Restoration</h4>
-            <ul>
-                <li>Converting farmland back to forests and grasslands</li>
-                <li>Wetland restoration projects</li>
-                <li>Artificial afforestation and vegetation restoration</li>
-                <li>River ecosystem restoration</li>
-            </ul>
+        
+        <div class="tip-box">
+            <div class="tip-title">🌟 시민 참여 방법</div>
+            개인도 먹이망 보전에 기여할 수 있습니다: 토착 식물 재배, 농약 사용 금지, 조류 먹이대 설치, 시민 과학 프로젝트 참여, 환경 교육 지원 등이 모두 도움이 됩니다.
+        </div>
+        
+        <div class="section-title">미래 연구 방향</div>
+        
+        <div class="main-text">
+            조류 먹이망 연구는 새로운 기술과 방법론의 발전으로 더욱 정교해지고 있습니다. 안정동위원소 분석, 환경 DNA, 위성 추적, 인공지능을 활용한 행동 분석 등이 먹이망 연구의 새로운 도구로 활용되고 있습니다<span class="emoji">🔬</span>.
+        </div>
+        
+        <div class="main-text">
+            기후 변화와 인간 활동의 가속화로 인해 먹이망의 동적 변화를 실시간으로 모니터링하고 예측하는 연구가 더욱 중요해지고 있습니다. 이러한 연구는 효과적인 보전 전략 수립과 생태계 관리에 필수적인 정보를 제공할 것입니다<span class="emoji">📊</span>.
         </div>
     </div>
     
-    <div class="action-tips">
-        <h4>🤝 What Individuals Can Do</h4>
-        <ul>
-            <li>Plant native species in yards and gardens</li>
-            <li>Set up bird drinking and feeding stations</li>
-            <li>Reduce pesticide and fertilizer use</li>
-            <li>Participate in bird monitoring and conservation activities</li>
-            <li>Support habitat conservation projects</li>
-            <li>Raise environmental awareness and influence others</li>
-        </ul>
+    <!-- 진행률 표시줄 -->
+    <div class="progress-container">
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
+        </div>
     </div>
-</div>
 
-<!-- 进度条 -->
-<div class="progress-container">
-<div class="progress-bar">
-<div class="progress-fill"></div>
-</div>
-</div>
-<script>
-        // 更新时间
+    <script>
+        // 시간 업데이트
         function updateTime() {
             const now = new Date();
             const timeString = now.getHours().toString().padStart(2, '0') + ':' + 
@@ -250,7 +341,7 @@
             }
         }
         
-        // 模拟阅读进度
+        // 읽기 진행률 시뮬레이션
         function updateProgress() {
             const scrolled = window.pageYOffset;
             const maxHeight = document.body.scrollHeight - window.innerHeight;
@@ -261,7 +352,7 @@
             }
         }
         
-        // 初始化
+        // 초기화
         updateTime();
         setInterval(updateTime, 60000);
         
@@ -269,7 +360,5 @@
         updateProgress();
     </script>
     <script src="../language-redirect.js"></script>
-
-</main></body>
+</body>
 </html>
-

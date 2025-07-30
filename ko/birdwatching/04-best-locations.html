@@ -168,7 +168,10 @@
         <div class="quote-box">
             <div class="quote-text">
                 세계 최고의 조류 관찰 목적지와 숨겨진 보석 같은 장소를 발견하세요
-            </div><div class="main-text">
+            </div>
+        </div>
+        
+        <div class="main-text">
             적절한 조류 관찰 장소를 선택하는 것은 성공적인 조류 관찰 경험의 핵심 요소입니다. 서로 다른 서식 환경은 다양한 조류 그룹을 끌어들이며, 각 환경 유형의 특징을 이해하면 이상적인 조류 관찰 장소를 찾는 데 도움이 됩니다<span class="emoji">🗺️</span>. 도시 공원부터 원시림까지, 습지부터 고산까지, 각 환경은 고유한 조류 군집을 가지고 있습니다.
         </div>
         
@@ -254,7 +257,10 @@
         
         <div class="main-text">
             기억하세요. 최고의 조류 관찰 장소는 종종 바로 여러분 곁에 있습니다. 익숙한 환경부터 시작하여 점차 조류 관찰 범위를 확장하세요<span class="emoji">🎯</span>. 각 장소는 고유한 매력과 발견이 있으며, 핵심은 호기심과 탐구 정신을 유지하는 것입니다.
-        </div><!-- 进度条 -->
+        </div>
+    </div>
+    
+    <!-- 진행률 표시줄 -->
     <div class="progress-container">
         <div class="progress-bar">
             <div class="progress-fill"></div>
@@ -262,15 +268,18 @@
     </div>
 
     <script>
-        // 更新时间
+        // 시간 업데이트
         function updateTime() {
             const now = new Date();
             const timeString = now.getHours().toString().padStart(2, '0') + ':' + 
                              now.getMinutes().toString().padStart(2, '0');
-            document.getElementById('current-time').textContent = timeString;
+            const timeElement = document.getElementById('current-time');
+            if (timeElement) {
+                timeElement.textContent = timeString;
+            }
         }
         
-        // 读取进度模拟
+        // 읽기 진행률 시뮬레이션
         function updateProgress() {
             const scrolled = window.pageYOffset;
             const maxHeight = document.body.scrollHeight - window.innerHeight;
@@ -278,7 +287,7 @@
             document.querySelector('.progress-fill').style.width = progress + '%';
         }
         
-        // 初始化
+        // 초기화
         updateTime();
         setInterval(updateTime, 60000);
         

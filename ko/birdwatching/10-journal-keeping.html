@@ -5,59 +5,300 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>조류 관찰 일지 기록 - BirdAiSnap</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f5; color: #333; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
 
-        .hero-image { width: 100%; height: 400px; background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('../../images/birds/species/bird-image-004.webp') center/cover; position: relative; margin-top: 0; }
-        .content { background: white; margin: -30px 20px 20px 20px; border-radius: 20px; padding: 40px 20px 30px 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); min-height: 80vh; }
-        .title { font-size: 24px; font-weight: 700; color: #1a1a1a; margin-bottom: 30px; margin-top: 10px; line-height: 1.3; }
-        .quote-box { background: linear-gradient(135deg, #f3e5f5, #e1bee7); border-left: 4px solid #9c27b0; padding: 20px; margin: 25px 0; border-radius: 8px; position: relative; }
-        .quote-box::before { content: '"'; font-size: 48px; color: #9c27b0; position: absolute; top: -5px; left: 15px; font-family: serif; line-height: 1; }
-        .quote-text { font-size: 18px; font-weight: 600; color: #6a1b9a; margin-left: 25px; line-height: 1.4; }
-        .main-text { font-size: 16px; line-height: 1.8; color: #333; margin: 20px 0; text-align: justify; }
-        .section-title { font-size: 20px; font-weight: 600; color: #9c27b0; margin: 30px 0 15px 0; border-bottom: 2px solid #e1bee7; padding-bottom: 8px; }
-        .tip-box { background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px; padding: 15px; margin: 20px 0; border-left: 4px solid #28a745; }
-        .tip-title { font-weight: 600; color: #28a745; margin-bottom: 8px; }
-        .emoji { font-size: 18px; margin: 0 2px; }
-        .progress-container { position: fixed; bottom: 0; left: 0; right: 0; height: 60px; background: linear-gradient(to top, rgba(255,255,255,0.95), transparent); display: flex; align-items: center; justify-content: center; z-index: 998; }
-        .progress-bar { width: 200px; height: 4px; background: rgba(0,0,0,0.1); border-radius: 2px; overflow: hidden; }
-        .progress-fill { height: 100%; background: linear-gradient(90deg, #9c27b0, #ba68c8); width: 0%; border-radius: 2px; transition: width 0.3s ease; }
-        @media (max-width: 375px) { .content { margin: -30px 15px 20px 15px; padding: 25px 15px; } .title { font-size: 22px; } .main-text { font-size: 15px; } }
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                        url('../../images/birds/species/bird-image-004.webp') center/cover;
+            position: relative;
+            margin-top: 0;
+        }
+        
+        .content {
+            background: white;
+            margin: -30px 20px 20px 20px;
+            border-radius: 20px;
+            padding: 30px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            min-height: 80vh;
+        }
+        
+        .title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            margin-top: 15px;
+            line-height: 1.3;
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, #f3e5f5, #e1bee7);
+            border-left: 4px solid #9c27b0;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .quote-box::before {
+            content: '"';
+            font-size: 48px;
+            color: #9c27b0;
+            position: absolute;
+            top: -5px;
+            left: 15px;
+            font-family: serif;
+            line-height: 1;
+        }
+        
+        .quote-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: #6a1b9a;
+            margin-left: 25px;
+            line-height: 1.4;
+        }
+        
+        .main-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            margin: 20px 0;
+            text-align: justify;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #9c27b0;
+            margin: 30px 0 15px 0;
+            border-bottom: 2px solid #e1bee7;
+            padding-bottom: 8px;
+        }
+        
+        .tip-box {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            border-left: 4px solid #28a745;
+        }
+        
+        .tip-title {
+            font-weight: 600;
+            color: #28a745;
+            margin-bottom: 8px;
+        }
+        
+        .emoji {
+            font-size: 18px;
+            margin: 0 2px;
+        }
+        
+        .progress-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: linear-gradient(to top, rgba(255,255,255,0.95), transparent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 998;
+        }
+        
+        .progress-bar {
+            width: 200px;
+            height: 4px;
+            background: rgba(0,0,0,0.1);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #9c27b0, #ba68c8);
+            width: 0%;
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+        
+        @media (max-width: 375px) {
+            .content {
+                margin: -30px 15px 20px 15px;
+                padding: 25px 15px;
+            }
+            
+            .title {
+                font-size: 22px;
+            }
+            
+            .main-text {
+                font-size: 15px;
+            }
+        }
     </style>
 </head>
 <body>
-    
-    </div>
-    
+    <!-- 주요 이미지 -->
     <div class="hero-image"></div>
+    
+    <!-- 주요 내용 -->
     <div class="content">
         <h1 class="title">조류 관찰 일지 기록</h1>
-        <div class="quote-box"><div class="quote-text">기록您的조류 관찰冒险并建立个人发现기록</div><div class="main-text">조류 관찰일지将随意的관찰转化为有가치的个人体验、模式和发现데이터库。시스템化的기록不仅有助于个人학습和기술향상，还能为과학적인연구和보호작업提供宝贵데이터<span class="emoji">📔</span>。</div>
-        <div class="section-title">为什么要기록조류 관찰일지？</div>
-        <div class="main-text">조류 관찰일지도움您追踪个人的조류 관찰历程，기록首次관찰到的物种，분석계절性模式和행동변화<span class="emoji">📈</span>。장기적인기록能揭示当地조류群落的변화트렌드，为환경监测提供기초데이터。</div>
-        <div class="section-title">기록的기본정보</div>
-        <div class="main-text">효과적인的조류 관찰일지应包含날짜、시간、地点、天气조건、관찰到的物种、数量、행동묘사等기본정보<span class="emoji">📋</span>。자세한的栖息환경묘사和个人관찰心得也很有가치。</div>
-        <div class="tip-box"><div class="tip-title">✏️ 기록기법</div>사용简洁明了的符号和缩写향상기록效率。现场빠른기록요점，回家后补充자세한정보。</div>
-        <div class="section-title">数字 vs 纸质일지</div>
-        <div class="main-text">数字일지便于搜索、통계和공유，还能添加照片和GPS位置<span class="emoji">📱</span>。纸质일지在野外사용更可靠，不受电池和信号限制。许多조류 관찰者选择两者结合사용。</div>
-        <div class="section-title">添加素描和视觉元素</div>
-        <div class="main-text">간단한的素描能기록중요한的식별특징，比文字묘사更直观<span class="emoji">🎨</span>。不필요전문적인绘画기술，중점是기록핵심특징和比例관계。</div>
-        <div class="section-title">분석您的기록</div>
-        <div class="main-text">정기적인回顾和분석일지 기록，寻找模式和트렌드。통계다른계절的物种数量변화，분석天气对조류활동的영향<span class="emoji">📊</span>。这些분석能향상您的조류 관찰기술和생태理解。</div>
-        <div class="section-title">공유和기여您的기록</div>
-        <div class="main-text">考虑将您的관찰기록提交给시민 과학 프로젝트，如eBird等플랫폼<span class="emoji">🌐</span>。这些데이터对조류연구和보호작업具有중요한가치，동시에也能与全球조류 관찰커뮤니티공유您的发现。</div>
-        <div class="main-text">조류 관찰일지是您与자연世界对话的기록，也是个人成长和학습的见证<span class="emoji">🌟</span>。坚持기록，您将发现조류 관찰不仅是一种爱好，更是一种深度的자연体验和과학적인探索。</div><div class="progress-container"><div class="progress-bar"><div class="progress-fill"></div></div></div>
+        
+        <div class="quote-box">
+            <div class="quote-text">
+                조류 관찰 모험을 기록하고 개인적인 발견의 기록을 구축하세요
+            </div>
+        </div>
+        
+        <div class="main-text">
+            조류 관찰 일지는 우연한 관찰을 가치 있는 개인 경험, 패턴, 발견의 데이터베이스로 변환시킵니다. 체계적인 기록은 개인 학습과 기술 향상에 도움이 될 뿐만 아니라 과학 연구와 보호 활동에 귀중한 데이터를 제공할 수 있습니다<span class="emoji">📔</span>. 일지 작성은 조류 관찰을 더욱 의미 있고 체계적인 활동으로 만들어줍니다.
+        </div>
+        
+        <div class="section-title">조류 관찰 일지를 작성하는 이유</div>
+        
+        <div class="main-text">
+            조류 관찰 일지는 개인의 조류 관찰 여정을 추적하고, 처음 관찰한 종을 기록하며, 계절적 패턴과 행동 변화를 분석하는 데 도움이 됩니다<span class="emoji">📈</span>. 장기적인 기록은 지역 조류 군집의 변화 추세를 밝혀내어 환경 모니터링의 기초 데이터를 제공할 수 있습니다.
+        </div>
+        
+        <div class="main-text">
+            일지는 또한 개인적인 성취감과 학습 동기를 제공합니다. 시간이 지나면서 관찰 기술의 향상과 지식의 축적을 확인할 수 있으며, 특별한 관찰 순간들을 되돌아볼 수 있습니다<span class="emoji">🌟</span>. 이는 조류 관찰을 단순한 취미에서 평생 학습의 여정으로 발전시킵니다.
+        </div>
+        
+        <div class="section-title">기록해야 할 기본 정보</div>
+        
+        <div class="main-text">
+            효과적인 조류 관찰 일지는 날짜, 시간, 장소, 날씨 조건, 관찰된 종, 개체 수, 행동 묘사 등의 기본 정보를 포함해야 합니다<span class="emoji">📋</span>. 자세한 서식지 환경 묘사와 개인적인 관찰 소감도 매우 가치가 있습니다.
+        </div>
+        
+        <div class="main-text">
+            추가로 기록할 수 있는 정보로는 조류의 크기 추정, 동반 종, 사진 촬영 여부, 특이한 행동이나 특징, GPS 좌표 등이 있습니다<span class="emoji">📍</span>. 이러한 세부 정보는 나중에 종 식별을 확인하거나 행동 패턴을 분석할 때 유용합니다.
+        </div>
+        
+        <div class="tip-box">
+            <div class="tip-title">✏️ 기록 기법</div>
+            간결하고 명확한 기호와 약어를 사용하여 기록 효율성을 높이세요. 현장에서는 요점을 빠르게 기록하고, 집에 돌아가서 자세한 정보를 보완하세요.
+        </div>
+        
+        <div class="section-title">디지털 vs 종이 일지</div>
+        
+        <div class="main-text">
+            디지털 일지는 검색, 통계, 공유가 편리하며, 사진과 GPS 위치를 추가할 수 있습니다<span class="emoji">📱</span>. 많은 조류 관찰 앱들이 자동으로 데이터를 분석하고 시각화해주는 기능을 제공합니다. 또한 클라우드 동기화를 통해 데이터 손실을 방지할 수 있습니다.
+        </div>
+        
+        <div class="main-text">
+            종이 일지는 야외에서 사용하기에 더 신뢰할 수 있으며, 배터리나 신호 제한을 받지 않습니다. 많은 조류 관찰자들이 두 방법을 결합하여 사용합니다<span class="emoji">📝</span>. 현장에서는 종이에 기록하고, 나중에 디지털 형태로 옮기는 방식이 효과적입니다.
+        </div>
+        
+        <div class="section-title">스케치와 시각적 요소 추가</div>
+        
+        <div class="main-text">
+            간단한 스케치는 중요한 식별 특징을 기록할 수 있어 문자 묘사보다 더 직관적입니다<span class="emoji">🎨</span>. 전문적인 그림 실력이 필요하지 않으며, 핵심 특징과 비례 관계를 기록하는 것이 중점입니다.
+        </div>
+        
+        <div class="main-text">
+            색상 패턴, 부리 모양, 꼬리 길이, 날개 무늬 등을 간단한 도형과 선으로 표현할 수 있습니다. 이러한 시각적 기록은 나중에 도감과 비교할 때 매우 유용합니다<span class="emoji">🖼️</span>. 디지털 일지에서는 사진과 함께 스케치를 저장할 수 있습니다.
+        </div>
+        
+        <div class="section-title">날씨와 환경 조건 기록</div>
+        
+        <div class="main-text">
+            날씨 조건은 조류 활동에 큰 영향을 미치므로 자세히 기록해야 합니다. 온도, 바람, 구름량, 강수량 등을 기록하세요<span class="emoji">🌤️</span>. 이러한 정보는 조류 행동 패턴을 이해하고 미래의 관찰을 계획하는 데 도움이 됩니다.
+        </div>
+        
+        <div class="main-text">
+            서식지 조건도 중요합니다. 수위, 식생 상태, 인간 활동, 소음 수준 등을 기록하면 조류 분포와 행동을 더 잘 이해할 수 있습니다<span class="emoji">🌿</span>. 계절에 따른 환경 변화도 주목해서 기록하세요.
+        </div>
+        
+        <div class="section-title">일지 기록 분석</div>
+        
+        <div class="main-text">
+            정기적으로 일지 기록을 검토하고 분석하여 패턴과 추세를 찾아보세요. 서로 다른 계절의 종 수량 변화를 통계내고, 날씨가 조류 활동에 미치는 영향을 분석하세요<span class="emoji">📊</span>. 이러한 분석은 조류 관찰 기술과 생태학적 이해를 향상시킬 수 있습니다.
+        </div>
+        
+        <div class="main-text">
+            개인적인 "생애 목록(life list)"을 만들어 처음 관찰한 종들을 추적하고, 연간 종 목록을 비교해보세요. 특정 장소에서의 관찰 기록을 분석하여 그 지역의 조류 다양성과 계절적 변화를 파악할 수 있습니다<span class="emoji">📈</span>.
+        </div>
+        
+        <div class="section-title">기록의 정확성 향상</div>
+        
+        <div class="main-text">
+            불확실한 식별의 경우 "의심스러운" 또는 "가능한"이라고 표시하고, 나중에 확인할 수 있도록 자세한 묘사를 남겨두세요<span class="emoji">❓</span>. 정확성은 양보다 중요하며, 잘못된 식별을 기록하는 것보다 불확실함을 인정하는 것이 낫습니다.
+        </div>
+        
+        <div class="main-text">
+            다른 관찰자들과 함께 관찰할 때는 그들의 의견도 기록하고, 논의 과정을 남겨두세요. 이는 학습 과정의 일부이며, 나중에 식별 기술을 향상시키는 데 도움이 됩니다<span class="emoji">👥</span>.
+        </div>
+        
+        <div class="section-title">기록 공유와 기여</div>
+        
+        <div class="main-text">
+            관찰 기록을 eBird와 같은 시민 과학 프로젝트에 제출하는 것을 고려해보세요<span class="emoji">🌐</span>. 이러한 데이터는 조류 연구와 보호 활동에 중요한 가치를 가지며, 동시에 전 세계 조류 관찰 커뮤니티와 발견을 공유할 수 있습니다.
+        </div>
+        
+        <div class="main-text">
+            지역 조류 관찰 단체나 자연사 박물관과 기록을 공유하는 것도 의미가 있습니다. 특히 희귀종이나 특이한 행동을 관찰했을 때는 과학적 가치가 클 수 있습니다<span class="emoji">🔬</span>. 개인의 기록이 더 큰 과학적 이해에 기여할 수 있습니다.
+        </div>
+        
+        <div class="section-title">장기적인 기록의 가치</div>
+        
+        <div class="main-text">
+            수년간의 일지 기록은 기후 변화, 서식지 변화, 조류 개체군 변동에 대한 귀중한 증거가 될 수 있습니다. 개인의 기록이 지역 생태계 변화의 중요한 문서가 되는 것입니다<span class="emoji">📚</span>. 이는 조류 관찰의 과학적 가치를 보여주는 좋은 예입니다.
+        </div>
+        
+        <div class="tip-box">
+            <div class="tip-title">🌟 일지 작성 팁</div>
+            일관성이 핵심입니다. 매번 같은 형식으로 기록하고, 정기적으로 작성하는 습관을 만드세요. 작은 관찰도 소중히 여기고 기록하세요.
+        </div>
+        
+        <div class="section-title">기술 도구 활용</div>
+        
+        <div class="main-text">
+            현대의 조류 관찰 앱들은 음성 인식, 자동 위치 기록, 사진 첨부, 통계 분석 등 다양한 기능을 제공합니다<span class="emoji">📲</span>. 이러한 도구들을 활용하면 기록 과정을 더욱 효율적이고 정확하게 만들 수 있습니다.
+        </div>
+        
+        <div class="main-text">
+            조류 관찰 일지는 자연 세계와의 대화 기록이자 개인 성장과 학습의 증거입니다. 꾸준히 기록하면 조류 관찰이 단순한 취미가 아니라 깊이 있는 자연 체험이자 과학적 탐구라는 것을 발견하게 될 것입니다<span class="emoji">🌟</span>. 여러분의 기록 하나하나가 조류와 자연에 대한 이해를 넓히는 소중한 자료가 됩니다.
+        </div>
+    </div>
+    
+    <!-- 진행률 표시줄 -->
+    <div class="progress-container">
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
+        </div>
+    </div>
 
     <script>
-        // 更新时间
+        // 시간 업데이트
         function updateTime() {
             const now = new Date();
             const timeString = now.getHours().toString().padStart(2, '0') + ':' + 
                              now.getMinutes().toString().padStart(2, '0');
-            document.getElementById('current-time').textContent = timeString;
+            const timeElement = document.getElementById('current-time');
+            if (timeElement) {
+                timeElement.textContent = timeString;
+            }
         }
         
-        // 读取进度模拟
+        // 읽기 진행률 시뮬레이션
         function updateProgress() {
             const scrolled = window.pageYOffset;
             const maxHeight = document.body.scrollHeight - window.innerHeight;
@@ -65,7 +306,7 @@
             document.querySelector('.progress-fill').style.width = progress + '%';
         }
         
-        // 初始化
+        // 초기화
         updateTime();
         setInterval(updateTime, 60000);
         
@@ -73,7 +314,5 @@
         updateProgress();
     </script>
     <script src="../language-redirect.js"></script>
-
-
 </body>
 </html>

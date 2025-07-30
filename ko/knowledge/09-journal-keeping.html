@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Keeping a Bird Journal - BirdAiSnap</title>
+    <title>조류 관찰 일지 작성법 - BirdAiSnap</title>
     <style>
         * {
             margin: 0;
@@ -30,7 +30,7 @@
             background: white;
             margin: -30px 20px 20px 20px;
             border-radius: 20px;
-            padding: 40px 20px 30px 20px;
+            padding: 30px 20px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.1);
             min-height: 80vh;
         }
@@ -40,7 +40,7 @@
             font-weight: 700;
             color: #1a1a1a;
             margin-bottom: 30px;
-            margin-top: 10px;
+            margin-top: 15px;
             line-height: 1.3;
         }
         
@@ -95,12 +95,12 @@
             border-radius: 8px;
             padding: 15px;
             margin: 20px 0;
-            border-left: 4px solid #28a745;
+            border-left: 4px solid #4caf50;
         }
         
         .tip-title {
             font-weight: 600;
-            color: #28a745;
+            color: #4caf50;
             margin-bottom: 8px;
         }
         
@@ -109,72 +109,270 @@
             margin: 0 2px;
         }
         
-        .journal-grid {
+        .journal-benefits {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
             margin: 25px 0;
         }
         
-        .journal-card {
+        .benefit-card {
             background: #f8f9fa;
             border-radius: 12px;
             padding: 20px;
             border: 2px solid #e9ecef;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            text-align: center;
         }
         
-        .journal-card:hover {
+        .benefit-card:hover {
             transform: translateY(-5px);
             border-color: #4caf50;
         }
         
-        .journal-card h4 {
+        .benefit-card h4 {
             color: #2e7d32;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             font-size: 18px;
         }
         
-        .journal-card p {
-            color: #666;
-            line-height: 1.5;
+        .benefit-card p {
+            color: #555;
+            line-height: 1.6;
             margin: 0;
+            font-size: 14px;
         }
         
-        .journal-icon {
-            font-size: 2rem;
+        .benefit-icon {
+            font-size: 48px;
             margin-bottom: 15px;
             display: block;
-            text-align: center;
         }
         
-        .progress-container {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 60px;
-            background: linear-gradient(to top, rgba(255,255,255,0.95), transparent);
+        .recording-essentials {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        
+        .essential-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .essential-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .essential-icon {
+            background: #4caf50;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 998;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+            font-size: 18px;
         }
         
-        .progress-bar {
-            width: 200px;
-            height: 4px;
-            background: rgba(0,0,0,0.1);
-            border-radius: 2px;
-            overflow: hidden;
+        .essential-content h4 {
+            color: #2e7d32;
+            margin-bottom: 8px;
+            font-size: 16px;
         }
         
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #4caf50, #81c784);
-            width: 0%;
-            border-radius: 2px;
-            transition: width 0.3s ease;
+        .essential-content p {
+            margin: 0;
+            color: #555;
+            line-height: 1.5;
+            font-size: 14px;
+        }
+        
+        .format-comparison {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .format-card {
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .format-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .paper-format {
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            border-left: 4px solid #ff9800;
+        }
+        
+        .digital-format {
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            border-left: 4px solid #2196f3;
+        }
+        
+        .app-format {
+            background: linear-gradient(135deg, #f3e5f5, #e1bee7);
+            border-left: 4px solid #9c27b0;
+        }
+        
+        .format-card h4 {
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        
+        .paper-format h4 { color: #f57c00; }
+        .digital-format h4 { color: #1976d2; }
+        .app-format h4 { color: #7b1fa2; }
+        
+        .format-card p {
+            color: #555;
+            line-height: 1.6;
+            margin: 0;
+            font-size: 14px;
+        }
+        
+        .format-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .pros-cons {
+            background: #e8f5e8;
+            color: #2e7d32;
+            padding: 10px 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            margin-top: 10px;
+            font-weight: 500;
+        }
+        
+        .data-analysis {
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 25px 0;
+            border-left: 4px solid #2196f3;
+        }
+        
+        .data-analysis h4 {
+            color: #1976d2;
+            margin-bottom: 15px;
+        }
+        
+        .analysis-item {
+            background: rgba(255,255,255,0.8);
+            margin: 10px 0;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 3px solid #2196f3;
+        }
+        
+        .analysis-item h5 {
+            color: #1976d2;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+        
+        .analysis-item p {
+            color: #555;
+            font-size: 13px;
+            margin: 0;
+            line-height: 1.4;
+        }
+        
+        .citizen-science {
+            background: linear-gradient(135deg, #f3e5f5, #e1bee7);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 25px 0;
+            border-left: 4px solid #9c27b0;
+        }
+        
+        .citizen-science h4 {
+            color: #7b1fa2;
+            margin-bottom: 15px;
+        }
+        
+        .science-item {
+            background: rgba(255,255,255,0.8);
+            margin: 10px 0;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 3px solid #9c27b0;
+        }
+        
+        .science-item h5 {
+            color: #7b1fa2;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+        
+        .science-item p {
+            color: #555;
+            font-size: 13px;
+            margin: 0;
+            line-height: 1.4;
+        }
+        
+        .best-practices {
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 25px 0;
+            border-left: 4px solid #ff9800;
+        }
+        
+        .best-practices h4 {
+            color: #f57c00;
+            margin-bottom: 15px;
+        }
+        
+        .practice-item {
+            background: rgba(255,255,255,0.8);
+            margin: 10px 0;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 3px solid #ff9800;
+        }
+        
+        .practice-item h5 {
+            color: #f57c00;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+        
+        .practice-item p {
+            color: #555;
+            font-size: 13px;
+            margin: 0;
+            line-height: 1.4;
+        }
+        
+        @media (max-width: 768px) {
+            .journal-benefits {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .format-comparison {
+                grid-template-columns: 1fr;
+            }
         }
         
         @media (max-width: 375px) {
@@ -191,143 +389,254 @@
                 font-size: 15px;
             }
             
-            .journal-grid {
+            .journal-benefits {
                 grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-
-    <!-- 主图 -->
     <div class="hero-image"></div>
     
-    <!-- 主要内容 -->
     <div class="content">
-        <h1 class="title">📔 Keeping a Bird Journal</h1>
+        <h1 class="title">조류 관찰 일지 작성법</h1>
         
         <div class="quote-box">
             <div class="quote-text">
-                Document your birding journey and discoveries with systematic record-keeping
-            </div><div class="main-text">
-            Keeping a bird journal transforms casual birdwatching into a meaningful scientific and personal endeavor<span class="emoji">📝</span>. Regular record-keeping helps you track patterns, improve identification skills, and contribute valuable data to citizen science projects.
+                체계적인 기록을 통해 조류 관찰 여정과 발견을 문서화하세요
+            </div>
         </div>
-        
-        <div class="section-title">Why Keep a Bird Journal?</div>
         
         <div class="main-text">
-            A bird journal serves multiple purposes: it helps you remember sightings, track seasonal patterns, monitor local bird populations, and document your growing expertise<span class="emoji">📊</span>. Over time, your journal becomes a valuable personal database and a record of your birding journey.
+            조류 관찰 일지를 작성하는 것은 단순한 조류 관찰을 의미 있는 과학적이고 개인적인 노력으로 변화시킵니다<span class="emoji">📝</span>. 정기적인 기록 작성은 패턴을 추적하고, 식별 기술을 향상시키며, 시민 과학 프로젝트에 귀중한 데이터를 기여하는 데 도움이 됩니다.
         </div>
         
-        <div class="journal-grid">
-            <div class="journal-card">
-                <span class="journal-icon">🧠</span>
-                <h4>Memory Aid</h4>
-                <p>Record details you might forget, helping you learn and remember bird characteristics and behaviors.</p>
+        <div class="section-title">조류 일지를 작성하는 이유</div>
+        
+        <div class="main-text">
+            조류 일지는 여러 목적을 수행합니다: 관찰 기록을 기억하고, 계절적 패턴을 추적하며, 지역 조류 개체군을 모니터링하고, 성장하는 전문성을 문서화하는 데 도움이 됩니다<span class="emoji">📊</span>. 시간이 지나면서 일지는 귀중한 개인 데이터베이스이자 조류 관찰 여정의 기록이 됩니다.
+        </div>
+        
+        <div class="journal-benefits">
+            <div class="benefit-card">
+                <span class="benefit-icon">🧠</span>
+                <h4>기억 보조</h4>
+                <p>잊을 수 있는 세부 사항을 기록하여 조류의 특성과 행동을 학습하고 기억하는 데 도움이 됩니다.</p>
             </div>
-            <div class="journal-card">
-                <span class="journal-icon">📈</span>
-                <h4>Pattern Recognition</h4>
-                <p>Track seasonal changes, migration timing, and population trends in your local area.</p>
+            
+            <div class="benefit-card">
+                <span class="benefit-icon">📈</span>
+                <h4>패턴 인식</h4>
+                <p>계절적 변화, 이주 시기, 지역 개체군 동향을 추적할 수 있습니다.</p>
             </div>
-            <div class="journal-card">
-                <span class="journal-icon">🔬</span>
+            
+            <div class="benefit-card">
+                <span class="benefit-icon">🔬</span>
                 <h4>시민 과학</h4>
-                <p>Contribute valuable data to research projects and conservation efforts through platforms like eBird.</p>
-            </div><div class="section-title">Essential Information to Record</div>
+                <p>eBird와 같은 플랫폼을 통해 연구 프로젝트와 보전 노력에 귀중한 데이터를 기여합니다.</p>
+            </div>
+            
+            <div class="benefit-card">
+                <span class="benefit-icon">📚</span>
+                <h4>학습 도구</h4>
+                <p>과거 관찰을 검토하여 식별 기술을 향상시키고 새로운 종에 대해 학습합니다.</p>
+            </div>
+            
+            <div class="benefit-card">
+                <span class="benefit-icon">🏆</span>
+                <h4>성취 추적</h4>
+                <p>생애 목록, 연간 목록, 지역 목록을 유지하여 조류 관찰 성취를 추적합니다.</p>
+            </div>
+            
+            <div class="benefit-card">
+                <span class="benefit-icon">🌍</span>
+                <h4>보전 기여</h4>
+                <p>장기적인 데이터는 조류 개체군 변화와 보전 필요성을 이해하는 데 도움이 됩니다.</p>
+            </div>
+        </div>
+        
+        <div class="section-title">기록해야 할 필수 정보</div>
         
         <div class="main-text">
-            Include basic details for every sighting: date, time, location, weather conditions, and species observed<span class="emoji">📅</span>. Note behavior, habitat, number of individuals, and any interesting observations that might help with future identifications.
+            모든 관찰에 대해 기본 세부 사항을 포함하세요: 날짜, 시간, 위치, 날씨 조건, 관찰된 종<span class="emoji">📅</span>. 행동, 서식지, 개체 수, 향후 식별에 도움이 될 수 있는 흥미로운 관찰 사항을 기록하세요.
+        </div>
+        
+        <div class="recording-essentials">
+            <h4 style="color: #2e7d32; margin-bottom: 20px; font-size: 18px;">필수 기록 항목:</h4>
+            
+            <div class="essential-item">
+                <div class="essential-icon">📅</div>
+                <div class="essential-content">
+                    <h4>날짜와 시간</h4>
+                    <p>정확한 날짜와 시간을 기록합니다. 이는 계절적 패턴과 일일 활동 주기를 분석하는 데 중요합니다.</p>
+                </div>
+            </div>
+            
+            <div class="essential-item">
+                <div class="essential-icon">📍</div>
+                <div class="essential-content">
+                    <h4>구체적인 위치</h4>
+                    <p>가능한 한 구체적으로 위치를 기록합니다. GPS 좌표, 주소, 또는 상세한 설명을 포함하세요.</p>
+                </div>
+            </div>
+            
+            <div class="essential-item">
+                <div class="essential-icon">🌤️</div>
+                <div class="essential-content">
+                    <h4>날씨 조건</h4>
+                    <p>온도, 바람, 강수량, 구름 상태를 기록합니다. 날씨는 조류 행동에 큰 영향을 미칩니다.</p>
+                </div>
+            </div>
+            
+            <div class="essential-item">
+                <div class="essential-icon">🦅</div>
+                <div class="essential-content">
+                    <h4>종 식별</h4>
+                    <p>확실한 식별이 어려운 경우에도 관찰한 특징을 자세히 기록합니다. 나중에 연구할 수 있습니다.</p>
+                </div>
+            </div>
+            
+            <div class="essential-item">
+                <div class="essential-icon">🔢</div>
+                <div class="essential-content">
+                    <h4>개체 수</h4>
+                    <p>관찰된 개체의 수를 정확히 세거나 추정합니다. 큰 무리의 경우 추정 방법을 기록하세요.</p>
+                </div>
+            </div>
+            
+            <div class="essential-item">
+                <div class="essential-icon">🎭</div>
+                <div class="essential-content">
+                    <h4>행동 관찰</h4>
+                    <p>먹이 활동, 번식 행동, 사회적 상호작용, 비행 패턴 등을 상세히 기록합니다.</p>
+                </div>
+            </div>
         </div>
         
         <div class="tip-box">
-            <div class="tip-title">📋 Key Data Points</div>
-            Date and time, specific location, weather conditions, species name, number observed, behavior notes, habitat description, and any photos or sketches.
+            <div class="tip-title">📋 핵심 데이터 포인트</div>
+            날짜와 시간, 구체적인 위치, 날씨 조건, 종명, 관찰된 수, 행동 메모, 서식지 설명, 사진이나 스케치를 포함하세요.
         </div>
         
-        <div class="section-title">Journal Formats</div>
+        <div class="section-title">일지 형식</div>
         
         <div class="main-text">
-            Choose a format that works for your lifestyle and preferences<span class="emoji">📱</span>. Traditional paper notebooks offer tactile satisfaction and work anywhere, while digital apps provide search capabilities, automatic data backup, and easy sharing with citizen science projects.
+            생활 방식과 선호도에 맞는 형식을 선택하세요<span class="emoji">📱</span>. 전통적인 종이 노트북은 촉각적 만족감을 제공하고 어디서나 작동하는 반면, 디지털 앱은 검색 기능, 자동 데이터 백업, 시민 과학 프로젝트와의 쉬운 공유를 제공합니다.
         </div>
         
-        <div class="journal-grid">
-            <div class="journal-card">
-                <span class="journal-icon">📓</span>
-                <h4>Paper Notebook</h4>
-                <p>Traditional, reliable, works anywhere. Great for sketches and detailed notes. Waterproof options available.</p>
+        <div class="format-comparison">
+            <div class="format-card paper-format">
+                <span class="format-icon">📓</span>
+                <h4>종이 노트북</h4>
+                <p>전통적이고 신뢰할 수 있으며 어디서나 사용 가능합니다. 스케치와 상세한 메모에 적합하며 방수 옵션도 있습니다.</p>
+                <div class="pros-cons">
+                    장점: 배터리 불필요, 스케치 용이, 개인적 감촉
+                </div>
             </div>
-            <div class="journal-card">
-                <span class="journal-icon">📱</span>
-                <h4>Mobile Apps</h4>
-                <p>eBird, iNaturalist, and specialized birding apps. Automatic location, easy data entry, and instant sharing.</p>
+            
+            <div class="format-card digital-format">
+                <span class="format-icon">💻</span>
+                <h4>디지털 스프레드시트</h4>
+                <p>사용자 정의 가능하고 검색 가능하며 데이터 분석에 뛰어납니다. 기기 간 동기화와 자동 백업이 가능합니다.</p>
+                <div class="pros-cons">
+                    장점: 검색 기능, 데이터 분석, 백업 용이
+                </div>
             </div>
-            <div class="journal-card">
-                <span class="journal-icon">💻</span>
-                <h4>Digital Spreadsheet</h4>
-                <p>Customizable, searchable, great for data analysis. Can be synced across devices and backed up automatically.</p>
-            </div><div class="section-title">Developing Good Habits</div>
-        
-        <div class="main-text">
-            Record observations immediately or as soon as possible after sightings<span class="emoji">⏰</span>. Memory fades quickly, and details that seem unforgettable in the moment often become fuzzy within hours. Carry your journal or phone everywhere you go birding.
+            
+            <div class="format-card app-format">
+                <span class="format-icon">📱</span>
+                <h4>모바일 앱</h4>
+                <p>eBird, iNaturalist, 전문 조류 관찰 앱들. 자동 위치 기록, 쉬운 데이터 입력, 즉시 공유가 가능합니다.</p>
+                <div class="pros-cons">
+                    장점: 자동 위치, 즉시 공유, 시민 과학 기여
+                </div>
+            </div>
         </div>
         
+        <div class="section-title">좋은 습관 기르기</div>
+        
         <div class="main-text">
-            Be consistent with your recording format and level of detail<span class="emoji">🎯</span>. This makes it easier to compare observations over time and spot patterns. Don't worry about perfect identification - record what you see and research uncertain species later.
+            관찰 직후 또는 가능한 한 빨리 기록하세요<span class="emoji">⏰</span>. 기억은 빠르게 사라지며, 그 순간에는 잊을 수 없을 것 같던 세부 사항들이 몇 시간 내에 흐릿해지는 경우가 많습니다. 조류 관찰을 할 때마다 일지나 휴대폰을 가지고 다니세요.
         </div>
         
-        <div class="section-title">Using Your Journal Data</div>
+        <div class="best-practices">
+            <h4>📝 모범 사례</h4>
+            <div class="practice-item">
+                <h5>일관성 유지</h5>
+                <p>기록 형식과 세부 수준을 일관되게 유지합니다. 이렇게 하면 시간에 따른 관찰을 비교하고 패턴을 발견하기 쉬워집니다.</p>
+            </div>
+            <div class="practice-item">
+                <h5>즉시 기록</h5>
+                <p>관찰 즉시 또는 가능한 한 빨리 기록합니다. 기억은 빠르게 사라지므로 즉시 기록하는 것이 중요합니다.</p>
+            </div>
+            <div class="practice-item">
+                <h5>불확실함 인정</h5>
+                <p>완벽한 식별에 대해 걱정하지 마세요. 본 것을 기록하고 불확실한 종은 나중에 연구하세요.</p>
+            </div>
+            <div class="practice-item">
+                <h5>정기적 검토</h5>
+                <p>일지를 정기적으로 검토하여 패턴과 동향을 파악합니다. 이는 더 나은 조류 관찰자가 되는 데 도움이 됩니다.</p>
+            </div>
+        </div>
+        
+        <div class="section-title">일지 데이터 활용</div>
         
         <div class="main-text">
-            Review your journal regularly to identify patterns and trends<span class="emoji">🔍</span>. When do certain species arrive in spring? Which locations are most productive? How has your local bird community changed over time? These insights make you a better birder and contribute to conservation understanding.
+            일지를 정기적으로 검토하여 패턴과 동향을 파악하세요<span class="emoji">🔍</span>. 특정 종들이 언제 봄에 도착하는가? 어떤 장소가 가장 생산적인가? 지역 조류 군집이 시간에 따라 어떻게 변했는가? 이러한 통찰력은 더 나은 조류 관찰자가 되게 하고 보전 이해에 기여합니다.
+        </div>
+        
+        <div class="data-analysis">
+            <h4>📊 데이터 분석 방법</h4>
+            <div class="analysis-item">
+                <h5>연간 요약 작성</h5>
+                <p>매년 말에 관찰한 종의 수, 새로운 종, 가장 흔한 종 등을 요약합니다.</p>
+            </div>
+            <div class="analysis-item">
+                <h5>이주 패턴 추적</h5>
+                <p>이주 조류의 첫 도착일과 마지막 관찰일을 추적하여 기후 변화의 영향을 관찰합니다.</p>
+            </div>
+            <div class="analysis-item">
+                <h5>날씨 상관관계</h5>
+                <p>특정 날씨 조건과 조류 활동 간의 관계를 분석합니다.</p>
+            </div>
+            <div class="analysis-item">
+                <h5>연도별 비교</h5>
+                <p>종 풍부도와 다양성의 연도별 변화를 비교하여 장기적 동향을 파악합니다.</p>
+            </div>
+        </div>
+        
+        <div class="section-title">공유와 기여</div>
+        
+        <div class="main-text">
+            eBird, 크리스마스 조류 센서스, 번식 조류 조사와 같은 시민 과학 프로젝트에 데이터를 기여하는 것을 고려해보세요<span class="emoji">🌍</span>. 수천 명의 다른 관찰자들과 결합된 여러분의 관찰은 과학자들이 조류 개체군, 이주 패턴, 보전 필요성을 이해하는 데 도움이 됩니다.
+        </div>
+        
+        <div class="citizen-science">
+            <h4>🔬 시민 과학 플랫폼</h4>
+            <div class="science-item">
+                <h5>eBird</h5>
+                <p>코넬 조류학 연구소에서 운영하는 전 세계 최대의 조류 관찰 데이터베이스입니다.</p>
+            </div>
+            <div class="science-item">
+                <h5>iNaturalist</h5>
+                <p>조류뿐만 아니라 모든 생물을 기록할 수 있는 종합적인 자연 관찰 플랫폼입니다.</p>
+            </div>
+            <div class="science-item">
+                <h5>크리스마스 조류 센서스</h5>
+                <p>매년 12월 중순부터 1월 초까지 진행되는 세계에서 가장 오래된 시민 과학 프로젝트입니다.</p>
+            </div>
+            <div class="science-item">
+                <h5>번식 조류 조사</h5>
+                <p>북미 조류 개체군의 장기적 동향을 모니터링하는 중요한 과학 프로그램입니다.</p>
+            </div>
+        </div>
+        
+        <div class="section-title">디지털 도구와 앱</div>
+        
+        <div class="main-text">
+            현대의 디지털 도구들은 조류 일지 작성을 더욱 효율적이고 정확하게 만들어줍니다<span class="emoji">📲</span>. 다양한 앱과 플랫폼을 활용하여 기록, 식별, 공유를 한 번에 처리할 수 있습니다.
         </div>
         
         <div class="tip-box">
-            <div class="tip-title">📊 Data Analysis Tips</div>
-            Create annual summaries, track first and last dates for migrants, note weather correlations, and compare year-to-year changes in species abundance and diversity.
-        </div>
-        
-        <div class="section-title">Sharing and Contributing</div>
-        
-        <div class="main-text">
-            Consider contributing your data to citizen science projects like eBird, Christmas Bird Count, or Breeding Bird Survey<span class="emoji">🌍</span>. Your observations, combined with thousands of others, help scientists understand bird populations, migration patterns, and conservation needs.
-        </div>
-        
-        <div class="main-text">
-            Your bird journal is more than just a record - it's a tool for learning, a contribution to science, and a personal chronicle of your connection with nature<span class="emoji">🌿</span>. Start simple, be consistent, and watch as your journal becomes an invaluable resource for your birding adventures.
-        </div><!-- 进度条 -->
-    <div class="progress-container">
-        <div class="progress-bar">
-            <div class="progress-fill"></div>
-        </div>
-    </div>
-
-    <script>
-        // 更新时间
-        function updateTime() {
-            const now = new Date();
-            const timeString = now.getHours().toString().padStart(2, '0') + ':' + 
-                             now.getMinutes().toString().padStart(2, '0');
-            document.getElementById('current-time').textContent = timeString;
-        }
-        
-        // 读取进度模拟
-        function updateProgress() {
-            const scrolled = window.pageYOffset;
-            const maxHeight = document.body.scrollHeight - window.innerHeight;
-            const progress = Math.min((scrolled / maxHeight) * 100, 100);
-            document.querySelector('.progress-fill').style.width = progress + '%';
-        }
-        
-        // 初始化
-        updateTime();
-        setInterval(updateTime, 60000);
-        
-        window.addEventListener('scroll', updateProgress);
-        updateProgress();
-    </script>
-    <script src="../language-redirect.js"></script>
-
-
-</body>
-</html>
+            <div class="tip-title">📱 추천 앱과 도구</div>
+            eBird (전 세계 표준), Merlin Bird ID (식별 도움), BirdNET (음성 식

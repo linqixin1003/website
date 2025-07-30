@@ -58,6 +58,15 @@ function handleLanguageRedirect() {
 // 页面加载时执行语言检测
 document.addEventListener('DOMContentLoaded', function() {
     handleLanguageRedirect();
+    
+    // 为返回按钮添加语言参数（如果存在）
+    const backButton = document.querySelector('.back-button');
+    if (backButton) {
+        backButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            goBackWithLanguage();
+        });
+    }
 });
 
 // 为返回按钮添加正确的语言路径
@@ -76,14 +85,3 @@ function goBackWithLanguage() {
     
     // window.location.href = backUrl;
 }
-
-// 如果页面有返回按钮，为其添加点击事件
-document.addEventListener('DOMContentLoaded', function() {
-    const backButton = document.querySelector('.back-button');
-    if (backButton) {
-        backButton.addEventListener('click', function(e) {
-            e.preventDefault();
-            goBackWithLanguage();
-        });
-    }
-});

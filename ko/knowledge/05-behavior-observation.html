@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bird 행동 관찰 - BirdAiSnap</title>
+    <title>조류 행동 관찰 - BirdAiSnap</title>
     <style>
         * {
             margin: 0;
@@ -30,7 +30,7 @@
             background: white;
             margin: -30px 20px 20px 20px;
             border-radius: 20px;
-            padding: 40px 20px 30px 20px;
+            padding: 30px 20px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.1);
             min-height: 80vh;
         }
@@ -40,7 +40,7 @@
             font-weight: 700;
             color: #1a1a1a;
             margin-bottom: 30px;
-            margin-top: 10px;
+            margin-top: 15px;
             line-height: 1.3;
         }
         
@@ -121,7 +121,7 @@
             border-radius: 12px;
             padding: 20px;
             border: 2px solid #e9ecef;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, border-color 0.3s ease;
         }
         
         .behavior-card:hover {
@@ -131,50 +131,218 @@
         
         .behavior-card h4 {
             color: #2e7d32;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             font-size: 18px;
+            display: flex;
+            align-items: center;
         }
         
         .behavior-card p {
-            color: #666;
-            line-height: 1.5;
+            color: #555;
+            line-height: 1.6;
             margin: 0;
+            font-size: 14px;
         }
         
         .behavior-icon {
-            font-size: 2rem;
-            margin-bottom: 15px;
-            display: block;
-            text-align: center;
+            font-size: 24px;
+            margin-right: 10px;
+            display: inline-block;
         }
         
-        .progress-container {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 60px;
-            background: linear-gradient(to top, rgba(255,255,255,0.95), transparent);
+        .behavior-details {
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid #e9ecef;
+        }
+        
+        .behavior-example {
+            background: #e8f5e8;
+            color: #2e7d32;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            margin-top: 8px;
+            font-style: italic;
+        }
+        
+        .observation-steps {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        
+        .step-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .step-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .step-number {
+            background: #4caf50;
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 998;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
         }
         
-        .progress-bar {
-            width: 200px;
-            height: 4px;
-            background: rgba(0,0,0,0.1);
-            border-radius: 2px;
-            overflow: hidden;
+        .step-content h4 {
+            color: #2e7d32;
+            margin-bottom: 8px;
+            font-size: 16px;
         }
         
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #4caf50, #81c784);
-            width: 0%;
-            border-radius: 2px;
-            transition: width 0.3s ease;
+        .step-content p {
+            margin: 0;
+            color: #555;
+            line-height: 1.5;
+            font-size: 14px;
+        }
+        
+        .seasonal-behaviors {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 25px 0;
+        }
+        
+        .seasonal-card {
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .seasonal-card:hover {
+            transform: translateY(-3px);
+        }
+        
+        .spring-card {
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            border-left: 4px solid #ff9800;
+        }
+        
+        .summer-card {
+            background: linear-gradient(135deg, #ffebee, #ffcdd2);
+            border-left: 4px solid #f44336;
+        }
+        
+        .autumn-card {
+            background: linear-gradient(135deg, #f3e5f5, #e1bee7);
+            border-left: 4px solid #9c27b0;
+        }
+        
+        .winter-card {
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            border-left: 4px solid #2196f3;
+        }
+        
+        .seasonal-card h4 {
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        
+        .spring-card h4 { color: #f57c00; }
+        .summer-card h4 { color: #c62828; }
+        .autumn-card h4 { color: #7b1fa2; }
+        .winter-card h4 { color: #1976d2; }
+        
+        .seasonal-card p {
+            font-size: 13px;
+            line-height: 1.4;
+            color: #555;
+        }
+        
+        .communication-types {
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 25px 0;
+            border-left: 4px solid #2196f3;
+        }
+        
+        .communication-types h4 {
+            color: #1976d2;
+            margin-bottom: 15px;
+        }
+        
+        .comm-item {
+            background: rgba(255,255,255,0.8);
+            margin: 10px 0;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 3px solid #2196f3;
+        }
+        
+        .comm-item h5 {
+            color: #1976d2;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+        
+        .comm-item p {
+            color: #555;
+            font-size: 13px;
+            margin: 0;
+            line-height: 1.4;
+        }
+        
+        .observation-checklist {
+            background: #fff3e0;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 25px 0;
+            border-left: 4px solid #ff9800;
+        }
+        
+        .observation-checklist h4 {
+            color: #f57c00;
+            margin-bottom: 15px;
+        }
+        
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            margin: 8px 0;
+            padding: 8px;
+            background: rgba(255,255,255,0.7);
+            border-radius: 6px;
+        }
+        
+        .checklist-item input[type="checkbox"] {
+            margin-right: 10px;
+            transform: scale(1.2);
+        }
+        
+        .checklist-item label {
+            color: #555;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        
+        @media (max-width: 768px) {
+            .behavior-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .seasonal-behaviors {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
         
         @media (max-width: 375px) {
@@ -191,153 +359,260 @@
                 font-size: 15px;
             }
             
-            .behavior-grid {
+            .seasonal-behaviors {
                 grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-
-    <!-- 主图 -->
     <div class="hero-image"></div>
     
-    <!-- 主要内容 -->
     <div class="content">
-        <h1 class="title">👁️ Bird 행동 관찰</h1>
+        <h1 class="title">조류 행동 관찰</h1>
         
         <div class="quote-box">
             <div class="quote-text">
-                Understanding bird behavior unlocks deeper insights into their lives and ecology
-            </div><div class="main-text">
-            Observing bird behavior is one of the most rewarding aspects of birdwatching<span class="emoji">🔍</span>. Beyond simple identification, understanding what birds are doing and why they're doing it provides fascinating insights into their ecology, social structures, and survival strategies.
+                조류의 행동을 이해하면 그들의 삶과 생태에 대한 깊은 통찰을 얻을 수 있습니다
+            </div>
         </div>
         
-        <div class="section-title">Types of Bird Behavior</div>
+        <div class="main-text">
+            조류 행동 관찰은 조류 관찰의 가장 보람 있는 측면 중 하나입니다<span class="emoji">🔍</span>. 단순한 식별을 넘어서, 조류가 무엇을 하고 있고 왜 그렇게 하는지를 이해하는 것은 그들의 생태, 사회 구조, 생존 전략에 대한 매혹적인 통찰을 제공합니다. 체계적인 행동 관찰을 통해 조류의 숨겨진 세계를 발견할 수 있습니다.
+        </div>
+        
+        <div class="section-title">조류 행동의 유형</div>
         
         <div class="main-text">
-            Birds exhibit a wide range of behaviors that serve different purposes in their daily lives<span class="emoji">🎭</span>. Learning to recognize and interpret these behaviors helps you understand what you're observing and predict what might happen next.
+            조류는 일상생활에서 다양한 목적을 위해 광범위한 행동을 보입니다<span class="emoji">🎭</span>. 이러한 행동들을 인식하고 해석하는 방법을 배우면 관찰하고 있는 것을 이해하고 다음에 일어날 일을 예측하는 데 도움이 됩니다.
         </div>
         
         <div class="behavior-grid">
             <div class="behavior-card">
-                <span class="behavior-icon">🍽️</span>
-                <h4>Feeding Behavior</h4>
-                <p>Different species have unique feeding strategies - ground foraging, aerial hunting, nectar feeding, or seed cracking.</p>
+                <h4><span class="behavior-icon">🍽️</span>채식 행동</h4>
+                <p>각 종마다 고유한 채식 전략을 가지고 있습니다 - 지상 채식, 공중 사냥, 꿀 섭취, 종자 깨기 등.</p>
+                <div class="behavior-details">
+                    <div class="behavior-example">
+                        예시: 딱따구리는 나무껍질을 쪼아 곤충을 찾고, 벌새는 꽃에서 꿀을 빨아먹습니다.
+                    </div>
+                </div>
             </div>
+            
             <div class="behavior-card">
-                <span class="behavior-icon">🏠</span>
-                <h4>Nesting Activities</h4>
-                <p>Building, defending, and maintaining nests. Includes material gathering, construction, and territorial defense.</p>
+                <h4><span class="behavior-icon">🏠</span>둥지 활동</h4>
+                <p>둥지 건설, 방어, 유지 관리를 포함합니다. 재료 수집, 건설, 영역 방어 등이 포함됩니다.</p>
+                <div class="behavior-details">
+                    <div class="behavior-example">
+                        예시: 제비는 진흙과 풀을 이용해 둥지를 짓고, 까치는 나뭇가지로 큰 둥지를 만듭니다.
+                    </div>
+                </div>
             </div>
+            
             <div class="behavior-card">
-                <span class="behavior-icon">💕</span>
-                <h4>Courtship Displays</h4>
-                <p>Elaborate behaviors to attract mates - singing, dancing, showing plumage, or offering gifts.</p>
+                <h4><span class="behavior-icon">💕</span>구애 행동</h4>
+                <p>짝을 유인하기 위한 정교한 행동 - 노래, 춤, 깃털 과시, 선물 제공 등.</p>
+                <div class="behavior-details">
+                    <div class="behavior-example">
+                        예시: 공작은 화려한 꼬리깃을 펼치고, 일부 조류는 먹이를 선물로 제공합니다.
+                    </div>
+                </div>
             </div>
+            
             <div class="behavior-card">
-                <span class="behavior-icon">🛡️</span>
-                <h4>Defensive Actions</h4>
-                <p>Protecting territory, young, or resources through calls, posturing, chasing, or mobbing predators.</p>
-            </div><div class="section-title">Feeding Behaviors</div>
+                <h4><span class="behavior-icon">🛡️</span>방어 행동</h4>
+                <p>영역, 새끼, 자원을 보호하기 위한 울음, 자세, 추격, 포식자 집단 공격 등.</p>
+                <div class="behavior-details">
+                    <div class="behavior-example">
+                        예시: 까마귀들이 맹금류를 집단으로 쫓아내거나, 어미새가 새끼를 보호하는 행동.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="behavior-card">
+                <h4><span class="behavior-icon">🧹</span>몸단장 행동</h4>
+                <p>깃털 정리, 목욕, 먼지 목욕, 기생충 제거 등 위생 관리 행동.</p>
+                <div class="behavior-details">
+                    <div class="behavior-example">
+                        예시: 참새의 먼지 목욕, 백로의 물에서 깃털 정리, 까마귀의 개미 문지르기.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="behavior-card">
+                <h4><span class="behavior-icon">👥</span>사회적 행동</h4>
+                <p>무리 형성, 계층 구조, 협력, 경쟁, 의사소통 등 사회적 상호작용.</p>
+                <div class="behavior-details">
+                    <div class="behavior-example">
+                        예시: 기러기의 V자 편대 비행, 참새 무리의 집단 채식, 펭귄의 집단 육아.
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section-title">체계적 관찰 방법</div>
         
         <div class="main-text">
-            Feeding behavior is often the easiest to observe and provides excellent identification clues<span class="emoji">🍯</span>. Different species have evolved specialized techniques for finding and processing food, from the precise insect-catching of flycatchers to the seed-cracking abilities of finches.
+            효과적인 행동 관찰을 위해서는 체계적인 접근법이 필요합니다. 다음 단계를 따라 관찰 기술을 향상시킬 수 있습니다<span class="emoji">📋</span>.
+        </div>
+        
+        <div class="observation-steps">
+            <h4 style="color: #2e7d32; margin-bottom: 20px; font-size: 18px;">관찰 단계별 가이드:</h4>
+            
+            <div class="step-item">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h4>관찰 위치 선정</h4>
+                    <p>조류를 방해하지 않으면서도 좋은 시야를 확보할 수 있는 위치를 찾습니다. 바람 방향과 햇빛 각도를 고려하여 최적의 관찰 조건을 만듭니다.</p>
+                </div>
+            </div>
+            
+            <div class="step-item">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h4>개체 또는 소그룹 집중</h4>
+                    <p>한 번에 한 개체나 작은 그룹에 집중합니다. 너무 많은 개체를 동시에 관찰하려 하면 중요한 행동을 놓칠 수 있습니다.</p>
+                </div>
+            </div>
+            
+            <div class="step-item">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h4>행동 패턴 파악</h4>
+                    <p>조류가 무엇을 하고 있는지, 얼마나 오래 지속되는지, 다른 행동으로 어떻게 전환되는지 관찰합니다.</p>
+                </div>
+            </div>
+            
+            <div class="step-item">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h4>환경적 맥락 고려</h4>
+                    <p>날씨, 시간, 계절, 주변 환경이 관찰되는 행동에 어떤 영향을 미치는지 고려합니다.</p>
+                </div>
+            </div>
+            
+            <div class="step-item">
+                <div class="step-number">5</div>
+                <div class="step-content">
+                    <h4>상세한 기록 작성</h4>
+                    <p>관찰한 행동, 시간, 지속 시간, 참여 개체 수, 환경 조건을 자세히 기록합니다.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section-title">계절별 행동 변화</div>
+        
+        <div class="main-text">
+            조류의 행동은 계절에 따라 극적으로 변화합니다<span class="emoji">🍂</span>. 각 계절의 특징적인 행동 패턴을 이해하면 관찰 계획을 세우고 예상되는 행동을 예측하는 데 도움이 됩니다.
+        </div>
+        
+        <div class="seasonal-behaviors">
+            <div class="seasonal-card spring-card">
+                <h4>🌸 봄철 행동</h4>
+                <p>영역 확립, 짝 선택, 둥지 건설, 활발한 노래 활동이 특징입니다. 구애 행동과 영역 다툼을 자주 관찰할 수 있습니다.</p>
+            </div>
+            
+            <div class="seasonal-card summer-card">
+                <h4>☀️ 여름철 활동</h4>
+                <p>둥지 관리, 새끼 먹이기, 어린 개체 교육, 새로운 깃털로의 털갈이가 주요 활동입니다.</p>
+            </div>
+            
+            <div class="seasonal-card autumn-card">
+                <h4>🍁 가을철 준비</h4>
+                <p>이주 준비, 지방 축적, 무리 행동, 어린 개체들의 분산이 관찰됩니다.</p>
+            </div>
+            
+            <div class="seasonal-card winter-card">
+                <h4>❄️ 겨울철 생존</h4>
+                <p>에너지 보존, 무리 채식, 은신처 찾기, 혹독한 조건에 대한 적응 행동을 보입니다.</p>
+            </div>
+        </div>
+        
+        <div class="section-title">의사소통과 음성 행동</div>
+        
+        <div class="main-text">
+            조류는 복잡한 음성과 시각적 신호 체계를 통해 의사소통합니다<span class="emoji">📢</span>. 이러한 의사소통을 해석하는 방법을 배우면 관찰에 또 다른 차원을 추가하고 조류 간의 상호작용과 감정을 이해하는 데 도움이 됩니다.
+        </div>
+        
+        <div class="communication-types">
+            <h4>🎵 의사소통 유형</h4>
+            <div class="comm-item">
+                <h5>영역 노래</h5>
+                <p>번식기에 영역을 선언하고 짝을 유인하기 위한 복잡하고 멜로디가 있는 노래입니다.</p>
+            </div>
+            <div class="comm-item">
+                <h5>접촉음</h5>
+                <p>무리 구성원 간의 위치를 알리고 연락을 유지하기 위한 짧고 단순한 소리입니다.</p>
+            </div>
+            <div class="comm-item">
+                <h5>경계음</h5>
+                <p>포식자나 위험을 발견했을 때 내는 날카롭고 반복적인 경고 소리입니다.</p>
+            </div>
+            <div class="comm-item">
+                <h5>구걸음</h5>
+                <p>어린 개체들이 부모에게 먹이를 요구할 때 내는 특징적인 소리입니다.</p>
+            </div>
+            <div class="comm-item">
+                <h5>공격음</h5>
+                <p>영역 침입자나 경쟁자에게 위협을 가할 때 내는 거친 소리입니다.</p>
+            </div>
+        </div>
+        
+        <div class="section-title">행동 관찰 체크리스트</div>
+        
+        <div class="main-text">
+            체계적인 관찰을 위해 다음 체크리스트를 활용하여 중요한 행동 요소들을 놓치지 않도록 합니다<span class="emoji">✅</span>.
+        </div>
+        
+        <div class="observation-checklist">
+            <h4>📝 관찰 체크리스트</h4>
+            <div class="checklist-item">
+                <input type="checkbox" id="location">
+                <label for="location">관찰 장소와 환경 조건 기록</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="time">
+                <label for="time">관찰 시작 시간과 지속 시간 기록</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="weather">
+                <label for="weather">날씨와 기상 조건 확인</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="individuals">
+                <label for="individuals">관찰 대상 개체 수와 특징 파악</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="behavior">
+                <label for="behavior">주요 행동 유형과 패턴 관찰</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="interactions">
+                <label for="interactions">개체 간 상호작용 기록</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="vocalizations">
+                <label for="vocalizations">음성과 의사소통 신호 청취</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="context">
+                <label for="context">행동의 맥락과 원인 분석</label>
+            </div>
+        </div>
+        
+        <div class="section-title">고급 관찰 기법</div>
+        
+        <div class="main-text">
+            경험이 쌓이면서 더욱 정교한 관찰 기법을 사용할 수 있습니다. 개체 식별, 장기간 추적, 행동 예측 등의 고급 기술을 통해 조류 행동에 대한 깊은 이해를 얻을 수 있습니다<span class="emoji">🎯</span>.
         </div>
         
         <div class="tip-box">
-            <div class="tip-title">🔍 What to Watch For</div>
-            Notice where birds feed (ground, branches, air), how they move while feeding, what they eat, and whether they feed alone or in groups.
-        </div>
-        
-        <div class="section-title">Social Behaviors</div>
-        
-        <div class="main-text">
-            Birds exhibit complex social behaviors ranging from solitary living to highly organized flocks<span class="emoji">👥</span>. Understanding these social dynamics helps you interpret what you're seeing and predict bird movements and activities.
+            <div class="tip-title">🔍 관찰 팁</div>
+            인내심을 갖고 조용히 관찰하며, 급작스러운 움직임을 피하고, 정기적으로 같은 장소를 방문하여 행동 패턴의 변화를 추적해보세요. 사진이나 동영상 촬영도 나중에 행동을 자세히 분석하는 데 도움이 됩니다.
         </div>
         
         <div class="main-text">
-            Flocking behavior serves multiple purposes: protection from predators, improved foraging efficiency, and information sharing about food sources<span class="emoji">🛡️</span>. Mixed-species flocks are particularly interesting, as different species benefit from each other's specialized abilities.
-        </div>
-        
-        <div class="section-title">Seasonal Behavior Changes</div>
-        
-        <div class="main-text">
-            Bird behavior changes dramatically with the seasons<span class="emoji">🍂</span>. Spring brings territorial establishment and courtship displays, summer focuses on nesting and raising young, fall involves preparation for migration or winter, and winter emphasizes survival and energy conservation.
-        </div>
-        
-        <div class="behavior-grid">
-            <div class="behavior-card">
-                <span class="behavior-icon">🌸</span>
-                <h4>Spring Behaviors</h4>
-                <p>Territory establishment, mate selection, nest building, and increased singing activity.</p>
-            </div>
-            <div class="behavior-card">
-                <span class="behavior-icon">☀️</span>
-                <h4>Summer Activities</h4>
-                <p>Nesting, feeding young, teaching fledglings, and molting into fresh plumage.</p>
-            </div>
-            <div class="behavior-card">
-                <span class="behavior-icon">🍁</span>
-                <h4>Fall Preparations</h4>
-                <p>Migration staging, fat accumulation, flocking behavior, and dispersal of young birds.</p>
-            </div>
-            <div class="behavior-card">
-                <span class="behavior-icon">❄️</span>
-                <h4>Winter Survival</h4>
-                <p>Energy conservation, flock feeding, shelter seeking, and adaptation to harsh conditions.</p>
-            </div><div class="section-title">Communication and Vocalizations</div>
-        
-        <div class="main-text">
-            Birds communicate through a complex system of vocalizations and visual displays<span class="emoji">📢</span>. Learning to interpret these communications adds another dimension to your observations and helps you understand bird interactions and emotions.
-        </div>
-        
-        <div class="tip-box">
-            <div class="tip-title">🎵 Vocal Behaviors</div>
-            Territory songs, contact calls, alarm calls, begging calls from young, and aggressive vocalizations all serve different communication purposes.
-        </div>
-        
-        <div class="section-title">Observation Techniques</div>
-        
-        <div class="main-text">
-            Effective behavior observation requires patience, stillness, and systematic watching<span class="emoji">⏰</span>. Find a comfortable position with good visibility, minimize your movement, and focus on one individual or small group at a time.
-        </div>
-        
-        <div class="main-text">
-            Keep detailed notes about what you observe<span class="emoji">📝</span>. Record the time, weather conditions, number of birds involved, specific behaviors witnessed, and any interactions between individuals. These records help you understand patterns and learn to predict bird behavior in similar situations.
-        </div><!-- 进度条 -->
-    <div class="progress-container">
-        <div class="progress-bar">
-            <div class="progress-fill"></div>
+            조류 행동 관찰은 단순한 취미를 넘어서 자연에 대한 깊은 이해와 연결감을 제공합니다. 지속적인 관찰과 기록을 통해 조류의 복잡하고 매혹적인 세계를 발견하고, 그들의 생존 전략과 사회적 역학을 이해할 수 있습니다<span class="emoji">🌟</span>.
         </div>
     </div>
-
-    <script>
-        // 更新时间
-        function updateTime() {
-            const now = new Date();
-            const timeString = now.getHours().toString().padStart(2, '0') + ':' + 
-                             now.getMinutes().toString().padStart(2, '0');
-            document.getElementById('current-time').textContent = timeString;
-        }
-        
-        // 读取进度模拟
-        function updateProgress() {
-            const scrolled = window.pageYOffset;
-            const maxHeight = document.body.scrollHeight - window.innerHeight;
-            const progress = Math.min((scrolled / maxHeight) * 100, 100);
-            document.querySelector('.progress-fill').style.width = progress + '%';
-        }
-        
-        // 初始化
-        updateTime();
-        setInterval(updateTime, 60000);
-        
-        window.addEventListener('scroll', updateProgress);
-        updateProgress();
-    </script>
-    <script src="../language-redirect.js"></script>
-
-
 </body>
 </html>

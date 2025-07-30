@@ -243,5 +243,26 @@
             </a>
         </div>
     </div>
+    <script>
+        // 为链接添加语言参数的函数
+        function addLanguageParam(event, element) {
+            event.preventDefault();
+            const currentLang = localStorage.getItem('selectedLanguage') || 'fr';
+            const href = element.getAttribute('href');
+            
+            // 跳转到对应语言的页面
+            window.location.href = href;
+        }
+
+        // 为所有文章卡片添加点击事件
+        document.addEventListener('DOMContentLoaded', function() {
+            const articleCards = document.querySelectorAll('.article-card');
+            articleCards.forEach(card => {
+                card.addEventListener('click', function(event) {
+                    addLanguageParam(event, this);
+                });
+            });
+        });
+    </script>
 </body>
 </html>

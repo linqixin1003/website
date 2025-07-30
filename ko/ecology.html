@@ -3,369 +3,529 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>조류 생태학 - BirdAiSnap</title>
-    <link rel="stylesheet" href="../styles.css">
-    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <title data-i18n="ecology.title">조류 생태학 - BirdAiSnap</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+        
+        .language-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        
+        .lang-dropdown {
+            position: relative;
+        }
+        
+        .lang-btn {
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid #e0e0e0;
+            border-radius: 25px;
+            padding: 8px 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #333;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .lang-btn:hover {
+            background: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+        
+        .lang-icon {
+            font-size: 16px;
+        }
+        
+        .dropdown-arrow {
+            font-size: 12px;
+            transition: transform 0.3s ease;
+        }
+        
+        .lang-dropdown.active .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+        
+        .lang-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1001;
+            margin-top: 5px;
+        }
+        
+        .lang-dropdown.active .lang-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .lang-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .lang-option:last-child {
+            border-bottom: none;
+        }
+        
+        .lang-option:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .lang-option.active {
+            background-color: #e3f2fd;
+            color: #1976d2;
+        }
+        
+        .lang-option .flag {
+            font-size: 18px;
+        }
+        
+        .lang-option .name {
+            flex: 1;
+            font-weight: 500;
+        }
+        
+        .lang-option .code {
+            font-size: 12px;
+            color: #666;
+            background: #f0f0f0;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+        
+        .lang-option.active .code {
+            background: #bbdefb;
+            color: #1976d2;
+        }
+        
+        .header {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.6)), 
+                        url('../images/birds/species/bird-image-015.webp') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .header-title {
+            color: white;
+            font-size: 32px;
+            font-weight: 700;
+            text-align: center;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .content {
+            background: white;
+            margin: -30px 20px 20px 20px;
+            border-radius: 20px;
+            padding: 30px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            min-height: 80vh;
+        }
+        
+        .intro-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            margin: 20px 0;
+            text-align: center;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .article-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .article-card {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            height: 250px;
+            display: block;
+            text-decoration: none;
+        }
+        
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .article-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .article-card:hover .article-image {
+            transform: scale(1.05);
+        }
+        
+        .article-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            padding: 20px;
+            color: white;
+        }
+        
+        .article-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .article-description {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        @media (max-width: 768px) {
+            .article-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 20px;
+            }
+            
+            .header-title {
+                font-size: 28px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .article-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header-title {
+                font-size: 24px;
+            }
+            
+            .content {
+                margin: -20px 15px 15px 15px;
+                padding: 25px 15px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <img src="../images/logo.png" alt="BirdAiSnap Logo" class="logo-img">
-                <span class="logo-text">BirdAiSnap</span>
+    <!-- 语言切换器 -->
+    <div class="language-switcher">
+        <div class="lang-dropdown">
+            <button class="lang-btn" onclick="toggleLanguageMenu()">
+                <span class="lang-icon">🌐</span>
+                <span class="lang-text">한국어</span>
+                <span class="dropdown-arrow">▼</span>
+            </button>
+            <div class="lang-menu">
+                <div class="lang-option" onclick="changeLanguage('en')">
+                    <span class="flag">🇺🇸</span>
+                    <span class="name">English</span>
+                    <span class="code">EN</span>
+                </div>
+                <div class="lang-option" onclick="changeLanguage('es')">
+                    <span class="flag">🇪🇸</span>
+                    <span class="name">Español</span>
+                    <span class="code">ES</span>
+                </div>
+                <div class="lang-option" onclick="changeLanguage('fr')">
+                    <span class="flag">🇫🇷</span>
+                    <span class="name">Français</span>
+                    <span class="code">FR</span>
+                </div>
+                <div class="lang-option" onclick="changeLanguage('de')">
+                    <span class="flag">🇩🇪</span>
+                    <span class="name">Deutsch</span>
+                    <span class="code">DE</span>
+                </div>
+                <div class="lang-option" onclick="changeLanguage('it')">
+                    <span class="flag">🇮🇹</span>
+                    <span class="name">Italiano</span>
+                    <span class="code">IT</span>
+                </div>
+                <div class="lang-option" onclick="changeLanguage('ja')">
+                    <span class="flag">🇯🇵</span>
+                    <span class="name">日本語</span>
+                    <span class="code">JA</span>
+                </div>
+                <div class="lang-option active" onclick="changeLanguage('ko')">
+                    <span class="flag">🇰🇷</span>
+                    <span class="name">한국어</span>
+                    <span class="code">KO</span>
+                </div>
+                <div class="lang-option" onclick="changeLanguage('pt')">
+                    <span class="flag">🇵🇹</span>
+                    <span class="name">Português</span>
+                    <span class="code">PT</span>
+                </div>
+                <div class="lang-option" onclick="changeLanguage('ru')">
+                    <span class="flag">🇷🇺</span>
+                    <span class="name">Русский</span>
+                    <span class="code">RU</span>
+                </div>
+                <div class="lang-option" onclick="changeLanguage('zh')">
+                    <span class="flag">🇨🇳</span>
+                    <span class="name">中文</span>
+                    <span class="code">ZH</span>
+                </div>
             </div>
+        </div>
+    </div>
+    
+    <!-- 头部横幅 -->
+    <div class="header">
+        <h1 class="header-title" data-i18n="ecology.header.title">조류 생태학</h1>
+    </div>
+    
+    <!-- 主要内容 -->
+    <div class="content">
+        <p class="intro-text" data-i18n="ecology.intro.text">
+            조류 생태학의 복잡하고 매혹적인 세계를 탐험해보세요. 서식지 적응부터 생태계 역할, 이주 패턴부터 보전 과제까지, 조류 생태학을 이해하는 것은 지구 생물다양성 보전에 필수적입니다. 아래 문서들을 통해 조류와 환경 간의 복잡한 관계를 깊이 있게 알아보세요.
+        </p>
+        
+        <div class="article-grid">
+            <!-- 文章1 -->
+            <a href="ecology/01-habitat-ecosystems.html" class="article-card" onclick="addLanguageParam(event, this)">
+                <img src="../images/birds/species/bird-image-075.webp" class="article-image" alt="서식지와 생태계">
+                <div class="article-overlay">
+                    <h3 class="article-title" data-i18n="ecology.articles.habitat-ecosystems.title">서식지와 생태계</h3>
+                    <p class="article-description" data-i18n="ecology.articles.habitat-ecosystems.desc">조류 서식지의 다양성과 생태계 기능 이해</p>
+                </div>
+            </a>
             
-            <div class="nav-menu">
-                <a href="../index.html" class="nav-link">홈페이지</a>
-                <a href="../knowledge.html" class="nav-link">지식</a>
-                <a href="../birdwatching.html" class="nav-link">관찰</a>
-                <a href="../scientific-wonders.html" class="nav-link">과학</a>
-                <a href="../pet-care.html" class="nav-link">케어</a>
-                <a href="../ecology.html" class="nav-link active">생태학</a>
-                <a href="../cultural-symbolism.html" class="nav-link">문화</a>
-            </div>
-
-            <div class="language-switcher">
-                <div class="lang-dropdown">
-                    <button class="lang-btn" onclick="toggleLanguageMenu()">
-                        <span class="lang-icon">🌐</span>
-                        <span class="lang-text">언어</span>
-                        <span id="currentLang">KO</span>
-                        <span class="dropdown-arrow">▼</span>
-                    </button>
-                    <div class="lang-menu" id="languageMenu">
-                        <div class="lang-option" onclick="changeLanguage('en')">
-                            <span class="flag">🇺🇸</span>
-                            <span class="name">영어</span>
-                            <span class="code">EN</span>
-                        </div>
-                        <div class="lang-option" onclick="changeLanguage('zh')">
-                            <span class="flag">🇨🇳</span>
-                            <span class="name">中文</span>
-                            <span class="code">ZH</span>
-                        </div>
-                        <div class="lang-option" onclick="changeLanguage('es')">
-                            <span class="flag">🇪🇸</span>
-                            <span class="name">Español</span>
-                            <span class="code">ES</span>
-                        </div>
-                        <div class="lang-option" onclick="changeLanguage('fr')">
-                            <span class="flag">🇫🇷</span>
-                            <span class="name">Français</span>
-                            <span class="code">FR</span>
-                        </div>
-                        <div class="lang-option" onclick="changeLanguage('de')">
-                            <span class="flag">🇩🇪</span>
-                            <span class="name">Deutsch</span>
-                            <span class="code">DE</span>
-                        </div>
-                        <div class="lang-option" onclick="changeLanguage('it')">
-                            <span class="flag">🇮🇹</span>
-                            <span class="name">Italiano</span>
-                            <span class="code">IT</span>
-                        </div>
-                        <div class="lang-option" onclick="changeLanguage('pt')">
-                            <span class="flag">🇵🇹</span>
-                            <span class="name">Português</span>
-                            <span class="code">PT</span>
-                        </div>
-                        <div class="lang-option" onclick="changeLanguage('ru')">
-                            <span class="flag">🇷🇺</span>
-                            <span class="name">Русский</span>
-                            <span class="code">RU</span>
-                        </div>
-                        <div class="lang-option" onclick="changeLanguage('ja')">
-                            <span class="flag">🇯🇵</span>
-                            <span class="name">日本語</span>
-                            <span class="code">JA</span>
-                        </div>
-                        <div class="lang-option active" onclick="changeLanguage('ko')">
-                            <span class="flag">🇰🇷</span>
-                            <span class="name">한국어</span>
-                            <span class="code">KO</span>
-                        </div>
-                    </div>
+            <!-- 文章2 -->
+            <a href="ecology/02-food-webs-chains.html" class="article-card" onclick="addLanguageParam(event, this)">
+                <img src="../images/birds/species/bird-image-076.webp" class="article-image" alt="먹이망과 먹이사슬">
+                <div class="article-overlay">
+                    <h3 class="article-title" data-i18n="ecology.articles.food-webs-chains.title">먹이망과 먹이사슬</h3>
+                    <p class="article-description" data-i18n="ecology.articles.food-webs-chains.desc">먹이망에서 조류의 중요한 위치와 역할 탐구</p>
                 </div>
-            </div>
-
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero-section">
-        <div class="hero-content">
-            <h1 class="hero-title">조류 생태학</h1>
-            <p class="hero-description">조류와 환경 간의 복잡하고 매혹적인 관계를 탐구하세요. 조류 생태학은 조류가 다양한 서식지에 어떻게 적응하는지, 생태계에서의 역할, 환경 변화가 조류 개체군에 미치는 영향을 연구합니다.</p>
-        </div>
-    </section>
-
-    <!-- Articles Grid -->
-    <section class="articles-section">
-        <div class="container">
-            <div class="articles-grid">
-                <article class="article-card" onclick="addLanguageParam(event, this)" data-href="ecology/01-habitat-ecosystems.html">
-                    <div class="article-image">
-                        <img src="../images/birds/species/bird-image-075.webp" alt="서식지 및 생태계" loading="lazy">
-                    </div>
-                    <div class="article-content">
-                        <h3 class="article-title">서식지 및 생태계</h3>
-                        <p class="article-description">조류 서식지의 다양성과 생태계 기능 이해하기</p>
-                        <div class="article-meta">
-                            <span class="read-time">⏱️ 8분 읽기</span>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="article-card" onclick="addLanguageParam(event, this)" data-href="ecology/02-food-webs-chains.html">
-                    <div class="article-image">
-                        <img src="../images/birds/species/bird-image-076.webp" alt="먹이망 및 먹이사슬" loading="lazy">
-                    </div>
-                    <div class="article-content">
-                        <h3 class="article-title">먹이망 및 먹이사슬</h3>
-                        <p class="article-description">먹이망에서 조류의 중요한 위치와 역할 탐구하기</p>
-                        <div class="article-meta">
-                            <span class="read-time">⏱️ 7분 읽기</span>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="article-card" onclick="addLanguageParam(event, this)" data-href="ecology/03-migration-patterns.html">
-                    <div class="article-image">
-                        <img src="../images/birds/species/bird-image-077.webp" alt="이주 패턴" loading="lazy">
-                    </div>
-                    <div class="article-content">
-                        <h3 class="article-title">이주 패턴</h3>
-                        <p class="article-description">조류 이주의 복잡한 패턴과 생태학적 의미 연구하기</p>
-                        <div class="article-meta">
-                            <span class="read-time">⏱️ 9분 읽기</span>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="article-card" onclick="addLanguageParam(event, this)" data-href="ecology/04-breeding-ecology.html">
-                    <div class="article-image">
-                        <img src="../images/birds/species/head_breeding_cology.webp" alt="번식 생태학" loading="lazy">
-                    </div>
-                    <div class="article-content">
-                        <h3 class="article-title">번식 생태학</h3>
-                        <p class="article-description">조류 번식 행동과 생태학적 전략 이해하기</p>
-                        <div class="article-meta">
-                            <span class="read-time">⏱️ 8분 읽기</span>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="article-card" onclick="addLanguageParam(event, this)" data-href="ecology/05-climate-change-impact.html">
-                    <div class="article-image">
-                        <img src="../images/birds/species/bird-image-079.webp" alt="기후 변화 영향" loading="lazy">
-                    </div>
-                    <div class="article-content">
-                        <h3 class="article-title">기후 변화 영향</h3>
-                        <p class="article-description">기후 변화가 조류 생태에 미치는 심각한 영향 분석하기</p>
-                        <div class="article-meta">
-                            <span class="read-time">⏱️ 10분 읽기</span>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="article-card" onclick="addLanguageParam(event, this)" data-href="ecology/06-urban-ecology.html">
-                    <div class="article-image">
-                        <img src="../images/birds/species/head_urban_ecology.webp" alt="도시 생태학" loading="lazy">
-                    </div>
-                    <div class="article-content">
-                        <h3 class="article-title">도시 생태학</h3>
-                        <p class="article-description">조류가 도시 환경에 어떻게 적응하는지 탐구하기</p>
-                        <div class="article-meta">
-                            <span class="read-time">⏱️ 7분 읽기</span>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="article-card" onclick="addLanguageParam(event, this)" data-href="ecology/07-conservation-biology.html">
-                    <div class="article-image">
-                        <img src="../images/birds/species/head_conservation_biology.webp" alt="보전 생물학" loading="lazy">
-                    </div>
-                    <div class="article-content">
-                        <h3 class="article-title">보전 생물학</h3>
-                        <p class="article-description">조류 보전의 과학적 원리와 실용적 방법 학습하기</p>
-                        <div class="article-meta">
-                            <span class="read-time">⏱️ 9분 읽기</span>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="article-card" onclick="addLanguageParam(event, this)" data-href="ecology/08-island-biogeography.html">
-                    <div class="article-image">
-                        <img src="../images/birds/species/head_island_biogeography.webp" alt="섬 생물지리학" loading="lazy">
-                    </div>
-                    <div class="article-content">
-                        <h3 class="article-title">섬 생물지리학</h3>
-                        <p class="article-description">섬 환경에서 조류 분포와 진화 연구하기</p>
-                        <div class="article-meta">
-                            <span class="read-time">⏱️ 8분 읽기</span>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="article-card" onclick="addLanguageParam(event, this)" data-href="ecology/09-pollination-seed-dispersal.html">
-                    <div class="article-image">
-                        <img src="../images/birds/species/head_pollination_seed_dispersal.webp" alt="수분 및 종자 산포" loading="lazy">
-                    </div>
-                    <div class="article-content">
-                        <h3 class="article-title">수분 및 종자 산포</h3>
-                        <p class="article-description">식물 번식에서 조류의 중요한 역할 이해하기</p>
-                        <div class="article-meta">
-                            <span class="read-time">⏱️ 7분 읽기</span>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="article-card" onclick="addLanguageParam(event, this)" data-href="ecology/10-community-dynamics.html">
-                    <div class="article-image">
-                        <img src="../images/birds/species/head_community_dynamics.webp" alt="군집 역학" loading="lazy">
-                    </div>
-                    <div class="article-content">
-                        <h3 class="article-title">군집 역학</h3>
-                        <p class="article-description">조류 군집의 구조와 동적 변화 탐구하기</p>
-                        <div class="article-meta">
-                            <span class="read-time">⏱️ 8분 읽기</span>
-                        </div>
-                    </div>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <div class="footer-logo">
-                        <img src="../images/logo.png" alt="BirdAiSnap Logo" class="footer-logo-img">
-                        <span class="footer-logo-text">BirdAiSnap</span>
-                    </div>
-                    <p class="footer-tagline">스마트 인식, 자연 탐구</p>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>제품</h4>
-                    <ul>
-                        <li><a href="#download">앱 다운로드</a></li>
-                        <li><a href="../knowledge.html">기능</a></li>
-                        <li><a href="#guide">사용자 가이드</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>지원</h4>
-                    <ul>
-                        <li><a href="#help">도움말 센터</a></li>
-                        <li><a href="#feedback">피드백</a></li>
-                        <li><a href="#privacy">개인정보 보호정책</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>연락처</h4>
-                    <ul>
-                        <li><a href="mailto:support@birdaisnap.com">이메일 상담</a></li>
-                    </ul>
-                </div>
-            </div>
+            </a>
             
-            <div class="footer-bottom">
-                <p>&copy; 2024 BirdAiSnap. 모든 권리 보유</p>
-            </div>
+            <!-- 文章3 -->
+            <a href="ecology/03-migration-patterns.html" class="article-card" onclick="addLanguageParam(event, this)">
+                <img src="../images/birds/species/bird-image-077.webp" class="article-image" alt="이주 패턴">
+                <div class="article-overlay">
+                    <h3 class="article-title" data-i18n="ecology.articles.migration-patterns.title">이주 패턴</h3>
+                    <p class="article-description" data-i18n="ecology.articles.migration-patterns.desc">조류 이주의 복잡한 패턴과 생태학적 의미 연구</p>
+                </div>
+            </a>
+            
+            <!-- 文章4 -->
+            <a href="ecology/04-breeding-ecology.html" class="article-card" onclick="addLanguageParam(event, this)">
+                <img src="../images/birds/species/head_breeding_cology.webp" class="article-image" alt="번식 생태학">
+                <div class="article-overlay">
+                    <h3 class="article-title" data-i18n="ecology.articles.breeding-ecology.title">번식 생태학</h3>
+                    <p class="article-description" data-i18n="ecology.articles.breeding-ecology.desc">조류 번식 행동과 생태학적 전략 이해</p>
+                </div>
+            </a>
+            
+            <!-- 文章5 -->
+            <a href="ecology/05-climate-change-impact.html" class="article-card" onclick="addLanguageParam(event, this)">
+                <img src="../images/birds/species/bird-image-079.webp" class="article-image" alt="기후변화 영향">
+                <div class="article-overlay">
+                    <h3 class="article-title" data-i18n="ecology.articles.climate-change-impact.title">기후변화 영향</h3>
+                    <p class="article-description" data-i18n="ecology.articles.climate-change-impact.desc">기후변화가 조류 생태학에 미치는 심각한 영향 분석</p>
+                </div>
+            </a>
+            
+            <!-- 文章6 -->
+            <a href="ecology/06-urban-ecology.html" class="article-card" onclick="addLanguageParam(event, this)">
+                <img src="../images/birds/species/head_urban_ecology.webp" class="article-image" alt="도시 생태학">
+                <div class="article-overlay">
+                    <h3 class="article-title" data-i18n="ecology.articles.urban-ecology.title">도시 생태학</h3>
+                    <p class="article-description" data-i18n="ecology.articles.urban-ecology.desc">조류가 도시 환경에 적응하는 방법 탐구</p>
+                </div>
+            </a>
+            
+            <!-- 文章7 -->
+            <a href="ecology/07-conservation-biology.html" class="article-card" onclick="addLanguageParam(event, this)">
+                <img src="../images/birds/species/head_conservation_biology.webp" class="article-image" alt="보전 생물학">
+                <div class="article-overlay">
+                    <h3 class="article-title" data-i18n="ecology.articles.conservation-biology.title">보전 생물학</h3>
+                    <p class="article-description" data-i18n="ecology.articles.conservation-biology.desc">조류 보전의 과학적 원리와 실용적 방법 학습</p>
+                </div>
+            </a>
+            
+            <!-- 文章8 -->
+            <a href="ecology/08-island-biogeography.html" class="article-card" onclick="addLanguageParam(event, this)">
+                <img src="../images/birds/species/head_island_biogeography.webp" class="article-image" alt="섬 생물지리학">
+                <div class="article-overlay">
+                    <h3 class="article-title" data-i18n="ecology.articles.island-biogeography.title">섬 생물지리학</h3>
+                    <p class="article-description" data-i18n="ecology.articles.island-biogeography.desc">섬 환경에서 조류 분포와 진화 연구</p>
+                </div>
+            </a>
+            
+            <!-- 文章9 -->
+            <a href="ecology/09-pollination-seed-dispersal.html" class="article-card" onclick="addLanguageParam(event, this)">
+                <img src="../images/birds/species/head_pollination_seed_dispersal.webp" class="article-image" alt="수분과 종자 산포">
+                <div class="article-overlay">
+                    <h3 class="article-title" data-i18n="ecology.articles.pollination-seed-dispersal.title">수분과 종자 산포</h3>
+                    <p class="article-description" data-i18n="ecology.articles.pollination-seed-dispersal.desc">식물 번식에서 조류의 중요한 역할 이해</p>
+                </div>
+            </a>
+            
+            <!-- 文章10 -->
+            <a href="ecology/10-community-dynamics.html" class="article-card" onclick="addLanguageParam(event, this)">
+                <img src="../images/birds/species/head_community_dynamics.webp" class="article-image" alt="군집 역학">
+                <div class="article-overlay">
+                    <h3 class="article-title" data-i18n="ecology.articles.community-dynamics.title">군집 역학</h3>
+                    <p class="article-description" data-i18n="ecology.articles.community-dynamics.desc">조류 군집의 구조와 동적 변화 탐구</p>
+                </div>
+            </a>
         </div>
-    </footer>
+    </div>
 
-    <script src="../language-redirect.js"></script>
+    <!-- 引入多语言脚本 -->
+    <script src="../script.js"></script>
+    <script src="language-redirect.js"></script>
     <script>
+        // 语言切换功能
         function toggleLanguageMenu() {
-            const menu = document.getElementById('languageMenu');
-            menu.classList.toggle('active');
+            try {
+                const dropdown = document.querySelector('.lang-dropdown');
+                if (dropdown) {
+                    dropdown.classList.toggle('active');
+                }
+            } catch (error) {
+                console.log('Toggle menu error:', error);
+            }
         }
 
         function changeLanguage(langCode) {
-            localStorage.setItem('selectedLanguage', langCode);
-            const currentPath = window.location.pathname;
-            const currentSearch = window.location.search;
-            
-            let newPath;
-            if (langCode === 'en') {
-                newPath = '../ecology.html';
-            } else {
-                newPath = `../${langCode}/ecology.html`;
+            try {
+                localStorage.setItem('selectedLanguage', langCode);
+                
+                // 更新按钮显示
+                const langText = document.querySelector('.lang-text');
+                const languages = {
+                    'en': 'English',
+                    'es': 'Español', 
+                    'fr': 'Français',
+                    'de': 'Deutsch',
+                    'it': 'Italiano',
+                    'ja': '日本語',
+                    'ko': '한국어',
+                    'pt': 'Português',
+                    'ru': 'Русский',
+                    'zh': '中文'
+                };
+                
+                if (langText) {
+                    langText.textContent = languages[langCode] || 'English';
+                }
+                
+                // 关闭下拉菜单
+                const dropdown = document.querySelector('.lang-dropdown');
+                if (dropdown) {
+                    dropdown.classList.remove('active');
+                }
+                
+                // 跳转到对应语言版本
+                if (langCode === 'en') {
+                    window.location.href = '../ecology.html';
+                } else {
+                    window.location.href = '../' + langCode + '/ecology.html?lang=' + langCode;
+                }
+            } catch (error) {
+                console.log('Language change error:', error);
             }
-            
-            const separator = newPath.includes('?') ? '&' : '?';
-            window.location.href = newPath + separator + 'lang=' + langCode;
         }
 
+        // 为链接添加语言参数的函数
         function addLanguageParam(event, element) {
             event.preventDefault();
             const currentLang = localStorage.getItem('selectedLanguage') || 'ko';
-            const articlePath = element.getAttribute('data-href');
+            const href = element.getAttribute('href');
             
-            let fullPath;
-            if (currentLang === 'en') {
-                fullPath = '../en/' + articlePath;
-            } else {
-                fullPath = '../' + currentLang + '/' + articlePath;
-            }
-            
-            const separator = fullPath.includes('?') ? '&' : '?';
-            window.location.href = fullPath + separator + 'lang=' + currentLang;
+            // 跳转到对应语言的页面
+            window.location.href = href;
         }
 
-        // Close language menu when clicking outside
+        // 点击外部关闭下拉菜单
         document.addEventListener('click', function(event) {
             const dropdown = document.querySelector('.lang-dropdown');
-            const menu = document.getElementById('languageMenu');
-            
             if (!dropdown.contains(event.target)) {
-                menu.classList.remove('active');
+                dropdown.classList.remove('active');
             }
         });
 
-        // Initialize mobile navigation
+        // 页面加载时设置语言
         document.addEventListener('DOMContentLoaded', function() {
-            const hamburger = document.querySelector('.hamburger');
-            const navMenu = document.querySelector('.nav-menu');
-
-            if (hamburger && navMenu) {
-                hamburger.addEventListener('click', function() {
-                    hamburger.classList.toggle('active');
-                    navMenu.classList.toggle('active');
-                });
-
-                document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
-                    hamburger.classList.remove('active');
-                    navMenu.classList.remove('active');
-                }));
-            }
-
-            // Set current language on page load
-            const urlParams = new URLSearchParams(window.location.search);
-            const urlLang = urlParams.get('lang');
-            if (urlLang) {
-                localStorage.setItem('selectedLanguage', urlLang);
-                document.getElementById('currentLang').textContent = urlLang.toUpperCase();
+            try {
+                const urlParams = new URLSearchParams(window.location.search);
+                const urlLang = urlParams.get('lang');
+                const savedLang = localStorage.getItem('selectedLanguage') || 'ko';
+                const currentLang = urlLang || savedLang;
                 
-                // Update active language option
-                document.querySelectorAll('.lang-option').forEach(option => {
-                    option.classList.remove('active');
-                    if (option.getAttribute('onclick').includes(urlLang)) {
-                        option.classList.add('active');
-                    }
-                });
+                // 更新按钮显示
+                const langText = document.querySelector('.lang-text');
+                const languages = {
+                    'en': 'English',
+                    'es': 'Español', 
+                    'fr': 'Français',
+                    'de': 'Deutsch',
+                    'it': 'Italiano',
+                    'ja': '日本語',
+                    'ko': '한국어',
+                    'pt': 'Português',
+                    'ru': 'Русский',
+                    'zh': '中文'
+                };
+                
+                if (langText) {
+                    langText.textContent = languages[currentLang] || '한국어';
+                }
+                
+                // 保存当前语言
+                localStorage.setItem('selectedLanguage', currentLang);
+            } catch (error) {
+                console.log('Language initialization error:', error);
             }
         });
     </script>

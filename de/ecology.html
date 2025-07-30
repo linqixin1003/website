@@ -538,37 +538,53 @@
     <script>
         // 语言切换功能
         function toggleLanguageMenu() {
-            const dropdown = document.querySelector('.lang-dropdown');
-            dropdown.classList.toggle('active');
+            try {
+                const dropdown = document.querySelector('.lang-dropdown');
+                if (dropdown) {
+                    dropdown.classList.toggle('active');
+                }
+            } catch (error) {
+                console.log('Toggle menu error:', error);
+            }
         }
 
         function changeLanguage(langCode) {
-            localStorage.setItem('selectedLanguage', langCode);
-            
-            // 更新按钮显示
-            const langText = document.querySelector('.lang-text');
-            const languages = {
-                'en': 'English',
-                'es': 'Español', 
-                'fr': 'Français',
-                'de': 'Deutsch',
-                'it': 'Italiano',
-                'ja': '日本語',
-                'ko': '한국어',
-                'pt': 'Português',
-                'ru': 'Русский',
-                'zh': '中文'
-            };
-            langText.textContent = languages[langCode] || 'English';
-            
-            // 关闭下拉菜单
-            document.querySelector('.lang-dropdown').classList.remove('active');
-            
-            // 跳转到对应语言版本
-            if (langCode === 'en') {
-                window.location.href = '../ecology.html';
-            } else {
-                window.location.href = '../' + langCode + '/ecology.html?lang=' + langCode;
+            try {
+                localStorage.setItem('selectedLanguage', langCode);
+                
+                // 更新按钮显示
+                const langText = document.querySelector('.lang-text');
+                const languages = {
+                    'en': 'English',
+                    'es': 'Español', 
+                    'fr': 'Français',
+                    'de': 'Deutsch',
+                    'it': 'Italiano',
+                    'ja': '日本語',
+                    'ko': '한국어',
+                    'pt': 'Português',
+                    'ru': 'Русский',
+                    'zh': '中文'
+                };
+                
+                if (langText) {
+                    langText.textContent = languages[langCode] || 'English';
+                }
+                
+                // 关闭下拉菜单
+                const dropdown = document.querySelector('.lang-dropdown');
+                if (dropdown) {
+                    dropdown.classList.remove('active');
+                }
+                
+                // 跳转到对应语言版本
+                if (langCode === 'en') {
+                    window.location.href = '../ecology.html';
+                } else {
+                    window.location.href = '../' + langCode + '/ecology.html?lang=' + langCode;
+                }
+            } catch (error) {
+                console.log('Language change error:', error);
             }
         }
 
@@ -592,29 +608,36 @@
 
         // 页面加载时设置语言
         document.addEventListener('DOMContentLoaded', function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const urlLang = urlParams.get('lang');
-            const savedLang = localStorage.getItem('selectedLanguage') || 'de';
-            const currentLang = urlLang || savedLang;
-            
-            // 更新按钮显示
-            const langText = document.querySelector('.lang-text');
-            const languages = {
-                'en': 'English',
-                'es': 'Español', 
-                'fr': 'Français',
-                'de': 'Deutsch',
-                'it': 'Italiano',
-                'ja': '日本語',
-                'ko': '한국어',
-                'pt': 'Português',
-                'ru': 'Русский',
-                'zh': '中文'
-            };
-            langText.textContent = languages[currentLang] || 'Deutsch';
-            
-            // 保存当前语言
-            localStorage.setItem('selectedLanguage', currentLang);
+            try {
+                const urlParams = new URLSearchParams(window.location.search);
+                const urlLang = urlParams.get('lang');
+                const savedLang = localStorage.getItem('selectedLanguage') || 'de';
+                const currentLang = urlLang || savedLang;
+                
+                // 更新按钮显示
+                const langText = document.querySelector('.lang-text');
+                const languages = {
+                    'en': 'English',
+                    'es': 'Español', 
+                    'fr': 'Français',
+                    'de': 'Deutsch',
+                    'it': 'Italiano',
+                    'ja': '日本語',
+                    'ko': '한국어',
+                    'pt': 'Português',
+                    'ru': 'Русский',
+                    'zh': '中文'
+                };
+                
+                if (langText) {
+                    langText.textContent = languages[currentLang] || 'Deutsch';
+                }
+                
+                // 保存当前语言
+                localStorage.setItem('selectedLanguage', currentLang);
+            } catch (error) {
+                console.log('Language initialization error:', error);
+            }
         });
     </script>
 </body>

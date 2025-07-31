@@ -916,7 +916,7 @@
             document.querySelector('.header-title').textContent = content.headerTitle;
             document.querySelector('.intro-text').textContent = content.introText;
             
-            // 更新文章卡片
+            // 更新文章卡片标题和描述，但绝对不修改链接
             const articleCards = document.querySelectorAll('.article-card');
             articleCards.forEach((card, index) => {
                 if (content.articles[index]) {
@@ -926,16 +926,9 @@
                     if (title) title.textContent = content.articles[index].title;
                     if (description) description.textContent = content.articles[index].description;
                     
-                    // 更新链接URL以包含语言参数
-                    const originalHref = card.getAttribute('href');
-                    if (originalHref) {
-                        // 根据语言更新链接 - 确保所有语言都正确处理
-                        let newHref = originalHref;
-                        // 先将任何现有的语言前缀替换为en/，然后再替换为目标语言
-                        newHref = originalHref.replace(/^(en|es|fr|de|zh|ja|ko|it|pt|ru)\//, 'en/');
-                        newHref = newHref.replace(/^en\//, lang + '/');
-                        card.setAttribute('href', newHref);
-                    }
+                    // 确保链接不被修改 - 移除所有可能的事件处理器
+                    card.onclick = null;
+                    card.removeAttribute('onclick');
                 }
             });
             

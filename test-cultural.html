@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Cultural Symbolism</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .article-card { 
+            display: block; 
+            border: 1px solid #ccc; 
+            padding: 10px; 
+            margin: 10px 0; 
+            text-decoration: none; 
+            color: black;
+        }
+        .debug { background: yellow; padding: 5px; margin: 5px 0; }
+    </style>
+</head>
+<body>
+    <div class="debug">
+        <p>当前语言: <span id="current-lang">未检测</span></p>
+        <p>URL参数: <span id="url-params">未检测</span></p>
+    </div>
+
+    <h1 id="page-title">Cultural Symbolism of Birds</h1>
+    
+    <div>
+        <a href="en/knowledge/01-beginners-guide.html" data-base-href="knowledge/01-beginners-guide.html" class="article-card" id="first-card">
+            <h3 class="article-title">Bald Eagle: America's National Bird</h3>
+            <p class="article-description">Explore the history of the bald eagle as America's national symbol</p>
+        </a>
+    </div>
+
+    <script>
+        // 调试信息
+        function showDebugInfo() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const lang = urlParams.get('lang') || 'en';
+            
+            document.getElementById('current-lang').textContent = lang;
+            document.getElementById('url-params').textContent = window.location.search;
+            
+            console.log('当前语言:', lang);
+            console.log('URL参数:', window.location.search);
+        }
+
+        // 更新链接
+        function updateLinks() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const lang = urlParams.get('lang') || 'en';
+            
+            const firstCard = document.getElementById('first-card');
+            const baseHref = firstCard.dataset.baseHref;
+            
+            if (baseHref) {
+                const newHref = `${lang}/${baseHref}`;
+                firstCard.setAttribute('href', newHref);
+                console.log('链接已更新:', newHref);
+            }
+        }
+
+        // 页面加载时执行
+        document.addEventListener('DOMContentLoaded', function() {
+            showDebugInfo();
+            updateLinks();
+            
+            // 显示最终的链接
+            setTimeout(() => {
+                const firstCard = document.getElementById('first-card');
+                console.log('最终链接:', firstCard.getAttribute('href'));
+                alert('最终链接: ' + firstCard.getAttribute('href'));
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

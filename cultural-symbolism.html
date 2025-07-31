@@ -333,7 +333,7 @@
         
         <div class="article-grid">
             <!-- 文章1 -->
-            <a href="en/knowledge/01-beginners-guide.html" class="article-card" onclick="addLanguageParam(event, this)">
+            <a href="en/knowledge/01-beginners-guide.html" class="article-card">
                 <img src="images/birds/species/bird-image-015.webp" class="article-image" alt="白头鹰：美国的国鸟">
                 <div class="article-overlay">
                     <h3 class="article-title">白头鹰：美国的国鸟</h3>
@@ -342,7 +342,7 @@
             </a>
             
             <!-- 文章2 -->
-            <a href="en/knowledge/02-essential-equipment.html" class="article-card" onclick="addLanguageParam(event, this)">
+            <a href="en/knowledge/02-essential-equipment.html" class="article-card">
                 <img src="images/birds/species/bird-image-062.webp" class="article-image" alt="野火鸡：感恩节与美国传统">
                 <div class="article-overlay">
                     <h3 class="article-title">野火鸡：感恩节与美国传统</h3>
@@ -351,7 +351,7 @@
             </a>
             
             <!-- 文章3 -->
-            <a href="en/knowledge/03-identification-techniques.html" class="article-card" onclick="addLanguageParam(event, this)">
+            <a href="en/knowledge/03-identification-techniques.html" class="article-card">
                 <img src="images/birds/species/bird-image-003.webp" class="article-image" alt="喇叭天鹅：美洲原住民神话">
                 <div class="article-overlay">
                     <h3 class="article-title">喇叭天鹅：美洲原住民神话</h3>
@@ -360,7 +360,7 @@
             </a>
             
             <!-- 文章4 -->
-            <a href="en/knowledge/04-best-locations.html" class="article-card" onclick="addLanguageParam(event, this)">
+            <a href="en/knowledge/04-best-locations.html" class="article-card">
                 <img src="images/birds/species/bird-image-004.webp" class="article-image" alt="大角鸮：美国民间传说与智慧">
                 <div class="article-overlay">
                     <h3 class="article-title">大角鸮：美国民间传说与智慧</h3>
@@ -369,7 +369,7 @@
             </a>
             
             <!-- 文章5 -->
-            <a href="en/knowledge/05-behavior-observation.html" class="article-card" onclick="addLanguageParam(event, this)">
+            <a href="en/knowledge/05-behavior-observation.html" class="article-card">
                 <img src="images/birds/species/bird-image-005.webp" class="article-image" alt="绿头鸭：美国湿地与保护">
                 <div class="article-overlay">
                     <h3 class="article-title">绿头鸭：美国湿地与保护</h3>
@@ -378,7 +378,7 @@
             </a>
             
             <!-- 文章6 -->
-            <a href="en/knowledge/06-song-identification.html" class="article-card" onclick="addLanguageParam(event, this)">
+            <a href="en/knowledge/06-song-identification.html" class="article-card">
                 <img src="images/birds/species/bird-image-006.webp" class="article-image" alt="卡罗莱纳鹦鹉：美国失落的鹦鹉">
                 <div class="article-overlay">
                     <h3 class="article-title">卡罗莱纳鹦鹉：美国失落的鹦鹉</h3>
@@ -387,7 +387,7 @@
             </a>
             
             <!-- 文章7 -->
-            <a href="en/knowledge/07-photography-tips.html" class="article-card" onclick="addLanguageParam(event, this)">
+            <a href="en/knowledge/07-photography-tips.html" class="article-card">
                 <img src="images/birds/species/bird-image-007.webp" class="article-image" alt="红尾鹰：美国猛禽象征">
                 <div class="article-overlay">
                     <h3 class="article-title">红尾鹰：美国猛禽象征</h3>
@@ -396,7 +396,7 @@
             </a>
             
             <!-- 文章8 -->
-            <a href="en/knowledge/08-seasonal-guide.html" class="article-card" onclick="addLanguageParam(event, this)">
+            <a href="en/knowledge/08-seasonal-guide.html" class="article-card">
                 <img src="images/birds/species/bird-image-008.webp" class="article-image" alt="加拿大黑雁：美国迁徙故事">
                 <div class="article-overlay">
                     <h3 class="article-title">加拿大黑雁：美国迁徙故事</h3>
@@ -405,7 +405,7 @@
             </a>
             
             <!-- 文章9 -->
-            <a href="en/knowledge/09-journal-keeping.html" class="article-card" onclick="addLanguageParam(event, this)">
+            <a href="en/knowledge/09-journal-keeping.html" class="article-card">
                 <img src="images/birds/species/bird-image-009.webp" class="article-image" alt="金雕：美洲原住民精神信仰">
                 <div class="article-overlay">
                     <h3 class="article-title">金雕：美洲原住民精神信仰</h3>
@@ -414,7 +414,7 @@
             </a>
             
             <!-- 文章10 -->
-            <a href="en/knowledge/10-ethics-conservation.html" class="article-card" onclick="addLanguageParam(event, this)">
+            <a href="en/knowledge/10-ethics-conservation.html" class="article-card">
                 <img src="images/birds/species/bird-image-010.webp" class="article-image" alt="美国鸟类在文学与艺术中">
                 <div class="article-overlay">
                     <h3 class="article-title">美国鸟类在文学与艺术中</h3>
@@ -929,12 +929,11 @@
                     // 更新链接URL以包含语言参数
                     const originalHref = card.getAttribute('href');
                     if (originalHref) {
-                        // 根据语言更新链接
+                        // 根据语言更新链接 - 确保所有语言都正确处理
                         let newHref = originalHref;
-                        if (lang !== 'en') {
-                            // 将en/替换为对应语言/
-                            newHref = originalHref.replace('en/', lang + '/');
-                        }
+                        // 先将任何现有的语言前缀替换为en/，然后再替换为目标语言
+                        newHref = originalHref.replace(/^(en|es|fr|de|zh|ja|ko|it|pt|ru)\//, 'en/');
+                        newHref = newHref.replace(/^en\//, lang + '/');
                         card.setAttribute('href', newHref);
                     }
                 }
@@ -1003,6 +1002,5 @@
             updateContent();
         });
     </script>
-    <script src="script.js"></script>
 </body>
 </html>

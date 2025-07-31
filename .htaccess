@@ -1,58 +1,37 @@
-# 多语言URL重写规则
 RewriteEngine On
 
-# Knowledge文章重定向规则 - 根据lang参数重定向到相应语言版本
-RewriteCond %{QUERY_STRING} lang=([a-z]{2})
-RewriteRule ^knowledge/(.*)$ /%1/knowledge/$1? [R=302,L]
+# 重定向规则：将 /knowledge/文章名.html?lang=语言 重定向到 /语言/knowledge/文章名.html
+RewriteCond %{QUERY_STRING} ^lang=([a-z]{2})$
+RewriteRule ^knowledge/(.+)\.html$ /%1/knowledge/$1.html? [R=301,L]
 
-# 如果没有lang参数，默认重定向到英语版本
-RewriteRule ^knowledge/(.*)$ /en/knowledge/$1 [R=302,L]
+# 重定向规则：将 /birdwatching/文章名.html?lang=语言 重定向到 /语言/birdwatching/文章名.html
+RewriteCond %{QUERY_STRING} ^lang=([a-z]{2})$
+RewriteRule ^birdwatching/(.+)\.html$ /%1/birdwatching/$1.html? [R=301,L]
 
-# Scientific-wonders文章重定向规则 - 根据lang参数重定向到相应语言版本
-RewriteCond %{QUERY_STRING} lang=([a-z]{2})
-RewriteRule ^scientific-wonders/(.*)$ /%1/scientific-wonders/$1? [R=302,L]
+# 重定向规则：将 /pet-care/文章名.html?lang=语言 重定向到 /语言/pet-care/文章名.html
+RewriteCond %{QUERY_STRING} ^lang=([a-z]{2})$
+RewriteRule ^pet-care/(.+)\.html$ /%1/pet-care/$1.html? [R=301,L]
 
-# 如果没有lang参数，默认重定向到英语版本
-RewriteRule ^scientific-wonders/(.*)$ /en/scientific-wonders/$1 [R=302,L]
+# 重定向规则：将 /ecology/文章名.html?lang=语言 重定向到 /语言/ecology/文章名.html
+RewriteCond %{QUERY_STRING} ^lang=([a-z]{2})$
+RewriteRule ^ecology/(.+)\.html$ /%1/ecology/$1.html? [R=301,L]
 
-# 支持的语言代码
-RewriteCond %{REQUEST_URI} ^/(zh|ja|ko|de|fr|es|it|pt|ru)/
+# 重定向规则：将 /scientific-wonders/文章名.html?lang=语言 重定向到 /语言/scientific-wonders/文章名.html
+RewriteCond %{QUERY_STRING} ^lang=([a-z]{2})$
+RewriteRule ^scientific-wonders/(.+)\.html$ /%1/scientific-wonders/$1.html? [R=301,L]
 
-# 如果请求的多语言文件存在，直接提供
-RewriteCond %{REQUEST_FILENAME} -f
-RewriteRule ^(.*)$ $1 [L]
+# 重定向规则：将主页面的语言参数重定向
+RewriteCond %{QUERY_STRING} ^lang=([a-z]{2})$
+RewriteRule ^knowledge\.html$ /%1/knowledge.html? [R=301,L]
 
-# 如果多语言文件不存在，重定向到英语版本
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^(zh|ja|ko|de|fr|es|it|pt|ru)/(.*)$ $2 [L,R=302]
+RewriteCond %{QUERY_STRING} ^lang=([a-z]{2})$
+RewriteRule ^birdwatching\.html$ /%1/birdwatching.html? [R=301,L]
 
-# 默认语言处理 - 如果没有语言前缀，使用英语
-RewriteCond %{REQUEST_URI} !^/(zh|ja|ko|de|fr|es|it|pt|ru)/
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ index.html [L]
+RewriteCond %{QUERY_STRING} ^lang=([a-z]{2})$
+RewriteRule ^pet-care\.html$ /%1/pet-care.html? [R=301,L]
 
-# 缓存控制
-<IfModule mod_expires.c>
-    ExpiresActive On
-    ExpiresByType text/html "access plus 1 hour"
-    ExpiresByType text/css "access plus 1 month"
-    ExpiresByType application/javascript "access plus 1 month"
-    ExpiresByType image/png "access plus 1 year"
-    ExpiresByType image/jpg "access plus 1 year"
-    ExpiresByType image/jpeg "access plus 1 year"
-    ExpiresByType image/gif "access plus 1 year"
-</IfModule>
+RewriteCond %{QUERY_STRING} ^lang=([a-z]{2})$
+RewriteRule ^ecology\.html$ /%1/ecology.html? [R=301,L]
 
-# 压缩
-<IfModule mod_deflate.c>
-    AddOutputFilterByType DEFLATE text/plain
-    AddOutputFilterByType DEFLATE text/html
-    AddOutputFilterByType DEFLATE text/xml
-    AddOutputFilterByType DEFLATE text/css
-    AddOutputFilterByType DEFLATE application/xml
-    AddOutputFilterByType DEFLATE application/xhtml+xml
-    AddOutputFilterByType DEFLATE application/rss+xml
-    AddOutputFilterByType DEFLATE application/javascript
-    AddOutputFilterByType DEFLATE application/x-javascript
-</IfModule>
+RewriteCond %{QUERY_STRING} ^lang=([a-z]{2})$
+RewriteRule ^scientific-wonders\.html$ /%1/scientific-wonders.html? [R=301,L]

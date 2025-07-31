@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>重定向中...</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f5f5f5;
+        }
+        .redirect-container {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+    <script>
+        // 智能重定向处理
+        function handleRedirect() {
+            const currentPath = window.location.pathname;
+            const urlParams = new URLSearchParams(window.location.search);
+            const lang = urlParams.get('lang');
+            
+            // 如果有语言参数，进行重定向
+            if (lang) {
+                // 定义重定向规则
+                const redirectRules = [
+                    { pattern: /^\/knowledge\/(.+)\.html$/, target: `/${lang}/knowledge/{file}.html` },
+                    { pattern: /^\/birdwatching\/(.+)\.html$/, target: `/${lang}/birdwatching/{file}.html` },
+                    { pattern: /^\/pet-care\/(.+)\.html$/, target: `/${lang}/pet-care/{file}.html` },
+                    { pattern: /^\/ecology\/(.+)\.html$/, target: `/${lang}/ecology/{file}.html` },
+                    { pattern: /^\/scientific-wonders\/(.+)\.html$/, target: `/${lang}/scientific-wonders/{file}.html` },
+                    { pattern: /^\/knowledge\.html$/, target: `/${lang}/knowledge.html` },
+                    { pattern: /^\/birdwatching\.html$/, target: `/${lang}/birdwatching.html` },
+                    { pattern: /^\/pet-care\.html$/, target: `/${lang}/pet-care.html` },
+                    { pattern: /^\/ecology\.html$/, target: `/${lang}/ecology.html` },
+                    { pattern: /^\/scientific-wonders\.html$/, target: `/${lang}/scientific-wonders.html` }
+                ];
+                
+                // 检查每个规则
+                for (const rule of redirectRules) {
+                    const match = currentPath.match(rule.pattern);
+                    if (match) {
+                        let newUrl = rule.target;
+                        if (match[1]) {
+                            newUrl = newUrl.replace('{file}', match[1]);
+                        }
+                        
+                        console.log(`重定向: ${currentPath}?lang=${lang} -> ${newUrl}`);
+                        
+                        // 更新手动链接
+                        document.getElementById('manualLink').href = newUrl;
+                        
+                        // 执行重定向
+                        window.location.replace(newUrl);
+                        return;
+                    }
+                }
+            }
+            
+            // 如果没有匹配的重定向规则，显示404信息
+            document.querySelector('.redirect-container h2').textContent = '页面未找到';
+            document.querySelector('.redirect-container p').innerHTML = '请检查URL是否正确，或<a href="/">返回首页</a>';
+            document.querySelector('.spinner').style.display = 'none';
+        }
+        
+        // 页面加载时执行重定向检查
+        document.addEventListener('DOMContentLoaded', handleRedirect);
+    </script>
+</head>
+<body>
+    <div class="redirect-container">
+        <div class="spinner"></div>
+        <h2>正在重定向...</h2>
+        <p>如果页面没有自动跳转，请<a href="/" id="manualLink">点击这里</a></p>
+    </div>
+</body>
+</html>

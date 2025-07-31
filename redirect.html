@@ -35,20 +35,37 @@
             100% { transform: rotate(360deg); }
         }
     </style>
-    <script>
-        // 获取URL参数
-        const urlParams = new URLSearchParams(window.location.search);
-        const lang = urlParams.get('lang') || 'en'; // 默认英语
-        
-        // 立即重定向到正确的语言路径
-        window.location.replace(`/${lang}/scientific-wonders.html`);
-    </script>
 </head>
 <body>
     <div class="redirect-container">
         <div class="spinner"></div>
         <h2>正在重定向...</h2>
-        <p>如果页面没有自动跳转，请<a href="/scientific-wonders.html" id="manualLink">点击这里</a></p>
+        <p>如果页面没有自动跳转，请<a href="#" id="manualLink">点击这里</a></p>
     </div>
+
+    <script>
+        function performRedirect() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const lang = urlParams.get('lang');
+            const path = urlParams.get('path');
+            
+            if (lang && path) {
+                // 构建新的URL
+                const newUrl = `/${lang}/${path}`;
+                
+                // 更新手动链接
+                document.getElementById('manualLink').href = newUrl;
+                
+                // 执行重定向
+                window.location.replace(newUrl);
+            } else {
+                // 如果参数不完整，重定向到首页
+                window.location.replace('/');
+            }
+        }
+
+        // 立即执行重定向
+        performRedirect();
+    </script>
 </body>
 </html>

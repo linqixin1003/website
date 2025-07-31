@@ -14,8 +14,16 @@ class RedirectHandler(http.server.SimpleHTTPRequestHandler):
         print(f"请求路径: {path}")
         print(f"查询参数: {query_params}")
         
-        # 检查是否是knowledge文章的重定向请求（只重定向根目录下的knowledge请求，不重定向已经有语言前缀的）
+        # 只有当路径是 /knowledge/ 开头且不包含语言前缀时才重定向
         if path.startswith('/knowledge/') and path.endswith('.html'):
+            # 检查路径是否已经包含语言前缀（避免死循环）
+            path_parts = path.split('/')
+            if len(path_parts) >= 2 and path_parts[1] in ['en', 'fr', 'de', 'es', 'it', 'pt', 'ru', 'ja', 'ko', 'zh']:
+                # 已经有语言前缀，不重定向，使用默认处理
+                print(f"已有语言前缀，不重定向: {path}")
+                super().do_GET()
+                return
+            
             # 获取文章文件名
             article_name = os.path.basename(path)
             
@@ -37,9 +45,9 @@ class RedirectHandler(http.server.SimpleHTTPRequestHandler):
         super().do_GET()
 
 if __name__ == "__main__":
-    PORT = 8003
+    PORT = 8004
     with socketserver.TCPServer(("", PORT), RedirectHandler) as httpd:
-        print(f"测试服务器启动在端口 {PORT}")
+        print(f"修复后的测试服务器启动在端口 {PORT}")
         print(f"访问: http://localhost:{PORT}")
         print(f"测试重定向: http://localhost:{PORT}/knowledge/01-beginners-guide.html?lang=en")
         print(f"测试直接访问: http://localhost:{PORT}/en/knowledge/01-beginners-guide.html")

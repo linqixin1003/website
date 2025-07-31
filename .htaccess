@@ -1,6 +1,13 @@
 # 多语言URL重写规则
 RewriteEngine On
 
+# Knowledge文章重定向规则 - 根据lang参数重定向到相应语言版本
+RewriteCond %{QUERY_STRING} lang=([a-z]{2})
+RewriteRule ^knowledge/(.*)$ /%1/knowledge/$1? [R=302,L]
+
+# 如果没有lang参数，默认重定向到英语版本
+RewriteRule ^knowledge/(.*)$ /en/knowledge/$1 [R=302,L]
+
 # 支持的语言代码
 RewriteCond %{REQUEST_URI} ^/(zh|ja|ko|de|fr|es|it|pt|ru)/
 

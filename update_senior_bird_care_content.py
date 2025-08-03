@@ -1,9 +1,107 @@
-<!DOCTYPE html>
-<html lang="ru">
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+import os
+import shutil
+
+def update_senior_bird_care_content():
+    """
+    将正确的老年鸟护理内容更新到所有语言版本的 10-senior-bird-care.html 文件中
+    """
+    print("🔧 开始更新所有语言版本的 10-senior-bird-care.html 内容...")
+    
+    # 语言列表
+    languages = ['en', 'fr', 'ko', 'de', 'es', 'ru', 'zh', 'it', 'ja', 'pt']
+    
+    # 检查源文件是否存在
+    source_file = 'en/pet-care/09-senior-bird-care.html'
+    if not os.path.exists(source_file):
+        print(f"⚠️ 源文件 {source_file} 不存在，将创建新的老年鸟护理内容")
+        create_senior_bird_care_content()
+        return
+    
+    # 读取源文件内容
+    try:
+        with open(source_file, 'r', encoding='utf-8') as f:
+            source_content = f.read()
+        print(f"✅ 成功读取源文件 {source_file}")
+    except Exception as e:
+        print(f"❌ 读取源文件失败: {e}")
+        create_senior_bird_care_content()
+        return
+    
+    # 为每种语言更新内容
+    for lang in languages:
+        target_file = f'{lang}/pet-care/10-senior-bird-care.html'
+        
+        if os.path.exists(target_file):
+            try:
+                # 根据语言调整内容
+                updated_content = adapt_content_for_language(source_content, lang)
+                
+                with open(target_file, 'w', encoding='utf-8') as f:
+                    f.write(updated_content)
+                print(f"✅ {lang}: 成功更新 {target_file}")
+            except Exception as e:
+                print(f"❌ {lang}: 更新失败 - {e}")
+        else:
+            print(f"⚠️ {lang}: 文件 {target_file} 不存在")
+    
+    print("✅ 完成内容更新操作")
+
+def adapt_content_for_language(content, lang):
+    """
+    根据语言调整内容
+    """
+    # 语言特定的标题和内容映射
+    titles = {
+        'en': 'Senior Bird Care',
+        'fr': 'Soins des oiseaux âgés',
+        'ko': '노령 조류 관리',
+        'de': 'Pflege älterer Vögel',
+        'es': 'Cuidado de aves mayores',
+        'ru': 'Уход за пожилыми птицами',
+        'zh': '老年鸟类护理',
+        'it': 'Cura degli uccelli anziani',
+        'ja': '高齢鳥の世話',
+        'pt': 'Cuidados com pássaros idosos'
+    }
+    
+    # 更新语言属性
+    content = content.replace('lang="en"', f'lang="{lang}"')
+    
+    # 更新标题
+    if lang in titles:
+        # 更新页面标题
+        content = content.replace(
+            '<title>Senior Bird Care - Pet Care Guide</title>',
+            f'<title>{titles[lang]} - Pet Care Guide</title>'
+        )
+        
+        # 更新主标题
+        content = content.replace(
+            '<h1 class="title">Senior Bird Care</h1>',
+            f'<h1 class="title">{titles[lang]}</h1>'
+        )
+    
+    return content
+
+def create_senior_bird_care_content():
+    """
+    创建新的老年鸟护理内容
+    """
+    print("🔧 创建新的老年鸟护理内容...")
+    
+    # 语言列表
+    languages = ['en', 'fr', 'ko', 'de', 'es', 'ru', 'zh', 'it', 'ja', 'pt']
+    
+    # 基础的老年鸟护理内容模板
+    base_content = '''<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Уход за пожилыми птицами - Pet Care Guide</title>
+    <title>Senior Bird Care - Pet Care Guide</title>
     <style>
         * {
             margin: 0;
@@ -114,7 +212,7 @@
     <div class="hero-image"></div>
     
     <div class="content">
-        <h1 class="title">Уход за пожилыми птицами</h1>
+        <h1 class="title">Senior Bird Care</h1>
         
         <div class="quote-box">
             <div class="quote-text">
@@ -214,4 +312,26 @@
     </script>
     <script src="../language-redirect.js"></script>
 </body>
-</html>
+</html>'''
+    
+    # 为每种语言创建内容
+    for lang in languages:
+        target_file = f'{lang}/pet-care/10-senior-bird-care.html'
+        
+        if os.path.exists(target_file):
+            try:
+                # 根据语言调整内容
+                updated_content = adapt_content_for_language(base_content, lang)
+                
+                with open(target_file, 'w', encoding='utf-8') as f:
+                    f.write(updated_content)
+                print(f"✅ {lang}: 成功创建 {target_file}")
+            except Exception as e:
+                print(f"❌ {lang}: 创建失败 - {e}")
+        else:
+            print(f"⚠️ {lang}: 文件 {target_file} 不存在")
+    
+    print("✅ 完成内容创建操作")
+
+if __name__ == "__main__":
+    update_senior_bird_care_content()

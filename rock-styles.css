@@ -1,0 +1,440 @@
+/* RockAiSnap 专用样式 */
+
+/* Rock主题色彩 */
+:root {
+    --rock-primary: #8D6E63;
+    --rock-secondary: #A1887F;
+    --rock-accent: #D7CCC8;
+    --rock-dark: #5D4037;
+    --rock-light: #EFEBE9;
+    --rock-gradient: linear-gradient(135deg, #8D6E63 0%, #A1887F 50%, #BCAAA4 100%);
+}
+
+/* Rock Hero 样式 */
+.rock-hero {
+    background: var(--rock-gradient);
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.rock-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(141, 110, 99, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(161, 136, 127, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(188, 170, 164, 0.2) 0%, transparent 50%);
+    animation: rockFloat 8s ease-in-out infinite;
+}
+
+@keyframes rockFloat {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    33% { transform: translateY(-10px) rotate(1deg); }
+    66% { transform: translateY(5px) rotate(-1deg); }
+}
+
+/* Coming Soon Badge 样式 */
+.coming-soon-badge {
+    background: linear-gradient(135deg, var(--rock-primary), var(--rock-secondary));
+    padding: 12px 24px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    box-shadow: 0 8px 32px rgba(141, 110, 99, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.coming-soon-badge .status {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: white;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+/* Rock Interface 样式 */
+.rock-interface {
+    background: linear-gradient(135deg, #6D4C41 0%, #8D6E63 100%);
+    position: relative;
+    padding: 40px 20px;
+}
+
+.camera-viewfinder {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+}
+
+.viewfinder-frame {
+    width: 200px;
+    height: 200px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+    margin: 20px auto;
+}
+
+.rock-preview {
+    font-size: 3rem;
+    animation: rockSpin 4s linear infinite;
+    z-index: 2;
+}
+
+@keyframes rockSpin {
+    0% { transform: rotate(0deg) scale(1); }
+    25% { transform: rotate(90deg) scale(1.05); }
+    50% { transform: rotate(180deg) scale(1); }
+    75% { transform: rotate(270deg) scale(1.05); }
+    100% { transform: rotate(360deg) scale(1); }
+}
+
+.scan-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 3px solid var(--rock-accent);
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.scan-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--rock-accent), transparent);
+    animation: scanMove 2s linear infinite;
+}
+
+@keyframes scanMove {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(194px); }
+}
+
+/* Result Card 样式 */
+.result-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 16px;
+    border-radius: 12px;
+    margin-top: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.result-card h4 {
+    color: var(--rock-dark);
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.result-card p {
+    color: var(--rock-primary);
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+/* Coming Soon Info 样式 */
+.coming-soon-info {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    border-radius: 15px;
+    margin-top: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.info-item .icon {
+    font-size: 1.5rem;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.info-item div {
+    flex: 1;
+}
+
+.info-item strong {
+    display: block;
+    color: white;
+    font-weight: 600;
+    margin-bottom: 4px;
+    font-size: 0.9rem;
+}
+
+.info-item p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+
+.info-item a {
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    font-weight: 500;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+}
+
+.info-item a:hover {
+    color: white;
+    border-bottom-color: white;
+}
+
+/* Rock Collection 样式 */
+.rock-placeholder {
+    background: var(--rock-gradient);
+    border-radius: 20px;
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.rock-collection {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    align-items: center;
+}
+
+.rock-item {
+    font-size: 3rem;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    animation: rockBounce 3s ease-in-out infinite;
+}
+
+.rock-item:nth-child(1) { animation-delay: 0s; }
+.rock-item:nth-child(2) { animation-delay: 0.5s; }
+.rock-item:nth-child(3) { animation-delay: 1s; }
+
+@keyframes rockBounce {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-15px) rotate(5deg); }
+}
+
+/* 按钮样式优化 */
+.rock-hero .btn {
+    padding: 14px 28px;
+    font-weight: 600;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.rock-hero .btn span {
+    font-size: 1.1rem;
+}
+
+.rock-hero .btn-primary {
+    background: linear-gradient(135deg, var(--rock-dark), var(--rock-primary));
+    color: white;
+    box-shadow: 0 4px 15px rgba(93, 64, 55, 0.3);
+}
+
+.rock-hero .btn-primary:disabled {
+    opacity: 0.8;
+    cursor: not-allowed;
+}
+
+.rock-hero .btn-primary:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(93, 64, 55, 0.4);
+}
+
+.rock-hero .btn-secondary {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: white;
+}
+
+.rock-hero .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
+}
+
+/* 移动端优化 */
+@media (max-width: 768px) {
+    .rock-hero {
+        padding-top: 100px;
+    }
+    
+    .coming-soon-badge {
+        flex-direction: column;
+        text-align: center;
+        gap: 8px;
+        padding: 16px 20px;
+    }
+    
+    .coming-soon-info {
+        padding: 16px;
+        margin-top: 20px;
+    }
+    
+    .coming-soon-info p {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+    
+    .viewfinder-frame {
+        width: 160px;
+        height: 160px;
+        margin: 15px auto;
+    }
+    
+    .rock-preview {
+        font-size: 2.5rem;
+    }
+    
+    .scan-line {
+        height: 2px;
+    }
+    
+    @keyframes scanMove {
+        0% { transform: translateY(0); }
+        100% { transform: translateY(154px); }
+    }
+    
+    .result-card {
+        padding: 12px;
+        margin-top: 12px;
+    }
+    
+    .rock-collection {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+    
+    .rock-item {
+        font-size: 2rem;
+        padding: 15px;
+    }
+    
+    .rock-placeholder {
+        padding: 20px;
+    }
+    
+    /* 手机端按钮优化 */
+    .rock-hero .btn {
+        padding: 12px 24px;
+        font-size: 0.9rem;
+        width: 100%;
+        margin-bottom: 12px;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+}
+
+/* 超小屏幕优化 */
+@media (max-width: 480px) {
+    .coming-soon-badge {
+        padding: 12px 16px;
+    }
+    
+    .coming-soon-badge .app-icon {
+        font-size: 1.5rem;
+    }
+    
+    .coming-soon-info {
+        padding: 12px;
+    }
+    
+    .rock-item {
+        font-size: 1.5rem;
+        padding: 10px;
+    }
+}
+
+/* 特殊效果 */
+.rock-hero .hero-content h1 {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    margin-bottom: 20px;
+}
+
+.rock-hero .hero-content p {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+/* 加载动画 */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.rock-hero .hero-content > * {
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.rock-hero .hero-content h1 { animation-delay: 0.2s; }
+.rock-hero .hero-content p { animation-delay: 0.4s; }
+.rock-hero .hero-buttons { animation-delay: 0.6s; }
+.rock-hero .coming-soon-info { animation-delay: 0.8s; }

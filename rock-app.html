@@ -232,20 +232,29 @@
 
     <script src="script.js"></script>
     <script>
-        // 调试代码：确保翻译功能正常工作
+        // 修复翻译功能
         document.addEventListener('DOMContentLoaded', function() {
             console.log('Rock app page loaded');
-            console.log('Current language:', localStorage.getItem('selectedLanguage'));
             
-            // 强制应用中文翻译
-            setTimeout(function() {
-                const urlParams = new URLSearchParams(window.location.search);
-                const urlLang = urlParams.get('lang');
-                if (urlLang === 'zh') {
-                    console.log('Applying Chinese translations...');
-                    switchLanguage('zh');
-                }
-            }, 500);
+            // 检查URL参数中的语言设置
+            const urlParams = new URLSearchParams(window.location.search);
+            const urlLang = urlParams.get('lang');
+            
+            if (urlLang === 'zh') {
+                console.log('Applying Chinese translations...');
+                // 直接应用翻译，不使用switchLanguage函数避免页面重载
+                currentLang = 'zh';
+                localStorage.setItem('selectedLanguage', 'zh');
+                translatePage('zh');
+                
+                // 更新语言选择器显示
+                setTimeout(function() {
+                    const currentLangElement = document.getElementById('currentLang');
+                    if (currentLangElement) {
+                        currentLangElement.textContent = 'ZH';
+                    }
+                }, 100);
+            }
         });
     </script>
 </body>

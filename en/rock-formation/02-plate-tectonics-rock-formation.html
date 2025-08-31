@@ -3,118 +3,589 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plate Tectonics and Rock Formation - Rock Explorer</title>
-    <meta name="description" content="Discover how plate tectonics influences the formation and distribution of different rock types across Earth's surface.">
+    <title>Plate Tectonics and Rock Formation - Rock Formation Guide</title>
+    <meta name="description" content="Explore how plate tectonics influences the formation and distribution of different rock types. Understand the relationship between Earth's dynamic processes and rock evolution.">
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
         
-        .article-header {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            margin-bottom: 30px;
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: #333;
+            min-height: 100vh;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)), 
+                        linear-gradient(45deg, #1565c0, #1976d2, #1e88e5);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
             text-align: center;
         }
         
-        h1 {
-            color: #8B4513;
-            font-size: 2.5em;
+        .hero-content h1 {
+            font-size: 3em;
+            font-weight: 700;
             margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
         }
         
-        .article-meta {
-            color: #666;
-            font-style: italic;
+        .hero-content p {
+            font-size: 1.2em;
+            opacity: 0.9;
         }
         
         .content {
             background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            margin: -30px 20px 20px 20px;
+            border-radius: 20px;
+            padding: 40px 30px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+            min-height: 80vh;
         }
         
-        .rock-image {
-            width: 100%;
-            height: 300px;
-            background: #ddd;
+        .intro-quote {
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            border-left: 5px solid #1976d2;
+            padding: 25px;
+            margin: 30px 0;
             border-radius: 10px;
-            margin: 20px 0;
+            position: relative;
+            font-size: 18px;
+            font-weight: 500;
+            color: #0d47a1;
+            line-height: 1.6;
+        }
+        
+        .intro-quote::before {
+            content: '🌍';
+            font-size: 32px;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+        
+        .intro-quote .quote-text {
+            margin-left: 50px;
+        }
+        
+        .main-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            margin: 25px 0;
+            text-align: justify;
+        }
+        
+        .section-title {
+            font-size: 22px;
+            font-weight: 600;
+            color: #1565c0;
+            margin: 35px 0 20px 0;
+            border-bottom: 3px solid #1976d2;
+            padding-bottom: 10px;
+            position: relative;
+        }
+        
+        .section-title::before {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: #bbdefb;
+        }
+        
+        .plate-system {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .plate-system::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(25,118,210,0.05) 0%, transparent 70%);
+            animation: rotate 30s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .plate-boundaries {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .boundary-card {
+            background: white;
+            border: 2px solid #bbdefb;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .boundary-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(25,118,210,0.1), transparent);
+            transition: left 0.5s;
+        }
+        
+        .boundary-card:hover::before {
+            left: 100%;
+        }
+        
+        .boundary-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(25,118,210,0.2);
+            border-color: #1976d2;
+        }
+        
+        .boundary-icon {
+            font-size: 48px;
+            text-align: center;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .boundary-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1565c0;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .boundary-description {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #555;
+            margin-bottom: 15px;
+        }
+        
+        .rock-products {
+            background: #e3f2fd;
+            border-radius: 8px;
+            padding: 12px;
+            margin-top: 10px;
+        }
+        
+        .rock-products h5 {
+            color: #0d47a1;
+            font-size: 14px;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+        
+        .rock-products p {
+            font-size: 13px;
+            color: #1565c0;
+            margin: 0;
+        }
+        
+        .tectonic-processes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .process-card {
+            background: linear-gradient(145deg, #ffffff, #f5f5f5);
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .process-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+            border-color: #1976d2;
+        }
+        
+        .process-icon {
+            font-size: 36px;
+            margin-bottom: 12px;
+        }
+        
+        .process-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1565c0;
+            margin-bottom: 8px;
+        }
+        
+        .rock-cycle-connection {
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            border: 2px solid #ff9800;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+        
+        .cycle-title {
+            color: #e65100;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
-            justify-content: center;
-            color: #666;
-            font-size: 1.2em;
+            gap: 10px;
         }
         
-        h2 {
-            color: #8B4513;
-            margin-top: 30px;
+        .supercontinent-timeline {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 30px 0;
+            border-left: 4px solid #28a745;
+        }
+        
+        .timeline-title {
+            color: #2e7d32;
+            font-size: 18px;
+            font-weight: 600;
             margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .timeline-events {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .timeline-event {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            border: 1px solid #4caf50;
+        }
+        
+        .event-time {
+            font-weight: bold;
+            color: #2e7d32;
+            font-size: 14px;
+        }
+        
+        .event-description {
+            font-size: 13px;
+            color: #555;
+            margin-top: 5px;
+        }
+        
+        .interactive-diagram {
+            background: linear-gradient(135deg, #f1f3f4, #e8eaed);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            text-align: center;
+            position: relative;
+        }
+        
+        .diagram-layers {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 20px 0;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .layer-item {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            min-width: 120px;
+            transition: all 0.3s ease;
+        }
+        
+        .layer-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
         
         .back-link {
             display: inline-block;
-            margin-top: 30px;
-            padding: 10px 20px;
-            background: #8B4513;
+            margin-top: 40px;
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #1565c0, #1976d2);
             color: white;
             text-decoration: none;
-            border-radius: 5px;
-            transition: background 0.3s ease;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(21,101,192,0.3);
         }
         
         .back-link:hover {
-            background: #D2691E;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(21,101,192,0.4);
+        }
+        
+        .emoji {
+            font-size: 18px;
+            margin: 0 3px;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.2em;
+            }
+            
+            .content {
+                margin: -30px 15px 20px 15px;
+                padding: 30px 20px;
+            }
+            
+            .plate-boundaries {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="article-header">
-        <h1>Plate Tectonics and Rock Formation</h1>
-        <p class="article-meta">Tectonic Plates • Geological Processes • Rock Distribution</p>
+    <div class="hero-image">
+        <div class="hero-content">
+            <h1>Plate Tectonics and Rock Formation</h1>
+            <p>Earth's Dynamic Crustal Engine</p>
+        </div>
     </div>
     
     <div class="content">
-        <div class="rock-image">
-            [Placeholder: Plate Tectonics Map with Rock Formation Zones]
+        <div class="intro-quote">
+            <div class="quote-text">
+                Plate tectonics is the unifying theory that explains how Earth's lithosphere moves and deforms, controlling the distribution, formation, and transformation of rocks across our planet's surface
+            </div>
         </div>
         
-        <p>Plate tectonics is the unifying theory of geology that explains how Earth's lithospheric plates interact and how these interactions influence the formation, deformation, and distribution of rocks across our planet's surface.</p>
+        <div class="main-text">
+            Plate tectonics fundamentally controls rock formation processes by creating diverse pressure-temperature-time conditions across different tectonic environments <span class="emoji">🌍</span>. The movement and interaction of lithospheric plates generate the thermal and mechanical energy necessary for igneous activity, metamorphism, and sedimentary basin development, making plate tectonics the primary driver of Earth's rock cycle.
+        </div>
         
-        <h2>The Plate Tectonic System</h2>
-        <p>Earth's lithosphere is divided into several large and small tectonic plates that float on the semi-fluid asthenosphere below. These plates move relative to each other at rates of a few centimeters per year, driven by convection currents in the mantle.</p>
+        <div class="section-title">Plate Boundary Types and Associated Rock Formation</div>
         
-        <h2>Plate Boundaries and Rock Formation</h2>
-        <p>Different types of plate boundaries create distinct geological environments that produce specific rock types:</p>
+        <div class="main-text">
+            Each type of plate boundary creates characteristic geological environments that produce distinct rock assemblages and structural features <span class="emoji">⚡</span>. Understanding these relationships is crucial for interpreting the geological history preserved in rock formations worldwide.
+        </div>
         
-        <h3>Divergent Boundaries</h3>
-        <p>At divergent boundaries where plates move apart, magma rises to fill the gap, creating new oceanic crust composed primarily of basalt. This process occurs at mid-ocean ridges and produces extensive volumes of igneous rocks.</p>
+        <div class="plate-boundaries">
+            <div class="boundary-card">
+                <span class="boundary-icon">↔️</span>
+                <div class="boundary-title">Divergent Boundaries</div>
+                <div class="boundary-description">
+                    Plates move apart, creating extensional stress regimes and decompression melting. Mid-ocean ridges and continental rifts represent the primary divergent settings, characterized by basaltic volcanism and normal faulting.
+                </div>
+                <div class="rock-products">
+                    <h5>Characteristic Rock Types:</h5>
+                    <p>MORB (Mid-Ocean Ridge Basalt), pillow lavas, sheeted dike complexes, gabbros, serpentinites, rift-related sediments</p>
+                </div>
+            </div>
+            
+            <div class="boundary-card">
+                <span class="boundary-icon">→←</span>
+                <div class="boundary-title">Convergent Boundaries</div>
+                <div class="boundary-description">
+                    Plates collide, generating compressional stress and subduction zones. These environments produce the most diverse range of igneous, metamorphic, and sedimentary rocks through complex thermal and deformation processes.
+                </div>
+                <div class="rock-products">
+                    <h5>Characteristic Rock Types:</h5>
+                    <p>Calc-alkaline volcanic rocks, blueschist and eclogite facies metamorphics, accretionary wedge sediments, granitic batholiths</p>
+                </div>
+            </div>
+            
+            <div class="boundary-card">
+                <span class="boundary-icon">⚡</span>
+                <div class="boundary-title">Transform Boundaries</div>
+                <div class="boundary-description">
+                    Plates slide past each other horizontally, creating strike-slip fault systems. These boundaries are characterized by intense shearing, cataclastic deformation, and localized hydrothermal activity.
+                </div>
+                <div class="rock-products">
+                    <h5>Characteristic Rock Types:</h5>
+                    <p>Mylonites, fault breccias, serpentinites, hydrothermal alteration assemblages, pull-apart basin sediments</p>
+                </div>
+            </div>
+        </div>
         
-        <h3>Convergent Boundaries</h3>
-        <p>At convergent boundaries where plates collide, several rock-forming processes occur:</p>
-        <ul>
-            <li><strong>Subduction zones:</strong> When oceanic crust sinks beneath another plate, the intense heat and pressure generate magma that rises to form volcanic arcs of andesite and rhyolite</li>
-            <li><strong>Continental collision:</strong> When two continental plates collide, the crust is thickened and deformed, creating extensive regions of metamorphic rocks</li>
-        </ul>
+        <div class="section-title">Subduction Zone Processes and Magma Generation</div>
         
-        <h3>Transform Boundaries</h3>
-        <p>At transform boundaries where plates slide past each other, the main rock-forming process is mechanical deformation, which can create fault breccias and mylonites through intense shearing.</p>
+        <div class="main-text">
+            Subduction zones represent the most geologically active environments on Earth, where oceanic lithosphere descends into the mantle <span class="emoji">🌋</span>. The complex thermal structure and fluid dynamics of subduction zones create unique conditions for magma generation and metamorphism.
+        </div>
         
-        <h2>Plate Tectonics and the Rock Cycle</h2>
-        <p>Plate tectonics is the primary driver of the rock cycle. It provides the energy to form igneous rocks, the forces to create metamorphic rocks, and the mechanisms to expose rocks to weathering and erosion, which produces sediments for sedimentary rocks.</p>
+        <div class="main-text">
+            <strong>Dehydration and Flux Melting:</strong> As the subducting slab heats up, hydrous minerals (amphibole, serpentine, lawsonite) break down, releasing H₂O-rich fluids into the overlying mantle wedge. These fluids lower the solidus temperature of peridotite, triggering flux melting and generating calc-alkaline magmas characteristic of volcanic arcs.
+        </div>
         
-        <h2>Supercontinents and Rock Distribution</h2>
-        <p>Over Earth's history, tectonic plates have repeatedly come together to form supercontinents and then broken apart. This cycle has significantly influenced the global distribution of rocks and minerals, creating unique geological provinces.</p>
+        <div class="main-text">
+            <strong>Metamorphic Facies Series:</strong> The pressure-temperature gradient in subduction zones produces distinctive metamorphic facies series. The cold, high-pressure conditions near the trench create blueschist and eclogite facies assemblages, while the hot, lower-pressure conditions in the back-arc region produce amphibolite and granulite facies rocks.
+        </div>
+        
+        <div class="section-title">Continental Collision and Orogenic Processes</div>
+        
+        <div class="main-text">
+            Continental collision zones represent the ultimate expression of convergent tectonics, where buoyant continental lithosphere resists subduction <span class="emoji">🏔️</span>. These environments produce the world's major mountain belts and associated high-grade metamorphic terranes.
+        </div>
+        
+        <div class="rock-cycle-connection">
+            <div class="cycle-title">
+                <span>🔄</span> Orogenic Rock Formation Processes
+            </div>
+            <p>Continental collision generates extreme pressure-temperature conditions that drive high-grade metamorphism, anatexis (partial melting), and the formation of migmatites. Crustal thickening during collision can double normal crustal thickness, creating pressure conditions equivalent to depths of 60-80 km and temperatures exceeding 800°C.</p>
+            
+            <div style="margin-top: 15px; padding: 15px; background: white; border-radius: 8px;">
+                <h5 style="color: #e65100; margin-bottom: 10px;">Key Orogenic Rock Types:</h5>
+                <ul style="color: #555; font-size: 14px; line-height: 1.6;">
+                    <li>Ultra-high pressure (UHP) metamorphic rocks with coesite and diamond</li>
+                    <li>Granulite facies gneisses and charnockites</li>
+                    <li>S-type granites from crustal anatexis</li>
+                    <li>Thrust-related mylonites and tectonites</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="section-title">Mantle Plumes and Hotspot Volcanism</div>
+        
+        <div class="main-text">
+            Mantle plumes represent upwelling columns of hot, buoyant material from deep within Earth's mantle <span class="emoji">🔥</span>. These thermal anomalies create hotspot volcanism that is independent of plate boundary processes and produces distinctive rock assemblages.
+        </div>
+        
+        <div class="main-text">
+            <strong>Ocean Island Basalts (OIB):</strong> Hotspot volcanism in oceanic settings produces alkaline basalts with distinct geochemical signatures reflecting deep mantle sources. These rocks often contain high concentrations of incompatible elements and exhibit enriched isotopic signatures compared to MORB.
+        </div>
+        
+        <div class="main-text">
+            <strong>Large Igneous Provinces (LIPs):</strong> When mantle plumes interact with continental lithosphere, they can generate massive flood basalt provinces covering millions of square kilometers. Examples include the Deccan Traps, Siberian Traps, and Columbia River Basalts.
+        </div>
+        
+        <div class="section-title">Supercontinent Cycles and Global Tectonics</div>
+        
+        <div class="supercontinent-timeline">
+            <div class="timeline-title">
+                <span>🌍</span> Supercontinent Assembly and Breakup
+            </div>
+            <p>The Wilson Cycle describes the periodic assembly and breakup of supercontinents over ~400-600 million year intervals <span class="emoji">⏰</span>. These cycles profoundly influence global rock formation patterns, climate, and biological evolution.</p>
+            
+            <div class="timeline-events">
+                <div class="timeline-event">
+                    <div class="event-time">Pangaea (300-200 Ma)</div>
+                    <div class="event-description">Latest supercontinent assembly, followed by Mesozoic breakup and Atlantic Ocean opening</div>
+                </div>
+                
+                <div class="timeline-event">
+                    <div class="event-time">Gondwana (600-300 Ma)</div>
+                    <div class="event-description">Southern supercontinent including Africa, South America, Antarctica, Australia, and India</div>
+                </div>
+                
+                <div class="timeline-event">
+                    <div class="event-time">Rodinia (1300-900 Ma)</div>
+                    <div class="event-description">Neoproterozoic supercontinent, breakup associated with Snowball Earth glaciations</div>
+                </div>
+                
+                <div class="timeline-event">
+                    <div class="event-time">Columbia (2100-1800 Ma)</div>
+                    <div class="event-description">Paleoproterozoic supercontinent, assembly coincident with Great Oxidation Event</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section-title">Modern Applications and Implications</div>
+        
+        <div class="main-text">
+            Understanding plate tectonics and associated rock formation processes has profound practical applications <span class="emoji">💰</span>. Mineral exploration relies heavily on plate tectonic models to predict the location of ore deposits, while seismic hazard assessment requires detailed knowledge of active fault systems and stress fields.
+        </div>
+        
+        <div class="tectonic-processes">
+            <div class="process-card">
+                <div class="process-icon">💎</div>
+                <div class="process-title">Mineral Resources</div>
+                <p>Porphyry copper deposits at convergent margins, SEDEX deposits in back-arc basins, chromite in ophiolites</p>
+            </div>
+            
+            <div class="process-card">
+                <div class="process-icon">🌊</div>
+                <div class="process-title">Hydrocarbon Systems</div>
+                <p>Passive margin sedimentary basins, foreland basin petroleum systems, rift-related source rocks</p>
+            </div>
+            
+            <div class="process-card">
+                <div class="process-icon">⚡</div>
+                <div class="process-title">Geothermal Energy</div>
+                <p>High-temperature systems at plate boundaries, enhanced geothermal systems in crystalline rocks</p>
+            </div>
+            
+            <div class="process-card">
+                <div class="process-icon">🏗️</div>
+                <div class="process-title">Engineering Geology</div>
+                <p>Foundation design in active tectonic regions, slope stability in fault zones</p>
+            </div>
+        </div>
+        
+        <div class="interactive-diagram">
+            <h3 style="color: #1565c0; margin-bottom: 20px;">Plate Tectonic Rock Formation Summary</h3>
+            <p style="color: #666; margin-bottom: 20px;">Each tectonic environment produces characteristic rock assemblages</p>
+            
+            <div class="diagram-layers">
+                <div class="layer-item">
+                    <h5 style="color: #1565c0; margin-bottom: 8px;">Oceanic Crust</h5>
+                    <p style="font-size: 12px; color: #555;">Basalt, Gabbro, Peridotite</p>
+                </div>
+                
+                <div class="layer-item">
+                    <h5 style="color: #1565c0; margin-bottom: 8px;">Volcanic Arcs</h5>
+                    <p style="font-size: 12px; color: #555;">Andesite, Dacite, Granite</p>
+                </div>
+                
+                <div class="layer-item">
+                    <h5 style="color: #1565c0; margin-bottom: 8px;">Continental Collision</h5>
+                    <p style="font-size: 12px; color: #555;">Gneiss, Schist, Migmatite</p>
+                </div>
+                
+                <div class="layer-item">
+                    <h5 style="color: #1565c0; margin-bottom: 8px;">Transform Faults</h5>
+                    <p style="font-size: 12px; color: #555;">Mylonite, Cataclasite</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="main-text">
+            Plate tectonics provides the fundamental framework for understanding Earth's geological evolution and continues to shape our planet's surface processes <span class="emoji">🌍</span>. The integration of plate tectonic theory with modern geophysical, geochemical, and geochronological techniques allows us to reconstruct detailed histories of crustal formation and deformation, providing insights into the deep Earth processes that control our planet's dynamic behavior.
+        </div>
         
         <a href="../../rock-app.html" class="back-link">← Back to Rock Explorer</a>
     </div>

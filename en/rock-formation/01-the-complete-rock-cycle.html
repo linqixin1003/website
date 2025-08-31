@@ -3,111 +3,388 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Complete Rock Cycle - Rock Explorer</title>
-    <meta name="description" content="Explore the complete rock cycle, the continuous process that transforms one type of rock into another over geological time.">
+    <title>The Complete Rock Cycle - Rock Formation Guide</title>
+    <meta name="description" content="Explore the complete rock cycle, Earth's continuous process of rock transformation through geological time. Learn about igneous, sedimentary, and metamorphic processes.">
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
         
-        .article-header {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            margin-bottom: 30px;
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            min-height: 100vh;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)), 
+                        linear-gradient(45deg, #8B4513, #D2691E, #CD853F);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
             text-align: center;
         }
         
-        h1 {
-            color: #8B4513;
-            font-size: 2.5em;
+        .hero-content h1 {
+            font-size: 3em;
+            font-weight: 700;
             margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
         }
         
-        .article-meta {
-            color: #666;
-            font-style: italic;
+        .hero-content p {
+            font-size: 1.2em;
+            opacity: 0.9;
         }
         
         .content {
             background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            margin: -30px 20px 20px 20px;
+            border-radius: 20px;
+            padding: 40px 30px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+            min-height: 80vh;
         }
         
-        .rock-image {
-            width: 100%;
-            height: 300px;
-            background: #ddd;
+        .intro-quote {
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            border-left: 5px solid #2196f3;
+            padding: 25px;
+            margin: 30px 0;
             border-radius: 10px;
-            margin: 20px 0;
+            position: relative;
+            font-size: 18px;
+            font-weight: 500;
+            color: #1565c0;
+            line-height: 1.6;
+        }
+        
+        .intro-quote::before {
+            content: '🌍';
+            font-size: 32px;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+        
+        .intro-quote .quote-text {
+            margin-left: 50px;
+        }
+        
+        .main-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            margin: 25px 0;
+            text-align: justify;
+        }
+        
+        .section-title {
+            font-size: 22px;
+            font-weight: 600;
+            color: #8B4513;
+            margin: 35px 0 20px 0;
+            border-bottom: 3px solid #D2691E;
+            padding-bottom: 10px;
+            position: relative;
+        }
+        
+        .section-title::before {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: #CD853F;
+        }
+        
+        .rock-cycle-diagram {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border: 2px solid #D2691E;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .rock-cycle-diagram::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(139,69,19,0.05) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .cycle-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .cycle-step {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .cycle-step:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(139,69,19,0.2);
+            border-color: #D2691E;
+        }
+        
+        .step-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .step-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #8B4513;
+            margin-bottom: 12px;
+        }
+        
+        .step-description {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #555;
+        }
+        
+        .process-flow {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 30px 0;
+            border-left: 4px solid #28a745;
+        }
+        
+        .process-title {
+            font-weight: 600;
+            color: #28a745;
+            margin-bottom: 15px;
+            font-size: 18px;
             display: flex;
             align-items: center;
-            justify-content: center;
-            color: #666;
-            font-size: 1.2em;
+            gap: 10px;
         }
         
-        h2 {
+        .time-scale {
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            border: 1px solid #ffb74d;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+        
+        .time-scale h4 {
+            color: #f57c00;
+            margin-bottom: 12px;
+            font-size: 16px;
+        }
+        
+        .interactive-elements {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .rock-type-card {
+            background: linear-gradient(145deg, #ffffff, #f5f5f5);
+            border: 2px solid transparent;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .rock-type-card:hover {
+            border-color: #8B4513;
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(139,69,19,0.15);
+        }
+        
+        .rock-type-card h4 {
             color: #8B4513;
-            margin-top: 30px;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
+            font-size: 16px;
         }
         
         .back-link {
             display: inline-block;
-            margin-top: 30px;
-            padding: 10px 20px;
-            background: #8B4513;
+            margin-top: 40px;
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #8B4513, #D2691E);
             color: white;
             text-decoration: none;
-            border-radius: 5px;
-            transition: background 0.3s ease;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(139,69,19,0.3);
         }
         
         .back-link:hover {
-            background: #D2691E;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139,69,19,0.4);
+        }
+        
+        .emoji {
+            font-size: 18px;
+            margin: 0 3px;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.2em;
+            }
+            
+            .content {
+                margin: -30px 15px 20px 15px;
+                padding: 30px 20px;
+            }
+            
+            .cycle-steps {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="article-header">
-        <h1>The Complete Rock Cycle</h1>
-        <p class="article-meta">Transformation • Geological Processes • Time</p>
+    <div class="hero-image">
+        <div class="hero-content">
+            <h1>The Complete Rock Cycle</h1>
+            <p>Earth's Endless Transformation Process</p>
+        </div>
     </div>
     
     <div class="content">
-        <div class="rock-image">
-            [Placeholder: Rock Cycle Diagram]
+        <div class="intro-quote">
+            <div class="quote-text">
+                The rock cycle is Earth's grand recycling system, continuously transforming matter through geological processes that have operated for billions of years
+            </div>
         </div>
         
-        <p>The rock cycle is Earth's grand recycling process, where rocks are continuously transformed from one type to another through geological processes. This dynamic system connects the Earth's interior with its surface, involving igneous, sedimentary, and metamorphic rocks.</p>
+        <div class="main-text">
+            The rock cycle represents one of Earth's most fundamental processes—a continuous system of transformation where rocks change from one type to another through various geological mechanisms <span class="emoji">🔄</span>. This dynamic process connects Earth's interior with its surface, involving complex interactions between temperature, pressure, chemical reactions, and time.
+        </div>
         
-        <h2>Key Components of the Rock Cycle</h2>
-        <p>The rock cycle consists of several interconnected processes that work together to create and transform rocks:</p>
+        <div class="rock-cycle-diagram">
+            <h3 style="color: #8B4513; margin-bottom: 20px; position: relative; z-index: 2;">Interactive Rock Cycle Visualization</h3>
+            <p style="color: #666; position: relative; z-index: 2;">Imagine a circular flow where each rock type can transform into any other through different pathways</p>
+        </div>
         
-        <h2>Formation of Igneous Rocks</h2>
-        <p>Igneous rocks form when magma cools and solidifies either beneath the Earth's surface (intrusive) or on the surface (extrusive). This process, known as crystallization, is the starting point for many rock cycle pathways.</p>
+        <div class="section-title">The Three Rock Types and Their Transformations</div>
         
-        <h2>Sedimentary Rock Formation</h2>
-        <p>Sedimentary rocks form through the accumulation and lithification of sediment. Weathering and erosion break down existing rocks into smaller particles, which are then transported by water, wind, or ice. Over time, these sediments become compacted and cemented together.</p>
+        <div class="cycle-steps">
+            <div class="cycle-step">
+                <span class="step-icon">🌋</span>
+                <div class="step-title">Igneous Rocks</div>
+                <div class="step-description">Born from molten magma or lava, these rocks form through cooling and crystallization. Examples: granite, basalt, obsidian.</div>
+            </div>
+            
+            <div class="cycle-step">
+                <span class="step-icon">🏔️</span>
+                <div class="step-title">Sedimentary Rocks</div>
+                <div class="step-description">Created from accumulated sediments through compaction and cementation. Examples: sandstone, limestone, shale.</div>
+            </div>
+            
+            <div class="cycle-step">
+                <span class="step-icon">💎</span>
+                <div class="step-title">Metamorphic Rocks</div>
+                <div class="step-description">Transformed by heat and pressure without melting. Examples: marble, slate, gneiss.</div>
+            </div>
+        </div>
         
-        <h2>Metamorphic Transformation</h2>
-        <p>Metamorphic rocks form when existing rocks are subjected to heat, pressure, or chemical processes without melting. This transformation occurs deep within the Earth's crust and can change both the mineral composition and texture of the original rock.</p>
+        <div class="section-title">Key Processes in the Rock Cycle</div>
         
-        <h2>Uplift and Erosion</h2>
-        <p>Tectonic forces uplift rocks to the Earth's surface, where they are exposed to weathering and erosion. This process begins the cycle anew by creating sediment that will eventually form new sedimentary rocks.</p>
+        <div class="process-flow">
+            <div class="process-title">
+                <span>🔥</span> Melting and Crystallization
+            </div>
+            <p>When rocks are subjected to extreme heat (700-1200°C), they melt to form magma. As this magma cools, minerals crystallize to create igneous rocks. The cooling rate determines crystal size—slow cooling produces large crystals, while rapid cooling creates fine-grained textures.</p>
+        </div>
         
-        <h2>The Rock Cycle and Time</h2>
-        <p>The rock cycle operates over vast geological timescales, with some processes taking millions or even billions of years to complete. However, certain events like volcanic eruptions can create new rocks relatively quickly on a human timescale.</p>
+        <div class="process-flow">
+            <div class="process-title">
+                <span>🌊</span> Weathering and Erosion
+            </div>
+            <p>Physical and chemical processes break down rocks into smaller particles. Water, wind, ice, and biological activity transport these sediments to new locations where they accumulate in layers, eventually forming sedimentary rocks through lithification.</p>
+        </div>
+        
+        <div class="process-flow">
+            <div class="process-title">
+                <span>⚡</span> Metamorphism
+            </div>
+            <p>Existing rocks undergo transformation due to heat, pressure, or chemical fluids without completely melting. This process can occur through contact with hot magma, regional tectonic forces, or hydrothermal activity, creating entirely new mineral assemblages.</p>
+        </div>
+        
+        <div class="section-title">Geological Time and the Rock Cycle</div>
+        
+        <div class="main-text">
+            The rock cycle operates across vast temporal scales that challenge human comprehension <span class="emoji">⏰</span>. Most transformations require millions to billions of years, though some processes can occur relatively quickly during catastrophic events like volcanic eruptions or major earthquakes.
+        </div>
+        
+        <div class="time-scale">
+            <h4>⏳ Time Scale Examples</h4>
+            <p><strong>Fast processes:</strong> Volcanic rock formation (hours to years), flash flooding sediment deposition (days to months)</p>
+            <p><strong>Slow processes:</strong> Mountain building and metamorphism (millions of years), deep weathering and soil formation (thousands to millions of years)</p>
+        </div>
+        
+        <div class="section-title">Modern Applications and Significance</div>
+        
+        <div class="main-text">
+            Understanding the rock cycle is crucial for numerous practical applications <span class="emoji">🔬</span>. Geologists use this knowledge for mineral exploration, groundwater management, hazard assessment, and understanding climate change. The cycle also helps us interpret Earth's history and predict future geological changes.
+        </div>
+        
+        <div class="interactive-elements">
+            <div class="rock-type-card">
+                <h4>🏗️ Construction Materials</h4>
+                <p>Granite countertops, marble sculptures, sandstone buildings</p>
+            </div>
+            
+            <div class="rock-type-card">
+                <h4>💰 Economic Resources</h4>
+                <p>Metal ores, fossil fuels, gemstones, industrial minerals</p>
+            </div>
+            
+            <div class="rock-type-card">
+                <h4>🌍 Environmental Indicators</h4>
+                <p>Climate history, pollution monitoring, ecosystem health</p>
+            </div>
+        </div>
+        
+        <div class="main-text">
+            The rock cycle demonstrates Earth's dynamic nature and the interconnectedness of geological processes <span class="emoji">🌎</span>. Every rock tells a story of transformation, and understanding these stories helps us appreciate the complexity and beauty of our planet's geological heritage.
+        </div>
         
         <a href="../../rock-app.html" class="back-link">← Back to Rock Explorer</a>
     </div>

@@ -3,113 +3,500 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Metamorphic Rock Transformation - Rock Explorer</title>
-    <meta name="description" content="Discover how metamorphic rocks form through heat, pressure, and chemical processes deep within the Earth.">
+    <title>Metamorphic Rock Transformation - Rock Formation Guide</title>
+    <meta name="description" content="Discover how metamorphic rocks form through heat, pressure, and chemical processes deep within the Earth. Explore the fascinating world of rock transformation.">
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
         
-        .article-header {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            margin-bottom: 30px;
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            min-height: 100vh;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)), 
+                        linear-gradient(45deg, #4a148c, #7b1fa2, #9c27b0);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
             text-align: center;
         }
         
-        h1 {
-            color: #8B4513;
-            font-size: 2.5em;
+        .hero-content h1 {
+            font-size: 3em;
+            font-weight: 700;
             margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
         }
         
-        .article-meta {
-            color: #666;
-            font-style: italic;
+        .hero-content p {
+            font-size: 1.2em;
+            opacity: 0.9;
         }
         
         .content {
             background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            margin: -30px 20px 20px 20px;
+            border-radius: 20px;
+            padding: 40px 30px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+            min-height: 80vh;
         }
         
-        .rock-image {
-            width: 100%;
-            height: 300px;
-            background: #ddd;
+        .intro-quote {
+            background: linear-gradient(135deg, #f3e5f5, #e1bee7);
+            border-left: 5px solid #9c27b0;
+            padding: 25px;
+            margin: 30px 0;
             border-radius: 10px;
-            margin: 20px 0;
+            position: relative;
+            font-size: 18px;
+            font-weight: 500;
+            color: #4a148c;
+            line-height: 1.6;
+        }
+        
+        .intro-quote::before {
+            content: '💎';
+            font-size: 32px;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+        
+        .intro-quote .quote-text {
+            margin-left: 50px;
+        }
+        
+        .main-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            margin: 25px 0;
+            text-align: justify;
+        }
+        
+        .section-title {
+            font-size: 22px;
+            font-weight: 600;
+            color: #4a148c;
+            margin: 35px 0 20px 0;
+            border-bottom: 3px solid #9c27b0;
+            padding-bottom: 10px;
+            position: relative;
+        }
+        
+        .section-title::before {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: #e1bee7;
+        }
+        
+        .metamorphic-conditions {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .conditions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 25px 0;
+        }
+        
+        .condition-card {
+            background: white;
+            border: 2px solid #e1bee7;
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .condition-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(156,39,176,0.2);
+            border-color: #9c27b0;
+        }
+        
+        .condition-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .condition-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #4a148c;
+            margin-bottom: 12px;
+        }
+        
+        .condition-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #9c27b0;
+            margin: 10px 0;
+        }
+        
+        .metamorphism-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .metamorphism-card {
+            background: linear-gradient(145deg, #ffffff, #f5f5f5);
+            border: 2px solid transparent;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .metamorphism-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(156,39,176,0.1), transparent);
+            transition: left 0.5s;
+        }
+        
+        .metamorphism-card:hover::before {
+            left: 100%;
+        }
+        
+        .metamorphism-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(156,39,176,0.15);
+            border-color: #9c27b0;
+        }
+        
+        .metamorphism-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #4a148c;
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
-            justify-content: center;
-            color: #666;
-            font-size: 1.2em;
+            gap: 10px;
         }
         
-        h2 {
-            color: #8B4513;
-            margin-top: 30px;
+        .rock-transformation {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 30px 0;
+            border-left: 4px solid #ff9800;
+        }
+        
+        .transformation-title {
+            color: #e65100;
+            font-size: 18px;
+            font-weight: 600;
             margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .transformation-examples {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .transformation-item {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            transition: all 0.3s ease;
+        }
+        
+        .transformation-item:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+        
+        .metamorphic-grade {
+            background: linear-gradient(135deg, #e8f5e8, #c8e6c9);
+            border: 2px solid #4caf50;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+        
+        .grade-title {
+            color: #2e7d32;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .grade-levels {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .grade-level {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            border: 1px solid #4caf50;
+        }
+        
+        .grade-level h5 {
+            color: #2e7d32;
+            margin-bottom: 8px;
+        }
+        
+        .tip-box {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 25px 0;
+            border-left: 4px solid #17a2b8;
+        }
+        
+        .tip-title {
+            font-weight: 600;
+            color: #17a2b8;
+            margin-bottom: 12px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
         
         .back-link {
             display: inline-block;
-            margin-top: 30px;
-            padding: 10px 20px;
-            background: #8B4513;
+            margin-top: 40px;
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #4a148c, #9c27b0);
             color: white;
             text-decoration: none;
-            border-radius: 5px;
-            transition: background 0.3s ease;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(74,20,140,0.3);
         }
         
         .back-link:hover {
-            background: #D2691E;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(74,20,140,0.4);
+        }
+        
+        .emoji {
+            font-size: 18px;
+            margin: 0 3px;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.2em;
+            }
+            
+            .content {
+                margin: -30px 15px 20px 15px;
+                padding: 30px 20px;
+            }
+            
+            .metamorphism-types {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="article-header">
-        <h1>Metamorphic Rock Transformation</h1>
-        <p class="article-meta">Heat • Pressure • Chemical Change</p>
+    <div class="hero-image">
+        <div class="hero-content">
+            <h1>Metamorphic Rock Transformation</h1>
+            <p>Earth's Deep Crustal Rebirth</p>
+        </div>
     </div>
     
     <div class="content">
-        <div class="rock-image">
-            [Placeholder: Metamorphic Rock Formation Process]
+        <div class="intro-quote">
+            <div class="quote-text">
+                Metamorphic rocks are witnesses to Earth's internal forces, transformed through the perfect combination of heat, pressure, and chemical processes into beautiful minerals with entirely new properties
+            </div>
         </div>
         
-        <p>Metamorphic rocks form when existing rocks undergo transformation due to intense heat, pressure, or chemical processes without melting completely. This metamorphism creates entirely new rock types with unique textures and mineral compositions.</p>
+        <div class="main-text">
+            Metamorphic rocks form when existing rocks undergo transformation due to intense heat, pressure, or chemical processes without completely melting <span class="emoji">💎</span>. This metamorphism creates entirely new rock types with unique textures and mineral compositions, showcasing the complexity and beauty of Earth's internal dynamic processes.
+        </div>
         
-        <h2>Metamorphic Processes</h2>
-        <p>Metamorphism occurs deep within the Earth's crust where temperatures range from 200°C to 700°C and pressures are many times greater than at the surface. These conditions cause minerals to recrystallize and reorganize, creating new textures and sometimes entirely new minerals.</p>
+        <div class="section-title">Conditions for Metamorphism</div>
         
-        <h2>Types of Metamorphism</h2>
-        <p><strong>Contact Metamorphism:</strong> Occurs when rocks are heated by nearby magma intrusions. The heat causes localized changes in the surrounding rock, creating a metamorphic aureole.</p>
+        <div class="metamorphic-conditions">
+            <h3 style="text-align: center; margin-bottom: 25px; color: #4a148c;">Extreme Environments of Metamorphic Rock Formation</h3>
+            
+            <div class="conditions-grid">
+                <div class="condition-card">
+                    <span class="condition-icon">🌡️</span>
+                    <div class="condition-title">Temperature Conditions</div>
+                    <div class="condition-value">200-700°C</div>
+                    <p>Temperature range sufficient to alter mineral structures without completely melting the rock</p>
+                </div>
+                
+                <div class="condition-card">
+                    <span class="condition-icon">⚡</span>
+                    <div class="condition-title">Pressure Conditions</div>
+                    <div class="condition-value">1-10 GPa</div>
+                    <p>Enormous pressure equivalent to 10,000 to 100,000 times surface pressure</p>
+                </div>
+                
+                <div class="condition-card">
+                    <span class="condition-icon">🧪</span>
+                    <div class="condition-title">Chemical Environment</div>
+                    <div class="condition-value">Active Fluids</div>
+                    <p>Mineral-rich hot water solutions promote chemical reactions and recrystallization</p>
+                </div>
+            </div>
+        </div>
         
-        <p><strong>Regional Metamorphism:</strong> Results from large-scale geological processes such as mountain building, where vast areas of rock are subjected to increased temperature and pressure over long periods.</p>
+        <div class="section-title">Types of Metamorphism</div>
         
-        <p><strong>Dynamic Metamorphism:</strong> Occurs along fault zones where rocks are subjected to intense pressure and shearing forces, creating mylonites and other deformed rock types.</p>
+        <div class="metamorphism-types">
+            <div class="metamorphism-card">
+                <div class="metamorphism-title">
+                    <span>🔥</span> Contact Metamorphism
+                </div>
+                <p>Occurs when rocks are heated by nearby magma intrusions. Heat causes localized changes in surrounding rocks, creating metamorphic aureoles. This type of metamorphism typically affects smaller areas but can achieve high metamorphic grades.</p>
+                <div style="margin-top: 15px; padding: 10px; background: #fff3e0; border-radius: 6px;">
+                    <strong>Typical Products:</strong> Hornfels, Marble, Skarn
+                </div>
+            </div>
+            
+            <div class="metamorphism-card">
+                <div class="metamorphism-title">
+                    <span>🏔️</span> Regional Metamorphism
+                </div>
+                <p>Results from large-scale geological processes such as mountain building, where vast areas of rock are subjected to increased temperature and pressure over long periods. This is the most common type of metamorphism, forming extensive metamorphic rock belts.</p>
+                <div style="margin-top: 15px; padding: 10px; background: #e3f2fd; border-radius: 6px;">
+                    <strong>Typical Products:</strong> Schist, Gneiss, Slate
+                </div>
+            </div>
+            
+            <div class="metamorphism-card">
+                <div class="metamorphism-title">
+                    <span>⚡</span> Dynamic Metamorphism
+                </div>
+                <p>Occurs along fault zones where rocks are subjected to intense pressure and shearing forces, creating mylonites and other deformed rock types. This metamorphism is primarily driven by mechanical stress.</p>
+                <div style="margin-top: 15px; padding: 10px; background: #f3e5f5; border-radius: 6px;">
+                    <strong>Typical Products:</strong> Mylonite, Fault Breccia
+                </div>
+            </div>
+        </div>
         
-        <h2>Common Metamorphic Rocks</h2>
-        <p><strong>Marble:</strong> Forms from limestone or dolomite through recrystallization of carbonate minerals. Prized for sculpture and architecture due to its workability and beauty.</p>
+        <div class="section-title">Common Metamorphic Rocks and Their Transformation Processes</div>
         
-        <p><strong>Slate:</strong> Develops from shale through low-grade metamorphism, creating a fine-grained rock that splits easily along parallel planes. Traditionally used for roofing and writing tablets.</p>
+        <div class="rock-transformation">
+            <div class="transformation-title">
+                <span>🔄</span> Rock Transformation Examples
+            </div>
+            
+            <div class="transformation-examples">
+                <div class="transformation-item">
+                    <h4 style="color: #e65100; margin-bottom: 10px;">Limestone → Marble</h4>
+                    <p>Calcium carbonate minerals recrystallize, forming coarse-grained structures commonly used for sculpture and architectural decoration.</p>
+                </div>
+                
+                <div class="transformation-item">
+                    <h4 style="color: #e65100; margin-bottom: 10px;">Shale → Slate</h4>
+                    <p>Low-grade metamorphism produces fine-grained rock with perfect cleavage, traditionally used for roofing and writing tablets.</p>
+                </div>
+                
+                <div class="transformation-item">
+                    <h4 style="color: #e65100; margin-bottom: 10px;">Granite → Gneiss</h4>
+                    <p>High-grade metamorphism forms rock with characteristic banded appearance, showing mineral reorganization.</p>
+                </div>
+                
+                <div class="transformation-item">
+                    <h4 style="color: #e65100; margin-bottom: 10px;">Sandstone → Quartzite</h4>
+                    <p>Quartz grains recrystallize and bond tightly, forming extremely hard and dense rock.</p>
+                </div>
+            </div>
+        </div>
         
-        <p><strong>Gneiss:</strong> A high-grade metamorphic rock with distinctive banded appearance, formed from granite or other rocks under intense heat and pressure.</p>
+        <div class="section-title">Metamorphic Grade and Mineral Assemblages</div>
         
-        <h2>Metamorphic Grade</h2>
-        <p>The intensity of metamorphism is classified into grades: low, medium, and high. Each grade produces characteristic mineral assemblages that help geologists understand the conditions under which the rock formed.</p>
+        <div class="metamorphic-grade">
+            <div class="grade-title">
+                <span>📊</span> Metamorphic Intensity Classification
+            </div>
+            <p>The intensity of metamorphism is classified into different grades, each producing characteristic mineral assemblages that help geologists understand the conditions under which rocks formed <span class="emoji">🔬</span>.</p>
+            
+            <div class="grade-levels">
+                <div class="grade-level">
+                    <h5>Low-Grade Metamorphism</h5>
+                    <p>200-400°C<br>Chlorite, Muscovite</p>
+                </div>
+                
+                <div class="grade-level">
+                    <h5>Medium-Grade Metamorphism</h5>
+                    <p>400-600°C<br>Garnet, Staurolite</p>
+                </div>
+                
+                <div class="grade-level">
+                    <h5>High-Grade Metamorphism</h5>
+                    <p>600-700°C<br>Sillimanite, K-feldspar</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="tip-box">
+            <div class="tip-title">🔍 Identification Tips</div>
+            <p>The key to identifying metamorphic rocks lies in observing mineral arrangement, degree of crystallization, and special structures. Foliation, schistosity, and banded structures are all important indicators of metamorphism. Use a hand lens to observe the oriented arrangement of minerals and recrystallization features.</p>
+        </div>
+        
+        <div class="section-title">Geological Significance and Practical Applications</div>
+        
+        <div class="main-text">
+            Metamorphic rocks have important significance in geological research, as they record Earth's internal temperature-pressure conditions and tectonic history <span class="emoji">🌍</span>. By studying metamorphic rocks, scientists can reconstruct the evolutionary processes of ancient orogenic belts and understand the history of plate tectonic movements.
+        </div>
+        
+        <div class="main-text">
+            In practical applications, many metamorphic rocks have important economic value <span class="emoji">💰</span>. Marble is widely used in architectural decoration and sculptural art, slate is used as roofing material and flooring, gneiss is used for building stone, and certain metamorphic rocks contain precious metals and gemstone minerals.
+        </div>
+        
+        <div class="main-text">
+            The study of metamorphic rocks also helps understand deep Earth processes and lithospheric evolution <span class="emoji">🔬</span>. They provide direct evidence of Earth's internal conditions, helping scientists build more accurate geodynamic models.
+        </div>
         
         <a href="../../rock-app.html" class="back-link">← Back to Rock Explorer</a>
     </div>

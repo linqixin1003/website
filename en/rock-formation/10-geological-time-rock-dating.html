@@ -3,120 +3,627 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Geological Time and Rock Dating - Rock Explorer</title>
-    <meta name="description" content="Explore the concept of geological time and the methods scientists use to determine the age of rocks and Earth's history.">
+    <title>Geological Time and Rock Dating - Rock Formation Guide</title>
+    <meta name="description" content="Explore the concept of geological time and methods scientists use to determine rock ages. Understand Earth's temporal framework and dating techniques.">
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
         
-        .article-header {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            margin-bottom: 30px;
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: #333;
+            min-height: 100vh;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)), 
+                        linear-gradient(45deg, #8e44ad, #9b59b6, #af7ac5);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
             text-align: center;
         }
         
-        h1 {
-            color: #8B4513;
-            font-size: 2.5em;
+        .hero-content h1 {
+            font-size: 3em;
+            font-weight: 700;
             margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
         }
         
-        .article-meta {
-            color: #666;
-            font-style: italic;
+        .hero-content p {
+            font-size: 1.2em;
+            opacity: 0.9;
         }
         
         .content {
             background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            margin: -30px 20px 20px 20px;
+            border-radius: 20px;
+            padding: 40px 30px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+            min-height: 80vh;
         }
         
-        .rock-image {
-            width: 100%;
-            height: 300px;
-            background: #ddd;
+        .intro-quote {
+            background: linear-gradient(135deg, #f3e5f5, #e1bee7);
+            border-left: 5px solid #8e44ad;
+            padding: 25px;
+            margin: 30px 0;
             border-radius: 10px;
-            margin: 20px 0;
+            position: relative;
+            font-size: 18px;
+            font-weight: 500;
+            color: #4a148c;
+            line-height: 1.6;
+        }
+        
+        .intro-quote::before {
+            content: '⏰';
+            font-size: 32px;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+        
+        .intro-quote .quote-text {
+            margin-left: 50px;
+        }
+        
+        .main-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            margin: 25px 0;
+            text-align: justify;
+        }
+        
+        .section-title {
+            font-size: 22px;
+            font-weight: 600;
+            color: #8e44ad;
+            margin: 35px 0 20px 0;
+            border-bottom: 3px solid #9b59b6;
+            padding-bottom: 10px;
+            position: relative;
+        }
+        
+        .section-title::before {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: #e1bee7;
+        }
+        
+        .time-scale-visual {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .geological-timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin: 25px 0;
+        }
+        
+        .time-period {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border-left: 5px solid #8e44ad;
+        }
+        
+        .time-period:hover {
+            transform: translateX(10px);
+            box-shadow: 0 6px 20px rgba(142,68,173,0.2);
+        }
+        
+        .period-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .period-name {
+            font-size: 18px;
+            font-weight: 600;
+            color: #8e44ad;
+        }
+        
+        .period-age {
+            font-size: 14px;
+            color: #666;
+            background: #f8f9fa;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+        
+        .period-description {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.5;
+        }
+        
+        .dating-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .dating-card {
+            background: linear-gradient(145deg, #ffffff, #f5f5f5);
+            border: 2px solid transparent;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .dating-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(142,68,173,0.1), transparent);
+            transition: left 0.5s;
+        }
+        
+        .dating-card:hover::before {
+            left: 100%;
+        }
+        
+        .dating-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(142,68,173,0.2);
+            border-color: #8e44ad;
+        }
+        
+        .dating-icon {
+            font-size: 48px;
+            text-align: center;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .dating-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #8e44ad;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .dating-description {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #555;
+            margin-bottom: 15px;
+        }
+        
+        .dating-range {
+            background: #f3e5f5;
+            border-radius: 8px;
+            padding: 12px;
+            margin-top: 10px;
+            text-align: center;
+        }
+        
+        .dating-range h5 {
+            color: #8e44ad;
+            font-size: 14px;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+        
+        .dating-range p {
+            font-size: 13px;
+            color: #4a148c;
+            margin: 0;
+        }
+        
+        .principles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .principle-card {
+            background: white;
+            border: 2px solid #e1bee7;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .principle-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(142,68,173,0.15);
+            border-color: #8e44ad;
+        }
+        
+        .principle-icon {
+            font-size: 36px;
+            margin-bottom: 12px;
+        }
+        
+        .principle-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #8e44ad;
+            margin-bottom: 8px;
+        }
+        
+        .principle-description {
+            font-size: 13px;
+            color: #555;
+            line-height: 1.4;
+        }
+        
+        .challenges-section {
+            background: linear-gradient(135d, #fff3e0, #ffe0b2);
+            border: 2px solid #ff9800;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+        
+        .challenges-title {
+            color: #e65100;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
-            justify-content: center;
-            color: #666;
-            font-size: 1.2em;
+            gap: 10px;
         }
         
-        h2 {
-            color: #8B4513;
-            margin-top: 30px;
-            margin-bottom: 15px;
+        .applications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .application-card {
+            background: linear-gradient(145deg, #ffffff, #f5f5f5);
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .application-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+            border-color: #8e44ad;
+        }
+        
+        .application-icon {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        
+        .application-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #8e44ad;
+            margin-bottom: 8px;
+        }
+        
+        .tip-box {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 25px 0;
+            border-left: 4px solid #17a2b8;
+        }
+        
+        .tip-title {
+            font-weight: 600;
+            color: #17a2b8;
+            margin-bottom: 12px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
         
         .back-link {
             display: inline-block;
-            margin-top: 30px;
-            padding: 10px 20px;
-            background: #8B4513;
+            margin-top: 40px;
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #8e44ad, #9b59b6);
             color: white;
             text-decoration: none;
-            border-radius: 5px;
-            transition: background 0.3s ease;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(142,68,173,0.3);
         }
         
         .back-link:hover {
-            background: #D2691E;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(142,68,173,0.4);
+        }
+        
+        .emoji {
+            font-size: 18px;
+            margin: 0 3px;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.2em;
+            }
+            
+            .content {
+                margin: -30px 15px 20px 15px;
+                padding: 30px 20px;
+            }
+            
+            .dating-methods {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="article-header">
-        <h1>Geological Time and Rock Dating</h1>
-        <p class="article-meta">Deep Time • Dating Methods • Earth's History</p>
+    <div class="hero-image">
+        <div class="hero-content">
+            <h1>Geological Time and Rock Dating</h1>
+            <p>Decoding 4.6 Billion Years of Earth's History</p>
+        </div>
     </div>
     
     <div class="content">
-        <div class="rock-image">
-            [Placeholder: Geological Time Scale Diagram]
+        <div class="intro-quote">
+            <div class="quote-text">
+                Geological time represents the vast temporal span since Earth's formation approximately 4.6 billion years ago. Understanding geological time and rock dating methods is crucial for interpreting Earth's history and the processes that have shaped our planet
+            </div>
         </div>
         
-        <p>Geological time represents the vast expanse of time that has passed since Earth's formation approximately 4.6 billion years ago. Understanding geological time and how to date rocks is crucial for interpreting Earth's history and the processes that have shaped our planet.</p>
+        <div class="main-text">
+            The concept of geological time challenges human understanding of temporal scales <span class="emoji">⏰</span>. On geological timescales, mountain formation, continental drift, and biological evolution occur slowly but continuously. Scientists use various dating techniques to determine rock ages, thereby reconstructing the temporal framework of Earth's history.
+        </div>
         
-        <h2>The Concept of Deep Time</h2>
-        <p>Deep time refers to the immense duration of Earth's history, far beyond human comprehension. To visualize this, consider that if Earth's history were compressed into a 24-hour day, humans would appear only in the last few seconds.</p>
+        <div class="section-title">The Geological Time Scale</div>
         
-        <h2>Relative Dating Principles</h2>
-        <p>Before absolute dating methods were developed, geologists used relative dating to determine the sequence of events:</p>
-        <ul>
-            <li><strong>Law of Superposition:</strong> In undisturbed rock layers, the oldest rocks are at the bottom</li>
-            <li><strong>Principle of Original Horizontality:</strong> Layers of sediment are originally deposited horizontally</li>
-            <li><strong>Principle of Cross-Cutting Relationships:</strong> Any feature that cuts across rocks must be younger than the rocks it cuts</li>
-            <li><strong>Principle of Faunal Succession:</strong> Fossils appear in a predictable order in the rock record</li>
-        </ul>
+        <div class="time-scale-visual">
+            <h3 style="text-align: center; margin-bottom: 25px; color: #8e44ad;">Earth's Temporal Divisions</h3>
+            
+            <div class="geological-timeline">
+                <div class="time-period">
+                    <div class="period-header">
+                        <div class="period-name">Phanerozoic Eon</div>
+                        <div class="period-age">541 Ma - Present</div>
+                    </div>
+                    <div class="period-description">
+                        The era of abundant complex life, encompassing Paleozoic, Mesozoic, and Cenozoic eras with diverse fossil records
+                    </div>
+                </div>
+                
+                <div class="time-period">
+                    <div class="period-header">
+                        <div class="period-name">Proterozoic Eon</div>
+                        <div class="period-age">2500-541 Ma</div>
+                    </div>
+                    <div class="period-description">
+                        Emergence of eukaryotic cells, atmospheric oxygenation, and first major glaciation events
+                    </div>
+                </div>
+                
+                <div class="time-period">
+                    <div class="period-header">
+                        <div class="period-name">Archean Eon</div>
+                        <div class="period-age">4000-2500 Ma</div>
+                    </div>
+                    <div class="period-description">
+                        Earliest life forms appear, formation of primitive atmosphere and oceans, stabilization of continental crust
+                    </div>
+                </div>
+                
+                <div class="time-period">
+                    <div class="period-header">
+                        <div class="period-name">Hadean Eon</div>
+                        <div class="period-age">4600-4000 Ma</div>
+                    </div>
+                    <div class="period-description">
+                        Earth's formation period, intense meteorite bombardment, Moon formation, and initial crustal development
+                    </div>
+                </div>
+            </div>
+        </div>
         
-        <h2>Absolute Dating Methods</h2>
-        <p>Absolute dating provides numerical ages for rocks and events. The most common method is radiometric dating:</p>
-        <ul>
-            <li><strong>Carbon-14 dating:</strong> Used for organic materials up to about 50,000 years old</li>
-            <li><strong>Potassium-Argon dating:</strong> Used for rocks older than 100,000 years</li>
-            <li><strong>Uranium-Lead dating:</strong> One of the most precise methods for dating ancient rocks</li>
-            <li><strong>Samarium-Neodymium dating:</strong> Used for very old rocks and meteorites</li>
-        </ul>
+        <div class="section-title">Principles of Relative Dating</div>
         
-        <h2>The Geological Time Scale</h2>
-        <p>The geological time scale divides Earth's history into eons, eras, periods, and epochs. Major divisions are marked by significant events like mass extinctions or major changes in Earth's climate and life forms.</p>
+        <div class="main-text">
+            Relative dating determines the sequential order of rocks and geological events without providing specific numerical ages <span class="emoji">📚</span>. These principles form the foundation of stratigraphy, helping geologists establish temporal sequences in Earth's history.
+        </div>
         
-        <h2>Challenges in Rock Dating</h2>
-        <p>Dating rocks is not always straightforward. Rocks may have complex histories, including metamorphism or weathering that can reset or disturb their isotopic systems. Geologists must carefully select appropriate samples and methods for each dating problem.</p>
+        <div class="principles-grid">
+            <div class="principle-card">
+                <div class="principle-icon">📚</div>
+                <div class="principle-title">Law of Superposition</div>
+                <div class="principle-description">In undisturbed sedimentary sequences, lower layers are older than upper layers</div>
+            </div>
+            
+            <div class="principle-card">
+                <div class="principle-icon">📐</div>
+                <div class="principle-title">Principle of Original Horizontality</div>
+                <div class="principle-description">Sedimentary layers are initially deposited horizontally; tilting indicates later tectonic activity</div>
+            </div>
+            
+            <div class="principle-card">
+                <div class="principle-icon">✂️</div>
+                <div class="principle-title">Law of Cross-Cutting Relationships</div>
+                <div class="principle-description">Any feature that cuts through rock is younger than the rock it cuts through</div>
+            </div>
+            
+            <div class="principle-card">
+                <div class="principle-icon">🦴</div>
+                <div class="principle-title">Principle of Faunal Succession</div>
+                <div class="principle-description">Fossils appear in rock record in predictable, evolutionary sequences</div>
+            </div>
+        </div>
+        
+        <div class="section-title">Absolute Dating Methods</div>
+        
+        <div class="main-text">
+            Absolute dating provides numerical ages for rocks and events. The most commonly used method is radiometric dating <span class="emoji">⚛️</span>, based on the decay rates of radioactive elements to calculate rock formation times.
+        </div>
+        
+        <div class="dating-methods">
+            <div class="dating-card">
+                <span class="dating-icon">🌿</span>
+                <div class="dating-title">Carbon-14 Dating</div>
+                <div class="dating-description">
+                    Used for dating organic materials based on radioactive decay of ¹⁴C. Applicable to relatively young samples, widely used in archaeology and Quaternary geology for dating wood, charcoal, bone collagen, and carbonate shells.
+                </div>
+                <div class="dating-range">
+                    <h5>Applicable Range:</h5>
+                    <p>Organic materials <50,000 years</p>
+                </div>
+            </div>
+            
+            <div class="dating-card">
+                <span class="dating-icon">🔥</span>
+                <div class="dating-title">Potassium-Argon Dating</div>
+                <div class="dating-description">
+                    Used for dating igneous and metamorphic rocks, particularly volcanic rocks. Based on ⁴⁰K decay to ⁴⁰Ar with a half-life of 1.25 billion years. Applicable to K-bearing minerals like biotite, muscovite, hornblende, and whole-rock basalts.
+                </div>
+                <div class="dating-range">
+                    <h5>Applicable Range:</h5>
+                    <p>Igneous rocks >100,000 years</p>
+                </div>
+            </div>
+            
+            <div class="dating-card">
+                <span class="dating-icon">💎</span>
+                <div class="dating-title">Uranium-Lead Dating</div>
+                <div class="dating-description">
+                    One of the most precise dating methods, primarily used for zircon and other U-bearing minerals. Utilizes two independent decay series (²³⁸U→²⁰⁶Pb and ²³⁵U→²⁰⁷Pb) providing internal consistency checks and exceptional accuracy for ancient rocks.
+                </div>
+                <div class="dating-range">
+                    <h5>Applicable Range:</h5>
+                    <p>1 Ma to Earth's age (4.6 Ga)</p>
+                </div>
+            </div>
+            
+            <div class="dating-card">
+                <span class="dating-icon">🌟</span>
+                <div class="dating-title">Samarium-Neodymium Dating</div>
+                <div class="dating-description">
+                    Used for very ancient rocks and meteorites. ¹⁴⁷Sm decays to ¹⁴³Nd with a half-life of ~106 billion years, making it ideal for Archean rocks and early solar system materials. Particularly useful for mafic and ultramafic rocks.
+                </div>
+                <div class="dating-range">
+                    <h5>Applicable Range:</h5>
+                    <p>Ancient rocks and meteorites</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section-title">Challenges in Geochronology</div>
+        
+        <div class="challenges-section">
+            <div class="challenges-title">
+                <span>⚠️</span> Complex Factors in Dating Processes
+            </div>
+            <p>Rock dating is not always straightforward <span class="emoji">🔬</span>. Rocks may have complex histories including metamorphism, weathering, or hydrothermal alteration that can reset or disturb isotopic systems. Geochronologists must carefully select appropriate samples and methods to address each dating problem, considering closure temperatures, diffusion kinetics, and potential sources of contamination.</p>
+            
+            <div style="margin-top: 15px; padding: 15px; background: white; border-radius: 8px;">
+                <h5 style="color: #e65100; margin-bottom: 10px;">Major Challenges Include:</h5>
+                <ul style="color: #555; font-size: 14px; line-height: 1.6;">
+                    <li>Sample contamination and alteration</li>
+                    <li>Inherited zircon components</li>
+                    <li>Pb-loss and isotopic resetting</li>
+                    <li>Complex polymetamorphic histories</li>
+                    <li>Analytical precision and accuracy limits</li>
+                    <li>Closure temperature variations</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="section-title">Modern Applications and Significance</div>
+        
+        <div class="applications-grid">
+            <div class="application-card">
+                <div class="application-icon">🏔️</div>
+                <div class="application-title">Orogenic Belt Studies</div>
+                <p>Determining timing and duration of mountain-building processes</p>
+            </div>
+            
+            <div class="application-card">
+                <div class="application-icon">🌋</div>
+                <div class="application-title">Volcanic Hazard Assessment</div>
+                <p>Evaluating eruption histories and recurrence intervals</p>
+            </div>
+            
+            <div class="application-card">
+                <div class="application-icon">🛢️</div>
+                <div class="application-title">Resource Exploration</div>
+                <p>Dating ore deposits and hydrocarbon source rocks</p>
+            </div>
+            
+            <div class="application-card">
+                <div class="application-icon">🌍</div>
+                <div class="application-title">Paleoclimate Research</div>
+                <p>Reconstructing ancient climate and environmental conditions</p>
+            </div>
+            
+            <div class="application-card">
+                <div class="application-icon">🦕</div>
+                <div class="application-title">Biological Evolution</div>
+                <p>Constraining fossil ages and evolutionary timescales</p>
+            </div>
+            
+            <div class="application-card">
+                <div class="application-icon">🚀</div>
+                <div class="application-title">Planetary Science</div>
+                <p>Understanding solar system formation and evolution</p>
+            </div>
+        </div>
+        
+        <div class="tip-box">
+            <div class="tip-title">🔬 Technological Advances</div>
+            <p>Modern analytical techniques such as SIMS (Secondary Ion Mass Spectrometry), LA-ICP-MS (Laser Ablation Inductively Coupled Plasma Mass Spectrometry), and TIMS (Thermal Ionization Mass Spectrometry) have dramatically improved dating precision and spatial resolution. Single-grain zircon dating, in-situ analysis techniques, and high-precision isotope measurements have opened new possibilities for geological research and chronostratigraphy.</p>
+        </div>
+        
+        <div class="main-text">
+            The study of geological time and rock dating not only helps us understand Earth's history but also provides the foundation for predicting future geological changes <span class="emoji">🔮</span>. Through precise age determination, scientists can reconstruct the history of plate motions, patterns of climate change, and biological evolutionary processes, providing crucial scientific evidence for sustainable human development and natural hazard mitigation.
+        </div>
+        
+        <div class="main-text">
+            Advanced geochronological techniques continue to refine our understanding of Earth system processes, from the timing of early atmospheric oxygenation to the rates of modern climate change. Integration of multiple dating methods with field geology, geochemistry, and geophysics provides comprehensive temporal frameworks for understanding our dynamic planet.
+        </div>
         
         <a href="../../rock-app.html" class="back-link">← Back to Rock Explorer</a>
     </div>

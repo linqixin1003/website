@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volcanic Processes and Rock Formation - Rock Formation Guide</title>
+    <meta name="description" content="Explore volcanic processes and their role in igneous rock formation. Understand magma generation, eruption mechanisms, and volcanic rock classification.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #d32f2f 0%, #f57c00 100%);
+            color: #333;
+            min-height: 100vh;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)), 
+                        linear-gradient(45deg, #d32f2f, #f44336, #ff5722);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+        
+        .hero-content h1 {
+            font-size: 3em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+        }
+        
+        .hero-content p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .content {
+            background: white;
+            margin: -30px 20px 20px 20px;
+            border-radius: 20px;
+            padding: 40px 30px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+            min-height: 80vh;
+        }
+        
+        .intro-quote {
+            background: linear-gradient(135deg, #ffebee, #ffcdd2);
+            border-left: 5px solid #d32f2f;
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 10px;
+            position: relative;
+            font-size: 18px;
+            font-weight: 500;
+            color: #b71c1c;
+            line-height: 1.6;
+        }
+        
+        .intro-quote::before {
+            content: '🌋';
+            font-size: 32px;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+        
+        .intro-quote .quote-text {
+            margin-left: 50px;
+        }
+        
+        .main-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            margin: 25px 0;
+            text-align: justify;
+        }
+        
+        .section-title {
+            font-size: 22px;
+            font-weight: 600;
+            color: #d32f2f;
+            margin: 35px 0 20px 0;
+            border-bottom: 3px solid #f44336;
+            padding-bottom: 10px;
+            position: relative;
+        }
+        
+        .section-title::before {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: #ffcdd2;
+        }
+        
+        .magma-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .magma-card {
+            background: linear-gradient(145deg, #ffffff, #f5f5f5);
+            border: 2px solid transparent;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .magma-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(211,47,47,0.1), transparent);
+            transition: left 0.5s;
+        }
+        
+        .magma-card:hover::before {
+            left: 100%;
+        }
+        
+        .magma-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(211,47,47,0.2);
+            border-color: #d32f2f;
+        }
+        
+        .magma-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #d32f2f;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .composition-table {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+        
+        .composition-table table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+        
+        .composition-table th,
+        .composition-table td {
+            padding: 8px 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .composition-table th {
+            background: #e9ecef;
+            font-weight: 600;
+            color: #495057;
+        }
+        
+        .eruption-styles {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .eruption-card {
+            background: white;
+            border: 2px solid #ffcdd2;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .eruption-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(211,47,47,0.15);
+            border-color: #d32f2f;
+        }
+        
+        .eruption-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+        
+        .eruption-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #d32f2f;
+            margin-bottom: 12px;
+        }
+        
+        .volcanic-environments {
+            background: linear-gradient(135deg, #e8f5e8, #c8e6c9);
+            border: 2px solid #4caf50;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+        
+        .environment-title {
+            color: #2e7d32;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .environment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .environment-item {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            border: 1px solid #4caf50;
+        }
+        
+        .environment-item h5 {
+            color: #2e7d32;
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+        
+        .hazards-section {
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            border: 2px solid #ff9800;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+        
+        .hazards-title {
+            color: #e65100;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .tip-box {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 25px 0;
+            border-left: 4px solid #17a2b8;
+        }
+        
+        .tip-title {
+            font-weight: 600;
+            color: #17a2b8;
+            margin-bottom: 12px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #d32f2f, #f44336);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(211,47,47,0.3);
+        }
+        
+        .back-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(211,47,47,0.4);
+        }
+        
+        .emoji {
+            font-size: 18px;
+            margin: 0 3px;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.2em;
+            }
+            
+            .content {
+                margin: -30px 15px 20px 15px;
+                padding: 30px 20px;
+            }
+            
+            .magma-types {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-image">
+        <div class="hero-content">
+            <h1>Volcanic Processes</h1>
+            <p>Earth's Molten Heart Revealed</p>
+        </div>
+    </div>
+    
+    <div class="content">
+        <div class="intro-quote">
+            <div class="quote-text">
+                Volcanic processes represent the most dramatic manifestation of Earth's internal energy, creating new crust, shaping landscapes, and producing diverse igneous rock types through complex magmatic processes
+            </div>
+        </div>
+        
+        <div class="main-text">
+            Volcanic processes encompass the generation, ascent, and eruption of magma from Earth's interior to the surface <span class="emoji">🌋</span>. These processes are fundamental to understanding igneous rock formation, crustal evolution, and the dynamic nature of our planet. Volcanism occurs at various tectonic settings and produces a wide spectrum of rock types with distinct mineralogical and chemical characteristics.
+        </div>
+        
+        <div class="section-title">Magma Generation and Composition</div>
+        
+        <div class="main-text">
+            Magma forms through partial melting of pre-existing rocks in the mantle or lower crust under specific pressure-temperature conditions <span class="emoji">🔥</span>. The composition of resulting magma depends on the source rock composition, degree of partial melting, and subsequent differentiation processes during ascent and storage.
+        </div>
+        
+        <div class="magma-types">
+            <div class="magma-card">
+                <div class="magma-title">
+                    <span>🌑</span> Mafic Magmas
+                </div>
+                <p>High-temperature (1100-1200°C), low-silica magmas derived from mantle peridotite. These magmas have low viscosity and high density, facilitating rapid ascent and effusive eruptions.</p>
+                <div class="composition-table">
+                    <table>
+                        <tr>
+                            <th>Component</th>
+                            <th>Content</th>
+                        </tr>
+                        <tr>
+                            <td>SiO₂</td>
+                            <td>45-52%</td>
+                        </tr>
+                        <tr>
+                            <td>MgO + FeO</td>
+                            <td>15-25%</td>
+                        </tr>
+                        <tr>
+                            <td>Typical Rocks</td>
+                            <td>Basalt, Gabbro</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="magma-card">
+                <div class="magma-title">
+                    <span>🌫️</span> Intermediate Magmas
+                </div>
+                <p>Moderate-temperature (900-1100°C) magmas with intermediate silica content. Often formed through fractional crystallization of mafic magmas or crustal contamination processes.</p>
+                <div class="composition-table">
+                    <table>
+                        <tr>
+                            <th>Component</th>
+                            <th>Content</th>
+                        </tr>
+                        <tr>
+                            <td>SiO₂</td>
+                            <td>52-66%</td>
+                        </tr>
+                        <tr>
+                            <td>Al₂O₃</td>
+                            <td>15-18%</td>
+                        </tr>
+                        <tr>
+                            <td>Typical Rocks</td>
+                            <td>Andesite, Diorite</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="magma-card">
+                <div class="magma-title">
+                    <span>💨</span> Felsic Magmas
+                </div>
+                <p>Lower-temperature (700-900°C), high-silica magmas with high viscosity. Typically derived from crustal melting or extreme differentiation of mafic magmas.</p>
+                <div class="composition-table">
+                    <table>
+                        <tr>
+                            <th>Component</th>
+                            <th>Content</th>
+                        </tr>
+                        <tr>
+                            <td>SiO₂</td>
+                            <td>66-77%</td>
+                        </tr>
+                        <tr>
+                            <td>K₂O + Na₂O</td>
+                            <td>6-10%</td>
+                        </tr>
+                        <tr>
+                            <td>Typical Rocks</td>
+                            <td>Rhyolite, Granite</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section-title">Eruption Mechanisms and Styles</div>
+        
+        <div class="main-text">
+            Volcanic eruption styles are controlled by magma composition, gas content, temperature, and ascent rate <span class="emoji">⚡</span>. Understanding these mechanisms is crucial for predicting volcanic behavior and assessing associated hazards.
+        </div>
+        
+        <div class="eruption-styles">
+            <div class="eruption-card">
+                <div class="eruption-icon">🌊</div>
+                <div class="eruption-title">Effusive Eruptions</div>
+                <p><strong>Characteristics:</strong> Low-viscosity magmas flow as lava streams<br>
+                <strong>Products:</strong> Pahoehoe, A'a lavas, pillow basalts<br>
+                <strong>Typical Setting:</strong> Mid-ocean ridges, hotspots</p>
+            </div>
+            
+            <div class="eruption-card">
+                <div class="eruption-icon">💥</div>
+                <div class="eruption-title">Explosive Eruptions</div>
+                <p><strong>Characteristics:</strong> High gas pressure, fragmented magma<br>
+                <strong>Products:</strong> Pyroclastic flows, ash falls, pumice<br>
+                <strong>Typical Setting:</strong> Subduction zones, silicic volcanism</p>
+            </div>
+            
+            <div class="eruption-card">
+                <div class="eruption-icon">🌪️</div>
+                <div class="eruption-title">Phreatomagmatic</div>
+                <p><strong>Characteristics:</strong> Magma-water interaction<br>
+                <strong>Products:</strong> Steam blasts, base surges, tuff rings<br>
+                <strong>Typical Setting:</strong> Shallow marine, lacustrine environments</p>
+            </div>
+        </div>
+        
+        <div class="section-title">Volcanic Environments and Tectonic Settings</div>
+        
+        <div class="volcanic-environments">
+            <div class="environment-title">
+                <span>🌍</span> Global Volcanic Distribution
+            </div>
+            <p>Volcanic activity is closely linked to plate tectonic processes, with distinct volcanic environments producing characteristic rock assemblages <span class="emoji">🗺️</span>.</p>
+            
+            <div class="environment-grid">
+                <div class="environment-item">
+                    <h5>Mid-Ocean Ridges</h5>
+                    <p><strong>Magma Type:</strong> MORB (Mid-Ocean Ridge Basalt)<br>
+                    <strong>Process:</strong> Decompression melting of ascending mantle<br>
+                    <strong>Products:</strong> Pillow lavas, sheeted dikes, gabbros</p>
+                </div>
+                
+                <div class="environment-item">
+                    <h5>Subduction Zones</h5>
+                    <p><strong>Magma Type:</strong> Calc-alkaline series<br>
+                    <strong>Process:</strong> Flux melting from slab dehydration<br>
+                    <strong>Products:</strong> Andesites, dacites, volcanic arcs</p>
+                </div>
+                
+                <div class="environment-item">
+                    <h5>Hotspot Volcanism</h5>
+                    <p><strong>Magma Type:</strong> OIB (Ocean Island Basalt)<br>
+                    <strong>Process:</strong> Mantle plume melting<br>
+                    <strong>Products:</strong> Shield volcanoes, alkaline basalts</p>
+                </div>
+                
+                <div class="environment-item">
+                    <h5>Continental Rifts</h5>
+                    <p><strong>Magma Type:</strong> Bimodal volcanism<br>
+                    <strong>Process:</strong> Lithospheric extension and heating<br>
+                    <strong>Products:</strong> Flood basalts, rhyolitic ignimbrites</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section-title">Pyroclastic Processes and Deposits</div>
+        
+        <div class="main-text">
+            Pyroclastic processes involve the fragmentation, transport, and deposition of volcanic material <span class="emoji">🌪️</span>. These processes create diverse rock types including tuffs, ignimbrites, and volcanic breccias, each preserving information about eruption dynamics and environmental conditions.
+        </div>
+        
+        <div class="main-text">
+            <strong>Pyroclastic Flow Deposits:</strong> High-temperature, high-velocity currents of gas and volcanic particles that can travel at speeds exceeding 100 km/h. These flows produce welded tuffs and ignimbrites with characteristic eutaxitic textures and fiamme structures.
+        </div>
+        
+        <div class="main-text">
+            <strong>Airfall Deposits:</strong> Volcanic particles transported by wind and deposited over large areas. These deposits show systematic variations in grain size and thickness with distance from the source, providing insights into eruption column dynamics and atmospheric conditions.
+        </div>
+        
+        <div class="section-title">Magmatic Differentiation Processes</div>
+        
+        <div class="main-text">
+            Magmatic differentiation creates the diversity of igneous rocks through various processes operating during magma evolution <span class="emoji">🔬</span>. These processes include fractional crystallization, assimilation, magma mixing, and volatile exsolution.
+        </div>
+        
+        <div class="tip-box">
+            <div class="tip-title">🧪 Bowen's Reaction Series</div>
+            <p>Norman Bowen's experimental work established the sequence of mineral crystallization from cooling magma. This reaction series explains the systematic changes in mineral assemblages and the evolution from mafic to felsic compositions through fractional crystallization processes.</p>
+        </div>
+        
+        <div class="main-text">
+            <strong>Fractional Crystallization:</strong> The progressive removal of early-formed crystals from the melt, causing the remaining liquid to evolve toward more silica-rich compositions. This process can transform basaltic magmas into andesitic or even rhyolitic compositions.
+        </div>
+        
+        <div class="main-text">
+            <strong>Assimilation and Contamination:</strong> The incorporation of crustal material into ascending magmas, modifying their chemical and isotopic signatures. This process is particularly important in continental volcanic settings where magmas interact with thick crustal sections.
+        </div>
+        
+        <div class="section-title">Volcanic Hazards and Risk Assessment</div>
+        
+        <div class="hazards-section">
+            <div class="hazards-title">
+                <span>⚠️</span> Understanding Volcanic Risks
+            </div>
+            <p>Volcanic processes pose significant hazards to human populations and infrastructure <span class="emoji">🏘️</span>. Modern volcanology combines field observations, geochemical analysis, and geophysical monitoring to assess volcanic risks and provide early warning systems.</p>
+            
+            <div style="margin-top: 15px; padding: 15px; background: white; border-radius: 8px;">
+                <h5 style="color: #e65100; margin-bottom: 10px;">Primary Volcanic Hazards:</h5>
+                <ul style="color: #555; font-size: 14px; line-height: 1.6;">
+                    <li>Pyroclastic flows and surges</li>
+                    <li>Lava flows and volcanic gases</li>
+                    <li>Volcanic ash and tephra falls</li>
+                    <li>Lahars and volcanic debris flows</li>
+                    <li>Volcanic tsunamis and sector collapse</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="section-title">Economic and Scientific Significance</div>
+        
+        <div class="main-text">
+            Volcanic processes have profound economic and scientific importance <span class="emoji">💰</span>. Volcanic rocks host numerous ore deposits including porphyry copper systems, epithermal gold-silver deposits, and volcanogenic massive sulfides. Additionally, volcanic materials provide construction materials, geothermal energy resources, and fertile soils.
+        </div>
+        
+        <div class="main-text">
+            From a scientific perspective, volcanic rocks serve as natural laboratories for understanding deep Earth processes, mantle composition, and crustal evolution <span class="emoji">🔬</span>. Isotopic studies of volcanic rocks provide insights into mantle heterogeneity, recycling of crustal materials, and the chemical evolution of Earth's interior.
+        </div>
+        
+        <a href="../../rock-app.html" class="back-link">← Back to Rock Explorer</a>
+    </div>
+</body>
+</html>

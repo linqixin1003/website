@@ -2,21 +2,36 @@
 import os
 import re
 
-def check_file_has_image(file_path):
-    """检查文件是否包含岩石图片"""
+def check_image_exists(file_path):
+    """检查文章中的图片路径是否存在"""
     try:
         with open(file_path, 'r', encoding='utf-8') as f:
             content = f.read()
         
-        # 检查是否包含rock图片路径
-        if 'images/rock/' in content:
-            return True
-        return False
-    except:
-        return False
+        # 查找CSS背景图片路径
+        bg_match = re.search(r"url\('([^']+)'\)", content)
+        if bg_match:
+            image_path = bg_match.group(1)
+            # 转换相对路径为绝对路径
+            if image_path.startswith('../../'):
+                actual_path = image_path[6:]  # 移除 ../../
+            else:
+                actual_path = image_path
+            
+            exists = os.path.exists(actual_path)
+            return {
+                'found_path': image_path,
+                'actual_path': actual_path,
+                'exists': exists
+            }
+        
+        return {'error': 'No image path found'}
+        
+    except Exception as e:
+        return {'error': str(e)}
 
 def main():
-    """检查所有岩石文章的图片情况"""
+    """检查所有岩石文章的图片"""
     directories = [
         'en/rock-collecting',
         'en/rock-formation', 
@@ -26,9 +41,10 @@ def main():
     ]
     
     total_files = 0
-    files_with_images = 0
+    working_images = 0
+    missing_images = []
     
-    print("🔍 检查岩石文章头图添加情况:\n")
+    print("🔍 检查岩石文章头图显示情况:\n")
     
     for directory in directories:
         if os.path.exists(directory):
@@ -39,15 +55,33 @@ def main():
                 file_path = os.path.join(directory, html_file)
                 total_files += 1
                 
-                if check_file_has_image(file_path):
-                    print(f"  ✅ {html_file}")
-                    files_with_images += 1
+                result = check_image_exists(file_path)
+                
+                if 'error' in result:
+                    print(f"  ❌ {html_file} - {result['error']}")
+                    continue
+                
+                if result['exists']:
+                    print(f"  ✅ {html_file} - 图片正常")
+                    working_images += 1
                 else:
-                    print(f"  ❌ {html_file}")
+                    print(f"  ❌ {html_file} - 图片缺失: {result['actual_path']}")
+                    missing_images.append({
+                        'file': file_path,
+                        'missing_image': result['actual_path']
+                    })
             print()
     
-    print(f"📊 总结: {files_with_images}/{total_files} 个文件已添加头图")
-    print(f"完成率: {files_with_images/total_files*100:.1f}%")
+    print(f"📊 总结:")
+    print(f"总文件数: {total_files}")
+    print(f"图片正常: {working_images}")
+    print(f"图片缺失: {len(missing_images)}")
+    print(f"成功率: {working_images/total_files*100:.1f}%")
+    
+    if missing_images:
+        print(f"\n❌ 缺失的图片:")
+        for item in missing_images:
+            print(f"  {item['file']} -> {item['missing_image']}")
 
 if __name__ == "__main__":
     main()

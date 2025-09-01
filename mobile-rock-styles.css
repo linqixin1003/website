@@ -1,0 +1,129 @@
+/* 移动端岩石文章头图优化样式 */
+
+/* 基础响应式设置 */
+* {
+    box-sizing: border-box;
+}
+
+/* 头图容器样式 */
+.hero-image {
+    width: 100%;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.hero-image img {
+    width: 100%;
+    height: auto;
+    min-height: 200px;
+    max-height: 300px;
+    object-fit: cover;
+    display: block;
+    border-radius: 8px;
+}
+
+/* 移动端优化 */
+@media (max-width: 768px) {
+    .hero-image {
+        margin: 0 -10px 20px -10px;
+        border-radius: 0;
+    }
+    
+    .hero-image img {
+        height: 180px;
+        border-radius: 0;
+    }
+    
+    /* 确保在小屏幕上标题不会太大 */
+    h1 {
+        font-size: 1.8em !important;
+        line-height: 1.3;
+        margin: 15px 0;
+    }
+    
+    /* 优化内容区域的padding */
+    main {
+        padding: 15px;
+    }
+    
+    header {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-image img {
+        height: 150px;
+    }
+    
+    h1 {
+        font-size: 1.5em !important;
+    }
+}
+
+/* 为背景图片样式的文章优化 */
+.hero-image-bg {
+    width: 100%;
+    height: 250px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+@media (max-width: 768px) {
+    .hero-image-bg {
+        height: 200px;
+        margin: 0 -15px 20px -15px;
+        border-radius: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-image-bg {
+        height: 160px;
+    }
+}
+
+/* 确保图片加载时的占位效果 */
+.hero-image img[src=""] {
+    background: linear-gradient(45deg, #f0f0f0 25%, transparent 25%), 
+                linear-gradient(-45deg, #f0f0f0 25%, transparent 25%), 
+                linear-gradient(45deg, transparent 75%, #f0f0f0 75%), 
+                linear-gradient(-45deg, transparent 75%, #f0f0f0 75%);
+    background-size: 20px 20px;
+    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+}
+
+/* 图片懒加载优化 */
+.hero-image img {
+    transition: opacity 0.3s ease;
+}
+
+.hero-image img:not([src]) {
+    opacity: 0;
+}
+
+/* 确保文字内容在移动端可读性 */
+@media (max-width: 768px) {
+    body {
+        font-size: 16px;
+        line-height: 1.6;
+    }
+    
+    p {
+        margin-bottom: 15px;
+    }
+    
+    ul, ol {
+        padding-left: 20px;
+    }
+    
+    li {
+        margin-bottom: 8px;
+    }
+}

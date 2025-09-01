@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Igneous Rock Formation - Rock Formation Guide</title>
+    <title>Igneous Rock Formation Processes - BirdAiSnap</title>
     <style>
         * {
             margin: 0;
@@ -50,60 +50,113 @@
             padding: 20px;
             margin: 25px 0;
             border-radius: 8px;
-            font-style: italic;
-            color: #4a148c;
+            position: relative;
         }
         
-        .section {
-            margin-bottom: 30px;
+        .quote-box::before {
+            content: '"';
+            font-size: 48px;
+            color: #9c27b0;
+            position: absolute;
+            top: -5px;
+            left: 15px;
+            font-family: serif;
+            line-height: 1;
         }
         
-        .section h2 {
-            color: #8B4513;
+        .quote-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: #6a1b9a;
+            margin-left: 25px;
+            line-height: 1.4;
+        }
+        
+        .main-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            margin: 20px 0;
+            text-align: justify;
+        }
+        
+        .section-title {
             font-size: 20px;
             font-weight: 600;
-            margin-bottom: 15px;
+            color: #9c27b0;
+            margin: 30px 0 15px 0;
+            border-bottom: 2px solid #e1bee7;
             padding-bottom: 8px;
-            border-bottom: 2px solid #D2691E;
         }
         
-        .section p {
-            line-height: 1.7;
-            margin-bottom: 15px;
-            color: #444;
+        .tip-box {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            border-left: 4px solid #28a745;
         }
         
-        .section ul, .section ol {
-            margin-left: 20px;
-            margin-bottom: 15px;
-        }
-        
-        .section li {
+        .tip-title {
+            font-weight: 600;
+            color: #28a745;
             margin-bottom: 8px;
-            line-height: 1.6;
         }
         
         .highlight {
-            background: linear-gradient(120deg, #a8e6cf 0%, #dcedc1 100%);
+            background: #fff3cd;
             padding: 15px;
             border-radius: 8px;
+            border-left: 4px solid #ffc107;
             margin: 20px 0;
-            border-left: 4px solid #4caf50;
         }
         
-        .tip {
-            background: linear-gradient(120deg, #ffd3a5 0%, #fd9853 100%);
+        .equipment-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .equipment-item {
+            background: #f8f9fa;
             padding: 15px;
             border-radius: 8px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .equipment-item h4 {
+            color: #9c27b0;
+            margin-bottom: 8px;
+        }
+        
+        ul {
+            margin: 15px 0;
+            padding-left: 25px;
+        }
+        
+        li {
+            margin: 8px 0;
+            line-height: 1.6;
+        }
+        
+        .warning {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            border-radius: 8px;
+            padding: 15px;
             margin: 20px 0;
-            border-left: 4px solid #ff9800;
+            border-left: 4px solid #dc3545;
+        }
+        
+        .warning-title {
+            font-weight: 600;
+            color: #721c24;
+            margin-bottom: 8px;
         }
         
         @media (max-width: 768px) {
-            .hero-image {
-                height: 250px;
-            }
-            
             .content {
                 margin: -20px 10px 10px 10px;
                 padding: 20px 15px;
@@ -113,93 +166,281 @@
                 font-size: 20px;
             }
             
-            .section h2 {
-                font-size: 18px;
+            .equipment-list {
+                grid-template-columns: 1fr;
             }
+        }
+    
+        /* Rock Formation Theme - Red */
+        :root {
+            --primary-color: #FF5722;
+            --primary-dark: #BF360C;
+            --primary-light: #FFEBE8;
+            --accent-color: #FF8A65;
+        }
+        
+        /* Theme Color Overrides */
+        .content {
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+            border: 2px solid var(--primary-color);
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, var(--primary-light), #FFCCBC);
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .quote-text {
+            color: var(--primary-dark);
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+        }
+        
+        .tip-box {
+            border-left: 4px solid var(--primary-color);
+            background: var(--primary-light);
+        }
+        
+        .tip-title {
+            color: var(--primary-color);
+        }
+        
+        .highlight {
+            border-left: 4px solid var(--accent-color);
+            background: linear-gradient(135deg, #f1f8e9, var(--primary-light));
+        }
+        
+        .warning {
+            border-left: 4px solid #f44336;
+        }
+        
+        .equipment-item {
+            border: 1px solid var(--accent-color);
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+        }
+        
+        .equipment-item h4 {
+            color: var(--primary-color);
+        }
+        
+        .category {
+            background: var(--primary-color);
+            color: white;
         }
     </style>
 </head>
 <body>
     <div class="hero-image"></div>
     <div class="content">
-        <h1 class="title">Igneous Rock Formation - Rock Formation Guide</h1>
-        <div class="hero-image">
-        🌋 Igneous Rock Formation
-    </div>
-    
-    <div class="content">
-        <h1 class="title">Igneous Rock Formation: From Fire to Stone</h1>
+        <h1 class="title">Igneous Rock Formation Processes</h1>
         
         <div class="quote-box">
-            <div class="quote-text">
-                Born from Earth's molten heart, igneous rocks tell the story of our planet's fiery origins
+            <div class="quote-text">From Molten Earth to Solid Stone</div>
+        </div>
+        
+        <div class="main-text">
+            Igneous rock formation is a fundamental geological process that transforms molten material into solid rock through cooling and crystallization. Understanding these processes provides insights into Earth's interior, volcanic activity, and the formation of continental and oceanic crust.
+        </div>
+        
+        <div class="section-title">🌡️ Magma Generation</div>
+        
+        <div class="main-text">
+            Igneous rock formation begins with the generation of magma through several processes:
+        </div>
+        
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>Decompression Melting</h4>
+                <p>Occurs when hot rock rises and pressure decreases, lowering the melting point. Common at mid-ocean ridges and hotspots.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Flux Melting</h4>
+                <p>Addition of volatiles (water, CO₂) lowers melting temperature. Occurs at subduction zones where oceanic crust releases fluids.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Heat-Induced Melting</h4>
+                <p>Direct heating of crustal rocks by magma intrusion or thermal anomalies. Creates felsic magmas from continental crust.</p>
             </div>
         </div>
         
-        <div class="main-text">
-            Igneous rocks form through the cooling and crystallization of molten rock material called magma (when underground) or lava (when on the surface)<span class="emoji">🔥</span>. These rocks represent the primary building blocks of Earth's crust and provide crucial insights into our planet's internal processes and thermal history.
-        </div>
-        
-        <div class="section-title">The Formation Process</div>
+        <div class="section-title">🔥 Magma Properties</div>
         
         <div class="main-text">
-            The journey of igneous rock formation begins deep within Earth's interior, where extreme temperatures (700-1200°C) melt existing rocks into magma<span class="emoji">🌡️</span>. This molten material, less dense than surrounding solid rock, rises toward the surface through various geological processes including convection currents, tectonic plate movements, and volcanic activity.
+            The properties of magma control how igneous rocks form and what characteristics they will have:
         </div>
         
-        <div class="main-text">
-            As magma cools, minerals begin to crystallize in a specific sequence based on their melting points—a process known as fractional crystallization<span class="emoji">💎</span>. The rate of cooling dramatically influences the final rock's texture and mineral composition, creating the diverse family of igneous rocks we observe today.
-        </div>
-        
-        <div class="section-title">Types of Igneous Rocks</div>
-        
-        <div class="rock-types">
-            <div class="rock-card">
-                <h3>🏔️ Intrusive (Plutonic)</h3>
-                <p><strong>Formation:</strong> Slow cooling underground</p>
-                <p><strong>Texture:</strong> Coarse-grained crystals</p>
-                <p><strong>Examples:</strong> Granite, Diorite, Gabbro</p>
-            </div>
-            
-            <div class="rock-card">
-                <h3>🌋 Extrusive (Volcanic)</h3>
-                <p><strong>Formation:</strong> Rapid cooling on surface</p>
-                <p><strong>Texture:</strong> Fine-grained or glassy</p>
-                <p><strong>Examples:</strong> Basalt, Rhyolite, Obsidian</p>
-            </div>
-        </div>
-        
-        <div class="section-title">Cooling Rate and Crystal Size</div>
-        
-        <div class="main-text">
-            The relationship between cooling rate and crystal size is fundamental to understanding igneous rock formation<span class="emoji">⏱️</span>. Slow cooling allows atoms time to organize into large, well-formed crystals, while rapid cooling produces small crystals or even glassy textures where atoms lack time for proper crystalline arrangement.
-        </div>
+        <ul>
+            <li><strong>Temperature:</strong> Ranges from 700°C to 1200°C, affecting viscosity and crystallization</li>
+            <li><strong>Composition:</strong> Silica content determines rock type and eruption style</li>
+            <li><strong>Viscosity:</strong> Controls flow behavior and gas escape</li>
+            <li><strong>Gas Content:</strong> Affects explosivity and texture of resulting rocks</li>
+            <li><strong>Pressure:</strong> Influences crystallization and volatile behavior</li>
+        </ul>
         
         <div class="tip-box">
-            <div class="tip-title">🔍 Identification Tip</div>
-            You can often determine where an igneous rock formed by examining its crystal size: large crystals indicate slow cooling deep underground, while small crystals suggest rapid cooling at or near the surface.
+            <div class="tip-title">🌡️ Temperature-Composition Relationship</div>
+            Mafic magmas are hotter (1000-1200°C) and less viscous, while felsic magmas are cooler (700-900°C) and more viscous, affecting their eruption behavior.
         </div>
         
-        <div class="section-title">Magma Composition and Rock Types</div>
+        <div class="section-title">💎 Crystallization Process</div>
         
         <div class="main-text">
-            Magma composition, particularly silica content, determines the type of igneous rock that forms<span class="emoji">🧪</span>. Felsic magmas (high silica) produce light-colored rocks like granite and rhyolite, while mafic magmas (low silica) create dark-colored rocks like gabbro and basalt. Intermediate compositions yield rocks such as diorite and andesite.
+            As magma cools, minerals crystallize in a predictable sequence based on temperature and composition:
         </div>
         
-        <div class="section-title">Geological Significance</div>
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>Nucleation</h4>
+                <p>Initial formation of tiny crystal seeds when temperature drops below crystallization point.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Crystal Growth</h4>
+                <p>Existing crystals grow larger as more material is added to their structure.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Fractional Crystallization</h4>
+                <p>Early-formed crystals are removed from the magma, changing its composition.</p>
+            </div>
+        </div>
+        
+        <div class="section-title">⏱️ Cooling Rate Effects</div>
         
         <div class="main-text">
-            Igneous rocks serve as windows into Earth's interior processes and thermal evolution<span class="emoji">🌍</span>. They provide evidence of past volcanic activity, help scientists understand plate tectonic movements, and contain valuable mineral resources including precious metals, gemstones, and industrial minerals.
+            The rate of cooling is the primary factor determining igneous rock texture:
         </div>
         
-        <div class="main-text">
-            The study of igneous rocks also contributes to our understanding of other planetary bodies, as similar processes occur on the Moon, Mars, and other rocky planets throughout our solar system<span class="emoji">🚀</span>.
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>Slow Cooling (Intrusive)</h4>
+                <p>Takes thousands to millions of years. Allows large crystals to form, creating phaneritic texture (granite, gabbro).</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Rapid Cooling (Extrusive)</h4>
+                <p>Takes minutes to years. Creates fine-grained aphanitic texture or volcanic glass (basalt, obsidian).</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Variable Cooling</h4>
+                <p>Two-stage cooling creates porphyritic texture with large crystals in fine-grained matrix.</p>
+            </div>
         </div>
+        
+        <div class="section-title">🏗️ Intrusive Formation</div>
+        
+        <div class="main-text">
+            Intrusive igneous rocks form when magma solidifies beneath Earth's surface:
+        </div>
+        
+        <ul>
+            <li><strong>Batholiths:</strong> Large intrusive bodies (>100 km²) exposed by erosion</li>
+            <li><strong>Stocks:</strong> Smaller intrusive bodies (<100 km²)</li>
+            <li><strong>Dikes:</strong> Tabular intrusions cutting across existing rock layers</li>
+            <li><strong>Sills:</strong> Tabular intrusions parallel to existing rock layers</li>
+            <li><strong>Laccoliths:</strong> Mushroom-shaped intrusions that dome overlying rocks</li>
+        </ul>
+        
+        <div class="section-title">🌋 Extrusive Formation</div>
+        
+        <div class="main-text">
+            Extrusive igneous rocks form when magma reaches Earth's surface as lava:
+        </div>
+        
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>Lava Flows</h4>
+                <p>Effusive eruptions create sheet-like bodies of volcanic rock. Common in basaltic volcanism.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Pyroclastic Deposits</h4>
+                <p>Explosive eruptions create layers of volcanic fragments. Form tuffs and ignimbrites.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Volcanic Domes</h4>
+                <p>Viscous lava piles up around vents, creating steep-sided domes.</p>
+            </div>
+        </div>
+        
+        <div class="section-title">🧪 Magma Differentiation</div>
+        
+        <div class="main-text">
+            Single parent magmas can produce multiple rock types through differentiation processes:
+        </div>
+        
+        <ul>
+            <li><strong>Crystal Fractionation:</strong> Removal of early-formed crystals changes magma composition</li>
+            <li><strong>Magma Mixing:</strong> Two different magmas combine to create intermediate compositions</li>
+            <li><strong>Assimilation:</strong> Magma incorporates surrounding country rock</li>
+            <li><strong>Liquid Immiscibility:</strong> Single magma separates into two distinct liquids</li>
+        </ul>
+        
+        <div class="highlight">
+            <strong>Bowen's Reaction Series</strong> explains the order of mineral crystallization and how mafic magmas can evolve to more felsic compositions through fractional crystallization.
+        </div>
+        
+        <div class="section-title">🌍 Tectonic Controls</div>
+        
+        <div class="main-text">
+            Tectonic setting strongly influences igneous rock formation:
+        </div>
+        
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>Divergent Boundaries</h4>
+                <p>Decompression melting produces mafic magmas. Creates oceanic crust (basalt, gabbro).</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Convergent Boundaries</h4>
+                <p>Flux melting and crustal melting produce intermediate to felsic magmas. Creates continental arc volcanism.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Intraplate Settings</h4>
+                <p>Hotspot activity produces bimodal volcanism with both mafic and felsic magmas.</p>
+            </div>
+        </div>
+        
+        <div class="section-title">🔬 Experimental Studies</div>
+        
+        <div class="main-text">
+            Laboratory experiments help scientists understand igneous processes:
+        </div>
+        
+        <ul>
+            <li><strong>High-Pressure Experiments:</strong> Simulate deep crustal and mantle conditions</li>
+            <li><strong>Crystallization Studies:</strong> Determine mineral stability fields</li>
+            <li><strong>Melting Experiments:</strong> Establish melting temperatures and conditions</li>
+            <li><strong>Diffusion Studies:</strong> Understand element transport in magmas</li>
+        </ul>
         
         <div class="tip-box">
-            <div class="tip-title">🌟 Fun Fact</div>
-            The oldest rocks on Earth are igneous rocks from the Acasta Gneiss Complex in Canada, dating back approximately 4.03 billion years—nearly as old as Earth itself!
+            <div class="tip-title">🎯 Field Evidence</div>
+            Look for contact relationships, inclusion patterns, and textural variations to understand igneous formation processes in natural outcrops.
         </div>
-    </div>
+        
+        <div class="section-title">⏰ Time Scales</div>
+        
+        <div class="main-text">
+            Igneous processes operate over various time scales:
+        </div>
+        
+        <ul>
+            <li><strong>Eruption:</strong> Minutes to months for volcanic activity</li>
+            <li><strong>Cooling:</strong> Years to millions of years for complete solidification</li>
+            <li><strong>Magma Chamber Evolution:</strong> Thousands to millions of years</li>
+            <li><strong>Pluton Emplacement:</strong> Millions of years for large intrusive bodies</li>
+        </ul>
+        
+        <div class="warning">
+            <div class="warning-title">🔬 Modern Applications</div>
+            Understanding igneous processes is crucial for volcanic hazard assessment, geothermal energy exploration, ore deposit formation, and interpreting Earth's thermal evolution.
+        </div>
+        
+        <div class="section-title">📚 Further Study</div>
+        
+        <div class="main-text">
+            To understand igneous processes better, study phase diagrams, examine thin sections of igneous rocks, and observe field relationships between different igneous bodies. Understanding the connection between tectonic setting, magma generation, and final rock products is essential for mastering igneous petrology.
+        </div>
     </div>
 </body>
 </html>

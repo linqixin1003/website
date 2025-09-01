@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Metamorphic Rock Transformation - Rock Formation Guide</title>
+    <title>Metamorphic Transformation - BirdAiSnap</title>
     <style>
         * {
             margin: 0;
@@ -50,60 +50,113 @@
             padding: 20px;
             margin: 25px 0;
             border-radius: 8px;
-            font-style: italic;
-            color: #4a148c;
+            position: relative;
         }
         
-        .section {
-            margin-bottom: 30px;
+        .quote-box::before {
+            content: '"';
+            font-size: 48px;
+            color: #9c27b0;
+            position: absolute;
+            top: -5px;
+            left: 15px;
+            font-family: serif;
+            line-height: 1;
         }
         
-        .section h2 {
-            color: #8B4513;
+        .quote-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: #6a1b9a;
+            margin-left: 25px;
+            line-height: 1.4;
+        }
+        
+        .main-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            margin: 20px 0;
+            text-align: justify;
+        }
+        
+        .section-title {
             font-size: 20px;
             font-weight: 600;
-            margin-bottom: 15px;
+            color: #9c27b0;
+            margin: 30px 0 15px 0;
+            border-bottom: 2px solid #e1bee7;
             padding-bottom: 8px;
-            border-bottom: 2px solid #D2691E;
         }
         
-        .section p {
-            line-height: 1.7;
-            margin-bottom: 15px;
-            color: #444;
+        .tip-box {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            border-left: 4px solid #28a745;
         }
         
-        .section ul, .section ol {
-            margin-left: 20px;
-            margin-bottom: 15px;
-        }
-        
-        .section li {
+        .tip-title {
+            font-weight: 600;
+            color: #28a745;
             margin-bottom: 8px;
-            line-height: 1.6;
         }
         
         .highlight {
-            background: linear-gradient(120deg, #a8e6cf 0%, #dcedc1 100%);
+            background: #fff3cd;
             padding: 15px;
             border-radius: 8px;
+            border-left: 4px solid #ffc107;
             margin: 20px 0;
-            border-left: 4px solid #4caf50;
         }
         
-        .tip {
-            background: linear-gradient(120deg, #ffd3a5 0%, #fd9853 100%);
+        .equipment-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .equipment-item {
+            background: #f8f9fa;
             padding: 15px;
             border-radius: 8px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .equipment-item h4 {
+            color: #9c27b0;
+            margin-bottom: 8px;
+        }
+        
+        ul {
+            margin: 15px 0;
+            padding-left: 25px;
+        }
+        
+        li {
+            margin: 8px 0;
+            line-height: 1.6;
+        }
+        
+        .warning {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            border-radius: 8px;
+            padding: 15px;
             margin: 20px 0;
-            border-left: 4px solid #ff9800;
+            border-left: 4px solid #dc3545;
+        }
+        
+        .warning-title {
+            font-weight: 600;
+            color: #721c24;
+            margin-bottom: 8px;
         }
         
         @media (max-width: 768px) {
-            .hero-image {
-                height: 250px;
-            }
-            
             .content {
                 margin: -20px 10px 10px 10px;
                 padding: 20px 15px;
@@ -113,174 +166,325 @@
                 font-size: 20px;
             }
             
-            .section h2 {
-                font-size: 18px;
+            .equipment-list {
+                grid-template-columns: 1fr;
             }
+        }
+    
+        /* Rock Formation Theme - Red */
+        :root {
+            --primary-color: #FF5722;
+            --primary-dark: #BF360C;
+            --primary-light: #FFEBE8;
+            --accent-color: #FF8A65;
+        }
+        
+        /* Theme Color Overrides */
+        .content {
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+            border: 2px solid var(--primary-color);
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, var(--primary-light), #FFCCBC);
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .quote-text {
+            color: var(--primary-dark);
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+        }
+        
+        .tip-box {
+            border-left: 4px solid var(--primary-color);
+            background: var(--primary-light);
+        }
+        
+        .tip-title {
+            color: var(--primary-color);
+        }
+        
+        .highlight {
+            border-left: 4px solid var(--accent-color);
+            background: linear-gradient(135deg, #f1f8e9, var(--primary-light));
+        }
+        
+        .warning {
+            border-left: 4px solid #f44336;
+        }
+        
+        .equipment-item {
+            border: 1px solid var(--accent-color);
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+        }
+        
+        .equipment-item h4 {
+            color: var(--primary-color);
+        }
+        
+        .category {
+            background: var(--primary-color);
+            color: white;
         }
     </style>
 </head>
 <body>
     <div class="hero-image"></div>
     <div class="content">
-        <h1 class="title">Metamorphic Rock Transformation - Rock Formation Guide</h1>
-        <div class="hero-image">
-        <div class="hero-content">
-            <h1>Metamorphic Rock Transformation</h1>
-            <p>Earth's Deep Crustal Rebirth</p>
-        </div>
-    </div>
-    
-    <div class="content">
-        <div class="intro-quote">
-            <div class="quote-text">
-                Metamorphic rocks are witnesses to Earth's internal forces, transformed through the perfect combination of heat, pressure, and chemical processes into beautiful minerals with entirely new properties
-            </div>
+        <h1 class="title">Metamorphic Transformation</h1>
+        
+        <div class="quote-box">
+            <div class="quote-text">Rocks Reborn Through Heat and Pressure</div>
         </div>
         
         <div class="main-text">
-            Metamorphic rocks form when existing rocks undergo transformation due to intense heat, pressure, or chemical processes without completely melting <span class="emoji">💎</span>. This metamorphism creates entirely new rock types with unique textures and mineral compositions, showcasing the complexity and beauty of Earth's internal dynamic processes.
+            Metamorphic transformation is the process by which existing rocks are changed by heat, pressure, and chemically active fluids without completely melting. This fundamental geological process creates new minerals, textures, and structures while preserving some characteristics of the original rock.
         </div>
         
-        <div class="section-title">Conditions for Metamorphism</div>
+        <div class="section-title">🔄 What is Metamorphism?</div>
         
-        <div class="metamorphic-conditions">
-            <h3 style="text-align: center; margin-bottom: 25px; color: #4a148c;">Extreme Environments of Metamorphic Rock Formation</h3>
-            
-            <div class="conditions-grid">
-                <div class="condition-card">
-                    <span class="condition-icon">🌡️</span>
-                    <div class="condition-title">Temperature Conditions</div>
-                    <div class="condition-value">200-700°C</div>
-                    <p>Temperature range sufficient to alter mineral structures without completely melting the rock</p>
-                </div>
-                
-                <div class="condition-card">
-                    <span class="condition-icon">⚡</span>
-                    <div class="condition-title">Pressure Conditions</div>
-                    <div class="condition-value">1-10 GPa</div>
-                    <p>Enormous pressure equivalent to 10,000 to 100,000 times surface pressure</p>
-                </div>
-                
-                <div class="condition-card">
-                    <span class="condition-icon">🧪</span>
-                    <div class="condition-title">Chemical Environment</div>
-                    <div class="condition-value">Active Fluids</div>
-                    <p>Mineral-rich hot water solutions promote chemical reactions and recrystallization</p>
-                </div>
-            </div>
+        <div class="main-text">
+            Metamorphism involves the solid-state transformation of rocks in response to changing physical and chemical conditions:
         </div>
         
-        <div class="section-title">Types of Metamorphism</div>
+        <ul>
+            <li><strong>Temperature Range:</strong> Typically 200-800°C (above diagenesis, below melting)</li>
+            <li><strong>Pressure Range:</strong> From surface pressure to deep crustal conditions</li>
+            <li><strong>Time Scale:</strong> Thousands to millions of years for complete transformation</li>
+            <li><strong>Solid State:</strong> Occurs without complete melting of the rock</li>
+        </ul>
         
-        <div class="metamorphism-types">
-            <div class="metamorphism-card">
-                <div class="metamorphism-title">
-                    <span>🔥</span> Contact Metamorphism
-                </div>
-                <p>Occurs when rocks are heated by nearby magma intrusions. Heat causes localized changes in surrounding rocks, creating metamorphic aureoles. This type of metamorphism typically affects smaller areas but can achieve high metamorphic grades.</p>
-                <div style="margin-top: 15px; padding: 10px; background: #fff3e0; border-radius: 6px;">
-                    <strong>Typical Products:</strong> Hornfels, Marble, Skarn
-                </div>
+        <div class="section-title">🌡️ Agents of Metamorphism</div>
+        
+        <div class="main-text">
+            Three main agents drive metamorphic transformation:
+        </div>
+        
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>Heat</h4>
+                <p>Primary agent promoting recrystallization and chemical reactions. Sources include geothermal gradient, magma intrusions, and friction.</p>
             </div>
-            
-            <div class="metamorphism-card">
-                <div class="metamorphism-title">
-                    <span>🏔️</span> Regional Metamorphism
-                </div>
-                <p>Results from large-scale geological processes such as mountain building, where vast areas of rock are subjected to increased temperature and pressure over long periods. This is the most common type of metamorphism, forming extensive metamorphic rock belts.</p>
-                <div style="margin-top: 15px; padding: 10px; background: #e3f2fd; border-radius: 6px;">
-                    <strong>Typical Products:</strong> Schist, Gneiss, Slate
-                </div>
+            <div class="equipment-item">
+                <h4>Pressure</h4>
+                <p>Confining pressure from burial and directed pressure from tectonic forces. Creates new mineral assemblages and textures.</p>
             </div>
-            
-            <div class="metamorphism-card">
-                <div class="metamorphism-title">
-                    <span>⚡</span> Dynamic Metamorphism
-                </div>
-                <p>Occurs along fault zones where rocks are subjected to intense pressure and shearing forces, creating mylonites and other deformed rock types. This metamorphism is primarily driven by mechanical stress.</p>
-                <div style="margin-top: 15px; padding: 10px; background: #f3e5f5; border-radius: 6px;">
-                    <strong>Typical Products:</strong> Mylonite, Fault Breccia
-                </div>
+            <div class="equipment-item">
+                <h4>Chemically Active Fluids</h4>
+                <p>Hot water and other fluids facilitate ion transport and chemical reactions during metamorphism.</p>
             </div>
         </div>
         
-        <div class="section-title">Common Metamorphic Rocks and Their Transformation Processes</div>
+        <div class="section-title">🏔️ Types of Metamorphism</div>
         
-        <div class="rock-transformation">
-            <div class="transformation-title">
-                <span>🔄</span> Rock Transformation Examples
+        <div class="main-text">
+            Metamorphism is classified based on the dominant controlling factors:
+        </div>
+        
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>Contact Metamorphism</h4>
+                <p>Heat-dominated transformation around igneous intrusions. Creates aureoles with hornfels and skarns.</p>
             </div>
-            
-            <div class="transformation-examples">
-                <div class="transformation-item">
-                    <h4 style="color: #e65100; margin-bottom: 10px;">Limestone → Marble</h4>
-                    <p>Calcium carbonate minerals recrystallize, forming coarse-grained structures commonly used for sculpture and architectural decoration.</p>
-                </div>
-                
-                <div class="transformation-item">
-                    <h4 style="color: #e65100; margin-bottom: 10px;">Shale → Slate</h4>
-                    <p>Low-grade metamorphism produces fine-grained rock with perfect cleavage, traditionally used for roofing and writing tablets.</p>
-                </div>
-                
-                <div class="transformation-item">
-                    <h4 style="color: #e65100; margin-bottom: 10px;">Granite → Gneiss</h4>
-                    <p>High-grade metamorphism forms rock with characteristic banded appearance, showing mineral reorganization.</p>
-                </div>
-                
-                <div class="transformation-item">
-                    <h4 style="color: #e65100; margin-bottom: 10px;">Sandstone → Quartzite</h4>
-                    <p>Quartz grains recrystallize and bond tightly, forming extremely hard and dense rock.</p>
-                </div>
+            <div class="equipment-item">
+                <h4>Regional Metamorphism</h4>
+                <p>Large-scale transformation due to tectonic forces. Creates foliated rocks like slate, schist, and gneiss.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Dynamic Metamorphism</h4>
+                <p>Deformation-dominated transformation along fault zones. Creates mylonites and cataclasites.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Hydrothermal Metamorphism</h4>
+                <p>Fluid-dominated transformation, often associated with geothermal systems and ore deposits.</p>
             </div>
         </div>
         
-        <div class="section-title">Metamorphic Grade and Mineral Assemblages</div>
+        <div class="section-title">📊 Metamorphic Grade</div>
         
-        <div class="metamorphic-grade">
-            <div class="grade-title">
-                <span>📊</span> Metamorphic Intensity Classification
+        <div class="main-text">
+            Metamorphic grade refers to the intensity of metamorphism based on temperature and pressure conditions:
+        </div>
+        
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>Low Grade</h4>
+                <p>Low T-P conditions. Slate, phyllite. Original textures partially preserved.</p>
             </div>
-            <p>The intensity of metamorphism is classified into different grades, each producing characteristic mineral assemblages that help geologists understand the conditions under which rocks formed <span class="emoji">🔬</span>.</p>
-            
-            <div class="grade-levels">
-                <div class="grade-level">
-                    <h5>Low-Grade Metamorphism</h5>
-                    <p>200-400°C<br>Chlorite, Muscovite</p>
-                </div>
-                
-                <div class="grade-level">
-                    <h5>Medium-Grade Metamorphism</h5>
-                    <p>400-600°C<br>Garnet, Staurolite</p>
-                </div>
-                
-                <div class="grade-level">
-                    <h5>High-Grade Metamorphism</h5>
-                    <p>600-700°C<br>Sillimanite, K-feldspar</p>
-                </div>
+            <div class="equipment-item">
+                <h4>Medium Grade</h4>
+                <p>Moderate T-P conditions. Schist, amphibolite. Well-developed foliation and new minerals.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>High Grade</h4>
+                <p>High T-P conditions. Gneiss, granulite. Coarse-grained, may approach melting conditions.</p>
             </div>
         </div>
         
         <div class="tip-box">
-            <div class="tip-title">🔍 Identification Tips</div>
-            <p>The key to identifying metamorphic rocks lies in observing mineral arrangement, degree of crystallization, and special structures. Foliation, schistosity, and banded structures are all important indicators of metamorphism. Use a hand lens to observe the oriented arrangement of minerals and recrystallization features.</p>
+            <div class="tip-title">🔍 Index Minerals</div>
+            Specific minerals that appear at certain metamorphic grades help geologists map metamorphic zones and estimate P-T conditions.
         </div>
         
-        <div class="section-title">Geological Significance and Practical Applications</div>
+        <div class="section-title">🪨 Metamorphic Textures</div>
         
         <div class="main-text">
-            Metamorphic rocks have important significance in geological research, as they record Earth's internal temperature-pressure conditions and tectonic history <span class="emoji">🌍</span>. By studying metamorphic rocks, scientists can reconstruct the evolutionary processes of ancient orogenic belts and understand the history of plate tectonic movements.
+            Metamorphism creates distinctive textures that reflect the conditions of formation:
         </div>
+        
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>Foliated Textures</h4>
+                <p>Parallel alignment of platy minerals due to directed pressure. Includes slaty cleavage, schistosity, and gneissic banding.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Non-Foliated Textures</h4>
+                <p>Granular or massive textures without preferred orientation. Common in contact metamorphism and monomineralic rocks.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Porphyroblastic Textures</h4>
+                <p>Large crystals (porphyroblasts) in fine-grained matrix. Form during recrystallization under specific conditions.</p>
+            </div>
+        </div>
+        
+        <div class="section-title">💎 Metamorphic Minerals</div>
         
         <div class="main-text">
-            In practical applications, many metamorphic rocks have important economic value <span class="emoji">💰</span>. Marble is widely used in architectural decoration and sculptural art, slate is used as roofing material and flooring, gneiss is used for building stone, and certain metamorphic rocks contain precious metals and gemstone minerals.
+            Metamorphism creates new minerals stable under the prevailing conditions:
         </div>
+        
+        <ul>
+            <li><strong>Chlorite:</strong> Low-grade metamorphism, green color</li>
+            <li><strong>Muscovite:</strong> Low to medium grade, silvery mica</li>
+            <li><strong>Biotite:</strong> Medium grade, dark mica</li>
+            <li><strong>Garnet:</strong> Medium to high grade, distinctive dodecahedral crystals</li>
+            <li><strong>Staurolite:</strong> Medium grade, cross-shaped crystals</li>
+            <li><strong>Kyanite/Sillimanite:</strong> High grade, aluminum silicates</li>
+        </ul>
+        
+        <div class="section-title">🔄 Metamorphic Reactions</div>
         
         <div class="main-text">
-            The study of metamorphic rocks also helps understand deep Earth processes and lithospheric evolution <span class="emoji">🔬</span>. They provide direct evidence of Earth's internal conditions, helping scientists build more accurate geodynamic models.
+            Metamorphism involves various types of chemical reactions:
         </div>
         
-        <a href="../../rock-app.html" class="back-link">← </a>
-    </div>
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>Polymorphic Transitions</h4>
+                <p>Same composition, different crystal structure. Example: kyanite → sillimanite with increasing temperature.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Dehydration Reactions</h4>
+                <p>Loss of water from hydrous minerals. Example: muscovite + quartz → K-feldspar + Al₂SiO₅ + H₂O</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Decarbonation Reactions</h4>
+                <p>Loss of CO₂ from carbonate minerals. Example: calcite + quartz → wollastonite + CO₂</p>
+            </div>
+        </div>
+        
+        <div class="section-title">🌍 Common Metamorphic Rocks</div>
+        
+        <div class="main-text">
+            Understanding common metamorphic rocks and their protoliths:
+        </div>
+        
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>Slate</h4>
+                <p>Low-grade metamorphism of shale. Fine-grained with excellent cleavage. Used for roofing.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Schist</h4>
+                <p>Medium-grade rock with visible mica crystals. Strong foliation and schistose texture.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Gneiss</h4>
+                <p>High-grade rock with alternating light and dark bands. Coarse-grained with gneissic texture.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Marble</h4>
+                <p>Metamorphosed limestone or dolomite. Crystalline texture, used in sculpture and construction.</p>
+            </div>
+        </div>
+        
+        <div class="highlight">
+            <strong>Protolith Recognition:</strong> Many metamorphic rocks preserve evidence of their original rock type through relict minerals, textures, or chemical composition.
+        </div>
+        
+        <div class="section-title">⚡ Metamorphic Processes</div>
+        
+        <div class="main-text">
+            Several processes operate during metamorphic transformation:
+        </div>
+        
+        <ul>
+            <li><strong>Recrystallization:</strong> Formation of new, larger crystals from existing minerals</li>
+            <li><strong>Neocrystallization:</strong> Formation of entirely new mineral phases</li>
+            <li><strong>Phase Transitions:</strong> Changes in crystal structure without chemical change</li>
+            <li><strong>Solution and Precipitation:</strong> Dissolution and reprecipitation of minerals</li>
+            <li><strong>Plastic Deformation:</strong> Bending and flowing of minerals under stress</li>
+        </ul>
+        
+        <div class="section-title">🗺️ Metamorphic Zones</div>
+        
+        <div class="main-text">
+            Regional metamorphism creates mappable zones based on index minerals:
+        </div>
+        
+        <ul>
+            <li><strong>Chlorite Zone:</strong> Lowest grade, green chlorite appears</li>
+            <li><strong>Biotite Zone:</strong> Dark mica appears, increased metamorphic grade</li>
+            <li><strong>Garnet Zone:</strong> Red garnets appear, medium grade conditions</li>
+            <li><strong>Staurolite Zone:</strong> Cross-shaped crystals, higher grade</li>
+            <li><strong>Sillimanite Zone:</strong> Highest grade, approaching melting conditions</li>
+        </ul>
+        
+        <div class="tip-box">
+            <div class="tip-title">🎯 Field Recognition</div>
+            Look for foliation, new mineral assemblages, and textural changes to identify metamorphic rocks. The degree of foliation often correlates with metamorphic grade.
+        </div>
+        
+        <div class="section-title">🔬 Studying Metamorphic Rocks</div>
+        
+        <div class="main-text">
+            Methods for analyzing metamorphic rocks:
+        </div>
+        
+        <ul>
+            <li><strong>Thin Section Analysis:</strong> Microscopic study of mineral textures and assemblages</li>
+            <li><strong>Chemical Analysis:</strong> Determine bulk composition and trace elements</li>
+            <li><strong>Thermobarometry:</strong> Estimate P-T conditions using mineral compositions</li>
+            <li><strong>Structural Analysis:</strong> Study deformation features and fabric development</li>
+        </ul>
+        
+        <div class="section-title">💰 Economic Importance</div>
+        
+        <div class="main-text">
+            Metamorphic rocks have significant economic value:
+        </div>
+        
+        <ul>
+            <li><strong>Building Materials:</strong> Marble, slate, quartzite for construction</li>
+            <li><strong>Industrial Minerals:</strong> Talc, graphite, asbestos</li>
+            <li><strong>Gemstones:</strong> Ruby, sapphire, emerald in metamorphic rocks</li>
+            <li><strong>Ore Deposits:</strong> Many metal deposits associated with metamorphism</li>
+        </ul>
+        
+        <div class="warning">
+            <div class="warning-title">⚠️ Health Considerations</div>
+            Some metamorphic rocks contain hazardous minerals like asbestos. Always follow safety protocols when handling unknown metamorphic specimens.
+        </div>
+        
+        <div class="section-title">📚 Further Study</div>
+        
+        <div class="main-text">
+            To understand metamorphic transformation better, study thin sections of metamorphic rocks, learn to identify index minerals, and examine metamorphic terranes in the field. Understanding the relationship between tectonic setting, P-T conditions, and metamorphic products is essential for advanced metamorphic petrology.
+        </div>
     </div>
 </body>
 </html>

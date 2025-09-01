@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock & Mineral Knowledge Hub - 50 Essential Articles</title>
+    <meta name="description" content="Comprehensive collection of rock and mineral articles covering identification, formation, collection, science, and geological wonders.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+
+        .main-content {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .category-card {
+            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-card:nth-child(2) {
+            background: linear-gradient(135deg, #fd79a8 0%, #e84393 100%);
+        }
+
+        .category-card:nth-child(3) {
+            background: linear-gradient(135deg, #fdcb6e 0%, #e17055 100%);
+        }
+
+        .category-card:nth-child(4) {
+            background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%);
+        }
+
+        .category-card:nth-child(5) {
+            background: linear-gradient(135deg, #00b894 0%, #00cec9 100%);
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .category-card h3 {
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .category-card .icon {
+            font-size: 1.5em;
+            margin-right: 10px;
+        }
+
+        .category-card p {
+            font-size: 0.95em;
+            opacity: 0.9;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .article-count {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+
+        .articles-section {
+            display: none;
+            margin-top: 30px;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 12px;
+        }
+
+        .articles-section.active {
+            display: block;
+        }
+
+        .articles-section h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .article-item {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .article-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .article-item h4 {
+            color: #e74c3c;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .article-item p {
+            color: #666;
+            font-size: 0.9em;
+            line-height: 1.4;
+        }
+
+        .back-button {
+            display: none;
+            background: #e74c3c;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            font-size: 1em;
+            transition: background 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: #c0392b;
+        }
+
+        .back-button.active {
+            display: inline-block;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            .main-content {
+                padding: 20px;
+            }
+            
+            .categories-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🪨 Rock & Mineral Knowledge Hub</h1>
+            <p class="subtitle">50 Essential Articles on Rocks, Minerals & Geology</p>
+        </header>
+        
+        <div class="main-content">
+            <div id="categories-view">
+                <div class="categories-grid">
+                    <div class="category-card" onclick="showCategory('identification')">
+                        <div class="article-count">10 Articles</div>
+                        <h3><span class="icon">🔍</span>Rock Identification</h3>
+                        <p>Master the techniques and methods for identifying rocks and minerals in the field and laboratory.</p>
+                    </div>
+                    
+                    <div class="category-card" onclick="showCategory('formation')">
+                        <div class="article-count">10 Articles</div>
+                        <h3><span class="icon">🌋</span>Rock Formation</h3>
+                        <p>Understand the geological processes that create igneous, sedimentary, and metamorphic rocks.</p>
+                    </div>
+                    
+                    <div class="category-card" onclick="showCategory('collecting')">
+                        <div class="article-count">10 Articles</div>
+                        <h3><span class="icon">⛏️</span>Rock Collecting</h3>
+                        <p>Learn about rock collecting as a hobby, including tools, techniques, and preservation methods.</p>
+                    </div>
+                    
+                    <div class="category-card" onclick="showCategory('science')">
+                        <div class="article-count">10 Articles</div>
+                        <h3><span class="icon">🔬</span>Mineral Science</h3>
+                        <p>Explore the scientific aspects of mineralogy, crystallography, and chemical properties.</p>
+                    </div>
+                    
+                    <div class="category-card" onclick="showCategory('wonders')">
+                        <div class="article-count">10 Articles</div>
+                        <h3><span class="icon">💎</span>Geological Wonders</h3>
+                        <p>Discover amazing geological formations, rare minerals, and natural phenomena around the world.</p>
+                    </div>
+                </div>
+            </div>
+
+            <button class="back-button" onclick="showCategories()">← Back to Categories</button>
+
+            <!-- Rock Identification Articles -->
+            <div id="identification-articles" class="articles-section">
+                <h2>🔍 Rock Identification Articles</h2>
+                <div class="articles-grid">
+                    <div class="article-item" onclick="openArticle('01-complete-field-identification-guide.html')">
+                        <h4>Complete Field Identification Guide</h4>
+                        <p>Comprehensive guide to identifying rocks and minerals in their natural environment using field techniques.</p>
+                    </div>
+                    <div class="article-item" onclick="openArticle('02-key-mineral-properties.html')">
+                        <h4>Key Mineral Properties</h4>
+                        <p>Essential physical and chemical properties used for accurate mineral identification and classification.</p>
+                    </div>
+                    <div class="article-item" onclick="openArticle('03-crystal-systems.html')">
+                        <h4>Crystal Systems & Habits</h4>
+                        <p>Understanding the seven crystal systems and common crystal habits for mineral identification.</p>
+                    </div>
+                    <div class="article-item" onclick="openArticle('04-color-streak.html')">
+                        <h4>Color & Streak Testing</h4>
+                        <p>How to use color and streak tests effectively for mineral identification and avoiding common mistakes.</p>
+                    </div>
+                    <div class="article-item" onclick="openArticle('05-luster-transparency.html')">
+                        <h4>Luster & Transparency</h4>
+                        <p>Identifying minerals through their luster types and transparency characteristics.</p>
+                    </div>
+                    <div class="article-item" onclick="openArticle('06-cleavage-fracture.html')">
+                        <h4>Cleavage & Fracture Patterns</h4>
+                        <p>Understanding how minerals break and using cleavage patterns for identification.</p>
+                    </div>
+                    <div class="article-item" onclick="openArticle('07-mohs-hardness-scale-testing.html')">
+                        <h4>Mohs Hardness Scale Testing</h4>
+                        <p>Practical guide to using the Mohs hardness scale for mineral identification in the field.</p>
+                    </div>
+                    <div class="article-item" onclick="openArticle('08-specific-gravity-density.html')">
+                        <h4>Specific Gravity & Density</h4>
+                        <p>Measuring and using specific gravity as a diagnostic property for mineral identification.</p>
+                    </div>
+                    <div class="article-item" onclick="openArticle('09-acid-tests.html')">
+                        <h4>Chemical Tests & Reactions</h4>
+                        <p>Safe chemical testing methods for identifying carbonate minerals and other reactive species.</p>
+                    </div>
+                    <div class="article-item" onclick="openArticle('10-expert-identification-techniques.html')">
+                        <h4>Expert Identification Techniques</h4>
+                        <p>Advanced methods and professional techniques for challenging mineral identifications.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rock Formation Articles -->
+            <div id="formation-articles" class="articles-section">
+                <h2>🌋 Rock Formation Articles</h2>
+                <div class="articles-grid">
+                    <div class="article-item" onclick="openArticle('../rock-formation/01-igneous-rock-formation.html')">
+                        <h4>Igneous Rock Formation Processes</h4>
+                        <p>How igneous rocks form from magma and lava through cooling and crystallization processes.</p>
+                    </div>
+                    <div class="article-item" onclick="openArticle('../rock-formation/02-sedimentary-rock-formation.html')">
+                        <h4>Sedimentary Rock Formation</h4>
+                        <p>The processes of weathering, erosion, deposition, and lithification that create sedimentary rocks.</p>
+                    </div>
+                    <div class="article-item" onclick="openArticle('../rock-formation/03-metamorphic-rock-formation.html')">
+                        <h4>Metamorphic Rock Formation</h4>
+                        <p>How existing rocks transform under heat and pressure to form metamorphic rocks.</p>
+                    </div>
+                    <div class="article-item" onclick="openArticle('../rock-formation/04-rock-cycle-processes.html')">
+                        <h4>The Rock Cycle</h4>
+                        <p>Understanding the continuous cycle of rock formation, destruction, and transformation.</p>
+                    </div>
+                    <div class="article-item" onclick="openArticle('../rock-formation/05-volcanic-processes.html')">
+                        <h4>Volcanic Processes & Products</h4>
+                        <p>How volcanic activity creates different types of igneous rocks and volcanic features.</p>
+                    </div>
+                    <div class="article-item" onclick="openArticle('../rock-formation/06-weathering-erosion.html')">
+                        <h4>Weathering & Erosion</h4>
+                        <p>Physical and chemical processes that break down rocks and transport sediments.</p>
+                    </div>
+                    <div class="article-item" onclick="openArticle('../rock-formation/07-plate-tectonics-rocks.html')">
+                        <h4>Plate Tectonics & Rock Formation</h4>
+                        <p>How plate tectonic processes influence rock formation in different geological settings.</p>
+                    </div>
+                    <div class="article-item" onclick="openArticle('../rock-formation/08-hydrothermal-processes.html')">
+                        <h4>Hydrothermal Processes</h4>
+                        <p>How hot water solutions create unique minerals and alter existing rocks.</p>
+                    </div>
+                    <div class="article-item" onclick="openArticle('../rock-formation/09-deep-earth-processes.html')">
+                        <h4>Deep Earth Processes</h4>
+                        <p>Rock formation processes in the Earth's mantle and core regions.</p>
+                    </div>
+                    <div class="article-item" onclick="openArticle('../rock-formation/10-surface-processes.html')">
+                        <h4>Surface Geological Processes</h4>
+                        <p>How surface conditions and environments influence rock formation and alteration.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rock Collecting Articles -->
+            <div id="collecting-articles" class="articles-section">
+                <h2>⛏️ Rock Collecting Articles</h2>
+                <div class="articles-grid">
+                    <div class="article-item" onclick="openArticle('../rock-collecting/01-getting-started-rock-collecting.html')">
+                        <h4>Getting Started in Rock Collecting</h4>
+                        <p>Essential guide for beginners starting their rock and mineral collecting journey.</p>
+                    </div>
+                    <div class="article-item" onclick="openArticle('../rock-collecting/02-essential-tools-equipment.html')">
+                        <h4>Essential Tools & Equipment</h4>
+                        <p>Complete guide to the tools and equipment needed for successful rock collecting.</p>
+                    </div>
+                    <div class="article-item" onclick="openArticle('../rock-collecting/03-best-collecting-locations.html')">
+                        <h4>Best Collecting Locations</h4>
+                        <p>Where to find the best rock and mineral specimens around the world.</p>
+                    </div>
+                    <div class="article-item" onclick="openArticle('../rock-collecting/04-field-safety-ethics.html')">
+                        <h4>Field Safety & Ethics</h4>
+                        <p>Important safety considerations and ethical practices for responsible collecting.</p>
+                    </div>
+                    <div class="article-item" onclick="openArticle('../rock-collecting/05-specimen-preparation.html')">
+                        <h4>Specimen Preparation & Cleaning</h4>
+                        <p>Techniques for cleaning, preparing, and enhancing your rock and mineral specimens.</p>
+                    </div>
+                    <div class="article-item" onclick="openArticle('../rock-collecting/06-collection-organization.html')">
+                        <h4>Collection Organization & Storage</h4>
+                        <p>How to properly organize, catalog, and store your growing mineral collection.</p>
+                    </div>
+                    <div class="article-item" onclick="openArticle('../rock-collecting/07-display-techniques.html')">
+                        <h4>Display Techniques</h4>
+                        <p>Creative ways to display your rock and mineral collection for maximum impact.</p>
+                    </div>
+                    <div class="article-item" onclick="openArticle('../rock-collecting/08-trading-buying-selling.html')">
+                        <h4>Trading, Buying & Selling</h4>
+                        <p>Guide to the rock and mineral marketplace, including shows, dealers, and online trading.</p>
+                    </div>
+                    <div class="article-item" onclick="openArticle('../rock-collecting/09-photography-documentation.html')">
+                        <h4>Photography & Documentation</h4>
+                        <p>How to photograph and document your specimens for scientific and aesthetic purposes.</p>
+                    </div>
+                    <div class="article-item" onclick="openArticle('../rock-collecting/10-advanced-collecting-techniques.html')">
+                        <h4>Advanced Collecting Techniques</h4>
+                        <p>Professional methods and advanced techniques for serious collectors.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mineral Science Articles -->
+            <div id="science-articles" class="articles-section">
+                <h2>🔬 Mineral Science Articles</h2>
+                <div class="articles-grid">
+                    <div class="article-item" onclick="openArticle('../rock-mineral-science/01-mineral-classification-systems.html')">
+                        <h4>Mineral Classification Systems</h4>
+                        <p>Understanding the Dana and Strunz classification systems for organizing minerals.</p>
+                    </div>
+                    <div class="article-item" onclick="openArticle('../rock-mineral-science/02-mineral-crystallography.html')">
+                        <h4>Mineral Crystallography</h4>
+                        <p>The science of crystal structures and their relationship to mineral properties.</p>
+                    </div>
+                    <div class="article-item" onclick="openArticle('../rock-mineral-science/03-mineral-formation-processes.html')">
+                        <h4>Mineral Formation Processes</h4>
+                        <p>How minerals form through various geological and chemical processes.</p>
+                    </div>
+                    <div class="article-item" onclick="openArticle('../rock-mineral-science/04-physical-chemical-properties.html')">
+                        <h4>Physical & Chemical Properties</h4>
+                        <p>Comprehensive guide to the physical and chemical properties that define minerals.</p>
+                    </div>
+                    <div class="article-item" onclick="openArticle('../rock-mineral-science/05-economic-minerals-uses.html')">
+                        <h4>Economic Minerals & Uses</h4>
+                        <p>Important minerals in industry, technology, and everyday life applications.</p>
+                    </div>
+                    <div class="article-item" onclick="openArticle('../rock-mineral-science/06-mineral-collections-display.html')">
+                        <h4>Scientific Collections & Research</h4>
+                        <p>The role of mineral collections in scientific research and education.</p>
+                    </div>
+                    <div class="article-item" onclick="openArticle('../rock-mineral-science/07-fluorescent-minerals.html')">
+                        <h4>Fluorescent & Phosphorescent Minerals</h4>
+                        <p>Minerals that glow under ultraviolet light and their fascinating properties.</p>
+                    </div>
+                    <div class="article-item" onclick="openArticle('../rock-mineral-science/08-gemstones-precious-treasures.html')">
+                        <h4>Gemstones: Nature's Precious Treasures</h4>
+                        <p>The science behind gemstone formation, properties, and value.</p>
+                    </div>
+                    <div class="article-item" onclick="openArticle('../rock-mineral-science/09-rocks-minerals-ancient-technology.html')">
+                        <h4>Minerals in Ancient Technology</h4>
+                        <p>How ancient civilizations used rocks and minerals for tools and technology.</p>
+                    </div>
+                    <div class="article-item" onclick="openArticle('../rock-mineral-science/10-rocks-minerals-modern-technology.html')">
+                        <h4>Minerals in Modern Technology</h4>
+                        <p>The critical role of minerals in computers, electronics, and modern devices.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Geological Wonders Articles -->
+            <div id="wonders-articles" class="articles-section">
+                <h2>💎 Geological Wonders Articles</h2>
+                <div class="articles-grid">
+                    <div class="article-item" onclick="openArticle('../geological-wonders/01-famous-mineral-localities.html')">
+                        <h4>Famous Mineral Localities</h4>
+                        <p>World-renowned locations known for exceptional mineral specimens and discoveries.</p>
+                    </div>
+                    <div class="article-item" onclick="openArticle('../geological-wonders/02-crystal-caves-formations.html')">
+                        <h4>Crystal Caves & Formations</h4>
+                        <p>Spectacular underground crystal formations and cave mineral deposits.</p>
+                    </div>
+                    <div class="article-item" onclick="openArticle('../geological-wonders/03-rare-unusual-minerals.html')">
+                        <h4>Rare & Unusual Minerals</h4>
+                        <p>Extraordinary minerals with unique properties and fascinating formation stories.</p>
+                    </div>
+                    <div class="article-item" onclick="openArticle('../geological-wonders/04-meteorite-minerals.html')">
+                        <h4>Meteorite Minerals</h4>
+                        <p>Unique minerals found only in meteorites and their extraterrestrial origins.</p>
+                    </div>
+                    <div class="article-item" onclick="openArticle('../geological-wonders/05-volcanic-mineral-formations.html')">
+                        <h4>Volcanic Mineral Formations</h4>
+                        <p>Spectacular minerals formed by volcanic processes and extreme conditions.</p>
+                    </div>
+                    <div class="article-item" onclick="openArticle('../geological-wonders/06-deep-earth-minerals.html')">
+                        <h4>Deep Earth Minerals</h4>
+                        <p>Minerals formed under extreme pressure in the Earth's mantle and core.</p>
+                    </div>
+                    <div class="article-item" onclick="openArticle('../geological-wonders/07-mineral-pseudomorphs.html')">
+                        <h4>Mineral Pseudomorphs</h4>
+                        <p>Fascinating cases where one mineral replaces another while maintaining the original shape.</p>
+                    </div>
+                    <div class="article-item" onclick="openArticle('../geological-wonders/08-giant-crystals.html')">
+                        <h4>Giant Crystal Discoveries</h4>
+                        <p>The world's largest and most impressive crystal specimens and where they were found.</p>
+                    </div>
+                    <div class="article-item" onclick="openArticle('../geological-wonders/09-mineral-color-phenomena.html')">
+                        <h4>Mineral Color Phenomena</h4>
+                        <p>The science behind mineral colors and spectacular optical phenomena.</p>
+                    </div>
+                    <div class="article-item" onclick="openArticle('../geological-wonders/10-living-minerals.html')">
+                        <h4>Biominerals & Living Processes</h4>
+                        <p>How living organisms create minerals and the intersection of biology and geology.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function showCategory(categoryId) {
+            // Hide categories view
+            document.getElementById('categories-view').style.display = 'none';
+            
+            // Hide all article sections
+            const sections = document.querySelectorAll('.articles-section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show selected category articles
+            document.getElementById(categoryId + '-articles').classList.add('active');
+            
+            // Show back button
+            document.querySelector('.back-button').classList.add('active');
+        }
+
+        function showCategories() {
+            // Show categories view
+            document.getElementById('categories-view').style.display = 'block';
+            
+            // Hide all article sections
+            const sections = document.querySelectorAll('.articles-section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Hide back button
+            document.querySelector('.back-button').classList.remove('active');
+        }
+
+        function openArticle(articlePath) {
+            // Check if the article file exists, if not show a placeholder
+            window.location.href = articlePath;
+        }
+
+        // Add smooth scrolling and animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add entrance animations
+            const cards = document.querySelectorAll('.category-card');
+            cards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+            });
+        });
+    </script>
+</body>
+</html>

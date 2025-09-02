@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>岩石狩猎地点 - BirdAiSnap</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                        url('../../images/rock/Rock_Collecting&Hobby/02_Rock_Hunting_Locations.webp') center/cover;
+            position: relative;
+            margin-top: 0;
+        }
+        
+        .content {
+            background: white;
+            margin: -30px 20px 20px 20px;
+            border-radius: 20px;
+            padding: 30px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            min-height: 80vh;
+        }
+        
+        .title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            margin-top: 15px;
+            line-height: 1.3;
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, #f3e5f5, #e1bee7);
+            border-left: 4px solid #9c27b0;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .quote-box::before {
+            content: '"';
+            font-size: 48px;
+            color: #9c27b0;
+            position: absolute;
+            top: -5px;
+            left: 15px;
+            font-family: serif;
+            line-height: 1;
+        }
+        
+        .quote-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: #6a1b9a;
+            margin-left: 25px;
+            line-height: 1.4;
+        }
+        
+        .main-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            margin: 20px 0;
+            text-align: justify;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #9c27b0;
+            margin: 30px 0 15px 0;
+            border-bottom: 2px solid #e1bee7;
+            padding-bottom: 8px;
+        }
+        
+        .tip-box {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            border-left: 4px solid #28a745;
+        }
+        
+        .tip-title {
+            font-weight: 600;
+            color: #28a745;
+            margin-bottom: 8px;
+        }
+        
+        .highlight {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #ffc107;
+            margin: 20px 0;
+        }
+        
+        .equipment-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .equipment-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .equipment-item h4 {
+            color: #9c27b0;
+            margin-bottom: 8px;
+        }
+        
+        ul {
+            margin: 15px 0;
+            padding-left: 25px;
+        }
+        
+        li {
+            margin: 8px 0;
+            line-height: 1.6;
+        }
+        
+        .warning {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            border-left: 4px solid #dc3545;
+        }
+        
+        .warning-title {
+            font-weight: 600;
+            color: #721c24;
+            margin-bottom: 8px;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                margin: -20px 10px 10px 10px;
+                padding: 20px 15px;
+            }
+            
+            .title {
+                font-size: 20px;
+            }
+            
+            .equipment-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    
+        /* Rock Collecting Theme - Purple */
+        :root {
+            --primary-color: #9C27B0;
+            --primary-dark: #4A148C;
+            --primary-light: #F3E5F5;
+            --accent-color: #BA68C8;
+        }
+        
+        /* Theme Color Overrides */
+        .content {
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+            border: 2px solid var(--primary-color);
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, var(--primary-light), #E1BEE7);
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .quote-text {
+            color: var(--primary-dark);
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+        }
+        
+        .tip-box {
+            border-left: 4px solid var(--primary-color);
+            background: var(--primary-light);
+        }
+        
+        .tip-title {
+            color: var(--primary-color);
+        }
+        
+        .highlight {
+            border-left: 4px solid var(--accent-color);
+            background: linear-gradient(135deg, #f1f8e9, var(--primary-light));
+        }
+        
+        .warning {
+            border-left: 4px solid #f44336;
+        }
+        
+        .equipment-item {
+            border: 1px solid var(--accent-color);
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+        }
+        
+        .equipment-item h4 {
+            color: var(--primary-color);
+        }
+        
+        .category {
+            background: var(--primary-color);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-image"></div>
+    <div class="content">
+        <h1 class="title">岩石狩猎地点</h1>
+        
+        <div class="quote-box">
+            <div class="quote-text">专业地质指南</div>
+        </div>
+        
+        <div class="main-text">
+            生产性采集地点的战略地质勘察需要了解区域地质学、地貌学和准入规定，以在尊重土地使用政策的同时最大化标本多样性。
+        </div>
+        
+        <div class="section-title">🔍 地质地点选择</div>
+        
+        <div class="main-text">
+            有效的岩石狩猎需要对地质地体、露头质量和可达性约束进行系统评估，以识别生产性采集地点。
+        </div>
+        
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>地质制图</h4>
+                <p>使用地形图和地质图识别有希望的地层。第四纪沉积物、变质核心和岩浆侵入体提供不同的采集机会。</p>
+            </div>
+            <div class="equipment-item">
+                <h4>露头质量</h4>
+                <p>评估风化程度、植被和结构完整性。道路切面、采石场和天然侵蚀面的新鲜露头提供最佳采集条件。</p>
+            </div>
+            <div class="equipment-item">
+                <h4>可达性分析</h4>
+                <p>考虑土地所有权、许可要求和安全协议。公共土地、教育合作和授权采集区域确保法律合规。</p>
+            </div>
+        </div>
+        
+        <div class="section-title">🏔️ 山区</div>
+        
+        <div class="main-text">
+            山区通过构造活动和侵蚀暴露提供卓越的地质多样性：
+        </div>
+        
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>高山露头</h4>
+                <p>变质核心带含有石榴石、十字石和矽线石等高级变质矿物。冰川侵蚀产生风化程度最小的新鲜露头。</p>
+            </div>
+            <div class="equipment-item">
+                <h4>火山区</h4>
+                <p>活跃和已消失的火山区产生多样的火成岩。黑曜石、浮石和火山灰提供独特的采集机会。</p>
+            </div>
+            <div class="equipment-item">
+                <h4>构造断层带</h4>
+                <p>断层活动产生破碎带和矿化带。热液蚀变产生稀有次生矿物和矿石共生。</p>
+            </div>
+        </div>
+        
+        <div class="section-title">🏖️ 海岸环境</div>
+        
+        <div class="main-text">
+            海岸地区提供持续侵蚀和物质浓缩：
+        </div>
+        
+        <ul>
+            <li><strong>悬崖露头：</strong>海洋侵蚀产生新鲜岩石表面</li>
+            <li><strong>海滩砾石：</strong>天然分选和抛光揭示岩石性质</li>
+            <li><strong>潮池：</strong>波浪作用浓缩重矿物</li>
+            <li><strong>化石产地：</strong>含有不同时代海洋化石的沉积岩</li>
+        </ul>
+        
+        <div class="section-title">🏭 人为地点</div>
+        
+        <div class="main-text">
+            人类活动通过岩石暴露创造优秀的采集机会：
+        </div>
+        
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>采石场</h4>
+                <p>商业开采作业提供深层和新鲜的露头。需要许可和安全协议。石灰岩采石场通常富含化石。</p>
+            </div>
+            <div class="equipment-item">
+                <h4>道路切面</h4>
+                <p>高速公路建设产生广泛的地质露头。注意交通安全和财产权。在休息区最佳接近。</p>
+            </div>
+            <div class="equipment-item">
+                <h4>建筑挖掘</h4>
+                <p>建筑项目期间的临时露头。有时间限制的接近需要快速评估。在城市地区特别有价值。</p>
+            </div>
+        </div>
+        
+        <div class="section-title">🌊 河流系统</div>
+        
+        <div class="main-text">
+            河流系统搬运和浓缩地质材料：
+        </div>
+        
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>河床</h4>
+                <p>侵蚀力产生天然砂矿并浓缩重矿物。金砂矿床和宝石产状在河流沉积物中常见。</p>
+            </div>
+            <div class="equipment-item">
+                <h4>洪泛平原</h4>
+                <p>周期性洪水沉积分选沉积物。植物化石和脊椎动物经常保存在冲积序列中。</p>
+            </div>
+            <div class="equipment-item">
+                <h4>峡谷和峡壁</h4>
+                <p>深层侵蚀暴露完整的地层序列。对地层采集和时间相关性极佳。</p>
+            </div>
+        </div>
+        
+        <div class="section-title">🗺️ 地点记录</div>
+        
+        <div class="main-text">
+            专业采集需要详细记录：
+        </div>
+        
+        <ul>
+            <li><strong>GPS坐标：</strong>精确位置供未来访问</li>
+            <li><strong>地质背景：</strong>地层、年代和构造环境</li>
+            <li><strong>采集条件：</strong>天气、季节和可达性</li>
+            <li><strong>摄影记录：</strong>移除前的原位拍摄</li>
+        </ul>
+        
+        <div class="tip-box">
+            <div class="tip-title">🎯 时机策略</div>
+            雨后（少尘埃）、春季（低植被）和低角度阳光（更好对比）的最佳采集条件。
+        </div>
+        
+        <div class="section-title">🔍 微环境</div>
+        
+        <div class="main-text">
+            专业生态位提供独特的采集机会：
+        </div>
+        
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>洞穴系统</h4>
+                <p>喀斯特环境产生矿物沉淀和洞穴沉积物。方解石、霰石和稀有洞穴矿物需要特殊采集技术。</p>
+            </div>
+            <div class="equipment-item">
+                <h4>热液田</h4>
+                <p>温泉和间歇泉区域产生硅华沉积和升华矿物。可能有极稀有的蒸发矿物。</p>
+            </div>
+            <div class="equipment-item">
+                <h4>伟晶岩体</h4>
+                <p>粗晶侵入体含有稀有元素矿物。绿柱石、黄玉、电气石和稀土磷酸盐特征性出现。</p>
+            </div>
+        </div>
+        
+        <div class="section-title">📊 生产力评估</div>
+        
+        <div class="main-text">
+            优化采集效率的系统评估：
+        </div>
+        
+        <ul>
+            <li><strong>矿物多样性：</strong>可获得物种的数量和稀有性</li>
+            <li><strong>标本质量：</strong>晶体形态和保存程度</li>
+            <li><strong>可达性：</strong>时间成本和后勤要求</li>
+            <li><strong>法律地位：</strong>许可要求和限制</li>
+        </ul>
+        
+        <div class="section-title">🌍 区域专业化</div>
+        
+        <div class="main-text">
+            不同地质省提供特征性组合：
+        </div>
+        
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>前寒武纪地盾</h4>
+                <p>含稀有矿物的高级变质地体。石榴石-云母片岩、蓝晶石片麻岩、榴辉岩荚体。</p>
+            </div>
+            <div class="equipment-item">
+                <h4>沉积盆地</h4>
+                <p>丰富的化石产地和自生矿物。晶洞、结核和生物地化沉淀物。</p>
+            </div>
+            <div class="equipment-item">
+                <h4>火山弧</h4>
+                <p>具有热液蚀变的活跃岩浆系统。硫化物矿化和次生铜矿物。</p>
+            </div>
+        </div>
+        
+        <div class="warning">
+            <div class="warning-title">⚠️ 安全考虑</div>
+            野外采集需要适当的安全设备、天气监测和应急准备。向他人通报您的计划并携带通信设备。
+        </warning>
+        
+        <div class="section-title">📚 资源开发</div>
+        
+        <div class="main-text">
+            建立本地专业知识和网络：
+        </div>
+        
+        <ul>
+            <li><strong>地质学会：</strong>当地俱乐部和专业组织</li>
+            <li><strong>大学合作：</strong>学术合作和野外考察</li>
+            <li><strong>收藏者聚会：</strong>知识交流和地点信息</li>
+            <li><strong>数字平台：</strong>在线数据库和GPS采集</li>
+        </ul>
+        
+        <div class="section-title">🎯 高级技术</div>
+        
+        <div class="main-text">
+            经验丰富收藏者的专业方法：
+        </div>
+        
+        <ul>
+            <li><strong>地球化学勘探：</strong>岩石和沉积物分析确定目标区域</li>
+            <li><strong>地球物理方法：</strong>金属矿石用磁力计和金属探测器</li>
+            <li><strong>季节策略：</strong>基于天气的采集条件优化</li>
+            <li><strong>微采集：</strong>小晶体的体视显微镜技术</li>
+        </ul>
+        
+        <div class="section-title">📖 进一步研究</div>
+        
+        <div class="main-text">
+            为深化地点知识，将野外观察与地质文献、地形分析和地球化学数据结合。不同产地的系统记录和比较研究发展地质解释和采集策略的专业技能。
+        </div>
+    </div>
+</body>
+</html>

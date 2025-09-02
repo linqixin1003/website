@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>火山过程 - BirdAiSnap</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                        url('../../images/rock/Rock_Formation&Processes/03_Volcanic_Processes.webp') center/cover;
+            position: relative;
+            margin-top: 0;
+        }
+        
+        .content {
+            background: white;
+            margin: -30px 20px 20px 20px;
+            border-radius: 20px;
+            padding: 30px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            min-height: 80vh;
+        }
+        
+        .title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            margin-top: 15px;
+            line-height: 1.3;
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, #e8f5e8, #c8e6c9);
+            border-left: 4px solid #4caf50;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .quote-box::before {
+            content: '"';
+            font-size: 48px;
+            color: #4caf50;
+            position: absolute;
+            top: -5px;
+            left: 15px;
+            font-family: serif;
+            line-height: 1;
+        }
+        
+        .quote-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2e7d32;
+            margin-left: 25px;
+            line-height: 1.4;
+        }
+        
+        .main-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            margin: 20px 0;
+            text-align: justify;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #4caf50;
+            margin: 30px 0 15px 0;
+            border-bottom: 2px solid #c8e6c9;
+            padding-bottom: 8px;
+        }
+        
+        .tip-box {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            border-left: 4px solid #28a745;
+        }
+        
+        .tip-title {
+            font-weight: 600;
+            color: #28a745;
+            margin-bottom: 8px;
+        }
+        
+        .highlight {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #ffc107;
+            margin: 20px 0;
+        }
+        
+        .equipment-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .equipment-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .equipment-item h4 {
+            color: #4caf50;
+            margin-bottom: 8px;
+        }
+        
+        ul {
+            margin: 15px 0;
+            padding-left: 25px;
+        }
+        
+        li {
+            margin: 8px 0;
+            line-height: 1.6;
+        }
+        
+        .warning {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            border-left: 4px solid #dc3545;
+        }
+        
+        .warning-title {
+            font-weight: 600;
+            color: #721c24;
+            margin-bottom: 8px;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                margin: -20px 10px 10px 10px;
+                padding: 20px 15px;
+            }
+            
+            .title {
+                font-size: 20px;
+            }
+            
+            .equipment-list {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Rock Formation Theme - Green */
+        :root {
+            --primary-color: #4CAF50;
+            --primary-dark: #1B5E20;
+            --primary-light: #E8F5E8;
+            --accent-color: #81C784;
+        }
+        
+        /* Theme Color Overrides */
+        .content {
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+            border: 2px solid var(--primary-color);
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, var(--primary-light), #C8E6C9);
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .quote-text {
+            color: var(--primary-dark);
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+        }
+        
+        .tip-box {
+            border-left: 4px solid var(--primary-color);
+            background: var(--primary-light);
+        }
+        
+        .tip-title {
+            color: var(--primary-color);
+        }
+        
+        .highlight {
+            border-left: 4px solid var(--accent-color);
+            background: linear-gradient(135deg, #f1f8e9, var(--primary-light));
+        }
+        
+        .warning {
+            border-left: 4px solid #f44336;
+        }
+        
+        .equipment-item {
+            border: 1px solid var(--accent-color);
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+        }
+        
+        .equipment-item h4 {
+            color: var(--primary-color);
+        }
+        
+        .category {
+            background: var(--primary-color);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-image"></div>
+    <div class="content">
+        <h1 class="title">火山过程</h1>
+        
+        <div class="quote-box">
+            <div class="quote-text">专业地质指南</div>
+        </div>
+        
+        <div class="main-text">
+            火山作用代表了将物质和能量从地球内部传输到表面的基本岩浆过程，通过岩浆生成、上升和喷发的复杂机制，显著塑造行星景观和全球地球化学循环。
+        </div>
+        
+        <div class="section-title">🔍 火山作用基础</div>
+        
+        <div class="main-text">
+            火山过程源于地球内部动力学与表面条件的相互作用：
+        </div>
+        
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>岩浆生成</h4>
+                <p>地幔和地壳的部分熔融通过绝热减压、挥发分添加或加热发生。岩浆的化学组成决定喷发行为和结果火山产物。</p>
+            </div>
+            <div class="equipment-item">
+                <h4>岩浆上升</h4>
+                <p>岩浆因密度差异通过裂隙和通道上升。上升速度由粘度、气体含量和岩浆供给系统架构控制。</p>
+            </div>
+            <div class="equipment-item">
+                <h4>喷发机制</h4>
+                <p>喷发方式由岩浆组成、挥发分含量、上升率和与地表水的相互作用决定。从平静的溢流式到灾难性的爆发式不等。</p>
+            </div>
+        </div>
+        
+        <div class="section-title">🌋 喷发类型</div>
+        
+        <div class="main-text">
+            火山喷发的分类基于强度、方式和结果产物：
+        </div>
+        
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>溢流式喷发</h4>
+                <p>低粘度基性岩浆产生平静的熔岩流。盾状火山和洋脊的典型特征。高温(1000-1200°C)允许长期流动性。</p>
+            </div>
+            <div class="equipment-item">
+                <h4>爆发式喷发</h4>
+                <p>高气体含量的粘性酸性岩浆产生剧烈喷发。爆炸性破碎产生从细火山灰到火山弹的各种粒度火山碎屑物。</p>
+            </div>
+            <div class="equipment-item">
+                <h4>混合式喷发</h4>
+                <p>同一喷发事件中溢流式和爆发式阶段的交替。在具有成分分带岩浆房的层状火山中常见。</p>
+            </div>
+        </div>
+        
+        <div class="section-title">🏔️ 火山形态</div>
+        
+        <div class="main-text">
+            火山地貌反映喷发方式和岩浆组成：
+        </div>
+        
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>盾状火山</h4>
+                <p>由连续玄武岩熔岩流建造的缓坡轮廓。大直径(数十公里)和低坡度(2-10°)。例如：夏威夷的冒纳罗亚、基拉韦厄。</p>
+            </div>
+            <div class="equipment-item">
+                <h4>层状火山</h4>
+                <p>熔岩和火山碎屑物互层的对称锥体。由于多样材料形成陡坡(25-35°)。以周期性爆发式喷发为特征。</p>
+            </div>
+            <div class="equipment-item">
+                <h4>火山口</h4>
+                <p>岩浆房排空后塌陷形成的圆形凹陷。可变直径(1-50公里)与大规模爆发式喷发和地热系统相关。</p>
+            </div>
+        </div>
+        
+        <div class="section-title">🌊 海底火山作用</div>
+        
+        <div class="main-text">
+            海洋火山过程代表地球岩浆活动的最大体积：
+        </div>
+        
+        <ul>
+            <li><strong>洋中脊：</strong>产生新洋壳的连续玄武岩火山作用</li>
+            <li><strong>火山岛：</strong>地幔热点的板内火山作用</li>
+            <li><strong>岛弧：</strong>具有钙碱性岩浆的俯冲带火山作用</li>
+            <li><strong>海山：</strong>未达到表面的水下火山建筑</li>
+        </ul>
+        
+        <div class="section-title">💨 火山产物</div>
+        
+        <div class="main-text">
+            火山产物的多样性反映形成和运移条件：
+        </div>
+        
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>溢流产物</h4>
+                <p>从玄武岩质到流纹岩质各种组成的熔岩。质地由冷却速率决定：玻璃质(黑曜石)、多孔质(火山渣)或结晶质(辉长岩)。</p>
+            </div>
+            <div class="equipment-item">
+                <h4>火山碎屑产物</h4>
+                <p>各种大小的火山碎片：火山灰(&lt;2mm)、火山砾(2-64mm)、火山弹(&gt;64mm)。通过火山碎屑密度流或重力降落运移。</p>
+            </div>
+            <div class="equipment-item">
+                <h4>气体产物</h4>
+                <p>岩浆挥发分包括水蒸气(H₂O)、二氧化碳(CO₂)、二氧化硫(SO₂)和卤素化合物。影响全球气候和大气化学。</p>
+            </div>
+        </div>
+        
+        <div class="section-title">⚡ 火山危险</div>
+        
+        <div class="main-text">
+            火山活动对人口和基础设施呈现多重自然灾害：
+        </div>
+        
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>火山碎屑流</h4>
+                <p>由气体和岩石碎片组成的高温(300-800°C)和高速(100-700公里/小时)流体。极具破坏性，范围达数十公里。</p>
+            </div>
+            <div class="equipment-item">
+                <h4>火山泥流</h4>
+                <p>与水混合的火山碎屑流形成密度流。由强降雨、雪/冰融化或火山口湖破裂引起。</p>
+            </div>
+            <div class="equipment-item">
+                <h4>火山灰降落</h4>
+                <p>风力输送的细火山碎屑物质沉积。在广阔区域影响农业、航空、呼吸系统和电力基础设施。</p>
+            </div>
+        </div>
+        
+        <div class="section-title">🔬 火山监测</div>
+        
+        <div class="main-text">
+            现代监测系统整合多种技术进行早期探测：
+        </div>
+        
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>火山地震学</h4>
+                <p>地震仪网络探测与岩浆运动相关的震动。特定地震模式先于喷发，允许预警。</p>
+            </div>
+            <div class="equipment-item">
+                <h4>地面变形</h4>
+                <p>GPS和SAR干涉测量火山膨胀/收缩。岩浆侵入引起可以毫米精度探测的表面变形。</p>
+            </div>
+            <div class="equipment-item">
+                <h4>气体地球化学</h4>
+                <p>气体释放的成分分析。CO₂/SO₂比值和温度变化指示地下岩浆系统的变化。</p>
+            </div>
+        </div>
+        
+        <div class="section-title">🌍 气候影响</div>
+        
+        <div class="main-text">
+            大规模火山喷发显著影响全球气候系统：
+        </div>
+        
+        <ul>
+            <li><strong>平流层气溶胶：</strong>SO₂形成反射性气溶胶引起暂时冷却</li>
+            <li><strong>辐射扰动：</strong>入射太阳辐射减少1-3年</li>
+            <li><strong>大气变化：</strong>全球环流和降水模式的改变</li>
+            <li><strong>区域效应：</strong>历史上记录的火山冬季和农业失败</li>
+        </ul>
+        
+        <div class="tip-box">
+            <div class="tip-title">🎯 风险预防</div>
+            有效的火山风险管理需要科学监测、预警系统、公众教育和基于概率危险分析的疏散计划的整合。
+        </tip-box>
+        
+        <div class="section-title">⚗️ 火山岩石成因</div>
+        
+        <div class="main-text">
+            岩石成因过程控制火山岩浆的组成和演化：
+        </div>
+        
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>分离结晶</h4>
+                <p>岩浆冷却过程中的晶体分离。铁镁质矿物首先结晶，留下富硅和碱质的残余液体。岩浆多样化的基本过程。</p>
+            </div>
+            <div class="equipment-item">
+                <h4>地壳同化</h4>
+                <p>地壳物质的掺入改变原始岩浆组成。在通过厚大陆地壳上升的铁镁质岩浆中污染特别重要。</p>
+            </div>
+            <div class="equipment-item">
+                <h4>岩浆混合</h4>
+                <p>不同组成岩浆间的相互作用。产生不平衡质地和复杂矿物成带。在具有多重岩浆源的火山系统中常见。</p>
+            </div>
+        </div>
+        
+        <div class="section-title">🗺️ 构造背景</div>
+        
+        <div class="main-text">
+            火山作用按板块构造配置分布：
+        </div>
+        
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>离散边界</h4>
+                <p>洋脊和大陆裂谷的玄武岩火山作用。源于上升软流圈地幔绝热熔融的原始岩浆。</p>
+            </div>
+            <div class="equipment-item">
+                <h4>汇聚边界</h4>
+                <p>具有钙碱性岩浆的火山弧。俯冲板块的流体诱导熔融产生富挥发分和爆发性岩浆。</p>
+            </div>
+            <div class="equipment-item">
+                <h4>板内火山作用</h4>
+                <p>地幔热点产生独立于板块边界的火山作用。例如：夏威夷、黄石、冰岛具有特征性组成特点。</p>
+            </div>
+        </div>
+        
+        <div class="warning">
+            <div class="warning-title">⚠️ 野外安全</div>
+            火山研究需要适当的防护设备、有毒气体监测、逃生路线规划和与监测当局的持续通信。
+        </warning>
+        
+        <div class="section-title">🔮 未来前景</div>
+        
+        <div class="main-text">
+            技术进步革命性地改变火山理解和监测：
+        </div>
+        
+        <ul>
+            <li><strong>遥感：</strong>全球监测的热红外和光谱卫星</li>
+            <li><strong>数值模拟：</strong>岩浆过程和火山灰扩散的模拟</li>
+            <li><strong>监测网络：</strong>实时综合观测系统</li>
+            <li><strong>地球化学分析：</strong>岩浆来源的高精度同位素技术</li>
+        </ul>
+        
+        <div class="section-title">📖 火山资源</div>
+        
+        <div class="main-text">
+            火山作用提供重要的经济资源：
+        </div>
+        
+        <ul>
+            <li><strong>地热能：</strong>利用火山热发电</li>
+            <li><strong>火山矿物：</strong>建筑用火山灰、浮石、黑曜石</li>
+            <li><strong>火山土壤：</strong>农业用肥沃火山灰土</li>
+            <li><strong>地质旅游：</strong>国家公园和火山地质旅游</li>
+        </ul>
+        
+        <div class="section-title">📚 补充研究</div>
+        
+        <div class="main-text">
+            火山作用的全面理解整合火成岩岩石学、地球物理学、地球化学和流体力学。活火山和死火山区域的野外工作结合实验室分析，发展岩浆过程解释和火山危险评估的专业技能。
+        </div>
+    </div>
+</body>
+</html>

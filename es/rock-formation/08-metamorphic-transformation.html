@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transformación Metamórfica - BirdAiSnap</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                        url('../../images/rock/Rock_Formation_Processes/08_Metamorphic_Transformation.webp') center/cover;
+            position: relative;
+            margin-top: 0;
+        }
+        
+        .content {
+            background: white;
+            margin: -30px 20px 20px 20px;
+            border-radius: 20px;
+            padding: 30px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            min-height: 80vh;
+        }
+        
+        .title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            margin-top: 15px;
+            line-height: 1.3;
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, #f3e5f5, #e1bee7);
+            border-left: 4px solid #9c27b0;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .quote-box::before {
+            content: '"';
+            font-size: 48px;
+            color: #9c27b0;
+            position: absolute;
+            top: -5px;
+            left: 15px;
+            font-family: serif;
+            line-height: 1;
+        }
+        
+        .quote-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: #6a1b9a;
+            margin-left: 25px;
+            line-height: 1.4;
+        }
+        
+        .main-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            margin: 20px 0;
+            text-align: justify;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #9c27b0;
+            margin: 30px 0 15px 0;
+            border-bottom: 2px solid #e1bee7;
+            padding-bottom: 8px;
+        }
+        
+        .tip-box {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            border-left: 4px solid #28a745;
+        }
+        
+        .tip-title {
+            font-weight: 600;
+            color: #28a745;
+            margin-bottom: 8px;
+        }
+        
+        .highlight {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #ffc107;
+            margin: 20px 0;
+        }
+        
+        .equipment-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .equipment-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .equipment-item h4 {
+            color: #9c27b0;
+            margin-bottom: 8px;
+        }
+        
+        ul {
+            margin: 15px 0;
+            padding-left: 25px;
+        }
+        
+        li {
+            margin: 8px 0;
+            line-height: 1.6;
+        }
+        
+        .warning {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            border-left: 4px solid #dc3545;
+        }
+        
+        .warning-title {
+            font-weight: 600;
+            color: #721c24;
+            margin-bottom: 8px;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                margin: -20px 10px 10px 10px;
+                padding: 20px 15px;
+            }
+            
+            .title {
+                font-size: 20px;
+            }
+            
+            .equipment-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    
+        /* Rock Formation Theme - Red */
+        :root {
+            --primary-color: #FF5722;
+            --primary-dark: #BF360C;
+            --primary-light: #FFEBE8;
+            --accent-color: #FF8A65;
+        }
+        
+        /* Theme Color Overrides */
+        .content {
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+            border: 2px solid var(--primary-color);
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, var(--primary-light), #FFCCBC);
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .quote-text {
+            color: var(--primary-dark);
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+        }
+        
+        .tip-box {
+            border-left: 4px solid var(--primary-color);
+            background: var(--primary-light);
+        }
+        
+        .tip-title {
+            color: var(--primary-color);
+        }
+        
+        .highlight {
+            border-left: 4px solid var(--accent-color);
+            background: linear-gradient(135deg, #f1f8e9, var(--primary-light));
+        }
+        
+        .warning {
+            border-left: 4px solid #f44336;
+        }
+        
+        .equipment-item {
+            border: 1px solid var(--accent-color);
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+        }
+        
+        .equipment-item h4 {
+            color: var(--primary-color);
+        }
+        
+        .category {
+            background: var(--primary-color);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-image"></div>
+    <div class="content">
+        <h1 class="title">Transformación Metamórfica</h1>
+        
+        <div class="quote-box">
+            <div class="quote-text">Rocas Renacidas a Través del Calor y la Presión</div>
+        </div>
+        
+        <div class="main-text">
+            La petrología metamórfica abarca procesos de recristalización en estado sólido impulsados por desequilibrio termodinámico, involucrando reacciones prógradas y retrogradas, reconstitución textural, y relaciones de estabilidad de fases bajo condiciones elevadas de presión-temperatura. La diferenciación metamórfica produce diversos ensamblajes minerales a través de movilidad selectiva de elementos y cinética de reacciones.
+        </div>
+        
+        <div class="section-title">🔄 ¿Qué es el Metamorfismo?</div>
+        
+        <div class="main-text">
+            El metamorfismo involucra la transformación en estado sólido de rocas en respuesta a condiciones físicas y químicas cambiantes:
+        </div>
+        
+        <ul>
+            <li><strong>Rango de Temperatura:</strong> Típicamente 200-800°C (por encima de diagénesis, por debajo de fusión)</li>
+            <li><strong>Rango de Presión:</strong> Desde presión superficial hasta condiciones corticales profundas</li>
+            <li><strong>Escala Temporal:</strong> Miles a millones de años para transformación completa</li>
+            <li><strong>Estado Sólido:</strong> Ocurre sin fusión completa de la roca</li>
+        </ul>
+        
+        <div class="section-title">🌡️ Agentes del Metamorfismo</div>
+        
+        <div class="main-text">
+            Tres agentes principales impulsan la transformación metamórfica:
+        </div>
+        
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>Calor</h4>
+                <p>Agente primario que promueve recristalización y reacciones químicas. Las fuentes incluyen gradiente geotérmico, intrusiones magmáticas y fricción.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Presión</h4>
+                <p>Presión de confinamiento por enterramiento y presión dirigida de fuerzas tectónicas. Crea nuevos ensamblajes minerales y texturas.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Fluidos Químicamente Activos</h4>
+                <p>Las fases fluidas hidrotermales y carbónicas mejoran la cinética de reacciones a través de difusión mejorada, lubricación de límites de grano y transporte de volátiles. La interacción fluido-roca impulsa el metasomatismo, permitiendo transferencia de masa química de largo alcance y desarrollo de ensamblajes minerales exóticos.</p>
+            </div>
+        </div>
+        
+        <div class="section-title">🏔️ Tipos de Metamorfismo</div>
+        
+        <div class="main-text">
+            El metamorfismo se clasifica basado en los factores de control dominantes:
+        </div>
+        
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>Metamorfismo de Contacto</h4>
+                <p>Transformación dominada por calor alrededor de intrusiones ígneas. Crea aureolas con corneanas y escarnes.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Metamorfismo Regional</h4>
+                <p>Transformación a gran escala debido a fuerzas tectónicas. Crea rocas foliadas como pizarra, esquisto y gneis.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Metamorfismo Dinámico</h4>
+                <p>Transformación dominada por deformación a lo largo de zonas de falla. Crea milonitas y cataclasitas.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Metamorfismo Hidrotermal</h4>
+                <p>Transformación dominada por fluidos, frecuentemente asociada con sistemas geotermales y depósitos de mena.</p>
+            </div>
+        </div>
+        
+        <div class="section-title">📊 Grado Metamórfico</div>
+        
+        <div class="main-text">
+            El grado metamórfico se refiere a la intensidad del metamorfismo basada en condiciones de temperatura y presión:
+        </div>
+        
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>Grado Bajo</h4>
+                <p>Condiciones bajas de T-P. Pizarra, filita. Texturas originales parcialmente preservadas.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Grado Medio</h4>
+                <p>Condiciones moderadas de T-P. Esquisto, anfibolita. Foliación bien desarrollada y nuevos minerales.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Grado Alto</h4>
+                <p>Condiciones altas de T-P. Gneis, granulita. Grano grueso, puede aproximarse a condiciones de fusión.</p>
+            </div>
+        </div>
+        
+        <div class="tip-box">
+            <div class="tip-title">🔍 Minerales Índice</div>
+            Minerales específicos que aparecen en ciertos grados metamórficos ayudan a los geólogos a mapear zonas metamórficas y estimar condiciones P-T.
+        </div>
+        
+        <div class="section-title">🪨 Texturas Metamórficas</div>
+        
+        <div class="main-text">
+            El metamorfismo crea texturas distintivas que reflejan las condiciones de formación:
+        </div>
+        
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>Texturas Foliadas</h4>
+                <p>Alineación paralela de minerales laminares debido a presión dirigida. Incluye clivaje pizarroso, esquistosidad y bandeado gnéisico.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Texturas No Foliadas</h4>
+                <p>Texturas granulares o masivas sin orientación preferencial. Común en metamorfismo de contacto y rocas monominerales.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Texturas Porfiroblásticas</h4>
+                <p>Cristales grandes (porfiroblastos) en matriz de grano fino. Se forman durante recristalización bajo condiciones específicas.</p>
+            </div>
+        </div>
+        
+        <div class="section-title">💎 Minerales Metamórficos</div>
+        
+        <div class="main-text">
+            El metamorfismo crea nuevos minerales estables bajo las condiciones prevalecientes:
+        </div>
+        
+        <ul>
+            <li><strong>Clorita:</strong> Metamorfismo de bajo grado, color verde</li>
+            <li><strong>Moscovita:</strong> Grado bajo a medio, mica plateada</li>
+            <li><strong>Biotita:</strong> Grado medio, mica oscura</li>
+            <li><strong>Granate:</strong> Grado medio a alto, cristales dodecaédricos distintivos</li>
+            <li><strong>Estaurolita:</strong> Grado medio, cristales en forma de cruz</li>
+            <li><strong>Cianita/Sillimanita:</strong> Grado alto, silicatos de aluminio</li>
+        </ul>
+        
+        <div class="section-title">🔄 Reacciones Metamórficas</div>
+        
+        <div class="main-text">
+            El metamorfismo involucra varios tipos de reacciones químicas:
+        </div>
+        
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>Transiciones Polimórficas</h4>
+                <p>Misma composición, diferente estructura cristalina. Ejemplo: cianita → sillimanita con aumento de temperatura.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Reacciones de Deshidratación</h4>
+                <p>Pérdida de agua de minerales hidratados. Ejemplo: moscovita + cuarzo → feldespato-K + Al₂SiO₅ + H₂O</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Reacciones de Descarbonatación</h4>
+                <p>Pérdida de CO₂ de minerales carbonatados. Ejemplo: calcita + cuarzo → wollastonita + CO₂</p>
+            </div>
+        </div>
+        
+        <div class="section-title">🌍 Rocas Metamórficas Comunes</div>
+        
+        <div class="main-text">
+            Comprensión de rocas metamórficas comunes y sus protolitos:
+        </div>
+        
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>Pizarra</h4>
+                <p>Metamorfismo de bajo grado de lutita. Grano fino con excelente clivaje. Usado para techos.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Esquisto</h4>
+                <p>Roca de grado medio con cristales de mica visibles. Foliación fuerte y textura esquistosa.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Gneis</h4>
+                <p>Roca de alto grado con bandas claras y oscuras alternantes. Grano grueso con textura gnéisica.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Mármol</h4>
+                <p>Caliza o dolomita metamorfizada. Textura cristalina, usado en escultura y construcción.</p>
+            </div>
+        </div>
+        
+        <div class="highlight">
+            <strong>Reconocimiento de Protolito:</strong> Muchas rocas metamórficas preservan evidencia de su tipo de roca original a través de minerales relictos, texturas o composición química.
+        </div>
+        
+        <div class="section-title">⚡ Procesos Metamórficos</div>
+        
+        <div class="main-text">
+            Varios procesos operan durante la transformación metamórfica:
+        </div>
+        
+        <ul>
+            <li><strong>Recristalización:</strong> Formación de cristales nuevos y más grandes a partir de minerales existentes</li>
+            <li><strong>Neocristalización:</strong> Formación de fases minerales completamente nuevas</li>
+            <li><strong>Transiciones de Fase:</strong> Cambios en estructura cristalina sin cambio químico</li>
+            <li><strong>Disolución y Precipitación:</strong> Disolución y reprecipitación de minerales</li>
+            <li><strong>Deformación Plástica:</strong> Curvado y flujo de minerales bajo estrés</li>
+        </ul>
+        
+        <div class="section-title">🗺️ Zonas Metamórficas</div>
+        
+        <div class="main-text">
+            El metamorfismo regional crea zonas mapeables basadas en minerales índice:
+        </div>
+        
+        <ul>
+            <li><strong>Zona de Clorita:</strong> Grado más bajo, aparece clorita verde</li>
+            <li><strong>Zona de Biotita:</strong> Aparece mica oscura, aumento del grado metamórfico</li>
+            <li><strong>Zona de Granate:</strong> Aparecen granates rojos, condiciones de grado medio</li>
+            <li><strong>Zona de Estaurolita:</strong> Cristales en forma de cruz, grado más alto</li>
+            <li><strong>Zona de Sillimanita:</strong> Grado más alto, aproximándose a condiciones de fusión</li>
+        </ul>
+        
+        <div class="tip-box">
+            <div class="tip-title">🎯 Reconocimiento de Campo</div>
+            Busque foliación, nuevos ensamblajes minerales y cambios texturales para identificar rocas metamórficas. El grado de foliación frecuentemente se correlaciona con el grado metamórfico.
+        </div>
+        
+        <div class="section-title">🔬 Estudio de Rocas Metamórficas</div>
+        
+        <div class="main-text">
+            Métodos para analizar rocas metamórficas:
+        </div>
+        
+        <ul>
+            <li><strong>Análisis de Sección Delgada:</strong> Estudio microscópico de texturas y ensamblajes minerales</li>
+            <li><strong>Análisis Químico:</strong> Determinar composición global y elementos traza</li>
+            <li><strong>Termobarometría:</strong> Estimar condiciones P-T usando composiciones minerales</li>
+            <li><strong>Análisis Estructural:</strong> Estudiar características de deformación y desarrollo de fábrica</li>
+        </ul>
+        
+        <div class="section-title">💰 Importancia Económica</div>
+        
+        <div class="main-text">
+            Las rocas metamórficas tienen valor económico significativo:
+        </div>
+        
+        <ul>
+            <li><strong>Materiales de Construcción:</strong> Mármol, pizarra, cuarcita para construcción</li>
+            <li><strong>Minerales Industriales:</strong> Talco, grafito, asbesto</li>
+            <li><strong>Gemas:</strong> Rubí, zafiro, esmeralda en rocas metamórficas</li>
+            <li><strong>Depósitos de Mena:</strong> Muchos depósitos metálicos asociados con metamorfismo</li>
+        </ul>
+        
+        <div class="warning">
+            <div class="warning-title">⚠️ Consideraciones de Salud</div>
+            Algunas rocas metamórficas contienen minerales peligrosos como asbesto. Siempre siga protocolos de seguridad al manejar especímenes metamórficos desconocidos.
+        </div>
+        
+        <div class="section-title">📚 Estudio Adicional</div>
+        
+        <div class="main-text">
+            Para comprender mejor la transformación metamórfica, estudie secciones delgadas de rocas metamórficas, aprenda a identificar minerales índice y examine terrenos metamórficos en el campo. Comprender la relación entre configuración tectónica, condiciones P-T y productos metamórficos es esencial para petrología metamórfica avanzada.
+        </div>
+    </div>
+</body>
+</html>

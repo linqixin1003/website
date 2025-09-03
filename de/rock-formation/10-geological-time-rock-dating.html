@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Geologische Zeit und Gesteinsdatierung - BirdAiSnap</title>
-<link href="../../mobile-styles.css" rel="stylesheet"/>
-<link href="../../mobile-enhancement.css" rel="stylesheet"/>
-<link href="../../ecology-theme.css" rel="stylesheet"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geologische Zeit & Gesteinsdatierung - BirdAiSnap</title>
     <style>
-        /* Rock Formation Theme - Red */
-        :root {
-            --primary-color: #FF5722;
-            --primary-dark: #BF360C;
-            --primary-light: #FFEBE8;
-            --accent-color: #FF8A65;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
         
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+
         .hero-image {
             width: 100%;
             height: 400px;
@@ -26,184 +27,375 @@
         }
         
         .content {
-            background: linear-gradient(135deg, #ffffff, var(--primary-light));
-            border: 2px solid var(--primary-color);
-            padding: 50px 35px 40px 35px !important;
-            margin: -30px 15px 20px 15px !important;
-            max-width: 1200px;
-            margin-left: auto !important;
-            margin-right: auto !important;
+            background: white;
+            margin: -30px 20px 20px 20px;
+            border-radius: 20px;
+            padding: 30px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            min-height: 80vh;
         }
         
-        .quote-box, .tip-box, .equipment-item {
-            border: 1px solid var(--accent-color);
-            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+        .title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            margin-top: 15px;
+            line-height: 1.3;
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, #f3e5f5, #e1bee7);
+            border-left: 4px solid #9c27b0;
             padding: 20px;
-            margin: 15px 0;
+            margin: 25px 0;
             border-radius: 8px;
+            position: relative;
         }
         
-        .quote-text, .tip-title, .equipment-item h4 {
-            color: var(--primary-color);
-            font-weight: 600;
-            margin-bottom: 10px;
+        .quote-box::before {
+            content: '"';
+            font-size: 48px;
+            color: #9c27b0;
+            position: absolute;
+            top: -5px;
+            left: 15px;
+            font-family: serif;
+            line-height: 1;
+        }
+        
+        .quote-text {
             font-size: 18px;
+            font-weight: 600;
+            color: #6a1b9a;
+            margin-left: 25px;
+            line-height: 1.4;
+        }
+        
+        .main-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            margin: 20px 0;
+            text-align: justify;
         }
         
         .section-title {
-            color: var(--primary-color);
-            border-bottom: 2px solid var(--accent-color);
-            padding-bottom: 10px;
-            font-size: 24px;
-            font-weight: 700;
-            margin: 35px 0 20px 0;
+            font-size: 20px;
+            font-weight: 600;
+            color: #9c27b0;
+            margin: 30px 0 15px 0;
+            border-bottom: 2px solid #e1bee7;
+            padding-bottom: 8px;
         }
         
-        .main-text { margin: 25px 0; line-height: 1.7; }
-        .category { background: var(--primary-color); color: white; }
-        ul, ol { padding-left: 25px; margin: 15px 0; }
-        li { margin: 8px 0; line-height: 1.6; }
+        .tip-box {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            border-left: 4px solid #28a745;
+        }
+        
+        .tip-title {
+            font-weight: 600;
+            color: #28a745;
+            margin-bottom: 8px;
+        }
+        
+        .highlight {
+            background: linear-gradient(135deg, #f1f8e9, #e8f5e8);
+            border-left: 4px solid #4caf50;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .warning {
+            background: #fff3cd;
+            border-left: 4px solid #f44336;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .warning-title {
+            font-weight: 600;
+            color: #f44336;
+            margin-bottom: 8px;
+        }
+        
+        .equipment-list {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .equipment-item {
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+        
+        .equipment-item h4 {
+            color: #9c27b0;
+            margin-bottom: 8px;
+        }
+        
+        ul {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+        
+        li {
+            margin: 8px 0;
+            line-height: 1.6;
+        }
+        
+        .emoji {
+            font-size: 1.2em;
+        }
+        
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: #e0e0e0;
+            z-index: 1000;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #9c27b0, #e1bee7);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #9c27b0, #ba68c8);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
     </style>
 </head>
 <body>
-<div class="hero-image"></div>
-<div class="content">
-    <h1 class="title">Geologische Zeit und Gesteinsdatierung</h1>
-    
-    <div class="quote-box">
-        <div class="quote-text">Zeitentschlüsselung: Quantifizierung der Erdgeschichte</div>
+    <div class="hero-image"></div>
+    <div class="content">
+        <h1 class="title">Geologische Zeit & Gesteinsdatierung</h1>
+        <div class="quote-box">
+            <div class="quote-text">Die Entschlüsselung der zeitlichen Dimension geologischer Prozesse</div>
+        </div>
+        <div class="main-text">
+            Geologische Zeit und Gesteinsdatierung umfassen die quantitative Bestimmung des Alters von Gesteinen, Mineralen und geologischen Ereignissen durch radiometrische, stratigraphische und andere chronologische Methoden, die die zeitliche Dimension der Erdgeschichte über Milliarden von Jahren erschließen.
+        </div>
+
+        <div class="section-title">⏰ Konzept der geologischen Zeit</div>
+        <div class="main-text">
+            Die geologische Zeit erstreckt sich über 4,6 Milliarden Jahre der Erdgeschichte und wird durch verschiedene chronologische Systeme und Datierungsmethoden quantifiziert. Das Verständnis dieser enormen Zeitskalen ist fundamental für die Interpretation geologischer Prozesse.
+        </div>
+
+        <div class="tip-box">
+            <div class="tip-title">💡 Zeitskalen-Perspektive</div>
+            Geologische Prozesse operieren auf Zeitskalen von Sekunden (Erdbeben) bis zu Milliarden Jahren (Krustenbildung). Diese Vielfalt erfordert unterschiedliche Datierungsansätze und analytische Methoden.
+        </div>
+
+        <div class="section-title">📅 Geologische Zeitskala</div>
+        <div class="main-text">
+            Die geologische Zeitskala gliedert die Erdgeschichte in hierarchische Einheiten:
+        </div>
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>Äonen</h4>
+                <p>Größte Zeiteinheiten: Hadaikum, Archaikum, Proterozoikum und Phanerozoikum. Jedes Äon umfasst Hunderte Millionen bis Milliarden Jahre.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Ären</h4>
+                <p>Unterteilungen der Äonen: Paläozoikum, Mesozoikum und Känozoikum im Phanerozoikum. Charakterisiert durch große biologische Veränderungen.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Perioden und Epochen</h4>
+                <p>Feinere Unterteilungen basierend auf stratigraphischen und paläontologischen Kriterien. Beispiele: Kambrium, Jura, Pleistozän.</p>
+            </div>
+        </div>
+
+        <div class="section-title">☢️ Radiometrische Datierung</div>
+        <div class="main-text">
+            Radiometrische Methoden nutzen den radioaktiven Zerfall instabiler Isotope zur absoluten Altersbestimmung:
+        </div>
+        <ul>
+            <li><strong>U-Pb-Datierung:</strong> Zirkon, Monazit; Alter bis 4,4 Ga; hohe Präzision</li>
+            <li><strong>K-Ar und Ar-Ar:</strong> Glimmer, Amphibol, Feldspat; Abkühlungsalter</li>
+            <li><strong>Rb-Sr:</strong> Gesamtgestein und Minerale; Isochron-Methoden</li>
+            <li><strong>Sm-Nd:</strong> Mafische Gesteine; Mantel-Differentiation</li>
+        </ul>
+
+        <div class="highlight">
+            <strong>Zerfallsgleichung:</strong> N(t) = N₀ · e^(-λt), wobei λ die Zerfallskonstante und t die Zeit ist. Die Halbwertszeit T₁/₂ = ln(2)/λ bestimmt die Anwendbarkeit verschiedener Systeme.
+        </div>
+
+        <div class="section-title">🔬 Analytische Techniken</div>
+        <div class="main-text">
+            Moderne Geochronologie nutzt hochpräzise analytische Instrumente:
+        </div>
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>Thermoionisations-Massenspektrometrie (TIMS)</h4>
+                <p>Höchste Präzision für U-Pb, Rb-Sr und Sm-Nd-Systeme. Erfordert chemische Separation und Reinigung.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Induktiv gekoppelte Plasma-MS (ICP-MS)</h4>
+                <p>Schnelle Analyse mit geringeren Probenmengen. Laser-Ablation ermöglicht In-situ-Datierung.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Sekundärionen-MS (SIMS)</h4>
+                <p>Hochauflösende räumliche Analyse einzelner Mineralkörner. Wichtig für komplexe Zirkone.</p>
+            </div>
+        </div>
+
+        <div class="section-title">📊 Isochron-Methoden</div>
+        <div class="main-text">
+            Isochron-Diagramme ermöglichen die Bestimmung von Alter und Anfangszusammensetzung:
+        </div>
+        <ul>
+            <li><strong>Interne Isochrone:</strong> Verschiedene Minerale einer Probe</li>
+            <li><strong>Externe Isochrone:</strong> Mehrere kogengetische Proben</li>
+            <li><strong>Errorchrone:</strong> Gestörte Systeme mit offener Systemverhalten</li>
+            <li><strong>Mixing Lines:</strong> Unterscheidung zwischen Alter und Mischung</li>
+        </ul>
+
+        <div class="section-title">🌡️ Thermochronologie</div>
+        <div class="main-text">
+            Thermochronologie rekonstruiert thermische Geschichten durch temperaturabhängige Isotopensysteme:
+        </div>
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>Spaltspurdatierung</h4>
+                <p>Apatit und Zirkon; Schließungstemperaturen 60-240°C. Exhumierungsgeschichte der oberen Kruste.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>(U-Th)/He-Datierung</h4>
+                <p>Niedrige Schließungstemperaturen (40-80°C). Späte Abkühlungsgeschichte und Oberflächenprozesse.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Ar-Ar-Stufenheizung</h4>
+                <p>Temperaturspektren enthüllen komplexe thermische Geschichten und Störungsereignisse.</p>
+            </div>
+        </div>
+
+        <div class="section-title">🦴 Relative Datierung</div>
+        <div class="main-text">
+            Relative Datierungsmethoden bestimmen die zeitliche Abfolge ohne absolute Alter:
+        </div>
+        <ul>
+            <li><strong>Biostratigraphie:</strong> Leitfossilien und Fossilvergesellschaftungen</li>
+            <li><strong>Lithostratigraphie:</strong> Gesteinseinheiten und ihre Beziehungen</li>
+            <li><strong>Magnetostratigraphie:</strong> Magnetische Polaritätswechsel</li>
+            <li><strong>Chemostratigraphie:</strong> Geochemische Signaturen und Isotopenkurven</li>
+        </ul>
+
+        <div class="warning">
+            <div class="warning-title">⚠️ Systemstörungen</div>
+            Offene Systemverhalten durch Verwitterung, Metamorphose oder hydrothermale Alteration kann radiometrische Uhren zurücksetzen oder stören. Sorgfältige petrographische und geochemische Evaluierung ist essentiell.
+        </div>
+
+        <div class="section-title">🎯 Präzision und Genauigkeit</div>
+        <div class="main-text">
+            Geochronologische Daten erfordern rigorose Qualitätskontrolle und Unsicherheitsanalyse:
+        </div>
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>Analytische Unsicherheit</h4>
+                <p>Statistische Fehler der Massenspektrometrie und Zählstatistik. Typisch 0,1-2% für moderne Methoden.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Systematische Fehler</h4>
+                <p>Kalibrierung, Zerfallskonstanten und Standardmaterialien. Beeinflussen Vergleichbarkeit zwischen Laboren.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Geologische Interpretation</h4>
+                <p>Verständnis der Bedeutung gemessener Alter in Bezug auf geologische Prozesse und Ereignisse.</p>
+            </div>
+        </div>
+
+        <div class="section-title">📈 Anwendungen</div>
+        <div class="main-text">
+            Geochronologie hat vielfältige Anwendungen in den Geowissenschaften:
+        </div>
+        <ul>
+            <li><strong>Tektonische Evolution:</strong> Timing von Orogenese, Rifting und Plattenbewegungen</li>
+            <li><strong>Magmatische Prozesse:</strong> Magmakammer-Verweilzeiten und Eruptionsgeschichte</li>
+            <li><strong>Metamorphe Petrologie:</strong> P-T-Zeit-Pfade und Exhumierungsraten</li>
+            <li><strong>Paläoklimatologie:</strong> Zeitskalen klimatischer Veränderungen</li>
+        </ul>
+
+        <div class="section-title">🌍 Globale Korrelation</div>
+        <div class="main-text">
+            Geochronologie ermöglicht die globale Korrelation geologischer Ereignisse:
+        </div>
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>Globale Standardstratotypen</h4>
+                <p>GSSP (Global Boundary Stratotype Section and Point) definieren chronostratigraphische Grenzen weltweit.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Astrochronologie</h4>
+                <p>Astronomische Zyklen (Milankovitch) kalibrieren junge sedimentäre Sequenzen mit hoher Präzision.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Integrierte Stratigraphie</h4>
+                <p>Kombination verschiedener Datierungsmethoden für robuste chronologische Rahmenwerke.</p>
+            </div>
+        </div>
+
+        <div class="tip-box">
+            <div class="tip-title">🔮 Zukunftsperspektiven</div>
+            Fortschritte in der Massenspektrometrie, In-situ-Analytik und statistischen Methoden revolutionieren die Geochronologie. Neue Isotopensysteme und verbesserte Präzision eröffnen neue Möglichkeiten für das Verständnis der Erdgeschichte.
+        </div>
     </div>
-    
-    <div class="main-text">
-        Die Messung geologischer Zeit wird durch Geochronologie erreicht, basierend auf radioaktivem Isotopenzerfall, Paläomagnetismus und stratigraphischen Beziehungen. Isotopengeochemie und Massenspektrometrietechniken quantifizieren hochpräzise Gesteinsentstehungsalter und erdgeschichtliche Ereignisse<span class="emoji">⏰</span>.
-    </div>
-    
-    <div class="article-meta">
-        <span class="category">Geochronologie</span>
-        <span class="read-time">📖 25 Minuten Lesezeit</span>
-        <span class="difficulty">🟡 Mittelstufe</span>
-    </div>
-    
-    <div class="section-title">⏰ Konzept der geologischen Zeit</div>
-    
-    <div class="equipment-list">
-        <div class="equipment-item">
-            <h4>Tiefzeit (Deep Time)</h4>
-            <p>Zeitskalen von Millionen bis Milliarden Jahren. Geologische Prozesse erscheinen extrem langsam, aber langzeiteakkumuliert erzeugen sie riesige Veränderungen.</p>
-        </div>
-        <div class="equipment-item">
-            <h4>Uniformitätsprinzip</h4>
-            <p>Grundprinzip, dass gegenwärtig beobachtete geologische Prozesse auch in der Vergangenheit ähnlich wirkten. "Die Gegenwart ist der Schlüssel zur Vergangenheit" als Grundlage der erdgeschichtlichen Entschlüsselung.</p>
+
+    <!-- Fortschrittsbalken -->
+    <div class="progress-container">
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
         </div>
     </div>
-    
-    <div class="section-title">🔬 Radiometrische Datierungsmethoden</div>
-    
-    <div class="equipment-list">
-        <div class="equipment-item">
-            <h4>U-Pb-Methode</h4>
-            <p>Zuverlässigste Datierungsmethode durch Uran-Blei-Serien. ²³⁸U→²⁰⁶Pb, ²³⁵U→²⁰⁷Pb-Zerfall in Zirkon ermöglicht konkordante und diskordante Altersanalyse.</p>
-        </div>
-        <div class="equipment-item">
-            <h4>K-Ar und Ar-Ar-Methode</h4>
-            <p>Kalium-Argon-System für magmatische und metamorphe Gesteinsdatierung. ⁴⁰K→⁴⁰Ar-Zerfall bestimmt Abkühlungs- und Kristallisationsalter. Stufenheizung ermöglicht detaillierte Thermalgeschichtsanalyse.</p>
-        </div>
-        <div class="equipment-item">
-            <h4>Rb-Sr-Methode</h4>
-            <p>Rubidium-Strontium-System für Gesamtgesteinsdatierung. ⁸⁷Rb→⁸⁷Sr-Zerfall ermöglicht durch Isochron-Analyse simultane Bestimmung von Anfangsisotopenverhältnissen und Alter.</p>
-        </div>
-        <div class="equipment-item">
-            <h4>Sm-Nd-Methode</h4>
-            <p>Samarium-Neodym-System für alte Gesteinsdatierung. ¹⁴⁷Sm→¹⁴³Nd-Zerfall zeigt Macht bei der Altersbestimmung präkambrischer Gesteine.</p>
-        </div>
-    </div>
-    
-    <div class="section-title">🧭 Paläomagnetische Chronologie</div>
-    
-    <div class="equipment-list">
-        <div class="equipment-item">
-            <h4>Magnetische Polaritätsumkehrungen</h4>
-            <p>Aufzeichnung der Nord-Süd-Polaritätsumkehrungen des Erdmagnetfeldes. Magnetische Streifenmuster durch Ozeanbodenspreizung werden Standard für Spreizungsgeschwindigkeiten und Altersbestimmung.</p>
-        </div>
-        <div class="equipment-item">
-            <h4>Magnetostratigraphie</h4>
-            <p>Alterskorrelation durch Magnetisierungsrichtungen in Sediment- und Vulkangesteinen. Standardmagnetische Polaritätszeitskala (GPTS) ermöglicht hochauflösende Altersbestimmung.</p>
-        </div>
-    </div>
-    
-    <div class="section-title">📚 Stratigraphische Altersbestimmung</div>
-    
-    <ul>
-        <li><strong>Lagerungsgesetz:</strong> Untere Schichten sind älter als obere Grundprinzip</li>
-        <li><strong>Gleichzeitigkeitsprinzip:</strong> Gleiche Lithofazies und Fossilvergesellschaftungen zeigen Gleichzeitigkeit</li>
-        <li><strong>Intrusion sbeziehungen:</strong> Intrusivkörper sind jünger als durchschlagene Gesteine</li>
-        <li><strong>Einschlussbeziehungen:</strong> Eingeschlossene Gesteinsfragmente sind älter als einschließende Gesteine</li>
-    </ul>
-    
-    <div class="tip-box">
-        <div class="tip-title">🦕 Biostratigraphie</div>
-        Altersbestimmung durch evolutionäre Fossilveränderungen. Auftauchen und Aussterben von Leitfossilien setzt geologische Zeitunterteilungen fest und wird Standard für globale Korrelation.
-    </div>
-    
-    <div class="section-title">🔍 Fortschritte in Datierungstechnologien</div>
-    
-    <div class="equipment-list">
-        <div class="equipment-item">
-            <h4>SIMS (Sekundärionen-Massenspektrometrie)</h4>
-            <p>Mikrobereiche-Isotopenanalyse durch Ionenstrahlbestrahlung. Teilweise Altersbestimmung von Zirkonkörnern ermöglicht komplexe Thermalgeschichtsanalyse.</p>
-        </div>
-        <div class="equipment-item">
-            <h4>LA-ICP-MS</h4>
-            <p>Laserablation-induktiv gekoppelte Plasma-Massenspektrometrie. Hochgeschwindigkeits-, hochpräzise Mikrobereiche-Altersbestimmung ermöglicht effiziente Analyse großer Probenmengen.</p>
-        </div>
-        <div class="equipment-item">
-            <h4>TIMS (Thermale Ionisations-Massenspektrometrie)</h4>
-            <p>Hochtemperaturheizungs-Ionisations-Massenspektrometrie. Höchstpräzise Isotopenverhältnismessungen als Standardanalysemethode der Geochronologie etabliert.</p>
-        </div>
-    </div>
-    
-    <div class="section-title">📊 Geologische Zeitskala</div>
-    
-    <div class="equipment-list">
-        <div class="equipment-item">
-            <h4>Äonen, Ären, Perioden</h4>
-            <p>Hierarchische Struktur von größten bis mittleren Unterteilungen. Großunterteilungen wie Phanerozoikum, Mesozoikum, Paläozoikum systematisieren Erdgeschichte.</p>
-        </div>
-        <div class="equipment-item">
-            <h4>Epochen, Zeitalter, Stufen</h4>
-            <p>Detaillierte Zeitunterteilungen durch präzise Altersrahmen. Massenaussterben, Evolutionsereignisse und Klimaveränderungen setzen Grenzen fest.</p>
-        </div>
-    </div>
-    
-    <div class="section-title">🌍 Hauptereignisse der Erdgeschichte</div>
-    
-    <ul>
-        <li><strong>Erdbildung:</strong> Vor 4,567 Milliarden Jahren Sonnensystemplanetesimalakkumulation</li>
-        <li><strong>Lebensentstehung:</strong> Vor etwa 3,8 Milliarden Jahren älteste Lebensspuren</li>
-        <li><strong>Atmosphärenoxidation:</strong> Vor 2,4-2,1 Milliarden Jahren großes Oxidationsereignis</li>
-        <li><strong>Kambrische Explosion:</strong> Vor 540 Millionen Jahren schnelle mehrzellige Organismenentwicklung</li>
-    </ul>
-    
-    <div class="section-title">⚗️ Isotopengeochemie</div>
-    
-    <div class="equipment-list">
-        <div class="equipment-item">
-            <h4>Stabile Isotope</h4>
-            <p>δ¹⁸O-, δ¹³C-Veränderungen für paläoklimatische und paläoozeanische Rekonstruktion. Isotopenfraktionierung quantifiziert Temperatur, Salzgehalt und biologische Aktivität.</p>
-        </div>
-        <div class="equipment-item">
-            <h4>Radiogene Isotope</h4>
-            <p>⁸⁷Sr/⁸⁶Sr-, ¹⁴³Nd/¹⁴⁴Nd-Verhältnisse für Materialkreislauf- und Mantelentwicklungsanalyse. Geochemische Reservoiridentifikation und Evolutionsgeschichtsrekonstruktion.</p>
-        </div>
-    </div>
-    
-    <div class="section-title">📚 Anwendungsbereiche</div>
-    
-    <div class="main-text">
-        Geochronologie wird als Grundlagentechnologie in vielen Bereichen genutzt: Strukturgeologie, Paläoklimatologie, Planetenwissenschaften, Archäologie, Kerngeologie etc. Sie liefert Zeitachsen für Erdsysteme und stellt weiterhin unverzichtbare Informationen für das Verständnis dynamischer Prozesse bereit.
-    </div>
-    
-</div>
-<script src="../../language-redirect.js"></script>
+
+    <script>
+        // Zeit aktualisieren
+        function updateTime() {
+            const now = new Date();
+            const timeString = now.getHours().toString().padStart(2, '0') + ':' + 
+                             now.getMinutes().toString().padStart(2, '0');
+            const timeElement = document.getElementById('current-time');
+            if (timeElement) {
+                timeElement.textContent = timeString;
+            }
+        }
+        
+        // Lesefortschritt simulieren
+        function updateProgress() {
+            const scrolled = window.pageYOffset;
+            const maxHeight = document.body.scrollHeight - window.innerHeight;
+            const progress = Math.min((scrolled / maxHeight) * 100, 100);
+            const progressFill = document.querySelector('.progress-fill');
+            if (progressFill) {
+                progressFill.style.width = progress + '%';
+            }
+        }
+        
+        // Initialisierung
+        updateTime();
+        setInterval(updateTime, 60000);
+        
+        window.addEventListener('scroll', updateProgress);
+        updateProgress();
+    </script>
 </body>
 </html>

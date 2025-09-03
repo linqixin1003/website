@@ -275,3 +275,561 @@
     </div>
 </body>
 </html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>결정 구조와 특성 - BirdAiSnap</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                        url('../../images/rock/Rock&Mineral_Science/02_Mineral_Crystallography.webp') center/cover;
+            position: relative;
+            margin-top: 0;
+        }
+        
+        .content {
+            background: white;
+            margin: -30px 20px 20px 20px;
+            border-radius: 20px;
+            padding: 30px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            min-height: 80vh;
+        }
+        
+        .title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            margin-top: 15px;
+            line-height: 1.3;
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            border-left: 4px solid #2196f3;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .quote-box::before {
+            content: '"';
+            font-size: 48px;
+            color: #2196f3;
+            position: absolute;
+            top: -5px;
+            left: 15px;
+            font-family: serif;
+            line-height: 1;
+        }
+        
+        .quote-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: #0d47a1;
+            margin-left: 25px;
+            line-height: 1.4;
+        }
+        
+        .main-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            margin: 20px 0;
+            text-align: justify;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #2196f3;
+            margin: 30px 0 15px 0;
+            border-bottom: 2px solid #64b5f6;
+            padding-bottom: 8px;
+        }
+        
+        .equipment-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .equipment-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .equipment-item h4 {
+            color: #2196f3;
+            margin-bottom: 8px;
+        }
+        
+        ul {
+            margin: 15px 0;
+            padding-left: 25px;
+        }
+        
+        li {
+            margin: 8px 0;
+            line-height: 1.6;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                margin: -20px 10px 10px 10px;
+                padding: 20px 15px;
+            }
+            
+            .title {
+                font-size: 20px;
+            }
+            
+            .equipment-list {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Mineral Science Theme - Blue */
+        :root {
+            --primary-color: #2196F3;
+            --primary-dark: #0D47A1;
+            --primary-light: #E3F2FD;
+            --accent-color: #64B5F6;
+        }
+        
+        .content {
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+            border: 2px solid var(--primary-color);
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, var(--primary-light), #BBDEFB);
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .quote-text {
+            color: var(--primary-dark);
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+        }
+        
+        .equipment-item {
+            border: 1px solid var(--accent-color);
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+        }
+        
+        .equipment-item h4 {
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-image"></div>
+    <div class="content">
+        <h1 class="title">결정 구조와 특성</h1>
+        
+        <div class="quote-box">
+            <div class="quote-text">전문 과학 가이드</div>
+        </div>
+        
+        <div class="main-text">
+            결정학은 광물의 기본적인 물리적, 화학적 특성을 결정하는 3차원 원자 배열과 대칭 관계를 밝혀내어, 내부 구조와 관찰 가능한 거시적 행동 사이의 직접적인 연결을 확립합니다.
+        </div>
+        
+        <div class="section-title">🔍 결정학적 원리</div>
+        
+        <div class="main-text">
+            결정 구조는 광물 특성을 정의하는 반복적인 기하학적 패턴에 따라 원자를 조직화합니다:
+        </div>
+        
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>결정 격자</h4>
+                <p>일곱 결정계를 정의하는 원자의 3차원 주기적 배열: 입방, 정방, 사방, 육방, 삼방, 단사, 삼사정계. 각 계는 특정한 기하학적 제약을 나타냅니다.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>대칭 연산</h4>
+                <p>구조를 불변으로 유지하는 회전, 반사, 역전, 병진. 3차원 공간에서 가능한 모든 대칭을 기술하는 230개의 결정학적 공간군으로 결합됩니다.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>격자 매개변수</h4>
+                <p>단위격자를 특성화하는 치수 a, b, c와 각도 α, β, γ. 밀도, 광학적 및 기계적 특성을 결정합니다. 열적 및 압력 변화가 이러한 매개변수를 수정합니다.</p>
+            </div>
+        </div>
+        
+        <div class="section-title">⚛️ 결정질 화학 결합</div>
+        
+        <div class="main-text">
+            결합 유형이 결정상의 구조와 특성을 제어합니다:
+        </div>
+        
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>이온 결합</h4>
+                <p>반대 전하를 가진 이온 간의 정전기적 상호작용. 산화물, 황화물, 할로겐화물의 전형. 높은 경도, 융점 및 유전 특성을 결정합니다.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>공유 결합</h4>
+                <p>인접한 원자 간의 전자 공유. 자연 원소(다이아몬드, 흑연)와 일부 규산염의 특징. 예외적인 경도와 특성의 현저한 이방성을 부여합니다.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>금속 결합</h4>
+                <p>금속 양이온을 결합하는 탈국소화된 전자의 바다. 전기/열 전도성, 가단성 및 금속 광택의 원인. 전자 밀도가 광학적 특성을 결정합니다.</p>
+            </div>
+        </div>
+        
+        <div class="section-title">📐 다면체 기하학</div>
+        
+        <div class="main-text">
+            원자 배위와 다면체 기하학이 구조적 안정성을 결정합니다:
+        </div>
+        
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>SiO₄ 사면체</h4>
+                <p>4배위의 Si⁴⁺를 가진 규산염의 기본 단위. 꼭짓점, 모서리 또는 면의 공유가 다양한 위상을 생성: 네소규산염, 이노규산염, 층상규산염, 골격규산염.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>MO₆ 팔면체</h4>
+                <p>전이 양이온의 전형적인 6배위. Jahn-Teller 왜곡이 규칙적 기하학을 수정합니다. 산화물과 수산화물에서 꼭짓점/모서리를 통한 연결.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>배위 다면체</h4>
+                <p>양이온 크기와 전하에 따른 다양한 기하학: 삼각형, 사면체, 팔면체, 입방체. Pauling 규칙이 안정한 배열과 구조적 불안정성을 예측합니다.</p>
+            </div>
+        </div>
+        
+        <div class="section-title">🔬 구조 분석 기법</div>
+        
+        <div class="main-text">
+            현대 실험 방법들이 상세한 원자 조직을 밝혀냅니다:
+        </div>
+        
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>X선 회절</h4>
+                <p>X선/물질 상호작용이 Bragg 법칙으로 원자 위치를 밝혀냅니다. Rietveld 정제가 정밀한 구조 매개변수를 결정합니다.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>진동 분광학</h4>
+                <p>IR과 Raman이 구조 그룹의 특징적인 분자 진동을 탐사합니다. SiO₄ 사면체의 신축/변형 모드가 진단적입니다.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>전자 현미경</h4>
+                <p>원자 분해능이 결함, 계면, 나노상을 밝혀냅니다. HRTEM이 결정 격자를 직접 이미징합니다.</p>
+            </div>
+        </div>
+        
+        <div class="section-title">📚 추가 연구</div>
+        
+        <div class="main-text">
+            결정학 숙달은 고체 물리학, 구조 화학 및 실험 기법을 결합한 다학제적 교육이 필요합니다. 정기적인 구조 결정 실습과 회절 데이터 해석이 필수적인 분석 전문성을 개발합니다.
+        </div>
+    </div>
+</body>
+</html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>결정 구조와 특성 - BirdAiSnap</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                        url('../../images/rock/Rock&Mineral_Science/02_Mineral_Crystallography.webp') center/cover;
+            position: relative;
+            margin-top: 0;
+        }
+        
+        .content {
+            background: white;
+            margin: -30px 20px 20px 20px;
+            border-radius: 20px;
+            padding: 30px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            min-height: 80vh;
+        }
+        
+        .title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            margin-top: 15px;
+            line-height: 1.3;
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            border-left: 4px solid #2196f3;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .quote-box::before {
+            content: '"';
+            font-size: 48px;
+            color: #2196f3;
+            position: absolute;
+            top: -5px;
+            left: 15px;
+            font-family: serif;
+            line-height: 1;
+        }
+        
+        .quote-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: #0d47a1;
+            margin-left: 25px;
+            line-height: 1.4;
+        }
+        
+        .main-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            margin: 20px 0;
+            text-align: justify;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #2196f3;
+            margin: 30px 0 15px 0;
+            border-bottom: 2px solid #64b5f6;
+            padding-bottom: 8px;
+        }
+        
+        .equipment-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .equipment-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .equipment-item h4 {
+            color: #2196f3;
+            margin-bottom: 8px;
+        }
+        
+        ul {
+            margin: 15px 0;
+            padding-left: 25px;
+        }
+        
+        li {
+            margin: 8px 0;
+            line-height: 1.6;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                margin: -20px 10px 10px 10px;
+                padding: 20px 15px;
+            }
+            
+            .title {
+                font-size: 20px;
+            }
+            
+            .equipment-list {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Mineral Science Theme - Blue */
+        :root {
+            --primary-color: #2196F3;
+            --primary-dark: #0D47A1;
+            --primary-light: #E3F2FD;
+            --accent-color: #64B5F6;
+        }
+        
+        .content {
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+            border: 2px solid var(--primary-color);
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, var(--primary-light), #BBDEFB);
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .quote-text {
+            color: var(--primary-dark);
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+        }
+        
+        .equipment-item {
+            border: 1px solid var(--accent-color);
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+        }
+        
+        .equipment-item h4 {
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-image"></div>
+    <div class="content">
+        <h1 class="title">결정 구조와 특성</h1>
+        
+        <div class="quote-box">
+            <div class="quote-text">전문 과학 가이드</div>
+        </div>
+        
+        <div class="main-text">
+            결정학은 광물의 기본적인 물리적, 화학적 특성을 결정하는 3차원 원자 배열과 대칭 관계를 밝혀내어, 내부 구조와 관찰 가능한 거시적 행동 사이의 직접적인 연결을 확립합니다.
+        </div>
+        
+        <div class="section-title">🔍 결정학적 원리</div>
+        
+        <div class="main-text">
+            결정 구조는 광물 특성을 정의하는 반복적인 기하학적 패턴에 따라 원자를 조직화합니다:
+        </div>
+        
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>결정 격자</h4>
+                <p>일곱 결정계를 정의하는 원자의 3차원 주기적 배열: 입방, 정방, 사방, 육방, 삼방, 단사, 삼사정계. 각 계는 특정한 기하학적 제약을 나타냅니다.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>대칭 연산</h4>
+                <p>구조를 불변으로 유지하는 회전, 반사, 역전, 병진. 3차원 공간에서 가능한 모든 대칭을 기술하는 230개의 결정학적 공간군으로 결합됩니다.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>격자 매개변수</h4>
+                <p>단위격자를 특성화하는 치수 a, b, c와 각도 α, β, γ. 밀도, 광학적 및 기계적 특성을 결정합니다. 열적 및 압력 변화가 이러한 매개변수를 수정합니다.</p>
+            </div>
+        </div>
+        
+        <div class="section-title">⚛️ 결정질 화학 결합</div>
+        
+        <div class="main-text">
+            결합 유형이 결정상의 구조와 특성을 제어합니다:
+        </div>
+        
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>이온 결합</h4>
+                <p>반대 전하를 가진 이온 간의 정전기적 상호작용. 산화물, 황화물, 할로겐화물의 전형. 높은 경도, 융점 및 유전 특성을 결정합니다.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>공유 결합</h4>
+                <p>인접한 원자 간의 전자 공유. 자연 원소(다이아몬드, 흑연)와 일부 규산염의 특징. 예외적인 경도와 특성의 현저한 이방성을 부여합니다.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>금속 결합</h4>
+                <p>금속 양이온을 결합하는 탈국소화된 전자의 바다. 전기/열 전도성, 가단성 및 금속 광택의 원인. 전자 밀도가 광학적 특성을 결정합니다.</p>
+            </div>
+        </div>
+        
+        <div class="section-title">📐 다면체 기하학</div>
+        
+        <div class="main-text">
+            원자 배위와 다면체 기하학이 구조적 안정성을 결정합니다:
+        </div>
+        
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>SiO₄ 사면체</h4>
+                <p>4배위의 Si⁴⁺를 가진 규산염의 기본 단위. 꼭짓점, 모서리 또는 면의 공유가 다양한 위상을 생성: 네소규산염, 이노규산염, 층상규산염, 골격규산염.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>MO₆ 팔면체</h4>
+                <p>전이 양이온의 전형적인 6배위. Jahn-Teller 왜곡이 규칙적 기하학을 수정합니다. 산화물과 수산화물에서 꼭짓점/모서리를 통한 연결.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>배위 다면체</h4>
+                <p>양이온 크기와 전하에 따른 다양한 기하학: 삼각형, 사면체, 팔면체, 입방체. Pauling 규칙이 안정한 배열과 구조적 불안정성을 예측합니다.</p>
+            </div>
+        </div>
+        
+        <div class="section-title">🔬 구조 분석 기법</div>
+        
+        <div class="main-text">
+            현대 실험 방법들이 상세한 원자 조직을 밝혀냅니다:
+        </div>
+        
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>X선 회절</h4>
+                <p>X선/물질 상호작용이 Bragg 법칙으로 원자 위치를 밝혀냅니다. Rietveld 정제가 정밀한 구조 매개변수를 결정합니다.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>진동 분광학</h4>
+                <p>IR과 Raman이 구조 그룹의 특징적인 분자 진동을 탐사합니다. SiO₄ 사면체의 신축/변형 모드가 진단적입니다.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>전자 현미경</h4>
+                <p>원자 분해능이 결함, 계면, 나노상을 밝혀냅니다. HRTEM이 결정 격자를 직접 이미징합니다.</p>
+            </div>
+        </div>
+        
+        <div class="section-title">📚 추가 연구</div>
+        
+        <div class="main-text">
+            결정학 숙달은 고체 물리학, 구조 화학 및 실험 기법을 결합한 다학제적 교육이 필요합니다. 정기적인 구조 결정 실습과 회절 데이터 해석이 필수적인 분석 전문성을 개발합니다.
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
+
+

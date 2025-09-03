@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Kristallbildung und Wachstum - BirdAiSnap</title>
-<link href="../../mobile-styles.css" rel="stylesheet"/>
-<link href="../../mobile-enhancement.css" rel="stylesheet"/>
-<link href="../../ecology-theme.css" rel="stylesheet"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kristallbildung & Wachstum - BirdAiSnap</title>
     <style>
-        /* Rock Formation Theme - Red */
-        :root {
-            --primary-color: #FF5722;
-            --primary-dark: #BF360C;
-            --primary-light: #FFEBE8;
-            --accent-color: #FF8A65;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
         
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+
         .hero-image {
             width: 100%;
             height: 400px;
@@ -26,159 +27,379 @@
         }
         
         .content {
-            background: linear-gradient(135deg, #ffffff, var(--primary-light));
-            border: 2px solid var(--primary-color);
-            padding: 50px 35px 40px 35px !important;
-            margin: -30px 15px 20px 15px !important;
-            max-width: 1200px;
-            margin-left: auto !important;
-            margin-right: auto !important;
+            background: white;
+            margin: -30px 20px 20px 20px;
+            border-radius: 20px;
+            padding: 30px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            min-height: 80vh;
         }
         
-        .quote-box, .tip-box, .equipment-item {
-            border: 1px solid var(--accent-color);
-            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+        .title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            margin-top: 15px;
+            line-height: 1.3;
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, #f3e5f5, #e1bee7);
+            border-left: 4px solid #9c27b0;
             padding: 20px;
-            margin: 15px 0;
+            margin: 25px 0;
             border-radius: 8px;
+            position: relative;
         }
         
-        .quote-text, .tip-title, .equipment-item h4 {
-            color: var(--primary-color);
-            font-weight: 600;
-            margin-bottom: 10px;
+        .quote-box::before {
+            content: '"';
+            font-size: 48px;
+            color: #9c27b0;
+            position: absolute;
+            top: -5px;
+            left: 15px;
+            font-family: serif;
+            line-height: 1;
+        }
+        
+        .quote-text {
             font-size: 18px;
+            font-weight: 600;
+            color: #6a1b9a;
+            margin-left: 25px;
+            line-height: 1.4;
+        }
+        
+        .main-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            margin: 20px 0;
+            text-align: justify;
         }
         
         .section-title {
-            color: var(--primary-color);
-            border-bottom: 2px solid var(--accent-color);
-            padding-bottom: 10px;
-            font-size: 24px;
-            font-weight: 700;
-            margin: 35px 0 20px 0;
+            font-size: 20px;
+            font-weight: 600;
+            color: #9c27b0;
+            margin: 30px 0 15px 0;
+            border-bottom: 2px solid #e1bee7;
+            padding-bottom: 8px;
         }
         
-        .main-text { margin: 25px 0; line-height: 1.7; }
-        .category { background: var(--primary-color); color: white; }
-        ul, ol { padding-left: 25px; margin: 15px 0; }
-        li { margin: 8px 0; line-height: 1.6; }
+        .tip-box {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            border-left: 4px solid #28a745;
+        }
+        
+        .tip-title {
+            font-weight: 600;
+            color: #28a745;
+            margin-bottom: 8px;
+        }
+        
+        .highlight {
+            background: linear-gradient(135deg, #f1f8e9, #e8f5e8);
+            border-left: 4px solid #4caf50;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .warning {
+            background: #fff3cd;
+            border-left: 4px solid #f44336;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .warning-title {
+            font-weight: 600;
+            color: #f44336;
+            margin-bottom: 8px;
+        }
+        
+        .equipment-list {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .equipment-item {
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+        
+        .equipment-item h4 {
+            color: #9c27b0;
+            margin-bottom: 8px;
+        }
+        
+        ul {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+        
+        li {
+            margin: 8px 0;
+            line-height: 1.6;
+        }
+        
+        .emoji {
+            font-size: 1.2em;
+        }
+        
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: #e0e0e0;
+            z-index: 1000;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #9c27b0, #e1bee7);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #9c27b0, #ba68c8);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
     </style>
 </head>
 <body>
-<div class="hero-image"></div>
-<div class="content">
-    <h1 class="title">Kristallbildung und Wachstum</h1>
-    
-    <div class="quote-box">
-        <div class="quote-text">Ordnungsschöpfung auf atomarer Ebene</div>
-    </div>
-    
-    <div class="main-text">
-        Kristallbildung ist der Prozess der regelmäßigen Festkörperbildung durch dreidimensionale Ordnungsanordnung von Atomen und Ionen. Kontrolliert durch Keimbildung, Wachstum und Reifung bestimmen Oberflächenenergie, Diffusion und Reaktionskinetik die finale Kristallform und -eigenschaften<span class="emoji">💎</span>.
-    </div>
-    
-    <div class="article-meta">
-        <span class="category">Kristallkunde</span>
-        <span class="read-time">📖 22 Minuten Lesezeit</span>
-        <span class="difficulty">🟡 Mittelstufe</span>
-    </div>
-    
-    <div class="section-title">🔬 Keimbildungstheorie</div>
-    
-    <div class="equipment-list">
-        <div class="equipment-item">
-            <h4>Homogene Keimbildung</h4>
-            <p>Spontane Keimbildung in übersättigten Lösungen oder unterkühlten Schmelzen. Stabile Kerne entstehen durch probabilistische Fluktuationen über kritische Keimgröße hinaus, danach beginnt Wachstum.</p>
+    <div class="hero-image"></div>
+    <div class="content">
+        <h1 class="title">Kristallbildung & Wachstum</h1>
+        <div class="quote-box">
+            <div class="quote-text">Die atomaren Prozesse der Kristallisation und Strukturentwicklung verstehen</div>
         </div>
-        <div class="equipment-item">
-            <h4>Heterogene Keimbildung</h4>
-            <p>Keimbildung auf existierenden Oberflächen (Substrat, Verunreinigungen). Oberflächenenergieverringerung senkt Aktivierungsenergie und tritt bei niedrigerer Übersättigung als homogene Keimbildung auf.</p>
+        <div class="main-text">
+            Kristallbildung und -wachstum umfassen die geordnete Anordnung von Atomen, Ionen oder Molekülen in periodische dreidimensionale Strukturen durch Nukleationsprozesse und nachfolgendes Wachstum, gesteuert durch thermodynamische Triebkräfte, kinetische Faktoren und Grenzflächenenergie-Minimierung.
+        </div>
+
+        <div class="section-title">💎 Grundlagen der Kristallisation</div>
+        <div class="main-text">
+            Kristallisation ist der Prozess der Bildung geordneter kristalliner Strukturen aus ungeordneten Phasen wie Schmelzen, Lösungen oder Gasen. Dieser fundamentale Prozess bestimmt die Eigenschaften und Strukturen aller kristallinen Materialien.
+        </div>
+
+        <div class="tip-box">
+            <div class="tip-title">💡 Thermodynamische Triebkraft</div>
+            Kristallisation wird durch die Reduzierung der freien Energie des Systems angetrieben. Die Triebkraft ist die Differenz zwischen der freien Energie der ungeordneten und der geordneten Phase.
+        </div>
+
+        <div class="section-title">🌱 Nukleation - Kristallkeimbildung</div>
+        <div class="main-text">
+            Die Nukleation ist der erste Schritt der Kristallisation, bei dem stabile Kristallkeime aus der übersättigten Phase entstehen:
+        </div>
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>Homogene Nukleation</h4>
+                <p>Spontane Keimbildung in der Bulk-Phase ohne äußere Grenzflächen. Erfordert hohe Übersättigung aufgrund der Oberflächenenergie-Barriere.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Heterogene Nukleation</h4>
+                <p>Keimbildung an Grenzflächen, Fremdpartikeln oder Defekten. Niedrigere Aktivierungsenergie durch reduzierte Oberflächenenergie.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Sekundäre Nukleation</h4>
+                <p>Keimbildung durch mechanische Fragmentierung existierender Kristalle oder durch Oberflächenrauheit induzierte Nukleation.</p>
+            </div>
+        </div>
+
+        <div class="section-title">📈 Kristallwachstumsmechanismen</div>
+        <div class="main-text">
+            Nach der Nukleation wachsen Kristalle durch verschiedene Mechanismen:
+        </div>
+        <ul>
+            <li><strong>Schicht-für-Schicht-Wachstum:</strong> Sequenzielle Vervollständigung atomarer Schichten</li>
+            <li><strong>Schraubenversetzungswachstum:</strong> Spiralwachstum um Schraubenversetzungen</li>
+            <li><strong>Dendritsches Wachstum:</strong> Verzweigtes Wachstum bei hoher Übersättigung</li>
+            <li><strong>Sektorwachstum:</strong> Anisotropes Wachstum verschiedener Kristallflächen</li>
+        </ul>
+
+        <div class="highlight">
+            <strong>Burton-Cabrera-Frank-Theorie:</strong> Beschreibt das Kristallwachstum durch Oberflächendiffusion und Einbau an Kink-Sites entlang von Stufenkanten.
+        </div>
+
+        <div class="section-title">⚗️ Wachstumskinetik</div>
+        <div class="main-text">
+            Die Geschwindigkeit des Kristallwachstums wird durch verschiedene Faktoren kontrolliert:
+        </div>
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>Oberflächenreaktion</h4>
+                <p>Einbaurate von Bausteinen an der Kristall-Fluid-Grenzfläche. Abhängig von Oberflächenenergie und Bindungsstärke.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Diffusionskontrolle</h4>
+                <p>Transport von Komponenten zur wachsenden Oberfläche durch Diffusion in der umgebenden Phase.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Advektion</h4>
+                <p>Konvektiver Transport in Fluiden kann Diffusionslimitierung überwinden und Wachstumsraten erhöhen.</p>
+            </div>
+        </div>
+
+        <div class="section-title">🏗️ Kristallmorphologie</div>
+        <div class="main-text">
+            Die äußere Form von Kristallen wird durch die relative Wachstumsgeschwindigkeit verschiedener Kristallflächen bestimmt:
+        </div>
+        <ul>
+            <li><strong>Wulff-Konstruktion:</strong> Gleichgewichtsmorphologie basierend auf Oberflächenenergien</li>
+            <li><strong>Kinetische Formen:</strong> Morphologie unter Wachstumsbedingungen fernab vom Gleichgewicht</li>
+            <li><strong>Habit-Modifikation:</strong> Änderung der Kristallform durch Additives oder Lösungsmittel</li>
+            <li><strong>Tracht vs. Habitus:</strong> Unterscheidung zwischen möglichen und tatsächlichen Flächen</li>
+        </ul>
+
+        <div class="section-title">🔬 Defekte und Einschlüsse</div>
+        <div class="main-text">
+            Kristallwachstum ist selten perfekt und erzeugt charakteristische Defekte:
+        </div>
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>Punktdefekte</h4>
+                <p>Leerstellen, Zwischengitteratome und Substitutionsdefekte beeinflussen optische und mechanische Eigenschaften.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Liniendefekte</h4>
+                <p>Versetzungen ermöglichen plastische Deformation und beeinflussen Wachstumsmorphologie.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Flächendefekte</h4>
+                <p>Zwillingsgrenzen, Stapelfehler und Korngrenzen entstehen durch Wachstumsstörungen.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Flüssigkeitseinschlüsse</h4>
+                <p>Eingeschlossene Mutterlauge liefert Informationen über Bildungsbedingungen.</p>
+            </div>
+        </div>
+
+        <div class="section-title">🌡️ Umgebungseinflüsse</div>
+        <div class="main-text">
+            Kristallwachstum wird stark von den Umgebungsbedingungen beeinflusst:
+        </div>
+        <ul>
+            <li><strong>Temperatur:</strong> Beeinflusst Nukleationsrate, Wachstumsgeschwindigkeit und Morphologie</li>
+            <li><strong>Übersättigung:</strong> Treibende Kraft für Nukleation und Wachstum</li>
+            <li><strong>pH-Wert:</strong> Beeinflusst Löslichkeit und Oberflächenladung</li>
+            <li><strong>Ionenstärke:</strong> Elektrostatische Wechselwirkungen beeinflussen Wachstum</li>
+        </ul>
+
+        <div class="warning">
+            <div class="warning-title">⚠️ Oszillatorisches Wachstum</div>
+            Periodische Änderungen in den Wachstumsbedingungen können zu rhythmischer Zonierung und oszillatorischen Wachstumsmustern führen, die in natürlichen Kristallen häufig beobachtet werden.
+        </div>
+
+        <div class="section-title">🧪 Experimentelle Kristallzüchtung</div>
+        <div class="main-text">
+            Kontrollierte Kristallzüchtung ermöglicht das Studium von Wachstumsmechanismen:
+        </div>
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>Hydrothermale Synthese</h4>
+                <p>Kristallwachstum in wässrigen Lösungen bei erhöhten Temperaturen und Drücken. Simuliert natürliche Bedingungen.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Fluss-Methoden</h4>
+                <p>Verwendung von Flussmitteln zur Reduzierung der Kristallisationstemperatur und Kontrolle des Wachstums.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Vapor-Transport</h4>
+                <p>Kristallwachstum durch chemischen Transport in der Gasphase, wichtig für refraktäre Materialien.</p>
+            </div>
+        </div>
+
+        <div class="section-title">📊 Moderne Charakterisierung</div>
+        <div class="main-text">
+            Fortschrittliche Techniken zur Analyse von Kristallwachstumsprozessen:
+        </div>
+        <ul>
+            <li><strong>In-situ-Mikroskopie:</strong> Echtzeitbeobachtung von Wachstumsprozessen</li>
+            <li><strong>Atomkraftmikroskopie:</strong> Hochauflösende Oberflächenstrukturanalyse</li>
+            <li><strong>Röntgentopographie:</strong> Visualisierung von Kristalldefekten und Spannungen</li>
+            <li><strong>Neutronenstreuung:</strong> Strukturanalyse und Dynamik in kristallinen Systemen</li>
+        </ul>
+
+        <div class="section-title">🌍 Geologische Kristallisation</div>
+        <div class="main-text">
+            Natürliche Kristallbildung in geologischen Umgebungen:
+        </div>
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>Magmatische Kristallisation</h4>
+                <p>Kristallisation aus Silikatschmelzen bei hohen Temperaturen. Fraktionierte Kristallisation erzeugt Gesteinsdifferentiation.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Hydrothermale Kristallisation</h4>
+                <p>Kristallwachstum aus heißen wässrigen Lösungen in der Erdkruste. Bildung von Erzlagerstätten und Mineralgängen.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Metamorphe Rekristallisation</h4>
+                <p>Neubildung von Kristallen unter veränderten P-T-Bedingungen ohne Schmelzbildung.</p>
+            </div>
+        </div>
+
+        <div class="tip-box">
+            <div class="tip-title">🔮 Anwendungen</div>
+            Das Verständnis von Kristallwachstumsprozessen ist fundamental für Materialwissenschaften, Pharmazie, Elektronik und die Entwicklung funktionaler Kristalle mit maßgeschneiderten Eigenschaften.
         </div>
     </div>
-    
-    <div class="section-title">📈 Wachstumsmechanismen</div>
-    
-    <div class="equipment-list">
-        <div class="equipment-item">
-            <h4>Schichtwachstum</h4>
-            <p>Wachstum durch sequenzielle Atomschichtstapelung. BCF (Burton-Cabrera-Frank)-Mechanismus mit Schraubenversetzungen als Wachstumsquellen ermöglicht kontinuierliche Schichtversorgung.</p>
-        </div>
-        <div class="equipment-item">
-            <h4>Dendritisches Wachstum</h4>
-            <p>Verzweigungswachstum unter diffusionslimitierten Bedingungen. Gelöste Stoffe werden diffusionsbegrenzt, Spitzenteile wachsen bevorzugt und bilden fraktalartige komplexe Formen.</p>
+
+    <!-- Fortschrittsbalken -->
+    <div class="progress-container">
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
         </div>
     </div>
-    
-    <div class="section-title">⚗️ Bildungsumgebungen und -bedingungen</div>
-    
-    <div class="equipment-list">
-        <div class="equipment-item">
-            <h4>Kristallisation aus Magma</h4>
-            <p>Gleichgewichtskristallisation und fraktionierte Kristallisation mit Abkühlung. Keimbildungsdichte und Wachstumsgeschwindigkeit bestimmen die finale Textur, Abkühlungsgeschwindigkeit kontrolliert Korngröße.</p>
-        </div>
-        <div class="equipment-item">
-            <h4>Ausfällung aus Hydrothermallösungen</h4>
-            <p>Löslichkeitsverringerung durch Temperatur-, Druck- und pH-Veränderungen. Nach Erreichen der Übersättigung beginnt Keimbildung, kontinuierliche Materialversorgung ermöglicht Großkristallwachstum.</p>
-        </div>
-    </div>
-    
-    <div class="section-title">🎯 Kristallformen und Habitus</div>
-    
-    <ul>
-        <li><strong>Idiomorphe Kristalle:</strong> Perfekte Form umgeben von idealen Kristallflächen</li>
-        <li><strong>Hypidiomorphe Kristalle:</strong> Teilweise kristallflächenerhaltende Zwischenform</li>
-        <li><strong>Xenomorphe Kristalle:</strong> Unregelmäßige Form durch Interferenz mit Umgebung</li>
-        <li><strong>Hohlkristalle:</strong> Hohle, poröse Strukturen durch schnelles Wachstum</li>
-    </ul>
-    
-    <div class="tip-box">
-        <div class="tip-title">🔍 Zonierungsstrukturen</div>
-        Konzentrische oder oszillatorische Zonierung durch Zusammensetzungsänderungen während des Wachstums. Temperaturveränderungen, Diffusion und fraktionierte Kristallisation dokumentieren chemische Zusammensetzungsgradienten.
-    </div>
-    
-    <div class="section-title">🌡️ Temperatur- und Druckeinflüsse</div>
-    
-    <div class="equipment-list">
-        <div class="equipment-item">
-            <h4>Temperatureffekte</h4>
-            <p>Bei hohen Temperaturen wird Diffusion gefördert, grobkörnige Kristalle entstehen. Bei niedrigen Temperaturen dominiert Keimbildung, feinkörnige polykristalline Texturen entwickeln sich. Reaktionsgeschwindigkeiten werden durch Arrhenius-Gleichung kontrolliert.</p>
-        </div>
-        <div class="equipment-item">
-            <h4>Druckeffekte</h4>
-            <p>Bei hohem Druck werden Hochdichtephasen stabilisiert. Phasenübergänge verändern Kristallstrukturen, Polymorph-Wechselbeziehungen schreiten voran.</p>
-        </div>
-    </div>
-    
-    <div class="section-title">💧 Kristallisation aus Lösungen</div>
-    
-    <div class="equipment-list">
-        <div class="equipment-item">
-            <h4>Löslichkeitskontrolle</h4>
-            <p>Löslichkeit variiert mit Temperatur, Druck, pH und Ionenstärke. Nach Erreichen der Übersättigung beginnen Keimbildung und Wachstum, Ausfällung setzt sich bis zum Gleichgewicht fort.</p>
-        </div>
-        <div class="equipment-item">
-            <h4>Mitausfällung und Substitution</h4>
-            <p>Gleichzeitige Ausfällung und Gittersubstitution ähnlicher Ionen. Mischkristallbildung führt zu kontinuierlichen Zusammensetzungsveränderungen, Elementfraktionierung wird durch Verteilungskoeffizienten kontrolliert.</p>
-        </div>
-    </div>
-    
-    <div class="section-title">💎 Industrielle Anwendungen</div>
-    
-    <ul>
-        <li><strong>Halbleiterkristalle:</strong> Hochreine Einkristallherstellung von Silizium und Verbindungshalbleitern</li>
-        <li><strong>Optische Kristalle:</strong> Synthese von Laser- und nichtlinear-optischen Materialien</li>
-        <li><strong>Kunstedelsteine:</strong> Herstellung synthetischer Diamanten, Rubine und Saphire</li>
-        <li><strong>Funktionsmaterialien:</strong> Kristalldesign piezoelektrischer, magnetischer und supraleitender Materialien</li>
-    </ul>
-    
-    <div class="section-title">📚 Geologische Bedeutung</div>
-    
-    <div class="main-text">
-        Das Verständnis der Kristallbildung ist die Grundlage für Gesteinsentstehungslehre, Lagerstättenkunde und Geochemie. Durch Analyse von Kristallformen, -zusammensetzungen und -texturen werden Bildungsumgebungen, Temperaturgeschichte und chemische Evolution rekonstruiert und wichtige Hinweise zur Aufklärung dynamischer Prozesse des Erdsystems geliefert.
-    </div>
-    
-</div>
-<script src="../../language-redirect.js"></script>
+
+    <script>
+        // Zeit aktualisieren
+        function updateTime() {
+            const now = new Date();
+            const timeString = now.getHours().toString().padStart(2, '0') + ':' + 
+                             now.getMinutes().toString().padStart(2, '0');
+            const timeElement = document.getElementById('current-time');
+            if (timeElement) {
+                timeElement.textContent = timeString;
+            }
+        }
+        
+        // Lesefortschritt simulieren
+        function updateProgress() {
+            const scrolled = window.pageYOffset;
+            const maxHeight = document.body.scrollHeight - window.innerHeight;
+            const progress = Math.min((scrolled / maxHeight) * 100, 100);
+            const progressFill = document.querySelector('.progress-fill');
+            if (progressFill) {
+                progressFill.style.width = progress + '%';
+            }
+        }
+        
+        // Initialisierung
+        updateTime();
+        setInterval(updateTime, 60000);
+        
+        window.addEventListener('scroll', updateProgress);
+        updateProgress();
+    </script>
 </body>
 </html>

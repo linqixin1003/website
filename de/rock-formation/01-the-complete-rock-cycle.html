@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Der vollständige Gesteinskreislauf - BirdAiSnap</title>
-<link href="../../mobile-styles.css" rel="stylesheet"/>
-<link href="../../mobile-enhancement.css" rel="stylesheet"/>
-<link href="../../ecology-theme.css" rel="stylesheet"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Der vollständige Gesteinskreislauf - BirdAiSnap</title>
     <style>
-        /* Rock Formation Theme - Red */
-        :root {
-            --primary-color: #FF5722;
-            --primary-dark: #BF360C;
-            --primary-light: #FFEBE8;
-            --accent-color: #FF8A65;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
         
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+
         .hero-image {
             width: 100%;
             height: 400px;
@@ -26,262 +27,330 @@
         }
         
         .content {
-            background: linear-gradient(135deg, #ffffff, var(--primary-light));
-            border: 2px solid var(--primary-color);
-            padding: 50px 35px 40px 35px !important;
-            margin: -30px 15px 20px 15px !important;
-            max-width: 1200px;
-            margin-left: auto !important;
-            margin-right: auto !important;
+            background: white;
+            margin: -30px 20px 20px 20px;
+            border-radius: 20px;
+            padding: 30px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            min-height: 80vh;
+        }
+        
+        .title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            margin-top: 15px;
+            line-height: 1.3;
         }
         
         .quote-box {
-            background: linear-gradient(135deg, var(--primary-light), #FFCCBC);
-            border-left: 4px solid var(--primary-color);
+            background: linear-gradient(135deg, #f3e5f5, #e1bee7);
+            border-left: 4px solid #9c27b0;
             padding: 20px;
             margin: 25px 0;
             border-radius: 8px;
+            position: relative;
+        }
+        
+        .quote-box::before {
+            content: '"';
+            font-size: 48px;
+            color: #9c27b0;
+            position: absolute;
+            top: -5px;
+            left: 15px;
+            font-family: serif;
+            line-height: 1;
         }
         
         .quote-text {
-            color: var(--primary-dark);
             font-size: 18px;
             font-weight: 600;
-        }
-        
-        .section-title {
-            color: var(--primary-color);
-            border-bottom: 2px solid var(--accent-color);
-            padding-bottom: 10px;
-            font-size: 24px;
-            font-weight: 700;
-            margin: 35px 0 20px 0;
-        }
-        
-        .tip-box {
-            border-left: 4px solid var(--primary-color);
-            background: var(--primary-light);
-            padding: 20px;
-            margin: 25px 0;
-            border-radius: 8px;
-        }
-        
-        .tip-title {
-            color: var(--primary-color);
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-        
-        .equipment-item {
-            border: 1px solid var(--accent-color);
-            background: linear-gradient(135deg, #ffffff, var(--primary-light));
-            padding: 20px;
-            margin: 15px 0;
-            border-radius: 8px;
-        }
-        
-        .equipment-item h4 {
-            color: var(--primary-color);
-            margin-bottom: 10px;
-            font-size: 18px;
+            color: #6a1b9a;
+            margin-left: 25px;
+            line-height: 1.4;
         }
         
         .main-text {
-            margin: 25px 0;
-            line-height: 1.7;
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            margin: 20px 0;
+            text-align: justify;
         }
         
-        .category {
-            background: var(--primary-color);
-            color: white;
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #9c27b0;
+            margin: 30px 0 15px 0;
+            border-bottom: 2px solid #e1bee7;
+            padding-bottom: 8px;
+        }
+        
+        .tip-box {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            border-left: 4px solid #28a745;
+        }
+        
+        .tip-title {
+            font-weight: 600;
+            color: #28a745;
+            margin-bottom: 8px;
         }
         
         .highlight {
-            border-left: 4px solid var(--accent-color);
-            background: linear-gradient(135deg, #f1f8e9, var(--primary-light));
+            background: linear-gradient(135deg, #f1f8e9, #e8f5e8);
+            border-left: 4px solid #4caf50;
             padding: 15px;
             margin: 20px 0;
             border-radius: 8px;
         }
         
         .warning {
+            background: #fff3cd;
             border-left: 4px solid #f44336;
-            background: #ffebee;
-            padding: 20px;
-            margin: 25px 0;
+            padding: 15px;
+            margin: 20px 0;
             border-radius: 8px;
         }
         
         .warning-title {
             font-weight: 600;
-            color: #b71c1c;
-            margin-bottom: 10px;
+            color: #f44336;
+            margin-bottom: 8px;
         }
         
-        ul, ol {
-            padding-left: 25px;
+        .equipment-list {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .equipment-item {
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+        
+        .equipment-item h4 {
+            color: #9c27b0;
+            margin-bottom: 8px;
+        }
+        
+        ul {
             margin: 15px 0;
+            padding-left: 20px;
         }
         
         li {
             margin: 8px 0;
             line-height: 1.6;
         }
+        
+        .emoji {
+            font-size: 1.2em;
+        }
+        
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: #e0e0e0;
+            z-index: 1000;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #9c27b0, #e1bee7);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #9c27b0, #ba68c8);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
     </style>
 </head>
 <body>
-<div class="hero-image"></div>
-<div class="content">
-    <h1 class="title">Der vollständige Gesteinskreislauf</h1>
-    
-    <div class="quote-box">
-        <div class="quote-text">Die kontinuierliche Transformation der Erde verstehen</div>
-    </div>
-    
-    <div class="main-text">
-        Der Gesteinskreislauf repräsentiert ein dynamisches, gleichgewichtsgetriebenes System, das durch thermodynamische Prinzipien und kinetische Prozesse gesteuert wird, die über multiple zeitliche und räumliche Maßstäbe operieren. Dieses petrotektonische Framework demonstriert, wie lithologische Transformationen auf Veränderungen in Druck-Temperatur-Zeit-Pfaden, Fluidchemie und tektonischen Spannungsregimen durch gekoppelte geochemische und mechanische Prozesse reagieren<span class="emoji">🔄</span>.
-    </div>
-    
-    <div class="article-meta">
-        <span class="category">Gesteinsentstehung</span>
-        <span class="read-time">📖 20 Minuten Lesezeit</span>
-        <span class="difficulty">🟡 Mittelstufe</span>
-    </div>
-    
-    <div class="section-title">🔄 Was ist der Gesteinskreislauf?</div>
-    
-    <div class="main-text">
-        Der Gesteinskreislauf beschreibt die dynamischen Übergänge durch geologische Zeit zwischen den drei Hauptgesteinstypen: magmatische, sedimentäre und metamorphe Gesteine. Dieses Konzept illustriert die Beziehungen zwischen diesen Gesteinstypen und den Prozessen, die einen Typ in einen anderen transformieren.
-    </div>
-    
-    <div class="tip-box">
-        <div class="tip-title">💡 Schlüsselkonzept</div>
-        Der Gesteinskreislauf hat keinen Anfang oder Ende - er ist ein kontinuierlicher Prozess, der seit Milliarden von Jahren operiert. Jeder Gesteinstyp kann durch die entsprechenden geologischen Prozesse in jeden anderen Gesteinstyp transformiert werden.
-    </div>
-    
-    <div class="section-title">🌋 Magmatische Gesteinsentstehung</div>
-    
-    <div class="main-text">
-        Magmatische Gesteine entstehen, wenn Magma oder Lava abkühlt und erstarrt. Dieser Prozess kann in zwei Hauptumgebungen auftreten:
-    </div>
-    
-    <div class="equipment-list">
-        <div class="equipment-item">
-            <h4>Plutonische Gesteine</h4>
-            <p>Entstehen wenn Magma langsam unter der Erdoberfläche abkühlt und grobkörnige Gesteine wie Granit und Gabbro bildet.</p>
+    <div class="hero-image"></div>
+    <div class="content">
+        <h1 class="title">Der vollständige Gesteinskreislauf</h1>
+        <div class="quote-box">
+            <div class="quote-text">Das Verständnis der kontinuierlichen Transformation der Erde</div>
         </div>
-        <div class="equipment-item">
-            <h4>Vulkanische Gesteine</h4>
-            <p>Entstehen wenn Lava schnell an der Erdoberfläche abkühlt und feinkörnige Gesteine wie Basalt und Rhyolith bildet.</p>
+        <div class="main-text">
+            Der Gesteinskreislauf stellt ein dynamisches, gleichgewichtsgesteuertes System dar, das von thermodynamischen Prinzipien und kinetischen Prozessen über mehrere zeitliche und räumliche Skalen hinweg gesteuert wird. Dieses petrotektonische Rahmenwerk zeigt, wie lithologische Transformationen auf Änderungen in Druck-Temperatur-Zeit-Pfaden, Fluidchemie und tektonischen Spannungsregimen durch gekoppelte geochemische und mechanische Prozesse reagieren.
+        </div>
+
+        <div class="section-title">🔄 Was ist der Gesteinskreislauf?</div>
+        <div class="main-text">
+            Der Gesteinskreislauf beschreibt die dynamischen Übergänge im Laufe der geologischen Zeit zwischen den drei Hauptgesteinsarten: magmatisch, sedimentär und metamorph. Dieses Konzept veranschaulicht die Beziehungen zwischen diesen Gesteinsarten und den Prozessen, die eine Art in eine andere umwandeln.
+        </div>
+
+        <div class="tip-box">
+            <div class="tip-title">💡 Schlüsselkonzept</div>
+            Der Gesteinskreislauf hat keinen Anfang und kein Ende – er ist ein kontinuierlicher Prozess, der seit Milliarden von Jahren abläuft. Jede Gesteinsart kann durch die entsprechenden geologischen Prozesse in jede andere Gesteinsart umgewandelt werden.
+        </div>
+
+        <div class="section-title">🌋 Bildung von magmatischen Gesteinen</div>
+        <div class="main-text">
+            Magmatische Gesteine entstehen, wenn Magma oder Lava abkühlt und erstarrt. Dieser Prozess kann in zwei Hauptumgebungen stattfinden:
+        </div>
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>Intrusive magmatische Gesteine</h4>
+                <p>Entstehen, wenn Magma langsam unter der Erdoberfläche abkühlt und grobkörnige Gesteine wie Granit und Gabbro bildet.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Extrusive magmatische Gesteine</h4>
+                <p>Entstehen, wenn Lava schnell an der Erdoberfläche abkühlt und feinkörnige Gesteine wie Basalt und Rhyolith bildet.</p>
+            </div>
+        </div>
+
+        <div class="section-title">🏔️ Bildung von Sedimentgesteinen</div>
+        <div class="main-text">
+            Sedimentgesteine entstehen durch die Prozesse der Verwitterung, Erosion, Ablagerung und Lithifizierung:
+        </div>
+        <ul>
+            <li><strong>Verwitterung:</strong> Physikalische und chemische Zersetzung bestehender Gesteine</li>
+            <li><strong>Erosion:</strong> Transport von verwittertem Material durch Wind, Wasser oder Eis</li>
+            <li><strong>Ablagerung:</strong> Absetzen von Sedimenten in Schichten</li>
+            <li><strong>Lithifizierung:</strong> Verdichtung und Zementierung von Sedimenten zu festem Gestein</li>
+        </ul>
+
+        <div class="highlight">
+            <strong>Beispiele:</strong> Sandstein, Kalkstein, Schiefer und Konglomerat sind häufige Sedimentgesteine, die durch diese Prozesse gebildet werden.
+        </div>
+
+        <div class="section-title">♻️ Bildung von metamorphen Gesteinen</div>
+        <div class="main-text">
+            Metamorphe Gesteine entstehen, wenn bestehende Gesteine Hitze, Druck oder chemisch aktiven Fluiden ausgesetzt werden, wodurch sie ohne Schmelzen rekristallisieren:
+        </div>
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>Kontaktmetamorphose</h4>
+                <p>Entwicklung eines thermischen Aureols durch konduktiven Wärmetransfer von magmatischen Intrusionen. Isochemische Rekristallisation tritt innerhalb von Temperaturgradienten von 300-800°C auf und erzeugt Hornfels-Fazies-Assoziationen mit Andalusit-Cordierit-Biotit-Mineralparagenesen in pelitischen Protolithen.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Regionale Metamorphose</h4>
+                <p>Orogen-Gürtel-weite Rekristallisation, angetrieben durch lithostatischen Druck und erhöhte geothermische Gradienten. Progressive Metamorphose folgt Barrovian-Sequenzen durch Granat-Staurolith-Kyanit-Sillimanit-Zonen, die zunehmende Druck-Temperatur-Bedingungen in kollisionalen tektonischen Umgebungen widerspiegeln.</p>
+            </div>
+        </div>
+
+        <div class="section-title">🔄 Kreislaufwege</div>
+        <div class="main-text">
+            Der Gesteinskreislauf zeigt, dass Gesteine mehrere Wege einschlagen können. Hier sind die wichtigsten Transformationen:
+        </div>
+        <ul>
+            <li><strong>Magmatisch → Sedimentär:</strong> Durch Verwitterung, Erosion und Ablagerung</li>
+            <li><strong>Magmatisch → Metamorph:</strong> Durch Hitze und Druck</li>
+            <li><strong>Sedimentär → Metamorph:</strong> Durch Hitze und Druck</li>
+            <li><strong>Sedimentär → Magmatisch:</strong> Durch vollständiges Schmelzen und erneutes Erstarren</li>
+            <li><strong>Metamorph → Magmatisch:</strong> Durch vollständiges Schmelzen und erneutes Erstarren</li>
+            <li><strong>Metamorph → Sedimentär:</strong> Durch Verwitterung, Erosion und Ablagerung</li>
+        </ul>
+
+        <div class="section-title">⚡ Treibende Kräfte</div>
+        <div class="main-text">
+            Mehrere geologische Prozesse treiben den Gesteinskreislauf an:
+        </div>
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>Plattentektonik</h4>
+                <p>Die Bewegung der lithosphärischen Platten der Erde schafft die Bedingungen für Metamorphose, Vulkanismus und Gebirgsbildung.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Sonnenenergie</h4>
+                <p>Treibt den Wasserkreislauf an, der Verwitterungs- und Erosionsprozesse steuert.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Innere Hitze</h4>
+                <p>Die innere Hitze der Erde treibt Magmabildung, Metamorphose und tektonische Prozesse an.</p>
+            </div>
+        </div>
+
+        <div class="section-title">🕰️ Zeitskalen</div>
+        <div class="main-text">
+            Der Gesteinskreislauf läuft über riesige Zeitskalen ab, von Tausenden bis zu Millionen von Jahren. Das Verständnis dieser Zeitskalen hilft Geologen, die Erdgeschichte zu interpretieren und zukünftige Veränderungen vorherzusagen.
+        </div>
+
+        <div class="tip-box">
+            <div class="tip-title">⏰ Geologische Zeit</div>
+            Vollständige Gesteinskreislauf-Transformationen erfordern typischerweise Millionen von Jahren, obwohl einige Prozesse wie Vulkanausbrüche neue magmatische Gesteine in Tagen oder Wochen erzeugen können.
+        </div>
+
+        <div class="section-title">🌍 Globale Bedeutung</div>
+        <div class="main-text">
+            Der Gesteinskreislauf hat tiefgreifende Auswirkungen auf:
+        </div>
+        <ul>
+            <li><strong>Natürliche Ressourcen:</strong> Bildung von Öl, Gas, Kohle und Mineralvorkommen</li>
+            <li><strong>Bodenbildung:</strong> Verwitterung von Gesteinen schafft fruchtbare Böden</li>
+            <li><strong>Klimaregulierung:</strong> Gesteinsverwitterung beeinflusst den atmosphärischen CO₂-Gehalt</li>
+            <li><strong>Landschaftsentwicklung:</strong> Formt die Oberflächenmerkmale der Erde im Laufe der Zeit</li>
+        </ul>
+
+        <div class="warning">
+            <div class="warning-title">🔬 Moderne Anwendungen</div>
+            Das Verständnis des Gesteinskreislaufs ist unerlässlich für die Erdölgeologie, den Bergbau, die Umweltwissenschaften und die Vorhersage geologischer Gefahren wie Erdbeben und Vulkanausbrüche.
+        </div>
+
+        <div class="section-title">📚 Weiterführende Informationen</div>
+        <div class="main-text">
+            Um Ihr Verständnis des Gesteinskreislaufs zu vertiefen, studieren Sie spezifische Beispiele in Ihrer lokalen Umgebung, untersuchen Sie Gesteinsproben und lernen Sie, die drei Hauptgesteinsarten zu identifizieren. Exkursionen zu geologischen Formationen bieten unschätzbare praktische Erfahrungen mit diesen Konzepten.
         </div>
     </div>
-    
-    <div class="section-title">🏔️ Sedimentäre Gesteinsentstehung</div>
-    
-    <div class="main-text">
-        Sedimentäre Gesteine entstehen durch die Prozesse der Verwitterung, Erosion, Ablagerung und Lithifikation:
-    </div>
-    
-    <ul>
-        <li><strong>Verwitterung:</strong> Physikalischer und chemischer Abbau bestehender Gesteine</li>
-        <li><strong>Erosion:</strong> Transport verwitterten Materials durch Wind, Wasser oder Eis</li>
-        <li><strong>Ablagerung:</strong> Absetzung von Sedimenten in Schichten</li>
-        <li><strong>Lithifikation:</strong> Kompaktion und Zementation von Sedimenten zu festem Gestein</li>
-    </ul>
-    
-    <div class="highlight">
-        <strong>Beispiele:</strong> Sandstein, Kalkstein, Schiefer und Konglomerat sind häufige sedimentäre Gesteine, die durch diese Prozesse entstehen.
-    </div>
-    
-    <div class="section-title">♻️ Metamorphe Gesteinsentstehung</div>
-    
-    <div class="main-text">
-        Metamorphe Gesteine entstehen, wenn bestehende Gesteine Hitze, Druck oder chemisch aktive Fluide ausgesetzt werden, wodurch sie ohne Schmelzung rekristallisieren:
-    </div>
-    
-    <div class="equipment-list">
-        <div class="equipment-item">
-            <h4>Kontaktmetamorphose</h4>
-            <p>Thermische Aureolen-Entwicklung durch konduktive Wärmeübertragung von magmatischen Intrusionen. Isochemische Rekristallisation tritt innerhalb von Temperaturgradienten von 300-800°C auf und produziert Hornfels-Fazies-Assoziationen mit Andalusit-Cordierit-Biotit-Mineral-Paragenesen in pelitischen Protolithen.</p>
-        </div>
-        <div class="equipment-item">
-            <h4>Regionalmetamorphose</h4>
-            <p>Orogen-maßstäbliche Rekristallisation angetrieben durch lithostatischen Druck und erhöhte geothermale Gradienten. Progressive Metamorphose folgt Barrow'schen Sequenzen durch Granat-Staurolith-Disthen-Sillimanit-Zonen, die zunehmende Druck-Temperatur-Bedingungen in kollisionären tektonischen Umgebungen reflektieren.</p>
+
+    <!-- 进度条 -->
+    <div class="progress-container">
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
         </div>
     </div>
-    
-    <div class="section-title">🔄 Kreislaufpfade</div>
-    
-    <div class="main-text">
-        Der Gesteinskreislauf zeigt, dass Gesteine mehrere Pfade folgen können. Hier sind die Haupttransformationen:
-    </div>
-    
-    <ul>
-        <li><strong>Magmatisch → Sedimentär:</strong> Durch Verwitterung, Erosion und Ablagerung</li>
-        <li><strong>Magmatisch → Metamorph:</strong> Durch Hitze und Druck</li>
-        <li><strong>Sedimentär → Metamorph:</strong> Durch Hitze und Druck</li>
-        <li><strong>Sedimentär → Magmatisch:</strong> Durch vollständiges Schmelzen und Wiedererstarren</li>
-        <li><strong>Metamorph → Magmatisch:</strong> Durch vollständiges Schmelzen und Wiedererstarren</li>
-        <li><strong>Metamorph → Sedimentär:</strong> Durch Verwitterung, Erosion und Ablagerung</li>
-    </ul>
-    
-    <div class="section-title">⚡ Antreibende Kräfte</div>
-    
-    <div class="main-text">
-        Mehrere geologische Prozesse treiben den Gesteinskreislauf an:
-    </div>
-    
-    <div class="equipment-list">
-        <div class="equipment-item">
-            <h4>Plattentektonik</h4>
-            <p>Die Bewegung der lithosphärischen Platten der Erde schafft die Bedingungen für Metamorphose, Vulkanismus und Gebirgsbildung.</p>
-        </div>
-        <div class="equipment-item">
-            <h4>Sonnenenergie</h4>
-            <p>Treibt den Wasserkreislauf an, der Verwitterungs- und Erosionsprozesse antreibt.</p>
-        </div>
-        <div class="equipment-item">
-            <h4>Innere Wärme</h4>
-            <p>Die innere Wärme der Erde treibt Magmabildung, Metamorphose und tektonische Prozesse an.</p>
-        </div>
-    </div>
-    
-    <div class="section-title">🕰️ Zeitskalen</div>
-    
-    <div class="main-text">
-        Der Gesteinskreislauf operiert über weite Zeitskalen, von Tausenden bis Millionen von Jahren. Das Verstehen dieser Zeitskalen hilft Geologen, die Erdgeschichte zu interpretieren und zukünftige Veränderungen vorherzusagen.
-    </div>
-    
-    <div class="tip-box">
-        <div class="tip-title">⏰ Geologische Zeit</div>
-        Vollständige Gesteinskreislauf-Transformationen erfordern typischerweise Millionen von Jahren, obwohl einige Prozesse wie Vulkanausbrüche neue magmatische Gesteine in Tagen oder Wochen schaffen können.
-    </div>
-    
-    <div class="section-title">🌍 Globale Bedeutung</div>
-    
-    <div class="main-text">
-        Der Gesteinskreislauf hat tiefgreifende Auswirkungen auf:
-    </div>
-    
-    <ul>
-        <li><strong>Natürliche Ressourcen:</strong> Entstehung von Öl-, Gas-, Kohle- und Mineralvorkommen</li>
-        <li><strong>Bodenbildung:</strong> Verwitterung von Gesteinen schafft fruchtbare Böden</li>
-        <li><strong>Klimaregulation:</strong> Gesteinsverwitterung beeinflusst atmosphärische CO₂-Niveaus</li>
-        <li><strong>Landschaftsentwicklung:</strong> Formt Erdoberflächenmerkmale über Zeit</li>
-    </ul>
-    
-    <div class="warning">
-        <div class="warning-title">🔬 Moderne Anwendungen</div>
-        Das Verstehen des Gesteinskreislaufs ist essentiell für Erdölgeologie, Bergbau, Umweltwissenschaften und die Vorhersage geologischer Gefahren wie Erdbeben und Vulkanausbrüche.
-    </div>
-    
-    <div class="section-title">📚 Weiterführendes Lernen</div>
-    
-    <div class="main-text">
-        Um Ihr Verständnis des Gesteinskreislaufs zu vertiefen, studieren Sie spezifische Beispiele in Ihrer lokalen Umgebung, untersuchen Sie Gesteinsproben und lernen Sie, die drei Hauptgesteinstypen zu identifizieren. Exkursionen zu geologischen Formationen bieten unschätzbare praktische Erfahrungen mit diesen Konzepten.
-    </div>
-    
-</div>
-<script src="../../language-redirect.js"></script>
+
+    <script>
+        // 更新时间
+        function updateTime() {
+            const now = new Date();
+            const timeString = now.getHours().toString().padStart(2, '0') + ':' + 
+                             now.getMinutes().toString().padStart(2, '0');
+            const timeElement = document.getElementById('current-time');
+            if (timeElement) {
+                timeElement.textContent = timeString;
+            }
+        }
+        
+        // 模拟阅读进度
+        function updateProgress() {
+            const scrolled = window.pageYOffset;
+            const maxHeight = document.body.scrollHeight - window.innerHeight;
+            const progress = Math.min((scrolled / maxHeight) * 100, 100);
+            const progressFill = document.querySelector('.progress-fill');
+            if (progressFill) {
+                progressFill.style.width = progress + '%';
+            }
+        }
+        
+        // 初始化
+        updateTime();
+        setInterval(updateTime, 60000);
+        
+        window.addEventListener('scroll', updateProgress);
+        updateProgress();
+    </script>
 </body>
 </html>

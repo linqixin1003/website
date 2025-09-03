@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Druck- und Temperatureffekte - BirdAiSnap</title>
-<link href="../../mobile-styles.css" rel="stylesheet"/>
-<link href="../../mobile-enhancement.css" rel="stylesheet"/>
-<link href="../../ecology-theme.css" rel="stylesheet"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Druck- & Temperatureffekte - BirdAiSnap</title>
     <style>
-        /* Rock Formation Theme - Red */
-        :root {
-            --primary-color: #FF5722;
-            --primary-dark: #BF360C;
-            --primary-light: #FFEBE8;
-            --accent-color: #FF8A65;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
         
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+
         .hero-image {
             width: 100%;
             height: 400px;
@@ -26,132 +27,356 @@
         }
         
         .content {
-            background: linear-gradient(135deg, #ffffff, var(--primary-light));
-            border: 2px solid var(--primary-color);
-            padding: 50px 35px 40px 35px !important;
-            margin: -30px 15px 20px 15px !important;
-            max-width: 1200px;
-            margin-left: auto !important;
-            margin-right: auto !important;
+            background: white;
+            margin: -30px 20px 20px 20px;
+            border-radius: 20px;
+            padding: 30px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            min-height: 80vh;
         }
         
-        .quote-box, .tip-box, .equipment-item {
-            border: 1px solid var(--accent-color);
-            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+        .title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            margin-top: 15px;
+            line-height: 1.3;
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, #f3e5f5, #e1bee7);
+            border-left: 4px solid #9c27b0;
             padding: 20px;
-            margin: 15px 0;
+            margin: 25px 0;
             border-radius: 8px;
+            position: relative;
         }
         
-        .quote-text, .tip-title, .equipment-item h4 {
-            color: var(--primary-color);
-            font-weight: 600;
-            margin-bottom: 10px;
+        .quote-box::before {
+            content: '"';
+            font-size: 48px;
+            color: #9c27b0;
+            position: absolute;
+            top: -5px;
+            left: 15px;
+            font-family: serif;
+            line-height: 1;
+        }
+        
+        .quote-text {
             font-size: 18px;
+            font-weight: 600;
+            color: #6a1b9a;
+            margin-left: 25px;
+            line-height: 1.4;
+        }
+        
+        .main-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            margin: 20px 0;
+            text-align: justify;
         }
         
         .section-title {
-            color: var(--primary-color);
-            border-bottom: 2px solid var(--accent-color);
-            padding-bottom: 10px;
-            font-size: 24px;
-            font-weight: 700;
-            margin: 35px 0 20px 0;
+            font-size: 20px;
+            font-weight: 600;
+            color: #9c27b0;
+            margin: 30px 0 15px 0;
+            border-bottom: 2px solid #e1bee7;
+            padding-bottom: 8px;
         }
         
-        .main-text { margin: 25px 0; line-height: 1.7; }
-        .category { background: var(--primary-color); color: white; }
-        ul, ol { padding-left: 25px; margin: 15px 0; }
-        li { margin: 8px 0; line-height: 1.6; }
+        .tip-box {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            border-left: 4px solid #28a745;
+        }
+        
+        .tip-title {
+            font-weight: 600;
+            color: #28a745;
+            margin-bottom: 8px;
+        }
+        
+        .highlight {
+            background: linear-gradient(135deg, #f1f8e9, #e8f5e8);
+            border-left: 4px solid #4caf50;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .warning {
+            background: #fff3cd;
+            border-left: 4px solid #f44336;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .warning-title {
+            font-weight: 600;
+            color: #f44336;
+            margin-bottom: 8px;
+        }
+        
+        .equipment-list {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .equipment-item {
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+        
+        .equipment-item h4 {
+            color: #9c27b0;
+            margin-bottom: 8px;
+        }
+        
+        ul {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+        
+        li {
+            margin: 8px 0;
+            line-height: 1.6;
+        }
+        
+        .emoji {
+            font-size: 1.2em;
+        }
+        
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: #e0e0e0;
+            z-index: 1000;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #9c27b0, #e1bee7);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #9c27b0, #ba68c8);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
     </style>
 </head>
 <body>
-<div class="hero-image"></div>
-<div class="content">
-    <h1 class="title">Druck- und Temperatureffekte</h1>
-    
-    <div class="quote-box">
-        <div class="quote-text">Gesteinsveränderungen unter Extrembedingungen</div>
-    </div>
-    
-    <div class="main-text">
-        Druck und Temperatur kontrollieren fundamental Mineralassoziationen, Texturen und physikalische Eigenschaften von Gesteinen. Thermodynamisches Gleichgewicht, Reaktionskinetik und Deformationsmechanismen treiben vielfältige geologische Prozesse von der Krustentiefe bis zur Oberfläche an<span class="emoji">⚡</span>.
-    </div>
-    
-    <div class="article-meta">
-        <span class="category">Metamorphose</span>
-        <span class="read-time">📖 19 Minuten Lesezeit</span>
-        <span class="difficulty">🟡 Mittelstufe</span>
-    </div>
-    
-    <div class="section-title">🌡️ Temperatureinflüsse</div>
-    
-    <div class="equipment-list">
-        <div class="equipment-item">
-            <h4>Mineralreaktionen</h4>
-            <p>Temperaturerhöhung fördert Entwässerungsreaktionen, Zersetzung und Rekristallisation. Nach der Arrhenius-Gleichung steigt die Reaktionsgeschwindigkeit exponentiell, wodurch Mineralphasenübergänge gefördert werden.</p>
+    <div class="hero-image"></div>
+    <div class="content">
+        <h1 class="title">Druck- & Temperatureffekte</h1>
+        <div class="quote-box">
+            <div class="quote-text">Die thermodynamischen Kräfte der Gesteinstransformation verstehen</div>
         </div>
-        <div class="equipment-item">
-            <h4>Kristallwachstum</h4>
-            <p>Unter Hochtemperaturbedingungen wird Atomdiffusion gefördert, wodurch Kristallgröße zunimmt. Kornvergröberung durch Korngrenzenwanderung und Ostwald-Reifung führt zu Texturhomogenisierung.</p>
+        <div class="main-text">
+            Druck- und Temperatureffekte steuern fundamentale petrogenetische Prozesse durch thermodynamische Gleichgewichte, Phasentransformationen und Rekristallisationsmechanismen, die die Mineralvergesellschaftungen, Texturen und strukturellen Eigenschaften von Gesteinen in verschiedenen geologischen Umgebungen bestimmen.
+        </div>
+
+        <div class="section-title">🌡️ Thermodynamische Grundlagen</div>
+        <div class="main-text">
+            Druck und Temperatur sind die primären thermodynamischen Variablen, die die Stabilität von Mineralphasen und die Geschwindigkeit geologischer Prozesse kontrollieren. Ihre Wechselwirkung bestimmt die Metamorphose, Magmagenese und Diagenese.
+        </div>
+
+        <div class="tip-box">
+            <div class="tip-title">💡 Grundprinzip</div>
+            Geologische Prozesse streben nach thermodynamischem Gleichgewicht unter gegebenen Druck-Temperatur-Bedingungen. Änderungen in diesen Parametern führen zu Mineralreaktionen und Texturveränderungen.
+        </div>
+
+        <div class="section-title">📊 Phasendiagramme und Stabilität</div>
+        <div class="main-text">
+            Phasendiagramme zeigen die Stabilitätsfelder von Mineralen und Mineralvergesellschaftungen als Funktion von Druck und Temperatur:
+        </div>
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>Unäre Systeme</h4>
+                <p>Polymorphe Übergänge einzelner Komponenten wie Al₂SiO₅ (Andalusit-Sillimanit-Kyanit) zeigen P-T-abhängige Mineralstabilität.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Binäre Systeme</h4>
+                <p>Zwei-Komponenten-Systeme wie Anorthit-Albit zeigen Mischkristallbildung und Solvus-Beziehungen unter verschiedenen P-T-Bedingungen.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Multikomponenten-Systeme</h4>
+                <p>Komplexe natürliche Systeme mit multiplen Phasen und Reaktionen, modelliert durch THERMOCALC und ähnliche Software.</p>
+            </div>
+        </div>
+
+        <div class="section-title">🔥 Temperatureffekte</div>
+        <div class="main-text">
+            Temperatur beeinflusst geologische Prozesse durch verschiedene Mechanismen:
+        </div>
+        <ul>
+            <li><strong>Aktivierungsenergie:</strong> Höhere Temperaturen beschleunigen Diffusion und Reaktionskinetik</li>
+            <li><strong>Atomare Mobilität:</strong> Erhöhte Schwingungsenergie ermöglicht Gitterdefekte und Rekristallisation</li>
+            <li><strong>Phasenübergänge:</strong> Temperatur-induzierte Polymorphie und Schmelzreaktionen</li>
+            <li><strong>Chemische Gleichgewichte:</strong> Temperaturabhängige Verteilungskoeffizienten</li>
+        </ul>
+
+        <div class="highlight">
+            <strong>Arrhenius-Beziehung:</strong> Die Reaktionsgeschwindigkeit steigt exponentiell mit der Temperatur: k = A·e^(-Ea/RT), wobei Ea die Aktivierungsenergie ist.
+        </div>
+
+        <div class="section-title">⚡ Druckeffekte</div>
+        <div class="main-text">
+            Druck beeinflusst Gesteinseigenschaften durch verschiedene Mechanismen:
+        </div>
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>Hydrostatischer Druck</h4>
+                <p>Gleichmäßiger allseitiger Druck führt zu Volumenreduzierung und Dichteerhöhung. Stabilisiert dichte Mineralphasen.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Deviatorischer Stress</h4>
+                <p>Ungleichmäßige Spannungsverteilung erzeugt gerichtete Texturen, Schieferung und bevorzugte Kristallorientierung.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Fluiddruck</h4>
+                <p>Porenfluiddruck reduziert effektiven Stress und beeinflusst Deformationsverhalten und Reaktionskinetik.</p>
+            </div>
+        </div>
+
+        <div class="section-title">🔄 Metamorphe Reaktionen</div>
+        <div class="main-text">
+            Druck-Temperatur-Änderungen treiben metamorphe Reaktionen an, die neue Mineralvergesellschaftungen erzeugen:
+        </div>
+        <ul>
+            <li><strong>Prograde Metamorphose:</strong> Zunehmende P-T-Bedingungen erzeugen höhergraduge Mineralvergesellschaftungen</li>
+            <li><strong>Retrograde Metamorphose:</strong> Abnehmende Bedingungen können Rückbildung verursachen</li>
+            <li><strong>Isobare Prozesse:</strong> Temperaturänderung bei konstantem Druck</li>
+            <li><strong>Isotherme Prozesse:</strong> Druckänderung bei konstanter Temperatur</li>
+        </ul>
+
+        <div class="section-title">📈 P-T-Zeit-Pfade</div>
+        <div class="main-text">
+            Die zeitliche Evolution von Druck-Temperatur-Bedingungen bestimmt die metamorphe Geschichte:
+        </div>
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>Uhrzeigersinn-Pfade</h4>
+                <p>Typisch für Kontaktmetamorphose und Rifting. Temperaturanstieg gefolgt von Druckzunahme durch Überlagerung.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Gegenuhrzeigersinn-Pfade</h4>
+                <p>Charakteristisch für Subduktionszonen. Druckzunahme gefolgt von Temperaturanstieg durch radioaktiven Zerfall.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Isotherme Dekompression</h4>
+                <p>Schnelle Exhumierung bei hohen Temperaturen, typisch für Extensionsumgebungen.</p>
+            </div>
+        </div>
+
+        <div class="section-title">🧪 Experimentelle Bestimmung</div>
+        <div class="main-text">
+            Experimentelle Petrologie bestimmt P-T-Stabilitäten und Reaktionskinetik:
+        </div>
+        <ul>
+            <li><strong>Kolbenzylinder-Apparate:</strong> Mitteldruckexperimente (0-4 GPa, bis 1700°C)</li>
+            <li><strong>Multi-Anvil-Pressen:</strong> Hochdruckexperimente (>4 GPa) für Mantelsimulatoren</li>
+            <li><strong>Diamantstempel-Zellen:</strong> Ultrahochdruckexperimente (>100 GPa)</li>
+            <li><strong>Hydrothermal-Autoklaven:</strong> Fluide P-T-Experimente unter kontrollierten Bedingungen</li>
+        </ul>
+
+        <div class="warning">
+            <div class="warning-title">⚠️ Kinetische Effekte</div>
+            Natürliche Systeme erreichen oft kein vollständiges Gleichgewicht aufgrund begrenzter Reaktionszeiten. Disequilibrium-Texturen und Zonierung reflektieren kinetische Hemmung.
+        </div>
+
+        <div class="section-title">🔬 Geobarometrie und Geothermometrie</div>
+        <div class="main-text">
+            Quantitative Bestimmung von P-T-Bedingungen aus Mineralchemie:
+        </div>
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>Austausch-Thermometer</h4>
+                <p>Temperaturabhängige Kationenverteilung zwischen koexistierenden Mineralen, z.B. Granat-Biotit Fe-Mg-Austausch.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Netz-Transfer-Barometer</h4>
+                <p>Druckabhängige Gleichgewichte zwischen Mineralvergesellschaftungen, z.B. Granat-Aluminosilikat-Plagioklas-Quarz.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Multi-Equilibrium-Ansätze</h4>
+                <p>Simultane Lösung multipler Gleichgewichte für konsistente P-T-Schätzungen mit Unsicherheitsquantifizierung.</p>
+            </div>
+        </div>
+
+        <div class="section-title">🌍 Geologische Anwendungen</div>
+        <div class="main-text">
+            P-T-Studien haben weitreichende Anwendungen in den Geowissenschaften:
+        </div>
+        <ul>
+            <li><strong>Tektonische Rekonstruktion:</strong> P-T-Pfade enthüllen Orogenese und Exhumierungsgeschichte</li>
+            <li><strong>Manteldynamik:</strong> Hochdruck-Experimente modellieren Mantelkonvektion und Phasenübergänge</li>
+            <li><strong>Magmagenese:</strong> P-T-Bedingungen der Schmelzbildung und -differentiation</li>
+            <li><strong>Hydrothermale Systeme:</strong> P-T-Kontrolle von Erzbildung und Alteration</li>
+        </ul>
+
+        <div class="tip-box">
+            <div class="tip-title">🔮 Moderne Entwicklungen</div>
+            Integration von maschinellem Lernen, In-situ-Analytik und thermodynamischer Modellierung revolutioniert die quantitative P-T-Bestimmung und ermöglicht präzisere Rekonstruktionen geologischer Prozesse.
         </div>
     </div>
-    
-    <div class="section-title">⚖️ Druckeffekte</div>
-    
-    <div class="equipment-list">
-        <div class="equipment-item">
-            <h4>Phasenübergänge</h4>
-            <p>Unter Hochdruckbedingungen werden Hochdichte-Polymorphe stabilisiert. Quarz-Coesite-Stishovit-Übergänge und Andalusit-Kyanit-Sillimanit-Serien sind typische Beispiele.</p>
-        </div>
-        <div class="equipment-item">
-            <h4>Deformationsmechanismen</h4>
-            <p>Druckzunahme führt zum Übergang von spröder zu duktiler Verformung. Versetzungskriechen, Diffusionskriechen und Korngrenzgleitung werden aktiviert, duktile Verformung dominiert.</p>
+
+    <!-- Fortschrittsbalken -->
+    <div class="progress-container">
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
         </div>
     </div>
-    
-    <div class="section-title">📊 P-T-Diagramme und Metamorphe Fazies</div>
-    
-    <div class="equipment-list">
-        <div class="equipment-item">
-            <h4>Metamorphe Fazies</h4>
-            <p>Mineralassoziationen stabil unter spezifischen P-T-Bedingungen. Grünschiefer-, Glimmerschiefer-, Amphibolit-, Granulit- und Eklogitfazies sind Haupteinteilungen.</p>
-        </div>
-        <div class="equipment-item">
-            <h4>Reaktionsgrenzen</h4>
-            <p>Gleichgewichtskurven spezifischer Reaktionen. Clapeyron-Gleichung beschreibt Beziehungen zwischen Druck, Temperatur und Volumenänderung als Phasendiagrammgrundlage.</p>
-        </div>
-    </div>
-    
-    <div class="section-title">🔄 Metamorphosetypen</div>
-    
-    <div class="equipment-list">
-        <div class="equipment-item">
-            <h4>Kontaktmetamorphose</h4>
-            <p>Hochtemperatur-Niedrigdruck-Bedingungen. Hornfelsbildung und Skarnisierung durch Magmaintrusionen schaffen charakteristische Mineralassoziationen.</p>
-        </div>
-        <div class="equipment-item">
-            <h4>Regionalmetamorphose</h4>
-            <p>Mittlere Temperatur- und Druckbedingungen. Großskalige Metamorphose durch Orogenese. Barrow- und Buchan-Metamorphoseserien dokumentieren Krustenentwicklungsgeschichte.</p>
-        </div>
-        <div class="equipment-item">
-            <h4>Hochdruckmetamorphose</h4>
-            <p>Niedrigtemperatur-Hochdruck-Bedingungen. Schnelle Versenkung in Subduktionszonen. Blauschiefer- und Eklogitfazies-Assoziationen sind charakteristisch.</p>
-        </div>
-    </div>
-    
-    <div class="tip-box">
-        <div class="tip-title">🔬 Geologische Thermo-Barometer</div>
-        Methoden zur Schätzung von P-T-Bedingungen aus Mineralchemie. Feldspat-Thermometer, Granat-Biotit-Thermometer und Al-in-Hornblende-Barometer sind Beispiele.
-    </div>
-    
-    <div class="section-title">📚 Moderne Forschung</div>
-    
-    <div class="main-text">
-        Neueste Technologien ermöglichen hochauflösende Analyse von Mikrotexturen und chemischen Zusammensetzungen, was zu detaillierter Aufklärung von Reaktionsprozessen führt. In-situ-Beobachtungsexperimente und numerische Simulationen verbessern dramatisch das Verständnis tieferer Erdprozesse.
-    </div>
-    
-</div>
-<script src="../../language-redirect.js"></script>
+
+    <script>
+        // Zeit aktualisieren
+        function updateTime() {
+            const now = new Date();
+            const timeString = now.getHours().toString().padStart(2, '0') + ':' + 
+                             now.getMinutes().toString().padStart(2, '0');
+            const timeElement = document.getElementById('current-time');
+            if (timeElement) {
+                timeElement.textContent = timeString;
+            }
+        }
+        
+        // Lesefortschritt simulieren
+        function updateProgress() {
+            const scrolled = window.pageYOffset;
+            const maxHeight = document.body.scrollHeight - window.innerHeight;
+            const progress = Math.min((scrolled / maxHeight) * 100, 100);
+            const progressFill = document.querySelector('.progress-fill');
+            if (progressFill) {
+                progressFill.style.width = progress + '%';
+            }
+        }
+        
+        // Initialisierung
+        updateTime();
+        setInterval(updateTime, 60000);
+        
+        window.addEventListener('scroll', updateProgress);
+        updateProgress();
+    </script>
 </body>
 </html>

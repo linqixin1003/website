@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Spaltbarkeit & Bruch - BirdAiSnap</title>
+<title>Spaltbarkeit & Bruchmuster - BirdAiSnap</title>
 <link href="../../mobile-styles.css" rel="stylesheet"/>
 <link href="../../mobile-enhancement.css" rel="stylesheet"/>
 <link href="../../ecology-theme.css" rel="stylesheet"/>
-    <style>
+<style>
         /* Rock Identification Theme - Green */
         :root {
             --primary-color: #4CAF50;
@@ -16,6 +16,16 @@
             --accent-color: #81C784;
         }
         
+        .hero-image img {
+            max-height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+        .article-card img {
+            max-height: 120px;
+            width: 100%;
+            object-fit: cover;
+        }
         .hero-image {
             width: 100%;
             height: 400px;
@@ -24,7 +34,11 @@
             position: relative;
             margin-top: 0;
         }
+        .article-meta {
+            margin-top: 15px !important;
+        }
         
+        /* Theme Color Overrides */
         .content {
             background: linear-gradient(135deg, #ffffff, var(--primary-light));
             border: 2px solid var(--primary-color);
@@ -35,173 +49,424 @@
             margin-right: auto !important;
         }
         
+        /* Responsive padding adjustments */
+        @media screen and (max-width: 768px) {
+            .content {
+                padding: 40px 25px 30px 25px !important;
+                margin: -30px 10px 20px 10px !important;
+            }
+        }
+        
+        @media screen and (max-width: 480px) {
+            .content {
+                padding: 35px 20px 25px 20px !important;
+                margin: -30px 8px 20px 8px !important;
+            }
+            
+            /* Mobile optimization - flatten hierarchy */
+            .equipment-list {
+                margin: 20px 0;
+            }
+            
+            .equipment-item {
+                padding: 15px;
+                margin: 12px 0;
+                border-radius: 6px;
+            }
+            
+            .equipment-item h4 {
+                font-size: 16px;
+                margin-bottom: 8px;
+            }
+            
+            .tip-box, .highlight, .warning {
+                padding: 15px;
+                margin: 20px 0;
+                border-radius: 6px;
+            }
+            
+            .tip-title {
+                font-size: 16px;
+                margin-bottom: 10px;
+            }
+            
+            .section-title {
+                font-size: 18px;
+                margin: 25px 0 15px 0;
+                padding-bottom: 8px;
+            }
+            
+            .main-text {
+                font-size: 15px;
+                line-height: 1.6;
+                margin: 15px 0;
+            }
+            
+            .introduction-content {
+                margin: 20px 0;
+            }
+            
+            .basic-concepts, .importance {
+                margin: 15px 0;
+            }
+            
+            .basic-concepts h4, .importance h4 {
+                font-size: 16px;
+                margin-bottom: 10px;
+            }
+            
+            .basic-concepts ul, .importance ul {
+                margin: 8px 0 8px 20px;
+            }
+            
+            .basic-concepts li, .importance li {
+                margin: 6px 0;
+                font-size: 14px;
+                line-height: 1.5;
+            }
+        }
+        
         .quote-box {
             background: linear-gradient(135deg, var(--primary-light), #C8E6C9);
             border-left: 4px solid var(--primary-color);
-            padding: 20px;
-            margin: 25px 0;
-            border-radius: 8px;
         }
         
         .quote-text {
             color: var(--primary-dark);
-            font-size: 18px;
-            font-weight: 600;
         }
         
         .section-title {
             color: var(--primary-color);
             border-bottom: 2px solid var(--accent-color);
-            padding-bottom: 10px;
-            font-size: 24px;
-            font-weight: 700;
-            margin: 35px 0 20px 0;
         }
         
         .tip-box {
             border-left: 4px solid var(--primary-color);
             background: var(--primary-light);
-            padding: 20px;
-            margin: 25px 0;
-            border-radius: 8px;
         }
         
         .tip-title {
             color: var(--primary-color);
-            font-weight: 600;
-            margin-bottom: 10px;
+        }
+        
+        .highlight {
+            border-left: 4px solid var(--accent-color);
+            background: linear-gradient(135deg, #f1f8e9, var(--primary-light));
+        }
+        
+        .warning {
+            border-left: 4px solid #f44336;
         }
         
         .equipment-item {
             border: 1px solid var(--accent-color);
             background: linear-gradient(135deg, #ffffff, var(--primary-light));
-            padding: 20px;
-            margin: 15px 0;
-            border-radius: 8px;
         }
         
         .equipment-item h4 {
             color: var(--primary-color);
-            margin-bottom: 10px;
-            font-size: 18px;
-        }
-        
-        .main-text {
-            margin: 25px 0;
-            line-height: 1.7;
         }
         
         .category {
             background: var(--primary-color);
             color: white;
         }
-        
-        ul, ol {
-            padding-left: 25px;
-            margin: 15px 0;
-        }
-        
-        li {
-            margin: 8px 0;
-            line-height: 1.6;
-        }
     </style>
 </head>
 <body>
 <div class="hero-image"></div>
 <div class="content">
-    <h1 class="title">Spaltbarkeit & Bruch</h1>
-    
+    <h1 class="title">Spaltbarkeit & Bruchmuster</h1>
     <div class="quote-box">
-        <div class="quote-text">Verstehen, wie Minerale brechen</div>
+        <div class="quote-text">Professioneller Geologischer Leitfaden</div>
     </div>
-    
     <div class="main-text">
-        Spaltbarkeit und Bruch sind fundamentale Eigenschaften, die die Art und Weise offenbaren, wie Minerale auf mechanische Beanspruchung reagieren. Diese Eigenschaften spiegeln die Kristallstruktur und Bindungsstärke wider und bieten wichtige diagnostische Informationen für die Mineralbestimmung.
+        Spaltbarkeit und Bruchmuster sind fundamentale mechanische Eigenschaften von Mineralen, die durch die Kristallstruktur und Bindungsstärken bestimmt werden und wichtige diagnostische Kriterien für die Mineralbestimmung sowie Hinweise auf die technische Verwendbarkeit liefern<span class="emoji">🔨</span>.
     </div>
-    
-    <div class="article-meta">
-        <span class="category">Gesteinsbestimmung</span>
-        <span class="read-time">📖 17 Minuten Lesezeit</span>
-        <span class="difficulty">🟡 Mittelstufe</span>
-    </div>
-    
-    <div class="quote-box">
-        <div class="main-text">"Spaltbarkeit ist die Sprache der Kristallstruktur - sie erzählt uns von den schwächsten Bindungen."</div>
-        <cite>— Dr. Anna Weber, Kristallographin</cite>
-    </div>
-    
-    <div class="section-title">💎 Spaltbarkeit verstehen</div>
-    
-    <div class="main-text">
-        Spaltbarkeit ist die Tendenz eines Minerals, entlang bestimmter kristallographischer Ebenen zu brechen, wo die Bindungen am schwächsten sind. Diese Eigenschaft ist direkt mit der Kristallstruktur verbunden und bietet wertvolle diagnostische Informationen.
-    </div>
-    
-    <div class="equipment-list">
-        <div class="equipment-item">
-            <h4>🔗 Bindungsstärke</h4>
-            <p>Spaltbarkeit tritt entlang Ebenen mit schwächsten Bindungen auf. Glimmer: van-der-Waals-Kräfte zwischen TOT-Schichten (0,1-0,2 eV). Quarz: kovalente Si-O-Bindungen (4,6 eV) verhindern Spaltbarkeit. Bindungsenergie-Unterschiede bestimmen Spaltbarkeitsqualität und -richtung.</p>
-        </div>
-        <div class="equipment-item">
-            <h4>📐 Spaltbarkeitsrichtungen</h4>
-            <p>Spaltbarkeit folgt kristallographischen Ebenen mit niedrigsten Oberflächenenergien. Perfekte Spaltbarkeit: Glimmer {001}, Calcit {101̄1}, Galena {100}. Gute Spaltbarkeit: Feldspat {001}, {010}, Amphibol {110}. Unvollkommene Spaltbarkeit: Apatit {0001}, Olivin {010}.</p>
-        </div>
-    </div>
-    
-    <div class="section-title">🔨 Brucharten</div>
-    
-    <div class="main-text">
-        Bruch tritt auf, wenn ein Mineral nicht entlang Spaltbarkeitsebenen bricht, sondern in unregelmäßigen Mustern:
-    </div>
-    
-    <div class="equipment-list">
-        <div class="equipment-item">
-            <h4>🐚 Muscheliger Bruch</h4>
-            <p>Charakteristisch für amorphe oder isotrope Materialien. Quarz, vulkanisches Glas, Obsidian zeigen muscheligen Bruch aufgrund gleichmäßiger Bindungsverteilung und fehlender bevorzugter Bruchebenen.</p>
-        </div>
-        <div class="equipment-item">
-            <h4>⚡ Splittriger Bruch</h4>
-            <p>Unregelmäßige, gezackte Bruchflächen. Häufig bei faserigen oder nadeligen Mineralen wie Asbest, Aktinolith. Entsteht durch anisotrope Bindungsverteilung und strukturelle Defekte.</p>
-        </div>
-        <div class="equipment-item">
-            <h4>🕳️ Unebener Bruch</h4>
-            <p>Rauhe, unregelmäßige Bruchflächen. Typisch für feinkörnige oder massive Aggregate. Häufig bei Sulfiden, Oxiden und metamorphen Mineralen.</p>
-        </div>
-    </div>
-    
-    <div class="section-title">🔬 Spaltbarkeitsqualität</div>
-    
-    <div class="main-text">
-        Spaltbarkeit wird nach Qualität und Vollständigkeit klassifiziert:
-    </div>
-    
-    <div class="equipment-list">
-        <div class="equipment-item">
-            <h4>✨ Perfekte Spaltbarkeit</h4>
-            <p>Glimmer, Calcit, Galena. Spaltflächen sind glatt, eben und reflektierend. Spaltbarkeit ist die dominante Bruchform.</p>
-        </div>
-        <div class="equipment-item">
-            <h4>🔸 Gute Spaltbarkeit</h4>
-            <p>Feldspat, Amphibol, Pyroxen. Spaltflächen sind erkennbar, aber nicht perfekt glatt. Kombination mit Bruch möglich.</p>
-        </div>
-        <div class="equipment-item">
-            <h4>🔹 Unvollkommene Spaltbarkeit</h4>
-            <p>Apatit, Olivin, Granat. Spaltbarkeit ist schwach oder schwer erkennbar. Bruch dominiert normalerweise.</p>
-        </div>
-    </div>
-    
-    <div class="tip-box">
-        <div class="tip-title">🔍 Bestimmungstipps</div>
-        <ul>
-            <li>Beobachten Sie Spaltbarkeit auf frischen Bruchflächen</li>
-            <li>Verwenden Sie eine Lupe zur detaillierten Untersuchung</li>
-            <li>Testen Sie Spaltbarkeit vorsichtig mit einem Messer oder Hammer</li>
-            <li>Dokumentieren Sie sowohl Spaltbarkeit als auch Bruch</li>
-            <li>Berücksichtigen Sie die Kristallstruktur und Bindungsart</li>
-        </ul>
-    </div>
-    
+<div class="article-meta">
+<span class="category ecology">Mineralogie</span>
+<span class="read-time">📖 12 Minuten Lesezeit</span>
+<span class="difficulty">🟡 Mittelstufe</span>
 </div>
-<script src="../../language-redirect.js"></script>
+
+<!-- 引用框 -->
+<div class="quote-box">
+<div class="main-text">"Die Art, wie ein Mineral bricht, verrät die Geheimnisse seiner inneren Architektur - Spaltflächen sind Fenster zur Kristallstruktur."</div>
+<cite>— Prof. Victor Goldschmidt, Kristallchemie</cite>
+</div>
+
+<!-- 文章正文 -->
+<div class="article-body">
+<div class="section-title">🔍 Grundlagen der Spaltbarkeit</div>
+<div class="main-text">Spaltbarkeit ist die Tendenz von Mineralen, entlang bestimmter kristallographischer Ebenen mit schwächeren Bindungen zu brechen.</div>
+
+<div class="introduction-content">
+<div class="basic-concepts">
+<h4>📚 Grundlegende Konzepte</h4>
+<ul>
+<li>Kristallographische Ebenen</li>
+<li>Bindungsstärken</li>
+<li>Spaltrichtungen</li>
+<li>Oberflächenqualität</li>
+</ul>
+</div>
+
+<div class="importance">
+<h4>🌟 Warum Das Wichtig Ist</h4>
+<ul>
+<li>Mineralbestimmung</li>
+<li>Strukturverständnis</li>
+<li>Technische Anwendungen</li>
+<li>Bearbeitungseigenschaften</li>
+</ul>
+</div>
+</div>
+
+<div class="section-title">✂️ Spaltbarkeits-Grade</div>
+<div class="main-text">Systematische Klassifikation der Spaltqualität:</div>
+
+<div class="equipment-list">
+<div class="equipment-item">
+<h4>⭐ Vollkommene Spaltbarkeit</h4>
+<div class="main-text"><strong>Eigenschaften:</strong> Glatte, ebene Spaltflächen<br>
+<strong>Beispiele:</strong> Glimmer, Gips, Galenit<br>
+<strong>Anwendung:</strong> Leichte Spaltung möglich</div>
+</div>
+
+<div class="equipment-item">
+<h4>🔹 Gute Spaltbarkeit</h4>
+<div class="main-text"><strong>Eigenschaften:</strong> Meist glatte Flächen, gelegentlich uneben<br>
+<strong>Beispiele:</strong> Feldspat, Pyroxen, Amphibol<br>
+<strong>Anwendung:</strong> Spaltung mit etwas Kraft</div>
+</div>
+
+<div class="equipment-item">
+<h4>🔸 Deutliche Spaltbarkeit</h4>
+<div class="main-text"><strong>Eigenschaften:</strong> Erkennbare Spaltflächen, teilweise uneben<br>
+<strong>Beispiele:</strong> Apatit, Olivin<br>
+<strong>Anwendung:</strong> Spaltung erfordert Kraft</div>
+</div>
+
+<div class="equipment-item">
+<h4>🔹 Undeutliche Spaltbarkeit</h4>
+<div class="main-text"><strong>Eigenschaften:</strong> Schwer erkennbare Spaltrichtungen<br>
+<strong>Beispiele:</strong> Beryll, Turmalin<br>
+<strong>Anwendung:</strong> Spaltung schwierig</div>
+</div>
+
+<div class="equipment-item">
+<h4>❌ Keine Spaltbarkeit</h4>
+<div class="main-text"><strong>Eigenschaften:</strong> Nur unregelmäßiger Bruch<br>
+<strong>Beispiele:</strong> Quarz, Granat, Magnetit<br>
+<strong>Anwendung:</strong> Nur Bruch möglich</div>
+</div>
+</div>
+
+<div class="section-title">🔨 Brucharten</div>
+<div class="main-text">Charakteristische Bruchmuster bei fehlender Spaltbarkeit:</div>
+
+<div class="tip-box">
+<div class="tip-title">📊 Bruch-Klassifikation</div>
+<div class="main-text">
+<strong>Muschelig:</strong> Gekrümmte, konzentrische Bruchflächen<br>
+<strong>Uneben:</strong> Unregelmäßige, raue Oberflächen<br>
+<strong>Splittrig:</strong> Scharfe, spitze Bruchstücke<br>
+<strong>Hakig:</strong> Hakenförmige Vorsprünge<br>
+<strong>Erdig:</strong> Pulvriger, matter Bruch
+</div>
+</div>
+
+<div class="section-title">🔬 Spaltrichtungen</div>
+<div class="main-text">Kristallographische Orientierung der Spaltebenen:</div>
+
+<div class="highlight">
+<h4>🔸 Spaltebenen-Systeme</h4>
+<ul>
+<li><strong>Eine Richtung:</strong> Glimmer {001}</li>
+<li><strong>Zwei Richtungen:</strong> Feldspat {001} und {010}</li>
+<li><strong>Drei Richtungen:</strong> Calcit {10̄14}</li>
+<li><strong>Vier Richtungen:</strong> Fluorit {111}</li>
+<li><strong>Sechs Richtungen:</strong> Sphalerit {110}</li>
+</ul>
+</div>
+
+<div class="section-title">🧪 Bestimmungsmethoden</div>
+<div class="main-text">Systematische Untersuchung von Spaltbarkeit und Bruch:</div>
+
+<div class="warning">
+<div class="tip-title">📋 Testprotokoll</div>
+<ul>
+<li><strong>Schritt 1:</strong> Mineral vorsichtig mit Hammer anschlagen</li>
+<li><strong>Schritt 2:</strong> Bruchstücke unter Lupe betrachten</li>
+<li><strong>Schritt 3:</strong> Spaltflächen identifizieren</li>
+<li><strong>Schritt 4:</strong> Winkel zwischen Spaltrichtungen messen</li>
+<li><strong>Schritt 5:</strong> Mit Referenzmineralen vergleichen</li>
+</ul>
+</div>
+
+<div class="section-title">📐 Spaltwinkel</div>
+<div class="main-text">Charakteristische Winkel zwischen Spaltrichtungen:</div>
+
+<div class="warning">
+<div class="tip-title">📊 Diagnostische Winkel</div>
+<ul>
+<li><strong>Pyroxen:</strong> ~87° und ~93° (fast rechtwinklig)</li>
+<li><strong>Amphibol:</strong> ~56° und ~124° (charakteristisch)</li>
+<li><strong>Feldspat:</strong> ~90° (rechtwinklig)</li>
+<li><strong>Calcit:</strong> ~75° (rhomboedrisch)</li>
+</ul>
+</div>
+
+<div class="section-title">🔍 Mikroskopische Untersuchung</div>
+<div class="main-text">Detailanalyse von Spaltflächen:</div>
+
+<div class="highlight">
+<h4>🔬 Untersuchungstechniken</h4>
+<ul>
+<li><strong>Auflichtmikroskopie:</strong> Oberflächenstrukturen</li>
+<li><strong>Durchlichtmikroskopie:</strong> Interne Strukturen</li>
+<li><strong>Rasterelektronenmikroskopie:</strong> Hochauflösung</li>
+<li><strong>Interferometrie:</strong> Oberflächenrauheit</li>
+</ul>
+</div>
+
+<div class="section-title">⚠️ Verwechslungsgefahr</div>
+<div class="main-text">Unterscheidung zwischen Spaltung und anderen Phänomenen:</div>
+
+<div class="warning">
+<div class="tip-title">🚫 Häufige Verwechslungen</div>
+<ul>
+<li><strong>Zwillingslamellen:</strong> Parallele Linien, keine Spaltung</li>
+<li><strong>Zonierung:</strong> Farbunterschiede, keine mechanische Schwäche</li>
+<li><strong>Risse:</strong> Unregelmäßig, nicht kristallographisch</li>
+<li><strong>Korrosion:</strong> Chemische Auflösung, nicht mechanisch</li>
+</ul>
+</div>
+
+<div class="section-title">🎯 Diagnostische Beispiele</div>
+<div class="main-text">Charakteristische Spalt- und Bruchmuster wichtiger Minerale:</div>
+
+<div class="highlight">
+<h4>💎 Typische Beispiele</h4>
+<ul>
+<li><strong>Muskovit:</strong> Vollkommene Spaltbarkeit {001}, blättrig</li>
+<li><strong>Calcit:</strong> Vollkommene Spaltbarkeit {10̄14}, rhomboedrisch</li>
+<li><strong>Quarz:</strong> Keine Spaltbarkeit, muscheliger Bruch</li>
+<li><strong>Pyrit:</strong> Keine Spaltbarkeit, unebener Bruch</li>
+<li><strong>Hornblende:</strong> Gute Spaltbarkeit {110}, ~56° Winkel</li>
+</ul>
+</div>
+
+<div class="section-title">🛠️ Technische Bedeutung</div>
+<div class="main-text">Praktische Auswirkungen von Spaltbarkeit:</div>
+
+<div class="tip-box">
+<div class="tip-title">🏭 Industrielle Anwendungen</div>
+<ul>
+<li><strong>Glimmer:</strong> Elektrische Isolierung (perfekte Spaltung)</li>
+<li><strong>Schiefer:</strong> Dachziegel (planare Spaltung)</li>
+<li><strong>Diamant:</strong> Schleifen entlang Spaltebenen</li>
+<li><strong>Gips:</strong> Gipsplatten (leichte Spaltung)</li>
+</ul>
+</div>
+
+<div class="section-title">🧬 Struktureller Zusammenhang</div>
+<div class="main-text">Beziehung zwischen Kristallstruktur und Spaltbarkeit:</div>
+
+<div class="highlight">
+<h4>🔗 Bindungstypen</h4>
+<ul>
+<li><strong>Van-der-Waals-Bindungen:</strong> Schwach, perfekte Spaltung</li>
+<li><strong>Wasserstoffbrücken:</strong> Mittel, gute Spaltung</li>
+<li><strong>Ionenbindungen:</strong> Stark, variable Spaltung</li>
+<li><strong>Kovalente Bindungen:</strong> Sehr stark, keine Spaltung</li>
+</ul>
+</div>
+
+<div class="section-title">📊 Quantitative Messung</div>
+<div class="main-text">Instrumentelle Bestimmung mechanischer Eigenschaften:</div>
+
+<div class="warning">
+<div class="tip-title">🛠️ Messmethoden</div>
+<ul>
+<li><strong>Goniometer:</strong> Spaltwinkel-Messung</li>
+<li><strong>Nanoindentation:</strong> Mechanische Eigenschaften</li>
+<li><strong>Bruchzähigkeits-Tests:</strong> Widerstand gegen Rissausbreitung</li>
+<li><strong>Ultraschall:</strong> Elastische Eigenschaften</li>
+</ul>
+</div>
+
+<div class="section-title">🎨 Feldbestimmung</div>
+<div class="main-text">Praktische Tipps für die Feldarbeit:</div>
+
+<div class="tip-box">
+<div class="tip-title">🎯 Feldtipps</div>
+<ul>
+<li><strong>Vorsichtiger Anschlag:</strong> Kontrollierte Kraft anwenden</li>
+<li><strong>Verschiedene Richtungen:</strong> Alle Orientierungen testen</li>
+<li><strong>Frische Proben:</strong> Verwitterung vermeiden</li>
+<li><strong>Gute Beleuchtung:</strong> Spaltflächen erkennen</li>
+<li><strong>Lupe verwenden:</strong> Details betrachten</li>
+</ul>
+</div>
+
+<div class="section-title">💡 Profi-Tipps</div>
+<div class="main-text">Bewährte Praktiken für Spaltbarkeits-Tests:</div>
+
+<div class="highlight">
+<h4>🎯 Beste Praktiken</h4>
+<ul>
+<li><strong>Sicherheit:</strong> Schutzbrille bei Bruch-Tests</li>
+<li><strong>Dokumentation:</strong> Spaltrichtungen skizzieren</li>
+<li><strong>Vergleichsproben:</strong> Referenzminerale nutzen</li>
+<li><strong>Mehrfachtests:</strong> Konsistenz prüfen</li>
+<li><strong>Kontext beachten:</strong> Geologische Umgebung einbeziehen</li>
+</ul>
+</div>
+
+<div class="section-title">🔬 Moderne Analysemethoden</div>
+<div class="main-text">Fortgeschrittene Untersuchungstechniken:</div>
+<ul>
+<li><strong>Atomkraftmikroskopie:</strong> Oberflächenstruktur auf atomarer Ebene</li>
+<li><strong>Röntgentopographie:</strong> Kristalldefekte und Spannungen</li>
+<li><strong>Neutronenstreuung:</strong> Strukturdynamik</li>
+<li><strong>Computersimulation:</strong> Bruchmechanismen modellieren</li>
+<li><strong>In-situ Deformation:</strong> Bruchverhalten in Echtzeit</li>
+</ul>
+
+</div>
+
+<script>
+        // 更新时间
+        function updateTime() {
+            const now = new Date();
+            const timeString = now.getHours().toString().padStart(2, '0') + ':' + 
+                             now.getMinutes().toString().padStart(2, '0');
+            const timeElement = document.getElementById('current-time');
+            if (timeElement) {
+                timeElement.textContent = timeString;
+            }
+        }
+        
+        // 模拟阅读进度
+        function updateProgress() {
+            const scrolled = window.pageYOffset;
+            const maxHeight = document.body.scrollHeight - window.innerHeight;
+            const progress = Math.min((scrolled / maxHeight) * 100, 100);
+            const progressFill = document.querySelector('.progress-fill');
+            if (progressFill) {
+                progressFill.style.width = progress + '%';
+            }
+        }
+        
+        // 初始化
+        updateTime();
+        setInterval(updateTime, 60000);
+        
+        window.addEventListener('scroll', updateProgress);
+        updateProgress();
+    </script>
+    <script src="../language-redirect.js"></script>
+
 </body>
 </html>

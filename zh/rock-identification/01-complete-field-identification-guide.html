@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>野外岩石矿物完全识别指南 - BirdAiSnap</title>
+<title>完整野外岩石识别指南 - BirdAiSnap</title>
 <link href="../../mobile-styles.css" rel="stylesheet"/>
 <link href="../../mobile-enhancement.css" rel="stylesheet"/>
 <link href="../../ecology-theme.css" rel="stylesheet"/>
@@ -16,6 +16,16 @@
             --accent-color: #81C784;
         }
         
+        .hero-image img {
+            max-height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+        .article-card img {
+            max-height: 120px;
+            width: 100%;
+            object-fit: cover;
+        }
         .hero-image {
             width: 100%;
             height: 400px;
@@ -24,7 +34,11 @@
             position: relative;
             margin-top: 0;
         }
+        .article-meta {
+            margin-top: 15px !important;
+        }
         
+        /* Theme Color Overrides */
         .content {
             background: linear-gradient(135deg, #ffffff, var(--primary-light));
             border: 2px solid var(--primary-color);
@@ -35,41 +49,101 @@
             margin-right: auto !important;
         }
         
+        /* Responsive padding adjustments */
+        @media screen and (max-width: 768px) {
+            .content {
+                padding: 40px 25px 30px 25px !important;
+                margin: -30px 10px 20px 10px !important;
+            }
+        }
+        
+        @media screen and (max-width: 480px) {
+            .content {
+                padding: 35px 20px 25px 20px !important;
+                margin: -30px 8px 20px 8px !important;
+            }
+            
+            /* Mobile optimization - flatten hierarchy */
+            .equipment-list {
+                margin: 20px 0;
+            }
+            
+            .equipment-item {
+                padding: 15px;
+                margin: 12px 0;
+                border-radius: 6px;
+            }
+            
+            .equipment-item h4 {
+                font-size: 16px;
+                margin-bottom: 8px;
+            }
+            
+            .tip-box, .highlight, .warning {
+                padding: 15px;
+                margin: 20px 0;
+                border-radius: 6px;
+            }
+            
+            .tip-title {
+                font-size: 16px;
+                margin-bottom: 10px;
+            }
+            
+            .section-title {
+                font-size: 18px;
+                margin: 25px 0 15px 0;
+                padding-bottom: 8px;
+            }
+            
+            .main-text {
+                font-size: 15px;
+                line-height: 1.6;
+                margin: 15px 0;
+            }
+            
+            ul, ol {
+                padding-left: 20px;
+                margin: 10px 0;
+            }
+            
+            li {
+                margin: 6px 0;
+                font-size: 14px;
+                line-height: 1.5;
+            }
+        }
+        
         .quote-box {
             background: linear-gradient(135deg, var(--primary-light), #C8E6C9);
             border-left: 4px solid var(--primary-color);
-            padding: 20px;
-            margin: 25px 0;
-            border-radius: 8px;
         }
         
         .quote-text {
             color: var(--primary-dark);
-            font-size: 18px;
-            font-weight: 600;
         }
         
         .section-title {
             color: var(--primary-color);
             border-bottom: 2px solid var(--accent-color);
-            padding-bottom: 10px;
-            font-size: 24px;
-            font-weight: 700;
-            margin: 35px 0 20px 0;
         }
         
         .tip-box {
             border-left: 4px solid var(--primary-color);
             background: var(--primary-light);
-            padding: 20px;
-            margin: 25px 0;
-            border-radius: 8px;
         }
         
         .tip-title {
             color: var(--primary-color);
-            font-weight: 600;
-            margin-bottom: 10px;
+        }
+        
+        .highlight {
+            border-left: 4px solid var(--accent-color);
+            background: linear-gradient(135deg, #f1f8e9, var(--primary-light));
+        }
+        
+        .warning {
+            border-left: 4px solid #f44336;
         }
         
         .equipment-item {
@@ -78,6 +152,7 @@
             padding: 20px;
             margin: 15px 0;
             border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
         
         .equipment-item h4 {
@@ -86,14 +161,30 @@
             font-size: 18px;
         }
         
+        .equipment-item p {
+            margin-bottom: 0;
+            line-height: 1.6;
+        }
+        
+        /* Improved spacing for all text elements */
         .main-text {
             margin: 25px 0;
             line-height: 1.7;
         }
         
-        .category {
-            background: var(--primary-color);
-            color: white;
+        .section-title {
+            margin: 35px 0 20px 0;
+            padding-bottom: 10px;
+        }
+        
+        .tip-box, .highlight, .warning {
+            margin: 25px 0;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        
+        .equipment-list {
+            margin: 25px 0;
         }
         
         ul, ol {
@@ -105,161 +196,265 @@
             margin: 8px 0;
             line-height: 1.6;
         }
+        
+        .category {
+            background: var(--primary-color);
+            color: white;
+        }
     </style>
 </head>
 <body>
-<div class="hero-image"></div>
-<div class="content">
-    <h1 class="title">野外岩石矿物完全识别指南</h1>
+    <div class="hero-image"></div>
+    <div class="content">
+    <h1 class="title">完整野外岩石识别指南</h1>
     
     <div class="quote-box">
-        <div class="quote-text">掌握矿物学识别技术的艺术</div>
+        <div class="quote-text">掌握专业地质野外工作的艺术</div>
     </div>
     
     <div class="main-text">
-        野外岩石与矿物识别融合了系统性观察、物理性质分析和地质学背景理解。这种方法论整合了结晶化学原理、岩石成因过程和诊断分析技术，实现对地质标本在自然环境中的精确表征<span class="emoji">🪨</span>。
+        岩石和矿物的野外识别既是一门艺术，也是一门科学，需要系统的观察、适当的工具和广泛的知识。这份综合指南将为您提供世界各地地质学家使用的专业技术。
     </div>
     
     <div class="article-meta">
-        <span class="category">岩石鉴定</span>
-        <span class="read-time">📖 25分钟阅读</span>
+        <span class="category">岩石识别</span>
+        <span class="read-time">📖 15分钟阅读</span>
         <span class="difficulty">🟡 中级</span>
     </div>
     
     <div class="quote-box">
-        <div class="main-text">"野外识别是连接严谨科学观察与地质学直觉的艺术。每一块岩石都在诉说地球的故事。"</div>
-        <cite>— 李地质 教授，野外地质学家</cite>
+        <div class="main-text">"在野外，您的眼睛是您最重要的工具，但您的知识决定了它们能看到什么。"</div>
+        <cite>— 萨拉·米切尔博士，野外地质学家</cite>
     </div>
     
-    <div class="section-title">🎯 系统性方法</div>
+    <div class="section-title">🎒 基本野外装备</div>
     
     <div class="main-text">
-        结构化的方法论确保准确且可重现的识别结果：
-    </div>
-    
-    <div class="equipment-list">
-        <div class="equipment-item">
-            <h4>📊 地质环境评估</h4>
-            <p>分析地质环境：围岩层、构造结构、风化蚀变和地层关系。地球动力学环境影响共生矿物组合和形成过程。</p>
-        </div>
-        <div class="equipment-item">
-            <h4>🔍 初步肉眼观察</h4>
-            <p>检查颜色、结构、晶体结构和相关系。识别副矿物、环带结构和热液蚀变或变质作用的证据。</p>
-        </div>
-        <div class="equipment-item">
-            <h4>⚖️ 物理性质测试</h4>
-            <p>测定硬度（莫氏硬度）、比重、光泽、透明度和磁性。这些参数反映晶体结构和化学成分。</p>
-        </div>
-        <div class="equipment-item">
-            <h4>🧪 选择性化学测试</h4>
-            <p>应用酸性测试、显色反应和焰色试验确认化学成分并识别特定矿物群。</p>
-        </div>
-    </div>
-    
-    <div class="section-title">🛠️ 必备野外装备</div>
-    
-    <div class="main-text">
-        完整的识别工具包优化诊断效率：
+        专业岩石识别需要特定的工具。以下是您的完整野外工具包：
     </div>
     
     <div class="equipment-list">
         <div class="equipment-item">
             <h4>🔨 地质锤</h4>
-            <p>平头地质锤（500克）用于控制性破碎和暴露新鲜面。玻璃纤维手柄减少震动并提高耐用性。</p>
+            <p>打击新鲜表面的必备工具。选择16-20盎司的锤子，带有凿子端和尖端。</p>
         </div>
         <div class="equipment-item">
-            <h4>🔍 野外放大镜</h4>
-            <p>10倍或20倍消色差光学镜头，用于分析晶体结构、包裹体和相关系。推荐带LED照明。</p>
+            <h4>🔍 手持放大镜（10倍）</h4>
+            <p>检查晶面、解理和矿物颗粒的关键工具。10倍放大是标准配置。</p>
         </div>
         <div class="equipment-item">
-            <h4>📏 莫氏硬度标尺</h4>
-            <p>完整套装（滑石至金刚石）或校准工具：指甲（2.5）、铜币（3.5）、钢刀（5.5）、锉刀（6.5）、瓷板（7.0）。</p>
+            <h4>💧 条痕板</h4>
+            <p>用于条痕测试的无釉瓷砖。识别金属矿物的必需品。</p>
         </div>
         <div class="equipment-item">
-            <h4>🧪 化学试剂</h4>
-            <p>碳酸盐测试用稀盐酸（10%）滴瓶。磁性测试用钕磁铁。特定元素显色测试。</p>
-        </div>
-        <div class="equipment-item">
-            <h4>📱 数字工具</h4>
-            <p>带有光谱数据库的矿物识别应用。GPS定位。微距相机记录。</p>
+            <h4>🧪 酸瓶（HCl）</h4>
+            <p>用于碳酸盐测试的稀盐酸。使用时必须采取安全预防措施。</p>
         </div>
     </div>
     
-    <div class="section-title">🔬 关键诊断特征</div>
+    <div class="section-title">👁️ 系统观察方法</div>
     
     <div class="main-text">
-        每个特征提供关于晶体结构和成分的特定信息：
+        对于遇到的每个标本，请遵循以下专业序列：
     </div>
     
-    <div class="equipment-list">
-        <div class="equipment-item">
-            <h4>🎨 颜色与条痕</h4>
-            <p>颜色源于发色团（过渡金属、结构缺陷、电荷转移）。条痕消除表面效应，揭示粉末状矿物的真实颜色。</p>
-        </div>
-        <div class="equipment-item">
-            <h4>✨ 光泽与透明度</h4>
-            <p>光泽反映折射率和电子结构：金属光泽（>20%反射率）、玻璃光泽（1.5-1.9 n）、树脂光泽（1.9-2.6 n）、金刚光泽（>2.6 n）。</p>
-        </div>
-        <div class="equipment-item">
-            <h4>💎 解理与断口</h4>
-            <p>解理模式揭示晶体对称性和结构弱点方向。断口指示键合的各向同性与各向异性。</p>
-        </div>
-        <div class="equipment-item">
-            <h4>🏋️ 比重</h4>
-            <p>反映平均原子质量和晶体堆积效率。野外定量测定采用水位移法。</p>
-        </div>
+    <div class="tip-box">
+        <div class="tip-title">🔍 COLTS方法</div>
+        <ul>
+            <li><strong>C</strong>olor（颜色）- 注意新鲜和风化表面</li>
+            <li><strong>O</strong>ptical properties（光学性质）- 光泽和透明度</li>
+            <li><strong>L</strong>uster type（光泽类型）- 金属、玻璃、珍珠等</li>
+            <li><strong>T</strong>exture and crystal habit（纹理和晶体习性）</li>
+            <li><strong>S</strong>treak color and hardness（条痕颜色和硬度）</li>
+        </ul>
     </div>
     
-    <div class="section-title">🏔️ 岩石分类</div>
+    <div class="section-title">🏔️ 岩石类型识别</div>
     
     <div class="main-text">
-        理解三大类别及其形成过程：
+        学会快速区分三大岩石类群：
     </div>
     
     <div class="equipment-list">
         <div class="equipment-item">
             <h4>🌋 火成岩</h4>
-            <p>由岩浆结晶形成。显晶质（深成）与隐晶质（火山）结构。长英质（石英、长石）与镁铁质（橄榄石、辉石）成分。</p>
+            <p><strong>关键特征：</strong>晶体相互锁合，无分层，通常含有石英和长石。火山岩类型中寻找气孔。</p>
         </div>
         <div class="equipment-item">
-            <h4>🏖️ 沉积岩</h4>
-            <p>碎屑性（岩屑）、化学性（沉淀）或生物成因（生物）。沉积构造：层理、粒序层理、流水痕迹。</p>
+            <h4>🏞️ 沉积岩</h4>
+            <p><strong>关键特征：</strong>层状结构，圆形颗粒，可能含有化石。通常较软且风化程度较高。</p>
         </div>
         <div class="equipment-item">
-            <h4>⚡ 变质岩</h4>
-            <p>在热力/机械应力下重结晶。片理（片岩、片麻岩）与块状结构。变质指示矿物。</p>
+            <h4>♻️ 变质岩</h4>
+            <p><strong>关键特征：</strong>片理纹理，矿物定向排列，常呈条带状。可能显示晶体变形。</p>
         </div>
     </div>
     
-    <div class="section-title">🎯 高级识别技术</div>
+    <div class="section-title">🔬 高级识别技术</div>
+    
+    <div class="main-text">
+        专业地质学家在野外使用这些高级方法：
+    </div>
+    
+    <div class="highlight">
+        <strong>新鲜表面分析：</strong>始终用锤子打击出新鲜表面。风化表面可能会误导——新鲜断面揭示真实的颜色、光泽和晶体结构。
+    </div>
+    
+    <ul>
+        <li><strong>解理与断口：</strong>观察矿物如何破裂。解理面是光滑平整的，断口是不规则的。</li>
+        <li><strong>晶体习性：</strong>注意晶体是柱状、板状还是块状。这对许多矿物具有诊断意义。</li>
+        <li><strong>共生关系：</strong>考虑存在其他哪些矿物。矿物共生关系具有高度诊断性。</li>
+        <li><strong>地质背景：</strong>周围岩石类型和地质环境提供重要线索。</li>
+    </ul>
+    
+    <div class="section-title">⚡ 快速野外测试</div>
+    
+    <div class="main-text">
+        这些简单测试可以在任何地方进行：
+    </div>
     
     <div class="equipment-list">
         <div class="equipment-item">
-            <h4>🔍 结构分析</h4>
-            <p>粒度、晶体习性、生长关系和共生序列揭示形成条件和热历史。</p>
+            <h4>💰 硬币测试（硬度约3）</h4>
+            <p>使用铜币测试硬度。如果矿物能划伤硬币，则其摩氏硬度大于3。</p>
         </div>
         <div class="equipment-item">
-            <h4>⚛️ 便携式光谱分析</h4>
-            <p>便携式拉曼和X射线荧光光谱仪用于精确的化学和矿物学识别。无损分析获得即时结果。</p>
+            <h4>🔪 钢刀测试（硬度约5.5）</h4>
+            <p>高碳钢刀片（摩氏5.5-6.0）作为关键硬度参考点。该测试有效区分层状硅酸盐（云母、粘土）与架状硅酸盐（长石、石英），为初步矿物群识别提供基本成分洞察。</p>
         </div>
         <div class="equipment-item">
-            <h4>📊 系统记录</h4>
-            <p>GPS记录、带比例尺照片、详细性质描述和地质背景。建立数据库用于未来比较。</p>
+            <h4>💧 酸反应测试</h4>
+            <p>稀盐酸（10% HCl）通过CO₂释放在碳酸盐矿物中引发泡沫反应。该诊断反应区分方解石（剧烈）、白云石（需粉末/加热）和文石（非常剧烈）与硅酸盐矿物。始终在新鲜、未风化表面测试以确保准确结果。</p>
         </div>
+        <div class="equipment-item">
+            <h4>🧲 磁化率测试</h4>
+            <p>稀土钕磁铁检测铁磁性（磁铁矿、磁黄铁矿）、顺磁性（赤铁矿、石榴石）和反磁性矿物响应。区分磁性吸引（磁铁矿）、需粉末的弱吸引（赤铁矿）和排斥（热解石墨）。该测试揭示晶格内的铁配位和电子结构。</p>
+        </div>
+    </div>
+    
+    <div class="section-title">📍 常见野外识别挑战</div>
+    
+    <div class="main-text">
+        学会克服这些典型野外问题：
+    </div>
+    
+    <div class="warning">
+        <div class="warning-title">⚠️ 蚀变和风化过程</div>
+        表生蚀变和表面风化通过氧化、水合和化学淋滤根本性地改变矿物外观。二价铁氧化形成褐铁矿涂层，掩盖原始表面。斜长石长石经历绢云母化形成绿帘石-钠长石组合，而钾长石发育高岭石化蚀变边。始终检查新鲜断面以准确确定光学和物理性质。
     </div>
     
     <div class="tip-box">
-        <div class="tip-title">🎯 专家提示</div>
+        <div class="tip-title">🎯 困难识别的专业技巧</div>
         <ul>
-            <li>始终检查新鲜面 — 风化会掩盖性质</li>
-            <li>使用自然光进行颜色评估</li>
-            <li>结合多种性质 — 单一性质非绝对诊断</li>
-            <li>记录不确定性和模糊观察</li>
-            <li>必要时通过实验室分析验证识别</li>
+            <li><strong>统计采样：</strong>检查多个颗粒以考虑成分不均一性和扇形分带</li>
+            <li><strong>振荡分带分析：</strong>记录核心-边缘化学变化，指示结晶历史和P-T演化</li>
+            <li><strong>多型考虑：</strong>基于形成条件区分石英-方石英、方解石-文石和黄铁矿-白铁矿</li>
+            <li><strong>系统排除：</strong>应用Dana分类约束和晶体化学原理缩小可能性</li>
         </ul>
     </div>
     
-</div>
-<script src="../../language-redirect.js"></script>
+    <div class="section-title">🌍 区域地质考虑</div>
+    
+    <div class="main-text">
+        了解当地地质显著提高识别成功率：
+    </div>
+    
+    <ul>
+        <li><strong>火成岩省：</strong>期望花岗岩、玄武岩和相关矿物</li>
+        <li><strong>沉积盆地：</strong>寻找砂岩、石灰岩和页岩</li>
+        <li><strong>变质地体：</strong>预期片麻岩、片岩和接触变质带</li>
+        <li><strong>矿区：</strong>研究该地区已知的矿物产状</li>
+    </ul>
+    
+    <div class="section-title">📝 野外记录</div>
+    
+    <div class="main-text">
+        适当的记录对专业工作至关重要：
+    </div>
+    
+    <div class="equipment-list">
+        <div class="equipment-item">
+            <h4>📍 GPS坐标</h4>
+            <p>使用GPS记录确切位置。包括使用的基准面和坐标系统。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>📸 摄影</h4>
+            <p>拍摄带有比例尺（硬币、铅笔）的照片。包括手标本和露头背景。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>📋 野外笔记</h4>
+            <p>在防水笔记本中记录所有观察、执行的测试和初步识别。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>🏷️ 样品标签</h4>
+            <p>使用永久性标记和防风雨标签。包括日期、位置和样品编号。</p>
+        </div>
+    </div>
+    
+    <div class="section-title">⚖️ 安全与伦理</div>
+    
+    <div class="warning">
+        <div class="warning-title">🛡️ 安全第一</div>
+        <ul>
+            <li>敲击时始终佩戴安全眼镜</li>
+            <li>注意不稳定的岩面和松散材料</li>
+            <li>携带急救包和紧急通讯设备</li>
+            <li>告知他人您的野外位置和预期返回时间</li>
+        </ul>
+    </div>
+    
+    <div class="highlight">
+        <strong>伦理采集：</strong>采集前获得许可。遵循无痕原则。尊重私有财产和保护区。仅为科学目的采集所需数量。
+    </div>
+    
+    <div class="section-title">🎓 建立专业知识</div>
+    
+    <div class="main-text">
+        熟练掌握野外识别需要实践和持续学习：
+    </div>
+    
+    <ul>
+        <li><strong>研究参考收藏：</strong>参观博物馆和大学收藏</li>
+        <li><strong>参加野外考察：</strong>向经验丰富的地质学家和收藏家学习</li>
+        <li><strong>定期练习：</strong>识别来自不同地区的标本</li>
+        <li><strong>持续学习：</strong>矿物学和岩石学是广阔的学科</li>
+    </ul>
+    
+    <div class="tip-box">
+        <div class="tip-title">📚 推荐野外指南</div>
+        <ul>
+            <li>Klein & Dutrow著《矿物科学手册》</li>
+            <li>Pough著《岩石和矿物野外指南》</li>
+            <li>Nesse著《矿物学导论》</li>
+            <li>您所在地区的当地地质调查出版物</li>
+        </ul>
+    </div>
+    
+    <div class="section-title">🔬 实验室后续工作</div>
+    
+    <div class="main-text">
+        当需要精确度时，应通过实验室技术确认野外识别：
+    </div>
+    
+    <div class="equipment-list">
+        <div class="equipment-item">
+            <h4>📡 X射线衍射</h4>
+            <p>基于晶体结构的确定性矿物识别。对粘土矿物和细粒标本至关重要。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>🔬 岩相显微镜</h4>
+            <p>薄片分析揭示肉眼不可见的光学性质、矿物关系和纹理。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>⚗️ 化学分析</h4>
+            <p>电子探针或ICP-MS进行精确化学成分分析。对固溶体矿物至关重要。</p>
+        </div>
+    </div>
+    
+    <div class="highlight">
+        <strong>记住：</strong>野外识别让您完成80%的工作。实验室确认提供科学工作所需的最后20%的确定性。
+    </div>
+    
+    </div>
 </body>
 </html>

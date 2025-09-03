@@ -16,6 +16,16 @@
             --accent-color: #81C784;
         }
         
+        .hero-image img {
+            max-height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+        .article-card img {
+            max-height: 120px;
+            width: 100%;
+            object-fit: cover;
+        }
         .hero-image {
             width: 100%;
             height: 400px;
@@ -24,7 +34,11 @@
             position: relative;
             margin-top: 0;
         }
+        .article-meta {
+            margin-top: 15px !important;
+        }
         
+        /* Theme Color Overrides */
         .content {
             background: linear-gradient(135deg, #ffffff, var(--primary-light));
             border: 2px solid var(--primary-color);
@@ -35,41 +49,101 @@
             margin-right: auto !important;
         }
         
+        /* Responsive padding adjustments */
+        @media screen and (max-width: 768px) {
+            .content {
+                padding: 40px 25px 30px 25px !important;
+                margin: -30px 10px 20px 10px !important;
+            }
+        }
+        
+        @media screen and (max-width: 480px) {
+            .content {
+                padding: 35px 20px 25px 20px !important;
+                margin: -30px 8px 20px 8px !important;
+            }
+            
+            /* Mobile optimization - flatten hierarchy */
+            .equipment-list {
+                margin: 20px 0;
+            }
+            
+            .equipment-item {
+                padding: 15px;
+                margin: 12px 0;
+                border-radius: 6px;
+            }
+            
+            .equipment-item h4 {
+                font-size: 16px;
+                margin-bottom: 8px;
+            }
+            
+            .tip-box, .highlight, .warning {
+                padding: 15px;
+                margin: 20px 0;
+                border-radius: 6px;
+            }
+            
+            .tip-title {
+                font-size: 16px;
+                margin-bottom: 10px;
+            }
+            
+            .section-title {
+                font-size: 18px;
+                margin: 25px 0 15px 0;
+                padding-bottom: 8px;
+            }
+            
+            .main-text {
+                font-size: 15px;
+                line-height: 1.6;
+                margin: 15px 0;
+            }
+            
+            ul, ol {
+                padding-left: 20px;
+                margin: 10px 0;
+            }
+            
+            li {
+                margin: 6px 0;
+                font-size: 14px;
+                line-height: 1.5;
+            }
+        }
+        
         .quote-box {
             background: linear-gradient(135deg, var(--primary-light), #C8E6C9);
             border-left: 4px solid var(--primary-color);
-            padding: 20px;
-            margin: 25px 0;
-            border-radius: 8px;
         }
         
         .quote-text {
             color: var(--primary-dark);
-            font-size: 18px;
-            font-weight: 600;
         }
         
         .section-title {
             color: var(--primary-color);
             border-bottom: 2px solid var(--accent-color);
-            padding-bottom: 10px;
-            font-size: 24px;
-            font-weight: 700;
-            margin: 35px 0 20px 0;
         }
         
         .tip-box {
             border-left: 4px solid var(--primary-color);
             background: var(--primary-light);
-            padding: 20px;
-            margin: 25px 0;
-            border-radius: 8px;
         }
         
         .tip-title {
             color: var(--primary-color);
-            font-weight: 600;
-            margin-bottom: 10px;
+        }
+        
+        .highlight {
+            border-left: 4px solid var(--accent-color);
+            background: linear-gradient(135deg, #f1f8e9, var(--primary-light));
+        }
+        
+        .warning {
+            border-left: 4px solid #f44336;
         }
         
         .equipment-item {
@@ -78,6 +152,7 @@
             padding: 20px;
             margin: 15px 0;
             border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
         
         .equipment-item h4 {
@@ -86,14 +161,30 @@
             font-size: 18px;
         }
         
+        .equipment-item p {
+            margin-bottom: 0;
+            line-height: 1.6;
+        }
+        
+        /* Improved spacing for all text elements */
         .main-text {
             margin: 25px 0;
             line-height: 1.7;
         }
         
-        .category {
-            background: var(--primary-color);
-            color: white;
+        .section-title {
+            margin: 35px 0 20px 0;
+            padding-bottom: 10px;
+        }
+        
+        .tip-box, .highlight, .warning {
+            margin: 25px 0;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        
+        .equipment-list {
+            margin: 25px 0;
         }
         
         ul, ol {
@@ -105,161 +196,265 @@
             margin: 8px 0;
             line-height: 1.6;
         }
+        
+        .category {
+            background: var(--primary-color);
+            color: white;
+        }
     </style>
 </head>
 <body>
-<div class="hero-image"></div>
-<div class="content">
+    <div class="hero-image"></div>
+    <div class="content">
     <h1 class="title">Guide Complet d'Identification des Roches sur le Terrain</h1>
     
     <div class="quote-box">
-        <div class="quote-text">Maîtriser l'Art de l'Identification Minéralogique</div>
+        <div class="quote-text">Maîtrisez l'Art du Travail Géologique de Terrain Professionnel</div>
     </div>
     
     <div class="main-text">
-        L'identification des roches et minéraux sur le terrain combine observation systématique, analyse des propriétés physiques et compréhension des contextes géologiques. Cette approche méthodologique intègre des principes cristallochimiques, des processus pétrogénétiques et des techniques d'analyse diagnostique pour permettre une caractérisation précise des spécimens géologiques dans leur environnement naturel<span class="emoji">🪨</span>.
+        L'identification des roches et minéraux sur le terrain est à la fois un art et une science, nécessitant une observation systématique, des outils appropriés et des connaissances approfondies. Ce guide complet vous équipera de techniques professionnelles utilisées par les géologues du monde entier.
     </div>
     
     <div class="article-meta">
         <span class="category">Identification des Roches</span>
-        <span class="read-time">📖 25 minutes de lecture</span>
+        <span class="read-time">📖 15 minutes de lecture</span>
         <span class="difficulty">🟡 Intermédiaire</span>
     </div>
     
     <div class="quote-box">
-        <div class="main-text">"L'identification sur le terrain est un art qui unit l'observation scientifique rigoureuse à l'intuition géologique - chaque roche raconte l'histoire de la Terre."</div>
-        <cite>— Dr. Marie Dubois, Géologue de Terrain</cite>
+        <div class="main-text">"Sur le terrain, vos yeux sont votre outil le plus important, mais vos connaissances déterminent ce qu'ils voient."</div>
+        <cite>— Dr. Sarah Mitchell, Géologue de Terrain</cite>
     </div>
     
-    <div class="section-title">🎯 Approche Systématique</div>
+    <div class="section-title">🎒 Équipement de Terrain Essentiel</div>
     
     <div class="main-text">
-        Une méthodologie structurée garantit une identification précise et reproductible :
+        L'identification professionnelle des roches nécessite des outils spécifiques. Voici votre kit de terrain complet :
     </div>
     
     <div class="equipment-list">
         <div class="equipment-item">
-            <h4>📊 Évaluation du Contexte Géologique</h4>
-            <p>Analysez l'environnement géologique : formations rocheuses encaissantes, structures tectoniques, altération météorique et relations stratigraphiques. Le contexte géodynamique influence la paragenèse minérale et les processus de formation.</p>
+            <h4>🔨 Marteau Géologique</h4>
+            <p>Essentiel pour casser des surfaces fraîches. Choisissez un marteau de 450-550 g avec une extrémité ciseau et une pointe de pic.</p>
         </div>
         <div class="equipment-item">
-            <h4>🔍 Observation Macroscopique Initiale</h4>
-            <p>Examinez la couleur, la texture, la structure cristalline et les relations de phases. Identifiez les minéraux accessoires, les patterns de zonation et les preuves d'altération hydrothermale ou de métamorphisme.</p>
+            <h4>🔍 Loupe de Terrain (10x)</h4>
+            <p>Critique pour examiner les faces cristallines, le clivage et les grains minéraux. Le grossissement 10x est standard.</p>
         </div>
         <div class="equipment-item">
-            <h4>⚖️ Tests de Propriétés Physiques</h4>
-            <p>Déterminez la dureté (échelle de Mohs), la densité spécifique, l'éclat, la transparence et les propriétés magnétiques. Ces paramètres reflètent la structure cristalline et la composition chimique.</p>
+            <h4>💧 Plaque de Trait</h4>
+            <p>Carreau de porcelaine non émaillée pour les tests de trait. Essentiel pour identifier les minéraux métalliques.</p>
         </div>
         <div class="equipment-item">
-            <h4>🧪 Tests Chimiques Sélectifs</h4>
-            <p>Appliquez des tests d'acide, des réactions de coloration et des essais à la flamme pour confirmer la composition chimique et identifier des groupes minéraux spécifiques.</p>
+            <h4>🧪 Flacon d'Acide (HCl)</h4>
+            <p>Acide chlorhydrique dilué pour les tests de carbonate. Toujours utiliser avec des précautions de sécurité.</p>
         </div>
     </div>
     
-    <div class="section-title">🛠️ Équipement de Terrain Essentiel</div>
+    <div class="section-title">👁️ Méthode d'Observation Systématique</div>
     
     <div class="main-text">
-        Un kit d'identification complet optimise l'efficacité diagnostique :
+        Suivez cette séquence professionnelle pour chaque spécimen que vous rencontrez :
     </div>
     
-    <div class="equipment-list">
-        <div class="equipment-item">
-            <h4>🔨 Marteau de Géologue</h4>
-            <p>Marteau à tête plate (500g) pour fracture contrôlée et exposition de surfaces fraîches. Manche en fibre de verre pour réduction des vibrations et durabilité accrue.</p>
-        </div>
-        <div class="equipment-item">
-            <h4>🔍 Loupe de Terrain</h4>
-            <p>Loupe 10x ou 20x avec optiques achromatiques pour analyse des textures cristallines, des inclusions et des relations de phases. Éclairage LED intégré recommandé.</p>
-        </div>
-        <div class="equipment-item">
-            <h4>📏 Échelle de Dureté de Mohs</h4>
-            <p>Kit complet (talc à diamant) ou outils calibrés : ongle (2,5), pièce de cuivre (3,5), couteau en acier (5,5), lime (6,5), porcelaine (7,0).</p>
-        </div>
-        <div class="equipment-item">
-            <h4>🧪 Réactifs Chimiques</h4>
-            <p>Acide chlorhydrique dilué (10%) dans flacon compte-gouttes pour tests de carbonates. Aimant néodyme pour propriétés magnétiques. Tests colorimétriques pour éléments spécifiques.</p>
-        </div>
-        <div class="equipment-item">
-            <h4>📱 Outils Numériques</h4>
-            <p>Applications d'identification minérale avec bases de données spectroscopiques. GPS pour géolocalisation. Appareil photo macro pour documentation.</p>
-        </div>
+    <div class="tip-box">
+        <div class="tip-title">🔍 La Méthode COLTS</div>
+        <ul>
+            <li><strong>C</strong>ouleur - Notez les surfaces fraîches et altérées</li>
+            <li><strong>O</strong>propriétés optiques - Éclat et transparence</li>
+            <li><strong>L</strong>ustre type - Métallique, vitreux, nacré, etc.</li>
+            <li><strong>T</strong>exture et habitus cristallin</li>
+            <li><strong>S</strong>couleur de trait et dureté</li>
+        </ul>
     </div>
     
-    <div class="section-title">🔬 Propriétés Diagnostiques Clés</div>
+    <div class="section-title">🏔️ Reconnaissance des Types de Roches</div>
     
     <div class="main-text">
-        Chaque propriété fournit des informations spécifiques sur la structure cristalline et la composition :
-    </div>
-    
-    <div class="equipment-list">
-        <div class="equipment-item">
-            <h4>🎨 Couleur et Rayure</h4>
-            <p>La couleur résulte de chromophores (métaux de transition, défauts structuraux, transferts de charge). La rayure élimine les effets de surface et révèle la couleur intrinsèque du minéral pulvérisé.</p>
-        </div>
-        <div class="equipment-item">
-            <h4>✨ Éclat et Transparence</h4>
-            <p>L'éclat reflète l'indice de réfraction et la structure électronique : métallique (>20% réflectance), vitreux (1,5-1,9 n), résineux (1,9-2,6 n), adamantin (>2,6 n).</p>
-        </div>
-        <div class="equipment-item">
-            <h4>💎 Clivage et Fracture</h4>
-            <p>Les patterns de clivage révèlent la symétrie cristalline et les directions de faiblesse structurelle. La fracture indique l'isotropie vs. l'anisotropie des liaisons.</p>
-        </div>
-        <div class="equipment-item">
-            <h4>🏋️ Densité Spécifique</h4>
-            <p>Reflète la masse atomique moyenne et l'efficacité d'empaquetement cristallin. Méthode de déplacement d'eau pour détermination quantitative sur le terrain.</p>
-        </div>
-    </div>
-    
-    <div class="section-title">🏔️ Classification des Roches</div>
-    
-    <div class="main-text">
-        Comprenez les trois grandes catégories et leurs processus de formation :
+        Apprenez à distinguer rapidement les trois groupes principaux de roches :
     </div>
     
     <div class="equipment-list">
         <div class="equipment-item">
             <h4>🌋 Roches Ignées</h4>
-            <p>Formées par cristallisation magmatique. Texture phaneritique (intrusive) vs. aphanitique (extrusive). Composition felsique (quartz, feldspath) vs. mafique (olivine, pyroxène).</p>
+            <p><strong>Caractéristiques clés :</strong> Cristaux imbriqués, pas de stratification, contiennent souvent du quartz et du feldspath. Recherchez des vésicules dans les types volcaniques.</p>
         </div>
         <div class="equipment-item">
-            <h4>🏖️ Roches Sédimentaires</h4>
-            <p>Détritiques (clastes), chimiques (précipitation) ou biogènes (organismes). Structures sédimentaires : stratification, granoclassement, figures de courant.</p>
+            <h4>🏞️ Roches Sédimentaires</h4>
+            <p><strong>Caractéristiques clés :</strong> Structure stratifiée, grains arrondis, peuvent contenir des fossiles. Souvent plus tendres et plus altérées.</p>
         </div>
         <div class="equipment-item">
-            <h4>⚡ Roches Métamorphiques</h4>
-            <p>Recristallisation sous contrainte thermique/mécanique. Foliation (schistosité, gneissosité) vs. structure massive. Minéraux index de métamorphisme.</p>
+            <h4>♻️ Roches Métamorphiques</h4>
+            <p><strong>Caractéristiques clés :</strong> Texture foliée, minéraux alignés, souvent rubanées. Peuvent montrer une distorsion cristalline.</p>
         </div>
     </div>
     
-    <div class="section-title">🎯 Techniques d'Identification Avancées</div>
+    <div class="section-title">🔬 Techniques d'Identification Avancées</div>
+    
+    <div class="main-text">
+        Les géologues professionnels utilisent ces méthodes avancées sur le terrain :
+    </div>
+    
+    <div class="highlight">
+        <strong>Analyse de Surface Fraîche :</strong> Cassez toujours une surface fraîche avec votre marteau. Les surfaces altérées peuvent être trompeuses - les cassures fraîches révèlent la vraie couleur, l'éclat et la structure cristalline.
+    </div>
+    
+    <ul>
+        <li><strong>Clivage vs. Fracture :</strong> Observez comment le minéral se casse. Les plans de clivage sont lisses et plats, les fractures sont irrégulières.</li>
+        <li><strong>Habitus Cristallin :</strong> Notez si les cristaux sont prismatiques, tabulaires ou massifs. C'est diagnostique pour de nombreux minéraux.</li>
+        <li><strong>Association :</strong> Considérez quels autres minéraux sont présents. Les associations minérales sont hautement diagnostiques.</li>
+        <li><strong>Contexte Géologique :</strong> Le type de roche environnante et le cadre géologique fournissent des indices cruciaux.</li>
+    </ul>
+    
+    <div class="section-title">⚡ Tests Rapides de Terrain</div>
+    
+    <div class="main-text">
+        Ces tests simples peuvent être effectués n'importe où :
+    </div>
     
     <div class="equipment-list">
         <div class="equipment-item">
-            <h4>🔍 Analyse Texturale</h4>
-            <p>Taille des grains, habitus cristallin, relations de croissance et séquences paragénétiques révèlent les conditions de formation et l'histoire thermique.</p>
+            <h4>💰 Test de Pièce (Dureté ~3)</h4>
+            <p>Utilisez une pièce de cuivre pour tester la dureté. Si le minéral raye la pièce, il est plus dur que 3 sur l'échelle de Mohs.</p>
         </div>
         <div class="equipment-item">
-            <h4>⚛️ Tests Spectroscopiques Portables</h4>
-            <p>Spectromètres Raman et XRF portables pour identification chimique et minéralogique précise. Analyse non-destructive avec résultats immédiats.</p>
+            <h4>🔪 Test de Couteau d'Acier (Dureté ~5,5)</h4>
+            <p>Une lame de couteau en acier riche en carbone (Mohs 5,5-6,0) sert de point de référence critique de dureté. Ce test sépare efficacement les phyllosilicates (micas, argiles) des tectosilicates (feldspaths, quartz), fournissant des aperçus compositionnels fondamentaux pour l'identification préliminaire des groupes minéraux.</p>
         </div>
         <div class="equipment-item">
-            <h4>📊 Documentation Systématique</h4>
-            <p>Enregistrement GPS, photographie avec échelle, description détaillée des propriétés et du contexte géologique. Base de données pour comparaisons futures.</p>
+            <h4>💧 Test de Réaction Acide</h4>
+            <p>L'acide chlorhydrique dilué (10% HCl) déclenche une effervescence dans les minéraux carbonatés par libération de CO₂. Cette réaction diagnostique distingue la calcite (vigoureuse), la dolomite (poudre/chaleur requise) et l'aragonite (très vigoureuse) des minéraux silicatés. Testez toujours sur des surfaces fraîches, non altérées pour assurer des résultats précis.</p>
         </div>
+        <div class="equipment-item">
+            <h4>🧲 Test de Susceptibilité Magnétique</h4>
+            <p>Les aimants néodyme de terres rares détectent les réponses minérales ferromagnétiques (magnétite, pyrrhotite), paramagnétiques (hématite, grenat) et diamagnétiques. Distinguez entre l'attraction magnétique (magnétite), l'attraction faible nécessitant de la poudre (hématite) et la répulsion (graphite pyrolytique). Ce test révèle la coordination du fer et la structure électronique dans les réseaux cristallins.</p>
+        </div>
+    </div>
+    
+    <div class="section-title">📍 Défis Communs d'Identification de Terrain</div>
+    
+    <div class="main-text">
+        Apprenez à surmonter ces problèmes typiques de terrain :
+    </div>
+    
+    <div class="warning">
+        <div class="warning-title">⚠️ Processus d'Altération et de Météorisation</div>
+        L'altération supergène et la météorisation de surface modifient fondamentalement les apparences minérales par oxydation, hydratation et lessivage chimique. Le fer ferreux s'oxyde pour former des revêtements limonitiques masquant les surfaces originales. Les feldspaths plagioclases subissent une saussuritisation en assemblages épidote-albite, tandis que les feldspaths K développent des bordures d'altération kaolinitique. Examinez toujours les surfaces de fracture fraîches pour une détermination précise des propriétés optiques et physiques.
     </div>
     
     <div class="tip-box">
-        <div class="tip-title">🎯 Conseils d'Expert</div>
+        <div class="tip-title">🎯 Conseils Pro pour Identifications Difficiles</div>
         <ul>
-            <li>Examinez toujours des surfaces fraîches - la météorisation masque les propriétés</li>
-            <li>Utilisez l'éclairage naturel pour l'évaluation des couleurs</li>
-            <li>Combinez plusieurs propriétés - aucune n'est absolument diagnostique</li>
-            <li>Documentez les incertitudes et les observations ambiguës</li>
-            <li>Validez l'identification par analyse en laboratoire si nécessaire</li>
+            <li><strong>Échantillonnage statistique :</strong> Examinez plusieurs grains pour tenir compte de l'hétérogénéité compositionnelle et de la zonation sectorielle</li>
+            <li><strong>Analyse de zonation oscillatoire :</strong> Documentez les variations chimiques cœur-bordure indiquant l'histoire de cristallisation et l'évolution P-T</li>
+            <li><strong>Considérations polymorphes :</strong> Distinguez entre quartz-cristobalite, calcite-aragonite et pyrite-marcassite basé sur les conditions de formation</li>
+            <li><strong>Élimination systématique :</strong> Appliquez les contraintes de classification de Dana et les principes de chimie cristalline pour réduire les possibilités</li>
         </ul>
     </div>
     
-</div>
-<script src="../../language-redirect.js"></script>
+    <div class="section-title">🌍 Considérations de Géologie Régionale</div>
+    
+    <div class="main-text">
+        Comprendre la géologie locale améliore dramatiquement le succès d'identification :
+    </div>
+    
+    <ul>
+        <li><strong>Provinces Ignées :</strong> Attendez-vous à du granite, basalte et minéraux associés</li>
+        <li><strong>Bassins Sédimentaires :</strong> Recherchez grès, calcaire et schiste</li>
+        <li><strong>Terranes Métamorphiques :</strong> Anticipez gneiss, schiste et zones de métamorphisme de contact</li>
+        <li><strong>Districts Miniers :</strong> Recherchez les occurrences minérales connues dans la région</li>
+    </ul>
+    
+    <div class="section-title">📝 Documentation de Terrain</div>
+    
+    <div class="main-text">
+        Une documentation appropriée est cruciale pour le travail professionnel :
+    </div>
+    
+    <div class="equipment-list">
+        <div class="equipment-item">
+            <h4>📍 Coordonnées GPS</h4>
+            <p>Enregistrez l'emplacement exact en utilisant le GPS. Incluez le datum et le système de coordonnées utilisé.</p>
+        </div>
+        <div class="equipment-item">
+            <h4>📸 Photographie</h4>
+            <p>Prenez des photos avec échelle (pièce, crayon). Incluez à la fois l'échantillon de main et le contexte d'affleurement.</p>
+        </div>
+        <div class="equipment-item">
+            <h4>📋 Notes de Terrain</h4>
+            <p>Enregistrez toutes les observations, tests effectués et identifications préliminaires dans un carnet imperméable.</p>
+        </div>
+        <div class="equipment-item">
+            <h4>🏷️ Étiquetage d'Échantillons</h4>
+            <p>Utilisez des marqueurs permanents et des étiquettes résistantes aux intempéries. Incluez date, emplacement et numéro d'échantillon.</p>
+        </div>
+    </div>
+    
+    <div class="section-title">⚖️ Sécurité et Éthique</div>
+    
+    <div class="warning">
+        <div class="warning-title">🛡️ Sécurité d'Abord</div>
+        <ul>
+            <li>Portez toujours des lunettes de sécurité lors du martelage</li>
+            <li>Soyez conscient des faces rocheuses instables et du matériel détaché</li>
+            <li>Emportez une trousse de premiers secours et un dispositif de communication d'urgence</li>
+            <li>Informez les autres de votre emplacement de terrain et du retour prévu</li>
+        </ul>
+    </div>
+    
+    <div class="highlight">
+        <strong>Collecte Éthique :</strong> Obtenez la permission avant de collecter. Suivez les principes Ne Laisser Aucune Trace. Respectez la propriété privée et les zones protégées. Ne prenez que ce dont vous avez besoin à des fins scientifiques.
+    </div>
+    
+    <div class="section-title">🎓 Développer l'Expertise</div>
+    
+    <div class="main-text">
+        Devenir compétent en identification de terrain nécessite pratique et apprentissage continu :
+    </div>
+    
+    <ul>
+        <li><strong>Étudiez les Collections de Référence :</strong> Visitez les musées et collections universitaires</li>
+        <li><strong>Rejoignez les Excursions :</strong> Apprenez des géologues et collectionneurs expérimentés</li>
+        <li><strong>Pratiquez Régulièrement :</strong> Identifiez des spécimens de différentes localités</li>
+        <li><strong>Continuez d'Apprendre :</strong> La minéralogie et pétrologie sont des sujets vastes</li>
+    </ul>
+    
+    <div class="tip-box">
+        <div class="tip-title">📚 Guides de Terrain Recommandés</div>
+        <ul>
+            <li>"Manuel de Science Minérale" de Klein & Dutrow</li>
+            <li>"Guide de Terrain des Roches et Minéraux" de Pough</li>
+            <li>"Introduction à la Minéralogie" de Nesse</li>
+            <li>Publications du service géologique local pour votre région</li>
+        </ul>
+    </div>
+    
+    <div class="section-title">🔬 Suivi de Laboratoire</div>
+    
+    <div class="main-text">
+        L'identification de terrain doit être confirmée par des techniques de laboratoire lorsque la précision est requise :
+    </div>
+    
+    <div class="equipment-list">
+        <div class="equipment-item">
+            <h4>📡 Diffraction des Rayons X</h4>
+            <p>Identification minérale définitive basée sur la structure cristalline. Essentiel pour les minéraux argileux et les spécimens à grain fin.</p>
+        </div>
+        <div class="equipment-item">
+            <h4>🔬 Microscopie Pétrographique</h4>
+            <p>L'analyse en section mince révèle les propriétés optiques, relations minérales et textures invisibles à l'œil nu.</p>
+        </div>
+        <div class="equipment-item">
+            <h4>⚗️ Analyse Chimique</h4>
+            <p>Microsonde électronique ou ICP-MS pour composition chimique précise. Crucial pour les minéraux de solution solide.</p>
+        </div>
+    </div>
+    
+    <div class="highlight">
+        <strong>Rappelez-vous :</strong> L'identification de terrain vous amène à 80% du chemin. La confirmation de laboratoire fournit les 20% finaux de certitude nécessaires pour le travail scientifique.
+    </div>
+    
+    </div>
 </body>
 </html>

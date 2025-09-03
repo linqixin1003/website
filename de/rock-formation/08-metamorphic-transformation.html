@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Metamorphe Transformation - BirdAiSnap</title>
-<link href="../../mobile-styles.css" rel="stylesheet"/>
-<link href="../../mobile-enhancement.css" rel="stylesheet"/>
-<link href="../../ecology-theme.css" rel="stylesheet"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metamorphe Transformation - BirdAiSnap</title>
     <style>
-        /* Rock Formation Theme - Red */
-        :root {
-            --primary-color: #FF5722;
-            --primary-dark: #BF360C;
-            --primary-light: #FFEBE8;
-            --accent-color: #FF8A65;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
         
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+
         .hero-image {
             width: 100%;
             height: 400px;
@@ -26,145 +27,364 @@
         }
         
         .content {
-            background: linear-gradient(135deg, #ffffff, var(--primary-light));
-            border: 2px solid var(--primary-color);
-            padding: 50px 35px 40px 35px !important;
-            margin: -30px 15px 20px 15px !important;
-            max-width: 1200px;
-            margin-left: auto !important;
-            margin-right: auto !important;
+            background: white;
+            margin: -30px 20px 20px 20px;
+            border-radius: 20px;
+            padding: 30px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            min-height: 80vh;
         }
         
-        .quote-box, .tip-box, .equipment-item {
-            border: 1px solid var(--accent-color);
-            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+        .title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            margin-top: 15px;
+            line-height: 1.3;
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, #f3e5f5, #e1bee7);
+            border-left: 4px solid #9c27b0;
             padding: 20px;
-            margin: 15px 0;
+            margin: 25px 0;
             border-radius: 8px;
+            position: relative;
         }
         
-        .quote-text, .tip-title, .equipment-item h4 {
-            color: var(--primary-color);
-            font-weight: 600;
-            margin-bottom: 10px;
+        .quote-box::before {
+            content: '"';
+            font-size: 48px;
+            color: #9c27b0;
+            position: absolute;
+            top: -5px;
+            left: 15px;
+            font-family: serif;
+            line-height: 1;
+        }
+        
+        .quote-text {
             font-size: 18px;
+            font-weight: 600;
+            color: #6a1b9a;
+            margin-left: 25px;
+            line-height: 1.4;
+        }
+        
+        .main-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            margin: 20px 0;
+            text-align: justify;
         }
         
         .section-title {
-            color: var(--primary-color);
-            border-bottom: 2px solid var(--accent-color);
-            padding-bottom: 10px;
-            font-size: 24px;
-            font-weight: 700;
-            margin: 35px 0 20px 0;
+            font-size: 20px;
+            font-weight: 600;
+            color: #9c27b0;
+            margin: 30px 0 15px 0;
+            border-bottom: 2px solid #e1bee7;
+            padding-bottom: 8px;
         }
         
-        .main-text { margin: 25px 0; line-height: 1.7; }
-        .category { background: var(--primary-color); color: white; }
-        ul, ol { padding-left: 25px; margin: 15px 0; }
-        li { margin: 8px 0; line-height: 1.6; }
+        .tip-box {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            border-left: 4px solid #28a745;
+        }
+        
+        .tip-title {
+            font-weight: 600;
+            color: #28a745;
+            margin-bottom: 8px;
+        }
+        
+        .highlight {
+            background: linear-gradient(135deg, #f1f8e9, #e8f5e8);
+            border-left: 4px solid #4caf50;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .warning {
+            background: #fff3cd;
+            border-left: 4px solid #f44336;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .warning-title {
+            font-weight: 600;
+            color: #f44336;
+            margin-bottom: 8px;
+        }
+        
+        .equipment-list {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .equipment-item {
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+        
+        .equipment-item h4 {
+            color: #9c27b0;
+            margin-bottom: 8px;
+        }
+        
+        ul {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+        
+        li {
+            margin: 8px 0;
+            line-height: 1.6;
+        }
+        
+        .emoji {
+            font-size: 1.2em;
+        }
+        
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: #e0e0e0;
+            z-index: 1000;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #9c27b0, #e1bee7);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #9c27b0, #ba68c8);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
     </style>
 </head>
 <body>
-<div class="hero-image"></div>
-<div class="content">
-    <h1 class="title">Metamorphe Transformation</h1>
-    
-    <div class="quote-box">
-        <div class="quote-text">Festkörperrekonstruktion von Gesteinen</div>
+    <div class="hero-image"></div>
+    <div class="content">
+        <h1 class="title">Metamorphe Transformation</h1>
+        <div class="quote-box">
+            <div class="quote-text">Die Umwandlung von Gesteinen unter veränderten Bedingungen verstehen</div>
+        </div>
+        <div class="main-text">
+            Metamorphe Transformation umfasst die Rekristallisation und strukturelle Reorganisation von Gesteinen unter veränderten Druck-, Temperatur- und chemischen Bedingungen ohne vollständiges Schmelzen, gesteuert durch thermodynamische Triebkräfte und kinetische Prozesse, die neue Mineralvergesellschaftungen und Texturen erzeugen.
+        </div>
+
+        <div class="section-title">🔄 Grundlagen der Metamorphose</div>
+        <div class="main-text">
+            Metamorphose ist der Prozess der mineralogischen und strukturellen Anpassung von Gesteinen an veränderte physikochemische Bedingungen im festen Zustand. Diese Transformation erfolgt durch Rekristallisation, Neomineralisation und strukturelle Reorganisation.
+        </div>
+
+        <div class="tip-box">
+            <div class="tip-title">💡 Definitionskriterien</div>
+            Metamorphose erfolgt im festen Zustand bei Temperaturen zwischen etwa 200-800°C und Drücken von 0,1-3 GPa, oberhalb der Diagenese und unterhalb der vollständigen Schmelzbildung.
+        </div>
+
+        <div class="section-title">🌡️ Metamorphe Agenzien</div>
+        <div class="main-text">
+            Verschiedene Faktoren treiben metamorphe Transformationen an:
+        </div>
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>Temperatur</h4>
+                <p>Erhöhte Temperatur beschleunigt Diffusion und chemische Reaktionen. Thermische Energie überwindet Aktivierungsbarrieren für Rekristallisation und Phasenübergänge.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Druck</h4>
+                <p>Hydrostatischer und deviatorischer Stress beeinflussen Mineralstabilität und Texturentwicklung. Hoher Druck stabilisiert dichte Mineralphasen.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Fluide</h4>
+                <p>H₂O, CO₂ und andere Fluide katalysieren Reaktionen, transportieren gelöste Komponenten und beeinflussen Phasengleichgewichte.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Zeit</h4>
+                <p>Kinetische Prozesse benötigen Zeit für vollständige Gleichgewichtseinstellung. Längere Einwirkung ermöglicht ausgedehnte Rekristallisation.</p>
+            </div>
+        </div>
+
+        <div class="section-title">🏔️ Metamorphe Typen</div>
+        <div class="main-text">
+            Metamorphose wird nach den dominierenden physikalischen Bedingungen und geologischen Umgebungen klassifiziert:
+        </div>
+        <ul>
+            <li><strong>Kontaktmetamorphose:</strong> Thermisch dominiert, um magmatische Intrusionen</li>
+            <li><strong>Regionale Metamorphose:</strong> Durch tektonische Prozesse über große Gebiete</li>
+            <li><strong>Dynamometamorphose:</strong> Stress-dominiert entlang von Scherzonen</li>
+            <li><strong>Hydrothermale Metamorphose:</strong> Fluid-dominiert in hydrothermalen Systemen</li>
+        </ul>
+
+        <div class="highlight">
+            <strong>Metamorphe Fazies:</strong> Charakteristische Mineralvergesellschaftungen, die spezifische P-T-Bedingungen widerspiegeln, wie Grünschiefer-, Amphibolit- und Granulitfazies.
+        </div>
+
+        <div class="section-title">⚗️ Metamorphe Reaktionen</div>
+        <div class="main-text">
+            Metamorphe Transformationen erfolgen durch verschiedene Reaktionstypen:
+        </div>
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>Polymorphe Übergänge</h4>
+                <p>Strukturelle Umwandlung derselben chemischen Zusammensetzung, z.B. Andalusit → Sillimanit bei höheren Temperaturen.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Dehydratationsreaktionen</h4>
+                <p>Wasserabspaltung aus hydratisierten Mineralen, z.B. Muskovit + Quarz → Kalifeldspat + Sillimanit + H₂O.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Austauschreaktionen</h4>
+                <p>Kationenaustausch zwischen Mineralen ohne Phasenänderung, z.B. Fe-Mg-Austausch zwischen Granat und Biotit.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Netz-Transfer-Reaktionen</h4>
+                <p>Komplexe Reaktionen mit Bildung neuer Mineralphasen durch Komponentenübertragung zwischen verschiedenen Kristallgittern.</p>
+            </div>
+        </div>
+
+        <div class="section-title">🧊 Metamorphe Texturen</div>
+        <div class="main-text">
+            Metamorphe Prozesse erzeugen charakteristische Texturen und Strukturen:
+        </div>
+        <ul>
+            <li><strong>Blastoporyphyrisch:</strong> Erhaltene magmatische Einsprenglinge in rekristallisierter Matrix</li>
+            <li><strong>Lepidoblastisch:</strong> Parallele Anordnung plattiger Minerale (Glimmer, Chlorit)</li>
+            <li><strong>Nematoblastisch:</strong> Parallele Anordnung prismatischer Minerale (Amphibol, Sillimanit)</li>
+            <li><strong>Granoblastisch:</strong> Gleichkörnige Mosaiktextur ohne bevorzugte Orientierung</li>
+        </ul>
+
+        <div class="section-title">📏 Metamorphe Grade</div>
+        <div class="main-text">
+            Der Metamorphosegrad wird durch die Intensität der P-T-Bedingungen bestimmt:
+        </div>
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>Niedriggradig</h4>
+                <p>200-400°C, 0,2-0,6 GPa. Zeolith- und Prehnit-Pumpellyit-Fazies. Erhaltung primärer Texturen.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Mittelgradig</h4>
+                <p>400-650°C, 0,3-1,0 GPa. Grünschiefer- und Amphibolitfazies. Vollständige Rekristallisation.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Hochgradig</h4>
+                <p>650-900°C, 0,5-1,5 GPa. Granulitfazies. Partielles Schmelzen und Migmatitbildung.</p>
+            </div>
+        </div>
+
+        <div class="section-title">🔬 Metamorphe Mikrostrukturen</div>
+        <div class="main-text">
+            Mikroskopische Texturen liefern detaillierte Informationen über Deformations- und Rekristallisationsprozesse:
+        </div>
+        <ul>
+            <li><strong>Zwillingsbildung:</strong> Mechanische und thermische Zwillinge in Plagioklas und Calcit</li>
+            <li><strong>Subkornbildung:</strong> Dynamische Rekristallisation durch Subkornrotation</li>
+            <li><strong>Drucklösungsstrukturen:</strong> Stylolithen und Druckschatten um resistente Klasten</li>
+            <li><strong>Mylonitische Texturen:</strong> Extreme Korngrößenreduktion in Scherzonen</li>
+        </ul>
+
+        <div class="warning">
+            <div class="warning-title">⚠️ Gleichgewicht vs. Disequilibrium</div>
+            Natürliche metamorphe Gesteine zeigen oft unvollständiges Gleichgewicht aufgrund kinetischer Hemmung, variabler Fluidverfügbarkeit und komplexer P-T-Zeit-Pfade.
+        </div>
+
+        <div class="section-title">📊 Quantitative Metamorphe Petrologie</div>
+        <div class="main-text">
+            Moderne Ansätze zur quantitativen Analyse metamorpher Prozesse:
+        </div>
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>Thermodynamische Modellierung</h4>
+                <p>THERMOCALC, Perple_X und ähnliche Programme berechnen Phasengleichgewichte und P-T-Pseudosektionen.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Trace-Element-Thermometrie</h4>
+                <p>Spurenelement-Partitionierung zwischen Mineralen als Temperatur- und Druckindikatoren.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Geochronologie</h4>
+                <p>U-Pb, Ar-Ar und andere Systeme datieren metamorphe Ereignisse und bestimmen P-T-Zeit-Pfade.</p>
+            </div>
+        </div>
+
+        <div class="section-title">🌍 Geologische Bedeutung</div>
+        <div class="main-text">
+            Metamorphe Studien sind fundamental für das Verständnis von:
+        </div>
+        <ul>
+            <li><strong>Orogenese:</strong> Gebirgsbildungsprozesse und Kollisionsdynamik</li>
+            <li><strong>Krustale Evolution:</strong> Differentation und Wachstum kontinentaler Kruste</li>
+            <li><strong>Subduktionszonen:</strong> Hochdruck-Niedertemperatur-Metamorphose</li>
+            <li><strong>Exhumierungsprozesse:</strong> Aufstieg tief vergrabener Gesteine</li>
+        </ul>
+
+        <div class="tip-box">
+            <div class="tip-title">🔮 Aktuelle Forschung</div>
+            Moderne metamorphe Petrologie integriert In-situ-Analytik, numerische Modellierung und experimentelle Ansätze für präzisere Rekonstruktionen von P-T-Zeit-Pfaden und Orogenese-Prozessen.
+        </div>
     </div>
-    
-    <div class="main-text">
-        Metamorphe Transformation ist der Prozess der mineral-, chemischen und texturellen Wiedereequilibrierung bestehender Gesteine im festen Zustand. Durch Temperatur-, Druck- und chemische Umgebungsveränderungen erwerben sie neue Mineralassoziationen und Texturen unter Beibehaltung der Eigenschaften des Ausgangsgesteins<span class="emoji">🔄</span>.
-    </div>
-    
-    <div class="article-meta">
-        <span class="category">Metamorphe Petrologie</span>
-        <span class="read-time">📖 21 Minuten Lesezeit</span>
-        <span class="difficulty">🟡 Mittelstufe</span>
-    </div>
-    
-    <div class="section-title">🔄 Definition der Metamorphose</div>
-    
-    <div class="equipment-list">
-        <div class="equipment-item">
-            <h4>Festkörperreaktionen</h4>
-            <p>Mineralphasenveränderungen und Rekristallisation ohne vollständige Schmelzung. Durch Atomdiffusion und Grenzflächenreaktionen entstehen neue Minerale, wobei Spuren der ursprünglichen Textur teilweise erhalten bleiben.</p>
-        </div>
-        <div class="equipment-item">
-            <h4>Chemisches Gleichgewicht</h4>
-            <p>Erreichen thermodynamischen Gleichgewichts unter neuen P-T-Bedingungen. Stabile Mineralassoziationen werden durch Gibbs'sche freie Energieminimierung bestimmt.</p>
+
+    <!-- Fortschrittsbalken -->
+    <div class="progress-container">
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
         </div>
     </div>
-    
-    <div class="section-title">📊 Klassifikation der Metamorphosebedingungen</div>
-    
-    <div class="equipment-list">
-        <div class="equipment-item">
-            <h4>Niedrigtemperatur-Hochdruck-Metamorphose</h4>
-            <p>Metamorphose durch schnelle Versenkung in Subduktionszonen. Blauschiefer- und Eklogitfazies sind charakteristisch, mit Jadeit und Glaukophan als Indexmineralen.</p>
-        </div>
-        <div class="equipment-item">
-            <h4>Mittlere Temperatur-Mitteldruck-Metamorphose</h4>
-            <p>Typische regionale Metamorphose in Orogenen. Barrow-Metamorphoseserien zeigen Biotit→Granat→Staurolith→Kyanit→Sillimanit-Zonen.</p>
-        </div>
-        <div class="equipment-item">
-            <h4>Hochtemperatur-Niederdruck-Metamorphose</h4>
-            <p>Kontaktmetamorphose durch Magmaintrusion. Buchan-Metamorphoseserien zeigen Andalusit, Cordierit und Sillimanit als charakteristische Minerale.</p>
-        </div>
-    </div>
-    
-    <div class="section-title">🧪 Metamorphe Reaktionsmechanismen</div>
-    
-    <div class="equipment-list">
-        <div class="equipment-item">
-            <h4>Polymorphe Übergänge</h4>
-            <p>Kristallstrukturveränderungen bei gleicher chemischer Zusammensetzung. Quarz→Coesite, Andalusit⇌Kyanit⇌Sillimanit-Phasenübergänge dokumentieren Druck-Temperatur-Geschichte.</p>
-        </div>
-        <div class="equipment-item">
-            <h4>Entwässerungsreaktionen</h4>
-            <p>Zersetzung hydratisierter Minerale unter Wasserabgabe. Glimmer+Quarz→Feldspat+Aluminosilikat+H₂O-Reaktionen fördern Hochtemperatur-Entwässerungsprozesse.</p>
-        </div>
-    </div>
-    
-    <div class="section-title">🔬 Texturen und Strukturen</div>
-    
-    <ul>
-        <li><strong>Schieferung:</strong> Parallele Anordnung blatt- und säulenförmiger Minerale</li>
-        <li><strong>Gneis-Struktur:</strong> Bandartige Trennung heller und dunkler Minerale</li>
-        <li><strong>Porphyroblasten:</strong> Große Kristalle, die während der Metamorphose gewachsen sind</li>
-        <li><strong>Druckschatten:</strong> Niedrigdeformationsbereiche um rigide Minerale</li>
-    </ul>
-    
-    <div class="tip-box">
-        <div class="tip-title">⏰ Zeitskalen der Metamorphose</div>
-        Die Zeitskala metamorpher Reaktionen wird durch Temperatur, Korngröße und Diffusionsdistanz bestimmt. Bei hohen Temperaturen dauert es Tausende von Jahren, bei niedrigen Temperaturen Millionen von Jahren.
-    </div>
-    
-    <div class="section-title">🗿 Hauptmetamorphe Gesteine</div>
-    
-    <div class="equipment-list">
-        <div class="equipment-item">
-            <h4>Schiefer</h4>
-            <p>Durch mittlere Metamorphose gebildete schiefrige Gesteine. Glimmerschiefer, Amphibolit und Grünschiefer repräsentieren Ausgangsgestein und Metamorphosegrad.</p>
-        </div>
-        <div class="equipment-item">
-            <h4>Gneis</h4>
-            <p>Durch hochgradige Metamorphose gebildete Bänderstrukturen. Quarz-Feldspat-Glimmer-Trennung schafft charakteristische Hell-Dunkel-Bänder und bildet tiefe Kontinentalkruste.</p>
-        </div>
-        <div class="equipment-item">
-            <h4>Hornfels</h4>
-            <p>Durch Kontaktmetamorphose gebildete körnige Gesteine. Isotrope Rekristallisation in thermischen Aureolen schafft homogene Gesteine ohne Vorzugsorientierung.</p>
-        </div>
-    </div>
-    
-    <div class="section-title">📚 Geologische Bedeutung</div>
-    
-    <div class="main-text">
-        Metamorphe Gesteine sind wichtige Aufzeichnungsmedien für Krustenentwicklungsgeschichte, Orogenese und Erdtiefenbedingungen. P-T-t-Pfadanalyse rekonstruiert geodynamische Prozesse wie Kontinentalkollision, Subduktion und Rifting und ist der Schlüssel zum Verständnis der dynamischen Evolution des Erdsystems.
-    </div>
-    
-</div>
-<script src="../../language-redirect.js"></script>
+
+    <script>
+        // Zeit aktualisieren
+        function updateTime() {
+            const now = new Date();
+            const timeString = now.getHours().toString().padStart(2, '0') + ':' + 
+                             now.getMinutes().toString().padStart(2, '0');
+            const timeElement = document.getElementById('current-time');
+            if (timeElement) {
+                timeElement.textContent = timeString;
+            }
+        }
+        
+        // Lesefortschritt simulieren
+        function updateProgress() {
+            const scrolled = window.pageYOffset;
+            const maxHeight = document.body.scrollHeight - window.innerHeight;
+            const progress = Math.min((scrolled / maxHeight) * 100, 100);
+            const progressFill = document.querySelector('.progress-fill');
+            if (progressFill) {
+                progressFill.style.width = progress + '%';
+            }
+        }
+        
+        // Initialisierung
+        updateTime();
+        setInterval(updateTime, 60000);
+        
+        window.addEventListener('scroll', updateProgress);
+        updateProgress();
+    </script>
 </body>
 </html>

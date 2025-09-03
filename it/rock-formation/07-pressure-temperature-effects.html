@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Effetti di Pressione e Temperatura - BirdAiSnap</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                        url('../../images/rock/Rock_Formation_Processes/07_Pressure_&_Temperature_Effects.webp') center/cover;
+            position: relative;
+            margin-top: 0;
+        }
+        
+        .content {
+            background: white;
+            margin: -30px 20px 20px 20px;
+            border-radius: 20px;
+            padding: 30px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            min-height: 80vh;
+        }
+        
+        .title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            margin-top: 15px;
+            line-height: 1.3;
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, #f3e5f5, #e1bee7);
+            border-left: 4px solid #9c27b0;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .quote-box::before {
+            content: '"';
+            font-size: 48px;
+            color: #9c27b0;
+            position: absolute;
+            top: -5px;
+            left: 15px;
+            font-family: serif;
+            line-height: 1;
+        }
+        
+        .quote-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: #6a1b9a;
+            margin-left: 25px;
+            line-height: 1.4;
+        }
+        
+        .main-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            margin: 20px 0;
+            text-align: justify;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #9c27b0;
+            margin: 30px 0 15px 0;
+            border-bottom: 2px solid #e1bee7;
+            padding-bottom: 8px;
+        }
+        
+        .tip-box {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            border-left: 4px solid #28a745;
+        }
+        
+        .tip-title {
+            font-weight: 600;
+            color: #28a745;
+            margin-bottom: 8px;
+        }
+        
+        .highlight {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #ffc107;
+            margin: 20px 0;
+        }
+        
+        .equipment-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .equipment-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .equipment-item h4 {
+            color: #9c27b0;
+            margin-bottom: 8px;
+        }
+        
+        ul {
+            margin: 15px 0;
+            padding-left: 25px;
+        }
+        
+        li {
+            margin: 8px 0;
+            line-height: 1.6;
+        }
+        
+        .warning {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            border-left: 4px solid #dc3545;
+        }
+        
+        .warning-title {
+            font-weight: 600;
+            color: #721c24;
+            margin-bottom: 8px;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                margin: -20px 10px 10px 10px;
+                padding: 20px 15px;
+            }
+            
+            .title {
+                font-size: 20px;
+            }
+            
+            .equipment-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    
+        /* Rock Formation Theme - Red */
+        :root {
+            --primary-color: #FF5722;
+            --primary-dark: #BF360C;
+            --primary-light: #FFEBE8;
+            --accent-color: #FF8A65;
+        }
+        
+        /* Theme Color Overrides */
+        .content {
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+            border: 2px solid var(--primary-color);
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, var(--primary-light), #FFCCBC);
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .quote-text {
+            color: var(--primary-dark);
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+        }
+        
+        .tip-box {
+            border-left: 4px solid var(--primary-color);
+            background: var(--primary-light);
+        }
+        
+        .tip-title {
+            color: var(--primary-color);
+        }
+        
+        .highlight {
+            border-left: 4px solid var(--accent-color);
+            background: linear-gradient(135deg, #f1f8e9, var(--primary-light));
+        }
+        
+        .warning {
+            border-left: 4px solid #f44336;
+        }
+        
+        .equipment-item {
+            border: 1px solid var(--accent-color);
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+        }
+        
+        .equipment-item h4 {
+            color: var(--primary-color);
+        }
+        
+        .category {
+            background: var(--primary-color);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-image"></div>
+    <div class="content">
+        <h1 class="title">Effetti di Pressione e Temperatura</h1>
+        
+        <div class="quote-box">
+            <div class="quote-text">Come le Condizioni Estreme Trasformano le Rocce</div>
+        </div>
+        
+        <div class="main-text">
+            Pressione e temperatura sono forze fondamentali che guidano la trasformazione delle rocce nell'interno terrestre. Comprendere come queste condizioni influenzino la formazione e modificazione delle rocce è cruciale per interpretare i processi metamorfici, la generazione di magma e l'evoluzione della crosta e mantello terrestri.
+        </div>
+        
+        <div class="section-title">🌡️ Effetti della Temperatura</div>
+        
+        <div class="main-text">
+            La temperatura aumenta con la profondità nell'interno terrestre e ha effetti profondi sul comportamento delle rocce:
+        </div>
+        
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>Gradiente Geotermico</h4>
+                <p>La temperatura aumenta di ~25-30°C per chilometro di profondità. Varia con il contesto tettonico e flusso di calore.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Effetti di Fusione</h4>
+                <p>Le alte temperature causano fusione parziale o completa, generando magmi con composizioni diverse.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Ricristallizzazione</h4>
+                <p>L'attivazione termica permette migrazione delle dislocazioni, mobilità dei bordi di grano e transizioni di fase allo stato solido. I processi di recupero e ricristallizzazione ottimizzano l'energia di deformazione del reticolo cristallino attraverso nucleazione di grani liberi da tensioni ed eliminazione di difetti cristallografici.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Reazioni Chimiche</h4>
+                <p>La temperatura controlla le velocità di reazione e stabilità minerale, guidando i cambiamenti metamorfici.</p>
+            </div>
+        </div>
+        
+        <div class="section-title">⚖️ Effetti della Pressione</div>
+        
+        <div class="main-text">
+            La pressione nell'interno terrestre proviene da fonti multiple e influenza le proprietà delle rocce:
+        </div>
+        
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>Pressione Litostatica</h4>
+                <p>Pressione di confinamento dal peso delle rocce sovrastanti. Aumenta uniformemente con la profondità (~270 bar/km).</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Pressione Diretta</h4>
+                <p>Stress non uniforme dalle forze tettoniche. Crea foliazione e lineazione nelle rocce metamorfiche.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Pressione dei Fluidi</h4>
+                <p>Pressione dai fluidi porali. Può avvicinarsi alla pressione litostatica in alcuni ambienti.</p>
+            </div>
+        </div>
+        
+        <div class="section-title">🔄 Effetti Combinati P-T</div>
+        
+        <div class="main-text">
+            Pressione e temperatura lavorano insieme per controllare il comportamento delle rocce e stabilità minerale:
+        </div>
+        
+        <ul>
+            <li><strong>Transizioni di Fase:</strong> Le condizioni P-T determinano quali fasi minerali sono stabili</li>
+            <li><strong>Cinetica di Reazione:</strong> P-T più elevati accelerano le reazioni chimiche</li>
+            <li><strong>Meccanismi di Deformazione:</strong> P-T controlla come le rocce rispondono allo stress</li>
+            <li><strong>Comportamento dei Fluidi:</strong> P-T influenza composizione e mobilità dei fluidi</li>
+        </ul>
+        
+        <div class="tip-box">
+            <div class="tip-title">📊 Diagrammi P-T</div>
+            I diagrammi di fase mostrano i campi di stabilità minerale in funzione di pressione e temperatura, strumenti essenziali per comprendere i processi metamorfici.
+        </div>
+        
+        <div class="section-title">🏔️ Facies Metamorfiche</div>
+        
+        <div class="main-text">
+            Le facies metamorfiche rappresentano condizioni P-T specifiche e assemblage minerali associati:
+        </div>
+        
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>Facies P-T Basse</h4>
+                <p>Facies zeolite e prehnite-pumpellyite. Seppellimento superficiale, metamorfismo di basso grado.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Facies P-T Medie</h4>
+                <p>Facies scisti verdi e anfibolite. Metamorfismo regionale nelle cinture montuose.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Facies P-T Elevate</h4>
+                <p>Facies granulite ed eclogite. Condizioni crostali profonde e mantelliche.</p>
+            </div>
+        </div>
+        
+        <div class="section-title">🌋 Relazioni di Fusione</div>
+        
+        <div class="main-text">
+            Le condizioni P-T controllano quando e come le rocce fondono per formare magmi:
+        </div>
+        
+        <ul>
+            <li><strong>Solidus:</strong> Temperatura alla quale inizia la fusione per una data pressione</li>
+            <li><strong>Liquidus:</strong> Temperatura alla quale la fusione è completa</li>
+            <li><strong>Fusione Parziale:</strong> Fusione incompleta produce magmi con composizioni diverse</li>
+            <li><strong>Effetti della Pressione:</strong> Pressione più alta generalmente aumenta la temperatura di fusione</li>
+        </ul>
+        
+        <div class="highlight">
+            <strong>Concetto Chiave:</strong> La presenza di acqua abbassa drasticamente le temperature di fusione, spiegando perché le zone di subduzione sono siti di estesa generazione magmatica.
+        </div>
+        
+        <div class="section-title">💎 Minerali ad Alta Pressione</div>
+        
+        <div class="main-text">
+            Le condizioni di pressione estrema creano fasi minerali uniche:
+        </div>
+        
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>Diamante</h4>
+                <p>Forma ad alta pressione del carbonio, stabile a >4,5 GPa. Indicatore di condizioni mantelliche.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Coesite</h4>
+                <p>Forma ad alta pressione del quarzo. Evidenza di impatto meteoritico o subduzione profonda.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Stishovite</h4>
+                <p>Polimorfo di silice ultra-alta pressione. Si forma solo sotto condizioni di shock estremo.</p>
+            </div>
+        </div>
+        
+        <div class="section-title">🔬 Studi Sperimentali</div>
+        
+        <div class="main-text">
+            Gli esperimenti di laboratorio simulano le condizioni P-T naturali:
+        </div>
+        
+        <ul>
+            <li><strong>Pistone-Cilindro:</strong> Condizioni P-T medie (fino a 4 GPa, 2000°C)</li>
+            <li><strong>Pressa Multi-Incudine:</strong> Condizioni P-T elevate (fino a 30 GPa, 2500°C)</li>
+            <li><strong>Cella ad Incudini di Diamante:</strong> Pressioni ultra-elevate (fino a 500 GPa)</li>
+            <li><strong>Esperimenti di Onde d'Urto:</strong> Condizioni P-T estreme di eventi d'impatto</li>
+        </ul>
+        
+        <div class="section-title">🌍 Ambienti P-T Naturali</div>
+        
+        <div class="main-text">
+            Diversi contesti geologici forniscono varie condizioni P-T:
+        </div>
+        
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>Crosta Superficiale</h4>
+                <p>P-T basse: <0,5 GPa, <400°C. Metamorfismo di contatto e alterazione idrotermale.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Crosta Profonda</h4>
+                <p>P-T medie: 0,5-1,5 GPa, 400-800°C. Metamorfismo regionale e anatessi.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Mantello Superiore</h4>
+                <p>P-T elevate: 1,5-15 GPa, 800-1500°C. Metasomatismo mantellico e fusione.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>Zone di Subduzione</h4>
+                <p>P elevata, T variabile: Percorsi P-T complessi con formazione di scisti blu ed eclogiti.</p>
+            </div>
+        </div>
+        
+        <div class="section-title">📈 Percorsi P-T-Tempo</div>
+        
+        <div class="main-text">
+            Le rocce seguono percorsi P-T complessi nel tempo durante i processi geologici:
+        </div>
+        
+        <ul>
+            <li><strong>Percorso Progrado:</strong> P-T crescenti durante seppellimento e riscaldamento</li>
+            <li><strong>Condizioni di Picco:</strong> P-T massimi raggiunti durante il metamorfismo</li>
+            <li><strong>Percorso Retrogrado:</strong> P-T decrescenti durante esumazione e raffreddamento</li>
+            <li><strong>Orario vs. Antiorario:</strong> Diversi contesti tettonici creano diverse forme di percorso</li>
+        </ul>
+        
+        <div class="tip-box">
+            <div class="tip-title">🎯 Termobarometria</div>
+            I geologi usano composizioni e assemblage minerali per stimare le condizioni P-T di formazione delle rocce usando termometri e barometri calibrati.
+        </div>
+        
+        <div class="section-title">⚡ Effetti Cinetici</div>
+        
+        <div class="main-text">
+            Le condizioni P-T influenzano le velocità dei processi geologici:
+        </div>
+        
+        <ul>
+            <li><strong>Velocità di Diffusione:</strong> T più elevata aumenta la diffusione atomica nei minerali</li>
+            <li><strong>Velocità di Reazione:</strong> Sia P che T influenzano la cinetica delle reazioni chimiche</li>
+            <li><strong>Velocità di Deformazione:</strong> P-T controlla i meccanismi di creep nelle rocce</li>
+            <li><strong>Flusso di Fluidi:</strong> P-T influenza viscosità e mobilità dei fluidi</li>
+        </ul>
+        
+        <div class="section-title">🔧 Applicazioni Pratiche</div>
+        
+        <div class="main-text">
+            Comprendere gli effetti P-T ha importanti applicazioni:
+        </div>
+        
+        <ul>
+            <li><strong>Energia Geotermica:</strong> Sfruttare condizioni ad alta temperatura in profondità</li>
+            <li><strong>Giacimenti Minerari:</strong> P-T controlla trasporto e deposizione dei metalli</li>
+            <li><strong>Sistemi Petroliferi:</strong> P-T influenza generazione e migrazione di idrocarburi</li>
+            <li><strong>Stoccaggio di Carbonio:</strong> Comprendere gli effetti P-T sul sequestro di CO₂</li>
+        </ul>
+        
+        <div class="warning">
+            <div class="warning-title">⚠️ Considerazioni di Scala</div>
+            Le condizioni P-T possono variare significativamente su piccole distanze a causa di sorgenti di calore locali, flusso di fluidi e complessità strutturali. Considerare sempre le variazioni spaziali e temporali.
+        </div>
+        
+        <div class="section-title">📚 Studio Aggiuntivo</div>
+        
+        <div class="main-text">
+            Per comprendere meglio gli effetti P-T, studiate i diagrammi di fase, praticate calcoli di termobarometria ed esaminate rocce che hanno subito diverse condizioni P-T. Comprendere la relazione tra contesto tettonico, percorso P-T e caratteristiche rocciose risultanti è essenziale per la petrologia avanzata.
+        </div>
+    </div>
+</body>
+</html>
+

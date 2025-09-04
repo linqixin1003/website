@@ -26,19 +26,12 @@ function handleLanguageRedirect() {
     const pathParts = path.split('/');
     const potentialLangCode = pathParts[1];
     
-    // 如果是语言子目录格式，转换为查询参数格式
+    // 如果是语言子目录格式，保持当前URL（不重定向）
     if (languageMap[potentialLangCode]) {
         // 保存语言设置
         localStorage.setItem('selectedLanguage', potentialLangCode);
-        
-        // 构建新的URL，使用查询参数格式
-        const newPathParts = [...pathParts];
-        newPathParts.splice(1, 1); // 移除语言代码部分
-        const newPath = newPathParts.join('/');
-        const newUrl = window.location.origin + newPath + '?lang=' + potentialLangCode;
-        
-        // 重定向到查询参数格式的URL
-        window.location.replace(newUrl);
+        console.log(`Language detected from URL: ${potentialLangCode}`);
+        // 不重定向，保持当前子目录格式的URL
         return;
     }
     
@@ -119,19 +112,19 @@ function setupLanguageSwitcher() {
                 basePath = pathParts.join('/');
             }
             
-            // 构建新的URL
+            // 构建新的URL - 优先使用子目录格式
             let newUrl;
             if (lang === 'en') {
                 newUrl = window.location.origin + basePath;
             } else {
-                // 首先尝试查询参数格式
-                newUrl = window.location.origin + basePath + (basePath.includes('?') ? '&' : '?') + 'lang=' + lang;
-                
-                // 如果查询参数格式不存在，尝试子目录格式
+                // 优先尝试子目录格式
                 const subDirUrl = window.location.origin + '/' + lang + basePath;
                 const exists = await fileExists(subDirUrl);
                 if (exists) {
                     newUrl = subDirUrl;
+                } else {
+                    // 如果子目录格式不存在，尝试查询参数格式
+                    newUrl = window.location.origin + basePath + (basePath.includes('?') ? '&' : '?') + 'lang=' + lang;
                 }
             }
             
@@ -161,32 +154,32 @@ function addLanguageToLinks() {
                 // 添加lang参数
                 newHref += (newHref.includes('?') ? '&' : '?') + 'lang=' + currentLang;
                 
-                // 检查文件是否存在
-                const exists = await fileExists(window.location.origin + newHref);
-                if (exists) {
-                    link.setAttribute('href', newHref);
+                // 优先尝试子目录格式
+                const subDirUrl = '/' + currentLang + hrefParts.join('/');
+                const subDirExists = await fileExists(window.location.origin + subDirUrl);
+                if (subDirExists) {
+                    link.setAttribute('href', subDirUrl);
                 } else {
-                    // 如果查询参数格式不存在，尝试使用子目录格式
-                    const subDirUrl = '/' + currentLang + hrefParts.join('/');
-                    const subDirExists = await fileExists(window.location.origin + subDirUrl);
-                    if (subDirExists) {
-                        link.setAttribute('href', subDirUrl);
+                    // 如果子目录格式不存在，尝试查询参数格式
+                    const exists = await fileExists(window.location.origin + newHref);
+                    if (exists) {
+                        link.setAttribute('href', newHref);
                     }
                 }
             } else {
                 // 构建查询参数格式的URL
                 const newHref = href + (href.includes('?') ? '&' : '?') + 'lang=' + currentLang;
                 
-                // 检查文件是否存在
-                const exists = await fileExists(window.location.origin + newHref);
-                if (exists) {
-                    link.setAttribute('href', newHref);
+                // 优先尝试子目录格式
+                const subDirUrl = '/' + currentLang + href;
+                const subDirExists = await fileExists(window.location.origin + subDirUrl);
+                if (subDirExists) {
+                    link.setAttribute('href', subDirUrl);
                 } else {
-                    // 如果查询参数格式不存在，尝试使用子目录格式
-                    const subDirUrl = '/' + currentLang + href;
-                    const subDirExists = await fileExists(window.location.origin + subDirUrl);
-                    if (subDirExists) {
-                        link.setAttribute('href', subDirUrl);
+                    // 如果子目录格式不存在，尝试查询参数格式
+                    const exists = await fileExists(window.location.origin + newHref);
+                    if (exists) {
+                        link.setAttribute('href', newHref);
                     }
                 }
             }

@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔬 Центр Науки о Горных Породах и Минералах</title>
+    <meta name="description" content="">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #9C27B0 0%, #9C27B0AA 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            color: #9C27B0;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .subtitle {
+            color: #9C27B0AA;
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+
+        .language-selector {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .language-btn {
+            background: linear-gradient(135deg, #9C27B0, #9C27B0DD);
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9em;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .language-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .language-btn.active {
+            background: linear-gradient(135deg, #FF9800, #F57C00);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 152, 0, 0.4);
+        }
+
+        .main-content {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .back-to-hub {
+            display: inline-block;
+            background: linear-gradient(135deg, #607D8B, #455A64);
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 25px;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .back-to-hub:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(96, 125, 139, 0.4);
+        }
+
+        .intro-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .intro-section h2 {
+            color: #9C27B0;
+            font-size: 2em;
+            margin-bottom: 15px;
+        }
+
+        .intro-section p {
+            color: #666;
+            font-size: 1.1em;
+            max-width: 800px;
+            margin: 0 auto 20px;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+            background: linear-gradient(135deg, #9C27B022, #9C27B044);
+            padding: 20px;
+            border-radius: 12px;
+            min-width: 120px;
+        }
+
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #9C27B0;
+            display: block;
+        }
+
+        .stat-label {
+            color: #9C27B0AA;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .article-card {
+            background: linear-gradient(135deg, #ffffff, #f8f9fa);
+            border-left: 4px solid #9C27B0;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px #9C27B044;
+        }
+
+        .article-card h3 {
+            color: #9C27B0;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .article-card .icon {
+            font-size: 1.4em;
+            margin-right: 10px;
+            color: #9C27B0;
+        }
+
+        .article-card p {
+            color: #666;
+            font-size: 0.95em;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .article-number {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(135deg, #9C27B0, #9C27B0DD);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+
+        .read-more {
+            color: #9C27B0;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 0.9em;
+        }
+
+        .read-more:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            .main-content {
+                padding: 20px;
+            }
+
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                gap: 15px;
+            }
+
+            .language-selector {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .language-btn {
+                margin: 2px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔬 Центр Науки о Горных Породах и Минералах</h1>
+            <p class="subtitle">10 профессиональных статей для ученых</p>
+            
+            <div class="language-selector">
+                <label>🌍 Выбрать язык:</label>
+                <a href="/en/rock-mineral-science/" class="language-btn">🇺🇸 English</a>
+                <a href="/de/rock-mineral-science/" class="language-btn">🇩🇪 Deutsch</a>
+                <a href="/es/rock-mineral-science/" class="language-btn">🇪🇸 Español</a>
+                <a href="/fr/rock-mineral-science/" class="language-btn">🇫🇷 Français</a>
+                <a href="/it/rock-mineral-science/" class="language-btn">🇮🇹 Italiano</a>
+                <a href="/ja/rock-mineral-science/" class="language-btn">🇯🇵 日本語</a>
+                <a href="/ko/rock-mineral-science/" class="language-btn">🇰🇷 한국어</a>
+                <a href="/pt/rock-mineral-science/" class="language-btn">🇵🇹 Português</a>
+                <a href="/ru/rock-mineral-science/" class="language-btn active">🇷🇺 Русский</a>
+                <a href="/zh/rock-mineral-science/" class="language-btn">🇨🇳 中文</a>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <a href="../rock-navigation/rock-identification-index.html" class="back-to-hub">
+                ← Назад к Центру Знаний
+            </a>
+            
+            <div class="intro-section">
+                <h2>🎯 Продвинутая Минералогическая Наука</h2>
+                <p>Исследуйте научные аспекты минералогии, кристаллографии и химических свойств горных пород и минералов.</p>
+                
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="stat-number">10</span>
+                        <div class="stat-label">Статьи</div>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">50+</span>
+                        <div class="stat-label">Техники</div>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">100+</span>
+                        <div class="stat-label">Минералы</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="articles-grid">
+                <div class="article-card" onclick="window.location.href='01-mineral-classification-systems.html'">
+                    <div class="article-number">01</div>
+                    <h3><span class="icon">📊</span>Mineral Classification Systems</h3>
+                    <p>Scientific classification systems used for organizing and categorizing minerals.</p>
+                    <a href="01-mineral-classification-systems.html" class="read-more">Читать статью →</a>
+                </div>
+                <div class="article-card" onclick="window.location.href='02-mineral-crystallography.html'">
+                    <div class="article-number">02</div>
+                    <h3><span class="icon">💎</span>Mineral Crystallography</h3>
+                    <p>The study of crystal structures and their geometric properties.</p>
+                    <a href="02-mineral-crystallography.html" class="read-more">Читать статью →</a>
+                </div>
+                <div class="article-card" onclick="window.location.href='03-mineral-formation-processes.html'">
+                    <div class="article-number">03</div>
+                    <h3><span class="icon">⚗️</span>Mineral Formation Processes</h3>
+                    <p>Scientific understanding of how minerals form in nature.</p>
+                    <a href="03-mineral-formation-processes.html" class="read-more">Читать статью →</a>
+                </div>
+                <div class="article-card" onclick="window.location.href='04-physical-chemical-properties.html'">
+                    <div class="article-number">04</div>
+                    <h3><span class="icon">🧪</span>Physical & Chemical Properties</h3>
+                    <p>Detailed analysis of mineral physical and chemical characteristics.</p>
+                    <a href="04-physical-chemical-properties.html" class="read-more">Читать статью →</a>
+                </div>
+                <div class="article-card" onclick="window.location.href='05-economic-minerals-uses.html'">
+                    <div class="article-number">05</div>
+                    <h3><span class="icon">💰</span>Economic Minerals & Uses</h3>
+                    <p>Commercially important minerals and their industrial applications.</p>
+                    <a href="05-economic-minerals-uses.html" class="read-more">Читать статью →</a>
+                </div>
+                <div class="article-card" onclick="window.location.href='06-mineral-collections-display.html'">
+                    <div class="article-number">06</div>
+                    <h3><span class="icon">🏛️</span>Mineral Collections & Display</h3>
+                    <p>Scientific approaches to mineral collection and museum display.</p>
+                    <a href="06-mineral-collections-display.html" class="read-more">Читать статью →</a>
+                </div>
+                <div class="article-card" onclick="window.location.href='07-fluorescent-minerals.html'">
+                    <div class="article-number">07</div>
+                    <h3><span class="icon">💡</span>Fluorescent Minerals</h3>
+                    <p>The fascinating world of minerals that fluoresce under UV light.</p>
+                    <a href="07-fluorescent-minerals.html" class="read-more">Читать статью →</a>
+                </div>
+                <div class="article-card" onclick="window.location.href='08-gemstones-precious-treasures.html'">
+                    <div class="article-number">08</div>
+                    <h3><span class="icon">💎</span>Gemstones & Precious Treasures</h3>
+                    <p>Scientific study of gemstones and precious mineral specimens.</p>
+                    <a href="08-gemstones-precious-treasures.html" class="read-more">Читать статью →</a>
+                </div>
+                <div class="article-card" onclick="window.location.href='09-rocks-minerals-ancient-technology.html'">
+                    <div class="article-number">09</div>
+                    <h3><span class="icon">🏺</span>Rocks & Minerals in Ancient Technology</h3>
+                    <p>Historical use of rocks and minerals in ancient civilizations.</p>
+                    <a href="09-rocks-minerals-ancient-technology.html" class="read-more">Читать статью →</a>
+                </div>
+                <div class="article-card" onclick="window.location.href='10-rocks-minerals-modern-technology.html'">
+                    <div class="article-number">10</div>
+                    <h3><span class="icon">🚀</span>Rocks & Minerals in Modern Technology</h3>
+                    <p>Contemporary applications of minerals in modern technology.</p>
+                    <a href="10-rocks-minerals-modern-technology.html" class="read-more">Читать статью →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

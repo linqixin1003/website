@@ -3,42 +3,356 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>岩石採集場所 - BirdAiSnap</title>
+    <title>02 ロックハンティング地点 - BirdAiSnap</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #f5f5f5; color: #333; }
-        .hero-image { width: 100%; height: 400px; background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url("../../images/rock/Rock_Collecting&Hobby/02_Rock_Hunting_Locations.webp") center/cover; position: relative; margin-top: 0; }
-        .content { background: white; margin: -30px 20px 20px 20px; border-radius: 20px; padding: 30px 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); min-height: 80vh; }
-        .title { font-size: 24px; font-weight: 700; color: #1a1a1a; margin-bottom: 30px; margin-top: 15px; line-height: 1.3; }
-        .quote-box { background: linear-gradient(135deg, #f3e5f5, #e1bee7); border-left: 4px solid #9c27b0; padding: 20px; margin: 25px 0; border-radius: 8px; }
-        .quote-text { font-size: 18px; font-weight: 600; color: #4a148c; margin-left: 25px; line-height: 1.4; }
-        .main-text { font-size: 16px; line-height: 1.8; color: #333; margin: 20px 0; text-align: justify; }
-        .section-title { font-size: 20px; font-weight: 600; color: #9c27b0; margin: 30px 0 15px 0; border-bottom: 2px solid #ba68c8; padding-bottom: 8px; }
-        ul { margin: 15px 0; padding-left: 25px; }
-        li { margin: 8px 0; line-height: 1.6; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                        url('../../images/rock/Rock_Collecting&Hobby/02_Rock_Hunting_Locations.webp') center/cover;
+            position: relative;
+            margin-top: 0;
+        }
+        
+        .content {
+            background: white;
+            margin: -30px 20px 20px 20px;
+            border-radius: 20px;
+            padding: 30px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            min-height: 80vh;
+        }
+        
+        .title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            margin-top: 15px;
+            line-height: 1.3;
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, #f3e5f5, #e1bee7);
+            border-left: 4px solid #9c27b0;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .quote-box::before {
+            content: '"';
+            font-size: 48px;
+            color: #9c27b0;
+            position: absolute;
+            top: -5px;
+            left: 15px;
+            font-family: serif;
+            line-height: 1;
+        }
+        
+        .quote-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: #4a148c;
+            margin-left: 25px;
+            line-height: 1.4;
+        }
+        
+        .main-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            margin: 20px 0;
+            text-align: justify;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #9c27b0;
+            margin: 30px 0 15px 0;
+            border-bottom: 2px solid #ba68c8;
+            padding-bottom: 8px;
+        }
+        
+        .tip-box {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            border-left: 4px solid #9c27b0;
+        }
+        
+        .tip-title {
+            font-weight: 600;
+            color: #9c27b0;
+            margin-bottom: 8px;
+        }
+        
+        .highlight {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #ba68c8;
+            margin: 20px 0;
+        }
+        
+        .equipment-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .equipment-item {
+            background: linear-gradient(135deg, #ffffff, #f3e5f5);
+            border: 1px solid #ba68c8;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        
+        .equipment-item h4 {
+            color: #9c27b0;
+            margin-bottom: 8px;
+        }
+        
+        ul {
+            margin: 15px 0;
+            padding-left: 25px;
+        }
+        
+        li {
+            margin: 8px 0;
+            line-height: 1.6;
+        }
+        
+        .warning {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            border-left: 4px solid #dc3545;
+        }
+        
+        .warning-title {
+            font-weight: 600;
+            color: #721c24;
+            margin-bottom: 8px;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                margin: -20px 10px 10px 10px;
+                padding: 20px 15px;
+            }
+            
+            .title {
+                font-size: 20px;
+            }
+            
+            .equipment-list {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Rock Collecting Theme - Purple */
+        :root {
+            --primary-color: #9C27B0;
+            --primary-dark: #4A148C;
+            --primary-light: #F3E5F5;
+            --accent-color: #BA68C8;
+        }
+        
+        /* Theme Color Overrides */
+        .content {
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+            border: 2px solid var(--primary-color);
+        }
+        
+        .category {
+            background: var(--primary-color);
+            color: white;
+        }
     </style>
 </head>
 <body>
     <div class="hero-image"></div>
     <div class="content">
-        <h1 class="title">岩石採集場所</h1>
+        <h1 class="title">02 ロックハンティング地点</h1>
+        
         <div class="quote-box">
             <div class="quote-text">専門地質学ガイド</div>
         </div>
-        <div class="main-text">効率的な岩石採集地点の戦略的地質調査には、地域地質学、地形学、アクセス規制の理解が必要です。</div>
-        <div class="section-title">🗺️ 地質地点選択</div>
-        <div class="main-text">効果的な岩石採集には、地質地域、露頭品質、アクセス制約の系統的評価が必要です。</div>
+        
+        <div class="main-text">
+            効率的な岩石採集地点の戦略的地質調査には、地域地質学、地形学、アクセス規制の理解が必要であり、土地利用政策を尊重しながら標本の多様性を最大化します🪨。
+        </div>
+        
+        <div class="quote-box">
+            <div class="main-text">"最高の採集地点は地質と到達可能性が合致する場所です - 両方を理解することが成功の鍵です。"</div>
+            <cite>— ロバート・張博士、野外地質専門家</cite>
+        </div>
+        
+        <div class="section-title">🔍 地質地点選択</div>
+        <div class="main-text">効果的なロックハンティングには、地質地体、露頭品質、アクセス制約の系統的評価が必要で、生産性の高い採集地点を特定します。</div>
+        
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>📚 地質環境タイプ</h4>
+                <ul>
+                    <li>水成岩、堆積岩、火成岩地体の識別</li>
+                    <li>変成帯と接触変成帯のマッピング</li>
+                    <li>鉱化帯と破砕帯の地球化学的特徴</li>
+                    <li>第四紀堆積物と表生最新堆積物の分析</li>
+                </ul>
+            </div>
+            <div class="equipment-item">
+                <h4>🌟 優良採集地点基準</h4>
+                <ul>
+                    <li>新鮮な露頭と最小風化作用の系統的評価</li>
+                    <li>岩石・鉱物標本多様性の科学的文書化</li>
+                    <li>地質文献と歴史的採集記録のコーパス検索</li>
+                    <li>地元地質学会と採集クラブの経験共有</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="section-title">🗺️ 地点タイプ分類</div>
+        <div class="main-text">異なるタイプの地質環境は特定の採集機会と課題を提供します。</div>
+        
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>🏠 人工露頭地点</h4>
+                <ul>
+                    <li>建設と道路建設現場：新鮮で清潔な岩面</li>
+                    <li>商業採石場：大規模露頭と系統的サンプリング機会</li>
+                    <li>廃鉱山と採石場：希少鉱物と二次堆積物</li>
+                    <li>道路切削と鉄道路盤：線形地質断面の露出</li>
+                </ul>
+            </div>
+            <div class="equipment-item">
+                <h4>🌊 天然露頭地点</h4>
+                <ul>
+                    <li>河川と渓流切削：水力作用による連続露頭</li>
+                    <li>海岸断崖と海浜：波浪作用下の新鮮岩面</li>
+                    <li>山脈と地質断層：構造作用で露出した岩石系列</li>
+                    <li>氷河と雪崩地域：物理風化で露出した新鮮標本</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="section-title">📋 地点評価基準</div>
+        <div class="main-text">系統的地点評価には複数の地質的・実用的要因の総合考慮が必要です。</div>
+        
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>🔍 地質評価要因</h4>
+                <ul>
+                    <li>岩石タイプ多様性と鉱物組合せ複雑性</li>
+                    <li>構造変形度と変成作用強度</li>
+                    <li>風化作用程度と表生汚染状況</li>
+                    <li>地質構造安定性と安全リスク評価</li>
+                </ul>
+            </div>
+            <div class="equipment-item">
+                <h4>🚧 アクセス性と法的考慮</h4>
+                <ul>
+                    <li>土地所有権とアクセス許可要件調査</li>
+                    <li>環境保護法規と文化財保護区域</li>
+                    <li>安全設備と緊急救援ルートの利用可能性</li>
+                    <li>公共交通と駐車設備の利便性</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="section-title">💡 ベストプラクティスガイド</div>
+        <div class="main-text">専門ロックハンターの経験まとめと推奨事項。</div>
+        
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>📋 専門準備基準</h4>
+                <ul>
+                    <li>地質図と地理情報システムの事前研究</li>
+                    <li>地元地質文献と専門資料の参照</li>
+                    <li>気象条件と季節要因の総合考慮</li>
+                    <li>階層化バックアップ計画と緊急対応策定</li>
+                </ul>
+            </div>
+            <div class="equipment-item">
+                <h4>🎯 実用技術と推奨事項</h4>
+                <ul>
+                    <li>地元地質学者とコレクターとのネットワーキング</li>
+                    <li>季節的アクセス制限と最適採集時期</li>
+                    <li>標本記録と地点文書化プロトコル</li>
+                    <li>持続可能な採集実践と環境配慮</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="section-title">🎯 地点調査技術</div>
+        <div class="main-text">効果的な地点評価のための実証的方法論。</div>
+        
         <ul>
-            <li><strong>自然露頭：</strong> 河川切断、海岸崖、山腹露頭</li>
-            <li><strong>人工露頭：</strong> 採石場、道路切断、建設現場</li>
-            <li><strong>鉱物地点：</strong> 廃鉱山、尾鉱堆積、選鉱場</li>
+            <li><strong>遠隔偵察：</strong> 衛星画像と航空写真による予備調査</li>
+            <li><strong>文献調査：</strong> 地質調査報告書と学術論文の検索</li>
+            <li><strong>フィールド調査：</strong> 実地視察と地質マッピング</li>
+            <li><strong>地元情報：</strong> 専門家とコレクターからの情報収集</li>
         </ul>
+        
+        <div class="tip-box">
+            <div class="tip-title">🗺️ 地質図の活用</div>
+            地質図は岩石分布、構造、年代を示し、有望な採集地点の特定に不可欠です。等高線、地質境界、断層の解読方法を学びましょう。
+        </div>
+        
         <div class="section-title">⚖️ 法的・倫理的考慮</div>
+        <div class="main-text">責任ある採集実践には法的要件と倫理的原則の理解が必要です。</div>
+        
         <ul>
-            <li><strong>土地所有権：</strong> 私有地では許可が必要</li>
-            <li><strong>環境保護：</strong> 生態系への影響を最小限に</li>
+            <li><strong>土地所有権：</strong> 私有地では常に許可を取得</li>
+            <li><strong>環境保護：</strong> 生態系への影響を最小限に抑制</li>
+            <li><strong>文化財保護：</strong> 考古学的・歴史的価値の尊重</li>
             <li><strong>安全プロトコル：</strong> 行程を他者に知らせ、通信機器を携帯</li>
         </ul>
+        
+        <div class="highlight">
+            <strong>重要原則：</strong> 「痕跡を残さず、写真だけを撮り、記憶だけを持ち帰る」- 将来の世代のために地質遺産を保護しましょう。
+        </div>
+        
+        <div class="section-title">🌐 特殊環境での採集</div>
+        <div class="main-text">特別な地質環境では独特の機会と課題があります。</div>
+        
+        <ul>
+            <li><strong>火山地域：</strong> 活火山の安全距離と噴出物の新鮮度</li>
+            <li><strong>洞窟系：</strong> 二次鉱物と鍾乳石形成</li>
+            <li><strong>海岸環境：</strong> 潮汐の影響と波浪安全</li>
+            <li><strong>高山地域：</strong> 気象条件と高度順応</li>
+        </ul>
+        
+        <div class="warning">
+            <div class="warning-title">⚠️ 安全注意事項</div>
+            野外活動では常に安全を最優先とし、適切な装備を携帯し、気象条件を監視し、単独行動を避けてください。緊急時の連絡手段を確保しましょう。
+        </div>
+        
+        <div class="section-title">📚 追加学習</div>
+        <div class="main-text">
+            ロックハンティング技術を向上させるには、地元地質学会への参加、経験豊富なコレクターとのフィールドトリップ、継続的な地質学研究が推奨されます。知識と経験が最高の採集成果をもたらします。
+        </div>
     </div>
 </body>
 </html>

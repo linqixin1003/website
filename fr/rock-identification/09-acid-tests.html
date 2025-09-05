@@ -2,43 +2,537 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Tests à l'Acide - BirdAiSnap</title>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tests Chimiques et Réactions - BirdAiSnap</title>
 <link href="../../mobile-styles.css" rel="stylesheet"/>
 <link href="../../mobile-enhancement.css" rel="stylesheet"/>
 <link href="../../ecology-theme.css" rel="stylesheet"/>
 <style>
-:root {
-  --primary-color: #4CAF50;
-  --primary-dark: #2E7D32;
-  --primary-light: #E8F5E8;
-  --accent-color: #81C784;
-}
-.hero-image {
-  width:100%;height:400px;
-  background: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.4)),
-             url('../../images/rock/Rock&Mineral_Identification/09_Acid_Tests.webp') center/cover;
-}
-.content {
-  background: linear-gradient(135deg,#ffffff,var(--primary-light));
-  border: 2px solid var(--primary-color);
-  padding:50px 35px 40px 35px!important;
-  margin:-30px 15px 20px 15px!important;
-  max-width:1200px;margin:auto!important;
-}
-.section-title {
-  color: var(--primary-color);
-  border-bottom:2px solid var(--accent-color);
-  margin:35px 0 20px;padding-bottom:10px;
-}
-.main-text { margin:25px 0;line-height:1.7; }
-</style>
+        /* Rock Identification Theme - Green */
+        :root {
+            --primary-color: #4CAF50;
+            --primary-dark: #2E7D32;
+            --primary-light: #E8F5E8;
+            --accent-color: #81C784;
+        }
+        
+        .hero-image img {
+            max-height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+        .article-card img {
+            max-height: 120px;
+            width: 100%;
+            object-fit: cover;
+        }
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                        url('../../images/rock/Rock&Mineral_Identification/09_Chemical_Testing_&_Acid_Tests.webp') center/cover;
+            position: relative;
+            margin-top: 0;
+        }
+        .article-meta {
+            margin-top: 15px !important;
+        }
+        
+        /* Theme Color Overrides */
+        .content {
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+            border: 2px solid var(--primary-color);
+            padding: 50px 35px 40px 35px !important;
+            margin: -30px 15px 20px 15px !important;
+            max-width: 1200px;
+            margin-left: auto !important;
+            margin-right: auto !important;
+        }
+        
+        /* Responsive padding adjustments */
+        @media screen and (max-width: 768px) {
+            .content {
+                padding: 40px 25px 30px 25px !important;
+                margin: -30px 10px 20px 10px !important;
+            }
+        }
+        
+        @media screen and (max-width: 480px) {
+            .content {
+                padding: 15px 8px 10px 8px !important;
+                margin: -10px 3px 5px 3px !important;
+            }
+            
+            /* MOBILE OPTIMIZED - 3 layer structure with readable fonts */
+            
+            /* Flatten containers but maintain block structure */
+            .tip-box, .highlight, .warning {
+                padding: 8px !important;
+                margin: 8px 0 !important;
+                border-left: 3px solid var(--primary-color) !important;
+                background: var(--primary-light) !important;
+                border-radius: 4px !important;
+            }
+            
+            .section-title {
+                font-size: 16px !important;
+                margin: 12px 0 6px 0 !important;
+                padding: 0 0 3px 0 !important;
+                font-weight: 700 !important;
+                color: var(--primary-dark) !important;
+                display: block !important;
+                border-bottom: 2px solid var(--accent-color) !important;
+                line-height: 1.2 !important;
+            }
+            
+            .main-text {
+                font-size: 13px !important;
+                line-height: 1.4 !important;
+                margin: 0 0 8px 0 !important;
+                padding: 0 !important;
+                display: block !important;
+                color: #333 !important;
+            }
+            
+            .quote-box {
+                padding: 12px !important;
+                margin: 12px 0 !important;
+                border-left: 4px solid var(--primary-color) !important;
+                background: linear-gradient(135deg, var(--primary-light), #C8E6C9) !important;
+                border-radius: 6px !important;
+            }
+            
+            .quote-text {
+                font-size: 13px !important;
+                line-height: 1.4 !important;
+                margin: 0 !important;
+                font-style: italic !important;
+                color: var(--primary-dark) !important;
+            }
+            
+            /* Section titles - readable size */
+            h3 {
+                font-size: 16px !important;
+                margin: 12px 0 6px 0 !important;
+                padding: 0 0 3px 0 !important;
+                font-weight: 700 !important;
+                color: var(--primary-dark) !important;
+                display: block !important;
+                border-bottom: 2px solid var(--accent-color) !important;
+                line-height: 1.2 !important;
+            }
+            
+            /* Subsection headers */
+            h4 {
+                font-size: 14px !important;
+                margin: 8px 0 4px 0 !important;
+                padding: 0 !important;
+                font-weight: 600 !important;
+                color: var(--primary-color) !important;
+                display: block !important;
+                line-height: 1.3 !important;
+            }
+            
+            /* Body text - readable size */
+            p {
+                font-size: 13px !important;
+                line-height: 1.4 !important;
+                margin: 0 0 8px 0 !important;
+                padding: 0 !important;
+                display: block !important;
+                color: #333 !important;
+            }
+            
+            .title {
+                font-size: 18px !important;
+                margin: 0 0 10px 0 !important;
+                line-height: 1.2 !important;
+                font-weight: 700 !important;
+            }
+            
+            /* Article meta - readable */
+            .article-meta {
+                margin: 8px 0 !important;
+                padding: 0 !important;
+            }
+            
+            .article-meta span {
+                font-size: 11px !important;
+                padding: 3px 6px !important;
+                margin: 2px 4px 2px 0 !important;
+                display: inline-block !important;
+                background: var(--primary-light) !important;
+                color: var(--primary-dark) !important;
+                border-radius: 3px !important;
+            }
+            
+            /* Strong text styling */
+            strong {
+                font-weight: 600 !important;
+                font-size: inherit !important;
+                display: inline !important;
+                color: var(--primary-dark) !important;
+            }
+            
+            /* Clean minimal styling */
+            * {
+                box-shadow: none !important;
+                border-radius: 0 !important;
+            }
+            
+            /* Proper spacing for readability */
+            h1, h2, h5, h6 {
+                margin: 8px 0 4px 0 !important;
+                line-height: 1.2 !important;
+            }
+            
+            /* Content container styling */
+            .content {
+                border: 1px solid var(--primary-color) !important;
+                background: white !important;
+                border-radius: 8px !important;
+            }
+            
+            /* Lists with proper spacing */
+            ul, ol {
+                margin: 8px 0 !important;
+                padding-left: 20px !important;
+            }
+            
+            li {
+                margin: 4px 0 !important;
+                font-size: 13px !important;
+                line-height: 1.4 !important;
+            }
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, var(--primary-light), #C8E6C9);
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .quote-text {
+            color: var(--primary-dark);
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+        }
+        
+        .tip-box {
+            border-left: 4px solid var(--primary-color);
+            background: var(--primary-light);
+        }
+        
+        .tip-title {
+            color: var(--primary-color);
+        }
+        
+        .highlight {
+            border-left: 4px solid var(--accent-color);
+            background: linear-gradient(135deg, #f1f8e9, var(--primary-light));
+        }
+        
+        .warning {
+            border-left: 4px solid #f44336;
+        }
+        
+        .equipment-item {
+            border: 1px solid var(--accent-color);
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        .equipment-item h4 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        
+        .equipment-item p {
+            margin-bottom: 0;
+            line-height: 1.6;
+        }
+        
+        /* Improved spacing for all text elements */
+        .main-text {
+            margin: 25px 0;
+            line-height: 1.7;
+        }
+        
+        .section-title {
+            margin: 35px 0 20px 0;
+            padding-bottom: 10px;
+        }
+        
+        .tip-box, .highlight, .warning {
+            margin: 25px 0;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        
+        .equipment-list {
+            margin: 25px 0;
+        }
+        
+        ul, ol {
+            padding-left: 25px;
+            margin: 15px 0;
+        }
+        
+        li {
+            margin: 8px 0;
+            line-height: 1.6;
+        }
+        
+        .category {
+            background: var(--primary-color);
+            color: white;
+        }
+    </style>
 </head>
 <body>
 <div class="hero-image"></div>
 <div class="content">
-  <h1 class="title">Tests à l'Acide</h1>
-  <!-- Veuillez traduire l’intégralité des sections selon l’original anglais -->
+    <h1 class="title">Tests Chimiques et Réactions</h1>
+    
+    <div class="quote-box">
+        <div class="quote-text">Tests Chimiques Sécurisés pour l'Identification Minérale</div>
+    </div>
+    
+    <div class="main-text">
+        Les tests chimiques exploitent des modèles de réactivité spécifiques basés sur la chimie cristalline, la coordination ionique et la stabilité thermodynamique. Les réactions acido-basiques, les processus redox et la chimie de complexation fournissent des empreintes diagnostiques pour l'identification des minéraux. Des protocoles de sécurité systématiques doivent régir tous les procédures de tests chimiques pour prévenir l'exposition aux acides corrosifs, gaz toxiques et produits de réaction dangereux.
+    </div>
+    
+    <div class="article-meta">
+        <span class="category">Identification des Roches</span>
+        <span class="read-time">📖 12 minutes de lecture</span>
+        <span class="difficulty">🟡 Intermédiaire</span>
+    </div>
+    
+    <div class="quote-box">
+        <div class="main-text">"Les tests chimiques révèlent la chimie cachée - mais la sécurité doit toujours passer en premier."</div>
+        <cite>— Dr. Thomas Anderson, Géochimiste</cite>
+    </div>
+    
+    <div class="section-title">🧪 Le Test à l'Acide</div>
+    
+    <div class="main-text">
+        Le test à l'acide chlorhydrique (HCl) est le test chimique le plus important pour l'identification des minéraux :
+    </div>
+    
+    <h4>🫧 Réaction des Carbonates</h4>
+    <p><strong>Calcite :</strong> Effervescence vigoureuse avec HCl dilué froid. CaCO₃ + 2HCl → CaCl₂ + H₂O + CO₂</p>
+    
+    <h4>🔄 Réaction de la Dolomite</h4>
+    <p><strong>Dolomite :</strong> Réaction faible avec HCl froid, vigoureuse en poudre ou chauffée. Plus résistante que la calcite.</p>
+    
+    <h4>⚡ Réaction de l'Aragonite</h4>
+    <p><strong>Aragonite :</strong> Réagit comme la calcite mais souvent plus vigoureusement en raison des différences de structure cristalline.</p>
+    
+    <div class="warning">
+        <div class="warning-title">🛡️ Sécurité d'Abord</div>
+        <ul>
+            <li>Toujours utiliser de l'HCl dilué (solution 10% maximum)</li>
+            <li>Porter des lunettes de sécurité et des gants</li>
+            <li>Travailler dans une zone bien ventilée</li>
+            <li>Garder du bicarbonate de soude à proximité pour neutraliser les déversements</li>
+            <li>Ne jamais utiliser d'acides concentrés</li>
+        </ul>
+    </div>
+    
+    <div class="section-title">🔬 Procédure de Test</div>
+    
+    <div class="main-text">
+        Une technique appropriée garantit des résultats précis et une sécurité maximale :
+    </div>
+    
+    <div class="tip-box">
+        <div class="tip-title">⚗️ Protocole de Test Sécurisé</div>
+        <ol>
+            <li>Nettoyer la surface fraîche de l'échantillon</li>
+            <li>Placer une petite goutte d'HCl dilué sur la surface</li>
+            <li>Observer le bouillonnement/effervescence</li>
+            <li>Écouter les sons de fizzing</li>
+            <li>Rincer l'échantillon à l'eau après le test</li>
+            <li>Neutraliser immédiatement tout acide renversé</li>
+        </ol>
+    </div>
+    
+    <div class="section-title">💧 Interprétation des Réactions</div>
+    
+    <div class="main-text">
+        Différentes intensités de réaction fournissent des informations diagnostiques :
+    </div>
+    
+    <h4>🌋 Réaction Vigoureuse</h4>
+    <p><strong>Calcite, aragonite :</strong> Bouillonnement immédiat et fort, visible et audible. Diagnostique pour la plupart des carbonates.</p>
+    
+    <h4>🫧 Réaction Modérée</h4>
+    <p><strong>Dolomite (en poudre) :</strong> Bouillonnement clair mais moins intense que la calcite. Peut nécessiter un réchauffement.</p>
+    
+    <h4>⚪ Réaction Faible</h4>
+    <p><strong>Dolomite (solide) :</strong> Léger bouillonnement, peut nécessiter une loupe pour voir. Tester la poudre pour confirmation.</p>
+    
+    <h4>❌ Pas de Réaction</h4>
+    <p><strong>Silicates, oxydes :</strong> Absence de bouillonnement indique des minéraux non-carbonatés. Exclut le groupe des carbonates.</p>
+    
+    <div class="section-title">🔥 Tests à la Flamme</div>
+    
+    <div class="main-text">
+        Les tests à la flamme révèlent des couleurs caractéristiques d'éléments spécifiques :
+    </div>
+    
+    <h4>🟢 Flammes Vertes</h4>
+    <p><strong>Minéraux de cuivre :</strong> Malachite, azurite, chalcopyrite. Couleur vert émeraude brillant diagnostique.</p>
+    
+    <h4>🟡 Flammes Jaunes</h4>
+    <p><strong>Minéraux de sodium :</strong> Halite, sodalite. Jaune brillant masque les autres couleurs présentes.</p>
+    
+    <h4>🟣 Flammes Violettes</h4>
+    <p><strong>Minéraux de potassium :</strong> Orthoclase, sylvite. Couleur pourpre souvent masquée par le jaune du sodium.</p>
+    
+    <h4>🔴 Flammes Rouges</h4>
+    <p><strong>Minéraux de lithium :</strong> Spodumène, lépidolite. Couleur rouge cramoisi distinctive.</p>
+    
+    <div class="warning">
+        <div class="warning-title">🔥 Sécurité des Tests à la Flamme</div>
+        <ul>
+            <li>Utiliser un brûleur Bunsen ou une lampe à alcool appropriée</li>
+            <li>Tenir l'échantillon avec un fil de platine ou de nichrome</li>
+            <li>Travailler sous hotte aspirante quand possible</li>
+            <li>Être conscient des fumées toxiques de certains minéraux</li>
+            <li>Avoir un extincteur facilement disponible</li>
+        </ul>
+    </warning>
+    
+    <div class="section-title">🧲 Tests Magnétiques</div>
+    
+    <div class="main-text">
+        Les propriétés magnétiques fournissent des informations chimiques immédiates :
+    </div>
+    
+    <h4>🔴 Fortement Magnétique</h4>
+    <p><strong>Magnétite :</strong> Attirée par l'aimant à main, peut être magnétisée. Composition Fe₃O₄.</p>
+    
+    <h4>🟤 Faiblement Magnétique</h4>
+    <p><strong>Pyrrhotite :</strong> Attraction faible, nécessite un aimant fort. Sulfure déficient en fer.</p>
+    
+    <h4>⚫ Non-magnétique</h4>
+    <p><strong>Hématite, pyrite :</strong> Pas d'attraction magnétique malgré la teneur en fer. États d'oxydation différents.</p>
+    
+    <div class="section-title">🌈 Tests de Changement de Couleur</div>
+    
+    <div class="main-text">
+        Certains minéraux montrent des changements de couleur diagnostiques pendant les tests chimiques :
+    </div>
+    
+    <h4>🔵 Réactions du Cuivre</h4>
+    <p><strong>Malachite + HCl :</strong> La solution devient bleu-vert. Les ions cuivre en solution créent une couleur caractéristique.</p>
+    
+    <h4>🟡 Réactions du Fer</h4>
+    <p><strong>Pyrite + HNO₃ :</strong> La solution devient jaune. Produits d'oxydation du fer et du soufre.</p>
+    
+    <h4>🟢 Tests du Nickel</h4>
+    <p><strong>Garniérite + diméthylglyoxime :</strong> Précipité rouge vif. Test spécifique pour le nickel.</p>
+    
+    <div class="section-title">💨 Tests d'Évolution de Gaz</div>
+    
+    <div class="main-text">
+        Les gaz caractéristiques évoluant lors des réactions aident à l'identification :
+    </div>
+    
+    <h4>💨 Dioxyde de Carbone</h4>
+    <p><strong>Carbonates + acide :</strong> Bulles de CO₂. Gaz inodore, éteint les flammes.</p>
+    
+    <h4>🥚 Sulfure d'Hydrogène</h4>
+    <p><strong>Sulfures + acide :</strong> Gaz H₂S à odeur d'œuf pourri. Extrêmement toxique - éviter l'inhalation.</p>
+    
+    <h4>💧 Vapeur d'Eau</h4>
+    <p><strong>Minéraux hydratés + chaleur :</strong> Évolution de vapeur. Le gypse perd l'eau quand chauffé.</p>
+    
+    <div class="section-title">🧪 Tests Chimiques Spécialisés</div>
+    
+    <div class="main-text">
+        Tests avancés pour des groupes de minéraux spécifiques :
+    </div>
+    
+    <h4>🔍 Test de Perle de Borax</h4>
+    <p>Dissoudre le minéral dans du borax fondu. Différents éléments créent des couleurs de perles caractéristiques.</p>
+    
+    <h4>⚗️ Tests Microchimiques</h4>
+    <p>Tests de précipitation cristalline microscopique. Très spécifiques pour les éléments individuels.</p>
+    
+    <h4>📊 Indicateurs de pH</h4>
+    <p>Papier de tournesol ou bandes de pH détectent les solutions minérales acides ou basiques.</p>
+    
+    <div class="section-title">⚠️ Minéraux Dangereux</div>
+    
+    <div class="warning">
+        <div class="warning-title">☠️ Avertissement Minéraux Toxiques</div>
+        <ul>
+            <li><strong>Cinabre (HgS) :</strong> Sulfure de mercure - extrêmement toxique</li>
+            <li><strong>Réalgar (AsS) :</strong> Sulfure d'arsenic - hautement vénéneux</li>
+            <li><strong>Galène (PbS) :</strong> Sulfure de plomb - risque d'empoisonnement au plomb</li>
+            <li><strong>Minéraux d'amiante :</strong> Fibres cancérigènes</li>
+        </ul>
+    </div>
+    
+    <div class="section-title">🏭 Tests de Terrain vs. Laboratoire</div>
+    
+    <div class="main-text">
+        Comprendre quand utiliser les tests de terrain vs. l'analyse en laboratoire :
+    </div>
+    
+    <h4>🏞️ Applications de Terrain</h4>
+    <p>Test acide simple pour les carbonates. Test magnétique pour la magnétite. Dépistage rapide des inconnus.</p>
+    
+    <h4>🔬 Analyse de Laboratoire</h4>
+    <p>Tests de flamme complexes, analyse microchimique, composition quantitative. Identification définitive.</p>
+    
+    <div class="section-title">📋 Kit de Tests Chimiques</div>
+    
+    <div class="main-text">
+        Produits chimiques essentiels pour les tests de terrain :
+    </div>
+    
+    <h4>🧪 HCl Dilué (10%)</h4>
+    <p>Acide primaire pour les tests de carbonates. Stocker dans un flacon compte-gouttes en plastique.</p>
+    
+    <h4>🧲 Aimant Fort</h4>
+    <p>Aimant de terre rare pour les tests magnétiques. Plus sensible que les aimants ordinaires.</p>
+    
+    <h4>🧂 Bicarbonate de Soude</h4>
+    <p>Bicarbonate de sodium pour la neutralisation d'acide. Article de sécurité essentiel.</p>
+    
+    <h4>💧 Eau Distillée</h4>
+    <p>Pour rincer les échantillons et diluer les réactifs. Prévient la contamination.</p>
+    
+    <div class="highlight">
+        <strong>Insight Professionnel :</strong> Les tests chimiques devraient confirmer plutôt que remplacer les observations des propriétés physiques. Utilisez la chimie pour distinguer entre les minéraux aux propriétés physiques similaires, pas comme méthode d'identification primaire.
+    </div>
+    
+    <div class="section-title">🎓 Développer les Compétences de Test Chimique</div>
+    
+    <div class="main-text">
+        Développer l'expertise en tests chimiques nécessite une pratique soigneuse :
+    </div>
+    
+    <div class="tip-box">
+        <div class="tip-title">📈 Développement des Compétences</div>
+        <ul>
+            <li>Commencer avec des échantillons de carbonates connus</li>
+            <li>Pratiquer les procédures de sécurité jusqu'à ce qu'elles soient automatiques</li>
+            <li>Apprendre à reconnaître différentes intensités de réaction</li>
+            <li>Étudier les principes chimiques derrière les tests</li>
+            <li>Toujours confirmer les résultats avec d'autres propriétés</li>
+        </ul>
+    </div>
+    
 </div>
 </body>
 </html>

@@ -2,41 +2,598 @@
 <html lang="zh">
 <head>
 <meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>解理与断口模式 - BirdAiSnap</title>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>06 解理和断口模式 - BirdAiSnap</title>
 <link href="../../mobile-styles.css" rel="stylesheet"/>
 <link href="../../mobile-enhancement.css" rel="stylesheet"/>
 <link href="../../ecology-theme.css" rel="stylesheet"/>
 <style>
-:root {
-  --primary-color: #4CAF50;
-  --primary-dark: #2E7D32;
-  --primary-light: #E8F5E8;
-  --accent-color: #81C784;
-}
-.hero-image {
-  width:100%; height:400px;
-  background:linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.4)),
-             url('../../images/rock/Rock&Mineral_Identification/06_Cleavage_&_Fracture_Patterns.webp') center/cover;
-}
-.content {
-  background:linear-gradient(135deg,#ffffff,var(--primary-light));
-  border:2px solid var(--primary-color);
-  padding:50px 35px 40px 35px!important;
-  margin:-30px 15px 20px 15px!important;
-  max-width:1200px; margin:auto!important;
-}
-.main-text { margin:25px 0; line-height:1.7; }
-</style>
+        /* Rock Identification Theme - Green */
+        :root {
+            --primary-color: #4CAF50;
+            --primary-dark: #2E7D32;
+            --primary-light: #E8F5E8;
+            --accent-color: #81C784;
+        }
+        
+        .hero-image img {
+            max-height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+        .article-card img {
+            max-height: 120px;
+            width: 100%;
+            object-fit: cover;
+        }
+        .hero-image {
+            width: 100% !important;
+            height: 400px !important;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                        url('../../images/rock/Rock&Mineral_Identification/06_Cleavage_&_Fracture_Patterns.webp') center/cover !important;
+            position: relative !important;
+            margin-top: 0 !important;
+            display: block !important;
+        }
+        .article-meta {
+            margin-top: 15px !important;
+        }
+        
+        /* Theme Color Overrides */
+        .content {
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+            border: 2px solid var(--primary-color);
+            padding: 50px 35px 40px 35px !important;
+            margin: -30px 15px 20px 15px !important;
+            max-width: 1200px;
+            margin-left: auto !important;
+            margin-right: auto !important;
+        }
+        
+        /* Responsive padding adjustments */
+        @media screen and (max-width: 768px) {
+            .content {
+                padding: 40px 25px 30px 25px !important;
+                margin: -30px 10px 20px 10px !important;
+            }
+        }
+        
+        @media screen and (max-width: 480px) {
+            .content {
+                padding: 35px 20px 25px 20px !important;
+                margin: -30px 8px 20px 8px !important;
+            }
+            
+            /* Mobile optimization - flatten hierarchy */
+            .equipment-list {
+                margin: 20px 0;
+            }
+            
+            .equipment-item {
+                padding: 15px;
+                margin: 12px 0;
+                border-radius: 6px;
+            }
+            
+            .equipment-item h4 {
+                font-size: 16px;
+                margin-bottom: 8px;
+            }
+            
+            .tip-box, .highlight, .warning {
+                padding: 15px;
+                margin: 20px 0;
+                border-radius: 6px;
+            }
+            
+            .tip-title {
+                font-size: 16px;
+                margin-bottom: 10px;
+            }
+            
+            .section-title {
+                font-size: 18px;
+                margin: 25px 0 15px 0;
+                padding-bottom: 8px;
+            }
+            
+            .main-text {
+                font-size: 15px;
+                line-height: 1.6;
+                margin: 15px 0;
+            }
+            
+            ul, ol {
+                padding-left: 20px;
+                margin: 10px 0;
+            }
+            
+            li {
+                margin: 6px 0;
+                font-size: 14px;
+                line-height: 1.5;
+            }
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, var(--primary-light), #C8E6C9);
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .quote-text {
+            color: var(--primary-dark);
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+        }
+        
+        .tip-box {
+            border-left: 4px solid var(--primary-color);
+            background: var(--primary-light);
+        }
+        
+        .tip-title {
+            color: var(--primary-color);
+        }
+        
+        .highlight {
+            border-left: 4px solid var(--accent-color);
+            background: linear-gradient(135deg, #f1f8e9, var(--primary-light));
+        }
+        
+        .warning {
+            border-left: 4px solid #f44336;
+        }
+        
+        .equipment-item {
+            border: 1px solid var(--accent-color);
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        .equipment-item h4 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        
+        .equipment-item p {
+            margin-bottom: 0;
+            line-height: 1.6;
+        }
+        
+        /* Improved spacing for all text elements */
+        .main-text {
+            margin: 25px 0;
+            line-height: 1.7;
+        }
+        
+        .section-title {
+            margin: 35px 0 20px 0;
+            padding-bottom: 10px;
+        }
+        
+        .tip-box, .highlight, .warning {
+            margin: 25px 0;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        
+        .equipment-list {
+            margin: 25px 0;
+        }
+        
+        ul, ol {
+            padding-left: 25px;
+            margin: 15px 0;
+        }
+        
+        li {
+            margin: 8px 0;
+            line-height: 1.6;
+        }
+        
+        .category {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .warning-title {
+            font-weight: 600;
+            color: #721c24;
+            margin-bottom: 8px;
+        }
+    </style>
 </head>
 <body>
 <div class="hero-image"></div>
 <div class="content">
-  <h1 class="title">解理与断口模式</h1>
-  <div class="main-text">
-    矿物的解理方式揭示其内部原子结构。解理沿着原子之间较弱的结合面发生，而断口展示在无弱面时矿物对应力的响应。理解这些破裂模式对于准确鉴定矿物至关重要。
-  </div>
-  <!-- 请根据英文原文结构完整翻译以下所有章节内容 -->
+    <h1 class="title">06 解理和断口模式</h1>
+    
+    <div class="quote-box">
+        <div class="quote-text">理解矿物如何破裂</div>
+    </div>
+    
+    <div class="main-text">
+        矿物破裂的方式揭示了其内部原子结构。解理沿着原子间弱键合面进行，而断口显示了当不存在弱面时矿物对应力的响应。理解这些破裂模式对准确鉴定矿物至关重要。
+    </div>
+    
+    <div class="article-meta">
+        <span class="category">岩石识别</span>
+        <span class="read-time">📖 17分钟阅读</span>
+        <span class="difficulty">🟡 中级</span>
+    </div>
+    
+    <div class="quote-box">
+        <div class="main-text">"矿物如何破裂揭示了其内部结构——解理沿着原子弱点进行。"</div>
+        <cite>— 帕特里夏·威廉姆斯博士，结构地质学家</cite>
+    </div>
+    
+    <div class="section-title">🔨 解理与断口</div>
+    
+    <div class="main-text">
+        理解解理和断口之间的基本差异对矿物鉴定至关重要：
+    </div>
+    
+    <div class="equipment-list">
+        <div class="equipment-item">
+            <h4>✂️ 解理</h4>
+            <p><strong>定义：</strong>沿原子弱键合面破裂。产生光滑、平坦、均匀反光的表面。由晶体结构控制。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>⚡ 断口</h4>
+            <p><strong>定义：</strong>当不存在弱面时穿过强原子键破裂。产生不规则、粗糙的表面。显示材料在应力下如何破坏。</p>
+        </div>
+    </div>
+    
+    <div class="tip-box">
+        <div class="tip-title">🔍 识别技巧</div>
+        <ul>
+            <li><strong>解理：</strong>光滑、平坦，通常发亮的表面，像镜子一样反光</li>
+            <li><strong>断口：</strong>不规则、弯曲或阶梯状表面，反光多变</li>
+            <li><strong>关键测试：</strong>能清楚地看到你的倒影吗？如果能，很可能是解理</li>
+        </ul>
+    </div>
+    
+    <div class="section-title">📐 解理质量</div>
+    
+    <div class="main-text">
+        解理质量描述矿物沿解理面破裂的容易程度和清洁程度：
+    </div>
+    
+    <div class="equipment-list">
+        <div class="equipment-item">
+            <h4>⭐ 完全解理</h4>
+            <p><strong>特征：</strong>易破裂且具镜面般表面。实例：云母、岩盐、方铅矿。解理支配所有其他破裂。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>✅ 良好解理</h4>
+            <p><strong>特征：</strong>容易破裂且具有显示轻微不规则的光滑表面。实例：长石、辉石、角闪石。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>⚠️ 中等/较差解理</h4>
+            <p><strong>特征：</strong>难以产生，表面可能是阶梯状或间断的。实例：绿柱石、磷灰石。常与断口混合。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>❌ 无解理</h4>
+            <p><strong>特征：</strong>只显示断口。实例：石英、石榴子石、橄榄石。原子键合在各方向均匀强。</p>
+        </div>
+    </div>
+    
+    <div class="section-title">🔢 解理方向数</div>
+    
+    <div class="main-text">
+        解理方向数对矿物鉴定具有高度诊断价值：
+    </div>
+    
+    <div class="equipment-list">
+        <div class="equipment-item">
+            <h4>1️⃣ 一个方向</h4>
+            <p><strong>实例：</strong>云母（裂成片状）、石膏、滑石。产生平坦、平行表面。常称"底面解理"。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>2️⃣ 两个方向</h4>
+            <p><strong>实例：</strong>长石（90°角）、辉石（90°）、角闪石（120°）。面间角度具诊断意义。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>3️⃣ 三个方向</h4>
+            <p><strong>实例：</strong>岩盐（立方体）、方解石（菱面体）、萤石（八面体）。产生几何碎片。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>4️⃣ 四个方向</h4>
+            <p><strong>实例：</strong>萤石、金刚石（八面体解理）。八个三角形面在每个角汇合。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>6️⃣ 六个方向</h4>
+            <p><strong>实例：</strong>闪锌矿（菱形十二面体解理）。十二个菱形面。发育时非常特征。</p>
+        </div>
+    </div>
+    
+    <div class="section-title">📐 解理角度</div>
+    
+    <div class="main-text">
+        解理面间的角度具诊断意义并反映晶体结构：
+    </div>
+    
+    <div class="equipment-list">
+        <div class="equipment-item">
+            <h4>📏 90°解理</h4>
+            <p><strong>辉石族：</strong>两个方向呈90°。产生矩形横截面。包括普通辉石、透辉石、顽火辉石。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>📐 120°解理</h4>
+            <p><strong>角闪石族：</strong>两个方向呈120°。产生菱形横截面。包括角闪石、阳起石。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>🔺 菱面体</h4>
+            <p><strong>方解石族：</strong>三个方向不呈90°。产生菱形碎片。包括方解石、白云石、菱锰矿。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>⬜ 立方体</h4>
+            <p><strong>岩盐、方铅矿：</strong>三个方向呈90°。产生立方碎片。完美几何形状。</p>
+        </div>
+    </div>
+    
+    <div class="tip-box">
+        <div class="tip-title">📐 测量角度</div>
+        使用接触角度计或量角器精确测量解理角度。辉石和角闪石解理间的角度（90° vs 120°）是经典诊断测试。
+    </div>
+    
+    <div class="section-title">🌊 断口类型</div>
+    
+    <div class="main-text">
+        当矿物缺乏解理或穿过解理面破裂时，它们显示特征断口模式：
+    </div>
+    
+    <div class="equipment-list">
+        <div class="equipment-item">
+            <h4>🐚 贝壳状断口</h4>
+            <p><strong>特征：</strong>具同心脊的弯曲贝壳状表面。实例：石英、黑曜石、燧石。常见于脆性材料。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>⚡ 不规则断口</h4>
+            <p><strong>特征：</strong>无模式的粗糙、不均匀表面。实例：大多数矿物穿过解理破裂时。最常见断口类型。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>🪚 锯齿状断口</h4>
+            <p><strong>特征：</strong>具尖锐突起的锯齿表面。实例：自然金属（铜、银）。延性材料。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>📄 纤维状断口</h4>
+            <p><strong>特征：</strong>长而细的纤维或丝状物。实例：纤维状矿物如石棉、某些石膏变种。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>🪨 土状断口</h4>
+            <p><strong>特征：</strong>柔软、易碎、粘土状表面。实例：粘土矿物、风化材料、某些铁氧化物。</p>
+        </div>
+    </div>
+    
+    <div class="section-title">🔬 解理的原子基础</div>
+    
+    <div class="main-text">
+        理解解理为什么发生有助于预测和解释破裂模式：
+    </div>
+    
+    <div class="equipment-list">
+        <div class="equipment-item">
+            <h4>🔗 键合强度</h4>
+            <p>解理反映具有最小键密度和最低表面能的晶体学面。层状硅酸盐层间范德华力（≈40 kJ/mol）促进云母中{001}解理，而共价Si-O键（≈460 kJ/mol）阻止石英中解理。离子晶体中静电键方向性产生优选断裂取向。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>🏗️ 晶体结构</h4>
+            <p>层状结构（云母）具平行于层的完全解理。架状结构（石英）不显示解理。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>⚛️ 键型分布</h4>
+            <p>混合键合产生定向弱点。层间范德华力比层内共价键弱得多。</p>
+        </div>
+    </div>
+    
+    <div class="section-title">📊 不同矿物群的解理</div>
+    
+    <div class="main-text">
+        不同矿物群基于其晶体结构显示特征解理模式：
+    </div>
+    
+    <div class="equipment-list">
+        <div class="equipment-item">
+            <h4>🍃 层状硅酸盐</h4>
+            <p><strong>云母、粘土矿物：</strong>平行于层的完全解理。一个方向完全支配。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>🔗 链状硅酸盐</h4>
+            <p><strong>辉石、角闪石：</strong>平行于链的两个方向。链间角度具诊断意义。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>🏗️ 架状硅酸盐</h4>
+            <p><strong>石英、石榴子石：</strong>由于强键的三维架状无解理。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>🧂 卤化物</h4>
+            <p><strong>岩盐、萤石：</strong>沿离子键合模式的立方或八面体解理。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>⚫ 硫化物</h4>
+            <p><strong>方铅矿：</strong>完全立方解理。<strong>黄铁矿：</strong>解理差，通常断口。</p>
+        </div>
+    </div>
+    
+    <div class="section-title">🔍 观察解理</div>
+    
+    <div class="main-text">
+        正确的观察技术对准确解理评估至关重要：
+    </div>
+    
+    <div class="tip-box">
+        <div class="tip-title">👁️ 观察技术</div>
+        <ul>
+            <li>使用明亮的定向光照看表面反射</li>
+            <li>旋转标本从不同角度捕捉光反射</li>
+            <li>寻找平行表面组</li>
+            <li>使用放大镜检查表面质量</li>
+            <li>注意表面是完全平坦还是略呈阶梯状</li>
+        </ul>
+    </div>
+    
+    <div class="warning">
+        <div class="warning-title">⚠️ 常见错误</div>
+        <ul>
+            <li>混淆晶面与解理面</li>
+            <li>遗漏只在应力下显示的差解理</li>
+            <li>误将双晶面当作解理</li>
+            <li>在块状标本中不识别解理</li>
+        </ul>
+    </div>
+    
+    <div class="section-title">🔨 解理测试</div>
+    
+    <div class="main-text">
+        有时解理不立即明显，必须通过仔细测试来揭示：
+    </div>
+    
+    <div class="equipment-list">
+        <div class="equipment-item">
+            <h4>🔧 轻压</h4>
+            <p>使用刀片沿疑似解理面施压。良好解理将容易分离。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>🔨 控制破裂</h4>
+            <p>使用地质锤控制敲击。用布包裹标本以安全容纳碎片。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>📐 角度测量</h4>
+            <p>使用角度计或量角器测量解理面间角度。记录以与参考数据比较。</p>
+        </div>
+    </div>
+    
+    <div class="section-title">🎯 诊断应用</div>
+    
+    <div class="main-text">
+        解理和断口提供强大的诊断信息：
+    </div>
+    
+    <div class="equipment-list">
+        <div class="equipment-item">
+            <h4>🔍 主要鉴定</h4>
+            <p>完全立方解理立即暗示岩盐或方铅矿。完全片状解理指示云母族。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>⚖️ 区分相似矿物</h4>
+            <p>辉石vs角闪石通过解理角度区分（90° vs 120°）。对火成岩鉴定至关重要。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>📊 质量评估</h4>
+            <p>解理质量影响矿物价值。完全云母解理对电气应用至关重要。</p>
+        </div>
+    </div>
+    
+    <div class="section-title">🏭 工业意义</div>
+    
+    <div class="main-text">
+        理解解理和断口具有重要的工业应用：
+    </div>
+    
+    <div class="equipment-list">
+        <div class="equipment-item">
+            <h4>💎 宝石切割</h4>
+            <p>钻石切割师使用八面体解理分裂原石。必须巧妙避免或利用解理面。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>🏗️ 建筑材料</h4>
+            <p>板岩解理允许劈成薄片用于屋顶。尺寸石材必须避免显著解理面。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>⚡ 电子学</h4>
+            <p>云母的完全解理允许劈成薄而柔韧的片用于电绝缘。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>🧂 盐生产</h4>
+            <p>岩盐的立方解理促进机械加工和晶体尺寸控制。</p>
+        </div>
+    </div>
+    
+    <div class="section-title">🔬 高级分析</div>
+    
+    <div class="main-text">
+        解理和断口的专业分析使用复杂技术：
+    </div>
+    
+    <div class="equipment-list">
+        <div class="equipment-item">
+            <h4>📡 X射线晶体学</h4>
+            <p>揭示原子结构并解释解理面位置。显示键强度分布。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>🔬 电子显微镜</h4>
+            <p>解理和断口表面的高分辨率成像。揭示原子级细节。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>⚗️ 力学测试</h4>
+            <p>解理强度和断裂韧性的定量测量。对材料应用重要。</p>
+        </div>
+    </div>
+    
+    <div class="section-title">🎓 野外实践</div>
+    
+    <div class="main-text">
+        发展专业知识需要系统的野外实践：
+    </div>
+    
+    <div class="tip-box">
+        <div class="tip-title">🏞️ 野外练习</div>
+        <ol>
+            <li>收集显示各种解理类型的标本</li>
+            <li>练习破裂矿物以揭示解理</li>
+            <li>用简单工具测量解理角度</li>
+            <li>比较标本间的解理质量</li>
+            <li>用素描和照片记录观察</li>
+        </ol>
+    </div>
+    
+    <div class="highlight">
+        <strong>专业洞察：</strong>解理是最可靠的诊断性质之一，因为它直接反映晶体结构。与颜色或光泽不同，解理模式对每种矿物种都是一致的，在正确观察时提供确定的鉴定标准。
+    </div>
+    
+    <div class="section-title">⚠️ 安全考虑</div>
+    
+    <div class="warning">
+        <div class="warning-title">🛡️ 安全第一</div>
+        <ul>
+            <li>破裂矿物时始终佩戴安全眼镜</li>
+            <li>用布包裹标本以容纳飞溅碎片</li>
+            <li>注意某些解理碎片非常锋利</li>
+            <li>极谨慎处理纤维状矿物（石棉族）</li>
+            <li>在通风良好的区域工作以避免吸入粉尘</li>
+        </ul>
+    </div>
+    
+    <div class="section-title">🌟 高级主题</div>
+    
+    <div class="main-text">
+        对于严肃的学生，这些高级主题提供更深理解：
+    </div>
+    
+    <div class="equipment-list">
+        <div class="equipment-item">
+            <h4>🔬 解理微观形貌</h4>
+            <p>解理面上的原子级表面特征。揭示破裂过程的细节。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>⚡ 动态断裂</h4>
+            <p>断裂模式如何依赖加载速率和应力条件。对材料科学重要。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>🌡️ 温度效应</h4>
+            <p>解理如何随温度变化。某些矿物只在高温下发展解理。</p>
+        </div>
+    </div>
+    
 </div>
+<script src="../../language-redirect.js"></script>
 </body>
 </html>

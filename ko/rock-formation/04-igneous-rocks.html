@@ -1,40 +1,231 @@
 <!DOCTYPE html>
-
 <html lang="ko">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>04 화성암 - BirdAiSnap</title>
-<link href="../../mobile-styles.css" rel="stylesheet"/>
-<link href="../../mobile-enhancement.css" rel="stylesheet"/>
-<link href="../../ecology-theme.css" rel="stylesheet"/>
-<style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>화성암 유형 및 분류 - BirdAiSnap</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+
         .hero-image {
             width: 100%;
             height: 400px;
             background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
-                        url('../../images/rock/Rock_Formation&Processes/04_Igneous_Rocks.webp') center/cover;
+                        url('../../images/rock/Rock_Formation_Processes/04_Igneous_Rocks.webp') center/cover;
             position: relative;
             margin-top: 0;
         }
+        
+        .content {
+            background: white;
+            margin: -30px 20px 20px 20px;
+            border-radius: 20px;
+            padding: 30px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            min-height: 80vh;
+        }
+        
+        .title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            margin-top: 15px;
+            line-height: 1.3;
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, #f3e5f5, #e1bee7);
+            border-left: 4px solid #9c27b0;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .quote-box::before {
+            content: '"';
+            font-size: 48px;
+            color: #9c27b0;
+            position: absolute;
+            top: -5px;
+            left: 15px;
+            font-family: serif;
+            line-height: 1;
+        }
+        
+        .quote-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: #6a1b9a;
+            margin-left: 25px;
+            line-height: 1.4;
+        }
+        
+        .main-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            margin: 20px 0;
+            text-align: justify;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #9c27b0;
+            margin: 30px 0 15px 0;
+            border-bottom: 2px solid #e1bee7;
+            padding-bottom: 8px;
+        }
+        
+        .tip-box {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            border-left: 4px solid #28a745;
+        }
+        
+        .tip-title {
+            font-weight: 600;
+            color: #28a745;
+            margin-bottom: 8px;
+        }
+        
+        .highlight {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #ffc107;
+            margin: 20px 0;
+        }
+        
+        .equipment-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .equipment-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .equipment-item h4 {
+            color: #9c27b0;
+            margin-bottom: 8px;
+        }
+        
+        ul {
+            margin: 15px 0;
+            padding-left: 25px;
+        }
+        
+        li {
+            margin: 8px 0;
+            line-height: 1.6;
+        }
+        
+        .warning {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            border-left: 4px solid #dc3545;
+        }
+        
+        .warning-title {
+            font-weight: 600;
+            color: #721c24;
+            margin-bottom: 8px;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                margin: -20px 10px 10px 10px;
+                padding: 20px 15px;
+            }
+            
+            .title {
+                font-size: 20px;
+            }
+            
+            .equipment-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    
+        /* Rock Formation Theme - Red */
         :root {
             --primary-color: #FF5722;
-            --primary-dark: #D84315;
-            --primary-light: #FFEBEE;
+            --primary-dark: #BF360C;
+            --primary-light: #FFEBE8;
             --accent-color: #FF8A65;
         }
+        
+        /* Theme Color Overrides */
         .content {
             background: linear-gradient(135deg, #ffffff, var(--primary-light));
             border: 2px solid var(--primary-color);
         }
+        
         .quote-box {
             background: linear-gradient(135deg, var(--primary-light), #FFCCBC);
             border-left: 4px solid var(--primary-color);
         }
+        
+        .quote-text {
+            color: var(--primary-dark);
+        }
+        
         .section-title {
             color: var(--primary-color);
             border-bottom: 2px solid var(--accent-color);
         }
+        
+        .tip-box {
+            border-left: 4px solid var(--primary-color);
+            background: var(--primary-light);
+        }
+        
+        .tip-title {
+            color: var(--primary-color);
+        }
+        
+        .highlight {
+            border-left: 4px solid var(--accent-color);
+            background: linear-gradient(135deg, #f1f8e9, var(--primary-light));
+        }
+        
+        .warning {
+            border-left: 4px solid #f44336;
+        }
+        
+        .equipment-item {
+            border: 1px solid var(--accent-color);
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+        }
+        
+        .equipment-item h4 {
+            color: var(--primary-color);
+        }
+        
         .category {
             background: var(--primary-color);
             color: white;
@@ -42,33 +233,198 @@
     </style>
 </head>
 <body>
-<div class="hero-image"></div>
-<div class="content">
-    <h1 class="title">04 화성암</h1>
-    <div class="quote-box">
-        <div class="quote-text">전문 지질학 가이드</div>
+    <div class="hero-image"></div>
+    <div class="content">
+        <h1 class="title">화성암 유형 및 분류</h1>
+        
+        <div class="quote-box">
+            <div class="quote-text">불에서 태어난 암석의 이해</div>
+        </div>
+        
+        <div class="main-text">
+            화성암은 용융 물질(마그마 또는 용암)의 냉각과 고화로부터 형성됩니다. 이들은 지구 지각의 주요 암석을 나타내며 지구 내부 과정에 대한 중요한 통찰을 제공합니다. 이들의 분류를 이해하는 것은 지질학자들이 지구의 역사와 과정을 해석하는 데 도움이 됩니다.
+        </div>
+        
+        <div class="section-title">🔥 형성 환경</div>
+        
+        <div class="main-text">
+            화성암은 두 가지 주요 환경에서 형성되며, 각각 독특한 암석 유형을 생산합니다:
+        </div>
+        
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>관입암 (심성암)</h4>
+                <p>지각 마그마 챔버에서 느린 결정화 동역학을 통해 형성된 완전결정질 암석. 연장된 핵형성과 성장 기간이 평형 결정화 순서를 반영하는 완면체에서 반완면체 결정 발달과 완정질 조직을 가능하게 합니다. 전형적인 예: 화강암(장석질), 화강섬록암(중성), 반려암(고철질).</p>
+            </div>
+            <div class="equipment-item">
+                <h4>분출암 (화산암)</h4>
+                <p>용암이 지구 표면에서 급속히 냉각될 때 형성되어, 세립 또는 유리질 조직을 생성합니다. 예: 현무암, 유문암, 안산암.</p>
+            </div>
+        </div>
+        
+        <div class="section-title">🧪 화학적 분류</div>
+        
+        <div class="main-text">
+            화성암은 화학적 조성, 특히 실리카(SiO₂) 함량에 기반하여 분류됩니다:
+        </div>
+        
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>장석질 암석 (65-75% SiO₂)</h4>
+                <p>높은 중합도 지수를 가진 뼈대 규산염이 지배하는 우백질 암석. 광물 집합체는 석영 + K-장석 + 사장석 ± 흑운모 ± 백운모를 포함합니다. 낮은 밀도(2.6-2.8 g/cm³)는 3차원 뼈대 구조에서 사면체 Al-Si 결합을 반영합니다. 점성도: 마그마 온도에서 10⁴-10⁶ Pa·s.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>중성 암석 (55-65% SiO₂)</h4>
+                <p>중간 조성을 가진 중간색 암석. 관입암: 섬록암. 분출암: 안산암.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>고철질 암석 (45-55% SiO₂)</h4>
+                <p>쇠와 마그네슘 규산염이 풍부하고 사슬 및 고리 구조 단위를 가진 우흑질 암석. 주요 상: 사장석(An₅₀₋₉₀) + 단사휘석 + 감람석 ± 사방휘석. 높은 밀도(2.9-3.3 g/cm³)와 높은 액상선 온도(1100-1200°C)는 Fe-Mg 팔면체 배위와 낮은 중합도를 반영합니다.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>초고철질 암석 (<45% SiO₂)</h4>
+                <p>감람석과 휘석이 풍부한 매우 어둡고 조밀한 암석. 예: 감람암(맨틀암).</p>
+            </div>
+        </div>
+        
+        <div class="section-title">🔍 조직에 따른 분류</div>
+        
+        <div class="main-text">
+            조직은 화성암의 결정 크기, 모양, 배열을 가리킵니다:
+        </div>
+        
+        <ul>
+            <li><strong>완정질:</strong> 가시적인 결정(>1mm)을 가진 조립 조직</li>
+            <li><strong>비현정질:</strong> 너무 작아서 볼 수 없는 결정을 가진 세립 조직</li>
+            <li><strong>반정질:</strong> 세립 기질에 큰 결정이 있는 혼합 조직</li>
+            <li><strong>유리질:</strong> 결정 구조가 없으며, 급속 냉각이 결정화를 방해함</li>
+            <li><strong>다공질:</strong> 갇힌 가스 거품으로부터 구멍(기공)을 포함</li>
+            <li><strong>화산쇄설:</strong> 폭발적 분출로부터의 파편으로 구성</li>
+        </ul>
+        
+        <div class="tip-box">
+            <div class="tip-title">🔬 조직이 이야기하는 것</div>
+            결정 크기는 냉각 속도와 직접 관련됩니다: 느린 냉각 = 큰 결정(관입암), 빠른 냉각 = 작은 결정 또는 유리(분출암).
+        </div>
+        
+        <div class="section-title">🪨 일반적인 화성암</div>
+        
+        <div class="main-text">
+            다음은 가장 중요한 화성암과 그 특성입니다:
+        </div>
+        
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>화강암</h4>
+                <p>조립, 장석질 관입암. 가시적인 석영, 장석, 운모를 가진 밝은 색. 대륙 지각에서 흔함.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>현무암</h4>
+                <p>세립, 고철질 분출암. 휘석과 사장석이 풍부한 어두운 색. 가장 흔한 화산암.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>반려암</h4>
+                <p>조립, 고철질 관입암. 가시적인 휘석과 사장석을 가진 어두운 색. 해양 지각 조성.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>유문암</h4>
+                <p>세립, 장석질 분출암. 종종 석영 반정을 포함하는 밝은 색. 폭발적 분출 산물.</p>
+            </div>
+        </div>
+        
+        <div class="section-title">💎 특수 화성암</div>
+        
+        <div class="main-text">
+            일부 화성암은 독특한 특성이나 형성 조건을 가집니다:
+        </div>
+        
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>흑요석</h4>
+                <p>극도로 급속한 냉각으로 형성된 자연 화산 유리. 날카로운 모서리로 도구에 유용합니다.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>부석</h4>
+                <p>갇힌 가스 거품으로 인해 물에 뜰 수 있는 고도로 다공질인 화산암.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>페그마타이트</h4>
+                <p>2.5cm보다 큰 결정을 가진 극조립 화성암. 종종 희귀 광물을 포함합니다.</p>
+            </div>
+            <div class="equipment-item">
+                <h4>응회암</h4>
+                <p>고결된 화산재와 화산쇄설 파편으로 구성된 암석.</p>
+            </div>
+        </div>
+        
+        <div class="section-title">📊 보웬의 반응계열</div>
+        
+        <div class="main-text">
+            보웬의 반응계열은 냉각되는 마그마로부터 광물이 결정화하는 순서를 설명합니다:
+        </div>
+        
+        <div class="highlight">
+            <strong>고온:</strong> 감람석, 휘석 → <strong>중온:</strong> 각섬석, 흑운모 → <strong>저온:</strong> 석영, K-장석
+        </div>
+        
+        <div class="main-text">
+            이 계열은 왜 고철질 암석이 고온에서 결정화하고 장석질 암석이 저온에서 결정화하는지 설명합니다.
+        </div>
+        
+        <div class="section-title">🌍 구조적 환경</div>
+        
+        <div class="main-text">
+            서로 다른 화성암이 특정한 구조 환경에서 형성됩니다:
+        </div>
+        
+        <ul>
+            <li><strong>중앙해령:</strong> 감압 용융으로부터 현무암과 반려암</li>
+            <li><strong>섭입대:</strong> 부분 용융으로부터 안산암과 섬록암</li>
+            <li><strong>대륙 열점:</strong> 지각 용융으로부터 유문암과 화강암</li>
+            <li><strong>해양 열점:</strong> 맨틀 플룸 활동으로부터 현무암</li>
+        </ul>
+        
+        <div class="section-title">🔬 식별 기술</div>
+        
+        <div class="main-text">
+            지질학자들은 화성암을 식별하기 위해 여러 방법을 사용합니다:
+        </div>
+        
+        <ul>
+            <li><strong>육안 표본:</strong> 색깔, 조직, 광물 함량, 밀도</li>
+            <li><strong>박편:</strong> 현미경적 광물 식별과 조직</li>
+            <li><strong>화학 분석:</strong> 주요 및 미량 원소 조성</li>
+            <li><strong>야외 관계:</strong> 지질학적 문맥과 연관성</li>
+        </ul>
+        
+        <div class="tip-box">
+            <div class="tip-title">🎯 빠른 식별 요령</div>
+            밝은 색 + 조립 조직 = 화강암; 어두운 색 + 세립 조직 = 현무암; 혼합 결정 크기 = 반정암; 유리질 외관 = 흑요석 또는 화산 유리.
+        </div>
+        
+        <div class="section-title">💰 경제적 중요성</div>
+        
+        <div class="main-text">
+            화성암은 상당한 경제적 가치를 가집니다:
+        </div>
+        
+        <ul>
+            <li><strong>건설:</strong> 조리대용 화강암, 도로 골재용 현무암</li>
+            <li><strong>광석 광상:</strong> 많은 금속 광상이 화성 관입체와 연관</li>
+            <li><strong>보석:</strong> 킴벌라이트의 다이아몬드, 페그마타이트의 에메랄드</li>
+            <li><strong>지열 에너지:</strong> 냉각하는 화성체로부터의 열</li>
+        </ul>
+        
+        <div class="warning">
+            <div class="warning-title">⚠️ 안전 주의사항</div>
+            화성암 표본을 수집할 때는 날카로운 모서리(특히 흑요석), 불안정한 화산 사면, 활성 화산 지역 근처의 잠재적 독성 가스에 주의하세요.
+        </div>
+        
+        <div class="section-title">📚 추가 학습</div>
+        
+        <div class="main-text">
+            화성암에 대한 이해를 깊이하려면, 육안 표본으로 연습하고, 현미경 하에서 박편을 연구하며, 자연 야외 환경에서 화성암을 관찰하세요. 조성, 조직, 형성 환경 간의 관계를 이해하는 것이 화성 암석학을 마스터하는 열쇠입니다.
+        </div>
     </div>
-    <div class="main-text">
-        화성암은 마그마의 냉각과 고화를 통해 형성되며, 지구의 지각과 맨틀 과정의 직접적인 기록을 제공한다<span class="emoji">🪨</span>.
-    </div>
-<div class="article-meta">
-<span class="category ecology">지질학</span>
-<span class="read-time">📖 10분 읽기</span>
-<span class="difficulty">🟡 중급</span>
-</div>
-<div class="article-body">
-<div class="section-title">🔍 화성암</div>
-<div class="main-text">화성암은 마그마 냉각 속도, 화학 조성, 결정화 환경에 따라 분류된다.</div>
-
-<div class="section-title">🔬 기술적 세부사항</div>
-<div class="main-text">화성암 형성 과정과 광물학적 특징.</div>
-
-<div class="section-title">🌍 응용</div>
-<div class="main-text">지구 내부 과정의 이해와 자원 탐사.</div>
-
-<div class="section-title">💡 모범 사례</div>
-<div class="main-text">화성암 연구와 분류의 방법론.</div>
-</div>
-    <script src="../language-redirect.js"></script>
-</main></body>
+</body>
 </html>

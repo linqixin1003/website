@@ -1,40 +1,231 @@
 <!DOCTYPE html>
-
 <html lang="ja">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>06 堆積層 - BirdAiSnap</title>
-<link href="../../mobile-styles.css" rel="stylesheet"/>
-<link href="../../mobile-enhancement.css" rel="stylesheet"/>
-<link href="../../ecology-theme.css" rel="stylesheet"/>
-<style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>堆積層と層序学 - BirdAiSnap</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+
         .hero-image {
             width: 100%;
             height: 400px;
             background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
-                        url('../../images/rock/Rock_Formation&Processes/06_Sedimentary_Layers.webp') center/cover;
+                        url('../../images/rock/Rock_Formation_Processes/06_Sedimentary_Layers.webp') center/cover;
             position: relative;
             margin-top: 0;
         }
+        
+        .content {
+            background: white;
+            margin: -30px 20px 20px 20px;
+            border-radius: 20px;
+            padding: 30px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            min-height: 80vh;
+        }
+        
+        .title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            margin-top: 15px;
+            line-height: 1.3;
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, #f3e5f5, #e1bee7);
+            border-left: 4px solid #9c27b0;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .quote-box::before {
+            content: '"';
+            font-size: 48px;
+            color: #9c27b0;
+            position: absolute;
+            top: -5px;
+            left: 15px;
+            font-family: serif;
+            line-height: 1;
+        }
+        
+        .quote-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: #6a1b9a;
+            margin-left: 25px;
+            line-height: 1.4;
+        }
+        
+        .main-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            margin: 20px 0;
+            text-align: justify;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #9c27b0;
+            margin: 30px 0 15px 0;
+            border-bottom: 2px solid #e1bee7;
+            padding-bottom: 8px;
+        }
+        
+        .tip-box {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            border-left: 4px solid #28a745;
+        }
+        
+        .tip-title {
+            font-weight: 600;
+            color: #28a745;
+            margin-bottom: 8px;
+        }
+        
+        .highlight {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #ffc107;
+            margin: 20px 0;
+        }
+        
+        .equipment-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .equipment-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .equipment-item h4 {
+            color: #9c27b0;
+            margin-bottom: 8px;
+        }
+        
+        ul {
+            margin: 15px 0;
+            padding-left: 25px;
+        }
+        
+        li {
+            margin: 8px 0;
+            line-height: 1.6;
+        }
+        
+        .warning {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            border-left: 4px solid #dc3545;
+        }
+        
+        .warning-title {
+            font-weight: 600;
+            color: #721c24;
+            margin-bottom: 8px;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                margin: -20px 10px 10px 10px;
+                padding: 20px 15px;
+            }
+            
+            .title {
+                font-size: 20px;
+            }
+            
+            .equipment-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    
+        /* Rock Formation Theme - Red */
         :root {
             --primary-color: #FF5722;
-            --primary-dark: #D84315;
-            --primary-light: #FFEBEE;
+            --primary-dark: #BF360C;
+            --primary-light: #FFEBE8;
             --accent-color: #FF8A65;
         }
+        
+        /* Theme Color Overrides */
         .content {
             background: linear-gradient(135deg, #ffffff, var(--primary-light));
             border: 2px solid var(--primary-color);
         }
+        
         .quote-box {
             background: linear-gradient(135deg, var(--primary-light), #FFCCBC);
             border-left: 4px solid var(--primary-color);
         }
+        
+        .quote-text {
+            color: var(--primary-dark);
+        }
+        
         .section-title {
             color: var(--primary-color);
             border-bottom: 2px solid var(--accent-color);
         }
+        
+        .tip-box {
+            border-left: 4px solid var(--primary-color);
+            background: var(--primary-light);
+        }
+        
+        .tip-title {
+            color: var(--primary-color);
+        }
+        
+        .highlight {
+            border-left: 4px solid var(--accent-color);
+            background: linear-gradient(135deg, #f1f8e9, var(--primary-light));
+        }
+        
+        .warning {
+            border-left: 4px solid #f44336;
+        }
+        
+        .equipment-item {
+            border: 1px solid var(--accent-color);
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+        }
+        
+        .equipment-item h4 {
+            color: var(--primary-color);
+        }
+        
         .category {
             background: var(--primary-color);
             color: white;
@@ -42,33 +233,232 @@
     </style>
 </head>
 <body>
-<div class="hero-image"></div>
-<div class="content">
-    <h1 class="title">06 堆積層</h1>
-    <div class="quote-box">
-        <div class="quote-text">専門地質学ガイド</div>
+    <div class="hero-image"></div>
+    <div class="content">
+        <h1 class="title">堆積層と層序学</h1>
+        
+        <div class="quote-box">
+            <div class="quote-text">岩石層から地球の歴史を読み解く</div>
+        </div>
+        
+        <div class="main-text">
+            堆積岩は地球の歴史、環境条件、生物の時代的変遷を記録した層を形成します。層序学は岩石層の研究であり、地質時代の理解と過去の環境復元の基盤を提供します。
+        </div>
+        
+        <div class="section-title">📚 層序学の原理</div>
+        
+        <div class="main-text">
+            堆積層の解釈にはいくつかの基本原理があります：
+        </div>
+        
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>地層累重の法則</h4>
+                <p>擾乱を受けていない地層では、古い層が新しい層の下にある。相対年代決定の基礎。</p>
+            </div>
+            <div class="equipment-item">
+                <h4>水平堆積の原理</h4>
+                <p>堆積層は本来水平に堆積する。傾斜した層は後の変形を示す。</p>
+            </div>
+            <div class="equipment-item">
+                <h4>側方連続の法則</h4>
+                <p>堆積層は薄化するか障壁に遭遇するまで側方に連続する。</p>
+            </div>
+            <div class="equipment-item">
+                <h4>切断関係の原理</h4>
+                <p>岩石層を切る構造は、切られた層より新しい。</p>
+            </div>
+        </div>
+        
+        <div class="section-title">🏗️ 層形成プロセス</div>
+        
+        <div class="main-text">
+            堆積層は一連のプロセスを通じて形成されます：
+        </div>
+        
+        <ul>
+            <li><strong>風化：</strong> 既存岩石の物理的・化学的破壊</li>
+            <li><strong>侵食：</strong> 風、水、氷による風化物質の運搬</li>
+            <li><strong>堆積：</strong> 粒径と密度に基づく層状の沈殿</li>
+            <li><strong>圧密：</strong> 堆積物荷重増加による空隙減少</li>
+            <li><strong>膠結：</strong> 沈殿鉱物による堆積粒子の結合</li>
+        </ul>
+        
+        <div class="tip-box">
+            <div class="tip-title">⏰ 時間の表現</div>
+            各堆積層は特定の時代を表しており、堆積層序は地球史の本のページのような役割を果たします。
+        </div>
+        
+        <div class="section-title">🌊 堆積環境</div>
+        
+        <div class="main-text">
+            異なる環境は特徴的な堆積層を作ります：
+        </div>
+        
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>海洋環境</h4>
+                <p>深海域：半遠洋性粘土層序と生物源ウーズ（石灰質、珪質）。浅海域：オーイド、ペロイド、骨格グレインストーン-パックストーン組織を持つ炭酸塩プラットフォーム相。嵐支配陸棚では、ハンモック状斜交層理と融合ベッドを持つテンペスタイト層序を示す。</p>
+            </div>
+            <div class="equipment-item">
+                <h4>陸域環境</h4>
+                <p>河川：チャネルと氾濫原堆積物。砂漠：砂丘砂。湖沼：細粒堆積物。</p>
+            </div>
+            <div class="equipment-item">
+                <h4>移行環境</h4>
+                <p>デルタ：海成-陸成混合。海浜：よく淘汰された砂。ラグーン：制限的海洋条件。</p>
+            </div>
+        </div>
+        
+        <div class="section-title">📏 層の特徴</div>
+        
+        <div class="main-text">
+            堆積層はいくつかの特徴で記載・分類されます：
+        </div>
+        
+        <ul>
+            <li><strong>厚さ：</strong> ミリメートルから数百メートルまで</li>
+            <li><strong>側方分布：</strong> キロメートルまで延びるか非常に局所的</li>
+            <li><strong>組成：</strong> 砕屑性、化学的、有機物質</li>
+            <li><strong>粒径：</strong> 粘土粒子から巨礫まで</li>
+            <li><strong>色：</strong> 組成と堆積条件を示す</li>
+            <li><strong>構造：</strong> 層理、斜交層理、漣痕など</li>
+        </ul>
+        
+        <div class="section-title">🔍 堆積構造</div>
+        
+        <div class="main-text">
+            層内と層間の構造は堆積条件の手がかりを提供します：
+        </div>
+        
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>層理構造</h4>
+                <p>平行層理、斜交層理、級化層理は流向とエネルギー条件を示す。</p>
+            </div>
+            <div class="equipment-item">
+                <h4>表面特徴</h4>
+                <p>漣痕、泥割れ、雨痕は特定の環境条件を示す。</p>
+            </div>
+            <div class="equipment-item">
+                <h4>生物源構造</h4>
+                <p>生痕化石、巣穴、生物撹拌は古生物活動の証拠。</p>
+            </div>
+        </div>
+        
+        <div class="section-title">📊 層序単元</div>
+        
+        <div class="main-text">
+            地質学者は堆積層序を正式な単元に整理します：
+        </div>
+        
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>岩相層序単元</h4>
+                <p>岩石タイプに基づく：累層（基本単元）、部層（細分）、層群（複数累層）。</p>
+            </div>
+            <div class="equipment-item">
+                <h4>生層序単元</h4>
+                <p>化石内容に基づく：特定の化石集合や分布域で定義される生物帯。</p>
+            </div>
+            <div class="equipment-item">
+                <h4>年代層序単元</h4>
+                <p>時間に基づく：特定時間間隔を表す系、統、階。</p>
+            </div>
+        </div>
+        
+        <div class="section-title">⏰ 地質年代尺度</div>
+        
+        <div class="main-text">
+            地質年代尺度は層序関係から構築されます：
+        </div>
+        
+        <ul>
+            <li><strong>相対年代：</strong> 層序原理を用いた層序決定</li>
+            <li><strong>絶対年代：</strong> 放射年代測定による数値年代決定</li>
+            <li><strong>生層序：</strong> 化石進化を用いた層序対比と年代決定</li>
+            <li><strong>磁気層序：</strong> 磁極逆転を用いた対比</li>
+        </ul>
+        
+        <div class="highlight">
+            <strong>重要概念：</strong> 地質年代尺度は46億年の地球史を表し、詳細の多くは新しい堆積岩に保存されています。
+        </div>
+        
+        <div class="section-title">🔗 対比</div>
+        
+        <div class="main-text">
+            対比は異なる地点の岩石層を結び付けます：
+        </div>
+        
+        <div class="equipment-list">
+            <div class="equipment-item">
+                <h4>物理的対比</h4>
+                <p>異なる露頭や坑井間での特徴的層や層序の照合。</p>
+            </div>
+            <div class="equipment-item">
+                <h4>化石対比</h4>
+                <p>示準化石と化石集合を用いた同年代層の照合。</p>
+            </div>
+            <div class="equipment-item">
+                <h4>化学的対比</h4>
+                <p>独特の化学シグネチャーや同位体組成に基づく層の照合。</p>
+            </div>
+        </div>
+        
+        <div class="section-title">🌍 シーケンス層序学</div>
+        
+        <div class="main-text">
+            シーケンス層序学は堆積層序の大規模パターンを解析します：
+        </div>
+        
+        <ul>
+            <li><strong>海水準変動：</strong> 大陸縁辺での堆積パターンを制御</li>
+            <li><strong>不整合：</strong> 地質記録の空白を表す</li>
+            <li><strong>堆積シーケンス：</strong> 不整合または相当面で境される</li>
+            <li><strong>システムトラクト：</strong> 特定海水準条件で堆積した地層パッケージ</li>
+        </ul>
+        
+        <div class="section-title">🔬 現代の応用</div>
+        
+        <div class="main-text">
+            層序学は多くの実用的応用があります：
+        </div>
+        
+        <ul>
+            <li><strong>石油探査：</strong> 堆積盆地での石油・ガス発見</li>
+            <li><strong>地下水研究：</strong> 帯水層分布と流動の理解</li>
+            <li><strong>地質工学：</strong> 基礎条件と斜面安定性の評価</li>
+            <li><strong>環境研究：</strong> 汚染追跡と過去気候復元</li>
+        </ul>
+        
+        <div class="tip-box">
+            <div class="tip-title">🎯 野外技術</div>
+            層序断面を系統的に測定・記載し、層厚、組成、接触関係、構造を注記。一貫した用語と尺度を使用。
+        </div>
+        
+        <div class="section-title">📸 記録方法</div>
+        
+        <div class="main-text">
+            適切な記録は層序研究に不可欠です：
+        </div>
+        
+        <ul>
+            <li><strong>測定断面：</strong> 厚さと記載を含む詳細垂直プロファイル</li>
+            <li><strong>写真モザイク：</strong> 側方関係を示す重複写真</li>
+            <li><strong>試料採取：</strong> 実験室解析のための系統的サンプリング</li>
+            <li><strong>GPS位置：</strong> 対比と地図作成のための精密位置決定</li>
+        </ul>
+        
+        <div class="warning">
+            <div class="warning-title">⚠️ 複雑な要因</div>
+            構造変形、侵食、変成作用は層序解釈を複雑化させます。層序解析時は常に堆積後の変化を考慮してください。
+        </div>
+        
+        <div class="section-title">📚 更なる学習</div>
+        
+        <div class="main-text">
+            層序学をマスターするには、野外での断面測定の練習、検層データと地震データの研究、異なる堆積環境の認識方法の学習が必要です。時間、環境、岩石特性の関係理解が成功する層序解釈の鍵です。
+        </div>
     </div>
-    <div class="main-text">
-        堆積層は時間を通じた地球表面プロセスの記録を提供し、古環境と気候変化の解釈に重要な情報源となる<span class="emoji">🪨</span>。
-    </div>
-<div class="article-meta">
-<span class="category ecology">地質学</span>
-<span class="read-time">📖 10分読了</span>
-<span class="difficulty">🟡 中級</span>
-</div>
-<div class="article-body">
-<div class="section-title">🔍 堆積層</div>
-<div class="main-text">堆積層は侵食、輸送、堆積、続成作用の連続プロセスにより形成される。</div>
-
-<div class="section-title">🔬 技術詳細</div>
-<div class="main-text">層序学的原理と堆積構造解析。</div>
-
-<div class="section-title">🌍 応用</div>
-<div class="main-text">石油・ガス探査と地質史復元。</div>
-
-<div class="section-title">💡 最良実践</div>
-<div class="main-text">堆積環境解釈と相関技術。</div>
-</div>
-    <script src="../language-redirect.js"></script>
-</main></body>
+</body>
 </html>

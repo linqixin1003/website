@@ -2,65 +2,542 @@
 <html lang="zh">
 <head>
 <meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>颜色与划痕测试 - BirdAiSnap</title>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>04 颜色与条痕测试 - BirdAiSnap</title>
 <link href="../../mobile-styles.css" rel="stylesheet"/>
 <link href="../../mobile-enhancement.css" rel="stylesheet"/>
 <link href="../../ecology-theme.css" rel="stylesheet"/>
-<style>
-:root {
-  --primary-color: #4CAF50;
-  --primary-dark: #2E7D32;
-  --primary-light: #E8F5E8;
-  --accent-color: #81C784;
-}
-.hero-image {
-  width:100%; height:400px;
-  background:linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.4)),
-             url('../../images/rock/Rock&Mineral_Identification/04_Color_&_Streak_Analysis.webp') center/cover;
-}
-.content {
-  background:linear-gradient(135deg,#ffffff,var(--primary-light));
-  border:2px solid var(--primary-color);
-  padding:50px 35px 40px 35px!important;
-  margin:-30px 15px 20px 15px!important;
-  max-width:1200px;margin:auto!important;
-}
-.quote-box {
-  background:linear-gradient(135deg,var(--primary-light),#C8E6C9);
-  border-left:4px solid var(--primary-color);
-  padding:20px;margin:25px 0;border-radius:8px;
-}
-.section-title {
-  color:var(--primary-color);
-  border-bottom:2px solid var(--accent-color);
-  margin:35px 0 20px;padding-bottom:10px;
-}
-.equipment-item {
-  border:1px solid var(--accent-color);
-  background:linear-gradient(135deg,#ffffff,var(--primary-light));
-  padding:20px;margin:15px 0;border-radius:8px;
-}
-.equipment-item h4 { color:var(--primary-color); font-size:18px; margin-bottom:10px; }
-.main-text { margin:25px 0; line-height:1.7; }
-</style>
+    <style>
+        /* Rock Identification Theme - Green */
+        :root {
+            --primary-color: #4CAF50;
+            --primary-dark: #2E7D32;
+            --primary-light: #E8F5E8;
+            --accent-color: #81C784;
+        }
+        
+        .hero-image img {
+            max-height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+        .article-card img {
+            max-height: 120px;
+            width: 100%;
+            object-fit: cover;
+        }
+        .hero-image {
+            width: 100% !important;
+            height: 400px !important;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                        url('../../images/rock/Rock&Mineral_Identification/04_Color_&_Streak_Analysis.webp') center/cover !important;
+            position: relative !important;
+            margin-top: 0 !important;
+            display: block !important;
+        }
+        .article-meta {
+            margin-top: 15px !important;
+        }
+        
+        /* Theme Color Overrides */
+        .content {
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+            border: 2px solid var(--primary-color);
+            padding: 50px 35px 40px 35px !important;
+            margin: -30px 15px 20px 15px !important;
+            max-width: 1200px;
+            margin-left: auto !important;
+            margin-right: auto !important;
+        }
+        
+        /* Responsive padding adjustments */
+        @media screen and (max-width: 768px) {
+            .content {
+                padding: 40px 25px 30px 25px !important;
+                margin: -30px 10px 20px 10px !important;
+            }
+        }
+        
+        @media screen and (max-width: 480px) {
+            .content {
+                padding: 35px 20px 25px 20px !important;
+                margin: -30px 8px 20px 8px !important;
+            }
+            
+            /* Mobile optimization - flatten hierarchy */
+            .equipment-list {
+                margin: 20px 0;
+            }
+            
+            .equipment-item {
+                padding: 15px;
+                margin: 12px 0;
+                border-radius: 6px;
+            }
+            
+            .equipment-item h4 {
+                font-size: 16px;
+                margin-bottom: 8px;
+            }
+            
+            .tip-box, .highlight, .warning {
+                padding: 15px;
+                margin: 20px 0;
+                border-radius: 6px;
+            }
+            
+            .tip-title {
+                font-size: 16px;
+                margin-bottom: 10px;
+            }
+            
+            .section-title {
+                font-size: 18px;
+                margin: 25px 0 15px 0;
+                padding-bottom: 8px;
+            }
+            
+            .main-text {
+                font-size: 15px;
+                line-height: 1.6;
+                margin: 15px 0;
+            }
+            
+            ul, ol {
+                padding-left: 20px;
+                margin: 10px 0;
+            }
+            
+            li {
+                margin: 6px 0;
+                font-size: 14px;
+                line-height: 1.5;
+            }
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, var(--primary-light), #C8E6C9);
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .quote-text {
+            color: var(--primary-dark);
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+        }
+        
+        .tip-box {
+            border-left: 4px solid var(--primary-color);
+            background: var(--primary-light);
+        }
+        
+        .tip-title {
+            color: var(--primary-color);
+        }
+        
+        .highlight {
+            border-left: 4px solid var(--accent-color);
+            background: linear-gradient(135deg, #f1f8e9, var(--primary-light));
+        }
+        
+        .warning {
+            border-left: 4px solid #f44336;
+        }
+        
+        .equipment-item {
+            border: 1px solid var(--accent-color);
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        .equipment-item h4 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        
+        .equipment-item p {
+            margin-bottom: 0;
+            line-height: 1.6;
+        }
+        
+        /* Improved spacing for all text elements */
+        .main-text {
+            margin: 25px 0;
+            line-height: 1.7;
+        }
+        
+        .section-title {
+            margin: 35px 0 20px 0;
+            padding-bottom: 10px;
+        }
+        
+        .tip-box, .highlight, .warning {
+            margin: 25px 0;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        
+        .equipment-list {
+            margin: 25px 0;
+        }
+        
+        ul, ol {
+            padding-left: 25px;
+            margin: 15px 0;
+        }
+        
+        li {
+            margin: 8px 0;
+            line-height: 1.6;
+        }
+        
+        .category {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .warning-title {
+            font-weight: 600;
+            color: #721c24;
+            margin-bottom: 8px;
+        }
+    </style>
 </head>
 <body>
 <div class="hero-image"></div>
 <div class="content">
-  <h1 class="title">颜色与划痕测试</h1>
-  <div class="quote-box">
-    <div class="quote-text">掌握视觉识别技术</div>
-  </div>
-  <div class="main-text">
-    颜色和划痕测试是最易于获取的矿物诊断属性之一。尽管表面颜色可能具有误导性，但划痕能揭示矿物的真实颜色。
-  </div>
-  <div class="article-meta">
-    <span class="category">Rock Identification</span>
-    <span class="read-time">📖 16 分钟阅读</span>
-    <span class="difficulty">🟡 中级</span>
-  </div>
-  <!-- 请根据英文原文结构完整翻译剩余内容 -->
+    <h1 class="title">04 颜色与条痕测试</h1>
+    
+    <div class="quote-box">
+        <div class="quote-text">掌握视觉鉴定技术</div>
+    </div>
+    
+    <div class="main-text">
+        颜色和条痕是矿物鉴定中最易获取的诊断性质之一。虽然颜色因杂质和风化可能具有误导性，但理解表面颜色和条痕颜色为野外地质学家提供了强大的鉴定工具。
+    </div>
+    
+    <div class="article-meta">
+        <span class="category">岩石识别</span>
+        <span class="read-time">📖 16分钟阅读</span>
+        <span class="difficulty">🟡 中级</span>
+    </div>
+    
+    <div class="quote-box">
+        <div class="main-text">"颜色吸引眼球，但条痕揭示真相——永远不要仅仅相信表面现象。"</div>
+        <cite>— 海伦·罗德里格斯博士，矿物学家</cite>
+    </div>
+    
+    <div class="section-title">🎨 理解矿物颜色</div>
+    
+    <div class="main-text">
+        颜色通常是我们在矿物中注意到的第一个性质，但它可能是最有帮助也是最具误导性的特征。理解颜色成因有助于我们有效使用这一性质。
+    </div>
+    
+    <div class="equipment-list">
+        <div class="equipment-item">
+            <h4>🧬 自色矿物</h4>
+            <p><strong>来自主要元素的固有颜色：</strong>孔雀石（铜的绿色）、蓝铜矿（铜的蓝色）、黄铁矿（铁-硫的黄铜色）。颜色具有诊断价值且可靠。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>🌈 他色矿物</h4>
+            <p><strong>微量杂质的可变颜色：</strong>石英（无色、紫色、粉色、烟色）、刚玉（红宝石、蓝宝石）、萤石（紫色、绿色、黄色、无色）。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>✨ 假色效应</h4>
+            <p><strong>来自物理现象的颜色：</strong>拉长石晕彩、蛋白石变彩、薄膜干涉色。不是真正的矿物颜色。</p>
+        </div>
+    </div>
+    
+    <div class="section-title">⚠️ 颜色陷阱</div>
+    
+    <div class="warning">
+        <div class="warning-title">🚨 常见颜色错误</div>
+        <ul>
+            <li><strong>风化：</strong>铁染色使一切看起来都是锈棕色</li>
+            <li><strong>锈蚀：</strong>金属矿物形成表面薄膜（黄铜矿看起来像彩虹色）</li>
+            <li><strong>照明：</strong>白炽灯vs日光vs紫外线影响颜色感知</li>
+            <li><strong>包裹体：</strong>外来材料可完全掩盖真实颜色</li>
+        </ul>
+    </div>
+    
+    <div class="tip-box">
+        <div class="tip-title">💡 颜色测试最佳实践</div>
+        <ul>
+            <li>始终在新鲜、未风化表面观察颜色</li>
+            <li>使用一致的照明条件（最好是自然日光）</li>
+            <li>尽可能与已知参考标本比较</li>
+            <li>注意同一标本内的颜色变化</li>
+            <li>考虑地质背景和预期矿物</li>
+        </ul>
+    </div>
+    
+    <div class="section-title">✨ 条痕测试基础</div>
+    
+    <div class="main-text">
+        条痕是矿物粉末的颜色，比表面颜色更可靠，因为它消除了风化和表面涂层的影响。这个简单测试可以区分看起来相同的矿物。
+    </div>
+    
+    <div class="equipment-list">
+        <div class="equipment-item">
+            <h4>🧪 条痕板规格</h4>
+            <p>使用莫氏硬度6.5-7.0的无釉瓷胚以确保一致的研磨。白瓷优化显色基团可视化的对比度。黑瓷增强对无色或白色矿物轻色条痕的检测。表面粗糙度应为2-5μm以获得最佳粉末释放。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>⚡ 测试技术</h4>
+            <p>用稳定压力将矿物紧紧划过板面。测试间清洁板面。如果条痕微弱，测试多个点。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>🔍 观察技巧</h4>
+            <p>在良好照明下观察条痕。注意强度和确切颜色。一些条痕在湿润vs干燥时会改变颜色。</p>
+        </div>
+    </div>
+    
+    <div class="section-title">🌈 诊断性条痕颜色</div>
+    
+    <div class="main-text">
+        某些条痕颜色具有高度诊断价值，可提供即时鉴定：
+    </div>
+    
+    <div class="equipment-list">
+        <div class="equipment-item">
+            <h4>🔴 红到棕色条痕</h4>
+            <p><strong>赤铁矿(Fe₂O₃)：</strong>来自Fe³⁺电荷转移跃迁的红到红棕色<br>
+            <strong>朱砂(HgS)：</strong>来自汞-硫间电子带的亮红色（急性毒性-减少暴露）<br>
+            <strong>雄黄(As₄S₄)：</strong>来自As-S分子轨道相互作用的橙红色（致癌-使用通风柜）</p>
+        </div>
+        <div class="equipment-item">
+            <h4>⚫ 黑色条痕</h4>
+            <p><strong>磁铁矿：</strong>黑色（磁性）<br>
+            <strong>铬铁矿：</strong>棕到黑色<br>
+            <strong>钛铁矿：</strong>黑到棕黑色</p>
+        </div>
+        <div class="equipment-item">
+            <h4>🟡 黄到棕色条痕</h4>
+            <p><strong>针铁矿：</strong>黄棕到棕色<br>
+            <strong>褐铁矿：</strong>黄棕色（混合物）<br>
+            <strong>黄铁矿：</strong>绿黑到棕黑色</p>
+        </div>
+        <div class="equipment-item">
+            <h4>🟢 绿色条痕</h4>
+            <p><strong>孔雀石：</strong>绿色（与矿物颜色匹配）<br>
+            <strong>硅孔雀石：</strong>淡绿到蓝绿色<br>
+            <strong>氯铜矿：</strong>苹果绿</p>
+        </div>
+    </div>
+    
+    <div class="section-title">⚪ 白色和无色条痕</div>
+    
+    <div class="main-text">
+        大多数硅酸盐矿物产生白色或无色条痕，这有助于排除金属和高显色矿物：
+    </div>
+    
+    <div class="equipment-list">
+        <div class="equipment-item">
+            <h4>💎 硅酸盐矿物</h4>
+            <p>石英、长石、云母、辉石、角闪石——均显示白到无色条痕。使用其他性质进行区分。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>🧂 碳酸盐矿物</h4>
+            <p>方解石、白云石、文石——白色条痕。通过硬度、晶形和酸反应区分。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>💧 硫酸盐矿物</h4>
+            <p>石膏、硬石膏、重晶石——白色条痕。硬度和比重有助于区分。</p>
+        </div>
+    </div>
+    
+    <div class="section-title">🔬 高级条痕分析</div>
+    
+    <div class="main-text">
+        专业矿物学家使用高级条痕测试技术进行困难鉴定：
+    </div>
+    
+    <div class="tip-box">
+        <div class="tip-title">🎯 专业技术</div>
+        <ul>
+            <li><strong>粉末检查：</strong>使用放大镜检查条痕粉末质地</li>
+            <li><strong>磁性测试：</strong>用磁铁测试条痕粉末（磁铁矿条痕具磁性）</li>
+            <li><strong>化学测试：</strong>对条痕粉末施用酸测试碳酸盐</li>
+            <li><strong>荧光：</strong>一些条痕粉末在紫外光下荧光</li>
+        </ul>
+    </div>
+    
+    <div class="section-title">⚖️ 硬度限制</div>
+    
+    <div class="main-text">
+        条痕测试基于矿物硬度有限制：
+    </div>
+    
+    <div class="warning">
+        <div class="warning-title">🔨 硬度约束</div>
+        <ul>
+            <li><strong>硬矿物(>7)：</strong>无法在瓷板上划出条痕</li>
+            <li><strong>替代方法：</strong>粉碎小碎片，观察粉末颜色</li>
+            <li><strong>钢板选择：</strong>对极硬矿物使用钢板（可靠性较低）</li>
+            <li><strong>安全注意：</strong>粉碎产生尖锐碎片——使用安全眼镜</li>
+        </ul>
+    </div>
+    
+    <div class="section-title">🎨 颜色-条痕组合</div>
+    
+    <div class="main-text">
+        表面颜色和条痕颜色的组合提供强大的诊断信息：
+    </div>
+    
+    <div class="equipment-list">
+        <div class="equipment-item">
+            <h4>🥇 金vs黄铁矿</h4>
+            <p><strong>金：</strong>金色、金色条痕、软、可锻<br>
+            <strong>黄铁矿：</strong>黄铜色、绿黑色条痕、硬、脆</p>
+        </div>
+        <div class="equipment-item">
+            <h4>🔶 赤铁矿变种</h4>
+            <p><strong>镜铁矿：</strong>金属灰色、红色条痕<br>
+            <strong>红赤铁矿：</strong>红色、红色条痕<br>
+            <strong>肾铁矿：</strong>红褐色、红色条痕</p>
+        </div>
+        <div class="equipment-item">
+            <h4>🟤 铁氧化物</h4>
+            <p><strong>磁铁矿：</strong>黑色、黑色条痕、磁性<br>
+            <strong>赤铁矿：</strong>各种颜色、红色条痕、非磁性<br>
+            <strong>针铁矿：</strong>黄褐色、黄褐色条痕</p>
+        </div>
+    </div>
+    
+    <div class="section-title">🌟 特殊颜色现象</div>
+    
+    <div class="main-text">
+        一些矿物展现特殊光学效应有助于鉴定：
+    </div>
+    
+    <div class="equipment-list">
+        <div class="equipment-item">
+            <h4>🌈 彩虹色</h4>
+            <p><strong>黄铜矿：</strong>新鲜表面的彩虹锈蚀<br>
+            <strong>斑铜矿：</strong>"孔雀石"——紫色和蓝色锈蚀</p>
+        </div>
+        <div class="equipment-item">
+            <h4>⚡ 晕彩效应</h4>
+            <p><strong>拉长石：</strong>蓝、绿、金闪光<br>
+            <strong>月光石：</strong>蓝或白色冰长石光</p>
+        </div>
+        <div class="equipment-item">
+            <h4>🔥 变彩</h4>
+            <p><strong>蛋白石：</strong>闪烁彩虹色<br>
+            <strong>火蛋白石：</strong>橙到红体色带变彩</p>
+        </div>
+    </div>
+    
+    <div class="section-title">🧪 化学颜色测试</div>
+    
+    <div class="main-text">
+        一些矿物可通过化学测试中的颜色变化鉴定：
+    </div>
+    
+    <div class="warning">
+        <div class="warning-title">⚗️ 安全第一</div>
+        进行化学测试时始终使用适当安全设备和通风。某些反应产生有毒气体。
+    </div>
+    
+    <div class="equipment-list">
+        <div class="equipment-item">
+            <h4>🔥 焰色反应</h4>
+            <p><strong>铜矿物：</strong>绿焰<br>
+            <strong>钠矿物：</strong>黄焰<br>
+            <strong>钾矿物：</strong>紫焰</p>
+        </div>
+        <div class="equipment-item">
+            <h4>💧 酸反应</h4>
+            <p><strong>孔雀石+HCl：</strong>起泡，溶液变蓝绿色<br>
+            <strong>蓝铜矿+HCl：</strong>起泡，溶液变蓝色</p>
+        </div>
+    </div>
+    
+    <div class="section-title">📸 记录技术</div>
+    
+    <div class="main-text">
+        正确记录颜色和条痕观察对科学工作至关重要：
+    </div>
+    
+    <div class="tip-box">
+        <div class="tip-title">📝 记录观察</div>
+        <ul>
+            <li>尽可能使用标准化颜色图表（孟塞尔颜色系统）</li>
+            <li>在一致照明下拍摄标本</li>
+            <li>照片中包含比例尺物体</li>
+            <li>记录照明条件和相机设置</li>
+            <li>记录新鲜和风化表面颜色</li>
+        </ul>
+    </div>
+    
+    <div class="section-title">🎓 建立颜色识别技能</div>
+    
+    <div class="main-text">
+        发展基于颜色鉴定的专业知识需要系统练习：
+    </div>
+    
+    <div class="equipment-list">
+        <div class="equipment-item">
+            <h4>👁️ 训练眼睛</h4>
+            <p>在不同照明条件下研究参考标本。使用地质术语练习精确描述颜色。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>📚 学习颜色术语</h4>
+            <p>掌握地质颜色术语：玻璃光泽、树脂光泽、珍珠光泽、金刚光泽、金属光泽、土状、暗淡。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>🔄 定期练习</h4>
+            <p>重复测试已知标本。建立颜色、条痕和矿物名称间的记忆联系。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>🏛️ 参观标本</h4>
+            <p>研究具有优良照明和标记的博物馆标本。比较同一矿物的不同变种。</p>
+        </div>
+    </div>
+    
+    <div class="section-title">🌍 野外应用</div>
+    
+    <div class="main-text">
+        颜色和条痕测试在没有高级设备的野外环境中特别有价值：
+    </div>
+    
+    <div class="highlight">
+        <strong>野外技巧：</strong>在野外工具包中携带小条痕板。破碎的无釉陶瓷砖效果很好且比实验室板更耐用。
+    </div>
+    
+    <div class="section-title">🔬 实验室确认</div>
+    
+    <div class="main-text">
+        虽然颜色和条痕是优秀的诊断工具，但以下情况可能需要实验室确认：
+    </div>
+    
+    <div class="equipment-list">
+        <div class="equipment-item">
+            <h4>📡 X射线衍射</h4>
+            <p>对颜色和条痕相似但晶体结构不同的矿物进行确定性鉴定。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>⚗️ 化学分析</h4>
+            <p>对固溶体矿物和复杂化学成分进行精确成分确定。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>🔬 光学显微镜</h4>
+            <p>详细研究肉眼无法观察的光学性质和内部结构。</p>
+        </div>
+    </div>
+    
+    <div class="highlight">
+        <strong>记住：</strong>颜色和条痕在正确使用时是强大工具，但应始终与其他诊断性质结合进行可靠鉴定。关键是系统观察和理解视觉性质的局限性。
+    </div>
+    
 </div>
+<script src="../../language-redirect.js"></script>
 </body>
 </html>

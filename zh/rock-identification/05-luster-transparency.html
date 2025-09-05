@@ -2,67 +2,542 @@
 <html lang="zh">
 <head>
 <meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>光泽与透明度 - BirdAiSnap</title>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>05 光泽与透明度 - BirdAiSnap</title>
 <link href="../../mobile-styles.css" rel="stylesheet"/>
 <link href="../../mobile-enhancement.css" rel="stylesheet"/>
 <link href="../../ecology-theme.css" rel="stylesheet"/>
-<style>
-:root {
-  --primary-color: #4CAF50;
-  --primary-dark: #2E7D32;
-  --primary-light: #E8F5E8;
-  --accent-color: #81C784;
-}
-.hero-image {
-  width:100%; height:400px;
-  background: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.4)),
-             url('../../images/rock/Rock&Mineral_Identification/05_Luster_&_Transparency.webp') center/cover;
-  position:relative; margin-top:0;
-}
-.content {
-  background: linear-gradient(135deg,#ffffff,var(--primary-light));
-  border:2px solid var(--primary-color);
-  padding:50px 35px 40px 35px!important;
-  margin:-30px 15px 20px 15px!important;
-  max-width:1200px; margin:auto!important;
-}
-.quote-box {
-  background: linear-gradient(135deg,var(--primary-light),#C8E6C9);
-  border-left:4px solid var(--primary-color);
-  padding:20px; margin:25px 0; border-radius:8px;
-}
-.section-title {
-  color:var(--primary-color);
-  border-bottom:2px solid var(--accent-color);
-  margin:35px 0 20px; padding-bottom:10px;
-}
-.equipment-item {
-  border:1px solid var(--accent-color);
-  background: linear-gradient(135deg,#ffffff,var(--primary-light));
-  padding:20px; margin:15px 0; border-radius:8px;
-}
-.equipment-item h4 { color:var(--primary-color); font-size:18px; margin-bottom:10px; }
-.main-text { margin:25px 0; line-height:1.7; }
-</style>
+    <style>
+        /* Rock Identification Theme - Green */
+        :root {
+            --primary-color: #4CAF50;
+            --primary-dark: #2E7D32;
+            --primary-light: #E8F5E8;
+            --accent-color: #81C784;
+        }
+        
+        .hero-image img {
+            max-height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+        .article-card img {
+            max-height: 120px;
+            width: 100%;
+            object-fit: cover;
+        }
+        .hero-image {
+            width: 100% !important;
+            height: 400px !important;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                        url('../../images/rock/Rock&Mineral_Identification/05_Luster_&_Transparency.webp') center/cover !important;
+            position: relative !important;
+            margin-top: 0 !important;
+            display: block !important;
+        }
+        .article-meta {
+            margin-top: 15px !important;
+        }
+        
+        /* Theme Color Overrides */
+        .content {
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+            border: 2px solid var(--primary-color);
+            padding: 50px 35px 40px 35px !important;
+            margin: -30px 15px 20px 15px !important;
+            max-width: 1200px;
+            margin-left: auto !important;
+            margin-right: auto !important;
+        }
+        
+        /* Responsive padding adjustments */
+        @media screen and (max-width: 768px) {
+            .content {
+                padding: 40px 25px 30px 25px !important;
+                margin: -30px 10px 20px 10px !important;
+            }
+        }
+        
+        @media screen and (max-width: 480px) {
+            .content {
+                padding: 35px 20px 25px 20px !important;
+                margin: -30px 8px 20px 8px !important;
+            }
+            
+            /* Mobile optimization - flatten hierarchy */
+            .equipment-list {
+                margin: 20px 0;
+            }
+            
+            .equipment-item {
+                padding: 15px;
+                margin: 12px 0;
+                border-radius: 6px;
+            }
+            
+            .equipment-item h4 {
+                font-size: 16px;
+                margin-bottom: 8px;
+            }
+            
+            .tip-box, .highlight, .warning {
+                padding: 15px;
+                margin: 20px 0;
+                border-radius: 6px;
+            }
+            
+            .tip-title {
+                font-size: 16px;
+                margin-bottom: 10px;
+            }
+            
+            .section-title {
+                font-size: 18px;
+                margin: 25px 0 15px 0;
+                padding-bottom: 8px;
+            }
+            
+            .main-text {
+                font-size: 15px;
+                line-height: 1.6;
+                margin: 15px 0;
+            }
+            
+            ul, ol {
+                padding-left: 20px;
+                margin: 10px 0;
+            }
+            
+            li {
+                margin: 6px 0;
+                font-size: 14px;
+                line-height: 1.5;
+            }
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, var(--primary-light), #C8E6C9);
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .quote-text {
+            color: var(--primary-dark);
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+        }
+        
+        .tip-box {
+            border-left: 4px solid var(--primary-color);
+            background: var(--primary-light);
+        }
+        
+        .tip-title {
+            color: var(--primary-color);
+        }
+        
+        .highlight {
+            border-left: 4px solid var(--accent-color);
+            background: linear-gradient(135deg, #f1f8e9, var(--primary-light));
+        }
+        
+        .warning {
+            border-left: 4px solid #f44336;
+        }
+        
+        .equipment-item {
+            border: 1px solid var(--accent-color);
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        .equipment-item h4 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        
+        .equipment-item p {
+            margin-bottom: 0;
+            line-height: 1.6;
+        }
+        
+        /* Improved spacing for all text elements */
+        .main-text {
+            margin: 25px 0;
+            line-height: 1.7;
+        }
+        
+        .section-title {
+            margin: 35px 0 20px 0;
+            padding-bottom: 10px;
+        }
+        
+        .tip-box, .highlight, .warning {
+            margin: 25px 0;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        
+        .equipment-list {
+            margin: 25px 0;
+        }
+        
+        ul, ol {
+            padding-left: 25px;
+            margin: 15px 0;
+        }
+        
+        li {
+            margin: 8px 0;
+            line-height: 1.6;
+        }
+        
+        .category {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .warning-title {
+            font-weight: 600;
+            color: #721c24;
+            margin-bottom: 8px;
+        }
+    </style>
 </head>
 <body>
 <div class="hero-image"></div>
 <div class="content">
-  <h1 class="title">光泽与透明度</h1>
-  <div class="quote-box">
-    <div class="quote-text">用于矿物鉴定的光学特性</div>
-  </div>
-  <div class="main-text">
-    光泽和透明度是基本的光学特性，展示了光线如何与矿物的原子结构相互作用。这些特性是最可靠的诊断属性之一，可提供关于矿物身份和化学键合的即时线索。
-  </div>
-  <div class="article-meta">
-    <span class="category">Rock Identification</span>
-    <span class="read-time">📖 14 分钟阅读</span>
-    <span class="difficulty">🟡 中级</span>
-  </div>
-  <!-- 请根据英文原文结构完整翻译以下所有章节内容 -->
+    <h1 class="title">05 光泽与透明度</h1>
+    
+    <div class="quote-box">
+        <div class="quote-text">矿物鉴定的光学性质</div>
+    </div>
+    
+    <div class="main-text">
+        光泽和透明度是揭示光线如何与矿物原子结构相互作用的基本光学性质。这些性质是最可靠的诊断特征之一，可立即提供关于矿物身份和化学键合的线索。
+    </div>
+    
+    <div class="article-meta">
+        <span class="category">岩石识别</span>
+        <span class="read-time">📖 14分钟阅读</span>
+        <span class="difficulty">🟡 中级</span>
+    </div>
+    
+    <div class="quote-box">
+        <div class="main-text">"光泽是矿物灵魂的窗口——它揭示了光线如何与原子结构相互作用。"</div>
+        <cite>— 迈克尔·陈教授，光学矿物学家</cite>
+    </div>
+    
+    <div class="section-title">💎 理解光泽</div>
+    
+    <div class="main-text">
+        光泽通过复杂的折射率相互作用、电子密度分布和晶体表面取向来表征表面光反射机制。这一基本光学性质与键合特性、电子能带结构和原子堆积效率相关，使其无论表面风化或微量元素变化如何都具有诊断价值。
+    </div>
+    
+    <div class="tip-box">
+        <div class="tip-title">🔍 光泽观察技巧</div>
+        <ul>
+            <li>始终在新鲜、未风化表面观察光泽</li>
+            <li>使用一致照明——最好是明亮的间接自然光</li>
+            <li>避免荧光照明，它可能扭曲光泽外观</li>
+            <li>尽可能与已知参考标本比较</li>
+        </ul>
+    </div>
+    
+    <div class="section-title">🌟 金属光泽</div>
+    
+    <div class="main-text">
+        金属光泽像抛光金属那样反射光线，表示强金属键合或高导电性：
+    </div>
+    
+    <div class="equipment-list">
+        <div class="equipment-item">
+            <h4>🥇 自然金属</h4>
+            <p><strong>实例：</strong>金、银、铜、铂。新鲜时呈完美金属光泽。锈蚀可使光泽变暗。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>⚫ 硫化物矿物</h4>
+            <p><strong>实例：</strong>黄铁矿、方铅矿、黄铜矿、磁黄铁矿。在新鲜表面常显示明亮金属光泽。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>🔩 氧化物矿物</h4>
+            <p><strong>实例：</strong>磁铁矿、赤铁矿（镜铁矿变种）、铬铁矿。金属到半金属光泽。</p>
+        </div>
+    </div>
+    
+    <div class="section-title">🪟 非金属光泽</div>
+    
+    <div class="main-text">
+        非金属光泽更为多样，是具有共价或离子键合矿物的特征：
+    </div>
+    
+    <div class="equipment-list">
+        <div class="equipment-item">
+            <h4>💎 玻璃光泽</h4>
+            <p><strong>最常见光泽。</strong>实例：石英、石榴子石、橄榄石、电气石。像破碎玻璃那样反射光线。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>💍 金刚光泽</h4>
+            <p><strong>明亮的钻石状。</strong>实例：金刚石、锆石、锡石。非常高折射率矿物。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>🦪 珍珠光泽</h4>
+            <p><strong>柔和的珍珠状反射。</strong>实例：滑石、白云母、石膏。常在解理面上。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>🕯️ 树脂光泽</h4>
+            <p><strong>像硬化树脂。</strong>实例：闪锌矿、琥珀、某些石榴子石。蜡状到玻璃状外观。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>🧈 油脂光泽</h4>
+            <p><strong>油腻或蜡状外观。</strong>实例：霞石、某些石英变种。似乎有薄油膜。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>🪨 土状光泽（暗淡）</h4>
+            <p><strong>无反射，哑光表面。</strong>实例：高岭石、褐铁矿、白垩。极细粒矿物。</p>
+        </div>
+    </div>
+    
+    <div class="section-title">🌓 半金属光泽</div>
+    
+    <div class="main-text">
+        半金属光泽代表金属和非金属之间的中间状态：
+    </div>
+    
+    <div class="equipment-list">
+        <div class="equipment-item">
+            <h4>🔘 特征</h4>
+            <p>比金属光泽暗淡但比玻璃光泽更具反射性。常见于深色矿物。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>🏔️ 实例</h4>
+            <p><strong>赤铁矿：</strong>常为半金属光泽，特别是土状变种<br>
+            <strong>石墨：</strong>金属到半金属光泽<br>
+            <strong>朱砂：</strong>半金属到金刚光泽</p>
+        </div>
+    </div>
+    
+    <div class="section-title">👁️ 透明度分类</div>
+    
+    <div class="main-text">
+        透明度描述多少光线通过矿物，与晶体结构和化学成分密切相关：
+    </div>
+    
+    <div class="equipment-list">
+        <div class="equipment-item">
+            <h4>🔍 透明</h4>
+            <p><strong>通过矿物可清楚看见物体。</strong>实例：透明石英、方解石、萤石、金刚石。光线通过时散射最小。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>🌫️ 半透明</h4>
+            <p><strong>光线通过但物体不清楚可见。</strong>实例：玉髓、某些长石、石膏。部分光透射。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>⚫ 不透明</h4>
+            <p><strong>无光线通过。</strong>实例：大多数金属矿物、磁铁矿、赤铁矿。完全光吸收或反射。</p>
+        </div>
+    </div>
+    
+    <div class="tip-box">
+        <div class="tip-title">🔦 透明度测试</div>
+        <ul>
+            <li>使用薄边缘或小碎片测试</li>
+            <li>将标本举向明亮光源</li>
+            <li>即使在厚截面中也要寻找光透射</li>
+            <li>注意同一标本内透明度可能变化</li>
+        </ul>
+    </div>
+    
+    <div class="section-title">🔬 光学现象</div>
+    
+    <div class="main-text">
+        一些矿物展现特殊光学效应有助于鉴定：
+    </div>
+    
+    <div class="equipment-list">
+        <div class="equipment-item">
+            <h4>🌙 冰长石光</h4>
+            <p><strong>月光石效应：</strong>蓝色或白色起伏光。由内部结构的光散射引起。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>⚡ 晕彩</h4>
+            <p><strong>拉长石效应：</strong>蓝、绿、金闪光。由双晶纹中的光干涉引起。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>🌈 彩虹色</h4>
+            <p><strong>彩虹颜色：</strong>矿物表面的薄膜干涉。常见于锈蚀硫化物。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>⭐ 星光效应</h4>
+            <p><strong>星状效应：</strong>反射光中的4、6或12射线星。由定向包裹体引起。</p>
+        </div>
+    </div>
+    
+    <div class="section-title">🧮 与折射率的关系</div>
+    
+    <div class="main-text">
+        光泽直接关系到矿物的折射率，它衡量光线进入矿物时的弯曲程度：
+    </div>
+    
+    <div class="equipment-list">
+        <div class="equipment-item">
+            <h4>📊 低折射率(1.3-1.5)</h4>
+            <p><strong>玻璃到油脂光泽。</strong>实例：萤石、蛋白石。光弯曲最小。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>📊 中等折射率(1.5-1.8)</h4>
+            <p><strong>玻璃光泽。</strong>实例：石英、长石。硅酸盐矿物最常见范围。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>📊 高折射率(1.8-2.4)</h4>
+            <p><strong>玻璃到金刚光泽。</strong>实例：石榴子石、锆石。明显明亮外观。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>📊 极高折射率(>2.4)</h4>
+            <p><strong>金刚光泽。</strong>实例：金刚石、金红石、锡石。异常光彩。</p>
+        </div>
+    </div>
+    
+    <div class="section-title">🔄 光泽变化</div>
+    
+    <div class="main-text">
+        同一矿物可根据表面条件和晶面显示不同光泽：
+    </div>
+    
+    <div class="warning">
+        <div class="warning-title">⚠️ 可变光泽因素</div>
+        <ul>
+            <li><strong>风化：</strong>新鲜表面显示真实光泽；风化表面可能暗淡</li>
+            <li><strong>晶面：</strong>不同面可能显示略微不同的光泽</li>
+            <li><strong>颗粒大小：</strong>细粒变种常显得更暗</li>
+            <li><strong>包裹体：</strong>外来材料可改变表观光泽</li>
+        </ul>
+    </div>
+    
+    <div class="section-title">🎯 诊断应用</div>
+    
+    <div class="main-text">
+        光泽和透明度组合提供强大的诊断信息：
+    </div>
+    
+    <div class="equipment-list">
+        <div class="equipment-item">
+            <h4>🥇 金属+不透明</h4>
+            <p>立即提示硫化物、氧化物或自然金属。显著缩小鉴定范围。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>💎 金刚+透明</h4>
+            <p>高折射率矿物如金刚石、锆石、锡石。非常独特的组合。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>🦪 珍珠+半透明</h4>
+            <p>常表示层状硅酸盐如云母或粘土矿物的解理面。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>🪨 土状+不透明</h4>
+            <p>细粒或风化矿物。常为次生矿物或蚀变产物。</p>
+        </div>
+    </div>
+    
+    <div class="section-title">🔬 高级光学性质</div>
+    
+    <div class="main-text">
+        专业矿物学家使用额外光学性质进行精确鉴定：
+    </div>
+    
+    <div class="equipment-list">
+        <div class="equipment-item">
+            <h4>🌈 双折射</h4>
+            <p>各向异性矿物中的双重折射。透过方解石观察时产生双像。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>🔄 多色性</h4>
+            <p>颜色随观察方向变化。在电气石和其他有色矿物中可见。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>⚡ 光性符号</h4>
+            <p>由偏光显微镜确定的单轴vs双轴特性。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>📐 消光角</h4>
+            <p>偏光中的角度关系。长石鉴定的诊断特征。</p>
+        </div>
+    </div>
+    
+    <div class="section-title">🔦 野外测试技术</div>
+    
+    <div class="main-text">
+        野外条件下评估光泽和透明度的实用方法：
+    </div>
+    
+    <div class="tip-box">
+        <div class="tip-title">🏞️ 野外方法</div>
+        <ul>
+            <li>使用小镜子将阳光导向标本表面</li>
+            <li>携带明亮LED手电筒以获得一致照明</li>
+            <li>必要时用地质锤破出新鲜表面</li>
+            <li>用放大镜检查小晶面上的光泽</li>
+            <li>在薄边缘或小碎片上测试透明度</li>
+        </ul>
+    </div>
+    
+    <div class="section-title">🎓 建立识别技能</div>
+    
+    <div class="main-text">
+        发展光学性质识别专业知识需要系统训练：
+    </div>
+    
+    <div class="equipment-list">
+        <div class="equipment-item">
+            <h4>👁️ 视觉训练</h4>
+            <p>在控制照明下研究参考标本。使用标准术语练习描述光泽。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>📚 术语掌握</h4>
+            <p>学习光泽类型的精确定义。理解每个类别的物理基础。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>🔄 比较研究</h4>
+            <p>比较具有不同光泽的相似矿物。注意类别间的细微差异。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>🏛️ 博物馆研究</h4>
+            <p>在优良照明下检查高质量标本。研究各光泽类型的标记实例。</p>
+        </div>
+    </div>
+    
+    <div class="highlight">
+        <strong>专业洞察：</strong>光泽和透明度是最可靠的诊断性质之一，因为它们直接反映原子结构和键合。与颜色不同，它们很少受微量杂质或风化影响，使其成为优秀的首要鉴定标准。
+    </div>
+    
+    <div class="section-title">🌟 特殊应用</div>
+    
+    <div class="main-text">
+        理解光学性质在鉴定之外有实际应用：
+    </div>
+    
+    <div class="equipment-list">
+        <div class="equipment-item">
+            <h4>💎 宝石评价</h4>
+            <p>光泽质量影响宝石价值。金刚光泽表示高光彩潜力。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>🏭 工业应用</h4>
+            <p>光学性质决定在玻璃制造、陶瓷和光学元件中的适用性。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>🔬 研究应用</h4>
+            <p>光学性质提供关于晶体结构和键合特性的洞察。</p>
+        </div>
+    </div>
+    
 </div>
-<script src="../language-redirect.js"></script>
+<script src="../../language-redirect.js"></script>
 </body>
 </html>

@@ -2,66 +2,551 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Éclat & Transparence - BirdAiSnap</title>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Éclat et Transparence - BirdAiSnap</title>
 <link href="../../mobile-styles.css" rel="stylesheet"/>
 <link href="../../mobile-enhancement.css" rel="stylesheet"/>
 <link href="../../ecology-theme.css" rel="stylesheet"/>
 <style>
-:root {
-  --primary-color: #4CAF50;
-  --primary-dark: #2E7D32;
-  --primary-light: #E8F5E8;
-  --accent-color: #81C784;
-}
-.hero-image {
-  width:100%; height:400px;
-  background: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.4)),
-             url('../../images/rock/Rock&Mineral_Identification/05_Luster_&_Transparency.webp') center/cover;
-  position:relative; margin-top:0;
-}
-.content {
-  background: linear-gradient(135deg,#ffffff,var(--primary-light));
-  border:2px solid var(--primary-color);
-  padding:50px 35px 40px 35px!important;
-  margin:-30px 15px 20px 15px!important;
-  max-width:1200px; margin:auto!important;
-}
-.quote-box {
-  background: linear-gradient(135deg,var(--primary-light),#C8E6C9);
-  border-left:4px solid var(--primary-color);
-  padding:20px; margin:25px 0; border-radius:8px;
-}
-.section-title {
-  color:var(--primary-color);
-  border-bottom:2px solid var(--accent-color);
-  margin:35px 0 20px; padding-bottom:10px;
-}
-.equipment-item {
-  border:1px solid var(--accent-color);
-  background: linear-gradient(135deg,#ffffff,var(--primary-light));
-  padding:20px; margin:15px 0; border-radius:8px;
-}
-.equipment-item h4 { color:var(--primary-color); font-size:18px; margin-bottom:10px; }
-.main-text { margin:25px 0; line-height:1.7; }
-</style>
+        /* Rock Identification Theme - Green */
+        :root {
+            --primary-color: #4CAF50;
+            --primary-dark: #2E7D32;
+            --primary-light: #E8F5E8;
+            --accent-color: #81C784;
+        }
+        
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                        url('../../images/rock/Rock&Mineral_Identification/05_Luster_&_Transparency.webp') center/cover;
+            position: relative;
+            margin-top: 0;
+        }
+        
+        .content {
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+            border: 2px solid var(--primary-color);
+            padding: 50px 35px 40px 35px !important;
+            margin: -30px 15px 20px 15px !important;
+            max-width: 1200px;
+            margin-left: auto !important;
+            margin-right: auto !important;
+        }
+        
+        /* Responsive padding adjustments */
+        @media screen and (max-width: 768px) {
+            .content {
+                padding: 40px 25px 30px 25px !important;
+                margin: -30px 10px 20px 10px !important;
+            }
+        }
+        
+        @media screen and (max-width: 480px) {
+            .content {
+                padding: 35px 20px 25px 20px !important;
+                margin: -30px 8px 20px 8px !important;
+            }
+            
+            .equipment-item {
+                padding: 15px;
+                margin: 12px 0;
+                border-radius: 6px;
+            }
+            
+            .equipment-item h4 {
+                font-size: 16px;
+                margin-bottom: 8px;
+            }
+            
+            .tip-box, .highlight, .warning {
+                padding: 15px;
+                margin: 20px 0;
+                border-radius: 6px;
+            }
+            
+            .section-title {
+                font-size: 18px;
+                margin: 25px 0 15px 0;
+                padding-bottom: 8px;
+            }
+            
+            .main-text {
+                font-size: 15px;
+                line-height: 1.6;
+                margin: 15px 0;
+            }
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, var(--primary-light), #C8E6C9);
+            border-left: 4px solid var(--primary-color);
+            margin: 25px 0;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        
+        .quote-text {
+            color: var(--primary-dark);
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            margin: 35px 0 20px 0;
+            padding-bottom: 10px;
+        }
+        
+        .tip-box {
+            border-left: 4px solid var(--primary-color);
+            background: var(--primary-light);
+            margin: 25px 0;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        
+        .tip-title {
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .highlight {
+            border-left: 4px solid var(--accent-color);
+            background: linear-gradient(135deg, #f1f8e9, var(--primary-light));
+            margin: 25px 0;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        
+        .warning {
+            border-left: 4px solid #f44336;
+            background: #ffebee;
+            margin: 25px 0;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        
+        .warning-title {
+            color: #c62828;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .equipment-item {
+            border: 1px solid var(--accent-color);
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        .equipment-item h4 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        
+        .main-text {
+            margin: 25px 0;
+            line-height: 1.7;
+        }
+        
+        .equipment-list {
+            margin: 25px 0;
+        }
+        
+        ul, ol {
+            padding-left: 25px;
+            margin: 15px 0;
+        }
+        
+        li {
+            margin: 8px 0;
+            line-height: 1.6;
+        }
+        
+        .category {
+            background: var(--primary-color);
+            color: white;
+        }
+    </style>
 </head>
 <body>
 <div class="hero-image"></div>
 <div class="content">
-  <h1 class="title">Éclat & Transparence</h1>
-  <div class="quote-box">
-    <div class="quote-text">Propriétés optiques pour l’identification des minéraux</div>
-  </div>
-  <div class="main-text">
-    Éclat et transparence sont des propriétés optiques fondamentales révélant comment la lumière interagit avec la structure atomique d’un minéral. Ces caractéristiques sont parmi les plus fiables pour le diagnostic et fournissent des indices immédiats sur l’identité minérale et les liaisons chimiques.
-  </div>
-  <div class="article-meta">
-    <span class="category">Rock Identification</span>
-    <span class="read-time">📖 14 minutes de lecture</span>
-    <span class="difficulty">🟡 Intermédiaire</span>
-  </div>
-  <!-- 请根据英文原文结构完整翻译以下所有章节内容 -->
+    <h1 class="title">Éclat et Transparence</h1>
+    
+    <div class="quote-box">
+        <div class="quote-text">Propriétés Optiques pour l'Identification Minérale</div>
+    </div>
+    
+    <div class="main-text">
+        L'éclat et la transparence sont des propriétés optiques fondamentales qui révèlent comment la lumière interagit avec la structure atomique d'un minéral. Ces propriétés sont parmi les caractéristiques diagnostiques les plus fiables et fournissent des indices immédiats sur l'identité minérale et les liaisons chimiques.
+    </div>
+    
+    <div class="article-meta">
+        <span class="category">Identification Roches</span>
+        <span class="read-time">📖 14 minutes de lecture</span>
+        <span class="difficulty">🟡 Intermédiaire</span>
+    </div>
+    
+    <div class="quote-box">
+        <div class="main-text">"L'éclat est la fenêtre de l'âme minérale - il révèle comment la lumière interagit avec la structure atomique."</div>
+        <cite>— Prof. Michel Chen, Minéralogiste Optique</cite>
+    </div>
+    
+    <div class="section-title">💎 Comprendre l'Éclat</div>
+    
+    <div class="main-text">
+        L'éclat caractérise les mécanismes de réflectance lumineuse de surface à travers des interactions complexes d'indices de réfraction, des distributions de densité électronique et des orientations cristallographiques de surface. Cette propriété optique fondamentale corrèle avec le caractère de liaison, la structure de bande électronique et l'efficacité d'empilement atomique, la rendant diagnostique indépendamment de l'altération superficielle ou des variations d'éléments traces.
+    </div>
+    
+    <div class="tip-box">
+        <div class="tip-title">🔍 Conseils d'Observation de l'Éclat</div>
+        <ul>
+            <li>Toujours observer l'éclat sur des surfaces fraîches, non altérées</li>
+            <li>Utiliser un éclairage constant - de préférence une lumière naturelle vive et indirecte</li>
+            <li>Éviter l'éclairage fluorescent qui peut déformer l'apparence de l'éclat</li>
+            <li>Comparer avec des spécimens de référence connus quand possible</li>
+        </ul>
+    </div>
+    
+    <div class="section-title">🌟 Éclat Métallique</div>
+    
+    <div class="main-text">
+        L'éclat métallique réfléchit la lumière comme un métal poli et indique une forte liaison métallique ou une haute conductivité électrique :
+    </div>
+    
+    <div class="equipment-list">
+        <div class="equipment-item">
+            <h4>🥇 Métaux Natifs</h4>
+            <p><strong>Exemples :</strong> Or, argent, cuivre, platine. Éclat métallique parfait quand frais. Le ternissement peut atténuer l'éclat.</p>
+        </div>
+        <div class="equipment-item">
+            <h4>⚫ Minéraux Sulfurés</h4>
+            <p><strong>Exemples :</strong> Pyrite, galène, chalcopyrite, pyrrhotite. Montrent souvent un éclat métallique brillant sur surfaces fraîches.</p>
+        </div>
+        <div class="equipment-item">
+            <h4>🔩 Minéraux Oxydes</h4>
+            <p><strong>Exemples :</strong> Magnétite, hématite (variété spéculaire), chromite. Éclat métallique à sub-métallique.</p>
+        </div>
+    </div>
+    
+    <div class="section-title">🪟 Éclats Non-Métalliques</div>
+    
+    <div class="main-text">
+        Les éclats non-métalliques sont plus variés et caractéristiques des minéraux avec liaisons covalentes ou ioniques :
+    </div>
+    
+    <div class="equipment-list">
+        <div class="equipment-item">
+            <h4>💎 Vitreux (Vitreux)</h4>
+            <p><strong>Éclat le plus commun.</strong> Exemples : Quartz, grenat, olivine, tourmaline. Réfléchit la lumière comme du verre brisé.</p>
+        </div>
+        <div class="equipment-item">
+            <h4>💍 Adamantin</h4>
+            <p><strong>Brillant, semblable au diamant.</strong> Exemples : Diamant, zircon, cassitérite. Minéraux à indice de réfraction très élevé.</p>
+        </div>
+        <div class="equipment-item">
+            <h4>🦪 Nacré</h4>
+            <p><strong>Réflexion douce, semblable à la perle.</strong> Exemples : Talc, muscovite, gypse. Souvent sur les surfaces de clivage.</p>
+        </div>
+        <div class="equipment-item">
+            <h4>🕯️ Résineux</h4>
+            <p><strong>Comme de la résine d'arbre durcie.</strong> Exemples : Sphalérite, ambre, certains grenats. Apparence cireuse à vitreuse.</p>
+        </div>
+        <div class="equipment-item">
+            <h4>🧈 Gras</h4>
+            <p><strong>Apparence huileuse ou cireuse.</strong> Exemples : Néphéline, certaines variétés de quartz. Semble avoir un film d'huile mince.</p>
+        </div>
+        <div class="equipment-item">
+            <h4>🪨 Terreux (Mat)</h4>
+            <p><strong>Pas de réflexion, finition mate.</strong> Exemples : Kaolinite, limonite, craie. Minéraux à grain très fin.</p>
+        </div>
+    </div>
+    
+    <div class="section-title">🌓 Éclat Sub-Métallique</div>
+    
+    <div class="main-text">
+        L'éclat sub-métallique représente une condition intermédiaire entre métallique et non-métallique :
+    </div>
+    
+    <div class="equipment-list">
+        <div class="equipment-item">
+            <h4>🔘 Caractéristiques</h4>
+            <p>Moins brillant que métallique mais plus réfléchissant que vitreux. Souvent observé dans les minéraux de couleur sombre.</p>
+        </div>
+        <div class="equipment-item">
+            <h4>🏔️ Exemples</h4>
+            <p><strong>Hématite :</strong> Souvent sub-métallique, surtout variétés terreuses<br>
+            <strong>Graphite :</strong> Métallique à sub-métallique<br>
+            <strong>Cinabre :</strong> Sub-métallique à adamantin</p>
+        </div>
+    </div>
+    
+    <div class="section-title">👁️ Classification de la Transparence</div>
+    
+    <div class="main-text">
+        La transparence décrit la quantité de lumière qui traverse un minéral et est étroitement liée à la structure cristalline et à la composition chimique :
+    </div>
+    
+    <div class="equipment-list">
+        <div class="equipment-item">
+            <h4>🔍 Transparent</h4>
+            <p><strong>Objets clairement visibles à travers le minéral.</strong> Exemples : Quartz clair, calcite, fluorite, diamant. La lumière passe avec diffusion minimale.</p>
+        </div>
+        <div class="equipment-item">
+            <h4>🌫️ Translucide</h4>
+            <p><strong>La lumière passe mais les objets ne sont pas clairement visibles.</strong> Exemples : Calcédoine, certains feldspaths, gypse. Transmission lumineuse partielle.</p>
+        </div>
+        <div class="equipment-item">
+            <h4>⚫ Opaque</h4>
+            <p><strong>Aucune lumière ne passe.</strong> Exemples : La plupart des minéraux métalliques, magnétite, hématite. Absorption ou réflexion complète de la lumière.</p>
+        </div>
+    </div>
+    
+    <div class="tip-box">
+        <div class="tip-title">🔦 Test de Transparence</div>
+        <ul>
+            <li>Utiliser des bords minces ou de petits fragments pour le test</li>
+            <li>Tenir l'échantillon vers une source lumineuse vive</li>
+            <li>Chercher la transmission de lumière même dans des sections épaisses</li>
+            <li>Noter que la transparence peut varier au sein du même spécimen</li>
+        </ul>
+    </div>
+    
+    <div class="section-title">🔬 Phénomènes Optiques</div>
+    
+    <div class="main-text">
+        Certains minéraux exhibent des effets optiques spéciaux qui aident à l'identification :
+    </div>
+    
+    <div class="equipment-list">
+        <div class="equipment-item">
+            <h4>🌙 Adularescence</h4>
+            <p><strong>Effet pierre de lune :</strong> Lumière ondulante bleue ou blanche. Causée par la diffusion de lumière des structures internes.</p>
+        </div>
+        <div class="equipment-item">
+            <h4>⚡ Schiller</h4>
+            <p><strong>Effet labradorite :</strong> Éclairs de bleu, vert, or. Dû à l'interférence lumineuse dans les lamelles de macle.</p>
+        </div>
+        <div class="equipment-item">
+            <h4>🌈 Irisation</h4>
+            <p><strong>Couleurs arc-en-ciel :</strong> Interférence de film mince sur les surfaces minérales. Commune dans les sulfures ternis.</p>
+        </div>
+        <div class="equipment-item">
+            <h4>⭐ Astérisme</h4>
+            <p><strong>Effet étoile :</strong> Étoiles à 4, 6 ou 12 rayons en lumière réfléchie. Causé par des inclusions orientées.</p>
+        </div>
+    </div>
+    
+    <div class="section-title">🧮 Relation à l'Indice de Réfraction</div>
+    
+    <div class="main-text">
+        L'éclat est directement lié à l'indice de réfraction d'un minéral, qui mesure combien la lumière se courbe en entrant dans le minéral :
+    </div>
+    
+    <div class="equipment-list">
+        <div class="equipment-item">
+            <h4>📊 Indice de Réfraction Faible (1,3-1,5)</h4>
+            <p><strong>Éclat vitreux à gras.</strong> Exemples : Fluorite, opale. La courbure de lumière est minimale.</p>
+        </div>
+        <div class="equipment-item">
+            <h4>📊 Indice de Réfraction Moyen (1,5-1,8)</h4>
+            <p><strong>Éclat vitreux.</strong> Exemples : Quartz, feldspath. Gamme la plus commune pour les minéraux silicatés.</p>
+        </div>
+        <div class="equipment-item">
+            <h4>📊 Indice de Réfraction Élevé (1,8-2,4)</h4>
+            <p><strong>Vitreux à adamantin.</strong> Exemples : Grenat, zircon. Apparence notablement brillante.</p>
+        </div>
+        <div class="equipment-item">
+            <h4>📊 Indice de Réfraction Très Élevé (>2,4)</h4>
+            <p><strong>Éclat adamantin.</strong> Exemples : Diamant, rutile, cassitérite. Brillance exceptionnelle.</p>
+        </div>
+    </div>
+    
+    <div class="section-title">🔄 Variations d'Éclat</div>
+    
+    <div class="main-text">
+        Le même minéral peut montrer différents éclats selon les conditions de surface et les faces cristallines :
+    </div>
+    
+    <div class="warning">
+        <div class="warning-title">⚠️ Facteurs d'Éclat Variable</div>
+        <ul>
+            <li><strong>Altération :</strong> Les surfaces fraîches montrent l'éclat véritable ; les surfaces altérées peuvent être ternes</li>
+            <li><strong>Faces cristallines :</strong> Différentes faces peuvent montrer des éclats légèrement différents</li>
+            <li><strong>Taille de grain :</strong> Les variétés à grain fin paraissent souvent plus ternes</li>
+            <li><strong>Inclusions :</strong> Le matériel étranger peut modifier l'éclat apparent</li>
+        </ul>
+    </div>
+    
+    <div class="section-title">🎯 Applications Diagnostiques</div>
+    
+    <div class="main-text">
+        Les combinaisons d'éclat et de transparence fournissent des informations diagnostiques puissantes :
+    </div>
+    
+    <div class="equipment-list">
+        <div class="equipment-item">
+            <h4>🥇 Métallique + Opaque</h4>
+            <p>Suggère immédiatement des sulfures, oxydes ou métaux natifs. Réduit significativement l'identification.</p>
+        </div>
+        <div class="equipment-item">
+            <h4>💎 Adamantin + Transparent</h4>
+            <p>Minéraux à indice de réfraction élevé comme diamant, zircon, cassitérite. Combinaison très distinctive.</p>
+        </div>
+        <div class="equipment-item">
+            <h4>🦪 Nacré + Translucide</h4>
+            <p>Indique souvent des surfaces de clivage de silicates en couches comme les micas ou minéraux argileux.</p>
+        </div>
+        <div class="equipment-item">
+            <h4>🪨 Terreux + Opaque</h4>
+            <p>Minéraux à grain fin ou altérés. Souvent minéraux secondaires ou produits d'altération.</p>
+        </div>
+    </div>
+    
+    <div class="section-title">🔬 Propriétés Optiques Avancées</div>
+    
+    <div class="main-text">
+        Les minéralogistes professionnels utilisent des propriétés optiques additionnelles pour l'identification précise :
+    </div>
+    
+    <div class="equipment-list">
+        <div class="equipment-item">
+            <h4>🌈 Biréfringence</h4>
+            <p>Double réfraction dans les minéraux anisotropes. Crée des images doubles en regardant à travers la calcite.</p>
+        </div>
+        <div class="equipment-item">
+            <h4>🔄 Pléochroïsme</h4>
+            <p>Changements de couleur selon la direction de vue. Visible dans la tourmaline et autres minéraux colorés.</p>
+        </div>
+        <div class="equipment-item">
+            <h4>⚡ Signe Optique</h4>
+            <p>Caractère uniaxe vs. biaxe déterminé par microscopie en lumière polarisée.</p>
+        </div>
+        <div class="equipment-item">
+            <h4>📐 Angles d'Extinction</h4>
+            <p>Relations angulaires en lumière polarisée. Diagnostique pour l'identification des feldspaths.</p>
+        </div>
+    </div>
+    
+    <div class="section-title">🔦 Techniques de Test sur Terrain</div>
+    
+    <div class="main-text">
+        Méthodes pratiques pour évaluer l'éclat et la transparence dans des conditions de terrain :
+    </div>
+    
+    <div class="tip-box">
+        <div class="tip-title">🏞️ Méthodes de Terrain</div>
+        <ul>
+            <li>Utiliser un petit miroir pour diriger la lumière solaire sur les surfaces d'échantillon</li>
+            <li>Porter une lampe LED brillante pour un éclairage constant</li>
+            <li>Casser des surfaces fraîches avec un marteau géologique quand nécessaire</li>
+            <li>Utiliser une loupe pour examiner l'éclat sur de petites faces cristallines</li>
+            <li>Tester la transparence sur des bords minces ou de petits fragments</li>
+        </ul>
+    </div>
+    
+    <div class="section-title">📸 Méthodes de Documentation</div>
+    
+    <div class="main-text">
+        La documentation appropriée des propriétés optiques nécessite une photographie soigneuse :
+    </div>
+    
+    <div class="equipment-list">
+        <div class="equipment-item">
+            <h4>💡 Configuration d'Éclairage</h4>
+            <p>Utiliser un éclairage diffus pour éviter les réflexions dures. Plusieurs sources lumineuses montrent les variations d'éclat.</p>
+        </div>
+        <div class="equipment-item">
+            <h4>📷 Réglages d'Appareil Photo</h4>
+            <p>Contrôle d'exposition manuel empêche la sur/sous-exposition. Utiliser un objectif macro pour les plans détaillés.</p>
+        </div>
+        <div class="equipment-item">
+            <h4>🎨 Précision des Couleurs</h4>
+            <p>Inclure des étalons de couleur dans les photos. Noter les conditions d'éclairage et réglages de balance des blancs.</p>
+        </div>
+    </div>
+    
+    <div class="section-title">🧪 Techniques de Laboratoire</div>
+    
+    <div class="main-text">
+        Méthodes avancées de laboratoire pour la caractérisation optique précise :
+    </div>
+    
+    <div class="equipment-list">
+        <div class="equipment-item">
+            <h4>🔬 Microscopie Pétrographique</h4>
+            <p>Détermination définitive des propriétés optiques utilisant la lumière polarisée et techniques spécialisées.</p>
+        </div>
+        <div class="equipment-item">
+            <h4>📡 Spectroscopie de Réflectance</h4>
+            <p>Mesure quantitative de la réflectance à travers différentes longueurs d'onde.</p>
+        </div>
+        <div class="equipment-item">
+            <h4>⚗️ Méthodes d'Immersion</h4>
+            <p>Détermination de l'indice de réfraction utilisant des liquides avec propriétés optiques connues.</p>
+        </div>
+    </div>
+    
+    <div class="section-title">🎓 Développer les Compétences de Reconnaissance</div>
+    
+    <div class="main-text">
+        Développer l'expertise en reconnaissance des propriétés optiques nécessite une formation systématique :
+    </div>
+    
+    <div class="equipment-list">
+        <div class="equipment-item">
+            <h4>👁️ Formation Visuelle</h4>
+            <p>Étudier les collections de référence sous éclairage contrôlé. Pratiquer la description d'éclat avec terminologie standard.</p>
+        </div>
+        <div class="equipment-item">
+            <h4>📚 Maîtrise de la Terminologie</h4>
+            <p>Apprendre les définitions précises des types d'éclat. Comprendre la base physique de chaque catégorie.</p>
+        </div>
+        <div class="equipment-item">
+            <h4>🔄 Étude Comparative</h4>
+            <p>Comparer des minéraux similaires avec différents éclats. Noter les différences subtiles entre catégories.</p>
+        </div>
+        <div class="equipment-item">
+            <h4>🏛️ Étude en Musée</h4>
+            <p>Examiner des spécimens de haute qualité avec excellent éclairage. Étudier des exemples étiquetés de chaque type d'éclat.</p>
+        </div>
+    </div>
+    
+    <div class="highlight">
+        <strong>Perspective Professionnelle :</strong> L'éclat et la transparence sont parmi les propriétés diagnostiques les plus fiables car elles reflètent directement la structure atomique et les liaisons. Contrairement à la couleur, elles sont rarement affectées par des impuretés mineures ou l'altération, en faisant d'excellents critères d'identification primaires.
+    </div>
+    
+    <div class="section-title">🌟 Applications Spéciales</div>
+    
+    <div class="main-text">
+        Comprendre les propriétés optiques a des applications pratiques au-delà de l'identification :
+    </div>
+    
+    <div class="equipment-list">
+        <div class="equipment-item">
+            <h4>💎 Évaluation de Gemmes</h4>
+            <p>La qualité d'éclat affecte la valeur des gemmes. L'éclat adamantin indique un potentiel de brillance élevé.</p>
+        </div>
+        <div class="equipment-item">
+            <h4>🏭 Applications Industrielles</h4>
+            <p>Les propriétés optiques déterminent l'aptitude pour la verrerie, céramiques et composants optiques.</p>
+        </div>
+        <div class="equipment-item">
+            <h4>🔬 Applications de Recherche</h4>
+            <p>Les propriétés optiques fournissent des aperçus sur la structure cristalline et les caractéristiques de liaison.</p>
+        </div>
+    </div>
+    
+    <div class="main-text">
+        L'éclat et la transparence constituent des outils diagnostiques fondamentaux en minéralogie, offrant des indices immédiats et fiables sur l'identité minérale. La maîtrise de ces propriétés optiques est essentielle pour tout géologue sérieux et collectionneur de minéraux.
+    </div>
+    
 </div>
 <script src="../language-redirect.js"></script>
 </body>

@@ -1,45 +1,308 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>割れ方と破断パターン - BirdAiSnap</title>
-  <link href="../../mobile-styles.css" rel="stylesheet"/>
-  <link href="../../mobile-enhancement.css" rel="stylesheet"/>
-  <link href="../../ecology-theme.css" rel="stylesheet"/>
-  <style>
-    :root {
-      --primary-color: #4CAF50;
-      --primary-dark: #2E7D32;
-      --primary-light: #E8F5E8;
-      --accent-color: #81C784;
-    }
-    .hero-image {
-      width:100%;height:400px;
-      background:linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.4)),
-                 url('../../images/rock/Rock&Mineral_Identification/06_Cleavage_&_Fracture_Patterns.webp') center/cover;
-    }
-    .content {
-      background:linear-gradient(135deg,#ffffff,var(--primary-light));
-      border:2px solid var(--primary-color);
-      padding:50px 35px 40px 35px!important;
-      margin:-30px 15px 20px 15px!important;
-      max-width:1200px;margin:auto!important;
-    }
-    .section-title { color:var(--primary-color);border-bottom:2px solid var(--accent-color);margin:35px 0 20px;padding-bottom:10px; }
-    .main-text { margin:25px 0;line-height:1.7; }
-    .equipment-item { border:1px solid var(--accent-color);background:linear-gradient(135deg,#ffffff,var(--primary-light));padding:20px;margin:15px 0;border-radius:8px; }
-    .equipment-item h4 { color:var(--primary-color);margin-bottom:10px;font-size:18px; }
-  </style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>へき開と破断の分析 - BirdAiSnap</title>
+<link href="../../mobile-styles.css" rel="stylesheet"/>
+<link href="../../mobile-enhancement.css" rel="stylesheet"/>
+<link href="../../ecology-theme.css" rel="stylesheet"/>
+<style>
+        :root {
+            --primary-color: #4CAF50;
+            --primary-dark: #2E7D32;
+            --primary-light: #E8F5E8;
+            --accent-color: #81C784;
+        }
+        
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                        url('../../images/rock/Rock&Mineral_Identification/06_Cleavage_&_Fracture_Patterns.webp') center/cover;
+            position: relative;
+            margin-top: 0;
+        }
+        
+        .content {
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+            border: 2px solid var(--primary-color);
+            padding: 50px 35px 40px 35px !important;
+            margin: -30px 15px 20px 15px !important;
+            max-width: 1200px;
+            margin-left: auto !important;
+            margin-right: auto !important;
+        }
+        
+        @media screen and (max-width: 480px) {
+            .content {
+                padding: 15px 8px 10px 8px !important;
+                margin: -10px 3px 5px 3px !important;
+                border: 1px solid var(--primary-color) !important;
+                background: white !important;
+                border-radius: 8px !important;
+            }
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, var(--primary-light), #C8E6C9);
+            border-left: 4px solid var(--primary-color);
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            margin: 35px 0 20px 0;
+            padding-bottom: 10px;
+        }
+        
+        .tip-box {
+            border-left: 4px solid var(--primary-color);
+            background: var(--primary-light);
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+        
+        .equipment-item {
+            border: 1px solid var(--accent-color);
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        .equipment-item h4 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        
+        .main-text {
+            margin: 25px 0;
+            line-height: 1.7;
+        }
+        
+        .category {
+            background: var(--primary-color);
+            color: white;
+        }
+    </style>
 </head>
 <body>
-  <div class="hero-image"></div>
-  <div class="content">
-    <h1 class="title">割れ方と破断パターン</h1>
-    <div class="main-text">
-      鉱物の割れ方は、その内部原子構造を示しています。割れ目（クレベージ）は原子間の弱い結合面に沿って発生し、滑らかな面を作り出します。一方、破断は弱い面がない場合の応力への反応を示します。これらのパターンを理解することは、正確な鉱物識別に不可欠です。
+<div class="hero-image"></div>
+<div class="content">
+    <h1 class="title">へき開と破断の分析</h1>
+    
+    <div class="quote-box">
+        <div class="quote-text">結晶構造から破壊メカニズムを理解する</div>
     </div>
-    <!-- 请根据英文原文结构完整翻译所有章节内容 -->
-  </div>
+    
+    <div class="main-text">
+        へき開と破断は鉱物の原子構造と結合強度を直接反映する基本的性質です。鉱物がどのように壊れるかを理解することで、結晶格子の配列、結合タイプ、構造的弱点に関する貴重な洞察が得られ、確実な同定と地質学的プロセスの理解につながります。
+    </div>
+    
+    <div class="article-meta">
+        <span class="category">岩石同定</span>
+        <span class="read-time">📖 12分の読書</span>
+        <span class="difficulty">🟡 中級</span>
+    </div>
+    
+    <div class="section-title">✂️ へき開の理解</div>
+    
+    <div class="main-text">
+        へき開は鉱物が平坦で滑らかな面に沿って優先的に割れる傾向です：
+    </div>
+    
+    <div class="equipment-item">
+        <h4>🔬 へき開の科学</h4>
+        <p><strong>原子レベルメカニズム：</strong> へき開は結晶格子内の相対的に弱い結合面に沿って発生します。これらの面は原子間距離が大きい、結合エネルギーが低い、または異なる結合タイプ（イオン vs ファンデルワールス）を示します。</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h4>📏 へき開の品質</h4>
+        <p><strong>完全：</strong> 非常に滑らかで平坦な面。例：雲母、方解石。<strong>良好：</strong> 滑らかだが小さな段差あり。例：長石。<strong>不完全：</strong> 不規則な面。例：カンラン石。<strong>なし：</strong> 優先的破断面なし。例：石英。</p>
+    </div>
+    
+    <div class="section-title">📐 へき開方向とパターン</div>
+    
+    <div class="main-text">
+        へき開方向の数と角度は結晶系と構造を明らかにします：
+    </div>
+    
+    <div class="equipment-item">
+        <h4>1️⃣ 一方向へき開</h4>
+        <p><strong>雲母グループ：</strong> 黒雲母、白雲母、金雲母。層状珪酸塩構造で層間のファンデルワールス結合が弱い。{001}面に沿った完全へき開。薄い弾性片に剥離。</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h4>2️⃣ 二方向へき開</h4>
+        <p><strong>輝石グループ：</strong> 普通輝石、紫蘇輝石。{110}面に沿った良好へき開、90°角で交差。単鎖珪酸塩構造により鎖に垂直な弱い結合面を持つ。<strong>角閃石グループ：</strong> 120°角で交差する{110}へき開。複鎖構造の特徴。</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h4>3️⃣ 三方向へき開</h4>
+        <p><strong>岩塩（NaCl）：</strong> {100}面に沿った完全へき開、90°で交差。立方構造を反映。立方体片に割れる。<strong>方解石（CaCO₃）：</strong> {1011}面に沿った完全へき開。菱面体片を作り出す、結晶系の特徴。</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h4>4️⃣ 四方向へき開</h4>
+        <p><strong>蛍石（CaF₂）：</strong> {111}面に沿った完全八面体へき開。立方構造でCa-F結合の方向性を反映。八面体片を作り出す。</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h4>6️⃣ 六方向へき開</h4>
+        <p><strong>閃亜鉛鉱（ZnS）：</strong> {110}面に沿った完全へき開。立方密集構造で12のへき開面を持つ。十二面体片を作り出す。</p>
+    </div>
+    
+    <div class="section-title">🌊 破断の種類</div>
+    
+    <div class="main-text">
+        へき開が存在しない場合、鉱物は特徴的な破断パターンを示します：
+    </div>
+    
+    <div class="equipment-item">
+        <h4>🐚 貝殻状破断</h4>
+        <p><strong>特徴：</strong> 滑らかで湾曲した表面、貝殻に似る。<strong>例：</strong> 石英、黒曜石、オパール。均質で等方性材料で一般的。応力集中が放射状亀裂パターンを作り出す。</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h4>🗿 不規則破断</h4>
+        <p><strong>特徴：</strong> 粗く不均一な表面。<strong>例：</strong> 大部分の鉱物でへき開が発達していない場合。結晶欠陥や多結晶構造により不規則な亀裂伝播。</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h4>🌿 繊維状破断</h4>
+        <p><strong>特徴：</strong> 繊維やとげに似た表面。<strong>例：</strong> 石綿、一部の角閃石。繊維状結晶習性を反映。繊維軸に沿った優先的破断。</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h4>🌍 土状破断</h4>
+        <p><strong>特徴：</strong> 粉状または粘土様表面。<strong>例：</strong> カオリナイト、一部の風化鉱物。微細結晶構造や変質により生じる。</p>
+    </div>
+    
+    <div class="section-title">🔍 へき開の識別技術</div>
+    
+    <div class="main-text">
+        へき開を正確に識別し特徴づけるための方法：
+    </div>
+    
+    <div class="tip-box">
+        <div class="tip-title">🎯 観察技術</div>
+        <ul>
+            <li><strong>新鮮な破断面を作る：</strong> 風化した表面を避ける</li>
+            <li><strong>複数角度から観察：</strong> へき開面の平坦性を確認</li>
+            <li><strong>光の反射を使用：</strong> 平らな面は一様に反射</li>
+            <li><strong>角度を測定：</strong> 分度器またはゴニオメーターで</li>
+            <li><strong>手レンズを使用：</strong> 表面品質の詳細観察</li>
+        </ul>
+    </div>
+    
+    <div class="section-title">⚛️ へき開の構造的基礎</div>
+    
+    <div class="main-text">
+        結晶構造がへき開パターンをどのように制御するかを理解：
+    </div>
+    
+    <div class="equipment-item">
+        <h4>🔗 結合強度</h4>
+        <p><strong>方向性結合：</strong> 共有結合（強い）vs ファンデルワールス力（弱い）。雲母で強いSi-O結合が層内にあり、弱いK-層間結合。選択的弱点がへき開面を作る。</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h4>📦 原子密度</h4>
+        <p><strong>密集面vs疎な面：</strong> 原子が疎に詰まった面は結合が弱い。立方構造では{100}面が{111}面より疎。原子配置がへき開の容易さを決定。</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h4>🔄 構造的不連続</h4>
+        <p><strong>層状・鎖状構造：</strong> 構造単位間の弱い結合。珪酸塩では共有結合Si-Oネットワーク内と、より弱いイオン結合間のコントラスト。</p>
+    </div>
+    
+    <div class="section-title">🎯 診断的応用</div>
+    
+    <div class="main-text">
+        へき開パターンは確実な鉱物同定を可能にします：
+    </div>
+    
+    <div class="equipment-item">
+        <h4>🔍 輝石vs角閃石</h4>
+        <p><strong>輝石：</strong> 90°へき開角。単鎖構造を反映。<strong>角閃石：</strong> 120°へき開角。複鎖構造の診断的特徴。断面形状が構造的差異を明らかに。</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h4>💎 長石の区別</h4>
+        <p><strong>正長石：</strong> 90°で良好な二方向へき開。<strong>斜長石：</strong> 双晶により複雑化された二方向へき開。へき開角と双晶パターンが識別の鍵。</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h4>🧊 炭酸塩の識別</h4>
+        <p><strong>方解石：</strong> 菱面体へき開、鋭い縁。<strong>苦灰石：</strong> 同様の菱面体へき開だが湾曲面。構造的微差がへき開品質に影響。</p>
+    </div>
+    
+    <div class="section-title">🔬 高度な分析技術</div>
+    
+    <div class="main-text">
+        現代的手法がへき開と破断の詳細理解を提供：
+    </div>
+    
+    <div class="equipment-item">
+        <h4>📏 X線回折分析</h4>
+        <p><strong>構造決定：</strong> へき開面の結晶学的指数を確認。面間隔と対称性がへき開パターンを予測。構造-性質関係を確立。</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h4>🔬 電子顕微鏡</h4>
+        <p><strong>表面分析：</strong> へき開面の微細構造を明らかに。原子レベルの不完全性や段差を観察。破断メカニズムの詳細研究。</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h4>⚛️ 原子間力顕微鏡</h4>
+        <p><strong>ナノスケール分析：</strong> 個別のへき開ステップと表面粗さを測定。原子分解能での表面トポグラフィー。</p>
+    </div>
+    
+    <div class="section-title">🏭 実用的意味</div>
+    
+    <div class="main-text">
+        へき開の理解は実用的応用に重要です：
+    </div>
+    
+    <div class="equipment-item">
+        <h4>⚒️ 鉱物処理</h4>
+        <p><strong>破砕効率：</strong> へき開面に沿った選択的破砕。エネルギー効率の良い鉱物分離。へき開制御による特定粒子サイズ生成。</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h4>💎 宝石加工</h4>
+        <p><strong>切断計画：</strong> へき開面を避けるまたは利用する。ダイヤモンドの{111}八面体へき開を利用した迅速分割。品質保持のための方向制御。</p>
+    </div>
+    
+    <div class="equipment-item">
+        <h4>🏗️ 建設材料</h4>
+        <p><strong>耐久性評価：</strong> へき開が風化感受性を決定。スレートの{001}へき開による層状分離。構造的弱点の予測と軽減。</p>
+    </div>
+    
+    <div class="section-title">🎓 習得のための練習</div>
+    
+    <div class="main-text">
+        へき開認識技能を発達させる方法：
+    </div>
+    
+    <div class="tip-box">
+        <div class="tip-title">📚 学習アプローチ</div>
+        <ul>
+            <li><strong>既知試料での練習：</strong> 雲母、方解石、石英から開始</li>
+            <li><strong>角度測定訓練：</strong> 輝石（90°）と角閃石（120°）を比較</li>
+            <li><strong>品質評価：</strong> 完全vs不完全へき開を区別</li>
+            <li><strong>パターン認識：</strong> 一、二、三方向へき開を識別</li>
+            <li><strong>構造関連付け：</strong> へき開を結晶系と関連付け</li>
+        </ul>
+    </div>
+    
+</div>
 </body>
 </html>

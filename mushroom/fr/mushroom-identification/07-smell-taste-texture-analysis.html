@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analyse de l'odeur, du goût et de la texture - Mushroom Identification</title>
+    <meta name="description" content="Analyse de l'odeur, du goût et de la texture">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .article-title {
+            color: #45B7D1;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            margin-top: 0;
+            line-height: 1.3;
+            padding-top: 0;
+        }
+
+        .featured-image {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 4 / 3;
+            object-fit: cover;
+            display: block;
+        }
+
+        .content {
+            padding: 50px;
+        }
+
+        .content h2 {
+            color: #45B7D1;
+            font-size: 2em;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #45B7D1;
+        }
+
+        .content h3 {
+            color: #555;
+            font-size: 1.6em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        .content h4 {
+            color: #666;
+            font-size: 1.3em;
+            margin-top: 25px;
+            margin-bottom: 12px;
+        }
+
+        .content p {
+            margin-bottom: 20px;
+            font-size: 1.1em;
+            color: #444;
+        }
+
+        .content ul {
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+
+        .content li {
+            margin-bottom: 12px;
+            font-size: 1.05em;
+            color: #555;
+        }
+
+        .content strong {
+            color: #222;
+            font-weight: 600;
+        }
+
+        .back-link {
+            display: inline-block;
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #45B7D1, #8B4513);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+            font-weight: 600;
+        }
+
+        .back-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .navigation {
+            padding: 30px 50px;
+            background: #f8f9fa;
+            border-top: 1px solid #e9ecef;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-btn {
+            padding: 10px 20px;
+            background: #45B7D1;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            transform: translateX(5px);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .nav-btn.prev:hover {
+            transform: translateX(-5px);
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                padding: 30px 25px;
+            }
+
+            .article-title {
+                font-size: 1.8em;
+            }
+
+            .featured-image {
+                height: 250px;
+            }
+
+            .navigation {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="../../images/mushroom-identification_07-smell-taste-texture-analysis.webp" alt="Analyse de l'odeur, du goût et de la texture" class="featured-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22900%22 height=%22400%22%3E%3Crect fill=%22%23D2691E%22 width=%22900%22 height=%22400%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22white%22 font-size=%2260%22%3E🍄%3C/text%3E%3C/svg%3E'">
+
+        <div class="content">
+            <h1 class="article-title">Analyse de l'odeur, du goût et de la texture</h1>
+            <br>
+<h2>Introduction: l'art de l'évaluation au-delà de la vision</h2>
+<br>
+<p>Lorsque j'ai découvert le groupe de chanterelles d'or dans la forêt, ce qui m'a le plus choqué, ce n'était pas son apparence élégante en forme d'entonnoir, mais son riche parfum d'abricot.À ce moment, j'ai compris que l'identification des champignons était bien plus que d'observer la couleur et la forme.L'odeur, le goût et la texture fournissent des informations d'identification uniques et souvent décisives, et ces caractéristiques sensorielles sont capables de distinguer les espèces avec des apparences similaires mais avec des propriétés très différentes.</p>
+<br>
+<p>En tant que mycologue et passionné de cuisine avec vingt ans d'expérience dans la nature, j'ai assisté à trop d'erreurs qui reposent uniquement sur l'identification visuelle.Certains champignons ont une odeur emblématique - l'arôme d'abricot des chanterelles, la forte saveur de l'ail de l'ail et le goût épicé de la laclora épicé - ces caractéristiques peuvent être identifiées immédiatement.Cependant, ces tests sensoriels doivent être effectués selon des règles de sécurité strictes.Ce guide partagera comment utiliser ces traits sensoriels en toute sécurité et efficacement, vous élevant d'un débutant dans l'identification des champignons à un maître sensoriel.</p>
+<br>
+<h2>Caractéristiques des odeurs: indices d'identification invisibles</h2>
+<br>
+<h3>Pourquoi l'odeur est cruciale dans l'identification des champignons</h3>
+<br>
+<p><strong> Valeur d'identification unique </strong></p>
+<p>Dans la pratique sauvage, l'odeur est souvent la clé pour distinguer les "espèces jumelles".J'ai rencontré des champignons qui se ressemblent presque à plusieurs reprises et ne peuvent être déterminés que par leur véritable identité à travers l'odeur.Par exemple, les délicieux chanterelles et les faux chanterelles toxiques sont très similaires en apparence, mais le premier a un arôme d'abricot unique, tandis que le second est insipide ou légèrement moisie.</p>
+<br>
+<p><strong> Base chimique et signification évolutive </strong></p>
+<p>L'odeur des champignons provient de composés organiques volatils produits par des champignons.Ces composés ne sont pas produits au hasard, mais ont des fins évolutives claires:</p>
+<ul>
+<li>attirer des insectes ou des animaux spécifiques pour aider à répandre les spores</li>
+<li>Défense contre les herbivores et les micro-organismes compétitifs</li>
+<li>comme sous-produit du processus métabolique</li>
+</ul>
+<br>
+<p>Comprendre cela peut vous aider à comprendre pourquoi certains parfums sont si uniques et stables - ils font partie des stratégies de survie des champignons.</p>
+<br>
+<h3>Technologie de reniflement professionnel: une méthode sûre et efficace</h3>
+<br>
+<p><strong> Sécurité d'abord: protéger les voies respiratoires </strong></p>
+<p>Sucking champignons directement est une pratique dangereuse et peut inhaler des spores ou des produits chimiques nocifs.La bonne technique est:</p>
+<p>1. Soulevez les champignons à 15-20 cm du nez</p>
+<p>2. Utilisez vos mains pour gonfler entre les champignons et le nez pour guider les molécules d'odeur</p>
+<p>3. Utilisez une respiration peu profonde au lieu de la respiration profonde</p>
+<p>4. Laissez le système olfactif se reposer un instant après chaque test</p>
+<br>
+<p><strong> Inspection complète: Différences d'odeur dans différentes parties </strong></p>
+<p>Différentes parties des champignons peuvent émettre des odeurs d'intensité différente:</p>
+<ul>
+<li>Surface de couverture: généralement l'odeur la plus légère</li>
+<li>Bactéries plis ou trous: forte odeur, zone de production de spores</li>
+<li>Base d'estomac: parfois il y a une odeur unique des eaux souterraines</li>
+<li>Fresh Couts: l'odeur la plus forte, les composés internes exposés</li>
+</ul>
+<br>
+<p><strong> Évaluation des tests et de l'état </strong></p>
+<p>L'intensité de l'odeur varie considérablement avec l'état du champignon:</p>
+<ul>
+<li>Les spécimens fraîchement collectés ont l'odeur la plus évidente</li>
+<li>Les champignons légèrement fanés ont parfois une odeur plus forte (humidité réduite, composé concentré)</li>
+<li>L'odeur des spécimens âgés ou secs est affaiblie ou modifiée</li>
+<li>Certaines espèces ne libèrent que l'odeur après la friction ou le chauffage</li>
+</ul>
+<br>
+<p><strong> Compétences pratiques: améliorer l'odeur faible </strong></p>
+<p>J'utilise ces conseils professionnels lorsque l'odeur n'est pas évidente:</p>
+<ul>
+<li>Scellez les champignons dans un petit pot en verre ou un sac en plastique pendant 15-30 minutes</li>
+<li>Écrasez doucement un petit morceau de bactéries avec le dos du couteau</li>
+<li>Tenez les champignons dans vos mains pendant quelques minutes et utilisez la température corporelle pour libérer des composés volatils</li>
+<li>Découpez la tige pour observer les changements internes</li>
+</ul>
+<br>
+<h3>Types d'odeur communs: du plaisir à l'avertissement</h3>
+<br>
+<p><strong> odeur agréable: métriques pour les champignons comestibles </strong></p>
+<br>
+<p>Arôme d'amande / abricot (chanterelles)</p>
+<ul>
+<li>Doux, fruité, rappelant les abricots mûrs ou les grains d'abricot amer</li>
+<li>très stable et très caractéristique</li>
+<li>est une caractéristique d'identification clé des chanterelles et est à peine confondue avec d'autres champignons</li>
+</ul>
+<br>
+<p>Saveur de fenouil / réglisse (certains genre)</p>
+<ul>
+<li>odeur d'épices sucrées, similaire à l'anis ou à la réglisse</li>
+<li>Environ 15% des personnes ne peuvent pas percevoir cette odeur en raison de différences génétiques</li>
+<li>Si vous ne pouvez pas le sentir, ne forcez pas la confirmation, comptez sur d'autres fonctionnalités</li>
+</ul>
+<br>
+<p>Saveur de farine / concombre (beaucoup d'agaricus)</p>
+<ul>
+<li>Une faible odeur de farine fraîche ou de concombre coupé</li>
+<li>frais, neutre, indiquant généralement que les champignons sont plus frais</li>
+<li>Confirmation des imprimés de spores blancs et des plis bactériens</li>
+</ul>
+<br>
+<p>Arôme de noix de coco (certains lactobacilles)</p>
+<ul>
+<li>Lait de coco doux ou arôme d'huile de noix de coco</li>
+<li>généralement faible et nécessite une identification minutieuse</li>
+<li>En tant que caractéristique auxiliaire dans l'identification du genre Lactobacillus</li>
+</ul>
+<br>
+<p>Rose / floral (certains champignons roses)</p>
+<ul>
+<li>parfum floral léger élégant, similaire aux roses ou aux violettes</li>
+<li>généralement très faible et doit être détecté dans un état idéal</li>
+<li>C'est une caractéristique clé de certains champignons rouges rares</li>
+</ul>
+<br>
+<p><strong> Neutre ou pas d'odeur évidente </strong></p>
+<br>
+<p>Saveur typique des champignons</p>
+<ul>
+<li>L'odeur de base des champignons les plus comestibles</li>
+<li>Terreux, doux, pas particulièrement fort</li>
+<li>La valeur de l'identification elle-même est limitée, mais elle est utile lors de l'exclusion d'autres fonctionnalités</li>
+</ul>
+<br>
+<p>Totalement insipide</p>
+<ul>
+<li>De nombreux champignons n'ont pas une odeur évidente</li>
+<li>Il s'agit également d'une information précieuse qui exclut les espèces avec de fortes odeurs</li>
+<li>Assurez-vous que le système olfactif n'est pas fatigué pendant les tests</li>
+</ul>
+<br>
+<p><strong> AVERTISSEMENT ODOR: Alerte rouge dans la nature </strong></p>
+<br>
+<p>Saveur d'ail / oignon (à l'ail)</p>
+<ul>
+<li>Fort et caractéristique, similaire à l'ail écrasé</li>
+<li>C'est un indicateur clair de certains types de genre de genre de genre</li>
+<li>Champignons assaisonnés comestibles et délicieux</li>
+</ul>
+<br>
+<p>Flavour du radis (certains parapluies couverts de soie)</p>
+<ul>
+<li>Rhizomes épicés, similaires au radis frais</li>
+<li>Avertissement odeur - De nombreux parapluies de soie contiennent des composés hautement toxiques</li>
+<li>extrêmement prudent lors de la rencontre de telles odeurs</li>
+</ul>
+<br>
+<p>Gas odeur / goût chimique (certains genre)</p>
+<ul>
+<li>Semblable au goudron de charbon, de l'encre chimique ou du phénol</li>
+<li>une odeur notable contre nature qui indique la présence possible de composés toxiques</li>
+<li>absolument non comestible</li>
+</ul>
+<br>
+<p>Flavour des charognes / excréments (phaleblorer)</p>
+<ul>
+<li>forte odeur pourrie, similaire à la viande pourrie</li>
+<li>est une caractéristique de la famille des Phalomaceae, utilisée pour attirer les mouches pour répandre les spores</li>
+<li>Bien que l'odeur soit mauvaise, certaines espèces sont comestibles lorsqu'elles sont jeunes</li>
+</ul>
+<br>
+<p>MORISE / RÉPÉDITION</p>
+<ul>
+<li>Similaire au sous-sol moisi ou en carton humide</li>
+<li>indique généralement que les champignons ne sont pas frais ou commencent à se décomposer</li>
+<li>possible pour les bactéries nocives et doit être évité</li>
+</ul>
+<br>
+<p>Goût épicé / stimulant</p>
+<ul>
+<li>Une odeur piquante et fronçant les sourcils</li>
+<li>Caractéristiques de certains lactobacilles ou champignons rouges</li>
+<li>peut-être indiqué pour contenir des composés irritants</li>
+</ul>
+<br>
+<h3>Méthode d'enregistrement professionnel: établir une bibliothèque d'odeurs personnelles</h3>
+<br>
+<p><strong> Termes de description standardisée </strong></p>
+<p>Enregistrer les odeurs avec un vocabulaire cohérent:</p>
+<ul>
+<li>agréable / désagréable</li>
+<li>arôme sucré / saveur épicée / aigre</li>
+<li>Strong / moyen / faible / Non</li>
+<li>arôme de fruits / épices / fleur / chimie</li>
+</ul>
+<br>
+<p><strong> La méthode de l'analogie améliore la précision </strong></p>
+<p>Comparaison avec les articles familiers:</p>
+<ul>
+<li>"Comme des amandes amères"</li>
+<li>"Comme un concombre coupé"</li>
+<li>"comme le kérosène"</li>
+<li>"Comme un poisson pourri"</li>
+</ul>
+<br>
+<p><strong> Système de notation de résistance </strong></p>
+<p>Le système à quatre niveaux que j'utilise:</p>
+<ul>
+<li>Aucun: pas de détection du tout</li>
+<li>bizarre: vous devez sentir soigneusement pour détecter</li>
+<li>Medium: évident mais pas fort</li>
+<li>Fort: détecter immédiatement, remplir l'air environnant</li>
+</ul>
+<br>
+<h2>Caractéristiques du goût: un outil d'identification prudent</h2>
+<br>
+<h3>La valeur et l'équilibre des risques des tests de goût</h3>
+<br>
+<p><strong> Rôle décisif dans l'identification </strong></p>
+<p>Au cours de mes années de travail sur le terrain, les tests de goût m'ont aidé à résoudre d'innombrables problèmes d'identification.Surtout pour:</p>
+<ul>
+<li>Lactobacillus: épicé, doux ou amer sont des caractéristiques de classification clés</li>
+<li>Champignon rouge: le goût est un indicateur important pour distinguer les espèces comestibles et toxiques</li>
+<li>Boletus: corrélation directe entre amertume et édification</li>
+</ul>
+<br>
+<p><strong> signification biologique de la défense chimique </strong></p>
+<p>Les caractéristiques gustatives des champignons sont généralement des manifestations directes de leurs systèmes de défense chimique:</p>
+<ul>
+<li>La saveur épicée provient des composés de défense tels que l'isothiocyanate</li>
+<li>Amer provient souvent d'alcaloïdes et de terpènes</li>
+<li>Ces composés avertissent les utilisateurs potentiels, y compris les humains</li>
+</ul>
+<br>
+<h3>morsure mais pas d'hirondelle: protocole de sécurité strict</h3>
+<br>
+<p><strong> Règles de sécurité absolues </strong></p>
+<br>
+<p>Les tests de goût ne sont pris en compte que dans les situations suivantes:</p>
+<p>1. Vous avez au moins un an d'expérience d'identification des champignons</p>
+<p>2. Vous avez exclu des espèces hautement toxiques comme Amanita à travers d'autres caractéristiques</p>
+<p>3. Les références d'identification fiables nécessitent clairement des tests de goût</p>
+<p>4. Vous avez des conseils d'experts ou des compétences pratiquées sur la catégorie de sécurité</p>
+<br>
+<p><strong> Tests de goût absolument interdits: </strong></p>
+<ul>
+<li>Tout champignon qui peut appartenir au genre Amanita (sauf si vous êtes mycologue professionnel)</li>
+<li>Une espèce de champignons totalement méconnaissable</li>
+<li>Types de toxines de contact connues pour contenir (comme certains parapluies de couverture de soie)</li>
+<li>Vous n'êtes pas familier avec les procédures de test de sécurité</li>
+<li>Lorsqu'il y a un ulcère oral ou une blessure</li>
+</ul>
+<br>
+<p><strong> Technologie des tests professionnels: guide étape par étape </strong></p>
+<br>
+<p>Après des années d'amélioration, je recommande les étapes suivantes:</p>
+<p>1. Sélectionnez des spécimens frais et sans parasites et coupez un petit morceau du bord du culot (de la taille d'un petit clou)</p>
+<p>2. Respirez-le d'abord et soyez préparé mentalement</p>
+<p>3. Placez-le sur le devant de la pointe de la langue et ne le mâchez pas immédiatement</p>
+<p>4. Mâchez doucement pendant 5 à 10 secondes et faites attention au développement et aux changements de goût.</p>
+<p>5. Utilisez votre langue pour pousser les champignons vers différentes zones de la bouche pour tester le goût général</p>
+<p>6. Crache complètement tous les matériaux dans les 15 secondes</p>
+<p>7. Lavez-vous soigneusement la bouche deux fois avec de l'eau propre</p>
+<p>8. Attendez 30 minutes avant de manger ou de tester d'autres champignons</p>
+<br>
+<p><strong> Précautions de sécurité clés: </strong></p>
+<ul>
+<li>N'avalez absolument aucune partie, même le jus</li>
+<li>Le volume de test est contrôlé au minimum - la taille du pois est suffisante</li>
+<li>Si le goût est extrêmement irritant ou brûlant, crachez immédiatement et rincez la bouche</li>
+<li>Ne mangez pas immédiatement après le test pour éviter de confondre les réactions retardées possibles</li>
+<li>Emportez de l'eau potable avec vous pour le rinçage en bouche</li>
+</ul>
+<br>
+<h3>Lineage de type de goût: de doux à l'avertissement</h3>
+<br>
+<p><strong> Type doux </strong></p>
+<ul>
+<li>Pas de saveur évidente ou légère des champignons</li>
+<li>neutre ou légèrement agréable</li>
+<li>Caractéristiques de la plupart des champignons comestibles, comme les champignons, la délicieuse bolete</li>
+</ul>
+<br>
+<p><strong> Flavour noix </strong></p>
+<ul>
+<li>Goût agréable similaire aux noix rôties</li>
+<li>Caractéristiques de certains boletus et sirop</li>
+<li>indique généralement une bonne qualité comestible</li>
+</ul>
+<br>
+<p><strong>amertume</strong></p>
+<ul>
+<li>Un goût amer distinct et durable</li>
+<li>généralement désagréable</li>
+<li>commun dans les bolet non comestibles et autres espèces</li>
+<li>Le goût amer ne disparaît généralement pas de la cuisson</li>
+</ul>
+<br>
+<p><strong> Flavour épicé / poivré </strong></p>
+<ul>
+<li>Une sensation de brûlure similaire au poivre noir ou au chili</li>
+<li>Caractéristiques d'identification clés de Lactobacillus et Rhizoma</li>
+<li>L'intensité varie considérablement, de douce à extrêmement forte</li>
+<li>Habituellement, un retard se produit (peut prendre 10 à 15 secondes)</li>
+</ul>
+<br>
+<p>La note épicée que j'ai utilisée:</p>
+<ul>
+<li>doux: une légère chaleur</li>
+<li>Medium: évident poivré mais pas inconfortable</li>
+<li>épicé: forte sensation de brûlure</li>
+<li>Extrêmement épicé: chaleur torride insupportable</li>
+</ul>
+<br>
+<p><strong>Douceur</strong></p>
+<ul>
+<li>une faible douceur, similaire à la betterave ou au maïs</li>
+<li>Rare dans les champignons</li>
+<li>Caractéristiques de certaines espèces rares</li>
+</ul>
+<br>
+<p><strong> Flavour métallique </strong></p>
+<ul>
+<li>Un parfum similaire à la rouille ou à l'encre</li>
+<li>généralement désagréable</li>
+</ul>
+<p>-Com peut se produire lorsque certains champignons sont vieillis ou endommagés</p>
+<br>
+<h3>Application pratique: cas clés de test de goût</h3>
+<br>
+<p><strong> Cas 1: Détermination précise du genre Lactobacillus </strong></p>
+<br>
+<p>Lactobacillus est un groupe que je compte souvent sur des tests de goût.Les types avec des apparences similaires peuvent avoir des valeurs comestibles complètement différentes:</p>
+<ul>
+<li>Delicios Deliciosus Lactarius: saveur légère ou légèrement noisette, champignons comestibles de haute qualité</li>
+<li>Lactarius piperatus: extrêmement épicé, non comestible</li>
+</ul>
+<p>-Lactarius uvidus: doux d'abord puis épicé, ne mange pas cru</p>
+<br>
+<p>Étapes de confirmation des clés:</p>
+<p>1. Confirmez qu'il y a du lait (caractéristique déterminée de Lactobacillus)</p>
+<p>2. Observez le changement de couleur du lait</p>
+<p>3. Obtenez des impressions de spores blancs</p>
+<p>4. Enfin, confirmation de test de goût</p>
+<br>
+<p><strong> Cas 2: Évaluation comestible du génomérophyllum </strong></p>
+<br>
+<p>Il existe de nombreux types de champignons rouges, et le goût est la principale distinction:</p>
+<ul>
+<li>Champignons rouges comestibles (Russula Vesca): Aliments doux et de haute qualité</li>
+<li>Champignon rouge épicé (Russula Emotica): extrêmement épicé, toxique</li>
+<li>Mais veuillez noter: ce n'est pas une règle absolue, certains champignons rouges au goût doux sont également toxiques</li>
+</ul>
+<br>
+<p><strong> Cas 3: jugement de qualité de Boletus </strong></p>
+<br>
+<p>Parmi Boletus, le goût est directement lié à la qualité comestible:</p>
+<ul>
+<li>Delicious Boletus Edulis: saveur légère ou noisette, haut de gamme comestible</li>
+<li>Tylopilus felleus: extrêmement amer et non comestible</li>
+<li>Certaines espèces toxiques peuvent également avoir un goût amer</li>
+</ul>
+<br>
+<h2>Caractéristiques de texture: fenêtre de structure et de composition</h2>
+<br>
+<h3>plusieurs valeurs de texture dans l'authentification</h3>
+<br>
+<p><strong> Indices structurels et taxonomie </strong></p>
+<p>La texture reflète la structure mycéliale microscopique des champignons et peut fournir des indices de classification importants:</p>
+<ul>
+<li>La texture fragile indique que la structure du mycélium est sphérique</li>
+<li>La texture fibreuse indique une structure de mycélium parallèle</li>
+<li>Ces caractéristiques sont particulièrement utiles au niveau familial</li>
+</ul>
+<br>
+<p><strong> Prévisions d'applicabilité de cuisson </strong></p>
+<p>En tant que passionné de cuisine, j'attache une grande importance aux caractéristiques de texture:</p>
+<ul>
+<li>Les champignons croustillants conviennent à un sauté rapide</li>
+<li>Les champignons charnus conviennent au ragoût et à la cuisson</li>
+<li>Les champignons gluten conviennent à la soupe</li>
+<li>Prédire l'effet de cuisson avant de comprendre la texture du pot</li>
+</ul>
+<br>
+<h3>Méthode d'évaluation professionnelle: observation multidimensionnelle</h3>
+<br>
+<p><strong> Évaluation visuelle </strong></p>
+<p>Observez avant de toucher:</p>
+<ul>
+<li>Généraire de surface: cireux ou sec</li>
+<li>Densité structurelle: serrée ou lâche</li>
+<li>Contenu en humidité: plein ou flétri</li>
+</ul>
+<br>
+<p><strong> Technologie de test tactile </strong></p>
+<p>Utilisation d'une méthode tactile systématique:</p>
+<ul>
+<li>Utilisez vos doigts pour appuyer légèrement sur différentes parties pour tester l'élasticité</li>
+<li>Tournez doucement la tige bactérienne pour tester les propriétés fibreuses</li>
+<li>Appuyez sur le capuchon avec vos ongles pour tester Brittleness</li>
+<li>Commencez toujours par une douceur pour éviter d'endommager l'échantillon</li>
+</ul>
+<br>
+<p><strong> Observation de coupe et de déchirure </strong></p>
+<p>Les structures internes fournissent souvent des informations clés:</p>
+<ul>
+<li>Déchirure verticale des tiges bactériennes pour observer la direction des fibres</li>
+<li>Coupe horizontale du capuchon bactérien pour observer l'épaisseur de la viande</li>
+<li>Faites attention à la sécrétion de jus et aux changements de couleur</li>
+</ul>
+<br>
+<h3>Type de texture Spectre complet</h3>
+<br>
+<p><strong> croustillant / cassant </strong></p>
+<p>fonctionnalité:</p>
+<ul>
+<li>Cassez-vous en morceaux réguliers avec une légère pression</li>
+<li>Semblable à la craie ou aux cookies à casser</li>
+<li>Fracture presque inélastique et directe</li>
+</ul>
+<br>
+<p>Groupes représentatifs:</p>
+<ul>
+<li>Lactobacillus</li>
+<li>Champignon rouge</li>
+<li>Ceci est la caractéristique d'identification clé de ces deux genres</li>
+</ul>
+<br>
+<p>Test professionnel:</p>
+<ul>
+<li>Appuyez doucement sur le bord des volants de bactéries</li>
+<li>il doit être soigneusement brisé en petits morceaux, pas des virages</li>
+<li>La tige présente également une fragilité similaire</li>
+</ul>
+<br>
+<p>Valeur de validation:</p>
+<ul>
+<li>Les plis fragiles pointent immédiatement vers Lactobacillus ou Rhizoma</li>
+<li>Confirmation basée sur d'autres caractéristiques (lait, couleur des spores)</li>
+</ul>
+<br>
+<p><strong> ténacité / cuir </strong></p>
+<p>fonctionnalité:</p>
+<ul>
+<li>Difficile à déchirer ou à couper</li>
+<li>Élasticité en cuir ou en caoutchouc</li>
+<li>partiellement restauré à sa forme d'origine après avoir plié</li>
+<li>La structure fibreuse est évidente</li>
+</ul>
+<br>
+<p>Groupes représentatifs:</p>
+<ul>
+<li>La plupart des champignons à bois</li>
+<li>bactéries poreuses</li>
+<li>Certains champignons à tige anciens</li>
+</ul>
+<br>
+<p>Valeur de validation:</p>
+<ul>
+<li>généralement indiqué comme un décomposition en bois</li>
+<li>La plupart d'entre eux ne conviennent pas à la consommation car ils sont trop durs</li>
+<li>Cette texture est courante chez les espèces vivaces</li>
+</ul>
+<br>
+<p><strong>Cireux</strong></p>
+<p>fonctionnalité:</p>
+<ul>
+<li>lisse, épais, translucide</li>
+<li>une touche similaire aux bougies ou au savon</li>
+<li>Frottez avec vos doigts pour faire une sensation de douceur spéciale</li>
+<li>Les plis bactéries sont généralement plus épais et clairsemés</li>
+</ul>
+<br>
+<p>Groupes représentatifs:</p>
+<ul>
+<li>Hygrocybe</li>
+<li>Certains parapluies humides</li>
+</ul>
+<br>
+<p>Méthode de test:</p>
+<ul>
+<li>Frottez doucement les bactéries avec vos doigts</li>
+<li>Les plis cireux sont épais et lisses</li>
+<li>toujours accompagné de couleurs vives</li>
+</ul>
+<br>
+<p><strong>Fibreux</strong></p>
+<p>fonctionnalité:</p>
+<ul>
+<li>Similaire aux paquets de fibres ou aux textures de viande</li>
+<li>peut être déchiré longitudinalement en bandes</li>
+<li>Pas facile de se rompre en morceaux</li>
+<li>il y a une structure filamenteuse distincte</li>
+</ul>
+<br>
+<p>Groupes représentatifs:</p>
+<ul>
+<li>La plupart des parapluies de couverture en soie</li>
+<li>Certains genre de genre</li>
+<li>La plupart des vers de miel</li>
+</ul>
+<br>
+<p>Compétences d'observation:</p>
+<ul>
+<li>déchirer les tiges longitudinalement pour observer le faisceau de fibres</li>
+<li>Faites attention à l'épaisseur et à la résistance de la fibre</li>
+<li>Le fibreux est souvent combiné avec la ténacité</li>
+</ul>
+<br>
+<p><strong> Soft / Serky </strong></p>
+<p>fonctionnalité:</p>
+<ul>
+<li>épais mais doux et juteux</li>
+<li>Muscle ou fruit frais</li>
+<li>Facile à couper et soignée</li>
+<li>Jui riche, poids évident</li>
+</ul>
+<br>
+<p>Groupes représentatifs:</p>
+<ul>
+<li>La plupart des bolet</li>
+<li>Champignon</li>
+<li>la plupart des champignons</li>
+</ul>
+<br>
+<p>Valeur de validation:</p>
+<ul>
+<li>généralement une caractéristique des bons champignons comestibles</li>
+<li>mais cela ne peut pas être utilisé pour juger comestible</li>
+<li>Jugement complet basé sur d'autres caractéristiques</li>
+</ul>
+<br>
+<p><strong> Gluten / Gel </strong></p>
+<p>fonctionnalité:</p>
+<ul>
+<li>Apparemment comme la gelée ou le gel</li>
+<li>translucide, riche en humidité</li>
+<li>lisse, élastique</li>
+<li>rétrécissement significatif pendant le séchage</li>
+</ul>
+<br>
+<p>Groupes représentatifs:</p>
+<ul>
+<li>Tremella</li>
+<li>Glycidobacteria</li>
+<li>La tige ou la peau de certains champignons</li>
+</ul>
+<br>
+<p>Méthode d'observation:</p>
+<ul>
+<li>se sentir élastique et lisse lorsqu'il est touché</li>
+<li>Couper pour observer l'humidité et la transparence</li>
+<li>Habituellement très évident, aucun test compliqué requis</li>
+</ul>
+<br>
+<p><strong> en forme d'éponge </strong></p>
+<p>fonctionnalité:</p>
+<ul>
+<li>Semblable à l'éponge naturelle</li>
+<li>Poreux, compressible, rebond</li>
+<li>Absorption d'eau légère et forte</li>
+<li>généralement lié aux structures poreuses</li>
+</ul>
+<br>
+<p>Groupes représentatifs:</p>
+<ul>
+<li>La couche de trou du tube de bolete</li>
+<li>Certaines bactéries poreuses</li>
+<li>Structure partielle des morilles</li>
+</ul>
+<br>
+<p>Conseils de test:</p>
+<ul>
+<li>Appuyez doucement pour observer le rebond</li>
+<li>Faites attention au taux de compression et à la vitesse de récupération</li>
+<li>Souvent combinée avec d'autres textures</li>
+</ul>
+<br>
+<p><strong> sec / boisé </strong></p>
+<p>fonctionnalité:</p>
+<ul>
+<li>Dry, dur, léger</li>
+<li>Semblable à la balsa ou au liège</li>
+<li>Pas facile à couper, besoin d'utiliser la force</li>
+<li>Il y a un son creux lors de la frappe</li>
+</ul>
+<br>
+<p>Groupes représentatifs:</p>
+<ul>
+<li>Pores hoofed</li>
+<li>la plupart des bactéries poreuses</li>
+<li>Spécimens vieillissants</li>
+</ul>
+<br>
+<p>Points d'observation:</p>
+<ul>
+<li>dureté et de la sécheresse sensibles au toucher</li>
+<li>Essayez de couper pour évaluer la résistance</li>
+<li>généralement les caractéristiques des espèces vivaces</li>
+</ul>
+<br>
+<h3>Description de la texture complète: Méthode d'enregistrement professionnel</h3>
+<br>
+<p><strong> Plusieurs pièces sont évaluées séparément </strong></p>
+<p>Différentes parties d'un champignon ont souvent des textures différentes:</p>
+<ul>
+<li>Couverture: peut être charnu ou croustillant</li>
+<li>Foulgus plis / trous: cassant, cireux ou éponge</li>
+<li>trapézoïde: fibreux, cassant ou creux</li>
+</ul>
+<br>
+<p><strong> modèle d'enregistrement complet </strong></p>
+<p>La description standardisée que j'ai utilisée:</p>
+<p>"Le capuchon est charnu, épais (jusqu'à 1,5 cm d'épaisseur), avec des surfaces coupées blanches et juteuses. Les plis sont nets et friables, et ils sont brisés en petits morceaux avec une pression légère. La tige est fibreuse, et peut être déchirée en bandes en direction longitudinale, avec une base légèrement agrandie. La texture globale est bonne lorsque cela ne fait pas."</p>
+<br>
+<p><strong> Record de changement textile </strong></p>
+<p>Changements de texture avec le cycle de vie:</p>
+<ul>
+<li>Enfance: généralement solide et serré</li>
+<li>Maturité: pour réaliser la meilleure texture</li>
+<li>Elderly: peut devenir dur, boisé ou ramolli et pourri</li>
+<li>Après le séchage: généralement dur et cassant</li>
+</ul>
+<br>
+<h3>Texture de cuisine: de l'identification à la table à manger</h3>
+<br>
+<p><strong> Pourquoi tester la texture de cuisine </strong></p>
+<p>En tant qu'amateur de nourriture, je pense qu'il est crucial de comprendre la texture de la cuisine:</p>
+<ul>
+<li>Prédire le goût du plat final</li>
+<li>Choisissez la méthode de cuisson la plus appropriée</li>
+<li>Évitez de gaspiller des ingrédients de qualité</li>
+</ul>
+<br>
+<p><strong> Principe de dégustation en première sécurité </strong></p>
+<ul>
+<li>Testez uniquement les types comestibles confirmés à 100%</li>
+<li>Essayez d'abord de nouvelles espèces et ne mangez qu'une petite quantité (une cuillère à soupe)</li>
+<li>Certains champignons doivent être cuits pour être en sécurité (comme plus L)</li>
+<li>Comprendre l'histoire et la tolérance des allergies personnelles</li>
+</ul>
+<br>
+<p><strong> Type de texture de cuisine et application </strong></p>
+<p>Sur la base de centaines d'expériences de cuisine, j'ai conclu:</p>
+<br>
+<p>Restez solide (champignons shiitake, champignons d'huîtres)</p>
+<ul>
+<li>Convient pour: sauté, rôtissage, ragoût</li>
+<li>Caractéristiques: gardez la forme après la cuisson et ayez une texture solide</li>
+</ul>
+<br>
+<p>Devenir crémeux (Boletus, champignons)</p>
+<ul>
+<li>Convient pour: ragoût, soupe, sauce</li>
+<li>Caractéristiques: adoucisse après cuisson, goût riche</li>
+</ul>
+<br>
+<p>Devenir de la gomme (Tremella, champignon)</p>
+<ul>
+<li>Convient pour: soupe, dessert, mélange froid</li>
+<li>Caractéristiques: Libérez de la gélatine, texture lisse et tendre</li>
+</ul>
+<br>
+<p>Devenir croustillant et tendre (chantelles, champignons coraux)</p>
+<ul>
+<li>Convient pour: friture rapide, friture</li>
+<li>Caractéristiques: Gardez-le légèrement net et unique au goût</li>
+</ul>
+<br>
+<p>Devenir dur (certains champignons)</p>
+<ul>
+<li>Évitez de manger ou de ragoût à long terme</li>
+<li>Caractéristiques: plus elle devient difficile, et il est difficile à mâcher</li>
+</ul>
+<br>
+<h2>Limites et stratégies d'adaptation des caractéristiques sensorielles</h2>
+<br>
+<h3>défis et solutions subjectives</h3>
+<br>
+<p><strong> Différence de perception individuelle </strong></p>
+<p>Lorsque vous conduisez l'équipe à effectuer des visites sur le terrain, j'observe souvent:</p>
+<ul>
+<li>Environ 15% des personnes n'ont aucune sens de l'odeur du fenouil (héréditaire)</li>
+<li>La différence individuelle dans le seuil perçu du goût épicé peut atteindre 300%</li>
+<li>La description de la texture a souvent des écarts subjectifs</li>
+</ul>
+<br>
+<p><strong> Stratégie d'adaptation professionnelle </strong></p>
+<ul>
+<li>Formez un groupe de 2 à 3 personnes pour la vérification croisée</li>
+<li>Utiliser des références standardisées à la perception des calibrés (comme la comparaison des chanterelles avec l'huile essentielle d'amande)</li>
+<li>Comprendre et enregistrer vos propres caractéristiques et limitations perçues</li>
+<li>Comparez régulièrement les descriptions avec des pairs expérimentés</li>
+</ul>
+<br>
+<h3>compréhension de la variabilité naturelle</h3>
+<br>
+<p><strong> La gamme de variation de la même espèce </strong></p>
+<p>Même pour les mêmes espèces, les caractéristiques sensorielles peuvent varier:</p>
+<ul>
+<li>Les jeunes spécimens ont généralement une odeur plus légère et une texture plus ferme</li>
+<li>Les pics caractéristiques atteints pendant la maturité</li>
+<li>Les spécimens alternatifs modifient leur odeur et détériorent leur texture</li>
+<li>La matrice de croissance affecte la production composée</li>
+</ul>
+<br>
+<p><strong> Méthode d'enregistrement professionnel </strong></p>
+<ul>
+<li>observer et enregistrer plusieurs spécimens de différents niveaux de maturité</li>
+<li>Indiquez les conditions météorologiques et l'environnement de croissance au moment de la collecte</li>
+<li>Comprendre l'éventail des variations connues de cette espèce</li>
+<li>jugement conservateur lorsqu'il est incertain</li>
+</ul>
+<br>
+<h3>Identification du système: la position appropriée des caractéristiques sensorielles</h3>
+<br>
+<p><strong> Rôle supplémentaire irremplaçable </strong></p>
+<p>Bien que les traits sensoriels soient extrêmement précieux, il est important de se rappeler:</p>
+<ul>
+<li>L'identification finale ne peut pas être faite en s'appuyant uniquement sur l'odeur ou le goût</li>
+<li>doit être utilisé en combinaison avec les caractéristiques morphologiques</li>
+<li>Les informations écologiques et saisonnières doivent être prises en compte</li>
+<li>Les caractéristiques objectives telles que l'impression des spores sont plus fiables</li>
+</ul>
+<br>
+<p><strong> Formule d'évaluation complète </strong></p>
+<p>L'arbre de décision que j'utilise:</p>
+<p>Caractéristiques des odeurs + caractéristiques du goût + caractéristiques de texture + macromorphisme + caractéristiques microscopiques + couleur d'impression des spores + informations écologiques + facteurs saisonniers = identification fiable</p>
+<br>
+<h2>Système d'enregistrement professionnel: établir une base de données personnelle</h2>
+<br>
+<h3>modèle d'enregistrement sensoriel standardisé</h3>
+<br>
+<p>Après des années d'optimisation, je recommande le format d'enregistrement suivant:</p>
+<br>
+<p><strong>odeur</strong></p>
+<p>[Type principal], [niveau de résistance], [Description spéciale], [Méthode de test]</p>
+<br>
+<p><strong>odeur</strong></p>
+<p>[Testé / non testé], tels que les tests: [type], [force], [temps de retard], [durée]</p>
+<br>
+<p><strong>texture</strong></p>
+<p>Couverture: [Description], [Épaisseur], [Élasticité]</p>
+<p>Plis / trous bactéries: [Description], [méthode épiphysaire], [test de réaction]</p>
+<p>Trapézoïde: [description], [structure interne], [fibreux]</p>
+<p>Base: [Description], [Structure spéciale]</p>
+<br>
+<p><strong> Observation spéciale </strong></p>
+<p>[Toute autre caractéristique sensorielle], [la situation du changement], [Notes comparatives]</p>
+<br>
+<h3>Exemple de disque pratique</h3>
+<br>
+<p>"Odeur: parfum évident d'amande, résistance moyenne, améliorée après coupure, test de ventilateur. Flavour: non testé (confirmé comme chanterelles par odeur et morphologie).Texture: chair, épais (1,2 cm d'épaisseur), bords vers l'intérieur;Frit cire, épais, mince de pseudo-fungus.</p>
+<br>
+<p>"Odeur: l'odeur de farine légère, doit être scellée et un test amélioré; goût: test doux (type de sécurité), se développer moyens épicés après un court humeur et vomir dans les 15 secondes; texture: capuchon fragile, écrasé après pressage léger; capuchon fragile, même que le capuchon bactérien."</p>
+<br>
+<h2>Résumé de la pratique de la sécurité: Liste d'inspection professionnelle</h2>
+<br>
+<h3>Protocole de sécurité des tests d'odeur</h3>
+<ul>
+<li>✓ Utilisez toujours la méthode du ventilateur pour éviter l'inhalation directe</li>
+<li>✓ Testez des échantillons frais pour éviter les matériaux périmés</li>
+<li>✓ Laissez l'odeur reposer entre plusieurs tests</li>
+<li>✓ Gardez une distance plus grande lorsqu'elle est soupçonnée d'espèces toxiques</li>
+<li>✓ Enregistrer les conditions de test et les facteurs environnementaux</li>
+</ul>
+<br>
+<h3>Lignes directrices absolues pour les tests de goût</h3>
+<ul>
+<li>✓ uniquement lorsque vous avez suffisamment d'expérience et de connaissances</li>
+<li>✓ Continuez strictement par le principe de "mordre mais pas avaler"</li>
+<li>✓ Quantité de test minimum (taille du pois)</li>
+<li>✓ crachez immédiatement et rincez soigneusement la bouche</li>
+<li>✓ Pas de nourriture dans les 30 minutes après le test</li>
+<li>✗ Absolument aucun test pour aucun type d'Amanita</li>
+<li>✗ Ne testez aucun champignon inconnu</li>
+<li>✗ Ne sautez pas l'étape du rince-bouche</li>
+</ul>
+<br>
+<h3>Méthode professionnelle pour les tests de texture</h3>
+<ul>
+<li>✓ Testez systématiquement différentes parties</li>
+<li>✓ Commencez par des tests doux et étape par étape</li>
+<li>✓ Enregistrez les caractéristiques uniques de chaque partie</li>
+<li>✓ Faites attention aux caractéristiques d'identification clés telles que Brittleness</li>
+<li>✓ combiner la vision et le jugement complet du tacon</li>
+</ul>
+<br>
+<h2>Conclusion: Maître l'art de l'identification sensorielle</h2>
+<br>
+<p>L'odeur, le goût et la texture sont des outils uniques et puissants dans la boîte à outils d'identification des champignons. Bien qu'ils soient subjectifs à première vue et difficiles à maîtriser, à mesure que l'expérience s'accumule, vous pourrez identifier et utiliser ces traits comme un mycologue professionnel. L'odeur emblématique de certains champignons - comme l'arôme d'abricot des chanterelles ou l'arôme de l'ail de l'ail - peut être une identification instantanée et économiser beaucoup de temps et d'efforts.</p>
+<br>
+<p><strong> Points professionnels clés: </strong></p>
+<ul>
+<li>La sécurité est toujours le premier principe des tests sensoriels</li>
+<li>Augmenter la valeur d'enregistrement en utilisant des termes standardisés</li>
+<li>Les méthodes de test systématiques garantissent des résultats fiables</li>
+<li>Jugement complet basé sur toutes les fonctionnalités disponibles</li>
+<li>comprendre et respecter les limites de chaque outil</li>
+</ul>
+<br>
+<p><strong> Path de croissance professionnelle: </strong></p>
+<p>À partir d'aujourd'hui, les fonctionnalités sensorielles sont systématiquement enregistrées dans chaque collection de champs. Cela peut sembler difficile au début, mais dans quelques mois, vous vous retrouverez à construire une "bibliothèque sensorielle" qui est capable de:</p>
+<ul>
+<li>Identifier les types communs par odeur</li>
+<li>Attribution de classification par prédiction de texture</li>
+<li>Utilisation sûre et efficace des tests de goût</li>
+<li>Distinguer en toute confiance des espèces similaires</li>
+</ul>
+<br>
+<p><strong> Dernier rappel: </strong></p>
+<p>Les caractéristiques sensorielles sont une partie importante de l'identification des puzzles, mais pas de la totalité. Ils complètent plutôt que de remplacer l'identification morphologique traditionnelle. Certaines caractéristiques (telles que des plis fragiles) ont une valeur d'identification élevée, mais doivent être combinés avec d'autres preuves.</p>
+<br>
+<p>Lorsque vous vérifiez de plus en plus de champignons, votre acuité sensorielle continuera de s'améliorer. Vous construirez une riche «archive odeur» et «mémoire de texture» dans votre esprit, ce qui rend ces traits apparemment subjectifs des outils d'identification fiables.</p>
+<br>
+<p>Entrez dans la forêt et commencez votre voyage d'exploration sensorielle - que chaque découverte soit en sécurité et pleine de surprises!</p>
+<br>
+<p>---</p>
+<br>
+<p>* Cet article est basé sur 20 ans d'expérience de recherche professionnelle de la mycologie et de la pratique sur le terrain. Tous les conseils de sécurité doivent être strictement suivis. Lorsque vous essayez une nouvelle espèce pour la première fois, il est recommandé de voyager avec des experts de mycologie locaux ou de participer à des activités d'identification des champignons organisés.*</p>
+<br>
+<p>---</p>
+<br>
+<h2>⚠️ Avertissement important</h2>
+<br>
+<p><strong> Cet article est pour une référence éducative et d'information uniquement. </strong></p>
+<br>
+<h3>Avertissement de risque de consommation de champignons</h3>
+<br>
+<p>1. <strong> Life Safety First </strong>: Il existe des risques inhérents à l'identification des champignons sauvages.De nombreux champignons toxiques ressemblent beaucoup aux champignons comestibles, et les ingérer accidentellement peuvent entraîner des maladies graves ou même la mort.</p>
+<br>
+<p>2. <strong> Identification professionnelle requise </strong>: Avant de manger des champignons sauvages, une confirmation à 100% doit être effectuée par un mycologue professionnel ou un expert certifié d'identification des champignons.Les photos, les descriptions de texte et l'expérience personnelle ne sont pas suffisantes pour assurer la sécurité.</p>
+<br>
+<p>3. <strong> Différences individuelles </strong>: Même les champignons comestibles reconnus peuvent provoquer des réactions indésirables en raison de facteurs tels que la constitution personnelle, les réactions allergiques, la méthode de consommation ou l'environnement de croissance des champignons.Essayez en petites quantités lorsque vous mangez une nouvelle variété pour la première fois.</p>
+<br>
+<p>4. <strong> Différences géographiques </strong>: Il existe d'énormes différences dans les espèces de champignons et la toxicité dans différentes régions.Les informations mentionnées dans cet article peuvent ne pas s'appliquer à votre région.Veuillez consulter les experts de mycologie locaux et les organisations faisant autorité.</p>
+<br>
+<p>5. <strong> Responsabilité professionnelle </strong>: L'auteur et l'éditeur ne seront pas responsables de tout dommage, maladie ou perte directe ou indirect résultant de l'utilisation des informations de cet article.</p>
+<br>
+<h3>Conseils de sécurité</h3>
+<br>
+<ul>
+<li>✅ Participer à des cours de formation à l'identification des champignons formels</li>
+<li>✅ Rejoignez l'association de mycologie locale ou le club de champignons</li>
+<li>✅ Acheter des champignons cultivés à partir de sources fiables</li>
+<li>✅ Économisez des échantillons de champignons pour les besoins médicaux d'urgence</li>
+<li>✅ Ne le mangez pas si vous avez des doutes</li>
+</ul>
+<br>
+<p><strong> N'oubliez pas: lorsque vous avez des questions, la seule option sûre est de ne pas le manger.Votre sécurité de vie est bien plus importante que tout repas aux champignons.</strong></p>
+<br>
+<p>---</p>
+        </div>
+    </div>
+</body>
+</html>

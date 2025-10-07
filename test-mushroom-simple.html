@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test Mushroom Articles</title>
+    <style>
+        .category { margin: 20px; padding: 20px; border: 2px solid #8B4513; }
+        .category-header { cursor: pointer; background: #f0e68c; padding: 10px; }
+        .articles-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 10px; }
+        .article-card { padding: 10px; background: #e0e0e0; text-decoration: none; color: black; display: block; }
+        .articles-grid.collapsed { display: none; }
+    </style>
+</head>
+<body>
+    <h1>Mushroom Articles Test</h1>
+    
+    <div class="category">
+        <div class="category-header" onclick="toggleCategory('culinary')">
+            🍳 Culinary Mushrooms (Click to toggle)
+        </div>
+        <div class="articles-grid" id="culinary-articles">
+            <!-- Will be filled by JS -->
+        </div>
+    </div>
+
+    <script>
+        const articles = {
+            'culinary-mushrooms': [
+                { num: '01', filename: 'cleaning-preparation-techniques', title: 'Article 1' },
+                { num: '02', filename: 'cooking-methods-techniques', title: 'Article 2' }
+            ]
+        };
+
+        function toggleCategory(cat) {
+            const grid = document.getElementById(cat + '-articles');
+            grid.classList.toggle('collapsed');
+        }
+
+        // Load articles
+        window.addEventListener('DOMContentLoaded', function() {
+            const container = document.getElementById('culinary-articles');
+            articles['culinary-mushrooms'].forEach(article => {
+                const card = document.createElement('a');
+                card.href = `../mushroom/en/culinary-mushrooms/${article.num}-${article.filename}.html`;
+                card.className = 'article-card';
+                card.textContent = article.title + ' - ' + article.num;
+                container.appendChild(card);
+            });
+            console.log('Articles loaded!');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🍄 Mushroom Knowledge Center - Complete Guide</title>
+    <meta name="description" content="Comprehensive collection of mushroom articles covering identification, ecology, safety, culinary uses, and mycology science.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #8B4513 0%, #654321 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            color: #8B4513;
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .subtitle {
+            color: #A0522D;
+            font-size: 1.3em;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .description {
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1em;
+        }
+
+        .stats-section {
+            background: linear-gradient(135deg, #8B4513, #654321);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .category-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #8B4513;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+
+        .category-header:hover {
+            background: rgba(139, 69, 19, 0.05);
+            padding: 10px;
+            margin: -10px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+        }
+
+        .category-icon {
+            font-size: 3em;
+            margin-right: 15px;
+        }
+
+        .category-title {
+            flex-grow: 1;
+        }
+
+        .category-title {
+            position: relative;
+        }
+
+        .category-title h2 {
+            color: #8B4513;
+            font-size: 2em;
+            margin-bottom: 5px;
+        }
+
+        .category-title p {
+            color: #666;
+            font-size: 1.1em;
+        }
+
+        .toggle-icon {
+            margin-left: auto;
+            font-size: 2em;
+            color: #8B4513;
+            transition: transform 0.3s ease;
+        }
+
+        .category-header.collapsed .toggle-icon {
+            transform: rotate(-90deg);
+        }
+
+        .articles-grid.collapsed {
+            display: none;
+        }
+
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+        }
+
+        .article-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .article-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 30px rgba(139, 69, 19, 0.3);
+        }
+
+        .article-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            background: linear-gradient(135deg, #D2691E, #A0522D);
+        }
+
+        .article-content {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .article-number {
+            color: #8B4513;
+            font-weight: bold;
+            font-size: 0.9em;
+            margin-bottom: 8px;
+        }
+
+        .article-title {
+            color: #333;
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .article-excerpt {
+            color: #666;
+            font-size: 0.95em;
+            margin-bottom: 15px;
+            flex-grow: 1;
+        }
+
+        .read-more {
+            color: #8B4513;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .read-more:after {
+            content: '→';
+            transition: transform 0.3s ease;
+        }
+
+        .article-card:hover .read-more:after {
+            transform: translateX(5px);
+        }
+
+        .back-link {
+            background: linear-gradient(135deg, #8B4513, #654321);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .back-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(139, 69, 19, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🍄 Mushroom Knowledge Center</h1>
+            <p class="subtitle">Your Complete Guide to Mushroom Identification, Safety & Mycology</p>
+            <p class="description">Explore our comprehensive collection of professional articles covering everything from safe foraging to advanced mycological research. Written by experts with decades of field experience.</p>
+        </header>
+
+        <div class="stats-section">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">55</div>
+                    <div class="stat-label">Total Articles</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">Categories</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">10,000+</div>
+                    <div class="stat-label">Species Covered</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">Expert</div>
+                    <div class="stat-label">Safety Verified</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Culinary Mushrooms -->
+        <div class="category-section">
+            <div class="category-header" data-category="culinary">
+                <div class="category-icon">🍳</div>
+                <div class="category-title">
+                    <h2>Culinary Mushrooms</h2>
+                    <p>Professional cooking techniques and gourmet mushroom preparation</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="articles-grid" id="culinary-articles">
+                <!-- Articles will be loaded here -->
+            </div>
+        </div>
+
+        <!-- Mushroom Ecology -->
+        <div class="category-section">
+            <div class="category-header" data-category="ecology">
+                <div class="category-icon">🌲</div>
+                <div class="category-title">
+                    <h2>Mushroom Ecology</h2>
+                    <p>Forest ecosystems, fungal relationships, and environmental science</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="articles-grid" id="ecology-articles">
+                <!-- Articles will be loaded here -->
+            </div>
+        </div>
+
+        <!-- Mushroom Identification -->
+        <div class="category-section">
+            <div class="category-header" data-category="identification">
+                <div class="category-icon">🔍</div>
+                <div class="category-title">
+                    <h2>Mushroom Identification</h2>
+                    <p>Field guide techniques and professional identification methods</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="articles-grid" id="identification-articles">
+                <!-- Articles will be loaded here -->
+            </div>
+        </div>
+
+        <!-- Mushroom Safety -->
+        <div class="category-section">
+            <div class="category-header" data-category="safety">
+                <div class="category-icon">⚠️</div>
+                <div class="category-title">
+                    <h2>Mushroom Safety</h2>
+                    <p>Critical safety information and poisoning prevention</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="articles-grid" id="safety-articles">
+                <!-- Articles will be loaded here -->
+            </div>
+        </div>
+
+        <!-- Mushroom Science -->
+        <div class="category-section">
+            <div class="category-header" data-category="science">
+                <div class="category-icon">🔬</div>
+                <div class="category-title">
+                    <h2>Mushroom Science</h2>
+                    <p>Mycology research, taxonomy, and advanced scientific studies</p>
+                </div>
+                <div class="toggle-icon">▼</div>
+            </div>
+            <div class="articles-grid" id="science-articles">
+                <!-- Articles will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const articles = {
+            'culinary-mushrooms': [
+                { num: '01', filename: 'cleaning-preparation-techniques', title: 'From Forest to Table: The Complete Professional Guide to Mushroom Cleaning and Preparation', excerpt: 'Master the art of mushroom preparation with professional techniques refined over 20 years of wilderness survival experience.' },
+                { num: '02', filename: 'cooking-methods-techniques', title: 'The Complete Guide to Cooking Mushrooms: From Basic Techniques to Advanced Culinary Mastery', excerpt: 'Discover the science and art of mushroom cooking with techniques from basic to professional level.' },
+                { num: '03', filename: 'flavor-pairings', title: 'The Complete Guide to Mushroom Flavor Pairing', excerpt: 'Unlock the umami potential of mushrooms with expert flavor pairing strategies.' },
+                { num: '04', filename: 'preservation-methods', title: 'The Complete Guide to Mushroom Preservation', excerpt: 'Learn professional methods to preserve mushrooms for year-round enjoyment.' },
+                { num: '05', filename: 'global-mushroom-cuisines', title: 'Global Mushroom Cuisine: A Cross-Cultural Culinary Guide', excerpt: 'Explore how different cultures celebrate mushrooms in their traditional cuisines.' },
+                { num: '06', filename: 'nutritional-value', title: 'A Comprehensive Analysis of Mushroom Nutrition', excerpt: 'Deep dive into the nutritional powerhouse that mushrooms represent.' },
+                { num: '07', filename: 'wild-vs-cultivated', title: 'Wild vs. Cultivated Mushrooms: A Comprehensive Guide', excerpt: 'Understanding the differences between foraged and farmed fungi.' },
+                { num: '08', filename: 'mushroom-meat-substitutes', title: 'Mushroom Meat Alternatives: A Complete Guide', excerpt: 'Discover how mushrooms are revolutionizing plant-based cuisine.' },
+                { num: '09', filename: 'mushroom-soups-stews', title: 'Mushroom Soups & Stews: From Wild to Table', excerpt: 'Create soul-warming dishes with these mushroom soup and stew recipes.' },
+                { num: '10', filename: 'side-dishes-main-courses', title: 'Mushroom Side Dishes & Main Courses', excerpt: 'Elevate your cooking with these versatile mushroom dishes.' },
+                { num: '11', filename: 'creative-mushroom-recipes', title: 'Creative Mushroom Recipes: Innovative Culinary Techniques', excerpt: 'Push the boundaries of mushroom cookery with innovative approaches.' }
+            ],
+            'mushroom-ecology': [
+                { num: '01', filename: 'fungal-life-cycles', title: 'Fungal Life Cycle: Complete Survival Strategies from Spores to Fruiting Bodies', excerpt: 'Understand the fascinating journey of fungi from microscopic spores to visible mushrooms.' },
+                { num: '02', filename: 'mycorrhizal-relationships', title: 'Mycorrhizal Relationships: The Underground Network', excerpt: 'Discover the symbiotic partnerships between fungi and forest plants.' },
+                { num: '03', filename: 'decomposers-nutrient-cycling', title: 'Decomposers & Nutrient Cycling: Nature\'s Recycling System', excerpt: 'Learn how mushrooms power the forest\'s nutrient cycle.' },
+                { num: '04', filename: 'forest-ecosystems', title: 'Forest Ecosystems: The Critical Role of Fungi', excerpt: 'Explore how fungi shape and sustain forest environments.' },
+                { num: '05', filename: 'mushroom-seasonality', title: 'Mushroom Seasonality: When and Where to Find Them', excerpt: 'Master the timing and locations for successful mushroom foraging.' },
+                { num: '06', filename: 'climate-habitat-factors', title: 'Climate & Habitat Factors: Environmental Influences on Fungi', excerpt: 'Understand what environmental conditions favor mushroom growth.' },
+                { num: '07', filename: 'mushroom-wildlife-interactions', title: 'Mushroom-Wildlife Interactions: Ecological Connections', excerpt: 'Discover the complex relationships between fungi and forest wildlife.' },
+                { num: '08', filename: 'fungal-biodiversity', title: 'Fungal Biodiversity: Exploring the Hidden Kingdom', excerpt: 'Journey through the incredible diversity of fungal species.' },
+                { num: '09', filename: 'invasive-fungal-species', title: 'Invisible Invaders: The Ecological Crisis of Global Fungal Invasions', excerpt: 'Examine the threat of invasive fungal species to ecosystems.' },
+                { num: '10', filename: 'mushroom-conservation', title: 'Mushroom Conservation: Guardians of the Forest\'s Invisible Partners', excerpt: 'Learn about efforts to protect endangered fungal species.' },
+                { num: '11', filename: 'climate-change-fungi', title: 'Impact of Climate Change on Fungi', excerpt: 'Understand how changing climate affects fungal populations and distribution.' }
+            ],
+            'mushroom-identification': [
+                { num: '01', filename: 'beginners-guide-mushroom-identification', title: 'Complete Guide to Mushroom Identification: From Field Collection to Expert Verification', excerpt: 'Master the essential skills of safe and accurate mushroom identification.' },
+                { num: '02', filename: 'essential-field-equipment', title: 'Complete Guide to Professional Mushroom Foraging Equipment', excerpt: 'Essential tools and equipment for serious mushroom hunters.' },
+                { num: '03', filename: 'cap-characteristics-identification', title: 'Mushroom Identification Expert Guide: Comprehensive Analysis of Cap Characteristics', excerpt: 'Learn to read the telltale signs in mushroom caps for accurate identification.' },
+                { num: '04', filename: 'gill-pore-spore-surface-features', title: 'Gills, Pores, and Spore-Bearing Surfaces: A Practical Guide', excerpt: 'Decode the complex features of mushroom undersides.' },
+                { num: '05', filename: 'stem-base-characteristics', title: 'Stem & Base Characteristics: Identification Guide', excerpt: 'Master the art of identifying mushrooms by their stems and bases.' },
+                { num: '06', filename: 'spore-print-techniques', title: 'Spore Print Techniques: The Gold Standard of Mushroom Identification', excerpt: 'Learn the crucial skill of making and interpreting spore prints.' },
+                { num: '07', filename: 'smell-taste-texture-analysis', title: 'Smell, Taste and Texture Analysis: A Practical Guide', excerpt: 'Use your senses safely to aid in mushroom identification.' },
+                { num: '08', filename: 'habitat-ecological-context', title: 'Habitat and Ecological Environment: A Complete Guide', excerpt: 'Understand how habitat clues can narrow down mushroom identification.' },
+                { num: '09', filename: 'look-alike-species-dangerous-mimics', title: 'The Deadly Twins of the Mushroom World: Identification Skills', excerpt: 'Learn to distinguish between deadly poisonous and safe look-alike species.' },
+                { num: '10', filename: 'photography-documentation-methods', title: 'Recording the Fungus World with Lenses: Complete Photography Guide', excerpt: 'Document your finds with professional mushroom photography techniques.' },
+                { num: '11', filename: 'expert-verification-resources', title: 'Mushroom Identification Expert Guide: Finding Reliable Resources', excerpt: 'Connect with experts and resources for verification and learning.' }
+            ],
+            'mushroom-safety': [
+                { num: '01', filename: 'golden-rules-mushroom-safety', title: 'The Golden Rules of Mushroom Safety: Survival Guide for Wild Collectors', excerpt: 'Essential safety rules that could save your life in mushroom foraging.' },
+                { num: '02', filename: 'deadly-poisonous-mushrooms-guide', title: 'A Complete Guide to the Identification and Prevention of Deadly Poisonous Mushrooms', excerpt: 'Know your enemies: the most dangerous mushrooms and how to avoid them.' },
+                { num: '03', filename: 'toxic-syndrome-categories', title: 'Nine Toxic Syndromes of Mushroom Poisoning: A Complete Guide', excerpt: 'Understand the different types of mushroom poisoning and their effects.' },
+                { num: '04', filename: 'poisoning-symptoms-emergency-response', title: 'Complete Guide to Identification and Emergency Response for Mushroom Poisoning', excerpt: 'Critical information for recognizing and responding to mushroom poisoning.' },
+                { num: '05', filename: 'common-edible-mushrooms-safe-identification', title: 'Common Edible Mushrooms: Safe Identification Guide', excerpt: 'Confidently identify the most common and safest edible species.' },
+                { num: '06', filename: 'cooking-preparation-safety', title: 'A Complete Safety Guide for Cooking and Preparation of Wild Mushrooms', excerpt: 'Proper preparation techniques to ensure mushroom safety.' },
+                { num: '07', filename: 'foraging-safety-guidelines', title: 'A Complete Safety Guide for Mushroom Picking in the Wild', excerpt: 'Best practices for safe and sustainable mushroom foraging.' },
+                { num: '08', filename: 'children-pet-safety-mushrooms', title: 'Children and Pet Mushroom Safety: A Comprehensive Protection Guide', excerpt: 'Protecting your family and pets from mushroom poisoning.' },
+                { num: '09', filename: 'alcohol-mushroom-interactions', title: 'Dangerous Interaction Between Alcohol and Mushrooms', excerpt: 'Understanding potentially fatal mushroom-alcohol combinations.' },
+                { num: '10', filename: 'allergies-individual-sensitivities', title: 'Mushroom Allergies and Individual Sensitivity', excerpt: 'Recognizing and managing allergic reactions to mushrooms.' },
+                { num: '11', filename: 'mushroom-poisoning-myths-facts', title: 'Myths and Facts of Mushroom Poisoning: A Survival Guide', excerpt: 'Debunking dangerous myths that could cost you your life.' }
+            ],
+            'mushroom-science': [
+                { num: '01', filename: 'fungal-taxonomy-classification', title: 'Fungus Taxonomy: A Complete Guide to Field Collection to Scientific Identification', excerpt: 'Navigate the complex world of fungal classification and naming.' },
+                { num: '02', filename: 'microscopy-spore-analysis', title: 'The Microscopic World of Mushroom Identification', excerpt: 'Explore mushroom identification through microscopy and spore analysis.' },
+                { num: '03', filename: 'dna-barcoding-molecular-identification', title: 'DNA Barcode Technology: A Revolutionary Breakthrough', excerpt: 'Modern molecular techniques revolutionizing fungal identification.' },
+                { num: '04', filename: 'medicinal-mushrooms-research', title: 'A Complete Guide to Medicinal Mushrooms', excerpt: 'From traditional wisdom to modern scientific research on healing fungi.' },
+                { num: '05', filename: 'fungal-chemistry-compounds', title: 'Fungal Chemical Decryption: The Molecular World', excerpt: 'Understanding the complex chemistry of fungal compounds.' },
+                { num: '06', filename: 'industrial-applications-biotechnology', title: 'Fungal Industrial Applications and Biotechnology', excerpt: 'How fungi are transforming industry and technology.' },
+                { num: '07', filename: 'research-methods-techniques', title: 'Complete Guide to Mycologic Research', excerpt: 'Methods and techniques for scientific fungal research.' },
+                { num: '08', filename: 'mycology-history-pioneers', title: 'Mycology: A Complete Guide from Wild Collection to Frontier of Science', excerpt: 'The history and pioneers who shaped our understanding of fungi.' },
+                { num: '09', filename: 'future-directions-innovations', title: 'The Future of Mycology: The Comprehensive Revolution from AI Identification', excerpt: 'Cutting-edge innovations shaping the future of mycology.' },
+                { num: '10', filename: 'citizen-science-contributions', title: 'Citizen Science Contribution: Everyone is a Mycologist', excerpt: 'How amateur enthusiasts are contributing to fungal science.' },
+                { num: '11', filename: 'mycology-resources-learning', title: 'The Path to Mastery of Mycology: A Complete Resource Guide', excerpt: 'Your roadmap to becoming a knowledgeable mycologist.' }
+            ]
+        };
+
+        function loadArticles() {
+            console.log('loadArticles called, total categories:', Object.keys(articles).length);
+            
+            // Category to container ID mapping
+            const categoryMap = {
+                'culinary-mushrooms': 'culinary',
+                'mushroom-ecology': 'ecology',
+                'mushroom-identification': 'identification',
+                'mushroom-safety': 'safety',
+                'mushroom-science': 'science'
+            };
+            
+            Object.keys(articles).forEach(category => {
+                const containerId = categoryMap[category] + '-articles';
+                const container = document.getElementById(containerId);
+                console.log(`Loading category: ${category}, container ID: ${containerId}, found:`, !!container, `articles:`, articles[category].length);
+                articles[category].forEach(article => {
+                    const card = document.createElement('a');
+                    
+                    // 使用提供的filename或从标题生成
+                    const fileName = article.filename || article.title.toLowerCase()
+                        .replace(/[^a-z0-9]+/g, '-')
+                        .replace(/(^-|-$)/g, '')
+                        .substring(0, 50);
+                    
+                    const htmlPath = `../mushroom/en/${category}/${article.num}-${fileName}.html`;
+                    
+                    card.href = htmlPath;
+                    card.className = 'article-card';
+                    
+                    const imagePath = `../mushroom/images/${category}_${article.num}-${fileName}.webp`;
+                    
+                    card.innerHTML = `
+                        <img src="${imagePath}" alt="${article.title}" class="article-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22220%22%3E%3Crect fill=%22%23D2691E%22 width=%22400%22 height=%22220%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22white%22 font-size=%2240%22%3E🍄%3C/text%3E%3C/svg%3E'">
+                        <div class="article-content">
+                            <div class="article-number">Article ${article.num}</div>
+                            <div class="article-title">${article.title}</div>
+                            <div class="article-excerpt">${article.excerpt}</div>
+                            <span class="read-more">Read Article</span>
+                        </div>
+                    `;
+                    
+                    container.appendChild(card);
+                });
+            });
+        }
+
+        // 添加分类折叠/展开功能
+        function initCategoryToggle() {
+            const categoryHeaders = document.querySelectorAll('.category-header');
+            
+            categoryHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    const category = this.getAttribute('data-category');
+                    const articlesGrid = document.getElementById(`${category}-articles`);
+                    
+                    // 切换折叠状态
+                    this.classList.toggle('collapsed');
+                    articlesGrid.classList.toggle('collapsed');
+                });
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded, starting initialization...');
+            loadArticles();
+            initCategoryToggle();
+            
+            // 显示加载状态
+            const totalCards = document.querySelectorAll('.article-card').length;
+            console.log(`Total article cards created: ${totalCards}`);
+            
+            // 如果没有文章卡片，显示错误
+            if (totalCards === 0) {
+                document.querySelectorAll('.articles-grid').forEach(grid => {
+                    grid.innerHTML = '<p style="color: red; padding: 20px;">⚠️ Articles failed to load. Check console for errors.</p>';
+                });
+            }
+        });
+    </script>
+</body>
+</html>

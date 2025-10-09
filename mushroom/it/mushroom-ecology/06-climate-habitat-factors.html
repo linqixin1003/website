@@ -1,586 +1,479 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clima e habitat - Mushroom Ecology</title>
-    <meta name="description" content="Clima e habitat">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>06 Clima e habitat - MushroomAiSnap</title>
+<link href="../../mobile-styles.css" rel="stylesheet"/>
+<link href="../../mobile-enhancement.css" rel="stylesheet"/>
+<link href="../../ecology-theme.css" rel="stylesheet"/>
+<style>
+        .hero-image img {
+            max-height: 200px;
+            width: 100%;
+            object-fit: cover;
         }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        .article-card img {
+            max-height: 120px;
+            width: 100%;
+            object-fit: cover;
+        }
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                        url('../../images/mushroom-ecology_06-climate-habitat-factors.webp') center/cover;
+            position: relative;
+            margin-top: 0;
+        }
+        .article-meta {
+            margin-top: 15px !important;
+        }
+    
+        /* Mushroom Ecology Theme */
+        :root {
+            --primary-color: #228B22;
+            --primary-dark: #006400;
+            --primary-light: #F0FFF0;
+            --accent-color: #32CD32;
+        }
+        
+        /* Theme Color Overrides */
+        .content {
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+            border: 2px solid var(--primary-color);
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, var(--primary-light), var(--primary-light));
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .quote-text {
+            color: var(--primary-dark);
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+        }
+        
+        .subsection-title {
+            color: var(--primary-dark);
+            font-size: 1.4em;
+            font-weight: 600;
+            margin: 25px 0 15px 0;
+            padding-left: 10px;
+            border-left: 3px solid var(--accent-color);
+        }
+        
+        .tip-box {
+            border-left: 4px solid var(--primary-color);
+            background: var(--primary-light);
+        }
+        
+        .tip-title {
+            color: var(--primary-color);
+        }
+        
+        .highlight {
+            border-left: 4px solid var(--accent-color);
+            background: linear-gradient(135deg, #f1f8e9, var(--primary-light));
+        }
+        
+        .warning {
+            border-left: 4px solid #f44336;
+        }
+        
+        .equipment-item {
+            border: 1px solid var(--accent-color);
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+        }
+        
+        .equipment-item h4 {
+            color: var(--primary-color);
+        }
+        
+        .category {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .main-text {
+            font-size: 1.1em;
             line-height: 1.8;
             color: #333;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-
-        .article-title {
-            color: #4ECDC4;
-            font-size: 2.5em;
-            margin-bottom: 30px;
-            margin-top: 0;
-            line-height: 1.3;
-            padding-top: 0;
-        }
-
-        .featured-image {
-            width: 100%;
-            height: auto;
-            aspect-ratio: 4 / 3;
-            object-fit: cover;
-            display: block;
-        }
-
-        .content {
-            padding: 50px;
-        }
-
-        .content h2 {
-            color: #4ECDC4;
-            font-size: 2em;
-            margin-top: 40px;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid #4ECDC4;
-        }
-
-        .content h3 {
-            color: #555;
-            font-size: 1.6em;
-            margin-top: 30px;
-            margin-bottom: 15px;
-        }
-
-        .content h4 {
-            color: #666;
-            font-size: 1.3em;
-            margin-top: 25px;
-            margin-bottom: 12px;
-        }
-
-        .content p {
-            margin-bottom: 20px;
-            font-size: 1.1em;
-            color: #444;
-        }
-
-        .content ul {
             margin: 20px 0;
-            padding-left: 30px;
-        }
-
-        .content li {
-            margin-bottom: 12px;
-            font-size: 1.05em;
-            color: #555;
-        }
-
-        .content strong {
-            color: #222;
-            font-weight: 600;
-        }
-
-        .back-link {
-            display: inline-block;
-            padding: 12px 25px;
-            background: linear-gradient(135deg, #4ECDC4, #8B4513);
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            margin-bottom: 20px;
-            transition: transform 0.3s ease;
-            font-weight: 600;
-        }
-
-        .back-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .navigation {
-            padding: 30px 50px;
-            background: #f8f9fa;
-            border-top: 1px solid #e9ecef;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-btn {
-            padding: 10px 20px;
-            background: #4ECDC4;
-            color: white;
-            text-decoration: none;
+            padding: 15px;
+            background: linear-gradient(135deg, #ffffff, #f9f9f9);
             border-radius: 8px;
-            transition: all 0.3s ease;
+            border-left: 3px solid var(--accent-color);
         }
-
-        .nav-btn:hover {
-            transform: translateX(5px);
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+        
+        .emoji {
+            font-size: 1.5em;
+            margin-left: 10px;
         }
-
-        .nav-btn.prev:hover {
-            transform: translateX(-5px);
+        
+        .read-time, .difficulty {
+            display: inline-block;
+            padding: 5px 15px;
+            margin: 5px 5px 5px 0;
+            border-radius: 20px;
+            font-size: 0.9em;
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            color: #1976d2;
+            font-weight: 500;
         }
-
-        @media (max-width: 768px) {
-            .content {
-                padding: 30px 25px;
-            }
-
-            .article-title {
-                font-size: 1.8em;
-            }
-
-            .featured-image {
-                height: 250px;
-            }
-
-            .navigation {
-                flex-direction: column;
-                gap: 15px;
-            }
+        
+        .difficulty {
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            color: #e65100;
+        }
+        
+        .article-text {
+            line-height: 1.8;
+            color: #444;
+            margin: 15px 0;
+            font-size: 1.05em;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <img src="../../images/mushroom-ecology_06-climate-habitat-factors.webp" alt="Clima e habitat" class="featured-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22900%22 height=%22400%22%3E%3Crect fill=%22%23D2691E%22 width=%22900%22 height=%22400%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22white%22 font-size=%2260%22%3E🍄%3C/text%3E%3C/svg%3E'">
+<div class="hero-image"></div>
+<div class="content">
+    <h1 class="title">06 Clima e habitat</h1>
+    <div class="quote-box">
+        <div class="quote-text">Professional Mycology Guide</div>
+    </div>
+    
+<div class="article-meta">
+<span class="category">🌱 Mushroom Ecology</span>
+<span class="read-time">📖 20 minute read</span>
+<span class="difficulty">🟡 Intermediate</span>
+</div>
 
-        <div class="content">
-            <h1 class="article-title">Clima e habitat</h1>
-            <br>
-<h2>Introduzione: perché l'ambiente determina il successo o il fallimento della raccolta dei funghi</h2>
-<br>
-<p>Quando sono entrato per la prima volta nelle antiche foreste del nord -ovest del Pacifico, non avevo idea di cosa stavo facendo.È stato un giorno autunnale venti anni fa. Sono entrato nella foresta con pieno entusiasmo e un cestino vuoto, ma ho finito per tornare a mani vuote.Fino a quando non ho incontrato Bill, un vecchio raccoglitore di funghi locali, che mi ha insegnato la prima lezione: trovare funghi, per prima cosa comprendi l'ambiente.</p>
-<br>
-<p>I funghi non mettono radici e fissano la posizione come le piante, né si muovono attivamente come gli animali.Sono i prodotti precisi dell'ambiente e sono sinfonia composte da temperatura, umidità, suolo e vegetazione.Padroneggiare questi fattori ambientali significa che puoi trovare il tipo di fungo che desideri al momento giusto e nel posto giusto.</p>
-<br>
-<p>Questo articolo ti porterà a una profonda comprensione di come il clima e l'habitat modellano il mondo fungino e forniranno strategie pratiche per trasformarti da cercatori ciechi a cacciatori precisi.</p>
-<br>
-<h2>Fattori climatici: comando di crescita della natura</h2>
-<br>
-<p>Temperatura ###: controllo termodinamico della crescita fungina</p>
-<br>
+
+            <div class="section-title">🍄 Introduzione: perché l'ambiente determina il successo o il fallimento della raccolta dei funghi</div>
+<div class="main-text">Quando sono entrato per la prima volta nelle antiche foreste del nord -ovest del Pacifico, non avevo idea di cosa stavo facendo.È stato un giorno autunnale venti anni fa. Sono entrato nella foresta con pieno entusiasmo e un cestino vuoto, ma ho finito per tornare a mani vuote.Fino a quando non ho incontrato Bill, un vecchio raccoglitore di funghi locali, che mi ha insegnato la prima lezione: trovare funghi, per prima cosa comprendi l'ambiente.<span class="emoji">🍄</span></div>
+<p class="article-text">I funghi non mettono radici e fissano la posizione come le piante, né si muovono attivamente come gli animali.Sono i prodotti precisi dell'ambiente e sono sinfonia composte da temperatura, umidità, suolo e vegetazione.Padroneggiare questi fattori ambientali significa che puoi trovare il tipo di fungo che desideri al momento giusto e nel posto giusto.</p>
+<p class="article-text">Questo articolo ti porterà a una profonda comprensione di come il clima e l'habitat modellano il mondo fungino e forniranno strategie pratiche per trasformarti da cercatori ciechi a cacciatori precisi.</p>
+<div class="section-title">🍄 Fattori climatici: comando di crescita della natura</div>
+<p class="article-text">Temperatura ###: controllo termodinamico della crescita fungina</p>
 <p><strong> L'effetto della temperatura sui funghi è molto più preciso di quanto la maggior parte della gente pensa.</strong> Come biologo, posso dirti che i sistemi di enzimi di funghi funzionano in modo efficiente all'interno di un intervallo di temperatura specifico.Se questo intervallo viene superato, la crescita si fermerà; Se si discosta dalla temperatura ottimale, la resa diminuirà.</p>
-<br>
 <p><strong> Caso pratico: </strong> Il mio studio comparativo sul pendio est-ovest delle montagne a cascata nello stato di Washington ha mostrato che alla stessa altitudine, la stagione dei funghi sul versante ovest (colpita dall'oceano) era di 3-4 settimane più lunga del pendio est (clima continentale).Questa differenza è interamente determinata dal modello di temperatura.</p>
-<br>
 <p><strong> Meccanismo chiave del controllo della temperatura: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Attività enzimatica: ogni fungo ha l'intervallo di temperatura dell'enzima ottimale</li>
 <li>Fluidità della membrana: stato funzionale delle membrane cellulari a temperature diverse</li>
 <li>Tasso metabolico: influisce direttamente sul tasso di crescita</li>
 <li>germinazione delle spore: soglia di temperatura specifica</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Raccomandazioni sugli strumenti professionali: </strong></p>
-<p>Investire in un termometro e termometro di alta qualità.La temperatura di 5 cm sotto la superficie è più predittiva dell'aspetto dei funghi rispetto alla temperatura dell'aria.Uso un termometro professionale con registrazione dei dati che tiene traccia delle variazioni di temperatura per 24 ore, il che è fondamentale per prevedere i tempi delle esplosioni di funghi.</p>
-<br>
+<p class="article-text">Investire in un termometro e termometro di alta qualità.La temperatura di 5 cm sotto la superficie è più predittiva dell'aspetto dei funghi rispetto alla temperatura dell'aria.Uso un termometro professionale con registrazione dei dati che tiene traccia delle variazioni di temperatura per 24 ore, il che è fondamentale per prevedere i tempi delle esplosioni di funghi.</p>
 <p><strong> Guida pratica all'intervallo di temperatura: </strong></p>
-<br>
 <p><strong> Specie adattive fredde (0-15 ° C): </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Funghi (velutipe Flammunina): si possono trovare sulla neve</li>
 <li>Mushro Enoki: forte resistente al freddo</li>
 <li>Strategia di raccolta dei funghi: trova il pendio meridionale in cui la luce solare diretta splende, aree in cui la neve si scioglie in precedenza</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Specie climatiche miste (10-20 ° C): </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>CHANTERELLES: temperatura ottimale 15-18 ° C</li>
 <li>La maggior parte dei tipi di boleto: temperatura ottimale 16-22 ° C</li>
 <li>Strategia di raccolta dei funghi: principalmente in primavera e in autunno, strategia di adattamento dell'altitudine</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Tipo di clima caldo (18-28 ° C): </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Fungo di paglia: temperatura ottimale 25-30 ° C</li>
 <li>Ganoderma Lucidum: specie tropicali e subtropicali</li>
 <li>Strategia di raccolta dei funghi: aree a bassa quota in estate, presta attenzione al coordinamento dell'umidità</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Strategia di sopravvivenza alla temperatura estrema: </strong></p>
-<p>In uno studio del deserto dell'Arizona, ho scoperto che alcune spore fungine possono tollerare alte temperature di 65 ° C per diverse ore.Comprendere questi limiti può aiutarti a trovare funghi in luoghi apparentemente impossibili.</p>
-<br>
-<h3>precipitazioni: meccanismo di commutazione per la crescita fungina</h3>
-<br>
+<p class="article-text">In uno studio del deserto dell'Arizona, ho scoperto che alcune spore fungine possono tollerare alte temperature di 65 ° C per diverse ore.Comprendere questi limiti può aiutarti a trovare funghi in luoghi apparentemente impossibili.</p>
+<div class="subsection-title">📌 precipitazioni: meccanismo di commutazione per la crescita fungina</div>
 <p><strong> L'acqua piovana non è solo una fonte di umidità, ma anche un sistema di segnale di crescita complesso.</strong> Dopo vent'anni di osservazione sul campo, posso dire con certezza: capire il modello di precipitazione è la metà del successo della raccolta dei funghi.</p>
-<br>
 <p><strong> Spiegazione scientifica: </strong></p>
-<p>Le precipitazioni influiscono sulla crescita dei funghi attraverso tre meccanismi:</p>
-<p>1. Meccanismo fisico: fornisce l'acqua richiesta per l'espansione delle cellule</p>
-<p>2. Meccanismo chimico: dissolvere e trasportare i nutrienti</p>
-<p>3. Meccanismo di segnalazione: innescare l'entità di frutta per formare l'espressione genica</p>
-<br>
+<p class="article-text">Le precipitazioni influiscono sulla crescita dei funghi attraverso tre meccanismi:</p>
+<p class="article-text">1. Meccanismo fisico: fornisce l'acqua richiesta per l'espansione delle cellule</p>
+<p class="article-text">2. Meccanismo chimico: dissolvere e trasportare i nutrienti</p>
+<p class="article-text">3. Meccanismo di segnalazione: innescare l'entità di frutta per formare l'espressione genica</p>
 <p><strong> Esperienza pratica: </strong></p>
-<p>Ho sviluppato un "sistema di temporizzazione post-pioggia" in grado di prevedere accuratamente il tempo di occorrenza di diversi funghi:</p>
-<ul>
+<p class="article-text">Ho sviluppato un "sistema di temporizzazione post-pioggia" in grado di prevedere accuratamente il tempo di occorrenza di diversi funghi:</p>
+<div class="highlight"><ul>
 <li>Specie di risposta rapida (1-3 giorni): specie ombrello fantasma</li>
 <li>specie di risposta media (3-7 giorni): la maggior parte delle specie di funghi</li>
 <li>Specie di risposta lenta (7-14 giorni): Boleto, Chanterelles</li>
-</ul>
-<p>-Specie di risposta ultra-fulmine (14-30 giorni): alcuni batteri porosi perenni</p>
-<br>
+</ul></div>
+<p class="article-text">-Specie di risposta ultra-fulmine (14-30 giorni): alcuni batteri porosi perenni</p>
 <p><strong> Strategia pratica per la modalità di pioggia: </strong></p>
-<br>
 <p><strong> Anche la zona di pioggia (nord -ovest del Pacifico): </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Vantaggi: raccolta di funghi quasi tutto l'anno</li>
 <li>Strategia: concentrati sulla prima pioggia dopo una siccità a breve termine</li>
 <li>Specie target: una varietà di boleto, chanterelles, funghi coralli</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Area di pioggia stagionale (California): </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Vantaggi: produzione di funghi di picco prevedibile</li>
 <li>Strategia: inserisci il periodo migliore 2-3 settimane dopo l'inizio della stagione delle piogge</li>
 <li>specie target: endemica al mediterraneo, tartufo</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Area di cambiamento estremo (deserto del sud -ovest): </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Sfida: precipitazioni imprevedibili</li>
 <li>Strategia: parte entro 24 ore dopo una forte pioggia</li>
 <li>Tipo di bersaglio: specie specializzate nel deserto, come i funghi della razza sabbia</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Raccomandazione di esperti: </strong></p>
-<p>Non solo guardare le precipitazioni totali, ma concentrati sull'intensità, la durata e la distribuzione delle precipitazioni.Un filo continuo di 50 mm è più favorevole alla crescita dei funghi rispetto alla stessa quantità totale di forti piogge, perché il primo può penetrare meglio il terreno senza causare il deflusso.</p>
-<br>
-<h3>umidità: il fattore decisivo del microambiente</h3>
-<br>
+<p class="article-text">Non solo guardare le precipitazioni totali, ma concentrati sull'intensità, la durata e la distribuzione delle precipitazioni.Un filo continuo di 50 mm è più favorevole alla crescita dei funghi rispetto alla stessa quantità totale di forti piogge, perché il primo può penetrare meglio il terreno senza causare il deflusso.</p>
+<div class="subsection-title">📌 umidità: il fattore decisivo del microambiente</div>
 <p><strong> L'umidità dell'aria è l'interruttore finale formato dal corpo della frutta.</strong> Ho verificato questo fatto in laboratorio e sul campo: anche se la temperatura e le precipitazioni sono ideali, l'umidità insufficiente farà scomparire i funghi.</p>
-<br>
 <p><strong> abilità pratiche per il controllo dell'umidità: </strong></p>
-<br>
 <p><strong> Come giudicare l'umidità ideale: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Metodo professionale: utilizzare un igrometro, oltre l'85% è l'ideale</li>
 <li>Metodo di esperienza: c'è una rugiada ovvia nelle foglie del mattino</li>
 <li>Metodo tradizionale: il muschio è umido e morbido, il terreno può essere pizzicato in una palla ma non appiccicoso alle mani</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Strategia di miglioramento dell'umidità microambiente: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Scegli il fondo della valle anziché la cresta</li>
 <li>Trova le aree sotto i cespugli densi</li>
 <li>Vicino a corsi d'acqua e fonti d'acqua</li>
 <li>Le pendici nord sono generalmente più umide delle piste sud</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Spesso errori: </strong></p>
-<p>Molti raccoglitori di funghi prestano solo attenzione al fatto che abbia piovuto di recente, ma ignorano la piccola umidità ambientale.Ho trovato abbondanti funghi in piccoli ambienti vicino alla cascata durante la stagione secca e non ho trovato nulla nell'area secca a poche centinaia di metri di distanza.</p>
-<br>
-<h2>Tipo di clima: guida tattica di raccolta di funghi regionali</h2>
-<br>
-<h3>clima temperato oceanico (Northwest Pacific)</h3>
-<br>
+<p class="article-text">Molti raccoglitori di funghi prestano solo attenzione al fatto che abbia piovuto di recente, ma ignorano la piccola umidità ambientale.Ho trovato abbondanti funghi in piccoli ambienti vicino alla cascata durante la stagione secca e non ho trovato nulla nell'area secca a poche centinaia di metri di distanza.</p>
+<div class="section-title">🍄 Tipo di clima: guida tattica di raccolta di funghi regionali</div>
+<div class="subsection-title">📌 clima temperato oceanico (Northwest Pacific)</div>
 <p><strong> Analisi delle caratteristiche: </strong></p>
-<p>Questa è l'area principale in cui vivo e la ricerca e uno degli habitat di funghi più ricchi del Nord America.Le temperature delicate combinate con le precipitazioni quasi tutto l'anno creano un paradiso fungino.</p>
-<br>
+<p class="article-text">Questa è l'area principale in cui vivo e la ricerca e uno degli habitat di funghi più ricchi del Nord America.Le temperature delicate combinate con le precipitazioni quasi tutto l'anno creano un paradiso fungino.</p>
 <p><strong> Calendario annuale di raccolta dei funghi: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>gennaio-marzo: specie invernali, come i funghi di ostriche</li>
 <li>Aprile-May: primavera più LS, Morels</li>
 <li>giugno-agosto: Early Boleto e Chantelle</li>
 <li>settembre-novembre: stagione principale, quasi tutti i funghi commestibili</li>
 <li>dicembre: specie tardive, funghi</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Punti pratici: </strong></p>
-<p>In quest'area, l'elevazione è più importante della stagione.Vado spesso ad alta quota (1200-1800 metri) in estate e mi concentro a basse quote in primavera e in autunno.</p>
-<br>
-<h3>clima mediterraneo (California)</h3>
-<br>
+<p class="article-text">In quest'area, l'elevazione è più importante della stagione.Vado spesso ad alta quota (1200-1800 metri) in estate e mi concentro a basse quote in primavera e in autunno.</p>
+<div class="subsection-title">📌 clima mediterraneo (California)</div>
 <p><strong> Sfide e opportunità uniche: </strong></p>
-<p>L'estate secca significa che la stagione dei funghi è altamente compressa, ma la lieve umidità dell'inverno crea opportunità speciali.</p>
-<br>
+<p class="article-text">L'estate secca significa che la stagione dei funghi è altamente compressa, ma la lieve umidità dell'inverno crea opportunità speciali.</p>
 <p><strong> Strategia di temporizzazione precisa: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Coast Area: da novembre a marzo dell'anno successivo</li>
 <li>Valle nell'entro</li>
 <li>Area di montagna: da maggio a luglio (dopo lo scioglimento della neve)</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Opportunità speciale: </strong></p>
-<p>Questo è un paradiso per i tartufi (tartufi).La mia esperienza con le fattorie al tartufo della California mostra che il terreno calcareo sotto specifici foreste di quercia è un punto d'oro per trovare tartufi selvatici dopo le piogge invernali.</p>
-<br>
-<h3>Continental Climate (Midwest e Northeast)</h3>
-<br>
+<p class="article-text">Questo è un paradiso per i tartufi (tartufi).La mia esperienza con le fattorie al tartufo della California mostra che il terreno calcareo sotto specifici foreste di quercia è un punto d'oro per trovare tartufi selvatici dopo le piogge invernali.</p>
+<div class="subsection-title">🌡️ Continental Climate (Midwest e Northeast)</div>
 <p><strong> Vantaggi stagionali: </strong></p>
-<p>Sebbene la stagione sia breve, è altamente prevedibile.Il picco in autunno è molto ovvio e adatto alla pianificazione di un viaggio di raccolta di funghi.</p>
-<br>
+<p class="article-text">Sebbene la stagione sia breve, è altamente prevedibile.Il picco in autunno è molto ovvio e adatto alla pianificazione di un viaggio di raccolta di funghi.</p>
 <p><strong> Finestra temporale critica: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Primavera: dalla fine di aprile a inizio giugno (Morel)</li>
 <li>Estate: da luglio ad agosto (a seconda delle precipitazioni)</li>
 <li>Autunno: da settembre a ottobre (Picco principale)</li>
 <li>Strategia: concentrati sulla data del primo gelo autunnale, di solito 2-3 settimane prima è il momento migliore</li>
-</ul>
-<br>
-<h3>climi tropicali e subtropicali (Florida, Gulf Coast)</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 climi tropicali e subtropicali (Florida, Gulf Coast)</div>
 <p><strong> Opportunità durante tutto l'anno ma sono richieste strategie diverse: </strong></p>
-<p>Non esiste una distinzione stagionale evidente, ma il modello di pioggia determina tutto.</p>
-<br>
+<p class="article-text">Non esiste una distinzione stagionale evidente, ma il modello di pioggia determina tutto.</p>
 <p><strong> Strategia pratica: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Picco della stagione delle piogge: mesi estivi</li>
 <li>Opportunità della stagione secca: in uno speciale microambiente che mantiene l'umidità</li>
 <li>Specie uniche: molte specie endemiche tropicali che non sono disponibili in aree temperate</li>
-</ul>
-<br>
-<h2>Fattori dell'habitat: comprensione del linguaggio delle foreste</h2>
-<br>
-<h3>Suolo: il mondo sotterraneo del fungo</h3>
-<br>
+</ul></div>
+<div class="section-title">🍄 Fattori dell'habitat: comprensione del linguaggio delle foreste</div>
+<div class="subsection-title">📌 Suolo: il mondo sotterraneo del fungo</div>
 <p><strong> Il terreno non è un semplice "terreno", ma un ecosistema complesso.</strong> Come biologo, posso dirti che un cucchiaino di terreno forestale contiene milioni di ife e spore fungine.</p>
-<br>
 <p><strong> Guida pratica al valore del pH: </strong></p>
-<br>
 <p><strong> terreno acido (pH 4.0-5.5): </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Piante indicative: azalee, lingotto, pini</li>
 <li>Fungo bersaglio: Pine Lactis, certo Boleto</li>
 <li>Strategia di miglioramento: nessuno (mantieni naturale)</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> terreno neutro (pH 6.0-7.0): </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Piante indicative: una varietà di alberi a foglia larga, ortiche</li>
 <li>Fungo target: la più alta diversità, i Chanterelles e una varietà di boleto</li>
 <li>Metodo di identificazione: kit di test del suolo o impianti di indicatore di osservazione</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> terreno alcalino (pH 7,0-8.5): </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Piante indicative: Vinca, alcune Orchidaceae</li>
 <li>Fungo bersaglio: tartufi, alcune Chanterelles</li>
 <li>Opportunità speciale: le aree di calcare sono punti caldi per trovare specie rare</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Metodo rapido per il giudizio della trama del suolo: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Sandy: non può essere pizzicato in una palla</li>
 <li>Lozione: può essere pizzicato in palline e può essere dispersa dopo una leggera pressione</li>
 <li>Sticky: può essere pizzicato in palline e non è facile da dissipare quando viene premuto</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Valutazione del contenuto della materia organica: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>basso: quasi nessun humus può essere visto</li>
 <li>Medio: evidente strato di humus nero</li>
 <li>Alto: humus profondo e morbido, texture di spugna</li>
-</ul>
-<br>
-<h3>vegetazione: partner di fungo</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 vegetazione: partner di fungo</div>
 <p><strong> Gli alberi non sono semplici sfondi per i funghi, ma i sistemi di supporto vitale. </strong> Ho trascorso anni a studiare le associazioni di diverse specie di alberi con funghi specifici e questa conoscenza ha cambiato completamente il mio tasso di successo di raccolta dei funghi.</p>
-<br>
 <p><strong> Strategie speciali per le foreste di conifere: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Songlin: Pine Lactobacillus, Box Brown Ring Dairy</li>
 <li>Foresta di abete rosso: lattobacillus di abete rosso, scatola da latte ad anello spesso</li>
 <li>Foresta di abete: specie correlate alla rizobia abete</li>
 <li>Abilità pratiche: presta attenzione all'era degli alberi, alle foreste mature (oltre 40 anni) di solito producono più alti</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Combinazione dorata della foresta a foglia larga: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Foresta di quercia: Chanterelles, delizioso boleto</li>
 <li>Foresta di faggio: vari genere rosy, boleto con copertura in velluto marrone</li>
 <li>Foresta di betulla: boleto coperto di velluto di betulla, alcuni funghi rossi</li>
 <li>Consulenza professionale: impara a identificare la corteccia, le foglie e la forma generale delle specie di alberi</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Opportunità per foreste miste: </strong></p>
-<p>Questa è la mia posizione di raccolta dei funghi preferita.Le combinazioni di diverse specie di alberi significano stagioni di funghi più lunghi e una maggiore diversità.</p>
-<br>
+<p class="article-text">Questa è la mia posizione di raccolta dei funghi preferita.Le combinazioni di diverse specie di alberi significano stagioni di funghi più lunghi e una maggiore diversità.</p>
 <p><strong> L'importanza della struttura della vegetazione: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Yuji Linguan: adatto alle specie amanti degli yin</li>
 <li>Lin Chuang: alcuni tipi richiedono un'illuminazione parziale</li>
 <li>Linyuan: l'effetto Edge aumenta la diversità</li>
 <li>Osservazione professionale: presta attenzione alle differenze nella distribuzione dei funghi in diverse condizioni di illuminazione</li>
-</ul>
-<br>
-<h3>terreno e micro-terroin: la delicata disposizione della natura</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 terreno e micro-terroin: la delicata disposizione della natura</div>
 <p><strong> Il terreno è un amplificatore locale di fattori climatici.</strong> La comprensione del terreno ti consente di trovare hotspot con dieci volte la differenza di rendimento nelle foreste apparentemente identiche.</p>
-<br>
 <p><strong> Strategia di altitudine: </strong></p>
-<p>Ho sviluppato un sistema "calendario di funghi verticali":</p>
-<ul>
+<p class="article-text">Ho sviluppato un sistema "calendario di funghi verticali":</p>
+<div class="highlight"><ul>
 <li>Spring: bassa quota (0-500 metri)</li>
 <li>All'inizio dell'estate: media altitudine (500-1000 metri)</li>
 <li>Midsummer: alta quota (1000-1500 metri)</li>
 <li>Inizio autunno: media altitudine</li>
 <li>Late autunno: bassa quota</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Applicazione pratica della pendenza: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>North Slope: umido e fresco, con lunghe stagioni</li>
 <li>Sud di South: caldo e secco, all'inizio della primavera</li>
 <li>Dongpo: condizioni lievi, di solito le più bilanciate</li>
 <li>West Slope: simile al pendio sud ma leggermente delicato</li>
 <li>Strategia: concentrati sulla pendenza nord negli anni asciutti e hai opportunità per tutte le direzioni di pendenza negli anni umidi</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> punti caldi del terreno speciale: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Valley Bottom: Area di accumulo di umidità</li>
 <li>Depressione sul fianco della montagna: punto di raccolta dell'umidità</li>
 <li>Vicino allo soffio di roccia: microambiente speciale</li>
 <li>Legno e discesa invertiti: aree nutrizionali e ricche di umidità</li>
-</ul>
-<br>
-<h2>Microhabitat: il diavolo in dettaglio</h2>
-<br>
-<h3>legno depresso e ceppi: il regno di Woody Fungo</h3>
-<br>
+</ul></div>
+<div class="section-title">🍄 Microhabitat: il diavolo in dettaglio</div>
+<div class="subsection-title">📌 legno depresso e ceppi: il regno di Woody Fungo</div>
 <p><strong> La caduta del legno non è un segno di morte, ma un terreno fertile per la nuova vita.</strong> Nella mia ricerca ho scoperto che un grande legno invertito può supportare dozzine di funghi per apparire uno dopo l'altro nel corso di anni o addirittura decenni.</p>
-<br>
 <p><strong> Stage di decomposizione e tipi di funghi: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Fase iniziale (1-2 anni): Dissolver di floema parziale</li>
 <li>Medio termine (3-10 anni): legno parzialmente risolto</li>
 <li>Più tardi (più di 10 anni): tipi speciali</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> abilità pratiche: </strong></p>
-<p>Impara a identificare le caratteristiche di corteccia e legno di diverse specie di alberi.La quercia e il legno di pino trasportano comunità fungine completamente diverse.</p>
-<br>
-<h3>foresta e radure: area dorata trascurata</h3>
-<br>
+<p class="article-text">Impara a identificare le caratteristiche di corteccia e legno di diverse specie di alberi.La quercia e il legno di pino trasportano comunità fungine completamente diverse.</p>
+<div class="subsection-title">📌 foresta e radure: area dorata trascurata</div>
 <p><strong> L'effetto Edge è reale.</strong> Il mio studio quantitativo mostra che la biomassa dei funghi nelle aree di margine forestale è in media del 35% rispetto a quella nelle foreste.</p>
-<br>
 <p><strong> Il miglior tipo rurale della foresta: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Foresta in direzione nord: l'umidità viene mantenuta bene</li>
 <li>Forest Edge vicino all'acqua Fonte: Bonus di umidità</li>
 <li>Linyuan mista: il più diversificato</li>
-</ul>
-<br>
-<h3>flusso e zone umide: tipi speciali di tesori</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 flusso e zone umide: tipi speciali di tesori</div>
 <p><strong> Queste aree sono spesso trascurate dai raccoglitori di funghi, ma nascondono opportunità uniche.</strong></p>
-<br>
 <p><strong> Suggerimenti di sicurezza: </strong></p>
-<p>La raccolta dei funghi delle zone umide richiede ulteriore consapevolezza della sicurezza:</p>
-<ul>
+<p class="article-text">La raccolta dei funghi delle zone umide richiede ulteriore consapevolezza della sicurezza:</p>
+<div class="highlight"><ul>
 <li>Controlla la stabilità del terreno</li>
 <li>Presta attenzione ai cambiamenti del livello dell'acqua</li>
 <li>Indossare stivali impermeabili anti-slittamento</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Tipo speciale: </strong></p>
-<p>Alcune specie di Amanita sono particolarmente coltivate in ambienti umide, ma devono essere identificate con cure estreme.</p>
-<br>
-<h2>Impatto ambientale artificiale: una conoscenza indispensabile per i moderni raccoglitori di funghi</h2>
-<br>
-<h3>opportunità urbane e suburbane</h3>
-<br>
+<p class="article-text">Alcune specie di Amanita sono particolarmente coltivate in ambienti umide, ma devono essere identificate con cure estreme.</p>
+<div class="section-title">🍄 Impatto ambientale artificiale: una conoscenza indispensabile per i moderni raccoglitori di funghi</div>
+<div class="subsection-title">📌 opportunità urbane e suburbane</div>
 <p><strong> L'ambiente artificiale crea habitat di funghi inaspettato.</strong></p>
-<br>
 <p><strong> Sicurezza prima: </strong></p>
-<p>Deve essere consapevole di scegliere funghi nelle città:</p>
-<ul>
+<p class="article-text">Deve essere consapevole di scegliere funghi nelle città:</p>
+<div class="highlight"><ul>
 <li>Rischio di inquinamento: metalli pesanti, sostanze chimiche</li>
 <li>La storia dell'uso dei pesticidi</li>
 <li>Inquinamento da compagnia può</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Potenziali punti caldi: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>L'area originale del vecchio parco</li>
 <li>Campus universitario e spazio verde istituzionale</li>
 <li>Cintura tampone a fiume</li>
 <li>bordo agricola biologica</li>
-</ul>
-<br>
-<h3>Strategie di risposta ai cambiamenti climatici</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 Strategie di risposta ai cambiamenti climatici</div>
 <p><strong> Come osservatore a lungo termine, ho assistito all'impatto dei cambiamenti climatici sulle comunità di funghi.</strong></p>
-<br>
 <p><strong> Cambiamenti osservati: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Avanzamento stagionale: media 2-3 giorni prima di ogni decennio</li>
 <li>Cambiamenti di distribuzione: alcune specie migrano ad alta quota</li>
 <li>Cambiamenti nella composizione della comunità: meno tipi di amanti del freddo</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Strategia di adattamento: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Regola il calendario dei funghi</li>
 <li>Esplora nuove altitudini</li>
 <li>Concentrati sui tipi di benefici del cambiamento climatico</li>
-</ul>
-<br>
-<h2>Sistema di previsione pratica: dalla teoria all'ottenimento</h2>
-<br>
-<h3>Strategie speciali per i tipi di destinazione</h3>
-<br>
+</ul></div>
+<div class="section-title">🍄 Sistema di previsione pratica: dalla teoria all'ottenimento</div>
+<div class="subsection-title">📌 Strategie speciali per i tipi di destinazione</div>
 <p><strong> Modello predittivo di Boletus edulis: </strong></p>
-<br>
-<p>Dopo 20 anni di raccolta dei dati, ho sviluppato un modello di previsione:</p>
-<p>1. Condizioni di base: pioggia estiva totali> 200mm</p>
-<p>2. Condizioni di innesco: temperatura 15-20 ° C, umidità del suolo> 30%</p>
+<p class="article-text">Dopo 20 anni di raccolta dei dati, ho sviluppato un modello di previsione:</p>
+<p class="article-text">1. Condizioni di base: pioggia estiva totali> 200mm</p>
+<p class="article-text">2. Condizioni di innesco: temperatura 15-20 ° C, umidità del suolo> 30%</p>
 <p>3. Tempo migliore: giorni 5-7 dopo la pioggia</p>
-<p>4. Preferenza del terreno: pendenza delicata, verso nord o verso est</p>
-<p>5. Requisiti di vegetazione: rovere maturo o pino e gomma miscelato foresta</p>
+<p class="article-text">4. Preferenza del terreno: pendenza delicata, verso nord o verso est</p>
+<p class="article-text">5. Requisiti di vegetazione: rovere maturo o pino e gomma miscelato foresta</p>
 <p>6. Condizioni del suolo: terriccio, pH 5,5-6,5</p>
-<h3>Accordo di esplorazione della nuova regione</h3>
-<br>
+<div class="subsection-title">📌 Accordo di esplorazione della nuova regione</div>
 <p><strong> L'esplorazione sistemazzata evita di perdere tempo: </strong></p>
-<br>
-<p>1. <strong> Fase di ricerca preliminare: </strong></p>
-<ul>
+<p class="article-text">1. <strong> Fase di ricerca preliminare: </strong></p>
+<div class="highlight"><ul>
 <li>Analizzare i dati climatici</li>
 <li>Ricerca sulla vegetazione del riconoscimento delle immagini satellitari</li>
 <li>Dai un'occhiata alla mappa geologica per comprendere i tipi di terreno</li>
 <li>Contatta la società di funghi locali</li>
-</ul>
-<br>
-<p>2. <strong> Fase di ricognizione sul campo: </strong></p>
-<ul>
+</ul></div>
+<p class="article-text">2. <strong> Fase di ricognizione sul campo: </strong></p>
+<div class="highlight"><ul>
 <li>Identifica le specie di alberi principali</li>
 <li>Valutare le condizioni del suolo</li>
 <li>Trova il micro-terreno ideale</li>
 <li>Controlla i segnali di funghi esistenti</li>
-</ul>
-<br>
-<p>3. <strong> Fase di campionamento del sistema: </strong></p>
-<ul>
+</ul></div>
+<p class="article-text">3. <strong> Fase di campionamento del sistema: </strong></p>
+<div class="highlight"><ul>
 <li>campionamento di diverse altitudini</li>
 <li>Confronto delle direzioni di pendenza</li>
 <li>Registra i parametri dell'ambiente</li>
 <li>Crea una base di conoscenza locale</li>
-</ul>
-<br>
-<h3>Sistema di registrazione e analisi</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 Sistema di registrazione e analisi</div>
 <p><strong> La lezione più importante che ho imparato dagli errori: non la registrazione è come andare sprecato.</strong></p>
-<br>
 <p><strong> Elementi record professionali: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>coordinate GPS e altitudine</li>
 <li>Data e ora</li>
 <li>Letture di temperatura e umidità</li>
@@ -589,56 +482,42 @@
 <li>Storia del tempo (prime due settimane)</li>
 <li>quantità e status di funghi</li>
 <li>Foto digitali (habitat e ravvicinati)</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Analisi dei dati: </strong></p>
-<p>Traccia i cambiamenti interannuali usando semplici tabelle, un'abitudine che mi consente di prevedere modelli a lungo termine e mantenere un alto tasso di successo di raccolta di funghi nei cambiamenti climatici.</p>
-<br>
-<h2>Cambiamento ambientale e responsabilità di protezione</h2>
-<br>
-<h3>pratica di raccolta dei funghi sostenibili</h3>
-<br>
+<p class="article-text">Traccia i cambiamenti interannuali usando semplici tabelle, un'abitudine che mi consente di prevedere modelli a lungo termine e mantenere un alto tasso di successo di raccolta di funghi nei cambiamenti climatici.</p>
+<div class="section-title">🍄 Cambiamento ambientale e responsabilità di protezione</div>
+<div class="subsection-title">📌 pratica di raccolta dei funghi sostenibili</div>
 <p><strong> Abbiamo la responsabilità di proteggerlo mentre ci godiamo la natura.</strong></p>
-<br>
 <p><strong> Best practice: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>raccolta selettiva: mantieni i giovani da riprodurre</li>
 <li>disperso pressione: non troppo concentrato nei punti caldi</li>
 <li>Gentile operazione: proteggere il micelio</li>
 <li>Raccolta legale: rispettare le leggi e i regolamenti locali</li>
-</ul>
-<br>
-<h3>partecipazione alla conservazione dell'habitat</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 partecipazione alla conservazione dell'habitat</div>
 <p><strong> Anche i veri esperti di raccolta di funghi sono protezionisti.</strong></p>
-<br>
 <p><strong> Azione pratica: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Partecipa ai progetti di conservazione dell'habitat locale</li>
 <li>Supportare le organizzazioni di conservazione delle foreste</li>
 <li>Fornire ai gestori del terreno conoscenza micologica</li>
 <li>Partecipa al progetto di scienze dei cittadini</li>
-</ul>
-<br>
-<h2>Conclusione: diventare un esperto di lettura ambientale</h2>
-<br>
-<p>Il viaggio del cacciatore di funghi è un processo evolutivo dalla ricerca cieca alla previsione precisa.La conoscenza del clima e dell'habitat è la chiave per questa transizione.Il mio viaggio da dilettante al biologo professionista dimostra che la comprensione dei fattori ambientali può migliorare i tassi di successo di raccolta dei funghi meglio di qualsiasi altra abilità.</p>
-<br>
+</ul></div>
+<div class="section-title">🍄 Conclusione: diventare un esperto di lettura ambientale</div>
+<p class="article-text">Il viaggio del cacciatore di funghi è un processo evolutivo dalla ricerca cieca alla previsione precisa.La conoscenza del clima e dell'habitat è la chiave per questa transizione.Il mio viaggio da dilettante al biologo professionista dimostra che la comprensione dei fattori ambientali può migliorare i tassi di successo di raccolta dei funghi meglio di qualsiasi altra abilità.</p>
 <p><strong> Consigli per agire ora: </strong></p>
-<br>
-<p>1. <strong> Record di sistema di avvio </strong> - Porta il tuo taccuino nel prossimo viaggio di raccolta di funghi</p>
-<p>2. <strong> Impara il riconoscimento degli alberi </strong> - Questa è la base per prevedere la distribuzione dei funghi</p>
-<p>3. <strong> Strumenti di investimento di base </strong> - Termometro, igrometro, PH Test Paper</p>
-<p>4. <strong> Unisciti alla comunità locale </strong> - La società Fungo fornisce preziose conoscenze locali</p>
-<p>5. <strong> Osservazione di apprendimento continuo </strong> - La natura insegna sempre a coloro che sono disposti a imparare</p>
-<br>
+<p class="article-text">1. <strong> Record di sistema di avvio </strong> - Porta il tuo taccuino nel prossimo viaggio di raccolta di funghi</p>
+<p class="article-text">2. <strong> Impara il riconoscimento degli alberi </strong> - Questa è la base per prevedere la distribuzione dei funghi</p>
+<p class="article-text">3. <strong> Strumenti di investimento di base </strong> - Termometro, igrometro, PH Test Paper</p>
+<p class="article-text">4. <strong> Unisciti alla comunità locale </strong> - La società Fungo fornisce preziose conoscenze locali</p>
+<p class="article-text">5. <strong> Osservazione di apprendimento continuo </strong> - La natura insegna sempre a coloro che sono disposti a imparare</p>
 <p><strong> Finalmente pensato: </strong></p>
-<p>I funghi sono i battiti cardiaci dell'ecosistema, collegano tutto, circolano i nutrienti e sostengono la vita.Quando impariamo a leggere il loro linguaggio ambientale, guadagniamo non solo un paniere di funghi, ma anche una profonda comprensione e una connessione con il mondo naturale.</p>
-<br>
-<p>Ricorda cosa mi ha insegnato Bill: "L'ambiente in cui i neofiti cercano funghi e gli esperti cercano funghi". Ora, hai la base di conoscenza per diventare un esperto.</p>
-<br>
+<p class="article-text">I funghi sono i battiti cardiaci dell'ecosistema, collegano tutto, circolano i nutrienti e sostengono la vita.Quando impariamo a leggere il loro linguaggio ambientale, guadagniamo non solo un paniere di funghi, ma anche una profonda comprensione e una connessione con il mondo naturale.</p>
+<p class="article-text">Ricorda cosa mi ha insegnato Bill: "L'ambiente in cui i neofiti cercano funghi e gli esperti cercano funghi". Ora, hai la base di conoscenza per diventare un esperto.</p>
 <p>Osserva l'ambiente e trova il fungo!</p>
         </div>
-    </div>
+
+</div>
 </body>
 </html>

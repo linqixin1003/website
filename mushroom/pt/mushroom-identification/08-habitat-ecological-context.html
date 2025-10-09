@@ -1,757 +1,619 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Habitat and Ecological Environment - Mushroom Identification</title>
-    <meta name="description" content="Habitat and Ecological Environment">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>08 Habitat and Ecological Environment - MushroomAiSnap</title>
+<link href="../../mobile-styles.css" rel="stylesheet"/>
+<link href="../../mobile-enhancement.css" rel="stylesheet"/>
+<link href="../../ecology-theme.css" rel="stylesheet"/>
+<style>
+        .hero-image img {
+            max-height: 200px;
+            width: 100%;
+            object-fit: cover;
         }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        .article-card img {
+            max-height: 120px;
+            width: 100%;
+            object-fit: cover;
+        }
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                        url('../../images/mushroom-identification_08-habitat-ecological-context.webp') center/cover;
+            position: relative;
+            margin-top: 0;
+        }
+        .article-meta {
+            margin-top: 15px !important;
+        }
+    
+        /* Mushroom Identification Theme */
+        :root {
+            --primary-color: #4169E1;
+            --primary-dark: #191970;
+            --primary-light: #F0F8FF;
+            --accent-color: #6495ED;
+        }
+        
+        /* Theme Color Overrides */
+        .content {
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+            border: 2px solid var(--primary-color);
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, var(--primary-light), var(--primary-light));
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .quote-text {
+            color: var(--primary-dark);
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+        }
+        
+        .subsection-title {
+            color: var(--primary-dark);
+            font-size: 1.4em;
+            font-weight: 600;
+            margin: 25px 0 15px 0;
+            padding-left: 10px;
+            border-left: 3px solid var(--accent-color);
+        }
+        
+        .tip-box {
+            border-left: 4px solid var(--primary-color);
+            background: var(--primary-light);
+        }
+        
+        .tip-title {
+            color: var(--primary-color);
+        }
+        
+        .highlight {
+            border-left: 4px solid var(--accent-color);
+            background: linear-gradient(135deg, #f1f8e9, var(--primary-light));
+        }
+        
+        .warning {
+            border-left: 4px solid #f44336;
+        }
+        
+        .equipment-item {
+            border: 1px solid var(--accent-color);
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+        }
+        
+        .equipment-item h4 {
+            color: var(--primary-color);
+        }
+        
+        .category {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .main-text {
+            font-size: 1.1em;
             line-height: 1.8;
             color: #333;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-
-        .article-title {
-            color: #45B7D1;
-            font-size: 2.5em;
-            margin-bottom: 30px;
-            margin-top: 0;
-            line-height: 1.3;
-            padding-top: 0;
-        }
-
-        .featured-image {
-            width: 100%;
-            height: auto;
-            aspect-ratio: 4 / 3;
-            object-fit: cover;
-            display: block;
-        }
-
-        .content {
-            padding: 50px;
-        }
-
-        .content h2 {
-            color: #45B7D1;
-            font-size: 2em;
-            margin-top: 40px;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid #45B7D1;
-        }
-
-        .content h3 {
-            color: #555;
-            font-size: 1.6em;
-            margin-top: 30px;
-            margin-bottom: 15px;
-        }
-
-        .content h4 {
-            color: #666;
-            font-size: 1.3em;
-            margin-top: 25px;
-            margin-bottom: 12px;
-        }
-
-        .content p {
-            margin-bottom: 20px;
-            font-size: 1.1em;
-            color: #444;
-        }
-
-        .content ul {
             margin: 20px 0;
-            padding-left: 30px;
-        }
-
-        .content li {
-            margin-bottom: 12px;
-            font-size: 1.05em;
-            color: #555;
-        }
-
-        .content strong {
-            color: #222;
-            font-weight: 600;
-        }
-
-        .back-link {
-            display: inline-block;
-            padding: 12px 25px;
-            background: linear-gradient(135deg, #45B7D1, #8B4513);
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            margin-bottom: 20px;
-            transition: transform 0.3s ease;
-            font-weight: 600;
-        }
-
-        .back-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .navigation {
-            padding: 30px 50px;
-            background: #f8f9fa;
-            border-top: 1px solid #e9ecef;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-btn {
-            padding: 10px 20px;
-            background: #45B7D1;
-            color: white;
-            text-decoration: none;
+            padding: 15px;
+            background: linear-gradient(135deg, #ffffff, #f9f9f9);
             border-radius: 8px;
-            transition: all 0.3s ease;
+            border-left: 3px solid var(--accent-color);
         }
-
-        .nav-btn:hover {
-            transform: translateX(5px);
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+        
+        .emoji {
+            font-size: 1.5em;
+            margin-left: 10px;
         }
-
-        .nav-btn.prev:hover {
-            transform: translateX(-5px);
+        
+        .read-time, .difficulty {
+            display: inline-block;
+            padding: 5px 15px;
+            margin: 5px 5px 5px 0;
+            border-radius: 20px;
+            font-size: 0.9em;
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            color: #1976d2;
+            font-weight: 500;
         }
-
-        @media (max-width: 768px) {
-            .content {
-                padding: 30px 25px;
-            }
-
-            .article-title {
-                font-size: 1.8em;
-            }
-
-            .featured-image {
-                height: 250px;
-            }
-
-            .navigation {
-                flex-direction: column;
-                gap: 15px;
-            }
+        
+        .difficulty {
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            color: #e65100;
+        }
+        
+        .article-text {
+            line-height: 1.8;
+            color: #444;
+            margin: 15px 0;
+            font-size: 1.05em;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <img src="../../images/mushroom-identification_08-habitat-ecological-context.webp" alt="Habitat and Ecological Environment" class="featured-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22900%22 height=%22400%22%3E%3Crect fill=%22%23D2691E%22 width=%22900%22 height=%22400%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22white%22 font-size=%2260%22%3E🍄%3C/text%3E%3C/svg%3E'">
+<div class="hero-image"></div>
+<div class="content">
+    <h1 class="title">08 Habitat and Ecological Environment</h1>
+    <div class="quote-box">
+        <div class="quote-text">Professional Mycology Guide</div>
+    </div>
+    
+<div class="article-meta">
+<span class="category">🔍 Mushroom Identification</span>
+<span class="read-time">📖 23 minute read</span>
+<span class="difficulty">🔴 Advanced</span>
+</div>
 
-        <div class="content">
-            <h1 class="article-title">Habitat and Ecological Environment</h1>
-            <br>
-<p>"Diga -me onde você o encontrou, e eu posso dizer o que pode ser." Esse mycosmo da comunidade de micociência revela a posição central do ambiente ecológico na identificação de cogumelos.Para caçadores graves de cogumelos, o ambiente ecológico geralmente é tão importante quanto as características morfológicas e às vezes ainda mais críticas.Muitas espécies de cogumelos têm requisitos estritos em seu ambiente crescente - espécies de árvores específicas, composição específica do solo e condições sazonais específicas.O domínio das habilidades de identificação ecológica pode não apenas restringir bastante a gama de espécies possíveis, mas também apontar diretamente para espécies específicas e pode até salvar sua vida.</p>
-<br>
-<h2>por que o ambiente ecológico é o fator decisivo na identificação de cogumelos</h2>
-<br>
-<h3>estratégias básicas de sobrevivência para fungos</h3>
-<br>
-<p>Como organismos heterotróficos, os fungos não podem executar a fotossíntese e devem obter nutrientes do meio ambiente.Compreender suas estratégias de sobrevivência é o primeiro passo na interpretação do ambiente ecológico.</p>
-<br>
+
+            <br><div class="main-text">"Diga -me onde você o encontrou, e eu posso dizer o que pode ser." Esse mycosmo da comunidade de micociência revela a posição central do ambiente ecológico na identificação de cogumelos.Para caçadores graves de cogumelos, o ambiente ecológico geralmente é tão importante quanto as características morfológicas e às vezes ainda mais críticas.Muitas espécies de cogumelos têm requisitos estritos em seu ambiente crescente - espécies de árvores específicas, composição específica do solo e condições sazonais específicas.O domínio das habilidades de identificação ecológica pode não apenas restringir bastante a gama de espécies possíveis, mas também apontar diretamente para espécies específicas e pode até salvar sua vida.<span class="emoji">🍄</span></div>
+<div class="section-title">🍄 por que o ambiente ecológico é o fator decisivo na identificação de cogumelos</div>
+<div class="subsection-title">📌 estratégias básicas de sobrevivência para fungos</div>
+<p class="article-text">Como organismos heterotróficos, os fungos não podem executar a fotossíntese e devem obter nutrientes do meio ambiente.Compreender suas estratégias de sobrevivência é o primeiro passo na interpretação do ambiente ecológico.</p>
 <p><strong> Relacionamento micorrízico </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>formar redes complexas mutuamente benéficas com sistemas radiculares da planta</li>
 <li>Micélio fúngico expande a área de absorção das raízes da planta para ajudar a absorver água, fósforo, nitrogênio e outros minerais</li>
 <li>Plantas recompensam carboidratos produzidos pela fotossíntese</li>
 <li>90% das plantas vasculares na América do Norte dependem da relação micorrízica para sobreviver</li>
 <li>Esses fungos são altamente específicos e crescem apenas perto de espécies de árvores específicas</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Caso prático </strong>: Na minha prática nas montanhas rochosas do Colorado, descobri que o rei Boletus Edulis quase apenas forma um relacionamento micorrízico com pinheiro amarelo maduro.Os cogumelos semelhantes a essa espécie que se desviam da associação dessa espécie são frequentemente espécies não relacionadas.</p>
-<br>
 <p><strong> Estilo de vida saprofítico </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Decomposição engenheiros da natureza, decompondo matéria orgânica morta</li>
 <li>Matriz alvo inclui madeira, camadas decíduas, fezes de animais, matéria orgânica do solo</li>
 <li>Não dependente de plantas vivas, alta autonomia nutricional</li>
 <li>Os fungos comestíveis mais cultivados pertencem a esta categoria</li>
-</ul>
-<br>
-<p>** Especialistas sugerem que as saprófitas são um ponto de partida ideal para iniciantes, porque seus requisitos ambientais são relativamente soltos e muitas espécies podem ser cultivadas e identificadas com segurança.</p>
-<br>
+</ul></div>
+<p class="article-text">** Especialistas sugerem que as saprófitas são um ponto de partida ideal para iniciantes, porque seus requisitos ambientais são relativamente soltos e muitas espécies podem ser cultivadas e identificadas com segurança.</p>
 <p><strong> Modo de sobrevivência parasita </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Obtenha nutrição diretamente de um anfitrião vivo</li>
 <li>geralmente prejudicial ao host, mas mantém o equilíbrio ecológico</li>
 <li>altamente específico para espécies hospedeiras específicas</li>
-</ul>
-<br>
-<h3>A força de identificação da especificidade ecológica</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 A força de identificação da especificidade ecológica</div>
 <p><strong> Exemplos de tipo altamente dedicado </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Tricholoma Matsutake apenas simbiótico com espécies de pinheiros específicas</li>
 <li>inonotus obliquus obliquus obliquus obliquus obliquus obliquus obliquus</li>
 <li>Cordyceps sinensis apenas larvas de mariposa de platô parasitária</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Tipos de generalização ecológica </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Pleurotus ostreatus pode crescer em mais de 20 árvores de folhas largas</li>
 <li>Muitas espécies de cogumelos (Agaricus) são adaptadas a uma variedade de ambientes</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Método de filtragem de identificação rápida </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Cogumelos encontrados em carvalhos, exclua imediatamente todas as espécies obrigatórias</li>
 <li>Cogumelos encontrados na grama, excluindo todas as espécies de decaimento de madeira</li>
 <li>Usando informações ecológicas como o filtro de identificação da primeira camada pode eliminar mais de 70% da possibilidade</li>
-</ul>
-<br>
-<h2>Substrato de crescimento: a base da vida dos cogumelos</h2>
-<br>
-<h3>Os segredos do solo de cogumelos terrestres</h3>
-<br>
+</ul></div>
+<div class="section-title">🍄 Substrato de crescimento: a base da vida dos cogumelos</div>
+<div class="subsection-title">📌 Os segredos do solo de cogumelos terrestres</div>
 <p><strong> Pontos-chave para identificar espécies relacionadas a micorrízicas </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Amanita - a maioria deles é simbiose micorrízica</li>
 <li>Boletus - Associação de Espécies de Árvores Altamente Dependente</li>
 <li>Lactarius - As espécies de árvores são altamente específicas</li>
 <li>Russula - parceiros micorrízicos extensos</li>
 <li>Cantharellus - Associação de Espécies de Árvores Específicas</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Habilidades de observação prática </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Cavar cuidadosamente a base dos cogumelos e observar a conexão entre o micélio e as raízes</li>
 <li>Use o aplicativo de identificação de árvores para confirmar espécies de árvores próximas</li>
 <li>Registre a distância e orientação das árvores</li>
 <li>Nota: os cogumelos micorrízicos são quase impossíveis de cultivar artificialmente</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Pistas de identificação das espécies sapofíticas do solo </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>pode crescer independentemente em campos abertos ou sob árvores</li>
 <li>prefira solo rico em orgânicos</li>
 <li>Comum em áreas de compostagem, jardins e florestas férteis</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Modelo de registro profissional </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Tipo de solo: arenoso (drenagem rápida), pegajoso (forte retenção de água), barro (ideal)</li>
 <li>PH do solo: use tiras de teste de pH portátil (ácido <7, neutro = 7, alcalino> 7)</li>
 <li>Densidade da cobertura da vegetação: esparsa <30%, média 30-70%, densa> 70%</li>
 <li>Espessura da camada foliar: <2cm fino, médio de 2-5cm, espesso> 5 cm</li>
-</ul>
-<br>
+</ul></div>
 <p>Código de madeira para cogumelos lignicolous</p>
-<br>
 <p><strong> Identificação de espécies parasitas de árvores vivas </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Armillaria Mellea - Famosa Patógeno da Árvore</li>
 <li>Ganoderma lucidum - Preferências específicas de espécies de árvores</li>
 <li>Laetiporus sulphureus - Decaimento de cerne da árvore viva</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> O rico mundo das espécies saprofíticas de madeira morta </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Pleurotus ostreatus - árvore de folhas largas</li>
 <li>Cogumelos shiitake (lentinula edodes) - Requisitos específicos de espécies de árvores</li>
 <li>Yunzhi (Trametes Versicolor) - Tipos de generalização de madeira</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Qualidade para identificação do tipo de madeira </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Folhas largas (madeira de lei) vs coníferas (cortiça) - diferença decisiva</li>
 <li>Use Guia de Identificação de Árvores para confirmar espécies de árvores específicas</li>
 <li>gravar diâmetro de madeira e fase de decaimento</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Sistema de classificação de estágio de decaimento da madeira </strong>:</p>
-<p>Nível 1: madeira morta fresca, casca completa, madeira dura</p>
-<p>Nível 2: Decaimento parcial, casca parcial cai e a madeira começa a amolecer</p>
-<p>Nível 3: Decaimento moderado, a maior parte da casca cai, e a madeira é obviamente amolecida</p>
-<p>Nível 4: altamente decadificado, a madeira é bloqueada ou fibrosa</p>
-<p>Nível 5: completamente deteriorado, a madeira quase se torna solo</p>
-<br>
+<p class="article-text">Nível 1: madeira morta fresca, casca completa, madeira dura</p>
+<p class="article-text">Nível 2: Decaimento parcial, casca parcial cai e a madeira começa a amolecer</p>
+<p class="article-text">Nível 3: Decaimento moderado, a maior parte da casca cai, e a madeira é obviamente amolecida</p>
+<p class="article-text">Nível 4: altamente decadificado, a madeira é bloqueada ou fibrosa</p>
+<p class="article-text">Nível 5: completamente deteriorado, a madeira quase se torna solo</p>
 <p><strong> ERROS COMUMENTES EVANÇÃO DE ERROS </strong>: Os cogumelos aparentemente nativos podem realmente estar conectados à madeira enterrada.Cavar suavemente a base para confirmar para evitar erros de julgamento de espécies micorrízicas.</p>
-<br>
-<h3>ecologia gramínosa</h3>
-<br>
+<div class="subsection-title">📌 ecologia gramínosa</div>
 <p><strong> ambiente típico de pastagem </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Gerenciar gramados: geralmente aparar, possivelmente fertilizar</li>
 <li>Meadow natural: espécies variadas, não gerenciadas</li>
 <li>Ranch: existem influências de animais pastando</li>
 <li>Parque Groenlândia: atividades humanas frequentemente</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Espécies principais de cogumelos de grama </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Agaricus - incluindo espécies comestíveis e tóxicas</li>
 <li>Puffball (Lycoperdon) - Espécies de Grass Saurada</li>
 <li>Coprinus - ciclo de vida curto</li>
 <li>Marasmius Oreades - agente típico de formação de anel de cogumelo</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Explicação científica de anéis de fadas </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Micélio cresce radialmente do ponto central</li>
 <li>O micélio do círculo externo tem a atividade mais forte e produz corpos de frutificação</li>
 <li>pode durar décadas ou até centenas de anos</li>
 <li>Três tipos: apenas círculo de cogumelos, círculo de aprofundamento da cor da grama, círculo de grama morta</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Aviso de segurança </strong>: A grama geralmente contém espécies altamente tóxicas de bactérias Amanita, especialmente o anjo da destruição (Amanita Virosa). A informação ecológica deve ser usada em combinação com a identificação morfológica.</p>
-<br>
-<h3>Adaptação especial de coprofilosos cogumelos</h3>
-<br>
+<div class="subsection-title">📌 Adaptação especial de coprofilosos cogumelos</div>
 <p><strong> Especialidade de FeCes Type </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>fezes herbívoras: nutrição equilibrada, ideal</li>
 <li>fezes onívoras: ingredientes complexos e menos tipos</li>
 <li>FeCes carnívoros: Evite coleta, patógenos em potencial</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Sugestões de coleta de equipamentos profissionais </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Tweezers de coleção de fezes especiais</li>
 <li>Container de ventilação independente</li>
 <li>luvas descartáveis</li>
 <li>Desinfetante para as mãos</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Aviso de segurança </strong>: Os cogumelos de fertilizantes geralmente contêm substâncias psicoativas e podem acumular metais pesados.Entenda as leis e regulamentos locais, a segurança é a primeira prioridade.</p>
-<br>
-<p>Associação de Espécies de Árvores: A chave para cogumelos micorrízicos</p>
-<br>
-<h3>Por que a identificação das espécies de árvores é crucial</h3>
-<br>
-<p>Nas florestas norte -americanas, mais de 85% das árvores formam relacionamentos micorrízicos.A Associação de Espécies de Árvores é a pista mais forte para identificar cogumelos micorrízicos.</p>
-<br>
+<p class="article-text">Associação de Espécies de Árvores: A chave para cogumelos micorrízicos</p>
+<div class="subsection-title">🎯 Por que a identificação das espécies de árvores é crucial</div>
+<p class="article-text">Nas florestas norte -americanas, mais de 85% das árvores formam relacionamentos micorrízicos.A Associação de Espécies de Árvores é a pista mais forte para identificar cogumelos micorrízicos.</p>
 <p><strong> Exemplo de associação obrigatória conífera </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Pinheiro (Pinus): Matsutake, Lactarius deliciosus</li>
 <li>Picea: Boletus pinophilus</li>
 <li>FIR (ABIES): Lactarius dissuserimus</li>
 <li>Laryx: Suillus Grevillei</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Exemplo de associação obrigatória de árvore de folhas largas </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Quercus: delicioso bolete, Amanita Caesareia</li>
 <li>Birch (Betula): Birch Boletus (Leccinum Scabrum)</li>
 <li>Beech (Fagus): Beech Red Mushroom (Russula mairei)</li>
 <li>Populus: Leccinum Duriusculum</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Dicas de reconhecimento de árvores rápidas </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Pine: feixes de agulhas (2, 3 ou 5 agulhas)</li>
 <li>Oak: folhas escamosas, frutas de bolota</li>
 <li>Birch: casca de descascamento branco, folhas triangulares</li>
 <li>faia: casca cinza lisa com folhas ovais onduladas</li>
-</ul>
-<br>
-<h3>Efeitos da idade das árvores e estrutura de suporte</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 Efeitos da idade das árvores e estrutura de suporte</div>
 <p><strong> Comunidades de cogumelos de diferentes idades </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Floresta jovem (<20 anos): espécies esparsas, principalmente espécies sapofíticas</li>
-</ul>
-<p>-Floresta de meia idade (20-50 anos): as espécies micorrízicas começam a aparecer</p>
-<ul>
+</ul></div>
+<p class="article-text">-Floresta de meia idade (20-50 anos): as espécies micorrízicas começam a aparecer</p>
+<div class="highlight"><ul>
 <li>Floresta madura (50-100 anos): pico na diversidade de espécies</li>
 <li>florestas maduras (> 100 anos): espécies especializadas aparecem</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Método de observação prática </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Meça o diâmetro do porta</li>
 <li>Observe o grau de fechamento de Lin Guan: aberto <30%, médio 30-70%, fechado> 70%</li>
 <li>Avaliação da vegetação subestim: refletindo a saúde da floresta</li>
 <li>Meça a espessura da camada de folhas caídas: indica a velocidade de circulação de nutrientes</li>
-</ul>
-<br>
-<h2>Fatores ambientais: a influência requintada de estações e microambiente</h2>
-<br>
-<h3>Regras fenológicas de clima e estações</h3>
-<br>
+</ul></div>
+<div class="section-title">🍄 Fatores ambientais: a influência requintada de estações e microambiente</div>
+<div class="subsection-title">📌 Regras fenológicas de clima e estações</div>
 <p><strong> O impacto da temperatura na ocorrência de cogumelos </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Tipo de baixa temperatura: Flammulina Velutipes é melhor cultivada a 5-10 ° C</li>
 <li>Tipo de temperatura média: a maioria dos cogumelos aparece a 15-25 ° C</li>
 <li>Tipo de alta temperatura: alguns ganoderma lucidum ainda podem crescer a> 25 ° C</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> O papel principal da umidade e das chuvas </strong>:</p>
-<p>-Condições ideais: 3-7 dias após a precipitação, a umidade do solo é de 60-80%</p>
-<ul>
+<p class="article-text">-Condições ideais: 3-7 dias após a precipitação, a umidade do solo é de 60-80%</p>
+<div class="highlight"><ul>
 <li>Obtenha dados precisos usando um higrômetro do solo</li>
 <li>Registre dias recentes de precipitação e chuva</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Modo de estupro de cogumelos sazonais da América do Norte </strong>:</p>
-<br>
 <p><strong> Primavera (março-maio) </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Morel (Morchella): Após um incêndio ou por um rio</li>
 <li>Gyromitra: solo arenoso em florestas de coníferas</li>
 <li>Ponyboy: grama e terra aberta</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> verão (junho-agosto </strong>):</p>
-<ul>
+<div class="highlight"><ul>
 <li>Cantellus: Floresta larga e mista</li>
 <li>Ramaria: floresta de coníferas úmidas</li>
 <li>Tipos iniciais de Boletus</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Autumn (setembro-novembro </strong>):</p>
-<ul>
+<div class="highlight"><ul>
 <li>Período de pimenta de Boletus: Várias espécies micorrízicas</li>
 <li>Amanita: pico da diversidade</li>
 <li>Felicomínio: árvores mortas e bases de árvores vivas</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Inverno (dezembro-fevereiro </strong>):</p>
-<ul>
+<div class="highlight"><ul>
 <li>Cogumelos enoki: crescimento do cluster em árvores mortas</li>
 <li>Cogumelos de ostras: ainda podem crescer em clima frio</li>
 <li>Certas bactérias polipóricas: espécie perene</li>
-</ul>
-<br>
-<h3>Regras de distribuição de geografia e altitude</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 Regras de distribuição de geografia e altitude</div>
 <p><strong> Regiões principais de cogumelos norte -americanos </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Área de madeira de lei oriental: espécies relacionadas a carvalhos e faias</li>
 <li>Área florestal ocidental de coníferas: espécies relacionadas de pinheiro e abeto</li>
 <li>Zona subtropical do sul: espécie tropical única</li>
 <li>Área florestal do norte boreal: espécies relacionadas a abetos e bétulas</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Efeito do gradiente de altitude </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>baixa altitude (<500m): rico em tipos comuns</li>
 <li>Altitude média (500-1500m): diversidade de espécies de pico</li>
 <li>Alta altitude (1500-2500m): espécies alpinas especializadas</li>
 <li>Altitude extremamente alta (> 2500m): espécies raras, adaptação especial</li>
-</ul>
-<br>
-<h3>a influência requintada do microambiente</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 a influência requintada do microambiente</div>
 <p><strong> Impacto do aspecto </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Slope norte: alta umidade e temperatura estável</li>
 <li>Slope South: muita luz do sol e alta temperatura</li>
 <li>Dongpo: sol da manhã, umidade moderada</li>
 <li>West Slope: High Light à tarde, secador</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Influência dos recursos topográficos </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Linha de cume: boa drenagem, seco</li>
 <li>Valley Bottom: alta umidade, espécie abundante</li>
 <li>Mid Slope: Condições ideais de umidade</li>
 <li>Área plana: pode haver problemas com a drenagem</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Sugestões de equipamentos profissionais </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>GPS portátil: gravar posição precisa e altitude</li>
 <li>Termômetro de bolso: Monitorando condições microambientais</li>
 <li>Kit de teste de pH do solo: Compreendendo a química do solo</li>
 <li>Guia de identificação de árvores: identificação precisa das espécies de árvores</li>
-</ul>
-<br>
-<h2>abordagem científica do registro ecológico</h2>
-<br>
+</ul></div>
+<div class="section-title">🍄 abordagem científica do registro ecológico</div>
 <p>Modelo de registro padronizado</p>
-<br>
 <p><strong> Tabela de registro detalhada de ambiente ecológico </strong>:</p>
-<br>
 <p><strong> Informações básicas </strong>:</p>
-<p>Data: [ano do mês do mês] Hora: [hora específica, fácil rastrear mudanças climáticas]</p>
-<p>Localização: [Descrição detalhada da localização] Coordenadas GPS: [Latitude, Longitude] Altitude: [Medidores]</p>
-<br>
+<p class="article-text">Data: [ano do mês do mês] Hora: [hora específica, fácil rastrear mudanças climáticas]</p>
+<p class="article-text">Localização: [Descrição detalhada da localização] Coordenadas GPS: [Latitude, Longitude] Altitude: [Medidores]</p>
 <p><strong> Classificação da matriz de crescimento </strong>:</p>
-<p>□ Espécies de árvores relacionadas à Terra-Micorrízica: [Espécies e distância específicas de árvores]</p>
-<p>□ Crescimento de madeira - Espécies de árvores: [Espécies específicas de árvores] Status da madeira: [Living Standing Wood/Dead Standing Wood/Fallen Wood] Grau de decaimento: [Nível 1-5]</p>
-<p>□ Grass - Tipo de grama: [Gerenciamento de gramado/prado natural/chuva] Composição de grama: [Descrição]</p>
-<p>□ Fecal - Tipo de animal: [Animal específico] Idade fecal: [Fresco/velho/seco]</p>
-<br>
+<p class="article-text">□ Espécies de árvores relacionadas à Terra-Micorrízica: [Espécies e distância específicas de árvores]</p>
+<p class="article-text">□ Crescimento de madeira - Espécies de árvores: [Espécies específicas de árvores] Status da madeira: [Living Standing Wood/Dead Standing Wood/Fallen Wood] Grau de decaimento: [Nível 1-5]</p>
+<p class="article-text">□ Grass - Tipo de grama: [Gerenciamento de gramado/prado natural/chuva] Composição de grama: [Descrição]</p>
+<p class="article-text">□ Fecal - Tipo de animal: [Animal específico] Idade fecal: [Fresco/velho/seco]</p>
 <p><strong> Registros detalhados da associação de árvores </strong>:</p>
-<p>Principais espécies de árvores associadas: [Árvore recente, dentro de 5 metros] Estimativa da idade da árvore: [jovem <30 anos/maduro 30-80 anos/idade> 80 anos]</p>
-<p>Espécies de árvores secundárias: [todas as espécies de árvores em 10 metros ao redor] Estrutura da floresta: [Floresta conífera %/floresta de folhas largas %]</p>
-<p>Descrição do tipo de floresta: [Floresta pura/floresta mista] Depressão do dossel da floresta: [aberto <30%/médio 30-70%/fechado> 70%]</p>
-<br>
+<p class="article-text">Principais espécies de árvores associadas: [Árvore recente, dentro de 5 metros] Estimativa da idade da árvore: [jovem <30 anos/maduro 30-80 anos/idade> 80 anos]</p>
+<p class="article-text">Espécies de árvores secundárias: [todas as espécies de árvores em 10 metros ao redor] Estrutura da floresta: [Floresta conífera %/floresta de folhas largas %]</p>
+<p class="article-text">Descrição do tipo de floresta: [Floresta pura/floresta mista] Depressão do dossel da floresta: [aberto <30%/médio 30-70%/fechado> 70%]</p>
 <p><strong> Registros quantitizados das condições ambientais </strong>:</p>
-<p>Temporada: [início da primavera/final da primavera/início do verão/verão/início do outono/final de outono/inverno]</p>
-<p>Condições climáticas: [ensolarado/nublado/nublado/chuva] chuvas recentes: [mm] Número de dias após a chuva: [dias]</p>
-<p>Temperatura: [° C] Umidade relativa: [%] umidade do solo: [seco <30%/úmido 30-60%/úmido 60-80%/água saturada> 80%]</p>
-<br>
+<p class="article-text">Temporada: [início da primavera/final da primavera/início do verão/verão/início do outono/final de outono/inverno]</p>
+<p class="article-text">Condições climáticas: [ensolarado/nublado/nublado/chuva] chuvas recentes: [mm] Número de dias após a chuva: [dias]</p>
+<p class="article-text">Temperatura: [° C] Umidade relativa: [%] umidade do solo: [seco <30%/úmido 30-60%/úmido 60-80%/água saturada> 80%]</p>
 <p><strong> Terreno e microambiente </strong>:</p>
-<p>Altitude: [Número preciso de metros] Características topográficas: [inclinação plana/lisa <15 °/íngreme> 15 °/vale/cume]</p>
-<p>Direção: [Slope North/Slope Sul/Inclinação Leste/Inclinação Oeste/Flata] Inclinação: [De graus]</p>
-<p>Condições de luz: [sol completo> 6 horas/sombra parcial 3-6 horas/sombra profunda <3 horas]</p>
-<p>Densidade da vegetação: [esparso <30%/médio 30-70%/luxo> 70%] Espessura da camada de folhas decíduas: [cm]</p>
-<br>
+<p class="article-text">Altitude: [Número preciso de metros] Características topográficas: [inclinação plana/lisa <15 °/íngreme> 15 °/vale/cume]</p>
+<p class="article-text">Direção: [Slope North/Slope Sul/Inclinação Leste/Inclinação Oeste/Flata] Inclinação: [De graus]</p>
+<p class="article-text">Condições de luz: [sol completo> 6 horas/sombra parcial 3-6 horas/sombra profunda <3 horas]</p>
+<p class="article-text">Densidade da vegetação: [esparso <30%/médio 30-70%/luxo> 70%] Espessura da camada de folhas decíduas: [cm]</p>
 <p><strong> Registro de situação especial </strong>:</p>
-<p>□ Círculo de cogumelos □ Crescimento do cluster (quantidade) □ Solo □ Distribuição dispersa</p>
-<p>Modo de crescimento especial: [Descrição detalhada] Outras interações biológicas: [sinais de insetos e atividades animais]</p>
-<br>
+<p class="article-text">□ Círculo de cogumelos □ Crescimento do cluster (quantidade) □ Solo □ Distribuição dispersa</p>
+<p class="article-text">Modo de crescimento especial: [Descrição detalhada] Outras interações biológicas: [sinais de insetos e atividades animais]</p>
 <p><strong> Registros de observação suplementares </strong>:</p>
-<p>[Qualquer outra informação ecológica relevante, odores especiais, sinais meteorológicos anormais, etc.]</p>
-<br>
-<h3>Análise de caso prático</h3>
-<br>
+<p class="article-text">[Qualquer outra informação ecológica relevante, odores especiais, sinais meteorológicos anormais, etc.]</p>
+<div class="subsection-title">📌 Análise de caso prático</div>
 <p><strong> Caso 1: Diferenciação de espécies de árvores de Boletus </strong></p>
-<br>
-<p>Cena de descoberta: montanhas rochosas centrais, 2200 metros acima do nível do mar</p>
-<p>Cogumelo A: Sob a floresta de Pinus Ponderosa, diâmetro do porta-malas 40-60cm</p>
-<p>→ Alta probabilidade é Boletus rubriceps - deliciosos fúngos comestíveis locais</p>
-<br>
-<p>Cogumelo B: Aparência semelhante, mas encontrada sob a floresta de Populus tremuloides</p>
-<p>→ Provavelmente Leccinum insigne - comestível, mas baixa qualidade</p>
-<br>
+<p class="article-text">Cena de descoberta: montanhas rochosas centrais, 2200 metros acima do nível do mar</p>
+<p class="article-text">Cogumelo A: Sob a floresta de Pinus Ponderosa, diâmetro do porta-malas 40-60cm</p>
+<p class="article-text">→ Alta probabilidade é Boletus rubriceps - deliciosos fúngos comestíveis locais</p>
+<p class="article-text">Cogumelo B: Aparência semelhante, mas encontrada sob a floresta de Populus tremuloides</p>
+<p class="article-text">→ Provavelmente Leccinum insigne - comestível, mas baixa qualidade</p>
 <p><strong> Avaliação ecológica Valor </strong>: Evite erros de julgamento com base na aparência e garante a segurança e a qualidade da coleta.</p>
-<br>
 <p><strong> Caso 2: Confirmação de Habitat Morel </strong></p>
-<br>
-<p>Principais recursos: boné de favo de mel, haste oca</p>
-<p>Pistas ecológicas: Ruínas do incêndio selvagem do Colorado 2012, 1.800 metros acima do nível do mar, encosta sudoeste</p>
-<p>→ Black Morel (Morchella angusticeps) - Espécies obrigatórias de incêndio</p>
-<br>
+<p class="article-text">Principais recursos: boné de favo de mel, haste oca</p>
+<p class="article-text">Pistas ecológicas: Ruínas do incêndio selvagem do Colorado 2012, 1.800 metros acima do nível do mar, encosta sudoeste</p>
+<p class="article-text">→ Black Morel (Morchella angusticeps) - Espécies obrigatórias de incêndio</p>
 <p><strong> Dica profissional </strong>: É crucial gravar um ano de incêndio, e alguns moros só aparecem em anos específicos.</p>
-<br>
 <p><strong> Caso 3: Evite amanita altamente tóxica </strong></p>
-<br>
-<p>Cena de descoberta: sob o carvalho no parque da cidade, a aparência é atraente</p>
-<p>Filtração ecológica: Associação Micorrízica de Oak + Contenção de Bactérias + Bactérias Brancas dobras</p>
-<p>→ Possível para o Anjo da Destruição (Amanita Bisporigera) - Um dos cogumelos mais venenosos da América do Norte</p>
-<br>
+<p class="article-text">Cena de descoberta: sob o carvalho no parque da cidade, a aparência é atraente</p>
+<p class="article-text">Filtração ecológica: Associação Micorrízica de Oak + Contenção de Bactérias + Bactérias Brancas dobras</p>
+<p class="article-text">→ Possível para o Anjo da Destruição (Amanita Bisporigera) - Um dos cogumelos mais venenosos da América do Norte</p>
 <p><strong> Sugestões de salva-vidas </strong>: Informações ecológicas combinam características morfológicas para evitar possíveis erros fatais.</p>
-<br>
-<h2>habilidades avançadas de observação ecológica</h2>
-<br>
+<div class="section-title">🍄 habilidades avançadas de observação ecológica</div>
 <p>Método de pesquisa de campo sistemático</p>
-<br>
 <p><strong> Método de observação de cinco etapas </strong>:</p>
-<p>1. Micro-observação: características detalhadas dos próprios cogumelos</p>
-<p>2. Ambiente instantâneo: Propriedades da matriz de crescimento</p>
-<p>3. Ambiente circundante: condições ecológicas dentro de um raio de 5 metros</p>
-<p>4. Características da terra florestal: estrutura e composição do suporte</p>
+<p class="article-text">1. Micro-observação: características detalhadas dos próprios cogumelos</p>
+<p class="article-text">2. Ambiente instantâneo: Propriedades da matriz de crescimento</p>
+<p class="article-text">3. Ambiente circundante: condições ecológicas dentro de um raio de 5 metros</p>
+<p class="article-text">4. Características da terra florestal: estrutura e composição do suporte</p>
 <p>5. Topografia e clima: fatores macroeconômicos</p>
-<br>
 <p><strong> Contrato de fotografia e gravação </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Foto de cogumelos in situ: mostra o relacionamento com a matriz de crescimento</li>
 <li>Panorâmico ambiental: mostra a vegetação e o terreno ao redor</li>
 <li>Close-up de espécies de árvores: folhas, casca, forma geral</li>
 <li>Sinal de habitat: terreno especial ou recurso</li>
 <li>Referência de escala: adicione régua ou objeto conhecido</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Lista de equipamentos profissionais </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Principais ferramentas: equipamento GPS, guia da árvore, lupa</li>
 <li>Ferramentas de medição: termômetro do solo, tira de teste de pH, fita métrica</li>
 <li>Ferramentas de gravação: caderno à prova d'água, câmera digital, gravador de voz</li>
 <li>Equipamento de segurança: luvas, kits de primeiros socorros, equipamento de comunicação</li>
-</ul>
-<br>
-<h3>Monitoramento de longo prazo e pesquisa fenológica</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 Monitoramento de longo prazo e pesquisa fenológica</div>
 <p><strong> Crie um calendário de fenômenos </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Registre o padrão anual de produção de cogumelos para cada local</li>
 <li>Acompanhe o impacto a longo prazo das mudanças climáticas</li>
 <li>Preveja a melhor janela de tempo de aquisição</li>
 <li>estabelecer uma base de conhecimento ecológico local</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Participação da ciência do cidadão </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Observação do registro da plataforma inaturalista</li>
 <li>Contribuição de dados da Associação de Fungos da América do Norte</li>
 <li>Programa de monitoramento da sociedade de fungos local</li>
 <li>Assistência em campo para projetos de pesquisa universitária</li>
-</ul>
-<br>
-<h2>Recursos de aprendizagem ecológica e caminhos avançados</h2>
-<br>
-<p>Melhoria de habilidades de reconhecimento de árvores</p>
-<br>
+</ul></div>
+<div class="section-title">🍄 Recursos de aprendizagem ecológica e caminhos avançados</div>
+<p class="article-text">Melhoria de habilidades de reconhecimento de árvores</p>
 <p><strong> Ferramentas e recursos recomendados </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>aplicativo móvel: inaturalista, leafsnap, picturethis</li>
 <li>Guia de campo: Guia da Árvore Peterson, Guia da Árvore da Sociedade Nacional Audubon</li>
 <li>Cursos on -line: Curso de reconhecimento de plantas Coursera, Workshop Local de Botânica</li>
 <li>Aprendizagem prática: pesquisa de campo com botânicos</li>
-</ul>
-<br>
-<h3>aprendizado profundo da ecologia fúngica</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 aprendizado profundo da ecologia fúngica</div>
 <p><strong> Caminho de aprendizado profissional </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Introdução: os "cogumelos desmistificados" de David Arora "</li>
 <li>Avançado: Biologia Fúngica de John W. Taylor</li>
 <li>Principal: Documentos de Pesquisa Científica da Sociedade Micológica da América</li>
 <li>Prática: atividades guiadas de coleta de fungos e conferências de micologia</li>
-</ul>
-<br>
-<h2>Conclusão: o valor central das habilidades de identificação ecológica</h2>
-<br>
-<p>Informações ecológicas e ambientais não são uma opção suplementar para identificação de cogumelos, mas um elemento central. Com base nos meus 20 anos de experiência em campo, mais de 60% dos erros de identificação decorrem de ignorar ou interpretar incorretamente as pistas ecológicas.Um cogumelo encontrado sob uma árvore de pinheiros e que parece semelhante a um carvalho pode ser uma espécie completamente diferente-um pode ser um ingrediente precioso e o outro pode ser com risco de vida.</p>
-<br>
+</ul></div>
+<div class="section-title">🍄 Conclusão: o valor central das habilidades de identificação ecológica</div>
+<p class="article-text">Informações ecológicas e ambientais não são uma opção suplementar para identificação de cogumelos, mas um elemento central. Com base nos meus 20 anos de experiência em campo, mais de 60% dos erros de identificação decorrem de ignorar ou interpretar incorretamente as pistas ecológicas.Um cogumelo encontrado sob uma árvore de pinheiros e que parece semelhante a um carvalho pode ser uma espécie completamente diferente-um pode ser um ingrediente precioso e o outro pode ser com risco de vida.</p>
 <p>Resumo das habilidades -chave</p>
-<br>
 <p><strong> Habilidades ecológicas que devem ser dominadas </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Capacidade precisa de reconhecimento de árvores</li>
 <li>Classificação científica da matriz de crescimento</li>
 <li>Uma profunda compreensão da fenologia sazonal</li>
 <li>Uma observação aguçada de fatores microambientais</li>
 <li>hábitos de gravação sistematizados</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Fórmula de avaliação profissional </strong>:</p>
-<p>Características morfológicas + Informação ecológica + distribuição geográfica = identificação confiável</p>
-<br>
+<p class="article-text">Características morfológicas + Informação ecológica + distribuição geográfica = identificação confiável</p>
 <p><strong> Segurança Primeiro Princípio </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Informação ecológica é uma rede de segurança, não uma licença</li>
 <li>múltiplas evidências para confirmar o tipo de comestível</li>
 <li>Em caso de dúvida, nunca consuma</li>
 <li>Aprender com especialistas locais é a maneira mais rápida</li>
-</ul>
-<br>
-<h3>O valor de longo prazo de observação ecológica</h3>
-<br>
-<p>O domínio das habilidades de observação ecológica não apenas melhora as capacidades de identificação de cogumelos, mas também permite entender profundamente as interações complexas dos ecossistemas florestais.Você começará a ver:</p>
-<ul>
+</ul></div>
+<div class="subsection-title">📌 O valor de longo prazo de observação ecológica</div>
+<p class="article-text">O domínio das habilidades de observação ecológica não apenas melhora as capacidades de identificação de cogumelos, mas também permite entender profundamente as interações complexas dos ecossistemas florestais.Você começará a ver:</p>
+<div class="highlight"><ul>
 <li>Como as redes de fungos conectam comunidades de árvores</li>
 <li>O verdadeiro processo de ciclo de nutrientes</li>
 <li>Relações simbióticas complexas entre espécies</li>
 <li>Impacto específico das mudanças climáticas nos ecossistemas</li>
-</ul>
-<br>
-<p>Esse profundo entendimento ecológico mudará a maneira como você interage com a natureza, tornando todas as aventuras de campo a oportunidade de descobrir e aprender.</p>
-<br>
-<h2>Guia de ação: etapas práticas para começar agora</h2>
-<br>
-<h3>Plano de 30 dias para iniciantes</h3>
-<br>
+</ul></div>
+<p class="article-text">Esse profundo entendimento ecológico mudará a maneira como você interage com a natureza, tornando todas as aventuras de campo a oportunidade de descobrir e aprender.</p>
+<div class="section-title">🍄 Guia de ação: etapas práticas para começar agora</div>
+<div class="subsection-title">📌 Plano de 30 dias para iniciantes</div>
 <p><strong> Semana 1: Habilidades básicas </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Aprenda a identificar 5 árvores locais comuns</li>
 <li>Domine a classificação básica dos tipos de solo</li>
 <li>Comece a gravar observações ecológicas simples</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Semana 2: Prática do sistema </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Usando tabelas de discos padronizadas</li>
 <li>Prática observação de fatores de microambiente</li>
 <li>Crie o primeiro site de monitoramento</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Semana 3: Integração de habilidades </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Combinado com identificação ecológica e morfológica</li>
 <li>Participe da Citizen Science Platform</li>
 <li>Encontre uma comunidade de fungos local</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Quarta semana: expansão do conhecimento </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Leia materiais de ecologia profissional</li>
 <li>Tente prever o padrão de cogumelos</li>
 <li>Orientando outros iniciantes</li>
-</ul>
-<br>
+</ul></div>
 <p>Lista de construção de equipamentos profissionais</p>
-<br>
 <p><strong> Equipamento básico (dentro de US $ 100) </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Guia de identificação de árvores (US $ 25)</li>
 <li>Laca portátil portátil (US $ 15)</li>
 <li>Notebook à prova d'água (US $ 10)</li>
 <li>aplicativo de gravação de smartphone (grátis)</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Equipamento avançado (dentro de US $ 300) </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>dispositivo GPS portátil (US $ 150)</li>
 <li>Kit de teste de solo (US $ 50)</li>
 <li>Equipamento de fotografia profissional (US $ 100)</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Equipamento profissional (US $ 500+) </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Monitor ambiental de alta precisão (US $ 300)</li>
 <li>Microscópio profissional (US $ 200+)</li>
 <li>Equipamentos de laboratório de campo (os preços variam)</li>
-</ul>
-<br>
-<p>Lembre -se: o melhor equipamento é a experiência de acumulação e observação sistemática. Comece no básico e estabeleça gradualmente seu sistema de habilidades de identificação ecológica.</p>
-<br>
-<p>A observação ecológica é uma habilidade ao longo da vida que continua a se aprofundar com o acúmulo de experiência.Toda aventura ao ar livre é uma nova oportunidade de aprendizado, e todo cogumelo tem sua própria história ecológica única.Aproveite este processo de exploração e faça do ambiente natural a sua sala de aula mais rica.</p>
-<br>
-<p>Deseje sua jornada de observação ecológica cheia de descobertas, insights e maravilha infinita!</p>
-<br>
+</ul></div>
+<p class="article-text">Lembre -se: o melhor equipamento é a experiência de acumulação e observação sistemática. Comece no básico e estabeleça gradualmente seu sistema de habilidades de identificação ecológica.</p>
+<p class="article-text">A observação ecológica é uma habilidade ao longo da vida que continua a se aprofundar com o acúmulo de experiência.Toda aventura ao ar livre é uma nova oportunidade de aprendizado, e todo cogumelo tem sua própria história ecológica única.Aproveite este processo de exploração e faça do ambiente natural a sua sala de aula mais rica.</p>
+<p class="article-text">Deseje sua jornada de observação ecológica cheia de descobertas, insights e maravilha infinita!</p>
 <p>----</p>
-<p>*Dicas de segurança: As informações fornecidas neste artigo são para fins educacionais.Existem riscos na identificação de cogumelos, aprenda sob a orientação de especialistas.Siga sempre o princípio da confirmação de várias evidências e seja cauteloso sobre qualquer cogumelo incerto.*</p>
-<br>
+<p class="article-text">*Dicas de segurança: As informações fornecidas neste artigo são para fins educacionais.Existem riscos na identificação de cogumelos, aprenda sob a orientação de especialistas.Siga sempre o princípio da confirmação de várias evidências e seja cauteloso sobre qualquer cogumelo incerto.*</p>
 <p>----</p>
-<br>
-<h2>⚠️ Isenção de responsabilidade importante</h2>
-<br>
+<div class="section-title">🍄 ⚠️ Isenção de responsabilidade importante</div>
 <p><strong> Este artigo é apenas para referência educacional e de informação.</strong></p>
-<br>
 <p>Aviso de risco de consumo de cogumelos</p>
-<br>
-<p>1. <strong> Segurança da vida primeiro </strong>: Existem riscos inerentes na identificação de cogumelos selvagens.Muitos cogumelos tóxicos parecem muito parecidos com os cogumelos comestíveis, e ingeri -los acidentalmente pode levar a doenças graves ou até a morte.</p>
-<br>
-<p>2. <strong> Identificação profissional necessária </strong>: Antes de comer cogumelos selvagens, 100% de confirmação deve ser realizada por um micólogo profissional ou especialista em identificação de cogumelos certificado.Fotos, descrições de texto e experiência pessoal não são suficientes para garantir a segurança.</p>
-<br>
-<p>3. <strong> DIFERENCIDAS INDIVIDUAIS </strong>: Mesmo os cogumelos comestíveis reconhecidos podem causar reações adversas devido a fatores como constituição pessoal, reações alérgicas, método de consumo ou ambiente de crescimento de cogumelos.Tente em pequenas quantidades ao comer uma nova variedade pela primeira vez.</p>
-<br>
-<p>4. <strong> DIFERENCIDAS GEOGRÁFICAS </strong>: Existem enormes diferenças nas espécies de cogumelos e toxicidade em diferentes regiões.As informações mencionadas neste artigo podem não se aplicar à sua região.Consulte especialistas em micologia local e organizações autoritárias.</p>
-<br>
-<p>5. <strong> Responsabilidade Profissional </strong>: O autor e o editor não se responsabilizam por nenhum dano, doença ou perda direta ou indireta decorrente do uso das informações neste artigo.</p>
-<br>
-<h3>Conselho de segurança</h3>
-<br>
-<ul>
+<p class="article-text">1. <strong> Segurança da vida primeiro </strong>: Existem riscos inerentes na identificação de cogumelos selvagens.Muitos cogumelos tóxicos parecem muito parecidos com os cogumelos comestíveis, e ingeri -los acidentalmente pode levar a doenças graves ou até a morte.</p>
+<p class="article-text">2. <strong> Identificação profissional necessária </strong>: Antes de comer cogumelos selvagens, 100% de confirmação deve ser realizada por um micólogo profissional ou especialista em identificação de cogumelos certificado.Fotos, descrições de texto e experiência pessoal não são suficientes para garantir a segurança.</p>
+<p class="article-text">3. <strong> DIFERENCIDAS INDIVIDUAIS </strong>: Mesmo os cogumelos comestíveis reconhecidos podem causar reações adversas devido a fatores como constituição pessoal, reações alérgicas, método de consumo ou ambiente de crescimento de cogumelos.Tente em pequenas quantidades ao comer uma nova variedade pela primeira vez.</p>
+<p class="article-text">4. <strong> DIFERENCIDAS GEOGRÁFICAS </strong>: Existem enormes diferenças nas espécies de cogumelos e toxicidade em diferentes regiões.As informações mencionadas neste artigo podem não se aplicar à sua região.Consulte especialistas em micologia local e organizações autoritárias.</p>
+<p class="article-text">5. <strong> Responsabilidade Profissional </strong>: O autor e o editor não se responsabilizam por nenhum dano, doença ou perda direta ou indireta decorrente do uso das informações neste artigo.</p>
+<div class="subsection-title">📌 Conselho de segurança</div>
+<div class="highlight"><ul>
 <li>✅ Participe de cursos formais de treinamento de identificação de cogumelos</li>
 <li>✅ Junte -se à Associação Local de Micologia ou Clube de Cogumelos</li>
 <li>✅ Compre cogumelos cultivados de fontes confiáveis</li>
 <li>✅ Salvar amostras de cogumelos para necessidades médicas de emergência</li>
 <li>✅ Não coma se tiver alguma dúvida</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Lembre -se: quando você tiver alguma dúvida, a única opção segura é não comê -la.Sua segurança de vida é muito mais importante do que qualquer refeição de cogumelos.</strong></p>
-<br>
 <p>----</p>
         </div>
-    </div>
+
+</div>
 </body>
 </html>

@@ -1,363 +1,282 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>なぜマイクロ識別が重要であるのか - Mushroom Science</title>
-    <meta name="description" content="なぜマイクロ識別が重要であるのか">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>02 なぜマイクロ識別が重要であるのか - MushroomAiSnap</title>
+<link href="../../mobile-styles.css" rel="stylesheet"/>
+<link href="../../mobile-enhancement.css" rel="stylesheet"/>
+<link href="../../ecology-theme.css" rel="stylesheet"/>
+<style>
+        .hero-image img {
+            max-height: 200px;
+            width: 100%;
+            object-fit: cover;
         }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        .article-card img {
+            max-height: 120px;
+            width: 100%;
+            object-fit: cover;
+        }
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                        url('../../images/mushroom-science_02-microscopy-spore-analysis.webp') center/cover;
+            position: relative;
+            margin-top: 0;
+        }
+        .article-meta {
+            margin-top: 15px !important;
+        }
+    
+        /* Mushroom Science Theme */
+        :root {
+            --primary-color: #9370DB;
+            --primary-dark: #4B0082;
+            --primary-light: #F8F4FF;
+            --accent-color: #BA55D3;
+        }
+        
+        /* Theme Color Overrides */
+        .content {
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+            border: 2px solid var(--primary-color);
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, var(--primary-light), var(--primary-light));
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .quote-text {
+            color: var(--primary-dark);
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+        }
+        
+        .subsection-title {
+            color: var(--primary-dark);
+            font-size: 1.4em;
+            font-weight: 600;
+            margin: 25px 0 15px 0;
+            padding-left: 10px;
+            border-left: 3px solid var(--accent-color);
+        }
+        
+        .tip-box {
+            border-left: 4px solid var(--primary-color);
+            background: var(--primary-light);
+        }
+        
+        .tip-title {
+            color: var(--primary-color);
+        }
+        
+        .highlight {
+            border-left: 4px solid var(--accent-color);
+            background: linear-gradient(135deg, #f1f8e9, var(--primary-light));
+        }
+        
+        .warning {
+            border-left: 4px solid #f44336;
+        }
+        
+        .equipment-item {
+            border: 1px solid var(--accent-color);
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+        }
+        
+        .equipment-item h4 {
+            color: var(--primary-color);
+        }
+        
+        .category {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .main-text {
+            font-size: 1.1em;
             line-height: 1.8;
             color: #333;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-
-        .article-title {
-            color: #98D8C8;
-            font-size: 2.5em;
-            margin-bottom: 30px;
-            margin-top: 0;
-            line-height: 1.3;
-            padding-top: 0;
-        }
-
-        .featured-image {
-            width: 100%;
-            height: auto;
-            aspect-ratio: 4 / 3;
-            object-fit: cover;
-            display: block;
-        }
-
-        .content {
-            padding: 50px;
-        }
-
-        .content h2 {
-            color: #98D8C8;
-            font-size: 2em;
-            margin-top: 40px;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid #98D8C8;
-        }
-
-        .content h3 {
-            color: #555;
-            font-size: 1.6em;
-            margin-top: 30px;
-            margin-bottom: 15px;
-        }
-
-        .content h4 {
-            color: #666;
-            font-size: 1.3em;
-            margin-top: 25px;
-            margin-bottom: 12px;
-        }
-
-        .content p {
-            margin-bottom: 20px;
-            font-size: 1.1em;
-            color: #444;
-        }
-
-        .content ul {
             margin: 20px 0;
-            padding-left: 30px;
-        }
-
-        .content li {
-            margin-bottom: 12px;
-            font-size: 1.05em;
-            color: #555;
-        }
-
-        .content strong {
-            color: #222;
-            font-weight: 600;
-        }
-
-        .back-link {
-            display: inline-block;
-            padding: 12px 25px;
-            background: linear-gradient(135deg, #98D8C8, #8B4513);
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            margin-bottom: 20px;
-            transition: transform 0.3s ease;
-            font-weight: 600;
-        }
-
-        .back-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .navigation {
-            padding: 30px 50px;
-            background: #f8f9fa;
-            border-top: 1px solid #e9ecef;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-btn {
-            padding: 10px 20px;
-            background: #98D8C8;
-            color: white;
-            text-decoration: none;
+            padding: 15px;
+            background: linear-gradient(135deg, #ffffff, #f9f9f9);
             border-radius: 8px;
-            transition: all 0.3s ease;
+            border-left: 3px solid var(--accent-color);
         }
-
-        .nav-btn:hover {
-            transform: translateX(5px);
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+        
+        .emoji {
+            font-size: 1.5em;
+            margin-left: 10px;
         }
-
-        .nav-btn.prev:hover {
-            transform: translateX(-5px);
+        
+        .read-time, .difficulty {
+            display: inline-block;
+            padding: 5px 15px;
+            margin: 5px 5px 5px 0;
+            border-radius: 20px;
+            font-size: 0.9em;
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            color: #1976d2;
+            font-weight: 500;
         }
-
-        @media (max-width: 768px) {
-            .content {
-                padding: 30px 25px;
-            }
-
-            .article-title {
-                font-size: 1.8em;
-            }
-
-            .featured-image {
-                height: 250px;
-            }
-
-            .navigation {
-                flex-direction: column;
-                gap: 15px;
-            }
+        
+        .difficulty {
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            color: #e65100;
+        }
+        
+        .article-text {
+            line-height: 1.8;
+            color: #444;
+            margin: 15px 0;
+            font-size: 1.05em;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <img src="../../images/mushroom-science_02-microscopy-spore-analysis.webp" alt="なぜマイクロ識別が重要であるのか" class="featured-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22900%22 height=%22400%22%3E%3Crect fill=%22%23D2691E%22 width=%22900%22 height=%22400%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22white%22 font-size=%2260%22%3E🍄%3C/text%3E%3C/svg%3E'">
+<div class="hero-image"></div>
+<div class="content">
+    <h1 class="title">02 なぜマイクロ識別が重要であるのか</h1>
+    <div class="quote-box">
+        <div class="quote-text">Professional Mycology Guide</div>
+    </div>
+    
+<div class="article-meta">
+<span class="category">🔬 Mushroom Science</span>
+<span class="read-time">📖 5 minute read</span>
+<span class="difficulty">🟢 Beginner</span>
+</div>
 
-        <div class="content">
-            <h1 class="article-title">なぜマイクロ識別が重要であるのか</h1>
-            <br>
-<p>顕微鏡下でのキノコの識別は、科学だけでなく、芸術でもあります。マッシュルームコレクションを真剣に受け止める屋外愛好家にとって、マイクロ識別技術をマスターすることは、同様の種から食用種を正確に識別し、潜在的な危険を避けることを意味します。この記事では、微視的な機能を通じてキノコの識別スキルを向上させる方法について詳しく説明します。</p>
-<br>
+
+            <br><div class="main-text">顕微鏡下でのキノコの識別は、科学だけでなく、芸術でもあります。マッシュルームコレクションを真剣に受け止める屋外愛好家にとって、マイクロ識別技術をマスターすることは、同様の種から食用種を正確に識別し、潜在的な危険を避けることを意味します。この記事では、微視的な機能を通じてキノコの識別スキルを向上させる方法について詳しく説明します。<span class="emoji">🍄</span></div>
 <p>##なぜマイクロ識別が重要であるのか</p>
-<br>
 <p><strong>マクロ識別の制限</strong></p>
-<br>
-<p>野生では、多くのキノコ種は非常に似ていますが、食用と毒性は大きく異なります。アマニタ属を例にとると、いくつかの致命的な有毒キノコは、巨視的な方法で食用種とほとんど区別できません。マイクロ機能は、特に同様の外観を持つ種について、識別のための議論の余地のない基盤を提供します。</p>
-<br>
+<p class="article-text">野生では、多くのキノコ種は非常に似ていますが、食用と毒性は大きく異なります。アマニタ属を例にとると、いくつかの致命的な有毒キノコは、巨視的な方法で食用種とほとんど区別できません。マイクロ機能は、特に同様の外観を持つ種について、識別のための議論の余地のない基盤を提供します。</p>
 <p><strong>実用的なケース：アマニタ識別チャレンジ</strong></p>
-<br>
-<p>私はかつて、米国の太平洋岸北西部で典型的なケースに遭遇しました。2人の経験豊富なコレクターは、白いキノコが食用であるかどうかについて意見の相違があります。巨視的なのは、食用のアマニタ・レイネイのように見えますが、顕微鏡下の胞子分析は、実際には致命的な天使のキノコ（Amanita bisporigera）であることを示しています。この例は、顕微鏡的識別がどのように命を救うかを鮮明に示しています。</p>
-<br>
+<p class="article-text">私はかつて、米国の太平洋岸北西部で典型的なケースに遭遇しました。2人の経験豊富なコレクターは、白いキノコが食用であるかどうかについて意見の相違があります。巨視的なのは、食用のアマニタ・レイネイのように見えますが、顕微鏡下の胞子分析は、実際には致命的な天使のキノコ（Amanita bisporigera）であることを示しています。この例は、顕微鏡的識別がどのように命を救うかを鮮明に示しています。</p>
 <p><strong>科学的根拠</strong></p>
-<br>
-<p>真菌分類法は、顕微鏡的特徴にますます依存しています。胞子の形態、嚢胞構造、菌糸の特性は、比較的安定しており、環境要因の影響を受けない信頼できる分類データを提供します。</p>
-<br>
-<h2>Professional Equipment Guide：真菌研究所を構築します</h2>
-<br>
+<p class="article-text">真菌分類法は、顕微鏡的特徴にますます依存しています。胞子の形態、嚢胞構造、菌糸の特性は、比較的安定しており、環境要因の影響を受けない信頼できる分類データを提供します。</p>
+<div class="section-title">🛠️ Professional Equipment Guide：真菌研究所を構築します</div>
 <p><strong>顕微鏡選択戦略</strong></p>
-<br>
-<p>複合光学顕微鏡がコアツールであり、倍率は400〜1000回の範囲である必要があります。初心者には、基本的なニーズを満たすために300〜500ドルの費用がかかるエントリーレベルのバイオミクスコープをお勧めします。より専門的な研究では、オイルミラーとより高度な光学システムを備えた2,000ドル以上のモデルが必要になる場合があります。</p>
-<br>
+<p class="article-text">複合光学顕微鏡がコアツールであり、倍率は400〜1000回の範囲である必要があります。初心者には、基本的なニーズを満たすために300〜500ドルの費用がかかるエントリーレベルのバイオミクスコープをお勧めします。より専門的な研究では、オイルミラーとより高度な光学システムを備えた2,000ドル以上のモデルが必要になる場合があります。</p>
 <p><strong>専門家の推奨事項：</strong> ABEコンデンサーと機械段階のモデルを見つけます。これは、小さな構造を観察するときに非常に重要です。</p>
-<br>
-<p><strong>必須アクセサリーリスト</strong></p>
-<br>
-<ul>
+<p><strong>必須アクセサリーリスト</strong></p><div class="highlight"><ul>
 <li>スライドとカバースリップ：異なる顕微鏡に合わせて複数の厚さ（No.1とNo.1.5）を準備する</li>
 <li>ステナントセット：メルツァー試薬、コンゴレッド、5％KOH溶液を含む</li>
 <li>アイピースマイクロメーター：胞子サイズを正確に測定するために使用されます</li>
 <li>解剖学的ツール：解剖学的針、鋭い刃（手術刃が最良です）</li>
 <li>実験室ノートブック：記録的な観察結果</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>簡単なヒント：</strong>最初にすべてのプロの機器を購入する必要はありません。基本的な構成は、最も一般的なキノコを識別するのに十分です。</p>
-<br>
 <p>##胞子印刷制作：科学と芸術の組み合わせ</p>
-<br>
 <p><strong>最適化された胞子印刷技術</strong></p>
-<br>
-<p>胞子印刷は、胞子の色情報を提供するだけでなく、顕微鏡観察用の多数の胞子も得ます。従来の改善は次のとおりです。</p>
-<br>
+<p class="article-text">胞子印刷は、胞子の色情報を提供するだけでなく、顕微鏡観察用の多数の胞子も得ます。従来の改善は次のとおりです。</p>
 <p>1.成熟しているが完全には拡張されていないカバーを選択します</p>
 <p>2。さまざまな色の胞子の観察を容易にするために、半白と半黒い紙を使用してください</p>
-<p>3。空気の乾燥を防ぐためにガラスボウルを覆っていますが、中程度の空気循環を可能にするために小さな隙間を残します</p>
+<p class="article-text">3。空気の乾燥を防ぐためにガラスボウルを覆っていますが、中程度の空気循環を可能にするために小さな隙間を残します</p>
 <p>4.室温で6〜24時間放置すると、特定の時間はキノコの種類によって異なります</p>
-<br>
 <p><strong>実用的なスキル：</strong>胞子を生成するのが困難な種の場合、容器の湿度を増やすか、紙の代わりに細菌のキャップをアルミホイルに置いて、その後の胞子の収集を促進します。</p>
-<br>
 <p><strong>胞子色の分類</strong></p>
-<br>
 <p>胞子の色は、キノコ分類の重要な指標です。</p>
-<ul>
+<div class="highlight"><ul>
 <li>白：アマニタ、ラシュラなどの一般的な色</li>
 <li>ピンク：Pluteusの特徴的な色</li>
 <li>茶色：さまざまな色合いを含めて、それは多くの多孔質細菌の特徴です</li>
 <li>紫色：psilocybeの典型的な色</li>
 <li>黒：コプリヌス属およびその他の属の特性</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>専門家のお勧め：</strong>自然光の下で胞子の色を観察すると、人工光源が色の知覚を変える可能性があります。</p>
-<br>
 <p>##胞子観察：サンプルからデータまで</p>
-<br>
 <p><strong>プロフェッショナルサンプリングテクノロジー</strong></p>
-<br>
-<p>胞子印刷からサンプリングするときは、湿った解剖針先を使用して胞子をそっと浸します。細菌の折り目から直接サンプリングする場合は、細菌の折りたたみ構造を破壊することなく、少量の胞子を注意深くこすります。多孔質細菌については、チューブの井戸からサンプルを採取しました。</p>
-<br>
+<p class="article-text">胞子印刷からサンプリングするときは、湿った解剖針先を使用して胞子をそっと浸します。細菌の折り目から直接サンプリングする場合は、細菌の折りたたみ構造を破壊することなく、少量の胞子を注意深くこすります。多孔質細菌については、チューブの井戸からサンプルを採取しました。</p>
 <p><strong>画像最適化方法</strong></p>
-<br>
 <p>1.スライドの中心に蒸留水または5％KOH溶液を少量加えます</p>
 <p>2。液滴の胞子サンプルをそっと分散します</p>
 <p>3.泡を避けるために、約45度の角度でカバースリップをゆっくり下げます</p>
 <p>4.組織を使用して、余分な液体を吸い取ります</p>
-<br>
 <p><strong>一般的なエラー：</strong>サンプルが多すぎると、細胞層が厚すぎて焦点を合わせるのが難しくなります。スパースサンプルは通常、より明確な観測を提供します。</p>
-<br>
 <p><strong>システム観測プロセス</strong></p>
-<br>
 <p>1.低電力ミラー（100x）を使用して、最初にサンプルと一般構造を見つけます</p>
 <p>2。詳細を観察するために高電力ミラー（400x）に切り替えます</p>
-<p>3.オイルミラー（1000X）を使用して、胞子表面パターンやその他の側面などの細かい構造を観察します。</p>
-<br>
+<p class="article-text">3.オイルミラー（1000X）を使用して、胞子表面パターンやその他の側面などの細かい構造を観察します。</p>
 <p><strong>胞子の特性分析</strong></p>
-<br>
 <p><strong>シェイプ分類</strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>球面：いくつかのアマニタ種など、完全に丸い</li>
 <li>楕円形：アスペクト比は約1.5：1で、多くのトマトワームでよく見られます</li>
 <li>円筒形：長さは幅よりも大幅に大きい</li>
 <li>アーモンドの形：両端を指して、真ん中に広い</li>
 <li>スピンドル：真ん中が広く、両端が薄い</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>正確な測定技術</strong></p>
-<br>
-<p>20〜30個の成熟胞子を較正された接眼レンズ顕微鏡を使用して測定し、長さと幅を記録しました。平均と範囲を計算して、大幅に未熟または変形している胞子を除外します。</p>
-<br>
+<p class="article-text">20〜30個の成熟胞子を較正された接眼レンズ顕微鏡を使用して測定し、長さと幅を記録しました。平均と範囲を計算して、大幅に未熟または変形している胞子を除外します。</p>
 <p><strong>専門的なヒント：</strong>胞子のサイズも同じ種内で異なります。複数の胞子の測定は、より正確なデータを取得できます。</p>
-<br>
 <p><strong>表面パターンの識別</strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>滑らか：表面に突起はありません</li>
 <li>いぼのような：不規則ないぼの突起</li>
 <li>ピアス：スパイクされた突起で</li>
 <li>網状パターン：網状パターン付き</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>特別な構造観察</strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>バッドポア：胞子の壁の薄い領域、発芽時にここから壊れます</li>
 <li>油滴：特定のタイプの識別値を持つ胞子の貯蔵物質</li>
-</ul>
-<br>
+</ul></div>
 <p>##膀胱筋：無視された識別キー</p>
-<br>
 <p><strong>嚢胞性体のタイプの詳細な説明</strong></p>
-<br>
 <p>嚢胞体は、細菌のフリルの端または側面の特殊な細胞であり、非常に多様な形態を備えています。</p>
-<br>
 <p>-Pleurocystidia：さまざまな形の細菌のfoldの側面にあります</p>
-<ul>
+<div class="highlight"><ul>
 <li>キロサイトディア：細菌のフリルの端に位置し、多くの属の識別に不可欠です</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>実用的なアプリケーション：</strong> psilocybe属の識別は、カプセルの特性に非常に依存しており、正しい識別は法的および安全性の問題に関連している可能性があります。</p>
-<br>
 <p><strong>観測方法の最適化</strong></p>
-<br>
 <p>細菌の折り畳みの薄いセクションを準備するには、練習と忍耐が必要です。</p>
 <p>1。鋭い刃で細菌の小さな部分を切り開く</p>
 <p>2。スライドに置き、解剖針でそっと分離します</p>
 <p>3.適切な媒体を追加する（水またはKOH）</p>
 <p>4.カバースリップを覆い、静かに押してサンプルを薄くします。</p>
-<br>
 <p><strong>専門家のお勧め：</strong>両面ブレードを使用して、薄いスライスを準備して観測品質を向上させます。</p>
-<br>
 <p>##菌糸体構造：菌類の根</p>
-<br>
-<p><strong> myhyphaタイプの識別</strong></p>
-<br>
-<ul>
+<p><strong> myhyphaタイプの識別</strong></p><div class="highlight"><ul>
 <li>生殖菌糸体：胞子の生産を担当するロックされたジョイントを備えたダイアフラムがあります</li>
 <li>スケルトン菌糸体：厚い壁、構造的なサポートを提供します</li>
 <li>菌糸体と組み合わせる：薄い壁、接続機能を再生する</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>ロック型の組合の重要性</strong></p>
-<br>
-<p>クローン化された組み合わせは、細胞の接合部で小さなループとして現れた特定のバチジオイドの特徴的な構造です。その有無は重要な分類機能です。</p>
-<br>
+<p class="article-text">クローン化された組み合わせは、細胞の接合部で小さなループとして現れた特定のバチジオイドの特徴的な構造です。その有無は重要な分類機能です。</p>
 <p><strong>観測技術：</strong>キャップまたは茎の内側から非常に薄い組織シートを引き裂き、観察するためにそれらをKOH溶液に入れます。</p>
-<br>
 <p>##メルザー反応：化学識別方法</p>
-<br>
 <p><strong>メルツァー試薬アプリケーションガイド</strong></p>
-<br>
-<p>メルツァー試薬（ヨウ化カリウム - ヨウ素溶液）を使用して、デンプン反応を検出します。</p>
-<br>
-<ul>
+<p>メルツァー試薬（ヨウ化カリウム - ヨウ素溶液）を使用して、デンプン反応を検出します。</p><div class="highlight"><ul>
 <li>でんぷん質の反応：濃い青または紫色の黒</li>
 <li>非屈びのある反応：黄色がかったか変えないようにします</li>
 <li>でんぷん質のような反応：赤みがかった茶色を回します</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>実用アプリケーション</strong></p>
-<br>
-<p>Russula属とLactarius属の識別は、メルツァーの反応に大きく依存しています。たとえば、ラシュラ胞子属のほとんどの種は澱粉状で反応しますが、ラクタリウスの胞子は通常非固体です。</p>
-<br>
+<p class="article-text">Russula属とLactarius属の識別は、メルツァーの反応に大きく依存しています。たとえば、ラシュラ胞子属のほとんどの種は澱粉状で反応しますが、ラクタリウスの胞子は通常非固体です。</p>
 <p><strong>安全性のヒント：</strong>メルツァー試薬は有毒で、操作中に手袋を着用し、換気の良い場所で演奏します。</p>
-<br>
 <p>##キャップの表皮構造：表面の秘密</p>
-<br>
-<p><strong>表皮型分類</strong></p>
-<br>
-<ul>
+<p><strong>表皮型分類</strong></p><div class="highlight"><ul>
 <li>ワックスキルト（Ixocutis）：グルテン層カバー</li>
-</ul>
+</ul></div>
 <p>-Trichoderm：直立菌糸体で構成されています</p>
 <p>-Palisadoderm：細胞の垂直方向の配置</p>
-<ul>
+<div class="highlight"><ul>
 <li>上皮：球形または楕円形の細胞で構成されています</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>観察方法</strong></p>
-<br>
-<p>キャップの端からスライスを切り、表面層と少量の基礎組織を含めるようにします。コロイド層の場合、KOHは清掃を助けるために必要になる場合があります。</p>
-<br>
-<h2>Professional Microscopy Technology Essence</h2>
-<br>
+<p class="article-text">キャップの端からスライスを切り、表面層と少量の基礎組織を含めるようにします。コロイド層の場合、KOHは清掃を助けるために必要になる場合があります。</p>
+<div class="section-title">🛠️ Professional Microscopy Technology Essence</div>
 <p><strong>生産に最適な7段階の方法</strong></p>
-<br>
 <p>1.スライドとカバースリップをきれいにします</p>
 <p>2。適切な媒体を選択します（水、KOHなど）</p>
 <p>3.適切にサンプルして配布します</p>
@@ -365,154 +284,103 @@
 <p>5。泡を取り外します（カバースリップをタップ）</p>
 <p>6.余分な液体を吸い取ります</p>
 <p>7。エッジからのシール（長期ストレージ用）</p>
-<br>
-<p><strong>テクノロジーの最適化</strong></p>
-<br>
-<ul>
+<p><strong>テクノロジーの最適化</strong></p><div class="highlight"><ul>
 <li>コンゴレッド：菌糸体と胞子の壁の視界を高める</li>
 <li>コットンブルー：特に細かいパターンを観察するのに適しています</li>
 <li>メルザー試薬：胞子または組織で直接使用されます</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>エキスパートのヒント：</strong>染色が困難な構造については、最初にkohでそれらをきれいにしてから、染料を塗ります。</p>
-<br>
 <p><strong>正確な測定プロトコル</strong></p>
-<br>
 <p>1.各使用前にマイクロメーターを校正します</p>
 <p>2。複数の視野で胞子を測定します</p>
 <p>3。最大値、最小値、平均値を記録します</p>
 <p>4。測定条件（メディア、拡大）に注意してください</p>
-<br>
 <p>##レコードとドキュメント：科学的方法の適用</p>
-<br>
 <p><strong>システムレコードテンプレート</strong></p>
-<br>
 <p>以下を含む標準化されたレコードフォームを作成します</p>
-<ul>
+<div class="highlight"><ul>
 <li>データ収集（日付、場所、生息地）</li>
 <li>マクロ経済機能の説明</li>
 <li>詳細なマイクロ機能レコード</li>
 <li>化学反応の結果</li>
 <li>高品質の写真や図面</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>写真技術ガイド</strong></p>
-<br>
-<p>最新の顕微鏡カメラの価格は大幅に低下し、スマートフォンアダプターも良い結果を得ることができます。重要な射撃スキル：</p>
-<ul>
+<p class="article-text">最新の顕微鏡カメラの価格は大幅に低下し、スマートフォンアダプターも良い結果を得ることができます。重要な射撃スキル：</p>
+<div class="highlight"><ul>
 <li>均一な照明を使用します</li>
 <li>異なる焦点面で複数の写真を撮ります</li>
 <li>スケールを含む</li>
 <li>撮影パラメーターを記録します</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>デジタルツールアプリケーション</strong></p>
-<br>
-<p>画像分析ソフトウェアを使用して、胞子サイズを測定し、データベース管理を使用してレコードを観察しました。InaturalistやMushroom Observerなどのプラットフォームは、発見を共有し、専門家とコミュニケーションをとることができます。</p>
-<br>
+<p class="article-text">画像分析ソフトウェアを使用して、胞子サイズを測定し、データベース管理を使用してレコードを観察しました。InaturalistやMushroom Observerなどのプラットフォームは、発見を共有し、専門家とコミュニケーションをとることができます。</p>
 <p>##一般的な課題とソリューション</p>
-<br>
 <p><strong>困難に焦点を当てる</strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>理由：サンプルが厚すぎます</li>
 <li>解決策：薄いスライスを準備し、コンデンサーを調整します</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>バブルの問題</strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>予防：斜めにカバースリップをゆっくり下げます</li>
 <li>解決策：カバースリップをタップするか、針の先端を使用して泡を誘導して逃げます</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>スパース胞子</strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>戦略：さまざまな部品のサンプルを複数回採取します</li>
 <li>ヒント：直接サンプリングの代わりに胞子印刷を使用します</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>一貫性のない測定</strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>改善：測定数を増やす（30以上）</li>
 <li>標準化：測定条件と方法を固定しました</li>
-</ul>
-<br>
+</ul></div>
 <p>##高度なテクノロジーの見通し</p>
-<br>
 <p><strong>走査型電子顕微鏡（SEM）</strong></p>
-<br>
-<p>驚くべき表面の詳細を提供しますが、高価であり、専門的な準備が必要です。大学または研究機関は、有料サービスを提供する場合があります。</p>
-<br>
+<p class="article-text">驚くべき表面の詳細を提供しますが、高価であり、専門的な準備が必要です。大学または研究機関は、有料サービスを提供する場合があります。</p>
 <p><strong>蛍光顕微鏡</strong></p>
-<br>
 <p>特定の蛍光色素は、従来の顕微鏡で観察するのが困難な構造を強調することができます。</p>
-<br>
 <p><strong>位相コントラスト顕微鏡</strong></p>
-<br>
 <p>透明な構造のコントラストを改善し、染色せずにライブサンプルを観察します。</p>
-<br>
 <p>##実用アプリケーションシナリオ</p>
-<br>
 <p><strong>同様の種の正確な識別</strong></p>
-<br>
-<p>たとえば、食用のモレル（モレル）を毒性ジャイロミトラ種と区別すると、微視的特性が決定的な証拠を提供します。</p>
-<br>
+<p class="article-text">たとえば、食用のモレル（モレル）を毒性ジャイロミトラ種と区別すると、微視的特性が決定的な証拠を提供します。</p>
 <p><strong>新しい発見と説明</strong></p>
-<br>
-<p>顕微鏡的特徴は、新しい真菌種を記述する上で重要な要素です。また、愛好家は、慎重な顕微鏡的観測を通じて新しい種を発見する可能性があります。</p>
-<br>
+<p class="article-text">顕微鏡的特徴は、新しい真菌種を記述する上で重要な要素です。また、愛好家は、慎重な顕微鏡的観測を通じて新しい種を発見する可能性があります。</p>
 <p><strong>毒性評価</strong></p>
-<br>
-<p>いくつかの有毒キノコは、ガレリナの胞子特性がpsilocybeの胞子の特性とは大きく異なるなど、ユニークな微視的特性を持っています。</p>
-<br>
+<p class="article-text">いくつかの有毒キノコは、ガレリナの胞子特性がpsilocybeの胞子の特性とは大きく異なるなど、ユニークな微視的特性を持っています。</p>
 <p>##学習パスの提案</p>
-<br>
 <p><strong>段階的な進歩的な学習計画</strong></p>
-<br>
 <p>1.明らかな微視的特性を持つ一般的なタイプから始めます</p>
 <p>2。より複雑な識別ケースに徐々に挑戦します</p>
 <p>3.地元の真菌社会の顕微鏡セミナーに参加します</p>
 <p>4.経験豊富な菌学者と対話します</p>
-<br>
-<p><strong>リソース推奨</strong></p>
-<br>
-<ul>
+<p><strong>リソース推奨</strong></p><div class="highlight"><ul>
 <li>本：「マッシュルーム識別子の分野のガイド」、「真菌の顕微鏡特性」</li>
 <li>オンラインリソース：マッシュルームの専門家、Mycokey、その他のWebサイト</li>
 <li>コミュニティ：北米の真菌学会、地元の菌学的組織</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>実践は理論よりも重要です</strong></p>
-<br>
 <p>少なくとも週に数時間かけて顕微鏡を練習し、観測を継続的に記録し、既知のサンプルと比較します。</p>
-<br>
 <p>##非専門的な愛好家向けの実用的なアドバイス</p>
-<br>
 <p><strong>顕微鏡検査は必須ではなく、付加価値のあるツールです</strong></p>
-<br>
-<p>最も一般的な食用キノコは、マクロ特性を通じて安全に識別できます。顕微鏡は、エントリーレベルの要件ではなく、スキルと理解を向上させるためのツールです。</p>
-<br>
+<p class="article-text">最も一般的な食用キノコは、マクロ特性を通じて安全に識別できます。顕微鏡は、エントリーレベルの要件ではなく、スキルと理解を向上させるためのツールです。</p>
 <p><strong>初心者の選択</strong></p>
-<br>
-<p>200〜500ドルの価格の顕微鏡では、ほとんどのアマチュアのニーズに十分です。中古市場は、良質の機器を見つける可能性もあります。</p>
-<br>
+<p class="article-text">200〜500ドルの価格の顕微鏡では、ほとんどのアマチュアのニーズに十分です。中古市場は、良質の機器を見つける可能性もあります。</p>
 <p><strong>共有リソース</strong></p>
-<br>
-<p>地元の真菌社会、コミュニティカレッジ、または自然センターは、顕微鏡検査の機会を提供する場合があります。</p>
-<br>
+<p class="article-text">地元の真菌社会、コミュニティカレッジ、または自然センターは、顕微鏡検査の機会を提供する場合があります。</p>
 <p><strong>既存のリソースを使用</strong></p>
-<br>
 <p>インターネット上には、学習と比較に使用できる高品質の顕微鏡写真が既にあります。</p>
-<br>
 <p>##アクションガイド：今すぐ開始するための5つのステップ</p>
-<br>
 <p>1。<strong>基本的な機器</strong>：高品質の顕微鏡と基本アクセサリに投資する</p>
 <p>2。</p>
 <p>3。</p>
-<p>4。<strong>練習を記録</strong>：各観測を詳細に記録し、個人データベースを確立します</p>
-<p>5。<strong>コミュニティに参加</strong>：他の愛好家と交流し、ワークショップに参加して進出</p>
-<br>
-<p>顕微鏡の世界は、キノコの理解に関するユニークな視点を提供します。これらのスキルを習得することで、識別の精度を改善するだけでなく、真菌の王国の謎を深く探求することもできます。プロのスキルは継続的な練習から来ていることを忘れないでください。今日、マイクロエクスポレーションの旅を始めてください。</p>
+<p class="article-text">4。<strong>練習を記録</strong>：各観測を詳細に記録し、個人データベースを確立します</p>
+<p class="article-text">5。<strong>コミュニティに参加</strong>：他の愛好家と交流し、ワークショップに参加して進出</p>
+<p class="article-text">顕微鏡の世界は、キノコの理解に関するユニークな視点を提供します。これらのスキルを習得することで、識別の精度を改善するだけでなく、真菌の王国の謎を深く探求することもできます。プロのスキルは継続的な練習から来ていることを忘れないでください。今日、マイクロエクスポレーションの旅を始めてください。</p>
         </div>
-    </div>
+
+</div>
 </body>
 </html>

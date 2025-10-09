@@ -1,1114 +1,930 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>버섯 식별 전문가 가이드 - Mushroom Identification</title>
-    <meta name="description" content="버섯 식별 전문가 가이드">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>11 버섯 식별 전문가 가이드 - MushroomAiSnap</title>
+<link href="../../mobile-styles.css" rel="stylesheet"/>
+<link href="../../mobile-enhancement.css" rel="stylesheet"/>
+<link href="../../ecology-theme.css" rel="stylesheet"/>
+<style>
+        .hero-image img {
+            max-height: 200px;
+            width: 100%;
+            object-fit: cover;
         }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        .article-card img {
+            max-height: 120px;
+            width: 100%;
+            object-fit: cover;
+        }
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                        url('../../images/mushroom-identification_11-expert-verification-resources.webp') center/cover;
+            position: relative;
+            margin-top: 0;
+        }
+        .article-meta {
+            margin-top: 15px !important;
+        }
+    
+        /* Mushroom Identification Theme */
+        :root {
+            --primary-color: #4169E1;
+            --primary-dark: #191970;
+            --primary-light: #F0F8FF;
+            --accent-color: #6495ED;
+        }
+        
+        /* Theme Color Overrides */
+        .content {
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+            border: 2px solid var(--primary-color);
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, var(--primary-light), var(--primary-light));
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .quote-text {
+            color: var(--primary-dark);
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+        }
+        
+        .subsection-title {
+            color: var(--primary-dark);
+            font-size: 1.4em;
+            font-weight: 600;
+            margin: 25px 0 15px 0;
+            padding-left: 10px;
+            border-left: 3px solid var(--accent-color);
+        }
+        
+        .tip-box {
+            border-left: 4px solid var(--primary-color);
+            background: var(--primary-light);
+        }
+        
+        .tip-title {
+            color: var(--primary-color);
+        }
+        
+        .highlight {
+            border-left: 4px solid var(--accent-color);
+            background: linear-gradient(135deg, #f1f8e9, var(--primary-light));
+        }
+        
+        .warning {
+            border-left: 4px solid #f44336;
+        }
+        
+        .equipment-item {
+            border: 1px solid var(--accent-color);
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+        }
+        
+        .equipment-item h4 {
+            color: var(--primary-color);
+        }
+        
+        .category {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .main-text {
+            font-size: 1.1em;
             line-height: 1.8;
             color: #333;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-
-        .article-title {
-            color: #45B7D1;
-            font-size: 2.5em;
-            margin-bottom: 30px;
-            margin-top: 0;
-            line-height: 1.3;
-            padding-top: 0;
-        }
-
-        .featured-image {
-            width: 100%;
-            height: auto;
-            aspect-ratio: 4 / 3;
-            object-fit: cover;
-            display: block;
-        }
-
-        .content {
-            padding: 50px;
-        }
-
-        .content h2 {
-            color: #45B7D1;
-            font-size: 2em;
-            margin-top: 40px;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid #45B7D1;
-        }
-
-        .content h3 {
-            color: #555;
-            font-size: 1.6em;
-            margin-top: 30px;
-            margin-bottom: 15px;
-        }
-
-        .content h4 {
-            color: #666;
-            font-size: 1.3em;
-            margin-top: 25px;
-            margin-bottom: 12px;
-        }
-
-        .content p {
-            margin-bottom: 20px;
-            font-size: 1.1em;
-            color: #444;
-        }
-
-        .content ul {
             margin: 20px 0;
-            padding-left: 30px;
-        }
-
-        .content li {
-            margin-bottom: 12px;
-            font-size: 1.05em;
-            color: #555;
-        }
-
-        .content strong {
-            color: #222;
-            font-weight: 600;
-        }
-
-        .back-link {
-            display: inline-block;
-            padding: 12px 25px;
-            background: linear-gradient(135deg, #45B7D1, #8B4513);
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            margin-bottom: 20px;
-            transition: transform 0.3s ease;
-            font-weight: 600;
-        }
-
-        .back-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .navigation {
-            padding: 30px 50px;
-            background: #f8f9fa;
-            border-top: 1px solid #e9ecef;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-btn {
-            padding: 10px 20px;
-            background: #45B7D1;
-            color: white;
-            text-decoration: none;
+            padding: 15px;
+            background: linear-gradient(135deg, #ffffff, #f9f9f9);
             border-radius: 8px;
-            transition: all 0.3s ease;
+            border-left: 3px solid var(--accent-color);
         }
-
-        .nav-btn:hover {
-            transform: translateX(5px);
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+        
+        .emoji {
+            font-size: 1.5em;
+            margin-left: 10px;
         }
-
-        .nav-btn.prev:hover {
-            transform: translateX(-5px);
+        
+        .read-time, .difficulty {
+            display: inline-block;
+            padding: 5px 15px;
+            margin: 5px 5px 5px 0;
+            border-radius: 20px;
+            font-size: 0.9em;
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            color: #1976d2;
+            font-weight: 500;
         }
-
-        @media (max-width: 768px) {
-            .content {
-                padding: 30px 25px;
-            }
-
-            .article-title {
-                font-size: 1.8em;
-            }
-
-            .featured-image {
-                height: 250px;
-            }
-
-            .navigation {
-                flex-direction: column;
-                gap: 15px;
-            }
+        
+        .difficulty {
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            color: #e65100;
+        }
+        
+        .article-text {
+            line-height: 1.8;
+            color: #444;
+            margin: 15px 0;
+            font-size: 1.05em;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <img src="../../images/mushroom-identification_11-expert-verification-resources.webp" alt="버섯 식별 전문가 가이드" class="featured-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22900%22 height=%22400%22%3E%3Crect fill=%22%23D2691E%22 width=%22900%22 height=%22400%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22white%22 font-size=%2260%22%3E🍄%3C/text%3E%3C/svg%3E'">
+<div class="hero-image"></div>
+<div class="content">
+    <h1 class="title">11 버섯 식별 전문가 가이드</h1>
+    <div class="quote-box">
+        <div class="quote-text">Professional Mycology Guide</div>
+    </div>
+    
+<div class="article-meta">
+<span class="category">🔍 Mushroom Identification</span>
+<span class="read-time">📖 25 minute read</span>
+<span class="difficulty">🔴 Advanced</span>
+</div>
 
-        <div class="content">
-            <h1 class="article-title">버섯 식별 전문가 가이드</h1>
-            <br>
-<h2>소개 : 전문가 검증이 중요한 이유</h2>
-<br>
-<p>"혼자 공부하는 것은 위험하며, 당신과 함께 걷는 것이 안전합니다." 이 고대 속담은 버섯 식별 분야에서 특히 적합합니다.20 년의 경험을 가진 Mycologist 및 Field Collection 전문가로서, 나는 당신에게 명확하게 말할 수 있습니다. 당신이 모든 이론적 지식을 마스터하고, 많은 가이드 책을 읽고, 완벽한 사진을 찍었더라도 여전히 어려운 범주를 만날 것입니다.현재 전문가의 검증은 "Dispensable"에서 "Life and Death"로 변경되었습니다.</p>
-<br>
-<p>더 중요한 것은 경험이 풍부한 Mycologists 및 Fungic Collection 커뮤니티와 연결하는 것이 학습을 가속화하고 위험한 실수를 피하며 취미를 진정으로 즐기는 가장 좋은 방법입니다.이 안내서는 전문적인 경험과 실제 사례를 기반으로 신뢰할 수있는 전문가 및 검증 채널 네트워크를 구축하는 데 도움이됩니다.</p>
-<br>
-<h2>전문가 검증이 필요한 이유 : 보안 고려 사항을 넘어서</h2>
-<br>
-<h3>안전 먼저 : 1% 불확실성이 치명적일 수 있습니다</h3>
-<br>
+
+            <div class="section-title">🛠️ 소개 : 전문가 검증이 중요한 이유</div>
+<div class="main-text">"혼자 공부하는 것은 위험하며, 당신과 함께 걷는 것이 안전합니다." 이 고대 속담은 버섯 식별 분야에서 특히 적합합니다.20 년의 경험을 가진 Mycologist 및 Field Collection 전문가로서, 나는 당신에게 명확하게 말할 수 있습니다. 당신이 모든 이론적 지식을 마스터하고, 많은 가이드 책을 읽고, 완벽한 사진을 찍었더라도 여전히 어려운 범주를 만날 것입니다.현재 전문가의 검증은 "Dispensable"에서 "Life and Death"로 변경되었습니다.<span class="emoji">🍄</span></div>
+<p class="article-text">더 중요한 것은 경험이 풍부한 Mycologists 및 Fungic Collection 커뮤니티와 연결하는 것이 학습을 가속화하고 위험한 실수를 피하며 취미를 진정으로 즐기는 가장 좋은 방법입니다.이 안내서는 전문적인 경험과 실제 사례를 기반으로 신뢰할 수있는 전문가 및 검증 채널 네트워크를 구축하는 데 도움이됩니다.</p>
+<div class="section-title">🛠️ 전문가 검증이 필요한 이유 : 보안 고려 사항을 넘어서</div>
+<div class="subsection-title">⚠️ 안전 먼저 : 1% 불확실성이 치명적일 수 있습니다</div>
 <p><strong> 실제 사례 </strong> :</p>
-<p>2018 년에 나는 콜로라도에서 숙련 된 수집가를 만났는데,이 수집가는 "Edible Chanterelles"라는 것을 자신있게 수집했습니다.내 검사 후, 그것은 실제로 가짜 Chanterelles (hygrophoropsis aurantiaca)였습니다.치명적이지는 않지만 심각한 위장 불편 함을 유발할 수 있습니다.이러한 종류의 오류는 경험이 풍부한 수집가들 사이에서 자주 발생합니다.</p>
-<br>
+<p class="article-text">2018 년에 나는 콜로라도에서 숙련 된 수집가를 만났는데,이 수집가는 "Edible Chanterelles"라는 것을 자신있게 수집했습니다.내 검사 후, 그것은 실제로 가짜 Chanterelles (hygrophoropsis aurantiaca)였습니다.치명적이지는 않지만 심각한 위장 불편 함을 유발할 수 있습니다.이러한 종류의 오류는 경험이 풍부한 수집가들 사이에서 자주 발생합니다.</p>
 <p><strong> 전문가 검증의 특별한 가치 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>귀하의 식별, 특히 식용 유형의 판단 확인</li>
 <li>간과 할 수있는 미세한 특징을 지적하십시오</li>
 <li>대상 종과 유사한 독성 "쌍둥이"경고</li>
 <li>지역 지식을 제공합니다 (동일한 종은 다른 지역에서 변동성이있을 수 있음)</li>
-</ul>
-<br>
-<h3>학습 가속 : 이론에서 실천으로의 도약</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 학습 가속 : 이론에서 실천으로의 도약</div>
 <p><strong> 개인 경험 </strong> :</p>
-<p>내 경력에서 가장 큰 획기적인 획기적인 획기적인 것은 첫 번째 필드 컬렉션 활동을 위해 북미 곰팡이 협회에 합류했을 때 발생했습니다.3 시간의 현장 지침을 통해 배운 지식은 6 개월의 자아 연구에서 얻은 이익과 동일합니다.</p>
-<br>
+<p class="article-text">내 경력에서 가장 큰 획기적인 획기적인 획기적인 것은 첫 번째 필드 컬렉션 활동을 위해 북미 곰팡이 협회에 합류했을 때 발생했습니다.3 시간의 현장 지침을 통해 배운 지식은 6 개월의 자아 연구에서 얻은 이익과 동일합니다.</p>
 <p><strong> 전문가지도의 장점 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>실시간으로 오해를 정확하게합니다</li>
 <li>가이드 북에 완전히 설명 할 수없는 "미묘한 차이"를 배우십시오.</li>
 <li>토착 종의 특별한 표현과 계절 변화 이해</li>
 <li>일반적이지만 위험한 식별 오류를 피하십시오</li>
-</ul>
-<br>
-<h3>지속적인 진행 상황 : 전문가조차도 전문가가 필요합니다</h3>
-<br>
+</ul></div>
+<div class="subsection-title">🛠️ 지속적인 진행 상황 : 전문가조차도 전문가가 필요합니다</div>
 <p><strong> 전문적인 통찰력 </strong> :</p>
-<p>경력 동안 나는 여전히 매년 최소 10-15 개의 어려운 표본에 대해 동료들과 상담했습니다.Mycoscience는 진화하는 분야이며, 새로운 연구는 종종 종 경계에 대한 우리의 이해를 변화시킵니다.</p>
-<br>
+<p class="article-text">경력 동안 나는 여전히 매년 최소 10-15 개의 어려운 표본에 대해 동료들과 상담했습니다.Mycoscience는 진화하는 분야이며, 새로운 연구는 종종 종 경계에 대한 우리의 이해를 변화시킵니다.</p>
 <p><strong> 지속적인 학습의 가치 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>어려운 표본에 대한 전문가의 두 번째 의견을 얻으십시오.</li>
 <li>최신 식별 기술 및 연구 방법을 배우십시오</li>
 <li>자신의 식별 가정에 도전하고 확인하십시오</li>
 <li>희귀하거나 특이한 종의 권위있는 확인</li>
-</ul>
-<br>
-<h3>커뮤니티와 우정 : 지식의 간단한 습득을 넘어서</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 커뮤니티와 우정 : 지식의 간단한 습득을 넘어서</div>
 <p><strong> 실제 경험 </strong> :</p>
-<p>Mycology Community를 통해 저는 알래스카에서 뉴질랜드까지 버섯 서식지를 탐험하기 위해 20 년 동안 지속 된 우정을 쌓았습니다.이런 종류의 커뮤니티 연결은 지식을 풍부하게 할뿐만 아니라 삶을 풍요롭게합니다.</p>
-<br>
+<p class="article-text">Mycology Community를 통해 저는 알래스카에서 뉴질랜드까지 버섯 서식지를 탐험하기 위해 20 년 동안 지속 된 우정을 쌓았습니다.이런 종류의 커뮤니티 연결은 지식을 풍부하게 할뿐만 아니라 삶을 풍요롭게합니다.</p>
 <p><strong> 커뮤니티 가치 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>같은 생각을 가진 사람들과 열정과 지식을 공유하십시오</li>
 <li>지속적인 전문적이고 개인적인 관계를 구축하십시오</li>
 <li>집단 박테리아 수집 활동 및 과학 연구에 참여</li>
 <li>학습과 성장의 일반적인 여정</li>
-</ul>
-<br>
-<h2>지역 곰팡이 학회 : 가장 중요한 전문가 자원</h2>
-<br>
-<h3>지역 곰팡이에 가입하는 것이 대체 할 수없는 이유는 무엇입니까?</h3>
-<br>
+</ul></div>
+<div class="section-title">🛠️ 지역 곰팡이 학회 : 가장 중요한 전문가 자원</div>
+<div class="subsection-title">📌 지역 곰팡이에 가입하는 것이 대체 할 수없는 이유는 무엇입니까?</div>
 <p><strong> 전문가 권장 사항 </strong> :</p>
-<p>버섯 식별 기술을 향상시키기 위해 한 가지만 할 수 있다면 지역 곰팡이 사회에 가입하는 것입니다.이것은 버섯 식별을 배우는 가장 효과적이고 안전한 방법입니다.</p>
-<br>
+<p class="article-text">버섯 식별 기술을 향상시키기 위해 한 가지만 할 수 있다면 지역 곰팡이 사회에 가입하는 것입니다.이것은 버섯 식별을 배우는 가장 효과적이고 안전한 방법입니다.</p>
 <p><strong> 특정 장점 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>전문가가 이끄는 정기적 인 현장 곰팡이 컬렉션 활동 (Forays)</li>
 <li>즉시 현장 평가 및 교육</li>
 <li>지역 종과 생태계에 대한 심층적 인 이해</li>
 <li>시편 디스플레이, 식별 워크샵 및 특별 강의</li>
 <li>친절하고지지적인 학습 커뮤니티</li>
-</ul>
-<br>
-<h3>지역 곰팡이 사회를 찾고 선택하는 방법</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 지역 곰팡이 사회를 찾고 선택하는 방법</div>
 <p><strong> 전문 검색 전략 </strong> :</p>
-<br>
 <p><strong> 온라인 검색 방법 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>Google Advanced Search : "도시/지역 이름 + 곰팡이 학회"또는 "Mycological Society"</li>
 <li>북미 곰팡이 협회 회원 협회 (NAMA) 공식 웹 사이트를 방문</li>
 <li>National Mycology Organization 웹 사이트를보십시오</li>
 <li>지역 대학의 식물학 또는 생물학과에 문의</li>
 <li>자연사 박물관의 관련 프로젝트</li>
 <li>식물원 및 수목원을위한 이벤트 준비를 탐색하십시오.</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 전통적인 문의 채널 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>지역 자연 센터 및 환경 보호 기관</li>
 <li>식물학 및 원예 클럽</li>
 <li>조류 관찰 및 자연 관찰 조직</li>
 <li>커뮤니티 센터 및 교육 기관을위한 게시판</li>
 <li>야외 장비 상점 및 전문 서점</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 특별한 상황의 치료 </strong> :</p>
 <p>해당 지역에 곰팡이 사회가없는 경우 :</p>
-<ul>
+<div class="highlight"><ul>
 <li>가장 가까운 학습을 찾으십시오 (보통 정기적으로 방문 할 가치가 있음)</li>
 <li>온라인 mycologic 커뮤니티에 적극적으로 참여하십시오</li>
 <li>지역 그룹 시작 고려 (소셜 미디어를 통해 친구 찾기)</li>
-</ul>
-<br>
-<h3>곰팡이 사회 멤버십을 최대한 활용하십시오</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 곰팡이 사회 멤버십을 최대한 활용하십시오</div>
 <p><strong> 초기 참여 가이드 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>사전 지식없이 초보자를 따뜻하게 환영하는 법을 가장 많이 배웁니다.</li>
 <li>연간 수수료는 일반적으로 합리적입니다 ($ 20- $ 60)</li>
 <li>처음으로 참여할 때 관찰자가 될 수 있으며 컬렉션에 점차 참여할 수 있습니다.</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 진보 활동의 심층 분석 </strong> :</p>
-<br>
 <p><strong> 일반적인 활동 과정 </strong> :</p>
 <p>1. <strong> 안전 브리핑 및 소개 </strong> (15-20 분)</p>
-<ul>
+<div class="highlight"><ul>
 <li>윤리와 규범을 수집하십시오</li>
 <li>안전 예방 조치</li>
 <li>일 목표와 주요 종</li>
-</ul>
-<br>
+</ul></div>
 <p>2. <strong> 그룹 컬렉션 </strong> (1-2 시간)</p>
-<ul>
+<div class="highlight"><ul>
 <li>전문가들은 팀, 보통 5-8 명을 이끌고 있습니다</li>
-</ul>
+</ul></div>
 <p>-실시간 현장 교육 및지도</p>
-<ul>
+<div class="highlight"><ul>
 <li>올바른 컬렉션 및 녹음 기술을 배우십시오</li>
-</ul>
-<br>
+</ul></div>
 <p>3. <strong> 컬렉션 및 디스플레이 </strong> (1-1.5 시간)</p>
-<ul>
+<div class="highlight"><ul>
 <li>각 그룹은 수집 결과를 표시합니다</li>
 <li>전문가는 의견과 평가를 하나씩 댓글을 달았습니다</li>
 <li>주요 기능을 식별하는 법을 배우십시오</li>
-</ul>
-<br>
+</ul></div>
 <p>4. <strong> 심층적 인 설명 </strong> (30-45 분)</p>
-<ul>
+<div class="highlight"><ul>
 <li>주요 종에 대한 자세한 설명</li>
 <li>비슷한 유형의 비교</li>
 <li>생태학 및 배포 토론</li>
-</ul>
-<br>
+</ul></div>
 <p>5. <strong> 사회 및 지식 공유 </strong> (자유 시간)</p>
-<ul>
+<div class="highlight"><ul>
 <li>경험 교환</li>
 <li>연락처 네트워크를 만듭니다</li>
 <li>미래 활동을 계획하십시오</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 평가 회의를위한 전문가 참여 기술 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>어려운 표본을 미리 준비하십시오</li>
 <li>전문 검색 양식 및 식별 키 사용 배울</li>
 <li>현미경 워크샵 및 마스터 현미경 식별 기술에 참여</li>
 <li>전문가의 식별 과정과 추론을 기록하십시오</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 교육 활동에 대한 시스템 참여 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>정기적 인 특별 강의에 참여하십시오 (보통 월 또는 분기 별)</li>
 <li>초보자 인증 과정을 완료하십시오</li>
 <li>고급 기술 훈련 워크샵에 참여하십시오</li>
 <li>요리 및 안전한 취급 데모 학습</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 자원 봉사 기여 및 리더십 개발 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>경험이 축적됨에 따라 점차 자원 봉사 역할을 가정합니다</li>
 <li>활동 및 현장 컬렉션을 지원합니다</li>
 <li>초보자 팀이 지식을 통합하도록 이끌어냅니다</li>
 <li>회의에서 발견과 경험을 공유하십시오</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 곰팡이 협회의 장기 가치 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>저항 할 수없는 실제 학습 경험</li>
 <li>중요한 보안 네트워크 및 검증 채널</li>
 <li>지속적인 전문적인 지원과 격려</li>
 <li>박테리아 수집 파트너 및 멘토와 신뢰할 수있는 관계</li>
-</ul>
-<br>
-<h2>대학 및 연구 기관 : 학업 수준의 전문 자원</h2>
-<br>
-<h3>대학 Mycologists를 찾아서 연락하십시오</h3>
-<br>
+</ul></div>
+<div class="section-title">🛠️ 대학 및 연구 기관 : 학업 수준의 전문 자원</div>
+<div class="subsection-title">📌 대학 Mycologists를 찾아서 연락하십시오</div>
 <p><strong> 타겟팅 전략 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>생물학과의 Mycolologic 연구원에게 연락하는 데 중점을 둡니다.</li>
 <li>식물학과의 시스템 mycology 전문가 쿼리</li>
 <li>임업부에서 산림 곰팡이의 연구 방향 탐색</li>
 <li>농업 대학의 공장 병리 전문가에게 연락</li>
 <li>환경 과학과의 생태계 연구팀</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 전문 연락 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>부서 웹 사이트를 신중하게 공부하고 관련 연구 방향을 식별하십시오.</li>
 <li>예의 바르고 전문 이메일 상담을 보내십시오</li>
 <li>관심사와 구체적인 문제를 명확하게 설명하십시오</li>
 <li>시간과 전문적인 경계를 완전히 존중합니다</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 전문적인 도움을받을 수 있습니다 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>어려운 표본의 권위있는 식별</li>
 <li>현미경 기술 및 생산 방법 안내</li>
 <li>DNA 식별 (연구 관련 프로젝트 인 경우)</li>
 <li>전문 문학 및 자원 권장 사항</li>
 <li>학업 강의 및 세미나 참여 기회</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 평생 교육 기회 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>일부 대학은 Mycologics의 공개 과정을 제공합니다</li>
 <li>평생 교육 또는 성인 교육 프로그램</li>
 <li>현장 생물학 및 생태 과정</li>
 <li>가능한 대학원 프로그램 기회</li>
-</ul>
-<br>
-<h3>월저의 전문 사용</h3>
-<br>
+</ul></div>
+<div class="subsection-title">🛠️ 월저의 전문 사용</div>
 <p><strong> 표본 박물관의 가치를 깊이 이해하십시오 </strong> :</p>
 <p>표본 박물관은 표본 저장 시설 일뿐 만 아니라 다음과 같습니다.</p>
-<ul>
+<div class="highlight"><ul>
 <li>과학 참조 수집 및 비교 벤치 마크</li>
 <li>분류 연구의 인프라</li>
 <li>역사적 분포 기록의 중요한 출처</li>
 <li>기술 훈련을위한 전문 장소</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 공공 사용 안내서 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>대부분의 표본 홀은 약속을 방문 할 수 있습니다</li>
 <li>표본을 권위있는 컬렉션과 비교합니다</li>
 <li>전문 평가 확인을 받으십시오</li>
 <li>표준 표본 제작 기술을 배우십시오</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 시편 기증의 전문가 가치 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>희귀 또는 특수 표본에 대한 과학적 기여</li>
 <li>지역 곰팡이 다양성 기록에 기여합니다</li>
 <li>영구 과학 기록을 수립하십시오</li>
 <li>기증자의 이름을 따서 명명 된 가능한 표본 레코드</li>
-</ul>
-<br>
+</ul></div>
 <p>자연사 박물관의 ### 자원 활용</p>
-<br>
 <p><strong> 공공 교육 자원 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>정기적 인 균학 테마 전시회</li>
 <li>교육 및 대중 과학 활동</li>
 <li>공공 강의 및 전문가 회의</li>
 <li>가족 및 어린이 교육 프로그램</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 전문 연락처 채널 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>교육 부서 및 공개 프로그램 코디네이터</li>
 <li>연구 부서의 Mycologics 전문가</li>
 <li>자원 봉사 및 시민 과학 프로젝트</li>
 <li>특별 전시회 및 이벤트 알림 목록</li>
-</ul>
-<br>
-<h3>식물원 및 자연 센터의 전문 프로젝트</h3>
-<br>
+</ul></div>
+<div class="subsection-title">🛠️ 식물원 및 자연 센터의 전문 프로젝트</div>
 <p><strong> mycology 프로젝트의 개요 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>계절 곰팡이 수집 활동</li>
 <li>기술 식별 워크숍</li>
 <li>곰팡이 생태 전시회</li>
 <li>전문 라이브러리 및 참조 자료</li>
-</ul>
-<br>
-<h2>온라인 리소스 및 커뮤니티 : 디지털 시대의 전문 네트워크</h2>
-<br>
-<h3>전문 평가 플랫폼을위한 심층적 인 사용 안내서</h3>
-<br>
+</ul></div>
+<div class="section-title">🛠️ 온라인 리소스 및 커뮤니티 : 디지털 시대의 전문 네트워크</div>
+<div class="subsection-title">🛠️ 전문 평가 플랫폼을위한 심층적 인 사용 안내서</div>
 <p><strong> Inaturalist Professional 사용법 팁 </strong> :</p>
-<br>
 <p><strong> 플랫폼 우위 분석 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>세계 최대의 시민 과학 플랫폼</li>
-</ul>
+</ul></div>
 <p>-AI 지원 식별은 전문가 검증과 결합되었습니다</p>
-<ul>
+<div class="highlight"><ul>
 <li>적극적인 전문 커뮤니티 참여</li>
 <li>완전한 관찰 및 기록 시스템</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 전문 사용 전략 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>모든 주요 각도의 명확한 사진 (캡, 주름, 줄기,베이스)을 업로드하십시오.</li>
 <li>자세한 생태 학적 및 서식지 정보를 제공하십시오</li>
 <li>전문 사용자의 검증을 참을성있게 기다리십시오</li>
 <li>AI 권장 사항의 한계를 이해하십시오</li>
 <li>커뮤니티 토론과 학습에 적극적으로 참여합니다</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Mushroomobserver 전문가 가치 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>전용 곰팡이 녹음 플랫폼</li>
-</ul>
+</ul></div>
 <p>-보다 자세한 기능 데이터 필드</p>
-<ul>
+<div class="highlight"><ul>
 <li>고품질 전문 사용자 커뮤니티</li>
 <li>완전한 연구 수준 기록 보존</li>
-</ul>
-<br>
-<h3>소셜 미디어 그룹의 전문 사용</h3>
-<br>
+</ul></div>
+<div class="subsection-title">🛠️ 소셜 미디어 그룹의 전문 사용</div>
 <p><strong> Facebook 전문 그룹 평가 </strong> :</p>
-<br>
 <p><strong> 그룹 유형 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>글로벌 식별 그룹 (예 : "버섯 식별")</li>
 <li>지역 전문가 그룹</li>
 <li>특정 관심 그룹 (식용 곰팡이, 의약 곰팡이, 사진)</li>
 <li>전문 조일기 교환 그룹</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 사용의 장단점 </strong> :</p>
-<br>
 <p><strong>이점</strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>빠른 응답과 광범위한 참여</li>
 <li>많은 활성 사용자 및 공유 경험</li>
 <li>멀티미디어 컨텐츠를 쉽게 공유 할 수 있습니다</li>
 <li>즉각적인 의사 소통 및 토론</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>결점</strong>:</p>
 <p>-식별의 품질</p>
-<ul>
+<div class="highlight"><ul>
 <li>모든 권장 사항은 비판적으로 평가되어야합니다</li>
 <li>과학적 권위의 부족</li>
 <li>오해의 소지가있는 정보가있을 수 있습니다</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 전문적인 사용 제안 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>교차 검증을 위해 여러 그룹에 가입하십시오</li>
 <li>잘 관리 된 전문 그룹을 식별하십시오</li>
 <li>완전한 연구 수준 정보를 제공합니다</li>
 <li>한 번의 답변을 맹목적으로 믿지 마십시오</li>
 <li>최종 식별보다는 연구 토론에 사용됩니다</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Reddit Professional Community </strong> :</p>
 <p>-R/Mycology : 포괄적 인 Mycology 커뮤니티</p>
 <p>-R/Mushroomid : 전문 평가 섹션</p>
-<ul>
+<div class="highlight"><ul>
 <li>지역 곰팡이 학생 섹션</li>
 <li>전문적인 토론 및 자원 공유</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Discord Professional Server </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>실시간 전문 교환 및 평가</li>
 <li>커뮤니티 상호 작용 및 지식 공유</li>
 <li>전문 리소스 라이브러리 및 문헌 공유</li>
 <li>온라인 강의 및 세미나</li>
-</ul>
-<br>
-<h3>전통적인 온라인 포럼의 전문가 가치</h3>
-<br>
+</ul></div>
+<div class="subsection-title">🛠️ 전통적인 온라인 포럼의 전문가 가치</div>
 <p><strong> 메인 전문 포럼 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>SHROOMERY (포괄적 인 콘텐츠이지만 관련 규정에주의를 기울여야합니다)</li>
-</ul>
+</ul></div>
 <p>-Mushroomhunting.com</p>
-<ul>
+<div class="highlight"><ul>
 <li>지역 전문 미화 포럼</li>
 <li>전문성 근무 학자의 개인 블로그 및 웹 사이트</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 전통적인 포럼 장점 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>심층적 인 기술 토론</li>
 <li>검색 가능한 역사적 문제 아카이브</li>
 <li>전문 지식 기반 축적</li>
 <li>전문 사용자의 장기 참여</li>
-</ul>
-<br>
-<h2>참조 서적 및 가이드 : 전문 지식의 기초 구축</h2>
-<br>
-<h3>지역 전문 가이드의 선택 및 사용</h3>
-<br>
+</ul></div>
+<div class="section-title">🛠️ 참조 서적 및 가이드 : 전문 지식의 기초 구축</div>
+<div class="subsection-title">🛠️ 지역 전문 가이드의 선택 및 사용</div>
 <p><strong> 전문 투자 조언 </strong> :</p>
 <p>해당 지역에서 전문 버섯을 구매하는 가이드가 가장 중요한 투자입니다.</p>
-<br>
 <p><strong> 전문 가이드 기능 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>현지 종의 전체 적용 범위</li>
 <li>상세한 형태 학적 설명 및 고품질 사진</li>
 <li>전문 검색 테이블 및 식별 키</li>
 <li>생태 및 분포 정보를 완료합니다</li>
 <li>계절적 외관 패턴과 현상</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 북미의 전문가 추천 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>태평양 북서부 : "태평양 북서부의 버섯"(Trudell & Ammirati)</li>
 <li>북아메리카 북아메리카 : "북아메리카 북아메리카의 버섯"(Bessette et al.)</li>
 <li>특정 지역을 기반으로 가장 권위있는 지역 가이드를 선택하십시오.</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 국제 전문 가이드 선택 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>유럽 : 국가 선택에 대한 권위있는 가이드</li>
 <li>아시아 : 지역별 전문가 안내서</li>
 <li>기타 지역 : 가장 권위있는 지역 간행물</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 지역 가이드 라인의 전문적 중요성 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>글로벌 가이드 라인은 너무 일반적이며 국소 돌연변이에 대한 정보가 부족합니다.</li>
 <li>지역 종의 특정 징후</li>
 <li>저자는 일반적으로 풍토한 돌연변이와 발병 종을 잘 알고 있습니다.</li>
 <li>실제 실외 사용에 더 적합합니다</li>
-</ul>
-<br>
-<h3>포괄적 인 Mycology 교과서의 전문가 가치</h3>
-<br>
+</ul></div>
+<div class="subsection-title">🛠️ 포괄적 인 Mycology 교과서의 전문가 가치</div>
 <p><strong> 고급 전문 학습 리소스 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>David Arora의 "Mushrooms Demystified": 클래식 전문가를위한 가이드</li>
 <li>"곰팡이 왕국": 포괄적 인 대중 과학 및 전문 참조</li>
 <li>전문 곰팡이 생물학 및 분류 교과서</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 전문 기술 리소스 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>현미경 식별에 대한 전문 가이드</li>
 <li>특정 속이나 가족을위한 논문</li>
 <li>학술 저널 및 연구 결과</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 전문 라이브러리 구축 전략 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>기초를 구축하기위한 핵심 지역 가이드부터 시작하십시오.</li>
 <li>점차적으로 특별한 주제와 전문 서적을 추가하십시오</li>
-</ul>
+</ul></div>
 <p>-중고 책 시장 및 전문 서점을 사용하십시오</p>
 <p>-도서관 차용 및 평가 후 책</p>
 <p><strong> 다중 소스 검증의 전문 실습 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>다른 저자는 다른 관점과 방법을 제공합니다</li>
 <li>사진은 종의 자연스런 범위를 보여줍니다.</li>
 <li>교차 검증은 인증 정확도를 보장합니다</li>
 <li>개별 식별 표준 및 절차를 설정합니다</li>
-</ul>
-<br>
-<h3>전문 검색 테이블 및 도구 사용</h3>
-<br>
+</ul></div>
+<div class="subsection-title">🛠️ 전문 검색 테이블 및 도구 사용</div>
 <p><strong> 종이 검색 양식의 전문적인 사용 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>체계적인 식별 사고를 배우십시오</li>
-</ul>
+</ul></div>
 <p>-주요 기능을 기반으로 한 단계별 제외</p>
-<ul>
+<div class="highlight"><ul>
 <li>분류의 논리적 구조를 이해하십시오</li>
 <li>야생의 네트워크없는 환경을위한 안정적인 도구</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 온라인 검색 테이블의 전문적인 이점 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>대화식 및 사용자 친화적</li>
 <li>사진 보조 및 즉각적인 피드백</li>
 <li>지역별 디지털 도구</li>
 <li>지속적인 업데이트 및 개선</li>
-</ul>
-<br>
-<h2>전문 문헌 및 데이터베이스 : 고급 식별 리소스</h2>
-<br>
-<h3>학술 저널의 전문적인 사용</h3>
-<br>
+</ul></div>
+<div class="section-title">🛠️ 전문 문헌 및 데이터베이스 : 고급 식별 리소스</div>
+<div class="subsection-title">🛠️ 학술 저널의 전문적인 사용</div>
 <p><strong> 핵심 전문 저널 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>mycologia (미국 곰팡이 협회의 공식 저널)</li>
 <li>Mycological Research (현재 곰팡이 생물학)</li>
 <li>지역 특수 살균학 저널</li>
 <li>분류 및 시스템 저널</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 전문 액세스 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>대학 도서관 및 전문 기관</li>
 <li>온라인 전문 데이터베이스 (기관 구독이 필요할 수 있음)</li>
-</ul>
+</ul></div>
 <p>-Google 학술 검색 및 연구 게이트</p>
-<ul>
+<div class="highlight"><ul>
 <li>전문 조직의 회원 특권</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 전문 독서 가치 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>최신 분류 학적 변경 및 개정</li>
 <li>새로운 종 설명 및 특성</li>
 <li>분포 기록 및 생태 연구</li>
 <li>고급 식별 기술 및 방법</li>
-</ul>
-<br>
-<h3>전문 분류 데이터베이스</h3>
-<br>
+</ul></div>
+<div class="subsection-title">🛠️ 전문 분류 데이터베이스</div>
 <p><strong> 인덱스 곰팡이 전문 사용 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>곰팡이 이름의 권위있는 데이터베이스</li>
 <li>현재 허용되는 과학 이름을 확인하십시오</li>
 <li>동의어 및 역사적 변화 추적</li>
 <li>분류 연구에 대한 벤치 마크 참조</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> MyCobank 전문가 가치 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>포괄적 인 곰팡이 분류 데이터베이스</li>
 <li>새로운 종이 공식적으로 등록되었습니다</li>
 <li>분류 정보를 완료하십시오</li>
 <li>연구 수준 데이터 지원</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> GenBank 분자 식별 </strong> :</p>
 <p>-DNA 서열 전문 데이터베이스</p>
-<ul>
+<div class="highlight"><ul>
 <li>분자 식별 참조 표준</li>
 <li>계통 발생 학적 연구 도구</li>
 <li>어려운 유형의 식별 및 해결</li>
-</ul>
-<br>
-<h2>전문 평가 서비스 : 특별한 상황을위한 전문 솔루션</h2>
-<br>
-<h3>DNA 식별 서비스의 전문 응용</h3>
-<br>
+</ul></div>
+<div class="section-title">🛠️ 전문 평가 서비스 : 특별한 상황을위한 전문 솔루션</div>
+<div class="subsection-title">🧬 DNA 식별 서비스의 전문 응용</div>
 <p><strong> 전문 시나리오에 적용 가능 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>매우 어렵거나 중요한 시편</li>
 <li>법의학 및 중독 사례 분석</li>
 <li>과학적 연구 및 종 설명</li>
 <li>상업 및 법적 인증 요구 사항</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 전문 서비스 제공 업체 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>대학 및 연구 기관의 실험실</li>
 <li>상업용 DNA 시퀀싱을위한 전문 서비스</li>
 <li>전문성 컨설팅 기관</li>
 <li>정부 인증 연구소</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 비용-편익 분석 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>보통 더 높은 수수료 ($ 200- $ 2000+)</li>
 <li>필요한 경우에만 사용하십시오</li>
 <li>과학적 가치와 중요성을 고려하십시오</li>
 <li>전문 연구 및 상업용 사용을위한 합리적 투자</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 전문 프로세스 개요 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>전문적인 표본 수집 및 보존</li>
-</ul>
+</ul></div>
 <p>-DNA 추출 및 서열 분석</p>
-<ul>
+<div class="highlight"><ul>
 <li>데이터베이스 비교 및 ​​종 식별</li>
 <li>전문 보고서 및 인증 문서</li>
-</ul>
-<br>
-<h3>전문성 뮤직 컨설팅 서비스</h3>
-<br>
+</ul></div>
+<div class="subsection-title">🛠️ 전문성 뮤직 컨설팅 서비스</div>
 <p><strong> 전문 상담 채널 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>지역 전문가의 개인 전문 상담</li>
 <li>온라인 전문 평가 서비스</li>
 <li>대학 협력 및 연구 상담</li>
 <li>전문 조직 추천 서비스</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 전문적인 사용 시간 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>법적 및 의료 응급 상황</li>
 <li>상업용 사용 및 전문 인증</li>
 <li>과학적 연구와 중요한 발견</li>
 <li>어려운 유형의 최종 식별</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 전문 서비스 가치인지 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>전문가의 시간과 지식은 전문적인 가치입니다</li>
 <li>복잡한 식별에는 전문적인 업무와 책임이 필요합니다</li>
 <li>지불은 전문적인 존중과 인정을 반영합니다</li>
 <li>식별의 품질과 신뢰성을 보장하십시오</li>
-</ul>
-<br>
-<h2>전문가와 효과적으로 상담하는 방법 : 전문 커뮤니케이션 가이드</h2>
-<br>
-<h3>전문 준비</h3>
-<br>
+</ul></div>
+<div class="section-title">🛠️ 전문가와 효과적으로 상담하는 방법 : 전문 커뮤니케이션 가이드</div>
+<div class="subsection-title">🛠️ 전문 준비</div>
 <p><strong> 전문가에게 연락하기 전에 전문 준비 </strong> :</p>
-<br>
 <p><strong> 완전한 전문 관찰 기록 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>모든 주요 각도의 전문적인 품질 사진</li>
 <li>상세한 형태 학적 설명 및 측정 데이터</li>
 <li>생태 및 서식지 정보를 완성하십시오</li>
 <li>수집 날짜, 시간 및 기상 조건</li>
 <li>전문 포자 인쇄 및 미세한 기능 (가능한 경우)</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 독립 식별 시도 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>당신이 한 전문적인 작업을 보여줍니다</li>
 <li>예비 신분증과 근거를 설명하십시오</li>
 <li>특정 불확실성과 질문을 나열하십시오</li>
 <li>전문적인 사고 과정과 방법을 보여줍니다</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 전문적인 질문 공식화 </strong> :</p>
 <p>피하십시오 : "이것은 어떤 버섯입니까?"</p>
-<p>채택 : "캡의 색상, 폴드 및 서식지의 부착 방법을 기반으로 처음에는 유형 X로 식별했지만 W 특성은 설명과 일치하지 않습니다. 지역 분포에서 유사한 종 A와 B를 고려할 때 어떤 이유가 있습니까?"</p>
-<br>
+<p class="article-text">채택 : "캡의 색상, 폴드 및 서식지의 부착 방법을 기반으로 처음에는 유형 X로 식별했지만 W 특성은 설명과 일치하지 않습니다. 지역 분포에서 유사한 종 A와 B를 고려할 때 어떤 이유가 있습니까?"</p>
 <p><strong> 전문 에티켓과 존중 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>전문가를 아는 것은 일반적으로 자원 봉사를 돕습니다</li>
 <li>진심으로 감사하고 감사합니다</li>
 <li>응답 시간의 합리성을 이해하십시오</li>
 <li>전문적인 한계와 불확실성을 받아들입니다</li>
-</ul>
-<br>
-<h3>전문 연락처 정보</h3>
-<br>
+</ul></div>
+<div class="subsection-title">🛠️ 전문 연락처 정보</div>
 <p><strong> 이메일 전문 커뮤니케이션 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>전문 제목 줄 : "전문 평가 상담 - [범주] - [위치] - [날짜]"</li>
 <li>전문 배경에 대한 간단한 소개</li>
 <li>명확한 상황 설명 및 특정 문제</li>
 <li>적절한 크기의 첨부 된 사진</li>
 <li>관련 데이터 정보를 완료하십시오</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 온라인 플랫폼에 전문 게시 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>명확하고 전문적인 타이틀을 사용하십시오</li>
 <li>구조화 된 정보 프레젠테이션</li>
 <li>모든 필수 전문 품질 사진</li>
 <li>예의 바르고 전문적인 조사 방법</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 대면 전문 상담 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>곰팡이 사회의 전문 식별 회의</li>
 <li>신선한 표본 휴대 (가능하고 적절한 경우)</li>
 <li>또는 전문 기록 및 사진을 완료합니다</li>
 <li>전문 노트북은 전문가 의견을 기록합니다</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 전문 후속 및 관계 구축 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>전문적인 도움과지도에 감사드립니다</li>
 <li>후속 발견 및 추가 정보를 공유하십시오</li>
 <li>추가 테스트 결과를 업데이트했습니다</li>
 <li>장기 전문 연락 네트워크를 설정하십시오</li>
-</ul>
-<br>
-<h3>전문가의 전문적인 한계를 이해합니다</h3>
-<br>
+</ul></div>
+<div class="subsection-title">🛠️ 전문가의 전문적인 한계를 이해합니다</div>
 <p><strong> 전문 한계 인식 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>일부 표본에는 미세한 또는 분자 증거가 필요합니다</li>
 <li>특정 그룹을 식별하기가 매우 어렵습니다</li>
 <li>사진에 주요 기능이 표시되지 않을 수 있습니다</li>
 <li>일부 기능에는 물리적 검사가 필요합니다</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 전문 답변 유형 이해 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>"예, 이것은 X 유형입니다."</li>
 <li>가능한 범위 : "x 또는 y 일 수 있으며 포자 측정 확인이 필요합니다."</li>
-</ul>
+</ul></div>
 <p>-높은 수준의 식별 : "이것은 일종의 속 A이지만 종 수준의 식별이 필요합니다 ..."</p>
-<ul>
+<div class="highlight"><ul>
 <li>전문적인 의뢰 : "이 그룹에 익숙하지 않으므로 Z 전문가와 컨설팅하는 것이 좋습니다."</li>
 <li>정보 요청 : "포자 프린트 및 현미경 기능이 제공 될 수 있습니까?"</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 전문적인 태도를 유지하십시오 </strong> :</p>
 <p>예상 대답이 아니라면 모든 전문적인 의견을 존중하십시오.</p>
-<br>
-<h2>전문 커뮤니티에 대한 기부 : 학습자에서 기고자까지</h2>
-<br>
-<h3>전문 자원이됩니다</h3>
-<br>
+<div class="section-title">🛠️ 전문 커뮤니티에 대한 기부 : 학습자에서 기고자까지</div>
+<div class="subsection-title">🛠️ 전문 자원이됩니다</div>
 <p><strong> 전문적인 경험이 커짐에 따라 </strong> :</p>
-<br>
 <p><strong> 초보자를위한 전문 지침 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>전문 커뮤니티에서 지식과 경험을 공유하십시오</li>
 <li>능력 내에서 전문적인 질문에 답하십시오</li>
 <li>초보자의 학습 경로를 안내합니다</li>
 <li>전문적인 학습 경험과 방법을 공유하십시오</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 시민 과학 주요 프로그램에 참여 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>시스템은 전문적인 관찰 데이터를 기록합니다</li>
 <li>내연주의 및 기타 전문 플랫폼에 기여합니다</li>
 <li>현상 및 배포 연구에 참여하십시오</li>
 <li>전문 곰팡이 다양성 조사를 지원합니다</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 전문 자원 봉사 활동 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>곰팡이 사회의 전문 활동을 지원하십시오</li>
 <li>전문 수집 활동을 조직하는 데 도움이됩니다</li>
 <li>전문 워크샵 및 교육을 조직하십시오</li>
 <li>전문적인 자원 및 가이드 유지</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 전문 콘텐츠 제작 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>전문 블로그 또는 소셜 미디어 공유</li>
 <li>전문적인 품질 사진 레코드</li>
 <li>교육 비디오 및 전문 자습서</li>
 <li>지역 전문 가이드 기여</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 지속적인 전문 연구 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>전문가가 되더라도 학습 사고 방식을 유지하십시오.</li>
 <li>Mycology 주요 개발 추적</li>
 <li>새로운 발견과 범주 적 변화를 배우십시오</li>
 <li>모든 수준의 전문가로부터 배우십시오</li>
-</ul>
-<br>
-<h3>전문적인 평판을 구축하십시오</h3>
-<br>
-<p>지속적이고 정확하며 전문적인 기여를 통해 점차 전문적인 신뢰성을 확립합니다. 그러나 전문적인 원칙을 기억하십시오.</p>
-<ul>
+</ul></div>
+<div class="subsection-title">🛠️ 전문적인 평판을 구축하십시오</div>
+<p class="article-text">지속적이고 정확하며 전문적인 기여를 통해 점차 전문적인 신뢰성을 확립합니다. 그러나 전문적인 원칙을 기억하십시오.</p>
+<div class="highlight"><ul>
 <li>특정 및 전문 분야의 질문에만 답하십시오</li>
 <li>솔직히 불확실성과 한계를 인정합니다</li>
 <li>전문적인 출처와 기초를 인용하십시오</li>
 <li>지속적인 학습 및 전문적인 개선</li>
-</ul>
-<br>
-<p>목표는 자신을 전능 한 것으로 간주하는 "전문가"가 아닌 신뢰할 수있는 전문 자원이되는 것입니다.</p>
-<br>
-<h2>특별한 상황을위한 전문 상담 안내서</h2>
-<br>
-<h3>중독 사례에 대한 전문적인 반응</h3>
-<br>
+</ul></div>
+<p class="article-text">목표는 자신을 전능 한 것으로 간주하는 "전문가"가 아닌 신뢰할 수있는 전문 자원이되는 것입니다.</p>
+<div class="section-title">🛠️ 특별한 상황을위한 전문 상담 안내서</div>
+<div class="subsection-title">🛠️ 중독 사례에 대한 전문적인 반응</div>
 <p><strong> 전문 비상 대응 과정 </strong> :</p>
 <p>1. 비상 번호/독성 제어 센터에 즉시 전화하십시오</p>
 <p>2. 모든 관련 증거 (버섯, 구토 등)를 전문적으로 보존하십시오.</p>
 <p>3. 전문 품질 사진 녹음</p>
 <p>4. 식별을 지원하려면 Mycology 전문가에게 문의하십시오</p>
-<br>
 <p><strong> 독극물 제어 센터 전문 자원 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>대부분의 센터에는 Mycologics의 컨설턴트가 있습니다</li>
 <li>24 시간 전문 응급 서비스</li>
 <li>전문 치료 지침</li>
 <li>후속 전문 추적 지원</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 전문가 전문 역할 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>전문 카테고리 식별을 지원합니다</li>
 <li>가능한 독소 유형에 대한 정보를 제공합니다</li>
 <li>의료 전문가 의사 결정을 지원합니다</li>
 <li>전문적인 증언과 보고서를 제공하십시오</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 시간-비판 전문 인식 </strong> :</p>
 <p>-Amanita 독소 중독 : 발병 지연, 조기 치료의 열쇠</p>
-<ul>
+<div class="highlight"><ul>
 <li>전문적인 표본 보존은 생명을 구할 수 있습니다</li>
 <li>치료에 대한 신속한 전문적 식별 및 지침</li>
-</ul>
-<br>
-<h3>상업용 사용을위한 전문 요구 사항</h3>
-<br>
+</ul></div>
+<div class="subsection-title">🛠️ 상업용 사용을위한 전문 요구 사항</div>
 <p><strong> 식당 및 공급 업체의 전문 표준 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>전문적으로 확인하고 인증해야합니다</li>
 <li>법률 및 보험 전문가 요구 사항을 충족하십시오</li>
 <li>아마추어 평가 수준은 허용되지 않습니다</li>
 <li>정기적 인 전문 검토 및 업데이트</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 인증 된 피커의 전문 자격 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>전문 교육 및 평가를 완료하십시오</li>
 <li>전문 인증 프로그램을 통과했습니다</li>
 <li>법적 및 전문적인 표준을 충족하십시오</li>
 <li>지속적인 전문 교육 요구 사항</li>
-</ul>
-<br>
-<h3>희귀 디스커버리 전문 처리</h3>
-<br>
+</ul></div>
+<div class="subsection-title">🛠️ 희귀 디스커버리 전문 처리</div>
 <p><strong> 잠재적 인 새로운 종 또는 새로운 기록 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>지금 전문성 마이크 전문의에게 연락하십시오</li>
 <li>표본을 보존하는 전문적인 방법</li>
 <li>모든 데이터의 자세한 전문 기록</li>
 <li>현미경 및 분자 분석을 준비하십시오</li>
 <li>과학 전공의 가치를 이해하십시오</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 전문 간행물 및 레코드 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>전문 과학 연구를 지원합니다</li>
 <li>과학 문헌 인정 가능</li>
 <li>Mycology에 전문적인 기여를하십시오</li>
 <li>전문적인 학업 연락처를 설정하십시오</li>
-</ul>
-<br>
-<h2>일반적인 전문 트랩 및 회피 전략</h2>
-<br>
-<h3>전문 식별의 일반적인 오류</h3>
-<br>
+</ul></div>
+<div class="section-title">🛠️ 일반적인 전문 트랩 및 회피 전략</div>
+<div class="subsection-title">🛠️ 전문 식별의 일반적인 오류</div>
 <p><strong> 단일 전문 소스에 대한 과도한 관계 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>항상 다중 소스 전문가 검증</li>
 <li>여러 전문 리소스를 사용하십시오</li>
 <li>전문적인 의견의 차이점을 이해하십시오</li>
 <li>개인적인 전문 판단 기준을 설정하십시오</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 소셜 미디어에 대한 빠른 답변에 대한 전문적인 위험 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>아마도 전문적인 정확성이 부족합니다</li>
 <li>여러 전문 확인이 필요합니다</li>
 <li>중요한 평가 전문가 소스</li>
 <li>전문적인 자격과 경험을 확인하십시오</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> AI 식별 도구의 전문적인 한계 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>현재 기술은 여전히 ​​불완전합니다</li>
 <li>전문 출발점 참조 만 사용합니다</li>
 <li>수동으로 확인해야합니다</li>
 <li>알고리즘의 한계를 이해하십시오</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 지역 전문가 차이를 무시하십시오 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>다른 지역 전문가들은 지역 종에 익숙하지 않을 수 있습니다.</li>
 <li>지역 전문가 조언의 우선 순위</li>
 <li>지리적 변형의 범위를 이해하십시오</li>
 <li>지역 전문 네트워크를 설정하십시오</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 정보가 충분하지 않은 전문적인 문제 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>단일 사진은 일반적으로 전문적으로 식별되지 않습니다</li>
 <li>완전한 전문 기록이 필요합니다</li>
 <li>식별에 필요한 최소 정보를 이해하십시오</li>
 <li>전문 표준 데이터 수집</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 전문 관계 관리 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>전문가의 전문적인 시간을 존중하십시오</li>
 <li>품질은 수량보다 우선합니다</li>
 <li>장기적인 전문 관계를 구축하십시오</li>
 <li>적절한 전문 피드백</li>
-</ul>
-<br>
-<h2>전문적인 결론 : 평생 전문 학습 네트워크를 구축하십시오</h2>
-<br>
-<p>버섯 식별의 전문적인 여정에서 당신은 결코 혼자가 아닙니다.전 세계의 열정적이고 전문적이며 도움이되는 Mycology 커뮤니티가 있습니다.지역 곰팡이 사회의 현장 전문 활동에서 온라인 플랫폼의 글로벌 전문가 연결에 이르기까지 대학 전문가부터 동료 전문가에 이르기까지 자원은 풍부하고 접근 할 수 있습니다.</p>
-<br>
-<h3>전문성의 핵심 요점</h3>
-<br>
+</ul></div>
+<div class="section-title">🛠️ 전문적인 결론 : 평생 전문 학습 네트워크를 구축하십시오</div>
+<p class="article-text">버섯 식별의 전문적인 여정에서 당신은 결코 혼자가 아닙니다.전 세계의 열정적이고 전문적이며 도움이되는 Mycology 커뮤니티가 있습니다.지역 곰팡이 사회의 현장 전문 활동에서 온라인 플랫폼의 글로벌 전문가 연결에 이르기까지 대학 전문가부터 동료 전문가에 이르기까지 자원은 풍부하고 접근 할 수 있습니다.</p>
+<div class="subsection-title">🛠️ 전문성의 핵심 요점</div>
 <p><strong> 지금 행동에 대한 전문적인 조언 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>지역 곰팡이 사회에 가입하십시오 (대부분의 우선 순위 전문가 행동!)</li>
 <li>다양한 전문 검증 채널을 설정하십시오</li>
 <li>완전한 연구 수준 정보를 제공합니다</li>
 <li>전문적인 시간과 지식 가치를 존중하십시오</li>
 <li>진전이 이루어지면 전문가는 커뮤니티에 환원합니다.</li>
-</ul>
-<br>
-<h3>전문적인 사고 방식을 설정하십시오</h3>
-<br>
+</ul></div>
+<div class="subsection-title">🛠️ 전문적인 사고 방식을 설정하십시오</div>
 <p><strong> 평생 학습 전문가 태도 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>세계 최고의 근무 학자들도 동료들에게 상담합니다</li>
 <li>전문적인 도움을 구하는 것은 약점이 아니라 지혜입니다</li>
 <li>전문 커뮤니티는 학습 및 안전 보장입니다.</li>
 <li>Mycology는 집단 전문적인 노력입니다</li>
-</ul>
-<br>
-<h3>최고의 전문 안전 원리</h3>
-<br>
-<p>가장 중요한 전문 안전 규칙은 항상 다음과 같습니다. <strong> 전문 확인을받을 수 없다면 먹지 마십시오.</strong>이 간단한 전문적인 원칙은 당신의 생명을 구할 수 있습니다.</p>
-<br>
-<p>Global Mycology Community에 가입하고 곰팡이 다양성을 함께 탐색하고 보호하는 전문적인 여정을 즐기십시오!</p>
-<br>
-<p>나는 당신이 훌륭한 전문 멘토를 찾고, 지속적인 전문 우정을 쌓고, 항상 Mycologics의 전문적인 재미를 안전하게 즐기기를 바랍니다!</p>
-<br>
+</ul></div>
+<div class="subsection-title">🛠️ 최고의 전문 안전 원리</div>
+<p class="article-text">가장 중요한 전문 안전 규칙은 항상 다음과 같습니다. <strong> 전문 확인을받을 수 없다면 먹지 마십시오.</strong>이 간단한 전문적인 원칙은 당신의 생명을 구할 수 있습니다.</p>
+<p class="article-text">Global Mycology Community에 가입하고 곰팡이 다양성을 함께 탐색하고 보호하는 전문적인 여정을 즐기십시오!</p>
+<p class="article-text">나는 당신이 훌륭한 전문 멘토를 찾고, 지속적인 전문 우정을 쌓고, 항상 Mycologics의 전문적인 재미를 안전하게 즐기기를 바랍니다!</p>
 <p>---</p>
-<br>
 <p><strong> 전문적인 팁 </strong> :이 기사를 참조 가이드로 저장하고 정기적으로 검토 한 다음 실제 수집 및 식별에 이러한 전문 원칙을 적용하십시오.진정한 전문적인 능력은 지식을 실천으로 바꾸고 경험을 통해 지혜를 축적하는 데 따릅니다.안전한 컬렉션, 전문적인 식별 및이 매력적인 전문 분야가 가져온 무한한 재미를 즐기십시오!</p>
-<br>
 <p>---</p>
-<br>
-<h2>⚠️ 중요한 면책 조항</h2>
-<br>
+<div class="section-title">🍄 ⚠️ 중요한 면책 조항</div>
 <p><strong>이 기사는 교육 및 정보 참조를위한 것입니다.</strong></p>
-<br>
-<h3>버섯 소비 위험 경고</h3>
-<br>
-<p>1. <strong> 생명 안전 우선 </strong> : 야생 버섯을 식별하는 데 고유 한 위험이 있습니다.많은 독성 버섯은 식용 버섯과 매우 비슷해 보이며 실수로 그것들을 섭취하면 심각한 질병이나 사망으로 이어질 수 있습니다.</p>
-<br>
-<p>2. <strong> 전문 식별 필수 </strong> : 야생 버섯을 먹기 전에 100% 확인은 전문성 근자 또는 인증 된 버섯 식별 전문가가 수행해야합니다.사진, 텍스트 설명 및 개인 경험은 안전을 보장하기에 충분하지 않습니다.</p>
-<br>
-<p>3. <strong> 개인의 차이 </strong> : 인식 된 식용 버섯조차도 개인 헌법, 알레르기 반응, 소비 방법 또는 버섯 성장 환경과 같은 요인으로 인해 부작용을 일으킬 수 있습니다.처음으로 새로운 품종을 먹을 때 소량으로 시도하십시오.</p>
-<br>
-<p>4. <strong> 지리적 차이 </strong> : 버섯 종과 다른 지역의 독성에는 큰 차이가 있습니다.이 기사에 언급 된 정보는 해당 지역에 적용되지 않을 수 있습니다.현지 Mycology 전문가 및 권위있는 조직에 문의하십시오.</p>
-<br>
-<p>5. <strong> 전문적인 책임 </strong> : 저자와 출판사는이 기사의 정보를 사용하여 발생하는 직접 또는 간접적 인 손상, 질병 또는 손실에 대해 책임을지지 않습니다.</p>
-<br>
-<h3>안전 조언</h3>
-<br>
-<ul>
+<div class="subsection-title">📌 버섯 소비 위험 경고</div>
+<p class="article-text">1. <strong> 생명 안전 우선 </strong> : 야생 버섯을 식별하는 데 고유 한 위험이 있습니다.많은 독성 버섯은 식용 버섯과 매우 비슷해 보이며 실수로 그것들을 섭취하면 심각한 질병이나 사망으로 이어질 수 있습니다.</p>
+<p class="article-text">2. <strong> 전문 식별 필수 </strong> : 야생 버섯을 먹기 전에 100% 확인은 전문성 근자 또는 인증 된 버섯 식별 전문가가 수행해야합니다.사진, 텍스트 설명 및 개인 경험은 안전을 보장하기에 충분하지 않습니다.</p>
+<p class="article-text">3. <strong> 개인의 차이 </strong> : 인식 된 식용 버섯조차도 개인 헌법, 알레르기 반응, 소비 방법 또는 버섯 성장 환경과 같은 요인으로 인해 부작용을 일으킬 수 있습니다.처음으로 새로운 품종을 먹을 때 소량으로 시도하십시오.</p>
+<p class="article-text">4. <strong> 지리적 차이 </strong> : 버섯 종과 다른 지역의 독성에는 큰 차이가 있습니다.이 기사에 언급 된 정보는 해당 지역에 적용되지 않을 수 있습니다.현지 Mycology 전문가 및 권위있는 조직에 문의하십시오.</p>
+<p class="article-text">5. <strong> 전문적인 책임 </strong> : 저자와 출판사는이 기사의 정보를 사용하여 발생하는 직접 또는 간접적 인 손상, 질병 또는 손실에 대해 책임을지지 않습니다.</p>
+<div class="subsection-title">⚠️ 안전 조언</div>
+<div class="highlight"><ul>
 <li>al 공식적인 버섯 식별 훈련 과정에 참여합니다</li>
 <li>c 지역 근육학 협회 또는 버섯 클럽에 가입</li>
 <li>신뢰할 수있는 출처에서 경작 된 버섯을 구매합니다</li>
 <li>응급 의료 요구를 위해 버섯 샘플을 저장하십시오</li>
 <li>의심의 여지가 있다면 먹지 마세요</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 기억하십시오 : 궁금한 점이 있으면 안전한 옵션은 먹지 않는 것입니다.당신의 삶의 안전은 버섯 식사보다 훨씬 중요합니다.</strong></p>
-<br>
 <p>---</p>
         </div>
-    </div>
+
+</div>
 </body>
 </html>

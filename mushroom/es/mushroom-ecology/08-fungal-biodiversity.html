@@ -1,482 +1,363 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biodiversidad fúngica - Mushroom Ecology</title>
-    <meta name="description" content="Biodiversidad fúngica">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>08 Biodiversidad fúngica - MushroomAiSnap</title>
+<link href="../../mobile-styles.css" rel="stylesheet"/>
+<link href="../../mobile-enhancement.css" rel="stylesheet"/>
+<link href="../../ecology-theme.css" rel="stylesheet"/>
+<style>
+        .hero-image img {
+            max-height: 200px;
+            width: 100%;
+            object-fit: cover;
         }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        .article-card img {
+            max-height: 120px;
+            width: 100%;
+            object-fit: cover;
+        }
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                        url('../../images/mushroom-ecology_08-fungal-biodiversity.webp') center/cover;
+            position: relative;
+            margin-top: 0;
+        }
+        .article-meta {
+            margin-top: 15px !important;
+        }
+    
+        /* Mushroom Ecology Theme */
+        :root {
+            --primary-color: #228B22;
+            --primary-dark: #006400;
+            --primary-light: #F0FFF0;
+            --accent-color: #32CD32;
+        }
+        
+        /* Theme Color Overrides */
+        .content {
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+            border: 2px solid var(--primary-color);
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, var(--primary-light), var(--primary-light));
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .quote-text {
+            color: var(--primary-dark);
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+        }
+        
+        .subsection-title {
+            color: var(--primary-dark);
+            font-size: 1.4em;
+            font-weight: 600;
+            margin: 25px 0 15px 0;
+            padding-left: 10px;
+            border-left: 3px solid var(--accent-color);
+        }
+        
+        .tip-box {
+            border-left: 4px solid var(--primary-color);
+            background: var(--primary-light);
+        }
+        
+        .tip-title {
+            color: var(--primary-color);
+        }
+        
+        .highlight {
+            border-left: 4px solid var(--accent-color);
+            background: linear-gradient(135deg, #f1f8e9, var(--primary-light));
+        }
+        
+        .warning {
+            border-left: 4px solid #f44336;
+        }
+        
+        .equipment-item {
+            border: 1px solid var(--accent-color);
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+        }
+        
+        .equipment-item h4 {
+            color: var(--primary-color);
+        }
+        
+        .category {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .main-text {
+            font-size: 1.1em;
             line-height: 1.8;
             color: #333;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-
-        .article-title {
-            color: #4ECDC4;
-            font-size: 2.5em;
-            margin-bottom: 30px;
-            margin-top: 0;
-            line-height: 1.3;
-            padding-top: 0;
-        }
-
-        .featured-image {
-            width: 100%;
-            height: auto;
-            aspect-ratio: 4 / 3;
-            object-fit: cover;
-            display: block;
-        }
-
-        .content {
-            padding: 50px;
-        }
-
-        .content h2 {
-            color: #4ECDC4;
-            font-size: 2em;
-            margin-top: 40px;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid #4ECDC4;
-        }
-
-        .content h3 {
-            color: #555;
-            font-size: 1.6em;
-            margin-top: 30px;
-            margin-bottom: 15px;
-        }
-
-        .content h4 {
-            color: #666;
-            font-size: 1.3em;
-            margin-top: 25px;
-            margin-bottom: 12px;
-        }
-
-        .content p {
-            margin-bottom: 20px;
-            font-size: 1.1em;
-            color: #444;
-        }
-
-        .content ul {
             margin: 20px 0;
-            padding-left: 30px;
-        }
-
-        .content li {
-            margin-bottom: 12px;
-            font-size: 1.05em;
-            color: #555;
-        }
-
-        .content strong {
-            color: #222;
-            font-weight: 600;
-        }
-
-        .back-link {
-            display: inline-block;
-            padding: 12px 25px;
-            background: linear-gradient(135deg, #4ECDC4, #8B4513);
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            margin-bottom: 20px;
-            transition: transform 0.3s ease;
-            font-weight: 600;
-        }
-
-        .back-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .navigation {
-            padding: 30px 50px;
-            background: #f8f9fa;
-            border-top: 1px solid #e9ecef;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-btn {
-            padding: 10px 20px;
-            background: #4ECDC4;
-            color: white;
-            text-decoration: none;
+            padding: 15px;
+            background: linear-gradient(135deg, #ffffff, #f9f9f9);
             border-radius: 8px;
-            transition: all 0.3s ease;
+            border-left: 3px solid var(--accent-color);
         }
-
-        .nav-btn:hover {
-            transform: translateX(5px);
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+        
+        .emoji {
+            font-size: 1.5em;
+            margin-left: 10px;
         }
-
-        .nav-btn.prev:hover {
-            transform: translateX(-5px);
+        
+        .read-time, .difficulty {
+            display: inline-block;
+            padding: 5px 15px;
+            margin: 5px 5px 5px 0;
+            border-radius: 20px;
+            font-size: 0.9em;
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            color: #1976d2;
+            font-weight: 500;
         }
-
-        @media (max-width: 768px) {
-            .content {
-                padding: 30px 25px;
-            }
-
-            .article-title {
-                font-size: 1.8em;
-            }
-
-            .featured-image {
-                height: 250px;
-            }
-
-            .navigation {
-                flex-direction: column;
-                gap: 15px;
-            }
+        
+        .difficulty {
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            color: #e65100;
+        }
+        
+        .article-text {
+            line-height: 1.8;
+            color: #444;
+            margin: 15px 0;
+            font-size: 1.05em;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <img src="../../images/mushroom-ecology_08-fungal-biodiversity.webp" alt="Biodiversidad fúngica" class="featured-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22900%22 height=%22400%22%3E%3Crect fill=%22%23D2691E%22 width=%22900%22 height=%22400%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22white%22 font-size=%2260%22%3E🍄%3C/text%3E%3C/svg%3E'">
+<div class="hero-image"></div>
+<div class="content">
+    <h1 class="title">08 Biodiversidad fúngica</h1>
+    <div class="quote-box">
+        <div class="quote-text">Professional Mycology Guide</div>
+    </div>
+    
+<div class="article-meta">
+<span class="category">🌱 Mushroom Ecology</span>
+<span class="read-time">📖 16 minute read</span>
+<span class="difficulty">🟡 Intermediate</span>
+</div>
 
-        <div class="content">
-            <h1 class="article-title">Biodiversidad fúngica</h1>
-            <br>
-<h2>Introducción: el tercer reino de la vida descuidado</h2>
-<br>
-<p>Cuando descubrí por primera vez un hongo fluorescente raro en los antiguos bosques del noroeste del Pacífico, me di cuenta de que estaba parado en el umbral de un mundo desconocido.Este hongo, que emite una tenue luz verde en la oscuridad, ni siquiera fue nombrado oficialmente en los registros científicos en ese momento.Este es el estado actual del reino fúngico, un campo biológico lleno de misterio, gran potencial pero subestimado severamente.</p>
-<br>
-<p>Los hongos forman el tercer reino más grande de la vida en la tierra, y su diversidad es asombrosa.Las últimas investigaciones muestran que se estima que las especies fúngicas globales son entre 2.2 millones y 3.8 millones, pero actualmente solo se describen oficialmente alrededor de 150,000.Desde saprófitos que descomponen los árboles de bosques muertos, hasta hongos micorrícicos que forman relaciones simbióticas con el 90% de las plantas terrestres, hasta tipos microscópicos que producen drogas que ahorran vidas como penicilina, hongos están en todas partes y funcionan críticos.</p>
-<br>
-<p>Como micólogo con 25 años de experiencia en investigación de campo, lo llevaré profundamente en este reino oculto, revelando su escala, patrón y importancia de la conservación, y proporcionando métodos prácticos de observación y registro.</p>
-<br>
-<h2>Escala de diversidad: la sorprendente disparidad entre conocida y desconocida</h2>
-<br>
-<h3>El estado actual de los tipos se ha descrito</h3>
-<br>
-<p>Actualmente reconocido por la comunidad científica son los siguientes:</p>
-<ul>
+
+            <div class="section-title">🍄 Introducción: el tercer reino de la vida descuidado</div>
+<div class="main-text">Cuando descubrí por primera vez un hongo fluorescente raro en los antiguos bosques del noroeste del Pacífico, me di cuenta de que estaba parado en el umbral de un mundo desconocido.Este hongo, que emite una tenue luz verde en la oscuridad, ni siquiera fue nombrado oficialmente en los registros científicos en ese momento.Este es el estado actual del reino fúngico, un campo biológico lleno de misterio, gran potencial pero subestimado severamente.<span class="emoji">🍄</span></div>
+<p class="article-text">Los hongos forman el tercer reino más grande de la vida en la tierra, y su diversidad es asombrosa.Las últimas investigaciones muestran que se estima que las especies fúngicas globales son entre 2.2 millones y 3.8 millones, pero actualmente solo se describen oficialmente alrededor de 150,000.Desde saprófitos que descomponen los árboles de bosques muertos, hasta hongos micorrícicos que forman relaciones simbióticas con el 90% de las plantas terrestres, hasta tipos microscópicos que producen drogas que ahorran vidas como penicilina, hongos están en todas partes y funcionan críticos.</p>
+<p class="article-text">Como micólogo con 25 años de experiencia en investigación de campo, lo llevaré profundamente en este reino oculto, revelando su escala, patrón y importancia de la conservación, y proporcionando métodos prácticos de observación y registro.</p>
+<div class="section-title">🍄 Escala de diversidad: la sorprendente disparidad entre conocida y desconocida</div>
+<div class="subsection-title">📌 El estado actual de los tipos se ha descrito</div>
+<p class="article-text">Actualmente reconocido por la comunidad científica son los siguientes:</p>
+<div class="highlight"><ul>
 <li>Especies fúngicas descritas en todo el mundo: aproximadamente 150,000 especies</li>
 <li>hongos grandes (hongos que producen cuerpos fructíferos): alrededor de 16,000 especies</li>
 <li>Tipos recién descritos por año: alrededor de 2,000</li>
-</ul>
-<br>
-<p>Estos números parecen enormes, pero de hecho son solo la punta del iceberg.En la encuesta de la selva tropical del sudeste asiático en la que participé, casi el 40% de las 200 muestras aleatorias que recolectamos pueden ser nuevas especies científicas.</p>
-<br>
-<h3>Relación total estimada y proporcional</h3>
-<br>
-<p>Las estimaciones conservadoras muestran que el total global de hongos es de aproximadamente 2.2 millones, mientras que las estimaciones optimistas son tan altas como 3.8 millones.Esto significa que solo conocemos el 5-10% de este reino.La proporción de hongos a las plantas es de aproximadamente 6: 1, que es aún más alta en las regiones tropicales.</p>
-<br>
+</ul></div>
+<p class="article-text">Estos números parecen enormes, pero de hecho son solo la punta del iceberg.En la encuesta de la selva tropical del sudeste asiático en la que participé, casi el 40% de las 200 muestras aleatorias que recolectamos pueden ser nuevas especies científicas.</p>
+<div class="subsection-title">📌 Relación total estimada y proporcional</div>
+<p class="article-text">Las estimaciones conservadoras muestran que el total global de hongos es de aproximadamente 2.2 millones, mientras que las estimaciones optimistas son tan altas como 3.8 millones.Esto significa que solo conocemos el 5-10% de este reino.La proporción de hongos a las plantas es de aproximadamente 6: 1, que es aún más alta en las regiones tropicales.</p>
 <p><strong> Recomendación de expertos </strong>: Cuando encuentra hongos desconocidos en el bosque, es probable que no se haya descrito científicamente.Mantener registros y muestras es más importante de lo que piensas.</p>
-<br>
-<h3>¿Dónde está el campo desconocido?</h3>
-<br>
-<p>Según mi experiencia de campo, los hongos desconocidos están en su mayoría ocultos en los siguientes entornos:</p>
-<br>
+<div class="subsection-title">📌 ¿Dónde está el campo desconocido?</div>
+<p class="article-text">Según mi experiencia de campo, los hongos desconocidos están en su mayoría ocultos en los siguientes entornos:</p>
 <p><strong> Fuera tropical tropical </strong>: especialmente el dosel y el suelo.En un proyecto de investigación en Panamá, encontramos más de 120 hongos diferentes en un solo árbol.</p>
-<br>
 <p><strong> Microfungi del suelo </strong>: Una cucharadita de suelo fértil puede contener miles de hongos, la mayoría de los cuales no pueden ser cultivados por los métodos tradicionales.</p>
-<br>
 <p><strong> Hongos endofíticos </strong>: hongos que viven dentro de las plantas sin causar enfermedades.Hemos encontrado más de 30 hongos endofitos previamente desconocidos en Douglas FIR en Oregon.</p>
-<br>
 <p><strong> Entornos profundos y ambientes extremos </strong>: Desde aguas termales de aguas profundas hasta valles antárticos secos, los hongos demuestran una adaptabilidad sorprendente.</p>
-<br>
-<h3>Describe desafíos y limitaciones realistas</h3>
-<br>
-<p>¿Por qué todavía no se les describe tantos hongos?Los principales obstáculos incluyen:</p>
-<br>
+<div class="subsection-title">📌 Describe desafíos y limitaciones realistas</div>
+<p class="article-text">¿Por qué todavía no se les describe tantos hongos?Los principales obstáculos incluyen:</p>
 <p><strong> Umbral técnico para la identificación </strong>: Muchos hongos requieren tecnología microscópica compleja y análisis molecular para identificar con precisión.Cuando estaba entrenando novatos en el laboratorio, tardó semanas en aprender a preparar impresiones de esporas correctamente.</p>
-<br>
 <p><strong> Dificultad en la cultura </strong>: Más del 95% de los hongos no pueden crecer en el medio de cultivo estándar.Algunos hongos micorrícicos rechazan por completo la cultura de laboratorio y solo pueden estudiarse en su hábitat natural.</p>
-<br>
 <p><strong> Escasez de expertos </strong>: Hay menos de 5,000 micólogos profesionales en todo el mundo, y muchos están cerca de la edad de jubilación.En los Estados Unidos, solo puede haber unos pocos expertos que puedan identificar con precisión los hongos locales en cada estado.</p>
-<br>
 <p><strong> Límites de financiación </strong>: Los fondos de investigación de hongos representan solo el 2-3% de los fondos de investigación de biodiversidad total.</p>
-<br>
 <p><strong> Pérdida del hábitat </strong>: los bosques tropicales desaparecen más de 100 veces más rápido que las investigaciones fúngicas.</p>
-<br>
-<h2>Por qué la diversidad fúngica es crucial</h2>
-<br>
-<h3>Función ecológica: el héroe no reconocido de la naturaleza</h3>
-<br>
+<div class="section-title">🎯 Por qué la diversidad fúngica es crucial</div>
+<div class="subsection-title">📌 Función ecológica: el héroe no reconocido de la naturaleza</div>
 <p>Cada hongo juega un papel único en el ecosistema:</p>
-<br>
 <p><strong> Descomposición </strong>: La capacidad de las bacterias de podredumbre blanca para descomponer la lignina es el sistema de reciclaje más efectivo en la Tierra.Observé una colonia Ganoderma Lucidum en el estado de Washington que descompone la madera diez veces su propio peso en tres horas.</p>
-<br>
 <p><strong> Simbiosis Partner </strong>: La red formada por los hongos micorrícicos y el sistema de raíces vegetales se denomina "Internet subterráneo" y puede conectar los árboles en todo el bosque.</p>
-<br>
 <p><strong> Patógeno </strong>: Aunque a menudo se ve como un papel negativo, los hongos patógenos ayudan a controlar el tamaño de la población y mantener el equilibrio ecológico.</p>
-<br>
-<h3>Historia evolutiva: miles de millones de años de sabiduría</h3>
-<br>
-<p>Los hongos tienen una historia evolutiva de más de mil millones de años, y su biblioteca de genes contiene soluciones para abordar diversos desafíos ambientales.Los hongos de liquen muestran lo último de la simbiosis biológica: los hongos se combinan con algas para crear súper criaturas que puedan conquistar entornos extremos.</p>
-<br>
-<h3>Valor potencial: un tesoro sin explotar</h3>
-<br>
+<div class="subsection-title">📌 Historia evolutiva: miles de millones de años de sabiduría</div>
+<p class="article-text">Los hongos tienen una historia evolutiva de más de mil millones de años, y su biblioteca de genes contiene soluciones para abordar diversos desafíos ambientales.Los hongos de liquen muestran lo último de la simbiosis biológica: los hongos se combinan con algas para crear súper criaturas que puedan conquistar entornos extremos.</p>
+<div class="subsection-title">📌 Valor potencial: un tesoro sin explotar</div>
 <p><strong> Fuente de medicina </strong>: Además de la conocida penicilina, Taxol, recientemente descubierta en hongos endofíticos, se ha convertido en uno de los medicamentos anticancerígenos más efectivos.En mi laboratorio, detectamos más de 500 hongos cada año en busca de nuevos antibióticos.</p>
-<br>
 <p><strong> Enzimas industriales </strong>: Las enzimas producidas por hongos son indispensables en los biocombustibles, la creación de papel y las industrias alimentarias.Una enzima extraída de hongos tropicales aumenta la eficiencia de producción de bioetanol en un 40%.</p>
-<br>
 <p><strong> Biotecnología </strong>: Los materiales miceliales están revolucionando las industrias de envasado y construcción.Un proyecto en el que trabajé usa micelio para hacer materiales aislantes completamente biodegradables.</p>
-<br>
-<h3>Responsabilidad ética: proteger el tesoro desconocido</h3>
-<br>
-<p>Tenemos la responsabilidad moral de proteger a estas criaturas sin entender.Cada hongo tiene su valor intrínseco, y como la especie más influyente en la Tierra, los humanos tienen la responsabilidad de proteger esta diversidad.</p>
-<br>
-<h2>Grupo de hongos principales: Conocer a los gerentes ocultos de la tierra</h2>
-<br>
-<h3>ascomycota: gigante en el mundo microscópico</h3>
-<br>
+<div class="subsection-title">📌 Responsabilidad ética: proteger el tesoro desconocido</div>
+<p class="article-text">Tenemos la responsabilidad moral de proteger a estas criaturas sin entender.Cada hongo tiene su valor intrínseco, y como la especie más influyente en la Tierra, los humanos tienen la responsabilidad de proteger esta diversidad.</p>
+<div class="section-title">🍄 Grupo de hongos principales: Conocer a los gerentes ocultos de la tierra</div>
+<div class="subsection-title">📌 ascomycota: gigante en el mundo microscópico</div>
 <p><strong> Identificar características </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Producir esporas a través de ascincas</li>
 <li>Incluyendo alrededor de 65,000 especies conocidas, es el filo más grande del mundo de los hongos</li>
 <li>Morfología diversa, desde levadura unicelular hasta cuerpos fructíferos complejos</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Tipos comunes </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Moreles: un tesoro recopilado en primavera. Mi hijo y yo hacemos colección tradicional cada abril</li>
 <li>Trufas: deliciosa comida que cultiva bajo tierra, me llevó dos años entrenar a los perros para encontrar trufas</li>
 <li>Bacteria de taza: hongos pequeños en forma de taza con colores brillantes en el bosque</li>
 <li>levadura: la llave del pan, la cerveza y el vino</li>
 <li>Hongo de liquen: simbiosis con algas, descubrí posibles nuevas especies en áreas de gran altitud de las montañas rocosas</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Importancia ecológica y económica </strong>:</p>
-<p>En un caso en Oregon, descubrimos que algún tipo de acompanesis podría romper los residuos de pesticidas, proporcionando nuevas soluciones para la reparación del suelo.</p>
-<br>
-<h3>Basidiomycota: la fuerza principal de los hongos</h3>
-<br>
+<p class="article-text">En un caso en Oregon, descubrimos que algún tipo de acompanesis podría romper los residuos de pesticidas, proporcionando nuevas soluciones para la reparación del suelo.</p>
+<div class="subsection-title">📌 Basidiomycota: la fuerza principal de los hongos</div>
 <p><strong> Identificar características </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Generar esporas a través de vainas</li>
 <li>Incluye aproximadamente 32,000 especies conocidas</li>
 <li>Los hongos más "típicos" pertenecen a esta categoría</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Tipos comunes </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Toadstools: incluyendo hongos comestibles y venenosos comunes</li>
 <li>Boletus: hay una capa de poro esponjosa debajo de la tapa en lugar de la frita</li>
 <li>Bacterias porosas: incluyendo ganoderma lucidum y especies que causan decadencia de madera</li>
 <li>óxido y polvo negro: importantes patógenos de plantas</li>
 <li>Hongo: hongos de glicerina, ampliamente consumidos en Asia</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Experiencia práctica </strong>:</p>
-<p>He desarrollado un sistema de identificación rápida basado en el color del pliegue bacteriano, la impresión de esporas y las características ecológicas, con una tasa de precisión del 85%.Por ejemplo, aprender a identificar el género Amanita y los anillos de hongos pueden evitar los eventos de envenenamiento más peligrosos.</p>
-<br>
-<h3>Otros grupos importantes</h3>
-<br>
+<p class="article-text">He desarrollado un sistema de identificación rápida basado en el color del pliegue bacteriano, la impresión de esporas y las características ecológicas, con una tasa de precisión del 85%.Por ejemplo, aprender a identificar el género Amanita y los anillos de hongos pueden evitar los eventos de envenenamiento más peligrosos.</p>
+<div class="subsection-title">📌 Otros grupos importantes</div>
 <p><strong> Zygomycota </strong>:</p>
-<p>Incluyendo el moho de pan común, algunas especies forman micorrizal arbuscular (hongos AM) con plantas, lo cual es crucial para la agricultura.</p>
-<br>
+<p class="article-text">Incluyendo el moho de pan común, algunas especies forman micorrizal arbuscular (hongos AM) con plantas, lo cual es crucial para la agricultura.</p>
 <p><strong> Chytridiomycota </strong>:</p>
-<p>Los hongos acuáticos primitivos, ciertas especies, han llevado a una disminución en el número de anfibios en todo el mundo.</p>
-<br>
+<p class="article-text">Los hongos acuáticos primitivos, ciertas especies, han llevado a una disminución en el número de anfibios en todo el mundo.</p>
 <p><strong> Microsporidia </strong>:</p>
-<p>Hongos parásitos obligados, y su estado de clasificación sigue siendo controvertido.</p>
-<br>
-<h2>Patrón de distribución de diversidad: geocódigo fúngico</h2>
-<br>
-<h3>Gradiente de latitud: desde el ecuador hasta el poste</h3>
-<br>
+<p class="article-text">Hongos parásitos obligados, y su estado de clasificación sigue siendo controvertido.</p>
+<div class="section-title">🍄 Patrón de distribución de diversidad: geocódigo fúngico</div>
+<div class="subsection-title">📌 Gradiente de latitud: desde el ecuador hasta el poste</div>
 <p><strong> Área tropical </strong>:</p>
-<p>En una encuesta en Costa Rica, registramos más de 1.200 hongos en 1 hectárea de tierra.Los hongos tropicales suelen ser los más altos en la diversidad, pero los más bajos en la investigación.</p>
-<br>
+<p class="article-text">En una encuesta en Costa Rica, registramos más de 1.200 hongos en 1 hectárea de tierra.Los hongos tropicales suelen ser los más altos en la diversidad, pero los más bajos en la investigación.</p>
 <p><strong> Región templada </strong>:</p>
-<p>Los bosques templados en América del Norte y Europa tienen una diversidad de hongos moderados pero bien estudiados.El proyecto de hongos norteamericanos en el que participé registró el patrón de sucesión estacional: más compost en primavera y más basidiomicetos en verano y otoño.</p>
-<br>
+<p class="article-text">Los bosques templados en América del Norte y Europa tienen una diversidad de hongos moderados pero bien estudiados.El proyecto de hongos norteamericanos en el que participé registró el patrón de sucesión estacional: más compost en primavera y más basidiomicetos en verano y otoño.</p>
 <p><strong> polar y alpino </strong>:</p>
-<p>Las encuestas en Alaska muestran que a pesar de la pequeña variedad, los hongos polares tienen mecanismos únicos de adaptación anticongelante.</p>
-<br>
-<h3>Gradiente de altitud: diversidad en el mundo vertical</h3>
-<br>
-<p>Desde tierras bajas hasta altas montañas, la diversidad fúngica muestra cambios complejos.En el estudio de las montañas Cascade, encontramos que las altitudes medianas (1,000-1,500 metros) son la mayor diversidad, en lugar de las áreas tradicionalmente consideradas de baja altitud.</p>
-<br>
-<h3>Exclusivo y biogeografía</h3>
-<br>
-<p>Algunas áreas tienen comunidades fúngicas altamente endémicas:</p>
-<ul>
+<p class="article-text">Las encuestas en Alaska muestran que a pesar de la pequeña variedad, los hongos polares tienen mecanismos únicos de adaptación anticongelante.</p>
+<div class="subsection-title">📌 Gradiente de altitud: diversidad en el mundo vertical</div>
+<p class="article-text">Desde tierras bajas hasta altas montañas, la diversidad fúngica muestra cambios complejos.En el estudio de las montañas Cascade, encontramos que las altitudes medianas (1,000-1,500 metros) son la mayor diversidad, en lugar de las áreas tradicionalmente consideradas de baja altitud.</p>
+<div class="subsection-title">📌 Exclusivo y biogeografía</div>
+<p class="article-text">Algunas áreas tienen comunidades fúngicas altamente endémicas:</p>
+<div class="highlight"><ul>
 <li>Madagascar: más del 90% de los hongos pueden ser endémicos</li>
 <li>Australia: rizomas únicos</li>
 <li>Costa de California: diversidad de trufa exclusiva</li>
-</ul>
-<br>
-<h2>Especificidad del hábitat: preferencias microambientales fúngicas</h2>
-<br>
-<h3>Ecosistema forestal</h3>
-<br>
+</ul></div>
+<div class="section-title">🍄 Especificidad del hábitat: preferencias microambientales fúngicas</div>
+<div class="subsection-title">📌 Ecosistema forestal</div>
 <p><strong> Bosque de crecimiento antiguo </strong>: Apoya la diversidad fúngica más rica.En el Parque Nacional Olímpico en el estado de Washington, documentamos especies de hongos que dependen de los árboles durante más de 500 años.</p>
-<br>
 <p><strong> Diferencias de tipo bosque </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>selva tropical: probablemente la mayor diversidad de hongos en la tierra</li>
 <li>Bosques templados de hoja ancha: abundantes hongos micorrícicos y sapróféticos</li>
 <li>Bosque de coníferas: comunidad ectomicorrizal especializada</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Habilidades prácticas </strong>:</p>
-<p>Aprenda a identificar especies indicadoras.Por ejemplo, algunas bacterias corales aparecen solo en bosques primitivos y son un indicador importante de la salud del ecosistema.</p>
-<br>
-<h3>Otros hábitats</h3>
-<br>
+<p class="article-text">Aprenda a identificar especies indicadoras.Por ejemplo, algunas bacterias corales aparecen solo en bosques primitivos y son un indicador importante de la salud del ecosistema.</p>
+<div class="subsection-title">📌 Otros hábitats</div>
 <p><strong> Ecosistema de prado </strong>: hongos micorrícicos ayudan a los pastos a la sequía.El pastoreo excesivo puede alterar significativamente la composición de la comunidad fúngica.</p>
-<br>
 <p><strong> Humedales y pantanos </strong>: hongos de descomposición especializados se adaptan a entornos hipóxicos.</p>
-<br>
 <p><strong> Desierto </strong>: Los hongos "mágicos" que aparecen después de la lluvia son en realidad la rápida respuesta del micelio perenne a la humedad.</p>
-<br>
 <p><strong> Entorno urbano </strong>: inesperadamente alta diversidad.He registrado más de 200 hongos en el centro de Seattle Parks.</p>
-<br>
-<h2>Diversidad funcional: el papel ecológico de los hongos</h2>
-<br>
-<h3>Diversidad de estrategias de nutrición</h3>
-<br>
+<div class="section-title">🍄 Diversidad funcional: el papel ecológico de los hongos</div>
+<div class="subsection-title">📌 Diversidad de estrategias de nutrición</div>
 <p><strong> Saurofía </strong>: Reciclador de la naturaleza.Aprender a identificar hongos especializados en diferentes bosques puede ayudarlo a encontrar especies específicas.Por ejemplo, Ganoderma Lucidum prefiere la madera dura, mientras que los hongos de fuego se cultivan especialmente en bosques quemados.</p>
-<br>
 <p><strong> Micorrizal </strong>: La especie clave que simbiosis con las plantas.En mi jardín, la inoculación de hongos micorrícicos aumentó el rendimiento vegetal en un 30%.</p>
-<br>
 <p><strong> Bacterias patógenas </strong>: una fuerza importante de selección natural.La identificación correcta de los patógenos vegetales puede controlar la transmisión de la enfermedad temprano.</p>
-<br>
-<h3>Estrategia de historia de vida</h3>
-<br>
-<p>Desde micro hongos que sobrevivieron solo unas pocas horas hasta anillos de miel que sobrevivieron durante cientos de años, el organismo más grande de la Tierra, los hongos demostraron una increíble diversidad de la historia de la vida.</p>
-<br>
-<h2>amenaza y protección: momentos de acción</h2>
-<br>
-<h3>Evaluación principal de amenazas</h3>
-<br>
+<div class="subsection-title">📌 Estrategia de historia de vida</div>
+<p class="article-text">Desde micro hongos que sobrevivieron solo unas pocas horas hasta anillos de miel que sobrevivieron durante cientos de años, el organismo más grande de la Tierra, los hongos demostraron una increíble diversidad de la historia de la vida.</p>
+<div class="section-title">🍄 amenaza y protección: momentos de acción</div>
+<div class="subsection-title">📌 Evaluación principal de amenazas</div>
 <p><strong> Pérdida del hábitat </strong>: la mayor amenaza individual.La disminución anual de las selvas tropicales es 0.8-1.2%, lo que significa la desaparición permanente de miles de hongos desconocidos.</p>
-<br>
 <p><strong> Cambio climático </strong>: Los cambios en el rango de distribución conducen a un desajuste ecológico.Mi monitoreo a largo plazo de las montañas Cascade muestra que ciertos hongos alpinos se mueven más de 30 metros cada década.</p>
-<br>
 <p><strong> Contaminación </strong>: El asentamiento de nitrógeno cambia la química del suelo, favorece ciertos tipos y elimina otros.</p>
-<br>
 <p><strong> Sobre exceso </strong>: plantea una amenaza real para ciertas especies comerciales (como Matsutake y ciertas trufas), pero el impacto a menudo se exagera.</p>
-<br>
-<h3>Estrategias y prácticas de protección</h3>
-<br>
+<div class="subsection-title">📌 Estrategias y prácticas de protección</div>
 <p><strong> Conservación del hábitat </strong>: la estrategia más efectiva.Apoyar las iniciativas de conservación del bosque local y global.</p>
-<br>
 <p><strong> Práctica de colección sostenible </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Use una bolsa de malla para permitir la transmisión de esporas</li>
 <li>Corte en lugar de salir para proteger el micelio subterráneo</li>
 <li>cumplir con las regulaciones y límites de recolección locales</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Participación de la ciencia ciudadana </strong>:</p>
-<p>Unir plataformas como Inaturalista o Micoportal, y sus observaciones pueden convertirse en parte de los descubrimientos científicos.Los aficionados que entrené han descubierto tres nuevos tipos de ciencia.</p>
-<br>
-<h2>Guía práctica: cómo participar en la conservación de la diversidad fúngica</h2>
-<br>
-<h3>Recomendaciones de equipos básicos</h3>
-<br>
+<p class="article-text">Unir plataformas como Inaturalista o Micoportal, y sus observaciones pueden convertirse en parte de los descubrimientos científicos.Los aficionados que entrené han descubierto tres nuevos tipos de ciencia.</p>
+<div class="section-title">📖 Guía práctica: cómo participar en la conservación de la diversidad fúngica</div>
+<div class="subsection-title">📌 Recomendaciones de equipos básicos</div>
 <p><strong> Herramientas requeridas </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>lupa de mano 10x: observar características microscópicas</li>
 <li>Equipo GPS: registros de posicionamiento precisos</li>
 <li>Cámara: la función macro es crucial</li>
 <li>Guía de campo: las pautas específicas regionales son más útiles</li>
 <li>Recoge la canasta y la bolsa de papel: almacene diferentes muestras por separado</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Equipo avanzado </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Microscopio portátil</li>
 <li>Materiales de impresión de esporas</li>
 <li>Kit de muestreo de ADN (ahora hay opciones asequibles para el público)</li>
-</ul>
-<br>
-<h3>Acuerdo de registro y observación</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 Acuerdo de registro y observación</div>
 <p>1. <strong> Habilidades fotográficas </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Disparar hábitats, arriba, abajo y sección de cuerpos fructíferos</li>
 <li>Incluye escala (monedas o regla)</li>
 <li>Registre las especies de plantas circundantes</li>
-</ul>
-<br>
+</ul></div>
 <p>2. <strong> Notas detalladas </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Fecha, ubicación (coordenadas)</li>
 <li>Descripción del hábitat</li>
 <li>Odor, cambios de textura</li>
 <li>Asociación con Matrix</li>
-</ul>
-<br>
-<p>3. <strong> Producción de impresión de esporas </strong>:</p>
-<p>La tecnología simple puede proporcionar información de identificación crítica. Coloque la tapa en papel medio blanco y medio negro y cubra durante varias horas.</p>
-<br>
-<h3>SEGURIDAD PRIMER</h3>
-<br>
+</ul></div>
+<p class="article-text">3. <strong> Producción de impresión de esporas </strong>:</p>
+<p class="article-text">La tecnología simple puede proporcionar información de identificación crítica. Coloque la tapa en papel medio blanco y medio negro y cubra durante varias horas.</p>
+<div class="subsection-title">📌 SEGURIDAD PRIMER</div>
 <p><strong> Principio absoluto </strong>: Nunca comas hongos silvestres a menos que 100% seguro.He visto coleccionistas experimentados que fueron envenenados por negligencia momentánea.</p>
-<br>
-<h2>Perspectiva económica: el valor de la diversidad fúngica</h2>
-<br>
-<h3>Servicios del ecosistema</h3>
-<br>
-<p>Los hongos globales proporcionan servicios de ecosistema por valor de un billón de dólares estimados, que incluyen:</p>
-<ul>
+<div class="section-title">🍄 Perspectiva económica: el valor de la diversidad fúngica</div>
+<div class="subsection-title">📌 Servicios del ecosistema</div>
+<p class="article-text">Los hongos globales proporcionan servicios de ecosistema por valor de un billón de dólares estimados, que incluyen:</p>
+<div class="highlight"><ul>
 <li>Circulación nutricional: descomposición y mineralización</li>
 <li>Salud de la planta: apoyo micorrícico</li>
 <li>Sello de carbono: los hongos del suelo corrigen carbono atmosférico</li>
-</ul>
-<br>
-<h3>Valor económico directo</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 Valor económico directo</div>
 <p><strong> hongos comestibles </strong>: El valor global de la industria supera los US $ 45 mil millones</p>
 <p><strong> Hongos medicinales </strong>: Desde antibióticos hasta inmunomoduladores</p>
 <p><strong> Aplicaciones industriales </strong>: El mercado de enzimas excede los US $ 6 mil millones</p>
-<br>
-<h3>potencial futuro</h3>
-<br>
-<p>La mayoría de las especies fúngicas no se han estudiado y su valor potencial es inconmensurable.Nuestro compuesto recientemente aislado de un hongo común en el bosque ha mostrado un gran potencial para combatir las bacterias resistentes a las drogas.</p>
-<br>
-<h2>Llamado a la acción: el papel de todos</h2>
-<br>
-<p>La biodiversidad fúngica es un componente clave del sistema de soporte vital de la Tierra, pero se subestima y se pasa por alto seriamente.Como entusiastas del aire libre, observadores de la naturaleza y ciudadanos responsables, todos podemos contribuir a comprender y proteger este reino oculto.</p>
-<br>
+<div class="subsection-title">📌 potencial futuro</div>
+<p class="article-text">La mayoría de las especies fúngicas no se han estudiado y su valor potencial es inconmensurable.Nuestro compuesto recientemente aislado de un hongo común en el bosque ha mostrado un gran potencial para combatir las bacterias resistentes a las drogas.</p>
+<div class="section-title">🍄 Llamado a la acción: el papel de todos</div>
+<p class="article-text">La biodiversidad fúngica es un componente clave del sistema de soporte vital de la Tierra, pero se subestima y se pasa por alto seriamente.Como entusiastas del aire libre, observadores de la naturaleza y ciudadanos responsables, todos podemos contribuir a comprender y proteger este reino oculto.</p>
 <p><strong> Consejo para la acción inmediata </strong>:</p>
-<br>
-<p>1. Únase a la Sociedad de Hongos Local o al Proyecto de Ciencias Ciudadanas</p>
-<p>2. Aprenda a identificar grupos fúngicos comunes en su área</p>
-<p>3. Registre y comparta sus observaciones (utilizando plataformas como Inaturalista)</p>
-<p>4. Apoye a las organizaciones e iniciativas de conservación del hábitat</p>
-<p>5. Práctica y promover el principio de la colección sostenible</p>
-<p>Recuerde, cada vez que encuentre un hongo en el bosque, probablemente esté observando una criatura poco conocida o incluso completamente desconocida para la ciencia.Sus registros y observaciones pueden convertirse en evidencia crítica para las decisiones de conservación.</p>
-<br>
-<p>Este reino oculto está esperando ser descubierto, comprendido y protegido, y usted tiene el poder de ser parte integral de este importante trabajo.</p>
-<br>
+<p class="article-text">1. Únase a la Sociedad de Hongos Local o al Proyecto de Ciencias Ciudadanas</p>
+<p class="article-text">2. Aprenda a identificar grupos fúngicos comunes en su área</p>
+<p class="article-text">3. Registre y comparta sus observaciones (utilizando plataformas como Inaturalista)</p>
+<p class="article-text">4. Apoye a las organizaciones e iniciativas de conservación del hábitat</p>
+<p class="article-text">5. Práctica y promover el principio de la colección sostenible</p>
+<p class="article-text">Recuerde, cada vez que encuentre un hongo en el bosque, probablemente esté observando una criatura poco conocida o incluso completamente desconocida para la ciencia.Sus registros y observaciones pueden convertirse en evidencia crítica para las decisiones de conservación.</p>
+<p class="article-text">Este reino oculto está esperando ser descubierto, comprendido y protegido, y usted tiene el poder de ser parte integral de este importante trabajo.</p>
 <p>---</p>
-<p>*El autor de este artículo es Ph.D. en micología. Tiene 25 años de experiencia en estudios de campo, participó en la descripción de más de 30 nuevas especies de hongos y dirigió múltiples proyectos internacionales de investigación sobre diversidad de hongos.*</p>
+<p class="article-text">*El autor de este artículo es Ph.D. en micología. Tiene 25 años de experiencia en estudios de campo, participó en la descripción de más de 30 nuevas especies de hongos y dirigió múltiples proyectos internacionales de investigación sobre diversidad de hongos.*</p>
         </div>
-    </div>
+
+</div>
 </body>
 </html>

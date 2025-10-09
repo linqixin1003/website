@@ -1,620 +1,463 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invasores invisíveis - Mushroom Ecology</title>
-    <meta name="description" content="Invasores invisíveis">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>09 Invasores invisíveis - MushroomAiSnap</title>
+<link href="../../mobile-styles.css" rel="stylesheet"/>
+<link href="../../mobile-enhancement.css" rel="stylesheet"/>
+<link href="../../ecology-theme.css" rel="stylesheet"/>
+<style>
+        .hero-image img {
+            max-height: 200px;
+            width: 100%;
+            object-fit: cover;
         }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        .article-card img {
+            max-height: 120px;
+            width: 100%;
+            object-fit: cover;
+        }
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                        url('../../images/mushroom-ecology_09-invasive-fungal-species.webp') center/cover;
+            position: relative;
+            margin-top: 0;
+        }
+        .article-meta {
+            margin-top: 15px !important;
+        }
+    
+        /* Mushroom Ecology Theme */
+        :root {
+            --primary-color: #228B22;
+            --primary-dark: #006400;
+            --primary-light: #F0FFF0;
+            --accent-color: #32CD32;
+        }
+        
+        /* Theme Color Overrides */
+        .content {
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+            border: 2px solid var(--primary-color);
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, var(--primary-light), var(--primary-light));
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .quote-text {
+            color: var(--primary-dark);
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+        }
+        
+        .subsection-title {
+            color: var(--primary-dark);
+            font-size: 1.4em;
+            font-weight: 600;
+            margin: 25px 0 15px 0;
+            padding-left: 10px;
+            border-left: 3px solid var(--accent-color);
+        }
+        
+        .tip-box {
+            border-left: 4px solid var(--primary-color);
+            background: var(--primary-light);
+        }
+        
+        .tip-title {
+            color: var(--primary-color);
+        }
+        
+        .highlight {
+            border-left: 4px solid var(--accent-color);
+            background: linear-gradient(135deg, #f1f8e9, var(--primary-light));
+        }
+        
+        .warning {
+            border-left: 4px solid #f44336;
+        }
+        
+        .equipment-item {
+            border: 1px solid var(--accent-color);
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+        }
+        
+        .equipment-item h4 {
+            color: var(--primary-color);
+        }
+        
+        .category {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .main-text {
+            font-size: 1.1em;
             line-height: 1.8;
             color: #333;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-
-        .article-title {
-            color: #4ECDC4;
-            font-size: 2.5em;
-            margin-bottom: 30px;
-            margin-top: 0;
-            line-height: 1.3;
-            padding-top: 0;
-        }
-
-        .featured-image {
-            width: 100%;
-            height: auto;
-            aspect-ratio: 4 / 3;
-            object-fit: cover;
-            display: block;
-        }
-
-        .content {
-            padding: 50px;
-        }
-
-        .content h2 {
-            color: #4ECDC4;
-            font-size: 2em;
-            margin-top: 40px;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid #4ECDC4;
-        }
-
-        .content h3 {
-            color: #555;
-            font-size: 1.6em;
-            margin-top: 30px;
-            margin-bottom: 15px;
-        }
-
-        .content h4 {
-            color: #666;
-            font-size: 1.3em;
-            margin-top: 25px;
-            margin-bottom: 12px;
-        }
-
-        .content p {
-            margin-bottom: 20px;
-            font-size: 1.1em;
-            color: #444;
-        }
-
-        .content ul {
             margin: 20px 0;
-            padding-left: 30px;
-        }
-
-        .content li {
-            margin-bottom: 12px;
-            font-size: 1.05em;
-            color: #555;
-        }
-
-        .content strong {
-            color: #222;
-            font-weight: 600;
-        }
-
-        .back-link {
-            display: inline-block;
-            padding: 12px 25px;
-            background: linear-gradient(135deg, #4ECDC4, #8B4513);
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            margin-bottom: 20px;
-            transition: transform 0.3s ease;
-            font-weight: 600;
-        }
-
-        .back-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .navigation {
-            padding: 30px 50px;
-            background: #f8f9fa;
-            border-top: 1px solid #e9ecef;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-btn {
-            padding: 10px 20px;
-            background: #4ECDC4;
-            color: white;
-            text-decoration: none;
+            padding: 15px;
+            background: linear-gradient(135deg, #ffffff, #f9f9f9);
             border-radius: 8px;
-            transition: all 0.3s ease;
+            border-left: 3px solid var(--accent-color);
         }
-
-        .nav-btn:hover {
-            transform: translateX(5px);
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+        
+        .emoji {
+            font-size: 1.5em;
+            margin-left: 10px;
         }
-
-        .nav-btn.prev:hover {
-            transform: translateX(-5px);
+        
+        .read-time, .difficulty {
+            display: inline-block;
+            padding: 5px 15px;
+            margin: 5px 5px 5px 0;
+            border-radius: 20px;
+            font-size: 0.9em;
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            color: #1976d2;
+            font-weight: 500;
         }
-
-        @media (max-width: 768px) {
-            .content {
-                padding: 30px 25px;
-            }
-
-            .article-title {
-                font-size: 1.8em;
-            }
-
-            .featured-image {
-                height: 250px;
-            }
-
-            .navigation {
-                flex-direction: column;
-                gap: 15px;
-            }
+        
+        .difficulty {
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            color: #e65100;
+        }
+        
+        .article-text {
+            line-height: 1.8;
+            color: #444;
+            margin: 15px 0;
+            font-size: 1.05em;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <img src="../../images/mushroom-ecology_09-invasive-fungal-species.webp" alt="Invasores invisíveis" class="featured-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22900%22 height=%22400%22%3E%3Crect fill=%22%23D2691E%22 width=%22900%22 height=%22400%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22white%22 font-size=%2260%22%3E🍄%3C/text%3E%3C/svg%3E'">
+<div class="hero-image"></div>
+<div class="content">
+    <h1 class="title">09 Invasores invisíveis</h1>
+    <div class="quote-box">
+        <div class="quote-text">Professional Mycology Guide</div>
+    </div>
+    
+<div class="article-meta">
+<span class="category">🌱 Mushroom Ecology</span>
+<span class="read-time">📖 19 minute read</span>
+<span class="difficulty">🟡 Intermediate</span>
+</div>
 
-        <div class="content">
-            <h1 class="article-title">Invasores invisíveis</h1>
-            <br>
-<h2>Introdução: ameaça invisível</h2>
-<br>
-<p>Ao passear pela floresta, você pode estar pisando nas sementes que mudam o ecossistema.Esses pequenos esporos de fungos estão atravessando o continente com a onda de globalização, remodelando a paisagem natural com a qual estamos familiarizados.Como especialista que há muito estuda ecologia fúngica, testemunhei em primeira mão como esses microorganismos mudam silenciosamente a estrutura e a função das florestas.</p>
-<br>
-<p>Nas últimas duas décadas, acompanhei os caminhos de invasão de fungos das montanhas dos Apalaches até o noroeste do Pacífico.Essas experiências me fizeram perceber profundamente que a invasão fúngica não é apenas uma questão científica, mas também uma crise ecológica para a qual todos devem prestar atenção.Este artigo o levará à profunda compreensão da verdade sobre este campo de batalha invisível e fornecerá contramedidas práticas.</p>
-<br>
-<h2>O que é uma espécie invasiva: redefinindo ameaças ecológicas</h2>
-<br>
-<h3>Definição científica e recursos -chave</h3>
-<br>
-<p>As espécies invasivas devem atender a três condições principais: primeiro, são introduzidas em áreas não nativas; Segundo, eles são capazes de estabelecer populações reprodutivas e continuar a se espalhar; E, finalmente, eles causam danos substanciais aos ecossistemas locais, economia ou saúde humana.Isso é essencialmente diferente de "espécies exóticas" - muitas espécies alienígenas podem coexistir em harmonia com o ambiente local, enquanto espécies invasoras destruirão o equilíbrio ecológico.</p>
-<br>
+
+            <div class="section-title">🍄 Introdução: ameaça invisível</div>
+<div class="main-text">Ao passear pela floresta, você pode estar pisando nas sementes que mudam o ecossistema.Esses pequenos esporos de fungos estão atravessando o continente com a onda de globalização, remodelando a paisagem natural com a qual estamos familiarizados.Como especialista que há muito estuda ecologia fúngica, testemunhei em primeira mão como esses microorganismos mudam silenciosamente a estrutura e a função das florestas.<span class="emoji">🍄</span></div>
+<p class="article-text">Nas últimas duas décadas, acompanhei os caminhos de invasão de fungos das montanhas dos Apalaches até o noroeste do Pacífico.Essas experiências me fizeram perceber profundamente que a invasão fúngica não é apenas uma questão científica, mas também uma crise ecológica para a qual todos devem prestar atenção.Este artigo o levará à profunda compreensão da verdade sobre este campo de batalha invisível e fornecerá contramedidas práticas.</p>
+<div class="section-title">🍄 O que é uma espécie invasiva: redefinindo ameaças ecológicas</div>
+<div class="subsection-title">📌 Definição científica e recursos -chave</div>
+<p class="article-text">As espécies invasivas devem atender a três condições principais: primeiro, são introduzidas em áreas não nativas; Segundo, eles são capazes de estabelecer populações reprodutivas e continuar a se espalhar; E, finalmente, eles causam danos substanciais aos ecossistemas locais, economia ou saúde humana.Isso é essencialmente diferente de "espécies exóticas" - muitas espécies alienígenas podem coexistir em harmonia com o ambiente local, enquanto espécies invasoras destruirão o equilíbrio ecológico.</p>
 <p><strong> Caso prático </strong>:</p>
-<p>Em 2015, enquanto eu estava conduzindo uma pesquisa de campo no estado de Washington, encontrei um fungo que deva a madeira da Europa se espalhando rapidamente nas florestas locais.O fungo é relativamente inofensivo nativo do solo, mas mostra surpreendentemente agressividade no novo ambiente, fazendo com que centenas de árvores maduras morrasem em três anos.</p>
-<br>
-<h3>as vantagens invasivas únicas de fungos</h3>
-<br>
-<p>Os fungos possuem propriedades biológicas especiais que os tornam um invasor de sucesso:</p>
-<br>
-<ul>
+<p class="article-text">Em 2015, enquanto eu estava conduzindo uma pesquisa de campo no estado de Washington, encontrei um fungo que deva a madeira da Europa se espalhando rapidamente nas florestas locais.O fungo é relativamente inofensivo nativo do solo, mas mostra surpreendentemente agressividade no novo ambiente, fazendo com que centenas de árvores maduras morrasem em três anos.</p>
+<div class="subsection-title">📌 as vantagens invasivas únicas de fungos</div>
+<p class="article-text">Os fungos possuem propriedades biológicas especiais que os tornam um invasor de sucesso:</p><div class="highlight"><ul>
 <li>** Unidade de transmissão microscópica **: O diâmetro de um único esporo é de apenas 5-20 mícrons, o que é muito fácil de se espalhar pelo fluxo de ar.</li>
 <li>** Tenire Vitality **: Muitos fungos podem formar esporos duráveis ​​e sobreviver por vários anos em ambientes duros</li>
 <li>** Reprodução exponencial **: Uma entidade de frutificação madura pode liberar milhões de esporos por dia</li>
 <li>** Elasticidade ambiente **: adapte -se a uma ampla gama de condições de temperatura, pH e umidade</li>
 <li>** Plasticidade genética **: A capacidade de evoluir rapidamente para se adaptar a novos ambientes</li>
-</ul>
-<br>
-<p>** Especialistas sugerem que: Aprenda a identificar sinais precoces de invasão - padrões uniformes de decaimento das árvores e emergência anormal da flora bacteriana são sinais que precisam ser vigilantes.</p>
-<br>
-<h2>Caminho de comunicação: jogo ecológico na era da globalização</h2>
-<br>
-<h3>comunicação artificial: o promotor principal</h3>
-<br>
+</ul></div>
+<p class="article-text">** Especialistas sugerem que: Aprenda a identificar sinais precoces de invasão - padrões uniformes de decaimento das árvores e emergência anormal da flora bacteriana são sinais que precisam ser vigilantes.</p>
+<div class="section-title">🍄 Caminho de comunicação: jogo ecológico na era da globalização</div>
+<div class="subsection-title">📌 comunicação artificial: o promotor principal</div>
 <p><strong> Comércio de produtos de madeira e madeira </strong></p>
-<p>Esta é a principal maneira de invadir fungos.Um estudo em que participei descobri que cerca de 23% das mercadorias no comércio internacional de madeira transportam esporos de fungos ao vivo.Riscos específicos incluem:</p>
-<br>
-<ul>
+<p class="article-text">Esta é a principal maneira de invadir fungos.Um estudo em que participei descobri que cerca de 23% das mercadorias no comércio internacional de madeira transportam esporos de fungos ao vivo.Riscos específicos incluem:</p><div class="highlight"><ul>
 <li>Material de embalagem de madeira não tratado</li>
 <li>móveis importados e materiais de construção</li>
 <li>lascas de madeira e combustíveis de biomassa</li>
 <li>madeira e artesanato ornamentais</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Recomendação de ferramentas profissionais </strong>:</p>
-<p>Microscópios portáteis (100-400 vezes) podem ser usados ​​para detectar inicialmente estruturas de esporos em superfícies de madeira.Para trabalhadores de campo graves, recomendo transportar um pequeno kit de desinfecção que inclua spray de álcool a 70% e toalhetes desinfetantes descartáveis.</p>
-<br>
+<p class="article-text">Microscópios portáteis (100-400 vezes) podem ser usados ​​para detectar inicialmente estruturas de esporos em superfícies de madeira.Para trabalhadores de campo graves, recomendo transportar um pequeno kit de desinfecção que inclua spray de álcool a 70% e toalhetes desinfetantes descartáveis.</p>
 <p><strong> Transmissão de planta e solo </strong></p>
-<p>O comércio de horticultura é outra abordagem importante:</p>
-<br>
-<ul>
+<p class="article-text">O comércio de horticultura é outra abordagem importante:</p><div class="highlight"><ul>
 <li>mudas e sementes importadas geralmente carregam microorganismos do solo</li>
 <li>Plantas em vasos e seu solo anexado</li>
 <li>lâmpadas e raízes de plantas ornamentais</li>
 <li>cepas comerciais e substratos de cultivo</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Experiência pessoal </strong>:</p>
-<p>Ajudei o departamento de quarentena a interceptar um lote de árvores de bordo ornamental da Ásia e detectei três fungos patogênicos que não estão localmente localizados no solo radicular.Essa experiência me fez perceber o quão importante é uma quarentena de importação estrita.</p>
-<br>
+<p class="article-text">Ajudei o departamento de quarentena a interceptar um lote de árvores de bordo ornamental da Ásia e detectei três fungos patogênicos que não estão localmente localizados no solo radicular.Essa experiência me fez perceber o quão importante é uma quarentena de importação estrita.</p>
 <p><strong> Atividades de viagem e lazer </strong></p>
-<p>Cada um de nós pode estar se tornando inadvertidamente um meio de comunicação:</p>
-<br>
-<ul>
+<p class="article-text">Cada um de nós pode estar se tornando inadvertidamente um meio de comunicação:</p><div class="highlight"><ul>
 <li>Solo e esporos transportados por solas e equipamentos externos</li>
 <li>Equipamento de acampamento e chassi de veículo</li>
 <li>Cabelo de estimação e produtos ao ar livre</li>
 <li>Pastas de caminhada e pneus de bicicleta</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Dicas rápidas </strong>:</p>
-<p>Estabeleça protocolos pessoais de biossegurança: Limpe completamente as solas e o equipamento ao se mover entre diferentes áreas florestais.Use uma escova dura para remover o solo e trate -o com desinfetante.Esse hábito simples pode reduzir significativamente o risco de transmissão.</p>
-<br>
-<h3>O papel auxiliar da transmissão natural</h3>
-<br>
-<p>Enquanto o vento, a água e os animais podem espalhar fungos, essas vias naturais geralmente se tornam importantes apenas após serem introduzidas pelo homem.Estudos mostram que mais de 95% das invasões de fungos são inicialmente alcançadas por meio de atividades humanas.</p>
-<br>
-<h2>Caso de invasão famosa: Changeler do ecossistema</h2>
-<br>
-<h3>Chestnut Blight: uma aula do século</h3>
-<br>
+<p class="article-text">Estabeleça protocolos pessoais de biossegurança: Limpe completamente as solas e o equipamento ao se mover entre diferentes áreas florestais.Use uma escova dura para remover o solo e trate -o com desinfetante.Esse hábito simples pode reduzir significativamente o risco de transmissão.</p>
+<div class="subsection-title">📌 O papel auxiliar da transmissão natural</div>
+<p class="article-text">Enquanto o vento, a água e os animais podem espalhar fungos, essas vias naturais geralmente se tornam importantes apenas após serem introduzidas pelo homem.Estudos mostram que mais de 95% das invasões de fungos são inicialmente alcançadas por meio de atividades humanas.</p>
+<div class="section-title">🍄 Caso de invasão famosa: Changeler do ecossistema</div>
+<div class="subsection-title">📌 Chestnut Blight: uma aula do século</div>
 <p><strong> Antecedentes e influência </strong></p>
-<p>Em 1904, a bactéria castanha chegou à América do Norte com árvores de castanhas asiáticas importadas.Em apenas 50 anos, o fungo quase eliminou as castanhas americanas, que antes representaram 25% das florestas dos Apalaches.Como uma espécie de pilar da floresta, seu desaparecimento desencadeou uma reação em cadeia:</p>
-<br>
-<ul>
+<p class="article-text">Em 1904, a bactéria castanha chegou à América do Norte com árvores de castanhas asiáticas importadas.Em apenas 50 anos, o fungo quase eliminou as castanhas americanas, que antes representaram 25% das florestas dos Apalaches.Como uma espécie de pilar da floresta, seu desaparecimento desencadeou uma reação em cadeia:</p><div class="highlight"><ul>
 <li>dezenas de insetos que dependem de árvores castanhas desaparecem</li>
 <li>animais selvagens como ursos pretos perdem fontes importantes de alimentos</li>
 <li>Estrutura florestal e ciclos de nutrientes foram completamente alterados</li>
 <li>A perda anual da indústria de madeira excede US $ 500 milhões (com base no valor atual)</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Observação no local </strong>:</p>
-<p>No outono passado, quando visitei as montanhas Blue Ridge, ainda podia ver tocos antigos de castanhas americanas e novas mudas de raiz.Essas novas mudas tenazes são geralmente infectadas e mortas por fungos antes de florescerem, formando um ciclo trágico.</p>
-<br>
+<p class="article-text">No outono passado, quando visitei as montanhas Blue Ridge, ainda podia ver tocos antigos de castanhas americanas e novas mudas de raiz.Essas novas mudas tenazes são geralmente infectadas e mortas por fungos antes de florescerem, formando um ciclo trágico.</p>
 <p><strong> Progresso e desafios da gerência </strong></p>
-<p>O método de controle mais promissor no momento é o uso de cepas tóxicas baixas para controle biológico.Essas cepas carregam vírus e podem enfraquecer a toxicidade dos patógenos.Na prática, encontramos:</p>
-<br>
-<ul>
+<p class="article-text">O método de controle mais promissor no momento é o uso de cepas tóxicas baixas para controle biológico.Essas cepas carregam vírus e podem enfraquecer a toxicidade dos patógenos.Na prática, encontramos:</p><div class="highlight"><ul>
 <li>A taxa de sucesso da gestão regional é de cerca de 40-60%</li>
 <li>Programa de criação de resistência criou híbridos com 15% de gene castanha asiática</li>
 <li>O controle químico é eficaz em pequenas árvores paisagísticas, mas não para o tamanho da floresta</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Guia prático </strong>:</p>
-<p>Se você encontrar suspeita de praga castanha na natureza, grave a localização do GPS e tire fotos claras dos sintomas da casca (corpos de frutificação laranja e amarela e rachaduras de casca).Reporte -se ao departamento florestal local imediatamente e não tente lidar com isso sozinho.</p>
-<br>
-<h3>Death de carvalho repentino: um modelo de invasão moderna</h3>
-<br>
+<p class="article-text">Se você encontrar suspeita de praga castanha na natureza, grave a localização do GPS e tire fotos claras dos sintomas da casca (corpos de frutificação laranja e amarela e rachaduras de casca).Reporte -se ao departamento florestal local imediatamente e não tente lidar com isso sozinho.</p>
+<div class="subsection-title">📌 Death de carvalho repentino: um modelo de invasão moderna</div>
 <p><strong> Identificação e diagnóstico </strong></p>
-<p>Meus colegas da UC Berkeley descobriram esta doença primeiro.Através de anos de pesquisa, desenvolvemos um método prático de diagnóstico:</p>
-<br>
-<ul>
+<p class="article-text">Meus colegas da UC Berkeley descobriram esta doença primeiro.Através de anos de pesquisa, desenvolvemos um método prático de diagnóstico:</p><div class="highlight"><ul>
 <li>Sintomas de folhas: borda encharcada de água, ponta morta</li>
 <li>Sintomas do porta</li>
 <li>Teste rápido: use tiras de teste de imunocromatografia (semelhante ao teste rápido Covid)</li>
 <li>Confirmação de laboratório: a análise de PCR é o método mais confiável</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Dinâmica de propagação </strong></p>
-<p>A transmissão deste patógeno é muito distinta:</p>
-<br>
-<ul>
+<p>A transmissão deste patógeno é muito distinta:</p><div class="highlight"><ul>
 <li>Rain Splash é o principal método de transmissão de curta distância</li>
 <li>Plantas infectadas por dispositivos móveis artificiais são a principal causa de transmissão de longa distância</li>
 <li>Os esporos podem sobreviver no solo e na água por várias semanas</li>
 <li>Certas plantas hortícolas comuns (como azáleas) são portadores assintomáticos</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Avaliação da estratégia de gerenciamento </strong></p>
-<p>Com base em 15 anos de experiência em prevenção e controle, resumimos as seguintes estratégias eficazes:</p>
-<br>
-<ul>
+<p class="article-text">Com base em 15 anos de experiência em prevenção e controle, resumimos as seguintes estratégias eficazes:</p><div class="highlight"><ul>
 <li>Detecção precoce e remoção rápida de árvores infectadas</li>
 <li>Crie uma barreira com pelo menos 30 metros de largura</li>
 <li>restringir as plantas de berçário de áreas de infecção</li>
 <li>A educação pública melhora a taxa de relatórios</li>
-</ul>
-<br>
-<h3>Frog Chytridiopathy: Crise de Anfíbio Global</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 Frog Chytridiopathy: Crise de Anfíbio Global</div>
 <p><strong> Mecanismo e impacto </strong></p>
-<p>Este fungo ataca a pele dos anfíbios e destrói seu equilíbrio de eletrólitos.Meus estudos de campo na América Central documentaram seus efeitos devastadores:</p>
-<br>
-<ul>
+<p class="article-text">Este fungo ataca a pele dos anfíbios e destrói seu equilíbrio de eletrólitos.Meus estudos de campo na América Central documentaram seus efeitos devastadores:</p><div class="highlight"><ul>
 <li>A taxa de mortalidade excede 80% dentro de 2-3 semanas após a infecção</li>
 <li>Mais de 500 populações de anfíbios diminuíram severamente</li>
 <li>90 espécies confirmadas como extintas</li>
 <li>Áreas de alta altitude são mais afetadas</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> testemunha pessoal </strong>:</p>
-<p>Em 2010, trabalhei em uma área protegida pelo Panamá e testemunhei o surto de chytridiomicose. Em apenas três meses, a floresta, que estava originalmente cheia de sapo, ficou em silêncio.Essa experiência me deu uma profunda compreensão da natureza devastadora da invasão biológica.</p>
-<br>
+<p class="article-text">Em 2010, trabalhei em uma área protegida pelo Panamá e testemunhei o surto de chytridiomicose. Em apenas três meses, a floresta, que estava originalmente cheia de sapo, ficou em silêncio.Essa experiência me deu uma profunda compreensão da natureza devastadora da invasão biológica.</p>
 <p><strong> Avanço de proteção </strong></p>
-<p>Nos últimos anos, fizemos algum progresso importante:</p>
-<br>
-<ul>
+<p class="article-text">Nos últimos anos, fizemos algum progresso importante:</p><div class="highlight"><ul>
 <li>Encontrou algumas populações naturalmente desenvolvendo resistência</li>
 <li>O gerenciamento de temperatura pode controlar a gravidade da infecção</li>
 <li>O tratamento probiótico é eficaz em condições experimentais</li>
 <li>Programa de criação em cativeiro reconstruiu com sucesso várias populações ameaçadas de extinção</li>
-</ul>
-<br>
-<h2>Impacto no nível do ecossistema: reações de cadeia invisível</h2>
-<br>
-<h3>Efeito em cascata da perda de biodiversidade</h3>
-<br>
+</ul></div>
+<div class="section-title">🍄 Impacto no nível do ecossistema: reações de cadeia invisível</div>
+<div class="subsection-title">📌 Efeito em cascata da perda de biodiversidade</div>
 <p><strong> efeitos diretos e indiretos </strong></p>
-<p>Tomando a doença castanha como exemplo, seu impacto é muito mais do que a própria árvore de castanha:</p>
-<br>
-<ul>
+<p class="article-text">Tomando a doença castanha como exemplo, seu impacto é muito mais do que a própria árvore de castanha:</p><div class="highlight"><ul>
 <li>Direto: a população de árvores castanhas entra em colapso</li>
 <li>Nível 1 Efeito indireto: 28 Obriga a extinção de insetos</li>
 <li>Efeitos indiretos secundários: menos pássaros se alimentam desses insetos</li>
 <li>Efeitos indiretos de terceiro nível: transmissão de sementes e mudanças de padrão de polinização</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Estudo de caso prático </strong>:</p>
-<p>Meu monitoramento de longo prazo no Parque Nacional Great Smoky Mountains mostrou que 50 anos depois que a árvore de castanha desapareceu, a composição do dossel da floresta mudou completamente.A área originalmente dominada por árvores castanhas é agora ocupada por carvalhos e bordos, e as comunidades de plantas sob a floresta também se transformaram.</p>
-<br>
-<h3>Ciclo de carbono e dinâmica nutricional</h3>
-<br>
+<p class="article-text">Meu monitoramento de longo prazo no Parque Nacional Great Smoky Mountains mostrou que 50 anos depois que a árvore de castanha desapareceu, a composição do dossel da floresta mudou completamente.A área originalmente dominada por árvores castanhas é agora ocupada por carvalhos e bordos, e as comunidades de plantas sob a floresta também se transformaram.</p>
+<div class="subsection-title">📌 Ciclo de carbono e dinâmica nutricional</div>
 <p><strong> Impacto quantitativo </strong></p>
-<p>Através da modelagem do ecossistema, calculamos:</p>
-<br>
-<ul>
+<p>Através da modelagem do ecossistema, calculamos:</p><div class="highlight"><ul>
 <li>Árvore de castanha madura única pode armazenar mais de 3 toneladas de carbono</li>
 <li>A doença castanha faz com que as reservas de carbono no leste dos Estados Unidos diminuam 12-18%</li>
 <li>Grande número de mortes de árvores leva a um aumento na liberação de carbono de curto prazo</li>
 <li>A capacidade de pia de carbono a longo prazo diminuiu em mais de 25%</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Mudança de circulação nutricional </strong></p>
-<p>A invasão fúngica altera o processo anatômico e a disponibilidade nutricional:</p>
-<br>
-<ul>
+<p class="article-text">A invasão fúngica altera o processo anatômico e a disponibilidade nutricional:</p><div class="highlight"><ul>
 <li>Alterações na taxa de decomposição de madeira</li>
 <li>Reorganização da comunidade microbiana do solo</li>
 <li>Transição do ciclo de nitrogênio e fósforo</li>
 <li>Alterações no conteúdo de pH e matéria orgânica</li>
-</ul>
-<br>
-<h3>O risco de incêndio aumenta</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 O risco de incêndio aumenta</div>
 <p><strong> Análise do mecanismo </strong></p>
-<p>Minha pesquisa sobre ecologia de fogo nos estados ocidentais confirmou:</p>
-<br>
-<ul>
+<p class="article-text">Minha pesquisa sobre ecologia de fogo nos estados ocidentais confirmou:</p><div class="highlight"><ul>
 <li>O aumento do número de árvores mortas aumenta a carga de combustível em 3-5 vezes</li>
 <li>madeira morta seca reduz a temperatura de ignição</li>
 <li>O aumento da intensidade do incêndio faz com que mais árvores morram</li>
-</ul>
-<p>-formar um loop de feedback positivo de "invasão de invasão-fogo"</p>
-<br>
+</ul></div>
+<p class="article-text">-formar um loop de feedback positivo de "invasão de invasão-fogo"</p>
 <p><strong> Inspiração de gerenciamento </strong>:</p>
-<p>Em áreas florestais gravemente invadidas, as estratégias de gerenciamento de incêndio precisam ser ajustadas, incluindo gerenciamento mais ativo de combustível e modificação dos procedimentos de construção de linhas de controle.</p>
-<br>
-<h2>Impacto econômico: cálculo do custo implícito</h2>
-<br>
-<h3>Análise detalhada de perdas florestais</h3>
-<br>
-<p>Tomando a epidemia de castanha como exemplo, seu impacto econômico inclui:</p>
-<br>
-<ul>
+<p class="article-text">Em áreas florestais gravemente invadidas, as estratégias de gerenciamento de incêndio precisam ser ajustadas, incluindo gerenciamento mais ativo de combustível e modificação dos procedimentos de construção de linhas de controle.</p>
+<div class="section-title">🍄 Impacto econômico: cálculo do custo implícito</div>
+<div class="subsection-title">📌 Análise detalhada de perdas florestais</div>
+<p class="article-text">Tomando a epidemia de castanha como exemplo, seu impacto econômico inclui:</p><div class="highlight"><ul>
 <li>Perda de valor de madeira direta: aproximadamente US $ 5 bilhões (pelo valor atual)</li>
 <li>Perdas de serviço do ecossistema: US $ 2-3 bilhões por ano</li>
 <li>Custo da gestão: Exceda cumulativamente US $ 800 milhões</li>
 <li>Custos de transformação industrial: fechamento da serraria e reciclagem de trabalhadores</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Insights profissionais </strong>:</p>
-<p>Muitas análises econômicas calculam apenas perdas diretas, ignorando o valor do serviço de longo prazo do ecossistema.O novo modelo em que trabalhei mostra que o custo real é geralmente 3-5 vezes o dos cálculos tradicionais.</p>
-<br>
-<h3>Florestas urbanas e valor da paisagem</h3>
-<br>
-<p>A doença holandesa do olmo nos permite ver o valor das árvores urbanas:</p>
-<br>
-<ul>
+<p class="article-text">Muitas análises econômicas calculam apenas perdas diretas, ignorando o valor do serviço de longo prazo do ecossistema.O novo modelo em que trabalhei mostra que o custo real é geralmente 3-5 vezes o dos cálculos tradicionais.</p>
+<div class="subsection-title">📌 Florestas urbanas e valor da paisagem</div>
+<p class="article-text">A doença holandesa do olmo nos permite ver o valor das árvores urbanas:</p><div class="highlight"><ul>
 <li>O efeito de resfriamento de uma única árvore de sombra madura é equivalente à de 5 aparelhos de ar condicionado</li>
 <li>As árvores de rua podem aumentar o valor da propriedade em 15-20%</li>
 <li>Maior custo de gestão de tempestade devido a perdas de árvores</li>
 <li>Saúde mental e bem-estar da comunidade são afetados</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Conselho Prático </strong>:</p>
-<p>Os departamentos florestais municipais devem estabelecer padrões de diversidade de espécies de árvores, e uma única espécie de árvore não deve exceder 10% do número total de árvores urbanas.Isso pode melhorar a resiliência das florestas urbanas à invasão.</p>
-<br>
-<h2>Gerenciamento e controle: um guia de estratégia prática</h2>
-<br>
-<h3>Prevenção: a linha de defesa mais eficaz</h3>
-<br>
+<p class="article-text">Os departamentos florestais municipais devem estabelecer padrões de diversidade de espécies de árvores, e uma única espécie de árvore não deve exceder 10% do número total de árvores urbanas.Isso pode melhorar a resiliência das florestas urbanas à invasão.</p>
+<div class="section-title">🍄 Gerenciamento e controle: um guia de estratégia prática</div>
+<div class="subsection-title">📌 Prevenção: a linha de defesa mais eficaz</div>
 <p><strong> Contrato pessoal de biossegurança </strong></p>
-<p>Com base na minha experiência de trabalho de campo, são recomendadas as seguintes etapas:</p>
-<br>
-<p>1. Verifique: verifique se o equipamento tem solo antes de deixar a área florestal</p>
-<p>2. Limpar: use escovas e raspadores rígidos para remover o solo visível</p>
+<p class="article-text">Com base na minha experiência de trabalho de campo, são recomendadas as seguintes etapas:</p>
+<p class="article-text">1. Verifique: verifique se o equipamento tem solo antes de deixar a área florestal</p>
+<p class="article-text">2. Limpar: use escovas e raspadores rígidos para remover o solo visível</p>
 <p>3. Limpeza: itens laváveis ​​com água com sabão</p>
-<p>4. Desinfecção: Use 70% de álcool ou desinfetante especial para equipamentos sensíveis</p>
-<p>5. Secagem: Certifique -se de ser completamente seco antes de usar em novas áreas</p>
-<br>
+<p class="article-text">4. Desinfecção: Use 70% de álcool ou desinfetante especial para equipamentos sensíveis</p>
+<p class="article-text">5. Secagem: Certifique -se de ser completamente seco antes de usar em novas áreas</p>
 <p><strong> Solução de desinfecção profissional </strong>:</p>
-<p>Para profissionais que geralmente trabalham em diferentes zonas ecológicas, recomendo investir em limpadores de vapor portáteis.O vapor acima de 140 ° F pode efetivamente matar a maioria dos esporos de fungos e é ecológico.</p>
-<br>
-<h3>Tecnologia de detecção precoce</h3>
-<br>
+<p class="article-text">Para profissionais que geralmente trabalham em diferentes zonas ecológicas, recomendo investir em limpadores de vapor portáteis.O vapor acima de 140 ° F pode efetivamente matar a maioria dos esporos de fungos e é ecológico.</p>
+<div class="subsection-title">📌 Tecnologia de detecção precoce</div>
 <p><strong> O poder da ciência do cidadão </strong></p>
-<p>Vários projetos de sucesso em que trabalhei provaram que um público bem treinado é um recurso inestimável para a detecção precoce:</p>
-<br>
-<ul>
+<p class="article-text">Vários projetos de sucesso em que trabalhei provaram que um público bem treinado é um recurso inestimável para a detecção precoce:</p><div class="highlight"><ul>
 <li>Relate sintomas suspeitos usando aplicações como inaturalista</li>
 <li>Junte -se à rede local de monitoramento de saúde florestal</li>
 <li>Participe de projetos de ciências comunitárias</li>
 <li>Aprenda a usar o diagnóstico Kit de ferramentas</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Ferramenta de diagnóstico rápido </strong>:</p>
-<p>Existem várias ferramentas confiáveis ​​de inspeção no local agora: agora:</p>
-<br>
-<ul>
+<p class="article-text">Existem várias ferramentas confiáveis ​​de inspeção no local agora: agora:</p><div class="highlight"><ul>
 <li>Teste de teste de imunocromatografia (preço: US $ 10-15/tempo)</li>
 <li>Instrumento de PCR portátil (Preço: US $ 2000-5000)</li>
 <li>Serviço de código de barras de DNA (preço: US $ 50-100/amostra)</li>
-</ul>
-<br>
-<h3>Estratégias de erradicação e contenção</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 Estratégias de erradicação e contenção</div>
 <p><strong> Análise de condição de sucesso </strong></p>
-<p>Com base em estudos de caso globais, os principais fatores para o sucesso da erradicação incluem:</p>
-<br>
-<ul>
+<p class="article-text">Com base em estudos de caso globais, os principais fatores para o sucesso da erradicação incluem:</p><div class="highlight"><ul>
 <li>encontrado dentro de 12 meses após a invasão</li>
 <li>Isolamento geográfico (como ilhas)</li>
 <li>Apoio financeiro e político adequado</li>
 <li>Uma estrutura de governança clara</li>
 <li>Participação e colaboração da comunidade</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Estrutura de gerenciamento prático </strong></p>
-<p>Para intrusões estabelecidas, recomenda -se o gerenciamento hierárquico:</p>
-<br>
+<p class="article-text">Para intrusões estabelecidas, recomenda -se o gerenciamento hierárquico:</p>
 <p>1. Área central: ativamente claro e isolado</p>
-<p>2. Buffer: monitoramento intensivo e prevenção de spread</p>
-<p>3. Área periférica: educação pública e testes antecipados</p>
-<br>
-<h2>Desafios especiais e direções futuras</h2>
-<br>
-<h3>sinergias da mudança climática</h3>
-<br>
-<p>Minha pesquisa mostra que a mudança climática é agravante invasão de fungos:</p>
-<br>
-<ul>
+<p class="article-text">2. Buffer: monitoramento intensivo e prevenção de spread</p>
+<p class="article-text">3. Área periférica: educação pública e testes antecipados</p>
+<div class="section-title">🍄 Desafios especiais e direções futuras</div>
+<div class="subsection-title">📌 sinergias da mudança climática</div>
+<p class="article-text">Minha pesquisa mostra que a mudança climática é agravante invasão de fungos:</p><div class="highlight"><ul>
 <li>A temperatura aumenta para expandir o habitat adequado</li>
 <li>Eventos climáticos extremos promovem espalhamento de esporos</li>
 <li>As plantas hospedeiras são mais suscetíveis à infecção sob pressão climática</li>
 <li>Alterações fenológicas alteram as interações de patógenos-hospedeiros</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Modelo preditivo </strong>:</p>
-<p>O futuro modelo de distribuição que desenvolveu mostra que, em 2050, os habitats adequados da maioria dos fungos patogênicos florestais se moverão de 200 a 500 quilômetros para o norte.</p>
-<br>
-<h3>nova fronteira de tecnologia</h3>
-<br>
+<p class="article-text">O futuro modelo de distribuição que desenvolveu mostra que, em 2050, os habitats adequados da maioria dos fungos patogênicos florestais se moverão de 200 a 500 quilômetros para o norte.</p>
+<div class="subsection-title">📌 nova fronteira de tecnologia</div>
 <p><strong> Ferramentas de detecção revolucionárias </strong></p>
-<p>A tecnologia Ambiental DNA (EDNA) está mudando o jogo:</p>
-<br>
-<ul>
+<p class="article-text">A tecnologia Ambiental DNA (EDNA) está mudando o jogo:</p><div class="highlight"><ul>
 <li>Detecção de DNA fúngico em amostras de solo ou água</li>
 <li>Invasões foram descobertas de 6 a 12 meses antes dos métodos tradicionais</li>
 <li>pode rastrear centenas de espécies ao mesmo tempo</li>
 <li>Os custos continuam a diminuir (atualmente US $ 100-200/amostra)</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Aplicação de biotecnologia </strong></p>
-<p>Embora exista controvérsia, a tecnologia de edição de genes mostra potencial:</p>
-<br>
-<ul>
+<p class="article-text">Embora exista controvérsia, a tecnologia de edição de genes mostra potencial:</p><div class="highlight"><ul>
 <li>Melhorar a resistência à planta hospedeira</li>
 <li>Modifique os fungos para reduzir a toxicidade</li>
 <li>Desenvolva populações de controle orientadas por genes</li>
 <li>estruturas éticas e regulatórias ainda estão desenvolvendo</li>
-</ul>
-<br>
-<h2>Responsabilidades especiais e oportunidades para coletores de bactérias</h2>
-<br>
-<h3>Contrato de prática recomendada</h3>
-<br>
-<p>Com base em 20 anos de experiência de trabalho de campo, formulei os seguintes protocolos especiais para coletores de bactérias:</p>
-<br>
+</ul></div>
+<div class="section-title">🍄 Responsabilidades especiais e oportunidades para coletores de bactérias</div>
+<div class="subsection-title">📌 Contrato de prática recomendada</div>
+<p class="article-text">Com base em 20 anos de experiência de trabalho de campo, formulei os seguintes protocolos especiais para coletores de bactérias:</p>
 <p><strong> Padrões de desinfecção do equipamento </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Sapatos: Limpe cuidadosamente antes de entrar no Xinlin District</li>
 <li>Ferramentas: use 70% de álcool para desinfetar a faca de coleta e escova</li>
 <li>Recipiente: Use um recipiente duro que seja lavável</li>
 <li>Veículo: Limpeza regular de pneus e chassi</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Ética de amostragem </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Somente o número necessário de amostras</li>
 <li>Evite compartilhar materiais frescos em diferentes áreas florestais</li>
-</ul>
+</ul></div>
 <p>-Pimenses são mais seguras que a refrigeração</p>
-<ul>
+<div class="highlight"><ul>
 <li>cumprir todos os regulamentos de coleta regional</li>
-</ul>
-<br>
-<h3>Monitore a participação da rede</h3>
-<br>
-<p>O colecionador de fungos é o "Olhos e ouvidos" da floresta.Eu sugiro:</p>
-<br>
-<p>1. Aprenda as características de identificação de espécies invasivas comuns</p>
-<p>2. Registre a saúde das árvores no local da coleção</p>
-<p>3. Junte -se à rede de monitoramento de espécies invasivas locais</p>
+</ul></div>
+<div class="subsection-title">📌 Monitore a participação da rede</div>
+<p class="article-text">O colecionador de fungos é o "Olhos e ouvidos" da floresta.Eu sugiro:</p>
+<p class="article-text">1. Aprenda as características de identificação de espécies invasivas comuns</p>
+<p class="article-text">2. Registre a saúde das árvores no local da coleção</p>
+<p class="article-text">3. Junte -se à rede de monitoramento de espécies invasivas locais</p>
 <p>4. Relatório de descoberta anormal em tempo hábil</p>
-<br>
 <p><strong> Casos de sucesso </strong>:</p>
-<p>No noroeste do Pacífico, a rede de colecionadores de fungos ajudou a detectar um novo fungo patogênico de pinheiros antecipadamente, ganhando um valioso tempo de resposta.</p>
-<br>
-<h2>estrutura de cooperação global</h2>
-<h3>Iniciativas e acordos internacionais</h3>
-<br>
-<p>Os projetos de cooperação internacional em que participem prove que a coordenação global é crucial:</p>
-<br>
-<ul>
+<p class="article-text">No noroeste do Pacífico, a rede de colecionadores de fungos ajudou a detectar um novo fungo patogênico de pinheiros antecipadamente, ganhando um valioso tempo de resposta.</p><div class="section-title">🍄 estrutura de cooperação global</div>
+<div class="subsection-title">📌 Iniciativas e acordos internacionais</div>
+<p class="article-text">Os projetos de cooperação internacional em que participem prove que a coordenação global é crucial:</p><div class="highlight"><ul>
 <li>A Convenção Internacional de Proteção de Plantas (IPPC) fornece uma estrutura padrão</li>
 <li>A cooperação regional é mais eficaz que a ação de um único país</li>
 <li>A plataforma de compartilhamento de informações acelera a resposta</li>
 <li>Projetos conjuntos de pesquisa para melhorar a compreensão</li>
-</ul>
-<br>
+</ul></div>
 <p>Estratégia de construção de capacitação</p>
-<br>
-<p>Necessidades especiais de países em desenvolvimento:</p>
-<br>
-<ul>
+<p class="article-text">Necessidades especiais de países em desenvolvimento:</p><div class="highlight"><ul>
 <li>Desenvolva ferramentas de teste de baixo custo</li>
 <li>estabelecer um laboratório de referência regional</li>
 <li>Treinando Rede de Especialistas Locais</li>
 <li>Crie um fundo de resposta rápida</li>
-</ul>
-<br>
-<h2>Outlook e chamada de ação futura</h2>
-<br>
-<h3>previsão de ameaça emergente</h3>
-<br>
-<p>Com base nas tendências atuais, precisamos prestar atenção especial a:</p>
-<br>
-<ul>
+</ul></div>
+<div class="section-title">🍄 Outlook e chamada de ação futura</div>
+<div class="subsection-title">📌 previsão de ameaça emergente</div>
+<p class="article-text">Com base nas tendências atuais, precisamos prestar atenção especial a:</p><div class="highlight"><ul>
 <li>fungos tropicais espalhados para áreas temperadas</li>
 <li>Patógenos fungos marinhos (por remessa)</li>
 <li>Escape Problema do cultivo de fungos comestíveis</li>
 <li>Complexo de invasão simbiótica de fungo-inseto</li>
-</ul>
-<br>
+</ul></div>
 <p>Guia de ação pessoal</p>
-<br>
-<p>Tome as seguintes ações imediatamente para proteger os ecossistemas locais:</p>
-<br>
+<p class="article-text">Tome as seguintes ações imediatamente para proteger os ecossistemas locais:</p>
 <p><strong> Ação básica (todos) </strong></p>
 <p>-ABIDE pelo princípio de "Não mova lenha"</p>
-<ul>
+<div class="highlight"><ul>
 <li>Limpe o equipamento ao ar livre, especialmente antes e depois de uma viagem</li>
 <li>Aprenda a identificar os principais fungos invasivos locais</li>
 <li>Apoiar regulamentos estritos de biossegurança</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Compromisso avançado (entusiastas do ar livre) </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Participe de atividades locais de remoção de espécies invasivas</li>
 <li>Registre e relate descobertas suspeitas</li>
 <li>Espalhando a conscientização da biossegurança para grupos ao ar livre</li>
 <li>Selecione plantas locais para atividades de jardinagem</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Contribuição profissional (trabalhadores em campos relacionados) </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>integrar biossegurança no fluxo de trabalho</li>
 <li>Apoiar pesquisa e gerenciamento de espécies invasivas</li>
 <li>Advogado para investimentos preventivos e políticas</li>
 <li>Treinando a próxima geração de profissionais</li>
-</ul>
-<br>
-<h2>Conclusão: Responsabilidade compartilhada</h2>
-<br>
-<p>A invasão fúngica é um desafio complexo e contínuo, mas não cooperativo.Através do entendimento científico, estratégias práticas e ações coletivas, podemos mitigar seu impacto.Lembre -se de que o custo da prevenção é muito menor que a governança e os benefícios da ação precoce são exponenciais.</p>
-<br>
-<p>Quando entramos na floresta, não somos apenas visitantes, mas também empregados domésticos.Cada passo abaixo de nós carrega a responsabilidade de proteger esses ecossistemas.Ao limpar o equipamento, permanecer alerta e relatar em tempo hábil, cada um de nós pode fazer parte da solução.</p>
-<br>
+</ul></div>
+<div class="section-title">🍄 Conclusão: Responsabilidade compartilhada</div>
+<p class="article-text">A invasão fúngica é um desafio complexo e contínuo, mas não cooperativo.Através do entendimento científico, estratégias práticas e ações coletivas, podemos mitigar seu impacto.Lembre -se de que o custo da prevenção é muito menor que a governança e os benefícios da ação precoce são exponenciais.</p>
+<p class="article-text">Quando entramos na floresta, não somos apenas visitantes, mas também empregados domésticos.Cada passo abaixo de nós carrega a responsabilidade de proteger esses ecossistemas.Ao limpar o equipamento, permanecer alerta e relatar em tempo hábil, cada um de nós pode fazer parte da solução.</p>
 <p><strong> Finalmente recomendação </strong>: Invista em uma suíte pessoal de biossegurança para aprender a identificar grandes ameaças locais e prometa ser um guardião da saúde florestal.Nesta era da globalização, as ações locais têm significado global - sua vigilância pode ser a chave para impedir o próximo desastre ecológico.</p>
         </div>
-    </div>
+
+</div>
 </body>
 </html>

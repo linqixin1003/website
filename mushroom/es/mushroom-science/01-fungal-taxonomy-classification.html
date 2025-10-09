@@ -1,598 +1,491 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Taxonomía de hongos - Mushroom Science</title>
-    <meta name="description" content="Taxonomía de hongos">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>01 Taxonomía de hongos - MushroomAiSnap</title>
+<link href="../../mobile-styles.css" rel="stylesheet"/>
+<link href="../../mobile-enhancement.css" rel="stylesheet"/>
+<link href="../../ecology-theme.css" rel="stylesheet"/>
+<style>
+        .hero-image img {
+            max-height: 200px;
+            width: 100%;
+            object-fit: cover;
         }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        .article-card img {
+            max-height: 120px;
+            width: 100%;
+            object-fit: cover;
+        }
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                        url('../../images/mushroom-science_01-fungal-taxonomy-classification.webp') center/cover;
+            position: relative;
+            margin-top: 0;
+        }
+        .article-meta {
+            margin-top: 15px !important;
+        }
+    
+        /* Mushroom Science Theme */
+        :root {
+            --primary-color: #9370DB;
+            --primary-dark: #4B0082;
+            --primary-light: #F8F4FF;
+            --accent-color: #BA55D3;
+        }
+        
+        /* Theme Color Overrides */
+        .content {
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+            border: 2px solid var(--primary-color);
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, var(--primary-light), var(--primary-light));
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .quote-text {
+            color: var(--primary-dark);
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+        }
+        
+        .subsection-title {
+            color: var(--primary-dark);
+            font-size: 1.4em;
+            font-weight: 600;
+            margin: 25px 0 15px 0;
+            padding-left: 10px;
+            border-left: 3px solid var(--accent-color);
+        }
+        
+        .tip-box {
+            border-left: 4px solid var(--primary-color);
+            background: var(--primary-light);
+        }
+        
+        .tip-title {
+            color: var(--primary-color);
+        }
+        
+        .highlight {
+            border-left: 4px solid var(--accent-color);
+            background: linear-gradient(135deg, #f1f8e9, var(--primary-light));
+        }
+        
+        .warning {
+            border-left: 4px solid #f44336;
+        }
+        
+        .equipment-item {
+            border: 1px solid var(--accent-color);
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+        }
+        
+        .equipment-item h4 {
+            color: var(--primary-color);
+        }
+        
+        .category {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .main-text {
+            font-size: 1.1em;
             line-height: 1.8;
             color: #333;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-
-        .article-title {
-            color: #98D8C8;
-            font-size: 2.5em;
-            margin-bottom: 30px;
-            margin-top: 0;
-            line-height: 1.3;
-            padding-top: 0;
-        }
-
-        .featured-image {
-            width: 100%;
-            height: auto;
-            aspect-ratio: 4 / 3;
-            object-fit: cover;
-            display: block;
-        }
-
-        .content {
-            padding: 50px;
-        }
-
-        .content h2 {
-            color: #98D8C8;
-            font-size: 2em;
-            margin-top: 40px;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid #98D8C8;
-        }
-
-        .content h3 {
-            color: #555;
-            font-size: 1.6em;
-            margin-top: 30px;
-            margin-bottom: 15px;
-        }
-
-        .content h4 {
-            color: #666;
-            font-size: 1.3em;
-            margin-top: 25px;
-            margin-bottom: 12px;
-        }
-
-        .content p {
-            margin-bottom: 20px;
-            font-size: 1.1em;
-            color: #444;
-        }
-
-        .content ul {
             margin: 20px 0;
-            padding-left: 30px;
-        }
-
-        .content li {
-            margin-bottom: 12px;
-            font-size: 1.05em;
-            color: #555;
-        }
-
-        .content strong {
-            color: #222;
-            font-weight: 600;
-        }
-
-        .back-link {
-            display: inline-block;
-            padding: 12px 25px;
-            background: linear-gradient(135deg, #98D8C8, #8B4513);
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            margin-bottom: 20px;
-            transition: transform 0.3s ease;
-            font-weight: 600;
-        }
-
-        .back-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .navigation {
-            padding: 30px 50px;
-            background: #f8f9fa;
-            border-top: 1px solid #e9ecef;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-btn {
-            padding: 10px 20px;
-            background: #98D8C8;
-            color: white;
-            text-decoration: none;
+            padding: 15px;
+            background: linear-gradient(135deg, #ffffff, #f9f9f9);
             border-radius: 8px;
-            transition: all 0.3s ease;
+            border-left: 3px solid var(--accent-color);
         }
-
-        .nav-btn:hover {
-            transform: translateX(5px);
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+        
+        .emoji {
+            font-size: 1.5em;
+            margin-left: 10px;
         }
-
-        .nav-btn.prev:hover {
-            transform: translateX(-5px);
+        
+        .read-time, .difficulty {
+            display: inline-block;
+            padding: 5px 15px;
+            margin: 5px 5px 5px 0;
+            border-radius: 20px;
+            font-size: 0.9em;
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            color: #1976d2;
+            font-weight: 500;
         }
-
-        @media (max-width: 768px) {
-            .content {
-                padding: 30px 25px;
-            }
-
-            .article-title {
-                font-size: 1.8em;
-            }
-
-            .featured-image {
-                height: 250px;
-            }
-
-            .navigation {
-                flex-direction: column;
-                gap: 15px;
-            }
+        
+        .difficulty {
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            color: #e65100;
+        }
+        
+        .article-text {
+            line-height: 1.8;
+            color: #444;
+            margin: 15px 0;
+            font-size: 1.05em;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <img src="../../images/mushroom-science_01-fungal-taxonomy-classification.webp" alt="Taxonomía de hongos" class="featured-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22900%22 height=%22400%22%3E%3Crect fill=%22%23D2691E%22 width=%22900%22 height=%22400%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22white%22 font-size=%2260%22%3E🍄%3C/text%3E%3C/svg%3E'">
+<div class="hero-image"></div>
+<div class="content">
+    <h1 class="title">01 Taxonomía de hongos</h1>
+    <div class="quote-box">
+        <div class="quote-text">Professional Mycology Guide</div>
+    </div>
+    
+<div class="article-meta">
+<span class="category">🔬 Mushroom Science</span>
+<span class="read-time">📖 15 minute read</span>
+<span class="difficulty">🔴 Advanced</span>
+</div>
 
-        <div class="content">
-            <h1 class="article-title">Taxonomía de hongos</h1>
-            <br>
-<p>Como experto en hongos, sé que dominar la taxonomía de hongos no es solo una búsqueda académica, sino también la clave para la seguridad en la colección salvaje y la cocina exitosa.En las últimas dos décadas, he sido testigo de cómo la tecnología de ADN ha revolucionado nuestra comprensión del mundo fúngico, al tiempo que me doy cuenta de cuán importante es el conocimiento taxonómico sólido para cada amante de los hongos.</p>
-<br>
-<h2>Por qué la taxonomía fúngica es crucial para los recaudadores</h2>
-<br>
-<p>El otoño pasado, dirigí un evento de colección en los Rockies, Colorado, y encontré un estuche clásico.Un participante eligió con confianza los "Chantelles" aparentemente comestibles, pero a través de una observación cuidadosa y un análisis microscópico, encontramos que esto era en realidad el hongo Jack O'Lantern (Omphalotus iludens): una especie tóxica.Esta experiencia destaca los peligros de identificar los hongos solo con la apariencia y la importancia de una comprensión profunda de la taxonomía.</p>
-<br>
+
+            <br><div class="main-text">Como experto en hongos, sé que dominar la taxonomía de hongos no es solo una búsqueda académica, sino también la clave para la seguridad en la colección salvaje y la cocina exitosa.En las últimas dos décadas, he sido testigo de cómo la tecnología de ADN ha revolucionado nuestra comprensión del mundo fúngico, al tiempo que me doy cuenta de cuán importante es el conocimiento taxonómico sólido para cada amante de los hongos.<span class="emoji">🍄</span></div>
+<div class="section-title">🎯 Por qué la taxonomía fúngica es crucial para los recaudadores</div>
+<p class="article-text">El otoño pasado, dirigí un evento de colección en los Rockies, Colorado, y encontré un estuche clásico.Un participante eligió con confianza los "Chantelles" aparentemente comestibles, pero a través de una observación cuidadosa y un análisis microscópico, encontramos que esto era en realidad el hongo Jack O'Lantern (Omphalotus iludens): una especie tóxica.Esta experiencia destaca los peligros de identificar los hongos solo con la apariencia y la importancia de una comprensión profunda de la taxonomía.</p>
 <p><strong> Valor práctico: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>La identificación precisa puede evitar errores fatales</li>
 <li>Comprender las relaciones de las especies ayuda a descubrir nuevas especies comestibles</li>
 <li>Dominar el sistema de clasificación puede mejorar la eficiencia de la recolección de campo</li>
 <li>El nombramiento científico garantiza una comunicación precisa en todo el mundo</li>
-</ul>
-<br>
-<h2>Sistema de clasificación de hongos: marco básico</h2>
-<br>
-<h3>Explicación detallada del nivel de clasificación biológica</h3>
-<br>
-<p>El sistema de clasificación biológica es como un gran árbol genealógico, dividido en siete niveles principales de un significado amplio a específico:</p>
-<br>
-<p>Reino → Filo → Clase → Orden → Familia → Género → Especie</p>
-<br>
+</ul></div>
+<div class="section-title">🍄 Sistema de clasificación de hongos: marco básico</div>
+<div class="subsection-title">📌 Explicación detallada del nivel de clasificación biológica</div>
+<p class="article-text">El sistema de clasificación biológica es como un gran árbol genealógico, dividido en siete niveles principales de un significado amplio a específico:</p>
+<p class="article-text">Reino → Filo → Clase → Orden → Familia → Género → Especie</p>
 <p><strong> Insight clave: </strong> Los hongos han sido independientes del mundo de las plantas y han establecido su propio "mundo de hongos".Los estudios genéticos muestran que los hongos están más cerca de los animales que las plantas: un descubrimiento explica por qué los medicamentos antifúngicos a menudo son tóxicos para los humanos.</p>
-<br>
-<h3>Método de doble nombre: una tarjeta de identidad fúngica globalmente común</h3>
-<br>
-<p>El sistema de dos nombres establecido por Carl Linnaeus en el siglo XVIII sigue siendo el estándar de oro para el nombramiento de hongos.Este sistema asegura que cada especie tenga un nombre científico único en todo el mundo.</p>
-<br>
+<div class="subsection-title">📌 Método de doble nombre: una tarjeta de identidad fúngica globalmente común</div>
+<p class="article-text">El sistema de dos nombres establecido por Carl Linnaeus en el siglo XVIII sigue siendo el estándar de oro para el nombramiento de hongos.Este sistema asegura que cada especie tenga un nombre científico único en todo el mundo.</p>
 <p><strong> Formato de nombre: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Nombre genuino (letra principal, cursiva) + palabra adicional (todo minúscula, cursiva)</li>
 <li>Ejemplo: Agaricus bisporus - El hongo cultivado común con el que estamos familiarizados</li>
 <li>Opcional ADD Nombre Abreviatura: Agaricus bisporus (L.) Schaeff.</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Los expertos sugieren: </strong> Aprender las raíces latinas puede simplificar enormemente la memoria.Por ejemplo, "Bisporus" significa "dos esporas", que describe las características de las esporas de la especie.</p>
-<br>
-<h2>Análisis en profundidad de las principales categorías de la industria de los hongos</h2>
-<br>
-<h3>Ascomycota - El tesoro de los amantes de la comida</h3>
-<br>
-<p>Como el filo más abundante en la comunidad fúngica, los ascomicetes contienen más de 65,000 especies conocidas, lo que representa aproximadamente el 75% de todos los hongos descritos.</p>
-<br>
+<div class="section-title">🍄 Análisis en profundidad de las principales categorías de la industria de los hongos</div>
+<div class="subsection-title">📌 Ascomycota - El tesoro de los amantes de la comida</div>
+<p class="article-text">Como el filo más abundante en la comunidad fúngica, los ascomicetes contienen más de 65,000 especies conocidas, lo que representa aproximadamente el 75% de todos los hongos descritos.</p>
 <p><strong> Reconocimiento de características: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Las ascosporas están contenidas en ascosporas</li>
 <li>Las esporas generalmente se disparan fuertemente a través de la apertura de la apertura apical del ascotum</li>
 <li>Morfología diversificada: desde levadura microscópica hasta grandes cuerpos fructíferos</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Tipos comestibles importantes: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Morel (Morchella): tesoro de primavera, gorra de esteril de panal</li>
 <li>tubérculo: trufa, diamante en el mundo de los alimentos</li>
 <li>Helvella: una apariencia única de circuncisión cerebral</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Consejos de recolección: </strong> Moreles a menudo coexisten con especies de árboles específicas, y los rendimientos aumentaron en el segundo año después del fuego; esta es mi experiencia que he verificado muchas veces en Montana.</p>
-<br>
-<h3>Basidiomycota - El campo de batalla principal para los amantes de los hongos</h3>
-<br>
-<p>Con unas 32,000 especies, los basidiomicetos abarca la mayoría de las especies que generalmente consideramos que son "hongos".</p>
-<br>
+<div class="subsection-title">📌 Basidiomycota - El campo de batalla principal para los amantes de los hongos</div>
+<p class="article-text">Con unas 32,000 especies, los basidiomicetos abarca la mayoría de las especies que generalmente consideramos que son "hongos".</p>
 <p><strong> Características de identificación: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>basidia basidiosporas exógenas</li>
 <li>Morfología típica del hongo: Cap + estructura del tallo</li>
 <li>Las esporas se producen en estructuras escondidas, metidas o dentadas</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Grupos comestibles principales: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Agaricaceae: incluyendo hongos de campo comunes</li>
 <li>Boletaceae: carne rica, tubos de bacterias reemplazan los pliegues de bacterias</li>
 <li>Tricholomataceae: incluyendo los famosos hongos</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Experiencia práctica en el campo: </strong> En el noroeste del Pacífico, enseñé a los coleccionistas a distinguir inicialmente entre Boletus a través de la "prueba de pulgar": las especies comestibles generalmente no se vuelven azul rápidamente bajo presión.</p>
-<br>
-<h2>Base de clasificación: el arte de identificación de macro a micro</h2>
-<br>
-<h3>Características macro: identificación preeliminar del campo</h3>
-<br>
+<div class="section-title">📚 Base de clasificación: el arte de identificación de macro a micro</div>
+<div class="subsection-title">📌 Características macro: identificación preeliminar del campo</div>
 <p><strong> Debe puntos de observación morfológica: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Forma de la cubierta: cónica, convexa, forma plana, etc.</li>
 <li>Métodos de accesorio de pliegue de hongos: libre, directo, prolongado, etc.</li>
 <li>Características de los tallos bacterianos: si hay anillos bacterianos y trampas bacterianas</li>
 <li>Cambio de color: reacción de cambio de color después de cortar o extrusión</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Recopilación de información ecológica: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>sustrato de crecimiento: suelo, madera, heces u otro</li>
 <li>Plantas complementarias: posible relación micorrícola</li>
 <li>Temporada y condiciones climáticas: tiempo y demanda climática</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Experiencia personal compartido: </strong> Siempre mantengo un registro de colección detallado para registrar el entorno ecológico de cada muestra.Este hábito me ayudó a descubrir una nueva especie potencial en Wyoming.</p>
-<br>
-<h3>Micro Características: identificación precisa de laboratorio</h3>
-<br>
+<div class="subsection-title">📌 Micro Características: identificación precisa de laboratorio</div>
 <p><strong> Análisis de esporas: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Producción de impresión de esporas: los diferentes colores proporcionan pistas importantes</li>
 <li>Tamaño y forma de esporas: ovalado, esférico, angular, etc.</li>
-</ul>
-<p>-Patrones de superficie: liso, como verruga, como cresta, etc.</p>
-<br>
+</ul></div>
+<p class="article-text">-Patrones de superficie: liso, como verruga, como cresta, etc.</p>
 <p><strong> Observación de la estructura celular: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>La presencia y el tipo de cistidia</li>
 <li>Estructura de micelio: ¿hay alguna articulación bloqueada?</li>
 <li>Disposición de la estructura de la capa de fruta</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Recomendación de herramienta profesional: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Microscopio compuesto de alta calidad (aumento de 1000x)</li>
 <li>Regla de medición microscópica</li>
 <li>Reactivos químicos (Koh, reactivos de Melzer, etc.)</li>
-</ul>
-<br>
-<h3>Análisis de ADN: la revolución de la taxonomía moderna</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 Análisis de ADN: la revolución de la taxonomía moderna</div>
 <p><strong> Selección de marcadores de genes: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Su área: "código de barras" de hongos</li>
 <li>Regiones LSU y SSU: clasificación avanzada</li>
 <li>Análisis de múltiples sitios: mejorar la resolución</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Aplicación práctica: </strong> El año pasado, confirmé a través del código de barras de ADN que un lote de cántroeles con apariencias similares en realidad pertenecía a tres especies genéticas diferentes, que tenían un impacto directo en la formulación de políticas de protección local.</p>
-<br>
-<h2>Guía práctica para los principales grupos de basidiomicetos</h2>
-<br>
-<h3>Agaricomycetes - Forma clásica de hongos</h3>
-<br>
+<div class="section-title">📖 Guía práctica para los principales grupos de basidiomicetos</div>
+<div class="subsection-title">📌 Agaricomycetes - Forma clásica de hongos</div>
 <p><strong> Amanita: belleza y peligro coexisten </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Características de identificación: zanja bacteriana, anillo bacteriano, impresión de esporas blancas</li>
 <li>Advertencia de seguridad: incluye las especies de hongos más venenosas del mundo</li>
 <li>Sugerencias de recolección: los principiantes deben evitar recolectar este género por completo</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Russula y Lactarius: hongo crujiente </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Prueba de identificación: los hongos rojos son desmenuzando, lactobacillus que fluye leche</li>
 <li>Evaluación de sabores: la calidad es enorme y requiere un juicio empírico</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Consejos de expertos: </strong> He desarrollado un "Sistema de identificación de tres niveles" - Características macroscópicas de campo → Análisis microscópico de laboratorio → Verificación de ADN de especies difíciles, y este sistema ha mejorado significativamente mi precisión de identificación.</p>
-<br>
-<h2>Reglas de nombres y estándares internacionales</h2>
-<br>
-<h3>Puntos clave de la nomenclatura de la planta internacional (ICN)</h3>
-<br>
-<p>Aunque el nombre es una regulación de nombres de "planta", los hongos siguen las mismas reglas, que son causadas por razones históricas.</p>
-<br>
+<div class="section-title">🍄 Reglas de nombres y estándares internacionales</div>
+<div class="subsection-title">📌 Puntos clave de la nomenclatura de la planta internacional (ICN)</div>
+<p class="article-text">Aunque el nombre es una regulación de nombres de "planta", los hongos siguen las mismas reglas, que son causadas por razones históricas.</p>
 <p><strong> Práctica del principio Principio: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Los primeros nombres publicados válidamente tienen prioridad</li>
 <li>El nombre debe cumplir con los requisitos de formato especificados</li>
 <li>Publicación efectiva significa descripción formal en revistas científicas reconocidas</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Sistema de muestras de modo: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Cada especie ha especificado especímenes de patrones como estándar de referencia</li>
 <li>El patrón se conserva en una sala de muestras reconocido</li>
 <li>La nueva descripción debe especificar especímenes de patrones</li>
-</ul>
-<br>
-<h3>Manejo de nombres diferentes: cuestiones de cambio de nombre</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 Manejo de nombres diferentes: cuestiones de cambio de nombre</div>
 <p><strong> Situación común: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>La misma especie ha sido descrita por diferentes taxonomistas muchas veces</li>
 <li>La evidencia de ADN conduce a la reclasificación de especies</li>
 <li>Cambios de nombre causados ​​por revisiones de la clasificación del género</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Estrategias de afrontamiento: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Use la base de datos autorizada para verificar los últimos nombres aceptados</li>
 <li>Comprender los nombres comunes, especialmente los utilizados en el libro ilustrado</li>
 <li>Mantenga el conocimiento actualizado y preste atención a las revisiones de clasificación</li>
-</ul>
-<br>
-<h2>Análisis en profundidad y guía práctica para géneros comunes</h2>
-<br>
-<h3>Género importante de delicioso y económico</h3>
-<br>
+</ul></div>
+<div class="section-title">🍄 Análisis en profundidad y guía práctica para géneros comunes</div>
+<div class="subsection-title">📌 Género importante de delicioso y económico</div>
 <p><strong> Agaricus (hongo): </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Reconocimiento de campo: cuando maduran, los pliegues de bacterias se vuelven rosados ​​a marrón oscuro</li>
 <li>Características de cocción: A. bisporus es la especie más cultivada</li>
 <li>Nota de seguridad: evite la confusión con Amanita mortal</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Boletus (Poletus): </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Clave de identificación: los tubos bacterianos reemplazan los pliegues bacterianos, y los tallos bacterianos suelen ser gruesos</li>
 <li>Delicioso representante: delicioso B. edulis es muy respetado</li>
 <li>Habilidades de recolección: elija cuerpos fructíferos jóvenes y ajustados para evitar gusanos de insectos</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Canthalellus (canthalellus): </strong></p>
-<p>-Características morfológicas: pliegues de pseudo-fungus en forma de trompeta (arrugas)</p>
-<ul>
+<p class="article-text">-Características morfológicas: pliegues de pseudo-fungus en forma de trompeta (arrugas)</p>
+<div class="highlight"><ul>
 <li>Características del sabor: aroma de albaricoque, resistente a la cocina</li>
 <li>Relación ecológica: formación de micorrizales con especies de árboles específicas, difícil de cultivar artificialmente</li>
-</ul>
-<br>
-<h2>Grupos complejos y especies ocultas: apariencia engañosa</h2>
-<br>
-<h3>Estudio de caso en el complejo de hongos de Chanterello</h3>
-<br>
-<p>Se considera tradicionalmente una sola especie, Cantharellus cibarius, ahora se sabe que contiene docenas de especies genéticamente distintas.</p>
-<br>
+</ul></div>
+<div class="section-title">🍄 Grupos complejos y especies ocultas: apariencia engañosa</div>
+<div class="subsection-title">📌 Estudio de caso en el complejo de hongos de Chanterello</div>
+<p class="article-text">Se considera tradicionalmente una sola especie, Cantharellus cibarius, ahora se sabe que contiene docenas de especies genéticamente distintas.</p>
 <p><strong> Desafío de identificación: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>La forma macroscópica es extremadamente similar</li>
 <li>Las preferencias ecológicas son ligeramente diferentes</li>
 <li>Hay distribuciones geográficas superpuestas</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Impacto práctico: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Diferentes especies ocultas pueden tener diferentes cualidades comestibles</li>
 <li>El manejo de la conservación debe dirigirse a especies genéticas específicas</li>
 <li>Los coleccionistas necesitan conocer las características específicas de las especies locales</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Descubrimiento personal: </strong> En las montañas de los Apalaches del Sur, descubrí una población de barriles con un sabor significativamente mejor que la población del norte, y el análisis de ADN confirmó que son especies genéticas diferentes.</p>
-<br>
-<h2>La rutina diaria de la taxonomía</h2>
-<br>
-<h3>Describa el proceso del sistema de un nuevo tipo</h3>
-<br>
+<div class="section-title">🍄 La rutina diaria de la taxonomía</div>
+<div class="subsection-title">📌 Describa el proceso del sistema de un nuevo tipo</div>
 <p><strong> Etapa de colección frontal: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Registros detallados de información del hábitat y organismos complementarios</li>
 <li>Tome fotos in situ y registre el estado original</li>
 <li>Recolectar especímenes completos, incluidas piezas subterráneas</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Análisis de laboratorio: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Descripción detallada y medición del macromorfismo</li>
 <li>Registro completo de características micro</li>
 <li>Extracción de ADN y análisis de secuencia</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Comparación de literatura: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Comparación detallada con especies conocidas</li>
 <li>Consulte la descripción e imágenes de la muestra de patrones</li>
 <li>Analizar las diferencias en los familiares</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Publicado oficialmente: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Prepare una especificación de la descripción de las especies</li>
 <li>especificar y almacenar muestras de modo</li>
 <li>Publicar un nombre válido en una revista acreditada</li>
-</ul>
-<br>
-<h2>El valor práctico de la taxonomía: el significado más allá de lo académico</h2>
-<br>
-<h3>La primera línea de defensa para la recolección segura</h3>
-<br>
+</ul></div>
+<div class="section-title">🍄 El valor práctico de la taxonomía: el significado más allá de lo académico</div>
+<div class="subsection-title">📌 La primera línea de defensa para la recolección segura</div>
 <p><strong> Evitación de errores fatales: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Distinción precisa entre hongos comestibles y especies similares tóxicas</li>
 <li>Comprender el alcance de las intraespecies y evitar el juicio erróneo</li>
 <li>Características de identificación de clave maestra sin confiar en un solo indicador</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Caso real: </strong> En 2018, un coleccionista experimentado en California pensó erróneamente en una Amanita Phalloides mortal como hongos comestibles de paja (Volvariella volvacea), que casi causó una tragedia.Ambos tienen canales fúngicos, pero las esporas son completamente diferentes en color: este es un ejemplo concreto de cómo el conocimiento taxonómico puede salvar vidas.</p>
-<br>
-<h3>Conservación y colección sostenible</h3>
-<br>
+<div class="subsection-title">📌 Conservación y colección sostenible</div>
 <p><strong> Identificación de especies raras: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Comprender el estado legal de las especies protegidas</li>
 <li>Identificar especies ecológicas clave y evitar destruir la red micorrícola</li>
 <li>Participe en la ciencia ciudadana y contribuya a los datos distribuidos</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Práctica sostenible: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Use una bolsa de malla para permitir la transmisión de esporas</li>
 <li>Colección adecuada para retener suficientes individuos reproductores</li>
 <li>registrar y recopilar datos y contribuir con conocimiento científico</li>
-</ul>
-<br>
-<h2>Recursos de información y rutas de aprendizaje</h2>
-<br>
-<h3>Guía de uso de la base de datos autorizada</h3>
-<br>
+</ul></div>
+<div class="section-title">🍄 Recursos de información y rutas de aprendizaje</div>
+<div class="subsection-title">📖 Guía de uso de la base de datos autorizada</div>
 <p><strong> Index Fungorum: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Consulta de nombre y diferentes verificación de nombres</li>
 <li>Clasificación meta navegación</li>
 <li>Información de contacto experta</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Mycobank: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>nueva plataforma de registro</li>
 <li>Descripción detallada y base de datos de imágenes</li>
 <li>Enlaces de datos moleculares</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Recursos regionales: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Sitio web de la Asociación de Hongos de América del Norte (NAMA)</li>
 <li>Sociedades estatales y clubes de recolección</li>
 <li>Actividades de recolección guiadas por expertos locales</li>
-</ul>
-<br>
-<h3>Sugerencias de aprendizaje del sistema</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 Sugerencias de aprendizaje del sistema</div>
 <p><strong> Etapa primaria: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Dominar las características de 10 géneros locales comunes</li>
 <li>Aprenda términos básicos y métodos de observación</li>
 <li>Participe en un taller o curso para principiantes</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Avanzado y mejorado: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Invierta en microscopios de calidad y estudie la identificación microscópica</li>
 <li>Participe en las actividades de recolección dirigidas por expertos</li>
 <li>Crear una biblioteca de muestras de referencia personal</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Nivel de experto: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Aprender tecnología de biología molecular</li>
 <li>Investigación en colaboración con taxonomistas profesionales</li>
 <li>Contribuir nuevos registros o descripciones</li>
-</ul>
-<br>
-<h2>Desafíos de taxonomía y direcciones futuras</h2>
-<br>
-<h3>Las dificultades actuales enfrentadas</h3>
-<br>
+</ul></div>
+<div class="section-title">🍄 Desafíos de taxonomía y direcciones futuras</div>
+<div class="subsection-title">📌 Las dificultades actuales enfrentadas</div>
 <p><strong> Conocimiento en blanco: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Se estima que solo el 5-10% de las especies de hongos se describen científicamente</li>
 <li>Muy poco conocimiento de la diversidad fúngica en áreas tropicales y suelos</li>
 <li>Investigación inadecuada sobre hongos microbianos y especies parásitas</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Limitación de recursos: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>El número de taxonomistas profesionales disminuyó</li>
 <li>Financiación y apoyo insuficientes del Museo de la Muestra</li>
 <li>La cobertura de investigación de campo no es integral</li>
-</ul>
-<br>
-<h3>Revolución tecnológica y perspectivas futuras</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 Revolución tecnológica y perspectivas futuras</div>
 <p><strong> Progreso de tecnología molecular: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Aplicación de campo de secuenciadores de ADN portátiles</li>
 <li>La metagenómica revela la diversidad de hongos ocultos</li>
 <li>Comprensión genómica de las relaciones evolutivas</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Asistencia de inteligencia artificial: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>El software de reconocimiento de imágenes ayuda a la identificación preliminar</li>
 <li>El algoritmo predice la distribución de especies y el tiempo de aparición</li>
 <li>Medición y análisis morfológicos automatizados</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Integración de ciencias ciudadanas: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Inaturalista y otras plataformas recopilan datos de observación</li>
 <li>Proyectos científicos populares aceleran el descubrimiento de especies</li>
 <li>Los científicos de la comunidad colaboran con taxonomistas profesionales</li>
-</ul>
-<br>
-<h2>Guía de acción: pasos prácticos para comenzar ahora</h2>
-<br>
-<p>1. <strong> Construir conocimientos básicos </strong></p>
-<ul>
+</ul></div>
+<div class="section-title">📖 Guía de acción: pasos prácticos para comenzar ahora</div>
+<p class="article-text">1. <strong> Construir conocimientos básicos </strong></p>
+<div class="highlight"><ul>
 <li>Compre un libro de imágenes de hongos regional local</li>
 <li>Aprenda las características clave de los 10 géneros más comunes</li>
 <li>Master the Spore Printing Producting Technology</li>
-</ul>
-<br>
-<p>2. <strong> Equipa tu caja de herramientas </strong></p>
-<ul>
+</ul></div>
+<p class="article-text">2. <strong> Equipa tu caja de herramientas </strong></p>
+<div class="highlight"><ul>
 <li>Equipo de campo: cesta, cuchillo, cepillo, libro de registro</li>
 <li>Herramientas de identificación: espejo portátil, conjunto de reactivos químicos</li>
 <li>Equipo de seguridad: guantes, guías, información de contacto de emergencia</li>
-</ul>
-<br>
-<p>3. <strong> Plan de aprendizaje del sistema </strong></p>
-<ul>
+</ul></div>
+<p class="article-text">3. <strong> Plan de aprendizaje del sistema </strong></p>
+<div class="highlight"><ul>
 <li>Participar en actividades de la sociedad de hongos locales</li>
 <li>Regístrese para talleres o cursos profesionales</li>
 <li>Encuentra mentores experimentados</li>
-</ul>
-<br>
+</ul></div>
 <p>4. <strong> Práctica y contribución </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Comience con tipos comunes y fáciles de identificar</li>
 <li>Crear registros de colección personal y galería de fotos</li>
 <li>Contribuir datos de observación a la base de datos</li>
-</ul>
-<br>
-<p>5. <strong> Actualizar continuamente el conocimiento </strong></p>
-<ul>
+</ul></div>
+<p class="article-text">5. <strong> Actualizar continuamente el conocimiento </strong></p>
+<div class="highlight"><ul>
 <li>Centrarse en revisiones taxonómicas y nuevos descubrimientos</li>
 <li>Participe en foros en línea y discusiones profesionales</li>
 <li>Base de datos personal de revisión y actualización regular</li>
-</ul>
-<br>
-<p>La taxonomía fúngica no es una disciplina estática, sino un campo dinámico lleno de descubrimientos y revisiones.Cada coleccionista serio no solo puede mejorar su tasa de seguridad y éxito al dominar los principios de clasificación, sino que también contribuir a este importante campo científico.Recuerde, en el mundo de los hongos, el conocimiento no es solo el poder, sino que puede ser la diferencia entre la vida y la muerte.</p>
-<br>
-<p>Comience su viaje de taxonomía. Cada viaje a la naturaleza es una oportunidad para aprender, y cada espécimen tiene historias esperando ser descubiertas.</p>
+</ul></div>
+<p class="article-text">La taxonomía fúngica no es una disciplina estática, sino un campo dinámico lleno de descubrimientos y revisiones.Cada coleccionista serio no solo puede mejorar su tasa de seguridad y éxito al dominar los principios de clasificación, sino que también contribuir a este importante campo científico.Recuerde, en el mundo de los hongos, el conocimiento no es solo el poder, sino que puede ser la diferencia entre la vida y la muerte.</p>
+<p class="article-text">Comience su viaje de taxonomía. Cada viaje a la naturaleza es una oportunidad para aprender, y cada espécimen tiene historias esperando ser descubiertas.</p>
         </div>
-    </div>
+
+</div>
 </body>
 </html>

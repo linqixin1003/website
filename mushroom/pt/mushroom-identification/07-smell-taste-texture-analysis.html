@@ -1,915 +1,774 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smido, ANÁLISE DE TIME E TEXTURA - Mushroom Identification</title>
-    <meta name="description" content="Smido, ANÁLISE DE TIME E TEXTURA">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>07 Smido, ANÁLISE DE TIME E TEXTURA - MushroomAiSnap</title>
+<link href="../../mobile-styles.css" rel="stylesheet"/>
+<link href="../../mobile-enhancement.css" rel="stylesheet"/>
+<link href="../../ecology-theme.css" rel="stylesheet"/>
+<style>
+        .hero-image img {
+            max-height: 200px;
+            width: 100%;
+            object-fit: cover;
         }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        .article-card img {
+            max-height: 120px;
+            width: 100%;
+            object-fit: cover;
+        }
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                        url('../../images/mushroom-identification_07-smell-taste-texture-analysis.webp') center/cover;
+            position: relative;
+            margin-top: 0;
+        }
+        .article-meta {
+            margin-top: 15px !important;
+        }
+    
+        /* Mushroom Identification Theme */
+        :root {
+            --primary-color: #4169E1;
+            --primary-dark: #191970;
+            --primary-light: #F0F8FF;
+            --accent-color: #6495ED;
+        }
+        
+        /* Theme Color Overrides */
+        .content {
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+            border: 2px solid var(--primary-color);
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, var(--primary-light), var(--primary-light));
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .quote-text {
+            color: var(--primary-dark);
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+        }
+        
+        .subsection-title {
+            color: var(--primary-dark);
+            font-size: 1.4em;
+            font-weight: 600;
+            margin: 25px 0 15px 0;
+            padding-left: 10px;
+            border-left: 3px solid var(--accent-color);
+        }
+        
+        .tip-box {
+            border-left: 4px solid var(--primary-color);
+            background: var(--primary-light);
+        }
+        
+        .tip-title {
+            color: var(--primary-color);
+        }
+        
+        .highlight {
+            border-left: 4px solid var(--accent-color);
+            background: linear-gradient(135deg, #f1f8e9, var(--primary-light));
+        }
+        
+        .warning {
+            border-left: 4px solid #f44336;
+        }
+        
+        .equipment-item {
+            border: 1px solid var(--accent-color);
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+        }
+        
+        .equipment-item h4 {
+            color: var(--primary-color);
+        }
+        
+        .category {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .main-text {
+            font-size: 1.1em;
             line-height: 1.8;
             color: #333;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-
-        .article-title {
-            color: #45B7D1;
-            font-size: 2.5em;
-            margin-bottom: 30px;
-            margin-top: 0;
-            line-height: 1.3;
-            padding-top: 0;
-        }
-
-        .featured-image {
-            width: 100%;
-            height: auto;
-            aspect-ratio: 4 / 3;
-            object-fit: cover;
-            display: block;
-        }
-
-        .content {
-            padding: 50px;
-        }
-
-        .content h2 {
-            color: #45B7D1;
-            font-size: 2em;
-            margin-top: 40px;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid #45B7D1;
-        }
-
-        .content h3 {
-            color: #555;
-            font-size: 1.6em;
-            margin-top: 30px;
-            margin-bottom: 15px;
-        }
-
-        .content h4 {
-            color: #666;
-            font-size: 1.3em;
-            margin-top: 25px;
-            margin-bottom: 12px;
-        }
-
-        .content p {
-            margin-bottom: 20px;
-            font-size: 1.1em;
-            color: #444;
-        }
-
-        .content ul {
             margin: 20px 0;
-            padding-left: 30px;
-        }
-
-        .content li {
-            margin-bottom: 12px;
-            font-size: 1.05em;
-            color: #555;
-        }
-
-        .content strong {
-            color: #222;
-            font-weight: 600;
-        }
-
-        .back-link {
-            display: inline-block;
-            padding: 12px 25px;
-            background: linear-gradient(135deg, #45B7D1, #8B4513);
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            margin-bottom: 20px;
-            transition: transform 0.3s ease;
-            font-weight: 600;
-        }
-
-        .back-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .navigation {
-            padding: 30px 50px;
-            background: #f8f9fa;
-            border-top: 1px solid #e9ecef;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-btn {
-            padding: 10px 20px;
-            background: #45B7D1;
-            color: white;
-            text-decoration: none;
+            padding: 15px;
+            background: linear-gradient(135deg, #ffffff, #f9f9f9);
             border-radius: 8px;
-            transition: all 0.3s ease;
+            border-left: 3px solid var(--accent-color);
         }
-
-        .nav-btn:hover {
-            transform: translateX(5px);
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+        
+        .emoji {
+            font-size: 1.5em;
+            margin-left: 10px;
         }
-
-        .nav-btn.prev:hover {
-            transform: translateX(-5px);
+        
+        .read-time, .difficulty {
+            display: inline-block;
+            padding: 5px 15px;
+            margin: 5px 5px 5px 0;
+            border-radius: 20px;
+            font-size: 0.9em;
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            color: #1976d2;
+            font-weight: 500;
         }
-
-        @media (max-width: 768px) {
-            .content {
-                padding: 30px 25px;
-            }
-
-            .article-title {
-                font-size: 1.8em;
-            }
-
-            .featured-image {
-                height: 250px;
-            }
-
-            .navigation {
-                flex-direction: column;
-                gap: 15px;
-            }
+        
+        .difficulty {
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            color: #e65100;
+        }
+        
+        .article-text {
+            line-height: 1.8;
+            color: #444;
+            margin: 15px 0;
+            font-size: 1.05em;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <img src="../../images/mushroom-identification_07-smell-taste-texture-analysis.webp" alt="Smido, ANÁLISE DE TIME E TEXTURA" class="featured-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22900%22 height=%22400%22%3E%3Crect fill=%22%23D2691E%22 width=%22900%22 height=%22400%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22white%22 font-size=%2260%22%3E🍄%3C/text%3E%3C/svg%3E'">
+<div class="hero-image"></div>
+<div class="content">
+    <h1 class="title">07 Smido, ANÁLISE DE TIME E TEXTURA</h1>
+    <div class="quote-box">
+        <div class="quote-text">Professional Mycology Guide</div>
+    </div>
+    
+<div class="article-meta">
+<span class="category">🔍 Mushroom Identification</span>
+<span class="read-time">📖 29 minute read</span>
+<span class="difficulty">🔴 Advanced</span>
+</div>
 
-        <div class="content">
-            <h1 class="article-title">Smido, ANÁLISE DE TIME E TEXTURA</h1>
-            <br>
-<h2>Introdução: a arte da avaliação além da visão</h2>
-<br>
-<p>Quando descobri o aglomerado de chanterelles de ouro na floresta, o que mais me chocou não foi sua aparência elegante em forma de funil, mas seu rico perfume de damasco.Naquele momento, entendi que a identificação de cogumelos era muito mais do que observar cores e formas.Odor, sabor e textura fornecem informações de identificação exclusivas e muitas vezes decisivas, e essas características sensoriais são capazes de distinguir espécies com aparências semelhantes, mas com propriedades muito diferentes.</p>
-<br>
-<p>Como micologista e entusiasta da culinária, com vinte anos de experiência na natureza, testemunhei muitos erros que dependem apenas da identificação visual.Alguns cogumelos têm um cheiro icônico - o aroma de damasco de chanterelles, o forte sabor de alho do alho e o sabor picante da lactiflora picante - essas características podem ser identificadas imediatamente.No entanto, esses testes sensoriais devem ser realizados sob regras estritas de segurança.Este guia compartilhará como usar essas características sensoriais com segurança e eficácia, elevando você de um novato na identificação de cogumelos a um mestre sensorial.</p>
-<br>
-<h2>Características do odor: pistas de identificação invisíveis</h2>
-<br>
-<h3>Por que odor é crucial na identificação de cogumelos</h3>
-<br>
+
+            <div class="section-title">🍄 Introdução: a arte da avaliação além da visão</div>
+<div class="main-text">Quando descobri o aglomerado de chanterelles de ouro na floresta, o que mais me chocou não foi sua aparência elegante em forma de funil, mas seu rico perfume de damasco.Naquele momento, entendi que a identificação de cogumelos era muito mais do que observar cores e formas.Odor, sabor e textura fornecem informações de identificação exclusivas e muitas vezes decisivas, e essas características sensoriais são capazes de distinguir espécies com aparências semelhantes, mas com propriedades muito diferentes.<span class="emoji">🍄</span></div>
+<p class="article-text">Como micologista e entusiasta da culinária, com vinte anos de experiência na natureza, testemunhei muitos erros que dependem apenas da identificação visual.Alguns cogumelos têm um cheiro icônico - o aroma de damasco de chanterelles, o forte sabor de alho do alho e o sabor picante da lactiflora picante - essas características podem ser identificadas imediatamente.No entanto, esses testes sensoriais devem ser realizados sob regras estritas de segurança.Este guia compartilhará como usar essas características sensoriais com segurança e eficácia, elevando você de um novato na identificação de cogumelos a um mestre sensorial.</p>
+<div class="section-title">🍄 Características do odor: pistas de identificação invisíveis</div>
+<div class="subsection-title">🎯 Por que odor é crucial na identificação de cogumelos</div>
 <p><strong> Valor de identificação exclusivo </strong></p>
-<p>Na prática selvagem, o perfume é frequentemente a chave para distinguir "espécies gêmeas".Eu encontrei cogumelos que parecem quase os mesmos em várias ocasiões e só podem ser determinados por sua verdadeira identidade através do cheiro.Por exemplo, chanterelles deliciosos e chanterelles falsos tóxicos têm aparência muito semelhante, mas o primeiro tem um aroma de damasco único, enquanto o último é insípido ou levemente mofado.</p>
-<br>
+<p class="article-text">Na prática selvagem, o perfume é frequentemente a chave para distinguir "espécies gêmeas".Eu encontrei cogumelos que parecem quase os mesmos em várias ocasiões e só podem ser determinados por sua verdadeira identidade através do cheiro.Por exemplo, chanterelles deliciosos e chanterelles falsos tóxicos têm aparência muito semelhante, mas o primeiro tem um aroma de damasco único, enquanto o último é insípido ou levemente mofado.</p>
 <p><strong> Base química e significado evolutivo </strong></p>
-<p>O cheiro de cogumelos vem de compostos orgânicos voláteis produzidos por fungos.Esses compostos não são produzidos aleatoriamente, mas têm fins evolutivos claros:</p>
-<ul>
+<p class="article-text">O cheiro de cogumelos vem de compostos orgânicos voláteis produzidos por fungos.Esses compostos não são produzidos aleatoriamente, mas têm fins evolutivos claros:</p>
+<div class="highlight"><ul>
 <li>atrair insetos ou animais específicos para ajudar a espalhar esporos</li>
 <li>Defesa contra herbívoros e microorganismos competitivos</li>
 <li>como um subproduto do processo metabólico</li>
-</ul>
-<br>
-<p>Compreender isso pode ajudá -lo a entender por que certos aromas são tão únicos e estáveis ​​- eles fazem parte das estratégias de sobrevivência de cogumelos.</p>
-<br>
-<h3>Tecnologia profissional de farejamento: um método seguro e eficaz</h3>
-<br>
+</ul></div>
+<p class="article-text">Compreender isso pode ajudá -lo a entender por que certos aromas são tão únicos e estáveis ​​- eles fazem parte das estratégias de sobrevivência de cogumelos.</p>
+<div class="subsection-title">📌 Tecnologia profissional de farejamento: um método seguro e eficaz</div>
 <p><strong> Segurança primeiro: proteger o trato respiratório </strong></p>
-<p>Sugar cogumelos diretamente profundamente é uma prática perigosa e pode inalar esporos ou produtos químicos nocivos.A técnica correta é:</p>
+<p class="article-text">Sugar cogumelos diretamente profundamente é uma prática perigosa e pode inalar esporos ou produtos químicos nocivos.A técnica correta é:</p>
 <p>1. Levante os cogumelos a 15 a 20 cm do nariz</p>
-<p>2. Use as mãos para inchar entre os cogumelos e o nariz para guiar as moléculas de odor</p>
-<p>3. Use respiração superficial em vez de respirar profundo</p>
-<p>4. Deixe o sistema olfativo descansar por um momento após cada teste</p>
-<br>
+<p class="article-text">2. Use as mãos para inchar entre os cogumelos e o nariz para guiar as moléculas de odor</p>
+<p class="article-text">3. Use respiração superficial em vez de respirar profundo</p>
+<p class="article-text">4. Deixe o sistema olfativo descansar por um momento após cada teste</p>
 <p><strong> Inspeção abrangente: diferenças de odor em diferentes partes </strong></p>
-<p>Diferentes partes dos cogumelos podem emitir odores de intensidade diferente:</p>
-<ul>
+<p class="article-text">Diferentes partes dos cogumelos podem emitir odores de intensidade diferente:</p>
+<div class="highlight"><ul>
 <li>Superfície de tampa: geralmente o odor mais leve</li>
 <li>Bactérias dobras ou orifícios: odor forte, área de produção de esporos</li>
 <li>Base de estômago: às vezes há um cheiro único de água subterrânea</li>
 <li>Frescos cortes: o odor mais forte, os compostos internos expostos</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Avaliação de teste e status </strong></p>
-<p>A intensidade do odor varia muito com o estado do cogumelo:</p>
-<ul>
+<p class="article-text">A intensidade do odor varia muito com o estado do cogumelo:</p>
+<div class="highlight"><ul>
 <li>As amostras recém -coletadas têm o odor mais óbvio</li>
 <li>Os cogumelos ligeiramente murchas às vezes têm odor mais forte (umidade reduzida, composto concentrado)</li>
 <li>O cheiro de espécimes idosos ou secos é enfraquecido ou alterado</li>
 <li>Certas espécies apenas liberam odor após atrito ou aquecimento</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Habilidades práticas: Aprimore o odor fraco </strong></p>
-<p>Eu uso essas dicas profissionais quando o odor não é óbvio:</p>
-<ul>
+<p class="article-text">Eu uso essas dicas profissionais quando o odor não é óbvio:</p>
+<div class="highlight"><ul>
 <li>Sele os cogumelos em uma pequena jarra de vidro ou saco plástico por 15 a 30 minutos</li>
 <li>esmagar delicadamente um pequeno pedaço de bactéria com a parte de trás da faca</li>
 <li>Segure os cogumelos nas mãos por alguns minutos e use a temperatura corporal para liberar compostos voláteis</li>
 <li>Corte o caule para observar mudanças internas</li>
-</ul>
-<br>
-<h3>Tipos de cheiro comum: do prazer ao aviso</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 Tipos de cheiro comum: do prazer ao aviso</div>
 <p><strong> Cheiro agradável: métricas para cogumelos comestíveis </strong></p>
-<br>
 <p>Aroma de amêndoa/damasco (chanterelles)</p>
-<ul>
+<div class="highlight"><ul>
 <li>Doce, frutado, remanescente de damascos maduros ou grãos de damasco amargo</li>
 <li>muito estável e altamente característico</li>
 <li>é um recurso de identificação importante de Chanterelles e dificilmente é confundido com outros cogumelos</li>
-</ul>
-<br>
+</ul></div>
 <p>Sabor de erva -doce/alcaçuz (certo gênero)</p>
-<ul>
+<div class="highlight"><ul>
 <li>odor de especiarias doces, semelhante ao anis ou alcaçuz estrelado</li>
 <li>Cerca de 15% das pessoas não podem perceber esse odor devido a diferenças genéticas</li>
 <li>Se você não consegue sentir o cheiro, não force a confirmação, confie em outros recursos</li>
-</ul>
-<br>
+</ul></div>
 <p>Sabor de farinha/pepino (muitos Agaricus)</p>
-<ul>
+<div class="highlight"><ul>
 <li>Um cheiro fraco de farinha fresca ou pepino cortado</li>
 <li>fresco, neutro, geralmente indicando que os cogumelos são mais frescos</li>
 <li>Confirmação de impressões de esporos brancos e dobras bacterianas</li>
-</ul>
-<br>
+</ul></div>
 <p>Aroma de coco (certo Lactobacillus)</p>
-<ul>
+<div class="highlight"><ul>
 <li>leite de coco suave ou aroma de óleo de coco</li>
 <li>geralmente fraco e requer identificação cuidadosa</li>
 <li>Como uma característica auxiliar na identificação do gênero Lactobacillus</li>
-</ul>
-<br>
+</ul></div>
 <p>Rosa/floral (certos cogumelos rosados)</p>
-<ul>
+<div class="highlight"><ul>
 <li>perfume floral elegante leve, semelhante a rosas ou violetas</li>
 <li>geralmente muito fraco e precisa ser detectado em um estado ideal</li>
 <li>É uma característica essencial de alguns cogumelos vermelhos raros</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> neutro ou sem odor óbvio </strong></p>
-<br>
 <p>Sabor típico de cogumelos</p>
-<ul>
+<div class="highlight"><ul>
 <li>O cheiro básico da maioria dos fungos comestíveis</li>
 <li>terroso, suave, não particularmente forte</li>
 <li>O valor da identificação em si é limitado, mas é útil ao excluir outros recursos</li>
-</ul>
-<br>
+</ul></div>
 <p>Totalmente insípido</p>
-<ul>
+<div class="highlight"><ul>
 <li>Muitos cogumelos não têm cheiro óbvio</li>
 <li>Esta também é uma informação valiosa que exclui espécies com odores fortes</li>
 <li>Verifique se o sistema olfativo não está cansado durante o teste</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Odor de aviso: alerta vermelho na natureza </strong></p>
-<br>
 <p>Sabor de alho/cebola (alho)</p>
-<ul>
+<div class="highlight"><ul>
 <li>forte e característico, semelhante ao alho esmagado</li>
 <li>É um indicador claro de certos tipos de gênero de gênero Squid</li>
 <li>cogumelos comestíveis e deliciosos</li>
-</ul>
-<br>
-<p>Sabor de rabanete (certo guarda-chuva coberto de seda)</p>
-<ul>
+</ul></div>
+<p class="article-text">Sabor de rabanete (certo guarda-chuva coberto de seda)</p>
+<div class="highlight"><ul>
 <li>rizomas picantes, semelhantes a rabanetes frescos</li>
 <li>Odor de aviso - Muitos guarda -chuvas de seda contêm compostos altamente tóxicos</li>
 <li>extremamente cauteloso ao encontrar tais odores</li>
-</ul>
-<br>
+</ul></div>
 <p>Odor de gás/sabor químico (certo gênero)</p>
-<ul>
+<div class="highlight"><ul>
 <li>semelhante ao alcatrão de carvão, tinta química ou fenol</li>
 <li>um odor notável não natural que indica a possível presença de compostos tóxicos</li>
 <li>Absolutamente não comestível</li>
-</ul>
-<br>
+</ul></div>
 <p>Sabor de carniça/fezes (Phaleblower)</p>
-<ul>
+<div class="highlight"><ul>
 <li>cheiro podre forte, semelhante à carne podre</li>
 <li>é uma característica da família Phalomaceae, usada para atrair moscas para espalhar esporos</li>
 <li>Embora o cheiro seja ruim, algumas espécies são comestíveis quando jovens</li>
-</ul>
-<br>
+</ul></div>
 <p>Mofado/obsoleto</p>
-<ul>
+<div class="highlight"><ul>
 <li>semelhante ao porão mofado ou papelão úmido</li>
 <li>geralmente indica que os cogumelos não são frescos ou começam a quebrar</li>
 <li>possível para bactérias nocivas e deve ser evitado</li>
-</ul>
-<br>
+</ul></div>
 <p>Sabor picante/estimulante</p>
-<ul>
+<div class="highlight"><ul>
 <li>Um cheiro pungente e franzido</li>
 <li>Características de certos lactobacillus ou cogumelos vermelhos</li>
 <li>possivelmente indicado para conter compostos irritantes</li>
-</ul>
-<br>
-<h3>Método de gravação profissional: estabeleça uma biblioteca de odor pessoal</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 Método de gravação profissional: estabeleça uma biblioteca de odor pessoal</div>
 <p><strong> Termos de descrição padronizados </strong></p>
 <p>Registre odores com vocabulário consistente:</p>
-<ul>
+<div class="highlight"><ul>
 <li>agradável/desagradável</li>
 <li>Aroma doce/sabor picante/azedo</li>
 <li>forte/média/fraca/não</li>
 <li>Aroma de frutas/especiarias/flor/química</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Método de analogia melhora a precisão </strong></p>
 <p>Comparação com itens familiares:</p>
-<ul>
+<div class="highlight"><ul>
 <li>"Como amêndoas amargas"</li>
 <li>"Como um pepino cortado"</li>
 <li>"Como querosene"</li>
 <li>"Como um peixe podre"</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Sistema de classificação de força </strong></p>
 <p>O sistema de quatro níveis que eu uso:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Nenhum: nenhuma detecção</li>
 <li>Estranho: você precisa cheirar com cuidado para detectar</li>
 <li>Médio: óbvio, mas não forte</li>
 <li>forte: detecte imediatamente, preencha o ar circundante</li>
-</ul>
-<br>
-<h2>Características do sabor: uma ferramenta de identificação cautelosa</h2>
-<br>
-<h3>o valor e o equilíbrio de risco testes de paladar</h3>
-<br>
+</ul></div>
+<div class="section-title">🍄 Características do sabor: uma ferramenta de identificação cautelosa</div>
+<div class="subsection-title">📌 o valor e o equilíbrio de risco testes de paladar</div>
 <p><strong> papel decisivo na identificação </strong></p>
-<p>Durante meus anos de trabalho de campo, os testes de sabor me ajudaram a resolver inúmeros problemas de identificação.Especialmente para:</p>
-<ul>
+<p class="article-text">Durante meus anos de trabalho de campo, os testes de sabor me ajudaram a resolver inúmeros problemas de identificação.Especialmente para:</p>
+<div class="highlight"><ul>
 <li>Lactobacillus: picante, leve ou amargo são características de classificação -chave</li>
 <li>Cogumelo vermelho: o gosto é um indicador importante para distinguir espécies comestíveis e tóxicas</li>
 <li>Boletus: correlação direta entre amargura e edibe</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Significado biológico da defesa química </strong></p>
-<p>As características do sabor dos cogumelos geralmente são manifestações diretas de seus sistemas de defesa química:</p>
-<ul>
+<p class="article-text">As características do sabor dos cogumelos geralmente são manifestações diretas de seus sistemas de defesa química:</p>
+<div class="highlight"><ul>
 <li>O sabor picante vem de compostos de defesa como isotiocianato</li>
 <li>Bitter geralmente vem de alcalóides e terpenos</li>
 <li>Esses compostos alertam usuários em potencial, incluindo humanos</li>
-</ul>
-<br>
-<h3>BITE, mas não Teste de Swallow: Protocolo de segurança rigoroso</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 BITE, mas não Teste de Swallow: Protocolo de segurança rigoroso</div>
 <p><strong> Regras de segurança absolutas </strong></p>
-<br>
-<p>Os testes de paladar são considerados apenas nas seguintes situações:</p>
-<p>1. Você tem pelo menos um ano de experiência de identificação de cogumelos</p>
-<p>2. Você excluiu espécies altamente tóxicas, como Amanita, através de outras características</p>
-<p>3. Referências de identificação confiáveis ​​exigem claramente testes de paladar</p>
-<p>4. Você tem orientação especializada ou praticou habilidades na categoria de segurança</p>
-<br>
+<p class="article-text">Os testes de paladar são considerados apenas nas seguintes situações:</p>
+<p class="article-text">1. Você tem pelo menos um ano de experiência de identificação de cogumelos</p>
+<p class="article-text">2. Você excluiu espécies altamente tóxicas, como Amanita, através de outras características</p>
+<p class="article-text">3. Referências de identificação confiáveis ​​exigem claramente testes de paladar</p>
+<p class="article-text">4. Você tem orientação especializada ou praticou habilidades na categoria de segurança</p>
 <p><strong> Testes de sabor absolutamente proibidos: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Qualquer cogumelo que possa pertencer ao gênero Amanita (a menos que você seja um micologista profissional)</li>
 <li>Uma espécie de cogumelo totalmente irreconhecível</li>
 <li>Tipos de toxinas de contato conhecidas por conter (como alguns guarda -chuvas de capa de seda)</li>
 <li>Você não está familiarizado com os procedimentos de teste de segurança</li>
 <li>Quando há uma úlcera oral ou ferida</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Tecnologia de teste profissional: guia passo a passo </strong></p>
-<br>
-<p>Após anos de melhoria, recomendo as seguintes etapas:</p>
-<p>1. Selecione amostras frescas e livres de pragas e corte um pequeno pedaço da borda do pellet (do tamanho de uma unha pequena)</p>
+<p class="article-text">Após anos de melhoria, recomendo as seguintes etapas:</p>
+<p class="article-text">1. Selecione amostras frescas e livres de pragas e corte um pequeno pedaço da borda do pellet (do tamanho de uma unha pequena)</p>
 <p>2. Cheirar primeiro e estar mentalmente preparado</p>
-<p>3. Coloque -o na frente da ponta da língua e não a mastiga imediatamente</p>
-<p>4. Mastigue suavemente por 5 a 10 segundos e preste atenção ao desenvolvimento e mudanças de sabor.</p>
-<p>5. Use a língua para empurrar os cogumelos para diferentes áreas da boca para testar o sabor geral</p>
-<p>6. Cusa completamente todos os materiais dentro de 15 segundos</p>
-<p>7. Lave a boca completamente duas vezes com água limpa</p>
-<p>8. Aguarde 30 minutos antes de comer ou testar outros cogumelos</p>
-<br>
+<p class="article-text">3. Coloque -o na frente da ponta da língua e não a mastiga imediatamente</p>
+<p class="article-text">4. Mastigue suavemente por 5 a 10 segundos e preste atenção ao desenvolvimento e mudanças de sabor.</p>
+<p class="article-text">5. Use a língua para empurrar os cogumelos para diferentes áreas da boca para testar o sabor geral</p>
+<p class="article-text">6. Cusa completamente todos os materiais dentro de 15 segundos</p>
+<p class="article-text">7. Lave a boca completamente duas vezes com água limpa</p>
+<p class="article-text">8. Aguarde 30 minutos antes de comer ou testar outros cogumelos</p>
 <p><strong> Precauções de segurança chave: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Absolutamente não engula nenhuma parte, mesmo o suco</li>
-</ul>
-<p>-O volume de teste é controlado ao mínimo-o tamanho da ervilha é suficiente</p>
-<ul>
+</ul></div>
+<p class="article-text">-O volume de teste é controlado ao mínimo-o tamanho da ervilha é suficiente</p>
+<div class="highlight"><ul>
 <li>Se o sabor for extremamente irritante ou queimado, cuspe imediatamente e enxágue sua boca</li>
 <li>Não coma imediatamente após o teste para evitar confundir possíveis reações atrasadas</li>
 <li>Leve água potável com você para enxaguar a boca</li>
-</ul>
-<br>
+</ul></div>
 <p>Linhagem do tipo de sabor: de leve ao aviso</p>
-<br>
 <p><strong> Tipo gentil </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>sem sabor óbvio ou leve de cogumelos</li>
 <li>neutro ou levemente agradável</li>
 <li>Características da maioria dos cogumelos comestíveis, como cogumelos, deliciosos bolos</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Sabor Nuty </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>gosto agradável semelhante às nozes assadas</li>
 <li>Características de certos boletus e xarope</li>
 <li>geralmente indica boa qualidade comestível</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>amargura</strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Um gosto amargo distinto e duradouro</li>
 <li>geralmente desagradável</li>
 <li>Comum em Boletus inedável e outras espécies</li>
 <li>O gosto amargo geralmente não desaparece de cozinhar</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Sabor picante/apimentado </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Uma sensação de queimação semelhante a pimenta preta ou pimenta</li>
 <li>Características de identificação -chave de Lactobacillus e Rhizoma</li>
 <li>A intensidade varia muito, de leve a extremamente forte</li>
 <li>geralmente ocorrem atrasos (pode levar de 10 a 15 segundos)</li>
-</ul>
-<br>
+</ul></div>
 <p>A classificação picante que usei:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Gentil: um leve calor</li>
 <li>Médio: óbvio apimentado, mas não desconfortável</li>
 <li>Spicy: forte sensação de queimação</li>
 <li>Extremamente picante: calor abrasador insuportável</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> doçura </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Uma doçura fraca, semelhante a beterraba ou milho</li>
 <li>raro em cogumelos</li>
 <li>Características de certas espécies raras</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Sabor metálico </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>um perfume semelhante à ferrugem ou tinta</li>
 <li>geralmente desagradável</li>
-</ul>
-<p>-O pode ocorrer quando alguns cogumelos são envelhecidos ou danificados</p>
-<br>
-<h3>Aplicação prática: Casos -chave de teste de paladar</h3>
-<br>
+</ul></div>
+<p class="article-text">-O pode ocorrer quando alguns cogumelos são envelhecidos ou danificados</p>
+<div class="subsection-title">📌 Aplicação prática: Casos -chave de teste de paladar</div>
 <p><strong> Caso 1: Determinação precisa do gênero Lactobacillus </strong></p>
-<br>
-<p>Lactobacillus é um grupo que eu frequentemente confio nos testes de sabor.Tipos com aparências semelhantes podem ter valores comestíveis completamente diferentes:</p>
-<ul>
+<p class="article-text">Lactobacillus é um grupo que eu frequentemente confio nos testes de sabor.Tipos com aparências semelhantes podem ter valores comestíveis completamente diferentes:</p>
+<div class="highlight"><ul>
 <li>delicioso Lactarius deliciosus: sabor leve ou levemente noz, cogumelo comestível de alta qualidade</li>
 <li>Lactarius Piperatus: Extremamente picante, Inedible</li>
-</ul>
-<p>-Lactarius uvidus: leve primeiro e depois picante, não coma crua</p>
-<br>
+</ul></div>
+<p class="article-text">-Lactarius uvidus: leve primeiro e depois picante, não coma crua</p>
 <p>Etapas de confirmação -chave:</p>
-<p>1. Confirme que há leite (característica determinada de Lactobacillus)</p>
+<p class="article-text">1. Confirme que há leite (característica determinada de Lactobacillus)</p>
 <p>2. Observe a mudança de cor do leite</p>
 <p>3. Obtenha impressões de esporos brancos</p>
 <p>4. Finalmente, confirmação do teste de paladar</p>
-<br>
 <p><strong> Caso 2: Avaliação comestível do Genomerophyllum </strong></p>
-<br>
-<p>Existem muitos tipos de cogumelos vermelhos, e o sabor é o principal recurso de distinção:</p>
-<ul>
+<p class="article-text">Existem muitos tipos de cogumelos vermelhos, e o sabor é o principal recurso de distinção:</p>
+<div class="highlight"><ul>
 <li>cogumelos vermelhos comestíveis (Russula vesca): comida leve e de alta qualidade</li>
 <li>cogumelo vermelho picante (russula emotica): extremamente picante, venenoso</li>
 <li>Mas observe: esta não é uma regra absoluta, alguns cogumelos vermelhos de sabor suave também são venenosos</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Caso 3: Julgamento de qualidade de Boletus </strong></p>
-<br>
-<p>Entre Boletus, o sabor está diretamente relacionado à qualidade comestível:</p>
-<ul>
+<p class="article-text">Entre Boletus, o sabor está diretamente relacionado à qualidade comestível:</p>
+<div class="highlight"><ul>
 <li>delicioso boletus edulis: sabor suave ou noz, comestível superior</li>
 <li>Tylopilus Felleus: extremamente amargo e não comestível</li>
 <li>Certas espécies tóxicas também podem ter um gosto amargo</li>
-</ul>
-<br>
-<h2>Características da textura: Estrutura e janela de composição</h2>
-<br>
-<h3>Valores múltiplos de textura em autenticação</h3>
-<br>
+</ul></div>
+<div class="section-title">🍄 Características da textura: Estrutura e janela de composição</div>
+<div class="subsection-title">📌 Valores múltiplos de textura em autenticação</div>
 <p><strong> pistas estruturais e taxonomia </strong></p>
-<p>A textura reflete a estrutura microscópica microscópica dos cogumelos e pode fornecer pistas importantes de classificação:</p>
-<ul>
+<p class="article-text">A textura reflete a estrutura microscópica microscópica dos cogumelos e pode fornecer pistas importantes de classificação:</p>
+<div class="highlight"><ul>
 <li>A textura quebradiça indica que a estrutura de micélio é esférica</li>
 <li>A textura fibrosa indica estrutura de micélio paralelo</li>
 <li>Essas características são particularmente valiosas no nível familiar</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Previsão da aplicabilidade de cozinhar </strong></p>
-<p>Como entusiasta da culinária, eu anexo grande importância às características da textura:</p>
-<ul>
+<p class="article-text">Como entusiasta da culinária, eu anexo grande importância às características da textura:</p>
+<div class="highlight"><ul>
 <li>cogumelos crocantes são adequados para fritar rapidamente</li>
 <li>cogumelos carnudos são adequados para estanquear e cozinhar</li>
 <li>Cogumelos de glúten são adequados para sopa</li>
 <li>prever o efeito de cozimento antes de entender a textura do pote</li>
-</ul>
-<br>
-<p>Método de avaliação profissional: observação multidimensional</p>
-<br>
+</ul></div>
+<p class="article-text">Método de avaliação profissional: observação multidimensional</p>
 <p><strong> Avaliação visual </strong></p>
 <p>Observe antes de tocar:</p>
-<ul>
+<div class="highlight"><ul>
 <li>brilho da superfície: ceroso ou seco</li>
 <li>Densidade estrutural: apertado ou solto</li>
 <li>Teor de umidade: cheio ou murcha</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Tecnologia de teste tátil </strong></p>
 <p>Usando um método de toque sistemático:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Use os dedos para pressionar levemente peças diferentes para testar a elasticidade</li>
 <li>Torne suavemente o tronco bacteriano para testar propriedades fibrosas</li>
 <li>Pressione a tampa com as unhas para testar a fragilidade</li>
 <li>Sempre comece com uma gentileza para evitar danos à amostra</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Corte e rasgo a observação </strong></p>
-<p>As estruturas internas geralmente fornecem informações importantes:</p>
-<ul>
+<p class="article-text">As estruturas internas geralmente fornecem informações importantes:</p>
+<div class="highlight"><ul>
 <li>rasgo vertical de talos bacterianos para observar a direção da fibra</li>
 <li>corte horizontal da tampa bacteriana para observar a espessura da carne</li>
 <li>Preste atenção à secreção de suco e mudanças de cor</li>
-</ul>
-<br>
-<h3>Tipo de textura espectro completo</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 Tipo de textura espectro completo</div>
 <p><strong> crocante/quebradiço </strong></p>
 <p>recurso:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Partido em pedaços regulares com leve pressão</li>
 <li>semelhante ao giz ou biscoitos para quebrar</li>
 <li>Fratura direta quase inelástica</li>
-</ul>
-<br>
+</ul></div>
 <p>Grupos representativos:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Lactobacillus</li>
 <li>Cogumelo vermelho</li>
 <li>Este é o principal recurso de identificação desses dois gêneros</li>
-</ul>
-<br>
+</ul></div>
 <p>Teste profissional:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Pressione delicadamente a borda das frescuras de bactérias</li>
 <li>deve ser quebrado em pedaços pequenos, não dobras</li>
 <li>O caule também exibe fragilidade semelhante</li>
-</ul>
-<br>
+</ul></div>
 <p>Valor de validação:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Pregas frágeis apontam imediatamente para Lactobacillus ou Rhizoma</li>
 <li>Confirmação com base em outras características (leite, cor do esporo)</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> resistência/couro </strong></p>
 <p>recurso:</p>
-<ul>
+<div class="highlight"><ul>
 <li>difícil de rasgar ou cortar</li>
 <li>elasticidade semelhante a couro ou de borracha</li>
 <li>parcialmente restaurado à sua forma original após a flexão</li>
 <li>A estrutura fibrosa é óbvia</li>
-</ul>
-<br>
+</ul></div>
 <p>Grupos representativos:</p>
-<ul>
+<div class="highlight"><ul>
 <li>a maioria dos cogumelos de breta de madeira</li>
 <li>bactérias porosas</li>
 <li>Certos cogumelos anel-hastes</li>
-</ul>
-<br>
+</ul></div>
 <p>Valor de validação:</p>
-<ul>
+<div class="highlight"><ul>
 <li>geralmente indicado como um decompositorador de madeira</li>
 <li>a maioria deles não é adequada para consumo porque são muito difíceis</li>
 <li>Esta textura é comum em espécies perenes</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>Ceroso</strong></p>
 <p>recurso:</p>
-<ul>
+<div class="highlight"><ul>
 <li>liso, grosso, translúcido</li>
 <li>Um toque semelhante a velas ou sabão</li>
 <li>Esfregue com os dedos para fazer uma sensação especial e suave</li>
 <li>As dobras de bactérias geralmente são mais grossas e escassas</li>
-</ul>
-<br>
+</ul></div>
 <p>Grupos representativos:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Hygrocybe</li>
 <li>Certos guarda -chuvas molhados</li>
-</ul>
-<br>
+</ul></div>
 <p>Método de teste:</p>
-<ul>
+<div class="highlight"><ul>
 <li>esfregue delicadamente bactérias com os dedos</li>
 <li>As pregas cerosas parecem grossas e lisas</li>
 <li>Sempre acompanhado de cores brilhantes</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>Fibroso</strong></p>
 <p>recurso:</p>
-<ul>
+<div class="highlight"><ul>
 <li>semelhante aos feixes de fibras ou texturas de carne</li>
 <li>pode ser rasgado longitudinalmente em tiras</li>
 <li>Não é fácil quebrar em pedaços</li>
 <li>Existe uma estrutura filamentosa distinta</li>
-</ul>
-<br>
+</ul></div>
 <p>Grupos representativos:</p>
-<ul>
+<div class="highlight"><ul>
 <li>A maioria dos guarda -chuvas de capa de seda</li>
 <li>Certos gêneros gêneros</li>
 <li>a maioria dos vermes de mel</li>
-</ul>
-<br>
+</ul></div>
 <p>Habilidades de observação:</p>
-<ul>
+<div class="highlight"><ul>
 <li>rasgue os caules longitudinalmente para observar o pacote de fibras</li>
 <li>Preste atenção à espessura e força da fibra</li>
 <li>Fibross é frequentemente combinado com resistência</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Soft/Serky </strong></p>
 <p>recurso:</p>
-<ul>
+<div class="highlight"><ul>
 <li>grosso, mas macio e suculento</li>
 <li>muscular ou frutas frescas</li>
 <li>Incisivo fácil de cortar, fácil de cortar</li>
 <li>suco rico, peso óbvio</li>
-</ul>
-<br>
+</ul></div>
 <p>Grupos representativos:</p>
-<ul>
+<div class="highlight"><ul>
 <li>a maioria de Boletus</li>
 <li>Cogumelo</li>
 <li>Muitos cogumelos</li>
-</ul>
-<br>
+</ul></div>
 <p>Valor de validação:</p>
-<ul>
+<div class="highlight"><ul>
 <li>geralmente uma característica de bons fungos comestíveis</li>
 <li>mas isso não pode ser usado para julgar comestível</li>
 <li>julgamento abrangente com base em outras características</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> glúten/gel </strong></p>
 <p>recurso:</p>
-<ul>
+<div class="highlight"><ul>
 <li>aparentemente como geléia ou gel</li>
 <li>translúcido, rico em umidade</li>
 <li>liso, elástico</li>
 <li>encolhimento significativo durante a secagem</li>
-</ul>
-<br>
+</ul></div>
 <p>Grupos representativos:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Tremella</li>
 <li>Glycidobacteria</li>
 <li>o caule ou a pele de certos cogumelos</li>
-</ul>
-<br>
+</ul></div>
 <p>Método de observação:</p>
-<ul>
+<div class="highlight"><ul>
 <li>sinta -se elástico e suave quando tocado</li>
 <li>Corte para observar a umidade e a transparência</li>
 <li>Geralmente muito óbvio, nenhum teste complicado é necessário</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> como esponja </strong></p>
 <p>recurso:</p>
-<ul>
+<div class="highlight"><ul>
 <li>semelhante à esponja natural</li>
 <li>poroso, compressível, rebote</li>
 <li>Absorção leve e forte de água</li>
 <li>geralmente relacionado a estruturas porosas</li>
-</ul>
-<br>
+</ul></div>
 <p>Grupos representativos:</p>
-<ul>
+<div class="highlight"><ul>
 <li>A camada de furo do tubo de bolete</li>
 <li>Certas bactérias porosas</li>
 <li>Estrutura parcial de morel</li>
-</ul>
-<br>
+</ul></div>
 <p>Dicas de teste:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Pressione delicadamente para observar o rebote</li>
 <li>Preste atenção à taxa de compressão e velocidade de recuperação</li>
 <li>frequentemente combinado com outras texturas</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Dry/Woody </strong></p>
 <p>recurso:</p>
-<ul>
+<div class="highlight"><ul>
 <li>seco, duro, leve peso</li>
 <li>semelhante a balsa ou cortiça</li>
 <li>Não é fácil de cortar, precisa usar força</li>
 <li>Há um som oco ao bater</li>
-</ul>
-<br>
+</ul></div>
 <p>Grupos representativos:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Poros de casco</li>
 <li>Bactérias mais porosas</li>
 <li>Espécimes envelhecidos</li>
-</ul>
-<br>
+</ul></div>
 <p>Pontos de observação:</p>
-<ul>
+<div class="highlight"><ul>
 <li>dureza e secura sensíveis ao toque</li>
 <li>Tente cortar para avaliar a resistência</li>
 <li>geralmente características das espécies perenes</li>
-</ul>
-<br>
-<h3>Descrição da textura abrangente: Método de gravação profissional</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 Descrição da textura abrangente: Método de gravação profissional</div>
 <p><strong> Várias partes são avaliadas separadamente </strong></p>
-<p>Diferentes partes de um cogumelo geralmente têm texturas diferentes:</p>
-<ul>
+<p class="article-text">Diferentes partes de um cogumelo geralmente têm texturas diferentes:</p>
+<div class="highlight"><ul>
 <li>Capa: pode ser carnudo ou crocante</li>
 <li>Fungos dobras/buracos: quebradiço, ceroso ou esponja</li>
 <li>trapézio: fibroso, quebradiço ou oco</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Modelo de registro completo </strong></p>
 <p>A descrição padronizada que usei:</p>
-<p>"A tampa é carnuda, grossa (com até 1,5 cm de espessura), com superfícies de corte branco e suculento. As pregas são nítidas e quebradiças, e são quebradas em pedaços pequenos com pressão leve. O caule é fibroso e pode ser rasgado em tiras na direção longitudinal, com uma base ligeiramente aumentada.</p>
-<br>
+<p class="article-text">"A tampa é carnuda, grossa (com até 1,5 cm de espessura), com superfícies de corte branco e suculento. As pregas são nítidas e quebradiças, e são quebradas em pedaços pequenos com pressão leve. O caule é fibroso e pode ser rasgado em tiras na direção longitudinal, com uma base ligeiramente aumentada.</p>
 <p><strong> Registro de alteração têxtil </strong></p>
 <p>A textura muda com o ciclo de vida:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Infância: geralmente sólido e apertado</li>
 <li>Maturidade: para obter a melhor textura</li>
 <li>idosos: pode se tornar duro, madeira ou amolecimento e apodrecido</li>
 <li>Depois de secar: geralmente duro e quebradiço</li>
-</ul>
-<br>
-<h3>Textura de cozinha: da identificação à mesa de jantar</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 Textura de cozinha: da identificação à mesa de jantar</div>
 <p><strong> Por que testar a textura de cozimento </strong></p>
-<p>Como amante de comida, acho crucial entender a textura da culinária:</p>
-<ul>
+<p class="article-text">Como amante de comida, acho crucial entender a textura da culinária:</p>
+<div class="highlight"><ul>
 <li>prever o sabor do prato final</li>
 <li>Escolha o método de cozimento mais adequado</li>
 <li>Evite desperdiçar ingredientes de qualidade</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Princípio de degustação de segurança de segurança </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>apenas testes 100% confirmados tipos comestíveis</li>
 <li>Primeiro tente novas espécies e coma apenas uma pequena quantidade (uma colher de sopa)</li>
 <li>Certos cogumelos devem ser cozidos para serem seguros (como mais L)</li>
 <li>Entenda alergias pessoais História e tolerância</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Tipo de textura de cozinha e aplicação </strong></p>
-<p>Com base em centenas de experimentos de culinária, concluí:</p>
-<br>
-<p>Mantenha -se sólido (cogumelos shiitake, cogumelos ostras)</p>
-<ul>
+<p class="article-text">Com base em centenas de experimentos de culinária, concluí:</p>
+<p class="article-text">Mantenha -se sólido (cogumelos shiitake, cogumelos ostras)</p>
+<div class="highlight"><ul>
 <li>Adequado para: fritar, assar, ensopado</li>
 <li>Recursos: mantenha a forma após o cozimento e tenha uma textura sólida</li>
-</ul>
-<br>
+</ul></div>
 <p>Torne -se cremoso (boletus, cogumelos)</p>
-<ul>
+<div class="highlight"><ul>
 <li>Adequado para: ensopado, sopa, molho</li>
 <li>Características: amolecimento após cozinhar, sabor rico</li>
-</ul>
-<br>
+</ul></div>
 <p>Torne -se goma (Tremella, fungo)</p>
-<ul>
+<div class="highlight"><ul>
 <li>Adequado para: sopa, sobremesa, mistura a frio</li>
 <li>Recursos: libere gelatina, textura suave e proposta</li>
-</ul>
-<br>
-<p>Torne -se crocante e macio (chanterelles, fungos de coral)</p>
-<ul>
+</ul></div>
+<p class="article-text">Torne -se crocante e macio (chanterelles, fungos de coral)</p>
+<div class="highlight"><ul>
 <li>Adequado para: fritar rápido, fritura</li>
 <li>Recursos: mantenha -o um pouco nítido e único no paladar</li>
-</ul>
-<br>
+</ul></div>
 <p>Torne -se difícil (alguns cogumelos)</p>
-<ul>
+<div class="highlight"><ul>
 <li>Evite comer ou ensopado de longo prazo</li>
 <li>Recursos: mais difícil se torna, e é difícil mastigar</li>
-</ul>
-<br>
-<h2>Limitações e estratégias de enfrentamento das características sensoriais</h2>
-<br>
-<h3>Desafios e soluções subjetivas</h3>
-<br>
+</ul></div>
+<div class="section-title">🍄 Limitações e estratégias de enfrentamento das características sensoriais</div>
+<div class="subsection-title">📌 Desafios e soluções subjetivas</div>
 <p><strong> diferença de percepção individual </strong></p>
-<p>Ao liderar a equipe a realizar visitas de campo, muitas vezes observo:</p>
-<ul>
+<p class="article-text">Ao liderar a equipe a realizar visitas de campo, muitas vezes observo:</p>
+<div class="highlight"><ul>
 <li>Cerca de 15% das pessoas não têm senso do cheiro de erva -doce (hereditário)</li>
 <li>A diferença individual no sabor picante percebido pode atingir 300%</li>
 <li>Descrição da textura geralmente tem desvios subjetivos</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Estratégia de enfrentamento profissional </strong></p>
-<p>-Formulário um grupo de 2-3 pessoas para verificação cruzada</p>
-<ul>
+<p class="article-text">-Formulário um grupo de 2-3 pessoas para verificação cruzada</p>
+<div class="highlight"><ul>
 <li>Use referências padronizadas para calibrar a percepção (como comparação de chanterelles com óleo essencial de amêndoa)</li>
 <li>Entenda e registre suas próprias características e limitações percebidas</li>
 <li>compare regularmente descrições com colegas experientes</li>
-</ul>
-<br>
-<h3>Compreensão da variabilidade natural</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 Compreensão da variabilidade natural</div>
 <p><strong> A faixa de variação da mesma espécie </strong></p>
-<p>Mesmo para a mesma espécie, as características sensoriais podem variar:</p>
-<ul>
+<p class="article-text">Mesmo para a mesma espécie, as características sensoriais podem variar:</p>
+<div class="highlight"><ul>
 <li>Os espécimes jovens geralmente têm um odor mais claro e uma textura mais firme</li>
 <li>picos característicos atingidos durante a maturidade</li>
 <li>As amostras alternativas mudam seu odor e deterioram sua textura</li>
 <li>A matriz de crescimento afeta a produção de compostos</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Método de gravação profissional </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Observe e registre várias amostras de diferentes níveis de maturidade</li>
 <li>Indique as condições climáticas e o ambiente de crescimento no momento da coleta</li>
 <li>Entenda a gama de variações conhecidas nesta espécie</li>
 <li>julgamento conservador quando incerto</li>
-</ul>
-<br>
-<h3>Identificação do sistema: a posição apropriada das características sensoriais</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 Identificação do sistema: a posição apropriada das características sensoriais</div>
 <p><strong> Função suplementar insubstituível </strong></p>
-<p>Embora os traços sensoriais sejam extremamente valiosos, é importante lembrar:</p>
-<ul>
+<p class="article-text">Embora os traços sensoriais sejam extremamente valiosos, é importante lembrar:</p>
+<div class="highlight"><ul>
 <li>A identificação final não pode ser feita confiando apenas no cheiro ou no sabor</li>
 <li>deve ser usado em combinação com características morfológicas</li>
 <li>Informações ecológicas e sazonais devem ser consideradas</li>
 <li>características objetivas como a impressão de esporos são mais confiáveis</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Fórmula de avaliação abrangente </strong></p>
 <p>A árvore de decisão que eu uso:</p>
-<p>Características do odor + Características do sabor + Características da textura + Macromorfismo + Características Microscópicas + Cor de Impressão de Esporos + Informações Ecológicas + Fatores Sazonais = Identificação Confiável</p>
-<br>
-<h2>Sistema de registro profissional: estabelecendo um banco de dados pessoal</h2>
-<br>
+<p class="article-text">Características do odor + Características do sabor + Características da textura + Macromorfismo + Características Microscópicas + Cor de Impressão de Esporos + Informações Ecológicas + Fatores Sazonais = Identificação Confiável</p>
+<div class="section-title">🍄 Sistema de registro profissional: estabelecendo um banco de dados pessoal</div>
 <p>Modelo de registro sensorial padronizado</p>
-<br>
-<p>Após anos de otimização, recomendo o seguinte formato de gravação:</p>
-<br>
+<p class="article-text">Após anos de otimização, recomendo o seguinte formato de gravação:</p>
 <p><strong>odor</strong></p>
-<p>[Tipo principal], [nível de força], [Descrição especial], [método de teste]</p>
-<br>
+<p class="article-text">[Tipo principal], [nível de força], [Descrição especial], [método de teste]</p>
 <p><strong>cheiro</strong></p>
-<p>[Testado/não testado], como testes: [tipo], [força], [tempo de atraso], [duração]</p>
-<br>
+<p class="article-text">[Testado/não testado], como testes: [tipo], [força], [tempo de atraso], [duração]</p>
 <p><strong>textura</strong></p>
 <p>Capa: [Descrição], [espessura], [elasticidade]</p>
-<p>Bactérias dobras/buracos: [Descrição], [Método epifyseal], [Teste de reação]</p>
-<p>Trapézio: [Descrição], [estrutura interna], [fibross]</p>
+<p class="article-text">Bactérias dobras/buracos: [Descrição], [Método epifyseal], [Teste de reação]</p>
+<p class="article-text">Trapézio: [Descrição], [estrutura interna], [fibross]</p>
 <p>Base: [Descrição], [estrutura especial]</p>
-<br>
 <p><strong> Observação especial </strong></p>
-<p>[Qualquer outra característica sensorial], [Situação de mudança], [Notas comparativas]</p>
-<br>
-<h3>Exemplo de registro prático</h3>
-<br>
-<p>"Odor: fragrância óbvia de amêndoa, resistência média, aprimorada após corte, teste do ventilador. Sabor: não testado (confirmado como chanterelles por cheiro e morfologia). Textura: carne, grossa (1,2 cm de espessura), as bordas para o interior;as bordas são sólidas, as bordas, as bordas que os bordas são sólidos, os bordados, os bordas de fibra, a fibra, a pseudo-fúnia e os stalks mais sólidos;culinária."</p>
-<br>
-<p>"Odor: o cheiro fraco de farinha, precisa ser selado e melhorar o teste;sabor: teste leve (tipo de segurança), desenvolver média picante após um temperamento curto e vomitar em 15 segundos; textura: tampa quebradiça, esmagada após a pressão da luz; tampa frágil, igual à tampa bacteriana; perseguição frágil, vazia.Ele atende às características de machines vermelhos.</p>
-<br>
-<p>Resumo da prática de segurança: lista de inspeção profissional</p>
-<br>
+<p class="article-text">[Qualquer outra característica sensorial], [Situação de mudança], [Notas comparativas]</p>
+<div class="subsection-title">📌 Exemplo de registro prático</div>
+<p class="article-text">"Odor: fragrância óbvia de amêndoa, resistência média, aprimorada após corte, teste do ventilador. Sabor: não testado (confirmado como chanterelles por cheiro e morfologia). Textura: carne, grossa (1,2 cm de espessura), as bordas para o interior;as bordas são sólidas, as bordas, as bordas que os bordas são sólidos, os bordados, os bordas de fibra, a fibra, a pseudo-fúnia e os stalks mais sólidos;culinária."</p>
+<p class="article-text">"Odor: o cheiro fraco de farinha, precisa ser selado e melhorar o teste;sabor: teste leve (tipo de segurança), desenvolver média picante após um temperamento curto e vomitar em 15 segundos; textura: tampa quebradiça, esmagada após a pressão da luz; tampa frágil, igual à tampa bacteriana; perseguição frágil, vazia.Ele atende às características de machines vermelhos.</p>
+<p class="article-text">Resumo da prática de segurança: lista de inspeção profissional</p>
 <p>Protocolo de segurança de teste de odor</p>
-<ul>
+<div class="highlight"><ul>
 <li>✓ Sempre use o método do ventilador para evitar a inalação direta</li>
 <li>✓ Teste amostras frescas para evitar materiais obsoletos</li>
 <li>✓ Deixe o cheiro descansar entre vários testes</li>
 <li>✓ Mantenha uma distância maior quando suspeito de espécies tóxicas</li>
 <li>✓ Registre condições de teste e fatores ambientais</li>
-</ul>
-<br>
-<h3>Diretrizes absolutas para teste de paladar</h3>
-<ul>
+</ul></div>
+<br><div class="subsection-title">📌 Diretrizes absolutas para teste de paladar</div>
+<div class="highlight"><ul>
 <li>✓ Somente quando você tem experiência e conhecimento suficientes</li>
 <li>✓ Agendo estritamente o princípio de "morder, mas não engolir"</li>
 <li>✓ Quantidade mínima de teste (tamanho da ervilha)</li>
@@ -918,82 +777,60 @@
 <li>✗ absolutamente nenhum teste para qualquer tipo de amanita</li>
 <li>✗ Não teste nenhum cogumelo desconhecido</li>
 <li>✗ Não pule a etapa de enxaguatório bucal</li>
-</ul>
-<br>
-<h3>Método profissional para teste de textura</h3>
-<ul>
+</ul></div>
+<br><div class="subsection-title">📌 Método profissional para teste de textura</div>
+<div class="highlight"><ul>
 <li>✓ Teste sistematicamente diferentes partes</li>
 <li>✓ Comece com testes suaves e passo a passo</li>
 <li>✓ Registre as características únicas de cada parte</li>
 <li>✓ Preste atenção às principais características de identificação, como a Brittleness</li>
 <li>✓ Combinar a visão e o julgamento abrangente do toque</li>
-</ul>
-<br>
-<h2>Conclusão: Domine a arte da identificação sensorial</h2>
-<br>
-<p>O cheiro, o sabor e a textura são ferramentas únicas e poderosas na caixa de ferramentas de identificação de cogumelos. Embora sejam subjetivos à primeira vista e difíceis de dominar, à medida que a experiência se acumula, você poderá identificar e utilizar essas características como um micologista profissional. O odor icônico de certos cogumelos - como o aroma de damasco de chanterelles ou o aroma de alho do alho - pode ser identificação instantânea e economizar muito tempo e esforço.</p>
-<br>
+</ul></div>
+<div class="section-title">🍄 Conclusão: Domine a arte da identificação sensorial</div>
+<p class="article-text">O cheiro, o sabor e a textura são ferramentas únicas e poderosas na caixa de ferramentas de identificação de cogumelos. Embora sejam subjetivos à primeira vista e difíceis de dominar, à medida que a experiência se acumula, você poderá identificar e utilizar essas características como um micologista profissional. O odor icônico de certos cogumelos - como o aroma de damasco de chanterelles ou o aroma de alho do alho - pode ser identificação instantânea e economizar muito tempo e esforço.</p>
 <p><strong> Principais pontos profissionais: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Segurança é sempre o primeiro princípio de teste sensorial</li>
 <li>Aumentar o valor do registro usando termos padronizados</li>
 <li>Métodos de teste sistemáticos garantem resultados confiáveis</li>
 <li>julgamento abrangente com base em todos os recursos disponíveis</li>
 <li>Entenda e respeite as limitações de cada ferramenta</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Caminho de crescimento profissional: </strong></p>
-<p>A partir de hoje, os recursos sensoriais são registrados sistematicamente em todas as coleções de campo. Pode parecer difícil no começo, mas em alguns meses você se encontrará construindo uma "biblioteca sensorial" que é capaz de:</p>
-<ul>
+<p class="article-text">A partir de hoje, os recursos sensoriais são registrados sistematicamente em todas as coleções de campo. Pode parecer difícil no começo, mas em alguns meses você se encontrará construindo uma "biblioteca sensorial" que é capaz de:</p>
+<div class="highlight"><ul>
 <li>Identifique tipos comuns por cheiro</li>
 <li>Atribuição de classificação através da previsão de textura</li>
 <li>Uso seguro e eficaz dos testes de paladar</li>
 <li>distinguir com confiança espécies semelhantes</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Último lembrete: </strong></p>
-<p>As características sensoriais são uma parte importante da identificação de quebra -cabeças, mas não todos. Eles complementam em vez de substituir a identificação morfológica tradicional. Certas características (como pregas frágeis) têm alto valor de identificação, mas devem ser combinadas com outras evidências.</p>
-<br>
-<p>À medida que você verifica cada vez mais cogumelos, sua acuidade sensorial continuará a melhorar. Você construirá um rico "arquivo de cheiro" e "memória de textura" em sua mente, tornando essas características aparentemente subjetivas ferramentas de identificação confiáveis.</p>
-<br>
-<p>Entre na floresta e comece sua jornada de exploração sensorial - que toda descoberta seja segura e cheia de surpresas!</p>
-<br>
+<p class="article-text">As características sensoriais são uma parte importante da identificação de quebra -cabeças, mas não todos. Eles complementam em vez de substituir a identificação morfológica tradicional. Certas características (como pregas frágeis) têm alto valor de identificação, mas devem ser combinadas com outras evidências.</p>
+<p class="article-text">À medida que você verifica cada vez mais cogumelos, sua acuidade sensorial continuará a melhorar. Você construirá um rico "arquivo de cheiro" e "memória de textura" em sua mente, tornando essas características aparentemente subjetivas ferramentas de identificação confiáveis.</p>
+<p class="article-text">Entre na floresta e comece sua jornada de exploração sensorial - que toda descoberta seja segura e cheia de surpresas!</p>
 <p>----</p>
-<br>
-<p>*Este artigo é baseado em 20 anos de experiência profissional em pesquisa e prática de campo. Todos os conselhos de segurança devem ser seguidos estritamente. Ao tentar uma nova espécie pela primeira vez, é recomendável viajar com especialistas locais de micologia ou participar de atividades de identificação de cogumelos organizadas.*</p>
-<br>
+<p class="article-text">*Este artigo é baseado em 20 anos de experiência profissional em pesquisa e prática de campo. Todos os conselhos de segurança devem ser seguidos estritamente. Ao tentar uma nova espécie pela primeira vez, é recomendável viajar com especialistas locais de micologia ou participar de atividades de identificação de cogumelos organizadas.*</p>
 <p>----</p>
-<br>
-<h2>⚠️ Isenção de responsabilidade importante</h2>
-<br>
+<div class="section-title">🍄 ⚠️ Isenção de responsabilidade importante</div>
 <p><strong> Este artigo é apenas para referência educacional e de informação. </strong></p>
-<br>
 <p>Aviso de risco de consumo de cogumelos</p>
-<br>
-<p>1. <strong> Segurança da vida primeiro </strong>: Existem riscos inerentes na identificação de cogumelos selvagens.Muitos cogumelos tóxicos parecem muito parecidos com os cogumelos comestíveis, e ingeri -los acidentalmente pode levar a doenças graves ou até a morte.</p>
-<br>
-<p>2. <strong> Identificação profissional necessária </strong>: Antes de comer cogumelos selvagens, 100% de confirmação deve ser realizada por um micólogo profissional ou especialista em identificação de cogumelos certificado.Fotos, descrições de texto e experiência pessoal não são suficientes para garantir a segurança.</p>
-<br>
-<p>3. <strong> DIFERENCIDAS INDIVIDUAIS </strong>: Mesmo os cogumelos comestíveis reconhecidos podem causar reações adversas devido a fatores como constituição pessoal, reações alérgicas, método de consumo ou ambiente de crescimento de cogumelos.Tente em pequenas quantidades ao comer uma nova variedade pela primeira vez.</p>
-<br>
-<p>4. <strong> DIFERENCIDAS GEOGRÁFICAS </strong>: Existem enormes diferenças nas espécies de cogumelos e toxicidade em diferentes regiões.As informações mencionadas neste artigo podem não se aplicar à sua região.Consulte especialistas em micologia local e organizações autoritárias.</p>
-<br>
-<p>5. <strong> Responsabilidade Profissional </strong>: O autor e o editor não se responsabilizam por nenhum dano, doença ou perda direta ou indireta decorrente do uso das informações neste artigo.</p>
-<br>
-<h3>Conselho de segurança</h3>
-<br>
-<ul>
+<p class="article-text">1. <strong> Segurança da vida primeiro </strong>: Existem riscos inerentes na identificação de cogumelos selvagens.Muitos cogumelos tóxicos parecem muito parecidos com os cogumelos comestíveis, e ingeri -los acidentalmente pode levar a doenças graves ou até a morte.</p>
+<p class="article-text">2. <strong> Identificação profissional necessária </strong>: Antes de comer cogumelos selvagens, 100% de confirmação deve ser realizada por um micólogo profissional ou especialista em identificação de cogumelos certificado.Fotos, descrições de texto e experiência pessoal não são suficientes para garantir a segurança.</p>
+<p class="article-text">3. <strong> DIFERENCIDAS INDIVIDUAIS </strong>: Mesmo os cogumelos comestíveis reconhecidos podem causar reações adversas devido a fatores como constituição pessoal, reações alérgicas, método de consumo ou ambiente de crescimento de cogumelos.Tente em pequenas quantidades ao comer uma nova variedade pela primeira vez.</p>
+<p class="article-text">4. <strong> DIFERENCIDAS GEOGRÁFICAS </strong>: Existem enormes diferenças nas espécies de cogumelos e toxicidade em diferentes regiões.As informações mencionadas neste artigo podem não se aplicar à sua região.Consulte especialistas em micologia local e organizações autoritárias.</p>
+<p class="article-text">5. <strong> Responsabilidade Profissional </strong>: O autor e o editor não se responsabilizam por nenhum dano, doença ou perda direta ou indireta decorrente do uso das informações neste artigo.</p>
+<div class="subsection-title">📌 Conselho de segurança</div>
+<div class="highlight"><ul>
 <li>✅ Participe de cursos formais de treinamento de identificação de cogumelos</li>
 <li>✅ Junte -se à Associação Local de Micologia ou Clube de Cogumelos</li>
 <li>✅ Compre cogumelos cultivados de fontes confiáveis</li>
 <li>✅ Salvar amostras de cogumelos para necessidades médicas de emergência</li>
 <li>✅ Não coma se tiver alguma dúvida</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Lembre -se: quando você tiver alguma dúvida, a única opção segura é não comê -la.Sua segurança de vida é muito mais importante do que qualquer refeição de cogumelos.</strong></p>
-<br>
 <p>----</p>
         </div>
-    </div>
+
+</div>
 </body>
 </html>

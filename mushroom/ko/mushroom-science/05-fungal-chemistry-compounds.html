@@ -1,447 +1,352 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>진균 화학 암호 해독 - Mushroom Science</title>
-    <meta name="description" content="진균 화학 암호 해독">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>05 진균 화학 암호 해독 - MushroomAiSnap</title>
+<link href="../../mobile-styles.css" rel="stylesheet"/>
+<link href="../../mobile-enhancement.css" rel="stylesheet"/>
+<link href="../../ecology-theme.css" rel="stylesheet"/>
+<style>
+        .hero-image img {
+            max-height: 200px;
+            width: 100%;
+            object-fit: cover;
         }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        .article-card img {
+            max-height: 120px;
+            width: 100%;
+            object-fit: cover;
+        }
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                        url('../../images/mushroom-science_05-fungal-chemistry-compounds.webp') center/cover;
+            position: relative;
+            margin-top: 0;
+        }
+        .article-meta {
+            margin-top: 15px !important;
+        }
+    
+        /* Mushroom Science Theme */
+        :root {
+            --primary-color: #9370DB;
+            --primary-dark: #4B0082;
+            --primary-light: #F8F4FF;
+            --accent-color: #BA55D3;
+        }
+        
+        /* Theme Color Overrides */
+        .content {
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+            border: 2px solid var(--primary-color);
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, var(--primary-light), var(--primary-light));
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .quote-text {
+            color: var(--primary-dark);
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+        }
+        
+        .subsection-title {
+            color: var(--primary-dark);
+            font-size: 1.4em;
+            font-weight: 600;
+            margin: 25px 0 15px 0;
+            padding-left: 10px;
+            border-left: 3px solid var(--accent-color);
+        }
+        
+        .tip-box {
+            border-left: 4px solid var(--primary-color);
+            background: var(--primary-light);
+        }
+        
+        .tip-title {
+            color: var(--primary-color);
+        }
+        
+        .highlight {
+            border-left: 4px solid var(--accent-color);
+            background: linear-gradient(135deg, #f1f8e9, var(--primary-light));
+        }
+        
+        .warning {
+            border-left: 4px solid #f44336;
+        }
+        
+        .equipment-item {
+            border: 1px solid var(--accent-color);
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+        }
+        
+        .equipment-item h4 {
+            color: var(--primary-color);
+        }
+        
+        .category {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .main-text {
+            font-size: 1.1em;
             line-height: 1.8;
             color: #333;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-
-        .article-title {
-            color: #98D8C8;
-            font-size: 2.5em;
-            margin-bottom: 30px;
-            margin-top: 0;
-            line-height: 1.3;
-            padding-top: 0;
-        }
-
-        .featured-image {
-            width: 100%;
-            height: auto;
-            aspect-ratio: 4 / 3;
-            object-fit: cover;
-            display: block;
-        }
-
-        .content {
-            padding: 50px;
-        }
-
-        .content h2 {
-            color: #98D8C8;
-            font-size: 2em;
-            margin-top: 40px;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid #98D8C8;
-        }
-
-        .content h3 {
-            color: #555;
-            font-size: 1.6em;
-            margin-top: 30px;
-            margin-bottom: 15px;
-        }
-
-        .content h4 {
-            color: #666;
-            font-size: 1.3em;
-            margin-top: 25px;
-            margin-bottom: 12px;
-        }
-
-        .content p {
-            margin-bottom: 20px;
-            font-size: 1.1em;
-            color: #444;
-        }
-
-        .content ul {
             margin: 20px 0;
-            padding-left: 30px;
-        }
-
-        .content li {
-            margin-bottom: 12px;
-            font-size: 1.05em;
-            color: #555;
-        }
-
-        .content strong {
-            color: #222;
-            font-weight: 600;
-        }
-
-        .back-link {
-            display: inline-block;
-            padding: 12px 25px;
-            background: linear-gradient(135deg, #98D8C8, #8B4513);
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            margin-bottom: 20px;
-            transition: transform 0.3s ease;
-            font-weight: 600;
-        }
-
-        .back-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .navigation {
-            padding: 30px 50px;
-            background: #f8f9fa;
-            border-top: 1px solid #e9ecef;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-btn {
-            padding: 10px 20px;
-            background: #98D8C8;
-            color: white;
-            text-decoration: none;
+            padding: 15px;
+            background: linear-gradient(135deg, #ffffff, #f9f9f9);
             border-radius: 8px;
-            transition: all 0.3s ease;
+            border-left: 3px solid var(--accent-color);
         }
-
-        .nav-btn:hover {
-            transform: translateX(5px);
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+        
+        .emoji {
+            font-size: 1.5em;
+            margin-left: 10px;
         }
-
-        .nav-btn.prev:hover {
-            transform: translateX(-5px);
+        
+        .read-time, .difficulty {
+            display: inline-block;
+            padding: 5px 15px;
+            margin: 5px 5px 5px 0;
+            border-radius: 20px;
+            font-size: 0.9em;
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            color: #1976d2;
+            font-weight: 500;
         }
-
-        @media (max-width: 768px) {
-            .content {
-                padding: 30px 25px;
-            }
-
-            .article-title {
-                font-size: 1.8em;
-            }
-
-            .featured-image {
-                height: 250px;
-            }
-
-            .navigation {
-                flex-direction: column;
-                gap: 15px;
-            }
+        
+        .difficulty {
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            color: #e65100;
+        }
+        
+        .article-text {
+            line-height: 1.8;
+            color: #444;
+            margin: 15px 0;
+            font-size: 1.05em;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <img src="../../images/mushroom-science_05-fungal-chemistry-compounds.webp" alt="진균 화학 암호 해독" class="featured-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22900%22 height=%22400%22%3E%3Crect fill=%22%23D2691E%22 width=%22900%22 height=%22400%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22white%22 font-size=%2260%22%3E🍄%3C/text%3E%3C/svg%3E'">
+<div class="hero-image"></div>
+<div class="content">
+    <h1 class="title">05 진균 화학 암호 해독</h1>
+    <div class="quote-box">
+        <div class="quote-text">Professional Mycology Guide</div>
+    </div>
+    
+<div class="article-meta">
+<span class="category">🔬 Mushroom Science</span>
+<span class="read-time">📖 11 minute read</span>
+<span class="difficulty">🟡 Intermediate</span>
+</div>
 
-        <div class="content">
-            <h1 class="article-title">진균 화학 암호 해독</h1>
-            <br>
-<p>숲에서 버섯을 찾으면 곰팡이의 과일 몸뿐만 아니라 복잡한 화학 공장을 볼 수 있습니다.이 겸손한 생물은 치명적인 독에서 혁명 약물에 이르기까지 화합물을 생산할 수 있습니다.곰팡이 화학 연구의 전문가로서, 나는이 현미경 세계에 깊이 빠져들고 곰팡이 화합물의 미스터리, 응용 및 실질적인 중요성을 드러 낼 것입니다.</p>
-<br>
+
+            <br><div class="main-text">숲에서 버섯을 찾으면 곰팡이의 과일 몸뿐만 아니라 복잡한 화학 공장을 볼 수 있습니다.이 겸손한 생물은 치명적인 독에서 혁명 약물에 이르기까지 화합물을 생산할 수 있습니다.곰팡이 화학 연구의 전문가로서, 나는이 현미경 세계에 깊이 빠져들고 곰팡이 화합물의 미스터리, 응용 및 실질적인 중요성을 드러 낼 것입니다.<span class="emoji">🍄</span></div>
 <p>분자 수준의 곰팡이 : 생존을위한 화학 전략</p>
-<br>
-<p>곰팡이의 화학 능력은 진화론 적 성공의 핵심입니다.식물과 달리 곰팡이는 이동하여 위협을 피하거나 자원을 찾을 수 없으므로 복잡한 화학 방어 및 통신 시스템을 개발했습니다.</p>
-<br>
+<p class="article-text">곰팡이의 화학 능력은 진화론 적 성공의 핵심입니다.식물과 달리 곰팡이는 이동하여 위협을 피하거나 자원을 찾을 수 없으므로 복잡한 화학 방어 및 통신 시스템을 개발했습니다.</p>
 <p><strong> 일차 대사와 2 차 대사의 차이 </strong></p>
-<br>
-<p>1 차 대사는 단백질, 핵산, 탄수화물 및 지질의 생산을 포함하여 곰팡이 수명을 유지하는 기본 과정입니다.이들 화합물은 세포 구조 구조 및 에너지 대사에 직접 관여한다.그리고 곰팡이를 화학적으로 흥미롭게 만드는 것은 2 차 대사 산물입니다. 성장과 발달에 직접 관여하지는 않지만 생태 학적 상호 작용에 중요합니다.</p>
-<br>
-<p>나는 내 현장 연구 에서이 현상을 여러 번 관찰했다. 같은 곰팡이 종은 다른 환경 조건에서 완전히 다른 2 차 대사 산물을 생성한다.예를 들어, 경쟁 환경에서 자란 버섯은 더 많은 항균 화합물을 생산하는 경향이 있습니다.</p>
-<br>
-<h2>주요 화합물 카테고리 : 곰팡이 화학 무기고</h2>
-<br>
-<h3>Terpenes : 자연의 다기능 분자</h3>
-<br>
-<p>테르 페 노이드는 이소프렌 단위로부터 중합되며 곰팡이에서 가장 흔한 2 차 대사 산물 중 하나입니다.그들의 화학적 구조적 다양성은 간단한 모노 테르펜에서 복잡한 다 환식 트리 테르펜에 이르기까지 놀랍습니다.</p>
-<br>
+<p class="article-text">1 차 대사는 단백질, 핵산, 탄수화물 및 지질의 생산을 포함하여 곰팡이 수명을 유지하는 기본 과정입니다.이들 화합물은 세포 구조 구조 및 에너지 대사에 직접 관여한다.그리고 곰팡이를 화학적으로 흥미롭게 만드는 것은 2 차 대사 산물입니다. 성장과 발달에 직접 관여하지는 않지만 생태 학적 상호 작용에 중요합니다.</p>
+<p class="article-text">나는 내 현장 연구 에서이 현상을 여러 번 관찰했다. 같은 곰팡이 종은 다른 환경 조건에서 완전히 다른 2 차 대사 산물을 생성한다.예를 들어, 경쟁 환경에서 자란 버섯은 더 많은 항균 화합물을 생산하는 경향이 있습니다.</p>
+<div class="section-title">🍄 주요 화합물 카테고리 : 곰팡이 화학 무기고</div>
+<div class="subsection-title">📌 Terpenes : 자연의 다기능 분자</div>
+<p class="article-text">테르 페 노이드는 이소프렌 단위로부터 중합되며 곰팡이에서 가장 흔한 2 차 대사 산물 중 하나입니다.그들의 화학적 구조적 다양성은 간단한 모노 테르펜에서 복잡한 다 환식 트리 테르펜에 이르기까지 놀랍습니다.</p>
 <p><strong> 실제 사례 : Ganoderma Lucidum의 의약 가치 </strong></p>
-<p>수천 년 동안 한약 전통에 사용 된 Ganoderma Lucidum은 대부분 Triterpenes의 의약 가치입니다.실험실에서 분리되었을 때, 나는 그것들이 상당한 항 염증 특성을 가지고 있음을 발견했습니다.더욱 매혹적인 것은 다른 Ganoderma lucidum 균주의 트리터 펜 스펙트럼이 크게 다를 수 있다는 것입니다. 이는 일부 출처의 Ganoderma lucidum이 다른 소스보다 더 효과적인 이유를 설명합니다.</p>
-<br>
+<p class="article-text">수천 년 동안 한약 전통에 사용 된 Ganoderma Lucidum은 대부분 Triterpenes의 의약 가치입니다.실험실에서 분리되었을 때, 나는 그것들이 상당한 항 염증 특성을 가지고 있음을 발견했습니다.더욱 매혹적인 것은 다른 Ganoderma lucidum 균주의 트리터 펜 스펙트럼이 크게 다를 수 있다는 것입니다. 이는 일부 출처의 Ganoderma lucidum이 다른 소스보다 더 효과적인 이유를 설명합니다.</p>
 <p><strong> 실용 가이드 : Terpenes Rich Mushrooms 식별 </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>쓴 맛은 일반적으로 Terpenes의 존재를 나타내는 지표입니다.</li>
 <li>수지와 같은 또는 방향족 버섯은 종종 모노 테르펜과 sesquiterpenes가 풍부합니다.</li>
 <li>건조 및 추출 방법은 Terpenes의 보존에 크게 영향을 미칩니다.</li>
-</ul>
-<br>
-<h3>다당류 : 면역 조절 거인</h3>
-<br>
-<p>진균 다당류, 특히 베타 글루칸은 가장 많이 연구 된 곰팡이 화합물 중 하나입니다.이들 거대 분자는 곰팡이 세포벽의 구조적 기초를 형성 할뿐만 아니라 상당한 생물학적 활성을 갖는다.</p>
-<br>
+</ul></div>
+<div class="subsection-title">📌 다당류 : 면역 조절 거인</div>
+<p class="article-text">진균 다당류, 특히 베타 글루칸은 가장 많이 연구 된 곰팡이 화합물 중 하나입니다.이들 거대 분자는 곰팡이 세포벽의 구조적 기초를 형성 할뿐만 아니라 상당한 생물학적 활성을 갖는다.</p>
 <p><strong> 전문가 추천 : 다당류 혜택 최대화 </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>물 추출은 β- 글루칸의 가장 효과적인 방출 방법입니다.</li>
-</ul>
+</ul></div>
 <p>-장기 저온 스튜는 빠른 고온 요리보다 더 많은 설탕을 방출 할 수 있습니다.</p>
-<ul>
+<div class="highlight"><ul>
 <li>다른 버섯 유형에 대한 최적의 추출 조건은 다양합니다.</li>
-</ul>
-<br>
-<p>내 연구에서, 나는 Ganoderma Lucidum과 Shiitake 버섯의 β-glucan 구조가 약간 다르다는 것을 발견했습니다. 이는 면역 조절 효과의 차이를 설명합니다.Ganoderma Lucidum은 분지 구조가 더 높으며 면역 세포와보다 효과적으로 상호 작용할 수 있습니다.</p>
-<br>
-<h3>알칼로이드 : 본질적으로 신경 활성 분자</h3>
-<br>
-<p>질소 함유 알칼로이드는 곰팡이에서 가장 약리학 적으로 활성화 된 화합물 중 하나입니다.치명적인 독성 펜핀에서 치료 잠재적 psilocybin에 이르기까지, 이들 화합물은 동물 신경계와 상호 작용함으로써 작용한다.</p>
-<br>
+</ul></div>
+<p class="article-text">내 연구에서, 나는 Ganoderma Lucidum과 Shiitake 버섯의 β-glucan 구조가 약간 다르다는 것을 발견했습니다. 이는 면역 조절 효과의 차이를 설명합니다.Ganoderma Lucidum은 분지 구조가 더 높으며 면역 세포와보다 효과적으로 상호 작용할 수 있습니다.</p>
+<div class="subsection-title">📌 알칼로이드 : 본질적으로 신경 활성 분자</div>
+<p class="article-text">질소 함유 알칼로이드는 곰팡이에서 가장 약리학 적으로 활성화 된 화합물 중 하나입니다.치명적인 독성 펜핀에서 치료 잠재적 psilocybin에 이르기까지, 이들 화합물은 동물 신경계와 상호 작용함으로써 작용한다.</p>
 <p><strong> 안전 경고 : 신경 독성 알칼로이드 </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>티포드의 티포드 딘과 무스 카리 놀은 GABA 수용체 작용제입니다.</li>
 <li>효과 복용량 의존성 : 저용량은 진정 효과를 유발할 수 있고, 고용량은 의식과 환각의 혼란을 유발할 수 있습니다.</li>
 <li>경험에 근거한 버섯의 신경 작용 활동을 판단하지 마십시오 - 오해가 치명적일 수 있습니다.</li>
-</ul>
-<br>
-<h3>폴리 페놀 및 페놀 : 항산화 가디언</h3>
-<br>
-<p>이 화합물은 산화 스트레스 및 환경 스트레스로부터 보호하는 곰팡이의 항산화 방어 시스템입니다.</p>
-<br>
+</ul></div>
+<div class="subsection-title">📌 폴리 페놀 및 페놀 : 항산화 가디언</div>
+<p class="article-text">이 화합물은 산화 스트레스 및 환경 스트레스로부터 보호하는 곰팡이의 항산화 방어 시스템입니다.</p>
 <p><strong> 실제 발견 : 폴리 페놀 보존 팁 </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>빠른 건조는 저온에서 폴리 페놀을 가장 잘 보존 할 수 있습니다.</li>
 <li>버섯이 건조 된 후 일부 폴리 페놀이 증가합니다 (예 : 갈산)</li>
 <li>요리 방법은 폴리 페놀 생체 이용률에 영향을 미칩니다</li>
-</ul>
-<br>
-<h2>치명적인 독소 : 극단적 인 형태의 화학 방어</h2>
-<br>
-<h3>Amanitotoxin : 완벽한 살인자</h3>
-<br>
-<p>세계에서 가장 독성 버섯 독소 중 하나 인 Amanitotoxin은 곰팡이 화학 방어의 궁극적 인 것을 나타냅니다.</p>
-<br>
+</ul></div>
+<div class="section-title">🍄 치명적인 독소 : 극단적 인 형태의 화학 방어</div>
+<div class="subsection-title">📌 Amanitotoxin : 완벽한 살인자</div>
+<p class="article-text">세계에서 가장 독성 버섯 독소 중 하나 인 Amanitotoxin은 곰팡이 화학 방어의 궁극적 인 것을 나타냅니다.</p>
 <p><strong> 화학적 특성 : </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>오타 펩티드 고리 구조는 그것을 매우 안정적으로 만듭니다</li>
 <li>열 안정성과 수용성은 요리를 파괴 할 수 없음을 의미합니다.</li>
 <li>장에 빠르게 흡수됩니다</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 행동 메커니즘에 대한 자세한 설명 : </strong></p>
-<p>아라니틴은 세포 유전자 발현에서 주요 효소 인 RNA 폴리머 라제 II를 억제함으로써 작용한다.새로운 mRNA 합성이 없으면 세포는 필수 단백질을 생성 할 수 없어 세포 사멸을 초래할 수 없습니다.주요 해독 기관으로서 간과 신장은 주요 대상이되었으며, 이는 중독 된 사람들이 간과 신부전으로 고통받는 이유를 설명합니다.</p>
-<br>
+<p class="article-text">아라니틴은 세포 유전자 발현에서 주요 효소 인 RNA 폴리머 라제 II를 억제함으로써 작용한다.새로운 mRNA 합성이 없으면 세포는 필수 단백질을 생성 할 수 없어 세포 사멸을 초래할 수 없습니다.주요 해독 기관으로서 간과 신장은 주요 대상이되었으며, 이는 중독 된 사람들이 간과 신부전으로 고통받는 이유를 설명합니다.</p>
 <p><strong> 실제 사례 연구 : </strong></p>
-<p>내가 관여했던 아 마니 타 중독의 경우, 경험이 풍부한 곰팡이 수집가가 실수로 치명적인 amanita 식용 밀짚 버섯을 가져 갔다.그가 섭취 한 추정 복용량은 약 10mg으로 두 명의 성인을 죽일 수 있습니다.그는 의학적 치료를 빨리 추구하더라도 여전히 생존을 위해 간 이식이 필요했습니다.이 사례는 절대적으로 특정 식별의 중요성을 강조합니다.</p>
-<br>
+<p class="article-text">내가 관여했던 아 마니 타 중독의 경우, 경험이 풍부한 곰팡이 수집가가 실수로 치명적인 amanita 식용 밀짚 버섯을 가져 갔다.그가 섭취 한 추정 복용량은 약 10mg으로 두 명의 성인을 죽일 수 있습니다.그는 의학적 치료를 빨리 추구하더라도 여전히 생존을 위해 간 이식이 필요했습니다.이 사례는 절대적으로 특정 식별의 중요성을 강조합니다.</p>
 <p><strong> 빠른 팁 : Amanita 중독을 피하십시오 </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>고리, 트로프 및 흰 주름이있는 버섯을 항상 피하십시오</li>
 <li>해당 지역의 모든 치명적인 Amanita 종을 식별하는 법을 배우십시오.</li>
 <li>궁금한 점이 있으면 버리십시오</li>
-</ul>
-<br>
-<h3>phasptoxin : 독소를 오해했습니다</h3>
-<br>
-<p>일반적인 인식과는 달리, Phallus 독소는 실제로 내장에 흡수되지 않으므로 경구 독성이 매우 낮습니다.이 오해는 아 마니 타 중독에 대한 많은 과잉 반응으로 이어졌습니다.</p>
-<br>
+</ul></div>
+<div class="subsection-title">📌 phasptoxin : 독소를 오해했습니다</div>
+<p class="article-text">일반적인 인식과는 달리, Phallus 독소는 실제로 내장에 흡수되지 않으므로 경구 독성이 매우 낮습니다.이 오해는 아 마니 타 중독에 대한 많은 과잉 반응으로 이어졌습니다.</p>
 <p><strong> 과학적 설명 : </strong></p>
-<p>Phallus 독소의 Heptapeptide 고리 구조는 장 장벽을 통과하기가 어렵습니다.그러나, 주사되면, 세포 골격 및 세포 분열을 파괴하는 액틴 중합을 억제함으로써 매우 독성이있다.</p>
-<br>
-<h3>환각 성 화합물 : 뇌 화학의 열쇠</h3>
-<br>
-<p>Psilocybin 및 그의 활성 대사 산물 Psilocin은 5-HT2A 세로토닌 수용체의 부분 작용제이다.이들 화합물은 과학 공동체를 정신 활성 물질의 치료 잠재력으로 재구성하고있다.</p>
-<br>
+<p class="article-text">Phallus 독소의 Heptapeptide 고리 구조는 장 장벽을 통과하기가 어렵습니다.그러나, 주사되면, 세포 골격 및 세포 분열을 파괴하는 액틴 중합을 억제함으로써 매우 독성이있다.</p>
+<div class="subsection-title">📌 환각 성 화합물 : 뇌 화학의 열쇠</div>
+<p class="article-text">Psilocybin 및 그의 활성 대사 산물 Psilocin은 5-HT2A 세로토닌 수용체의 부분 작용제이다.이들 화합물은 과학 공동체를 정신 활성 물질의 치료 잠재력으로 재구성하고있다.</p>
 <p><strong> 최첨단 연구 : </strong></p>
-<p>제어 된 임상 환경에서, psilocybin은 저항성 우울증, 불안 및 PTSD의 치료에 유의 한 영향을 나타냈다.행동 메커니즘에는 신경 가소성을 촉진하고 기본 모드 네트워크 (자기 참조 사고 및 정신 방황과 관련된 뇌 네트워크)를 "재설정"하는 것이 포함됩니다.</p>
-<br>
+<p class="article-text">제어 된 임상 환경에서, psilocybin은 저항성 우울증, 불안 및 PTSD의 치료에 유의 한 영향을 나타냈다.행동 메커니즘에는 신경 가소성을 촉진하고 기본 모드 네트워크 (자기 참조 사고 및 정신 방황과 관련된 뇌 네트워크)를 "재설정"하는 것이 포함됩니다.</p>
 <p><strong> 법적 경고 : </strong></p>
-<p>치료 잠재력에도 불구하고, psilocybin은 대부분의 관할 구역에서 여전히 통제 된 물질입니다.허가없이 보유하거나 사용하면 심각한 법적 결과가 발생할 수 있습니다.</p>
-<br>
-<h2>풍미 화학 : 미식가를위한 분자 안내서</h2>
-<br>
-<h3>우산 화합물 : 다섯 번째 맛 과학</h3>
-<br>
+<p class="article-text">치료 잠재력에도 불구하고, psilocybin은 대부분의 관할 구역에서 여전히 통제 된 물질입니다.허가없이 보유하거나 사용하면 심각한 법적 결과가 발생할 수 있습니다.</p>
+<div class="section-title">🍄 풍미 화학 : 미식가를위한 분자 안내서</div>
+<div class="subsection-title">🔬 우산 화합물 : 다섯 번째 맛 과학</div>
 <p>버섯은 주로 유리 아미노산 및 뉴클레오티드 함량 덕분에 천연 누마미 인핸서입니다.</p>
-<br>
 <p><strong> 글루타메이트 : </strong></p>
-<p>우마미의 주요 공급원으로서, 글루타메이트는 버섯에서 자연적으로 발생합니다.글루타메이트는 세포벽을 파괴하고 내용물을 집중시킴으로써 이용 될 수있다.</p>
-<br>
+<p class="article-text">우마미의 주요 공급원으로서, 글루타메이트는 버섯에서 자연적으로 발생합니다.글루타메이트는 세포벽을 파괴하고 내용물을 집중시킴으로써 이용 될 수있다.</p>
 <p><strong> 기니 산 : </strong></p>
-<p>이 뉴클레오티드 자체는 우마미 맛을 가지고 있지만 글루타메이트에 대한 강한 상승 효과가 있습니다.둘 다 존재하면, 우마미 인식은 최대 8 배까지 향상 될 수 있습니다.</p>
-<br>
+<p class="article-text">이 뉴클레오티드 자체는 우마미 맛을 가지고 있지만 글루타메이트에 대한 강한 상승 효과가 있습니다.둘 다 존재하면, 우마미 인식은 최대 8 배까지 향상 될 수 있습니다.</p>
 <p><strong> 전문 요리 기술 : </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>마른 버섯 가루를 자연적인 msg 대용품으로 수프와 소스에 넣으십시오.</li>
 <li>신선하고 건조한 버섯을 결합하여 전체 스펙트럼 맛</li>
 <li>저온에 대한 장기 요리, 우마미 화합물 추출을 극대화</li>
-</ul>
-<br>
-<h3>아로마 화합물 : 냄새 감각의 화학 교향곡</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 아로마 화합물 : 냄새 감각의 화학 교향곡</div>
 <p>버섯의 독특한 향기는 휘발성 화합물의 복잡한 혼합물에서 나옵니다.</p>
-<br>
 <p><strong> 8 개의 탄소 화합물 : </strong></p>
-<p>일반적으로 "버섯 알코올"으로 알려진 1-octene-3-ol은 대부분의 버섯의 특징적인 아로마의 주요 기여자입니다.흥미롭게도,이 같은 화합물은 또한 곤충 페로몬의 성분이며, 왜 곤충이 버섯에 끌리는지를 설명 할 수 있습니다.</p>
-<br>
+<p class="article-text">일반적으로 "버섯 알코올"으로 알려진 1-octene-3-ol은 대부분의 버섯의 특징적인 아로마의 주요 기여자입니다.흥미롭게도,이 같은 화합물은 또한 곤충 페로몬의 성분이며, 왜 곤충이 버섯에 끌리는지를 설명 할 수 있습니다.</p>
 <p><strong> 황 화합물 : </strong></p>
-<p>트러플의 독특한 아로마는 주로 디메틸 설페이드 및 안드로스탄올 (돼지 성 페로몬과 유사한 화합물)과 같은 황 화합물로부터 나온다.이것은 왜 모돈이 송로 버섯을 검색하는데 효율적인지를 설명합니다.</p>
-<br>
+<p class="article-text">트러플의 독특한 아로마는 주로 디메틸 설페이드 및 안드로스탄올 (돼지 성 페로몬과 유사한 화합물)과 같은 황 화합물로부터 나온다.이것은 왜 모돈이 송로 버섯을 검색하는데 효율적인지를 설명합니다.</p>
 <p><strong> 방향족 보존 팁 : </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>휘발성 아로마 화합물을 유지하기 위해 생식 또는 가볍게 먹는다</li>
 <li>아로마 손실을 방지하기 위해 버섯을 밀봉 된 용기에 보관하십시오.</li>
 <li>요리 후 새로 다진 버섯을 추가하여 향기를 향상시킵니다.</li>
-</ul>
-<br>
-<h2>약용 화합물 : 곰팡이 약국의 보물</h2>
-<br>
-<h3>항생제 : 천연 미생물 전사</h3>
-<br>
-<p>버섯은 페니실린을 생산하지 않지만 (이것은 페니 실 리움의 곰팡이에서 나온), 다양한 항균 화합물을 생산합니다.</p>
-<br>
+</ul></div>
+<div class="section-title">🍄 약용 화합물 : 곰팡이 약국의 보물</div>
+<div class="subsection-title">📌 항생제 : 천연 미생물 전사</div>
+<p class="article-text">버섯은 페니실린을 생산하지 않지만 (이것은 페니 실 리움의 곰팡이에서 나온), 다양한 항균 화합물을 생산합니다.</p>
 <p><strong> Pleuromutilins : </strong></p>
-<p>Pleurotus 종에서 분리 된 이러한 항생제는 수의학 및 인간 의학, 특히 그람 양성 박테리아에 사용하기 위해 개발되었습니다.</p>
-<br>
+<p class="article-text">Pleurotus 종에서 분리 된 이러한 항생제는 수의학 및 인간 의학, 특히 그람 양성 박테리아에 사용하기 위해 개발되었습니다.</p>
 <p><strong> 새로운 항생제 발견 : </strong></p>
-<p>항생제 내성 위기가 강화됨에 따라 곰팡이는 새로운 항균 화합물의 귀중한 공급원을 나타냅니다.실험실에서의 저의 작업에는 약물 내성 박테리아에 대한 수백 개의 버섯 추출물을 선별하는 것이 포함되며, 그 결과는 고무적입니다. 많은 종이 우리가 아직 식별하지 않은 항균 물질을 생산합니다.</p>
-<br>
-<h3>면역 조절기 : 균형의 아티스트</h3>
-<br>
-<p>곰팡이 베타-글루칸은 많은 합성 면역 강화제와 달리 면역계를 자극하기보다는 조절함으로써 작동합니다.</p>
-<br>
+<p class="article-text">항생제 내성 위기가 강화됨에 따라 곰팡이는 새로운 항균 화합물의 귀중한 공급원을 나타냅니다.실험실에서의 저의 작업에는 약물 내성 박테리아에 대한 수백 개의 버섯 추출물을 선별하는 것이 포함되며, 그 결과는 고무적입니다. 많은 종이 우리가 아직 식별하지 않은 항균 물질을 생산합니다.</p>
+<div class="subsection-title">📌 면역 조절기 : 균형의 아티스트</div>
+<p class="article-text">곰팡이 베타-글루칸은 많은 합성 면역 강화제와 달리 면역계를 자극하기보다는 조절함으로써 작동합니다.</p>
 <p><strong> 행동 메커니즘 : </strong></p>
-<p>이들 다당류는 대 식세포 및 Dectin-1과 같은 다른 면역 세포의 특정 수용체와 상호 작용하여 단순히 "향상된"면역을 "강화"하기보다는 그들의 반응을 미세 조정한다.</p>
-<br>
+<p class="article-text">이들 다당류는 대 식세포 및 Dectin-1과 같은 다른 면역 세포의 특정 수용체와 상호 작용하여 단순히 "향상된"면역을 "강화"하기보다는 그들의 반응을 미세 조정한다.</p>
 <p><strong> 실제 응용 프로그램 : </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>의약 버섯의 정기적 인 소비는 면역 균형을 지원할 수 있습니다.</li>
 <li>다른 버섯은 다른 면역 조건에 더 유리할 수 있습니다.</li>
 <li>품질, 준비 방법 및 복용량 모두 효과에 영향을 미칩니다.</li>
-</ul>
-<br>
-<h2>분석 기술 : 화학 비밀을 밝히는 도구</h2>
-<br>
-<p>현대의 분석 화학을 통해 우리는 매우 낮은 농도에서도 곰팡이의 개별 화합물을 식별하고 특성화 할 수 있습니다.</p>
-<br>
-<h3>크로마토 그래피 : 분리 기술</h3>
-<br>
+</ul></div>
+<div class="section-title">🔧 분석 기술 : 화학 비밀을 밝히는 도구</div>
+<p class="article-text">현대의 분석 화학을 통해 우리는 매우 낮은 농도에서도 곰팡이의 개별 화합물을 식별하고 특성화 할 수 있습니다.</p>
+<div class="subsection-title">📌 크로마토 그래피 : 분리 기술</div>
 <p><strong> 고성능 액체 크로마토 그래피 : </strong></p>
-<p>HPLC는 다당류 및 펩티드 독소와 같은 비 휘발성 화합물을 분리하기위한 실험실의 주요 기술입니다.</p>
-<br>
+<p class="article-text">HPLC는 다당류 및 펩티드 독소와 같은 비 휘발성 화합물을 분리하기위한 실험실의 주요 기술입니다.</p>
 <p><strong> 가스 크로마토 그래피 질량 분석법 조합 : </strong></p>
-<p>GC-MS는 휘발성 아로마 화합물의 분석에 없어서는 안될 필수 요소이다.이 기술을 통해 우리는 특정 희귀 버섯의 독특한 아로마 특성을 식별 할 수 있습니다.</p>
-<br>
-<h3>질량 분석 및 NMR : 분자 형사</h3>
-<br>
-<p>이 기술은 함께 화합물의 완전한 화학적 이미지를 제공합니다. 대량 분광법은 분자량 및 단편화 패턴에 대해 알려주는 반면, NMR은 분자에서 원자의 정확한 배열을 나타냅니다.</p>
-<br>
+<p class="article-text">GC-MS는 휘발성 아로마 화합물의 분석에 없어서는 안될 필수 요소이다.이 기술을 통해 우리는 특정 희귀 버섯의 독특한 아로마 특성을 식별 할 수 있습니다.</p>
+<div class="subsection-title">📌 질량 분석 및 NMR : 분자 형사</div>
+<p class="article-text">이 기술은 함께 화합물의 완전한 화학적 이미지를 제공합니다. 대량 분광법은 분자량 및 단편화 패턴에 대해 알려주는 반면, NMR은 분자에서 원자의 정확한 배열을 나타냅니다.</p>
 <p><strong> 실제 연구 경험 : </strong></p>
-<p>저의 경력에서 가장 흥미로운 순간 중 하나는 이전에 알려지지 않은 항균 화합물을 식별하기 위해 이러한 기술을 사용하는 것이 었습니다.6 개월간 집중적 인 작업을 마친 후, 우리는 마침내 복잡한 구조, 즉 독특한 글리코 실화 패턴을 가진 새로운 테르펜을 풀었습니다.</p>
-<br>
-<h2>프론티어 연구 : 곰팡이 화학의 미래</h2>
-<br>
-<h3>게놈 중심 발견</h3>
-<br>
-<p>곰팡이 게놈을 시퀀싱함으로써, 우리는 이들 화합물이 실험실 조건 하에서 발현되지 않더라도 생산할 수있는 화합물을 예측할 수있다.이 접근법은 귀중한 새로운 화합물을 인코딩 할 수있는 많은 "열성적인"유전자 클러스터의 발견으로 이어졌습니다.</p>
-<br>
-<h3>녹색 화학 및 지속 가능한 생산</h3>
-<br>
-<p>곰팡이 효소는 산업 공정에 혁명을 일으키고보다 환경 친화적 인 대안을 제공하고 있습니다.예를 들어, 곰팡이 리그니나 제는보다 효율적인 바이오 연료 생산 방법을 개발하는 데 사용되는 반면, 곰팡이 셀룰라아제는 섬유 및 제지 산업을 변화시키고 있습니다.</p>
-<br>
-<h3>재료 과학 혁신</h3>
-<br>
-<p>버섯 뿌리의 네트워크 인 균사 재료는 본질적으로 포장, 건축 및 의류에 대한 생분해 성 대안으로 개발되고 있습니다.이 재료는 지속 가능뿐만 아니라 자연 화염 지연 및 탁월한 단열과 같은 독특한 특성을 가지고 있습니다.</p>
-<br>
-<h2>실제 가이드 : 안전한 수집 및 사용을위한 화학 지식</h2>
-<br>
-<h3>수집가는 알아야합니다</h3>
-<br>
+<p class="article-text">저의 경력에서 가장 흥미로운 순간 중 하나는 이전에 알려지지 않은 항균 화합물을 식별하기 위해 이러한 기술을 사용하는 것이 었습니다.6 개월간 집중적 인 작업을 마친 후, 우리는 마침내 복잡한 구조, 즉 독특한 글리코 실화 패턴을 가진 새로운 테르펜을 풀었습니다.</p>
+<div class="section-title">🍄 프론티어 연구 : 곰팡이 화학의 미래</div>
+<div class="subsection-title">📌 게놈 중심 발견</div>
+<p class="article-text">곰팡이 게놈을 시퀀싱함으로써, 우리는 이들 화합물이 실험실 조건 하에서 발현되지 않더라도 생산할 수있는 화합물을 예측할 수있다.이 접근법은 귀중한 새로운 화합물을 인코딩 할 수있는 많은 "열성적인"유전자 클러스터의 발견으로 이어졌습니다.</p>
+<div class="subsection-title">📌 녹색 화학 및 지속 가능한 생산</div>
+<p class="article-text">곰팡이 효소는 산업 공정에 혁명을 일으키고보다 환경 친화적 인 대안을 제공하고 있습니다.예를 들어, 곰팡이 리그니나 제는보다 효율적인 바이오 연료 생산 방법을 개발하는 데 사용되는 반면, 곰팡이 셀룰라아제는 섬유 및 제지 산업을 변화시키고 있습니다.</p>
+<div class="subsection-title">🔬 재료 과학 혁신</div>
+<p class="article-text">버섯 뿌리의 네트워크 인 균사 재료는 본질적으로 포장, 건축 및 의류에 대한 생분해 성 대안으로 개발되고 있습니다.이 재료는 지속 가능뿐만 아니라 자연 화염 지연 및 탁월한 단열과 같은 독특한 특성을 가지고 있습니다.</p>
+<div class="section-title">⚠️ 실제 가이드 : 안전한 수집 및 사용을위한 화학 지식</div>
+<div class="subsection-title">📌 수집가는 알아야합니다</div>
 <p>곰팡이 화학을 이해하면 생명을 구할 수 있습니다.몇 가지 핵심 사항은 다음과 같습니다.</p>
-<br>
 <p><strong> 독성 식별 : </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>해당 지역의 독성 버섯의 화학적 특성을 배우십시오.</li>
 <li>중독의 증상과 배양 기간을 이해하십시오</li>
 <li>단일 기능을 기반으로 버섯을 식별하지 마십시오</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 향미 최적화 : </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>다른 요리 방법이 풍미 화합물에 어떤 영향을 미치는지 이해하십시오</li>
 <li>실험 건조, 발효 및 기타 보존 기술</li>
 <li>개인 지식 기반을 구축하기 위해 결과를 기록하십시오.</li>
-</ul>
-<br>
-<h3>홈 앱</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 홈 앱</div>
 <p><strong> 안전 먼저 : </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>식별하기 전에 야생 버섯을 먹지 말아야합니다.</li>
 <li>소량의 새 버섯을 먹을 수있는 것으로 확인하더라도 사용해보십시오.</li>
 <li>버섯을 적절히 보존하여 부패 및 복합 분해를 방지합니다.</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 영양 가치 극대화 : </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>비타민 D 함량을 높이기 위해 식용 버섯을 태양에 노출시킵니다.</li>
 <li>지방 수용성 비타민 흡수를 향상시키기 위해 지방 요리와 결합</li>
 <li>광범위한 영양 혜택을위한 다각화 된 버섯 소비</li>
-</ul>
-<br>
-<h2>액션 가이드 : 지식을 실제로 변환합니다</h2>
-<br>
-<p>1. <strong> 안전 탐사 시작 </strong> : 현지 버섯 식별 워크숍, 좋은 야외 가이드에 참여</p>
-<br>
+</ul></div>
+<div class="section-title">📖 액션 가이드 : 지식을 실제로 변환합니다</div>
+<p class="article-text">1. <strong> 안전 탐사 시작 </strong> : 현지 버섯 식별 워크숍, 좋은 야외 가이드에 참여</p>
 <p>2. <strong> 기본 툴킷 빌드 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>질량 확대 유리 (10 회 이상)</li>
 <li>신뢰할 수있는 야외 가이드</li>
 <li>종이 봉지 또는 왁스 종이는 표본을 수집하는 데 사용됩니다.</li>
 <li>글로벌 포지셔닝 시스템은 발견 위치를 기록합니다</li>
-</ul>
-<br>
+</ul></div>
 <p>3. <strong> 시스템 학습 방법 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>쉽게 식별 할 수있는 몇 가지 식용 종을 먼저 마스터하는 데 중점을 둡니다.</li>
 <li>해당 지역에서 가장 위험한 유독 한 버섯을 배우십시오.</li>
 <li>지침 및 자원을 위해 지역 곰팡이 협회에 가입</li>
-</ul>
-<br>
+</ul></div>
 <p>4. <strong> 실험적인 주방 팁 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>맛 변화를 비교하기 위해 다른 건조 방법을 시도하십시오</li>
 <li>버섯 가루를 자연 양념으로 만듭니다</li>
 <li>전통적이고 현대적인 요리 기술을 탐색하십시오</li>
-</ul>
-<br>
+</ul></div>
 <p>5. <strong> 시민 과학에 참여 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>결과를 기록하고보고하십시오</li>
 <li>곰팡이 다양성 조사에 참여하십시오</li>
 <li>관찰 데이터를 과학 연구에 기여합니다</li>
-</ul>
-<br>
-<p>곰팡이 화학 학생들은 가장 작은 유기체조차도 놀라운 화학적 복잡성을 가지고 있음을 적극적으로 상기시켜줍니다.이러한 미세 상호 작용을 이해함으로써, 우리는 이러한 매혹적인 생물과 더 안전하게 상호 작용할 수있을뿐만 아니라 생태계와 인간 문화에서 그들의 중요성을 높이 평가할 수 있습니다.숲으로의 모든 진입은 발견, 경이 및 실용적인 응용으로 가득 찬이 숨겨진 화학 세계에 들어갈 수있는 기회입니다.</p>
-<br>
-<p>당신이 경험이 풍부한 곰팡이 수집가이든 호기심 많은 초보자이든, 곰팡이 화학 지식은 이러한 특별한 생물과의 상호 작용을 풍부하게 할 것입니다.안전하게 탐험하고 호기심을 유지하며 분자 세계의 기적이 자연 세계에 대한 당신의 감사를 향상 시키십시오.</p>
+</ul></div>
+<p class="article-text">곰팡이 화학 학생들은 가장 작은 유기체조차도 놀라운 화학적 복잡성을 가지고 있음을 적극적으로 상기시켜줍니다.이러한 미세 상호 작용을 이해함으로써, 우리는 이러한 매혹적인 생물과 더 안전하게 상호 작용할 수있을뿐만 아니라 생태계와 인간 문화에서 그들의 중요성을 높이 평가할 수 있습니다.숲으로의 모든 진입은 발견, 경이 및 실용적인 응용으로 가득 찬이 숨겨진 화학 세계에 들어갈 수있는 기회입니다.</p>
+<p class="article-text">당신이 경험이 풍부한 곰팡이 수집가이든 호기심 많은 초보자이든, 곰팡이 화학 지식은 이러한 특별한 생물과의 상호 작용을 풍부하게 할 것입니다.안전하게 탐험하고 호기심을 유지하며 분자 세계의 기적이 자연 세계에 대한 당신의 감사를 향상 시키십시오.</p>
         </div>
-    </div>
+
+</div>
 </body>
 </html>

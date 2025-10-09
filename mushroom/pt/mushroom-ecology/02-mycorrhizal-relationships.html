@@ -1,414 +1,332 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Relações Micorrízicas - Mushroom Ecology</title>
-    <meta name="description" content="Relações Micorrízicas">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>02 Relações Micorrízicas - MushroomAiSnap</title>
+<link href="../../mobile-styles.css" rel="stylesheet"/>
+<link href="../../mobile-enhancement.css" rel="stylesheet"/>
+<link href="../../ecology-theme.css" rel="stylesheet"/>
+<style>
+        .hero-image img {
+            max-height: 200px;
+            width: 100%;
+            object-fit: cover;
         }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        .article-card img {
+            max-height: 120px;
+            width: 100%;
+            object-fit: cover;
+        }
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                        url('../../images/mushroom-ecology_02-mycorrhizal-relationships.webp') center/cover;
+            position: relative;
+            margin-top: 0;
+        }
+        .article-meta {
+            margin-top: 15px !important;
+        }
+    
+        /* Mushroom Ecology Theme */
+        :root {
+            --primary-color: #228B22;
+            --primary-dark: #006400;
+            --primary-light: #F0FFF0;
+            --accent-color: #32CD32;
+        }
+        
+        /* Theme Color Overrides */
+        .content {
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+            border: 2px solid var(--primary-color);
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, var(--primary-light), var(--primary-light));
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .quote-text {
+            color: var(--primary-dark);
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+        }
+        
+        .subsection-title {
+            color: var(--primary-dark);
+            font-size: 1.4em;
+            font-weight: 600;
+            margin: 25px 0 15px 0;
+            padding-left: 10px;
+            border-left: 3px solid var(--accent-color);
+        }
+        
+        .tip-box {
+            border-left: 4px solid var(--primary-color);
+            background: var(--primary-light);
+        }
+        
+        .tip-title {
+            color: var(--primary-color);
+        }
+        
+        .highlight {
+            border-left: 4px solid var(--accent-color);
+            background: linear-gradient(135deg, #f1f8e9, var(--primary-light));
+        }
+        
+        .warning {
+            border-left: 4px solid #f44336;
+        }
+        
+        .equipment-item {
+            border: 1px solid var(--accent-color);
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+        }
+        
+        .equipment-item h4 {
+            color: var(--primary-color);
+        }
+        
+        .category {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .main-text {
+            font-size: 1.1em;
             line-height: 1.8;
             color: #333;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-
-        .article-title {
-            color: #4ECDC4;
-            font-size: 2.5em;
-            margin-bottom: 30px;
-            margin-top: 0;
-            line-height: 1.3;
-            padding-top: 0;
-        }
-
-        .featured-image {
-            width: 100%;
-            height: auto;
-            aspect-ratio: 4 / 3;
-            object-fit: cover;
-            display: block;
-        }
-
-        .content {
-            padding: 50px;
-        }
-
-        .content h2 {
-            color: #4ECDC4;
-            font-size: 2em;
-            margin-top: 40px;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid #4ECDC4;
-        }
-
-        .content h3 {
-            color: #555;
-            font-size: 1.6em;
-            margin-top: 30px;
-            margin-bottom: 15px;
-        }
-
-        .content h4 {
-            color: #666;
-            font-size: 1.3em;
-            margin-top: 25px;
-            margin-bottom: 12px;
-        }
-
-        .content p {
-            margin-bottom: 20px;
-            font-size: 1.1em;
-            color: #444;
-        }
-
-        .content ul {
             margin: 20px 0;
-            padding-left: 30px;
-        }
-
-        .content li {
-            margin-bottom: 12px;
-            font-size: 1.05em;
-            color: #555;
-        }
-
-        .content strong {
-            color: #222;
-            font-weight: 600;
-        }
-
-        .back-link {
-            display: inline-block;
-            padding: 12px 25px;
-            background: linear-gradient(135deg, #4ECDC4, #8B4513);
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            margin-bottom: 20px;
-            transition: transform 0.3s ease;
-            font-weight: 600;
-        }
-
-        .back-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .navigation {
-            padding: 30px 50px;
-            background: #f8f9fa;
-            border-top: 1px solid #e9ecef;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-btn {
-            padding: 10px 20px;
-            background: #4ECDC4;
-            color: white;
-            text-decoration: none;
+            padding: 15px;
+            background: linear-gradient(135deg, #ffffff, #f9f9f9);
             border-radius: 8px;
-            transition: all 0.3s ease;
+            border-left: 3px solid var(--accent-color);
         }
-
-        .nav-btn:hover {
-            transform: translateX(5px);
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+        
+        .emoji {
+            font-size: 1.5em;
+            margin-left: 10px;
         }
-
-        .nav-btn.prev:hover {
-            transform: translateX(-5px);
+        
+        .read-time, .difficulty {
+            display: inline-block;
+            padding: 5px 15px;
+            margin: 5px 5px 5px 0;
+            border-radius: 20px;
+            font-size: 0.9em;
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            color: #1976d2;
+            font-weight: 500;
         }
-
-        @media (max-width: 768px) {
-            .content {
-                padding: 30px 25px;
-            }
-
-            .article-title {
-                font-size: 1.8em;
-            }
-
-            .featured-image {
-                height: 250px;
-            }
-
-            .navigation {
-                flex-direction: column;
-                gap: 15px;
-            }
+        
+        .difficulty {
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            color: #e65100;
+        }
+        
+        .article-text {
+            line-height: 1.8;
+            color: #444;
+            margin: 15px 0;
+            font-size: 1.05em;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <img src="../../images/mushroom-ecology_02-mycorrhizal-relationships.webp" alt="Relações Micorrízicas" class="featured-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22900%22 height=%22400%22%3E%3Crect fill=%22%23D2691E%22 width=%22900%22 height=%22400%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22white%22 font-size=%2260%22%3E🍄%3C/text%3E%3C/svg%3E'">
+<div class="hero-image"></div>
+<div class="content">
+    <h1 class="title">02 Relações Micorrízicas</h1>
+    <div class="quote-box">
+        <div class="quote-text">Professional Mycology Guide</div>
+    </div>
+    
+<div class="article-meta">
+<span class="category">🌱 Mushroom Ecology</span>
+<span class="read-time">📖 10 minute read</span>
+<span class="difficulty">🟢 Beginner</span>
+</div>
 
-        <div class="content">
-            <h1 class="article-title">Relações Micorrízicas</h1>
-            <br>
-<h2>Cooperação Secreta Sob o Solo da Floresta</h2>
-<br>
-<p>Quando encontrei aquele aglomerado perfeito de cogumelos porcini em um bosque de carvalhos em Minnesota, percebi que não era apenas sorte. Trinta anos de experiência em campo me ensinaram que esses cogumelos deliciosos não aparecem aleatoriamente - eles são evidência visível de uma antiga aliança subterrânea. As relações micorrízicas, termo derivado do grego que significa "fungo raiz", representam um sistema sofisticado de cooperação entre plantas e fungos que evoluiu por mais de 400 milhões de anos.</p>
-<br>
-<p>Para entusiastas da natureza como nós, compreender essa relação não significa apenas colheitas mais abundantes, mas também uma janela para uma compreensão mais profunda do mundo natural. Nesta vasta rede subterrânea, árvores e fungos realizam trocas complexas de recursos, e podemos nos tornar coletores mais eficientes e conscientes ao interpretar essas relações.</p>
-<br>
-<h2>Fundamentos das Micorrizas: Indo Além dos Livros Didáticos</h2>
-<br>
-<h3>Definição e Essência</h3>
-<br>
-<p>Micorriza (Mycorrhiza) vai muito além da definição dos livros didáticos. No campo, esta é uma das relações ecológicas mais fundamentais que você pode observar. Simplificando, aproximadamente 90% das plantas terrestres formam essa relação simbiótica com fungos, incluindo quase todas as árvores que conhecemos - desde os carvalhos brancos da América do Norte até os pinheiros-amarelos do oeste.</p>
-<br>
+
+            <div class="section-title">🍄 Cooperação Secreta Sob o Solo da Floresta</div>
+<div class="main-text">Quando encontrei aquele aglomerado perfeito de cogumelos porcini em um bosque de carvalhos em Minnesota, percebi que não era apenas sorte. Trinta anos de experiência em campo me ensinaram que esses cogumelos deliciosos não aparecem aleatoriamente - eles são evidência visível de uma antiga aliança subterrânea. As relações micorrízicas, termo derivado do grego que significa "fungo raiz", representam um sistema sofisticado de cooperação entre plantas e fungos que evoluiu por mais de 400 milhões de anos.<span class="emoji">🍄</span></div>
+<p class="article-text">Para entusiastas da natureza como nós, compreender essa relação não significa apenas colheitas mais abundantes, mas também uma janela para uma compreensão mais profunda do mundo natural. Nesta vasta rede subterrânea, árvores e fungos realizam trocas complexas de recursos, e podemos nos tornar coletores mais eficientes e conscientes ao interpretar essas relações.</p>
+<div class="section-title">🍄 Fundamentos das Micorrizas: Indo Além dos Livros Didáticos</div>
+<div class="subsection-title">📌 Definição e Essência</div>
+<p class="article-text">Micorriza (Mycorrhiza) vai muito além da definição dos livros didáticos. No campo, esta é uma das relações ecológicas mais fundamentais que você pode observar. Simplificando, aproximadamente 90% das plantas terrestres formam essa relação simbiótica com fungos, incluindo quase todas as árvores que conhecemos - desde os carvalhos brancos da América do Norte até os pinheiros-amarelos do oeste.</p>
 <p><strong>Pontos Chave para Observação Prática:</strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>As relações micorrízicas são mais desenvolvidas em florestas maduras</li>
 <li>Essa relação é mais crítica em solos pobres</li>
 <li>Novas áreas de reflorestamento podem levar anos para estabelecer uma rede micorrízica completa</li>
-</ul>
-<br>
-<h3>Tipos Principais e Sua Identificação</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 Tipos Principais e Sua Identificação</div>
 <p><strong>Ectomicorriza (ECM)</strong></p>
-<p>Este é o tipo que mais interessa aos coletores de cogumelos, pois a grande maioria dos cogumelos silvestres comestíveis pertence a esta categoria.</p>
-<br>
+<p class="article-text">Este é o tipo que mais interessa aos coletores de cogumelos, pois a grande maioria dos cogumelos silvestres comestíveis pertence a esta categoria.</p>
 <p><strong>Características de Identificação em Campo:</strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Sistema radicular das árvores envolto por uma bainha formada por hifas fúngicas</li>
 <li>Hifas penetram entre as células da raiz formando a Rede de Hartig</li>
 <li>Corpos frutíferos (cogumelos) geralmente associados estreitamente com espécies arbóreas específicas</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>Recomendação de Especialista:</strong> Aprender a identificar árvores com ectomicorriza é fundamental para aumentar a eficiência da coleta. Coníferas (pinheiros, abetos) e muitas madeiras nobres (carvalhos, faias) geralmente formam ectomicorrizas.</p>
-<br>
 <p><strong>Micorriza Arbuscular (AM)</strong></p>
-<p>Embora não produzam cogumelos visíveis, são cruciais para o ecossistema:</p>
-<ul>
+<p class="article-text">Embora não produzam cogumelos visíveis, são cruciais para o ecossistema:</p>
+<div class="highlight"><ul>
 <li>Hifas penetram diretamente nas células das raízes das plantas</li>
 <li>Principalmente associadas com plantas herbáceas e culturas agrícolas</li>
 <li>Têm impacto profundo na saúde do solo</li>
-</ul>
-<br>
-<h2>Mecanismos de Funcionamento das Ectomicorrizas</h2>
-<br>
-<h3>Troca de Nutrientes: O Sistema Econômico Subterrâneo</h3>
-<br>
+</ul></div>
+<div class="section-title">🍄 Mecanismos de Funcionamento das Ectomicorrizas</div>
+<div class="subsection-title">📌 Troca de Nutrientes: O Sistema Econômico Subterrâneo</div>
 <p><strong>Serviços Prestados pelos Fungos às Plantas:</strong></p>
-<br>
-<p>A captação de água é o valor mais direto das micorrizas. Durante estações secas no oeste americano, observei que pinheiros com relações micorrízicas tinham taxa de sobrevivência cinco vezes maior que similares sem micorrizas. As redes de hifas expandem a área de absorção radicular em centenas de vezes, podendo explorar os menores poros do solo.</p>
-<br>
-<p>O transporte de nitrogênio e fósforo é outro serviço crucial. Em um estudo em Montana, os fungos micorrízicos contribuíram com 80% do nitrogênio e 90% do fósforo necessários para álamos. As hifas fúngicas podem secretar ácidos orgânicos que dissolvem compostos de fósforo indisponíveis, eficiência muito superior às raízes das plantas.</p>
-<br>
+<p class="article-text">A captação de água é o valor mais direto das micorrizas. Durante estações secas no oeste americano, observei que pinheiros com relações micorrízicas tinham taxa de sobrevivência cinco vezes maior que similares sem micorrizas. As redes de hifas expandem a área de absorção radicular em centenas de vezes, podendo explorar os menores poros do solo.</p>
+<p class="article-text">O transporte de nitrogênio e fósforo é outro serviço crucial. Em um estudo em Montana, os fungos micorrízicos contribuíram com 80% do nitrogênio e 90% do fósforo necessários para álamos. As hifas fúngicas podem secretar ácidos orgânicos que dissolvem compostos de fósforo indisponíveis, eficiência muito superior às raízes das plantas.</p>
 <p><strong>Retribuição das Plantas aos Fungos:</strong></p>
-<br>
-<p>As árvores alocam 10-30% dos produtos da fotossíntese para seus parceiros fúngicos - este número pode ser ainda maior em ambientes pobres. Isso significa que quando você vê um carvalho frondoso, ele está realmente sustentando uma vasta rede fúngica subterrânea.</p>
-<br>
-<h3>Benefícios Adicionais Além dos Nutrientes</h3>
-<br>
+<p class="article-text">As árvores alocam 10-30% dos produtos da fotossíntese para seus parceiros fúngicos - este número pode ser ainda maior em ambientes pobres. Isso significa que quando você vê um carvalho frondoso, ele está realmente sustentando uma vasta rede fúngica subterrânea.</p>
+<div class="subsection-title">📌 Benefícios Adicionais Além dos Nutrientes</div>
 <p><strong>Mecanismos de Proteção Vegetal:</strong></p>
-<p>Nas sequoias da Califórnia, observei que a barreira física formada por fungos micorrízicos protege efetivamente contra patógenos de podridão radicular. Os fungos também secretam substâncias semelhantes a antibióticos, criando um microambiente desfavorável para patógenos.</p>
-<br>
+<p class="article-text">Nas sequoias da Califórnia, observei que a barreira física formada por fungos micorrízicos protege efetivamente contra patógenos de podridão radicular. Os fungos também secretam substâncias semelhantes a antibióticos, criando um microambiente desfavorável para patógenos.</p>
 <p><strong>Melhoria da Estrutura do Solo:</strong></p>
-<p>As redes de hifas funcionam como cola natural, agregando partículas de solo em agregados estáveis. Experimentos em Washington mostraram redução de mais de 40% na erosão do solo com micorrizas.</p>
-<br>
+<p class="article-text">As redes de hifas funcionam como cola natural, agregando partículas de solo em agregados estáveis. Experimentos em Washington mostraram redução de mais de 40% na erosão do solo com micorrizas.</p>
 <p><strong>Rede de Comunicação entre Plantas:</strong></p>
-<p>A famosa "Wood Wide Web" (Internet da Floresta) realmente existe. Hifas conectam diferentes árvores, permitindo que compartilhem recursos e transmitam sinais de alerta. Ao marcar árvores na mesma rede micorrízica, descobri que quando uma era atacada por pragas, árvores vizinhas ativavam mecanismos de defesa antecipadamente.</p>
-<br>
-<h2>Estratégias de Identificação e Localização de Fungos Micorrízicos</h2>
-<br>
-<h3>Pistas Morfológicas e Ecológicas</h3>
-<br>
+<p class="article-text">A famosa "Wood Wide Web" (Internet da Floresta) realmente existe. Hifas conectam diferentes árvores, permitindo que compartilhem recursos e transmitam sinais de alerta. Ao marcar árvores na mesma rede micorrízica, descobri que quando uma era atacada por pragas, árvores vizinhas ativavam mecanismos de defesa antecipadamente.</p>
+<div class="section-title">🍄 Estratégias de Identificação e Localização de Fungos Micorrízicos</div>
+<div class="subsection-title">📌 Pistas Morfológicas e Ecológicas</div>
 <p><strong>Incapacidade de Cultivo:</strong></p>
-<p>Cogumelos micorrízicos verdadeiros não podem ser cultivados em meio artificial. É por isso que iguarias como matsutake e porcini ainda não podem ser totalmente cultivadas comercialmente.</p>
-<br>
+<p class="article-text">Cogumelos micorrízicos verdadeiros não podem ser cultivados em meio artificial. É por isso que iguarias como matsutake e porcini ainda não podem ser totalmente cultivadas comercialmente.</p>
 <p><strong>Especificidade de Habitat:</strong></p>
-<p>Cogumelos micorrízicos aparecem estritamente próximos a espécies arbóreas específicas. Por exemplo:</p>
-<ul>
+<p class="article-text">Cogumelos micorrízicos aparecem estritamente próximos a espécies arbóreas específicas. Por exemplo:</p>
+<div class="highlight"><ul>
 <li>Porcini: próximo a carvalhos, pinheiros</li>
 <li>Cantarelos: florestas mistas, especialmente carvalhos e pinheiros</li>
 <li>Matsutake: espécies específicas de pinheiro</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>Padrões Sazonais:</strong></p>
-<p>A maioria dos cogumelos micorrízicos atinge o pico de produção no outono, coincidindo com o ritmo de translocação de açúcares para as raízes no preparo para o inverno. Um pico menor ocorre na primavera, especialmente após chuvas.</p>
-<br>
-<h3>Especificidade de Parceiros: A Chave de Ouro do Coletor</h3>
-<br>
+<p class="article-text">A maioria dos cogumelos micorrízicos atinge o pico de produção no outono, coincidindo com o ritmo de translocação de açúcares para as raízes no preparo para o inverno. Um pico menor ocorre na primavera, especialmente após chuvas.</p>
+<div class="subsection-title">📌 Especificidade de Parceiros: A Chave de Ouro do Coletor</div>
 <p><strong>Parceiros de Adaptação Ampla:</strong></p>
-<p>Como Amanita muscaria, que pode cooperar com várias árvores, desde pinheiros até bétulas.</p>
-<br>
+<p class="article-text">Como Amanita muscaria, que pode cooperar com várias árvores, desde pinheiros até bétulas.</p>
 <p><strong>Parceiros Altamente Especializados:</strong></p>
-<p>A relação entre matsutake e pinheiros específicos, ou entre Boletus elegans e lariços é quase exclusiva. Esta especificidade é nossa melhor pista para encontrar cogumelos-alvo.</p>
-<br>
+<p class="article-text">A relação entre matsutake e pinheiros específicos, ou entre Boletus elegans e lariços é quase exclusiva. Esta especificidade é nossa melhor pista para encontrar cogumelos-alvo.</p>
 <p><strong>Estratégia de Localização Rápida:</strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Aprenda identificação precisa de árvores - não apenas formato das folhas, mas também textura da casca e hábito de crescimento</li>
 <li>Leve guias de campo de árvores locais</li>
 <li>Use aplicativos de identificação de plantas como auxílio</li>
 <li>Registre combinações de árvores em locais de descoberta bem-sucedida</li>
-</ul>
-<br>
-<h2>Coleta Prática: Da Teoria à Colheita</h2>
-<br>
-<h3>Método de Busca Sistematizada</h3>
-<br>
+</ul></div>
+<div class="section-title">🍄 Coleta Prática: Da Teoria à Colheita</div>
+<div class="subsection-title">📌 Método de Busca Sistematizada</div>
 <p><strong>Estratégia de Prioridade por Espécie Arbórea:</strong></p>
-<p>Procurando um cogumelo específico? Primeiro encontre suas árvores parceiras. No Colorado, aumentei minha eficiência de coleta de porcini em três vezes ao focar na busca em florestas de pinheiro-amarelo.</p>
-<br>
+<p class="article-text">Procurando um cogumelo específico? Primeiro encontre suas árvores parceiras. No Colorado, aumentei minha eficiência de coleta de porcini em três vezes ao focar na busca em florestas de pinheiro-amarelo.</p>
 <p><strong>Avaliação de Habitat:</strong></p>
-<p>Bordas de floresta são geralmente as melhores áreas de busca - iluminação suficiente promove fotossíntese das árvores, mantendo umidade adequada. Florestas maduras produzem mais consistentemente que florestas jovens, pois a rede micorrízica está totalmente estabelecida.</p>
-<br>
+<p class="article-text">Bordas de floresta são geralmente as melhores áreas de busca - iluminação suficiente promove fotossíntese das árvores, mantendo umidade adequada. Florestas maduras produzem mais consistentemente que florestas jovens, pois a rede micorrízica está totalmente estabelecida.</p>
 <p><strong>Interpretação das Condições do Solo:</strong></p>
-<p>O pH afeta significativamente a distribuição de cogumelos. Áreas calcárias têm combinações micorrízicas diferentes de solos ácidos. Ferramentas simples de teste de solo fornecem pistas valiosas.</p>
-<br>
-<h3>Aproveitamento do Momento Sazonal</h3>
-<br>
+<p class="article-text">O pH afeta significativamente a distribuição de cogumelos. Áreas calcárias têm combinações micorrízicas diferentes de solos ácidos. Ferramentas simples de teste de solo fornecem pistas valiosas.</p>
+<div class="subsection-title">📌 Aproveitamento do Momento Sazonal</div>
 <p><strong>Janela de Temperatura e Umidade:</strong></p>
-<p>A ocorrência ideal de cogumelos requer combinação específica de temperatura e umidade do solo. Uso termômetro de solo para monitorar temperatura - quando estabiliza entre 10-15°C com chuvas recentes, é o momento ideal.</p>
-<br>
+<p class="article-text">A ocorrência ideal de cogumelos requer combinação específica de temperatura e umidade do solo. Uso termômetro de solo para monitorar temperatura - quando estabiliza entre 10-15°C com chuvas recentes, é o momento ideal.</p>
 <p><strong>Observação Fenológica:</strong></p>
-<p>Registre estágios fenológicos das árvores locais - brotação, floração, frutificação - estes tempos correlacionam-se com ocorrência de cogumelos. Registros de longo prazo ajudam a construir modelos preditivos.</p>
-<br>
-<h3>Otimização de Equipamento e Ferramentas</h3>
-<br>
+<p class="article-text">Registre estágios fenológicos das árvores locais - brotação, floração, frutificação - estes tempos correlacionam-se com ocorrência de cogumelos. Registros de longo prazo ajudam a construir modelos preditivos.</p>
+<div class="subsection-title">🔧 Otimização de Equipamento e Ferramentas</div>
 <p><strong>Equipamento de Coleta Profissional:</strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Mochila de coleta com cesta ventilada (evite sacos plásticos)</li>
 <li>Faca de campo de alta qualidade</li>
 <li>Escova macia para limpar cogumelos</li>
 <li>Dispositivo GPS para registrar pontos produtivos</li>
 <li>Medidor de temperatura e umidade do solo</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>Sistema de Registro de Dados:</strong></p>
-<p>Registre detalhadamente espécies arbóreas, condições do solo, padrões climáticos e volume colhido em cada coleta. Estes dados ao longo dos anos tornar-se-ão ferramentas preditivas inestimáveis.</p>
-<br>
-<h2>Coleta Sustentável: Ética e Técnica</h2>
-<br>
-<h3>Impacto dos Métodos de Coleta</h3>
-<br>
-<p>Pesquisas científicas mostram que métodos corretos de coleta têm impacto mínimo nas redes de hifas:</p>
-<ul>
+<p class="article-text">Registre detalhadamente espécies arbóreas, condições do solo, padrões climáticos e volume colhido em cada coleta. Estes dados ao longo dos anos tornar-se-ão ferramentas preditivas inestimáveis.</p>
+<div class="section-title">🍄 Coleta Sustentável: Ética e Técnica</div>
+<div class="subsection-title">📌 Impacto dos Métodos de Coleta</div>
+<p class="article-text">Pesquisas científicas mostram que métodos corretos de coleta têm impacto mínimo nas redes de hifas:</p>
+<div class="highlight"><ul>
 <li>Cortar é melhor que arrancar, reduzindo perturbação do solo</li>
 <li>Corpos frutíferos maduros já liberaram esporos, coleta adequada não afeta reprodução</li>
 <li>Deixar alguns cogumelos jovens garante produção contínua</li>
-</ul>
-<br>
-<h3>Responsabilidade na Proteção de Habitat</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 Responsabilidade na Proteção de Habitat</div>
 <p>Como coletores responsáveis, devemos:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Evitar compactação do solo, mantendo redes de hifas intactas</li>
 <li>Apoiar programas de proteção de florestas antigas</li>
 <li>Participar de organizações locais de conservação fúngica</li>
 <li>Educar outros coletores sobre práticas sustentáveis</li>
-</ul>
-<br>
-<h2>Perspectiva do Ecossistema: Além da Coleta</h2>
-<br>
-<h3>Base da Saúde Florestal</h3>
-<br>
-<p>Redes micorrízicas são cruciais para a resiliência florestal. Após seca ou infestação de pragas, áreas com redes micorrízicas saudáveis se recuperam significativamente mais rápido.</p>
-<br>
-<h3>Papel Chave no Ciclo do Carbono</h3>
-<br>
-<p>Redes de hifas são participantes importantes no ciclo global do carbono. Elas sequestram carbono atmosférico no solo, com certos tipos de carbono de hifas podendo ser armazenados por décadas.</p>
-<br>
-<h3>Enfrentamento das Mudanças Climáticas</h3>
-<br>
-<p>Micorrizas podem ajudar florestas a se adaptarem às mudanças climáticas:</p>
-<ul>
+</ul></div>
+<div class="section-title">🍄 Perspectiva do Ecossistema: Além da Coleta</div>
+<div class="subsection-title">📚 Base da Saúde Florestal</div>
+<p class="article-text">Redes micorrízicas são cruciais para a resiliência florestal. Após seca ou infestação de pragas, áreas com redes micorrízicas saudáveis se recuperam significativamente mais rápido.</p>
+<div class="subsection-title">📌 Papel Chave no Ciclo do Carbono</div>
+<p class="article-text">Redes de hifas são participantes importantes no ciclo global do carbono. Elas sequestram carbono atmosférico no solo, com certos tipos de carbono de hifas podendo ser armazenados por décadas.</p>
+<div class="subsection-title">📌 Enfrentamento das Mudanças Climáticas</div>
+<p class="article-text">Micorrizas podem ajudar florestas a se adaptarem às mudanças climáticas:</p>
+<div class="highlight"><ul>
 <li>Melhoram a resistência à seca das árvores</li>
 <li>Aumentam a eficiência do uso de nutrientes</li>
 <li>Amortecem impactos de temperaturas extremas</li>
-</ul>
-<br>
-<p>Entretanto, os sistemas micorrízicos também enfrentam ameaças das mudanças climáticas, manifestadas por alterações fenológicas e mudanças na distribuição geográfica.</p>
-<br>
-<h2>Análise Aprofundada de Casos Especiais</h2>
-<br>
-<h3>Trufas: A Expressão Máxima das Relações Micorrízicas</h3>
-<br>
-<p>Trufas representam a forma mais especializada de relação micorrízica. Minha experiência em fazendas de trufas no Oregon revelou a precisão desta relação:</p>
-<br>
+</ul></div>
+<p class="article-text">Entretanto, os sistemas micorrízicos também enfrentam ameaças das mudanças climáticas, manifestadas por alterações fenológicas e mudanças na distribuição geográfica.</p>
+<div class="section-title">🍄 Análise Aprofundada de Casos Especiais</div>
+<div class="subsection-title">📌 Trufas: A Expressão Máxima das Relações Micorrízicas</div>
+<p class="article-text">Trufas representam a forma mais especializada de relação micorrízica. Minha experiência em fazendas de trufas no Oregon revelou a precisão desta relação:</p>
 <p><strong>Fatores de Sucesso:</strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Árvores hospedeiras específicas (geralmente carvalhos ou aveleiras)</li>
 <li>pH e estrutura do solo precisos</li>
 <li>Clima mediterrâneo adequado</li>
 <li>Paciência - de 5-7 anos da inoculação à primeira colheita</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>Evolução das Técnicas de Coleta:</strong></p>
-<p>O uso tradicional de porcas foi substituído por cães treinados, que não danificam as preciosas redes micorrízicas e são mais controláveis.</p>
-<br>
-<h2>Perspectivas Futuras e Guia de Ação</h2>
-<br>
-<h3>Estratégias de Adaptação às Mudanças Climáticas</h3>
-<br>
-<p>Coletores de longo prazo observaram mudanças significativas:</p>
-<ul>
+<p class="article-text">O uso tradicional de porcas foi substituído por cães treinados, que não danificam as preciosas redes micorrízicas e são mais controláveis.</p>
+<div class="section-title">🍄 Perspectivas Futuras e Guia de Ação</div>
+<div class="subsection-title">📌 Estratégias de Adaptação às Mudanças Climáticas</div>
+<p class="article-text">Coletores de longo prazo observaram mudanças significativas:</p>
+<div class="highlight"><ul>
 <li>Estações de cogumelos antecipadas ou atrasadas</li>
 <li>Deslocamento da distribuição de algumas espécies para o norte</li>
 <li>Aumento da flutuação de produção</li>
-</ul>
-<br>
+</ul></div>
 <p>Estratégias de adaptação incluem:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Ajustar expectativas de tempo de coleta</li>
 <li>Explorar novas áreas de coleta</li>
 <li>Participar de projetos de ciência cidadã para registrar mudanças</li>
-</ul>
-<br>
-<h3>Recomendações para Ação de Conservação</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 Recomendações para Ação de Conservação</div>
 <p><strong>Nível Individual:</strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Praticar princípios de coleta "Leave No Trace"</li>
 <li>Apoiar proteção de habitats fúngicos</li>
 <li>Participar de sociedades micológicas locais</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>Nível Comunitário:</strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Promover práticas florestais sustentáveis</li>
 <li>Apoiar pesquisa em micorrizas</li>
 <li>Estabelecer programas educacionais para coletores</li>
-</ul>
-<br>
-<h2>Conclusão: Coletores da Sabedoria Subterrânea</h2>
-<br>
-<p>Quando seguramos porcini recém-colhidos sob um carvalho, colhemos não apenas delícias culinárias, mas também a cristalização da sabedoria de milhões de anos de coevolução. As relações micorrízicas nos lembram que o sucesso mais duradouro na natureza vem da cooperação, não da competição.</p>
-<br>
-<p>Como coletores modernos, herdamos tradições antigas enquanto carregamos novas responsabilidades. Ao compreender profundamente essas alianças subterrâneas, podemos nos tornar não apenas coletores mais eficientes, mas também guardiões do ecossistema.</p>
-<br>
+</ul></div>
+<div class="section-title">🍄 Conclusão: Coletores da Sabedoria Subterrânea</div>
+<p class="article-text">Quando seguramos porcini recém-colhidos sob um carvalho, colhemos não apenas delícias culinárias, mas também a cristalização da sabedoria de milhões de anos de coevolução. As relações micorrízicas nos lembram que o sucesso mais duradouro na natureza vem da cooperação, não da competição.</p>
+<p class="article-text">Como coletores modernos, herdamos tradições antigas enquanto carregamos novas responsabilidades. Ao compreender profundamente essas alianças subterrâneas, podemos nos tornar não apenas coletores mais eficientes, mas também guardiões do ecossistema.</p>
 <p><strong>Passos para Ação Imediata:</strong></p>
-<p>1. Aprenda a identificar cinco principais árvores micorrízicas em sua região</p>
-<p>2. Comece a registrar observações de coleta, criando banco de dados pessoal</p>
-<p>3. Junte-se a sociedades micológicas ou grupos de coletores locais</p>
-<p>4. Pratique e ensine métodos de coleta sustentáveis</p>
+<p class="article-text">1. Aprenda a identificar cinco principais árvores micorrízicas em sua região</p>
+<p class="article-text">2. Comece a registrar observações de coleta, criando banco de dados pessoal</p>
+<p class="article-text">3. Junte-se a sociedades micológicas ou grupos de coletores locais</p>
+<p class="article-text">4. Pratique e ensine métodos de coleta sustentáveis</p>
 <p>5. Apoie iniciativas locais de proteção florestal</p>
-<br>
-<p>Lembre-se, cada coleta responsável é uma homenagem a esta cooperação antiga. Nas redes subterrâneas, o diálogo entre árvores e fungos continua há milhões de anos - temos o privilégio de ser testemunhas e participantes deste diálogo.</p>
+<p class="article-text">Lembre-se, cada coleta responsável é uma homenagem a esta cooperação antiga. Nas redes subterrâneas, o diálogo entre árvores e fungos continua há milhões de anos - temos o privilégio de ser testemunhas e participantes deste diálogo.</p>
         </div>
-    </div>
+
+</div>
 </body>
 </html>

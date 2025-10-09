@@ -1,574 +1,425 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Funghi selvatici e coltivati - Culinary Mushrooms</title>
-    <meta name="description" content="Funghi selvatici e coltivati">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>07 Funghi selvatici e coltivati - MushroomAiSnap</title>
+<link href="../../mobile-styles.css" rel="stylesheet"/>
+<link href="../../mobile-enhancement.css" rel="stylesheet"/>
+<link href="../../ecology-theme.css" rel="stylesheet"/>
+<style>
+        .hero-image img {
+            max-height: 200px;
+            width: 100%;
+            object-fit: cover;
         }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        .article-card img {
+            max-height: 120px;
+            width: 100%;
+            object-fit: cover;
+        }
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                        url('../../images/culinary-mushrooms_07-wild-vs-cultivated.webp') center/cover;
+            position: relative;
+            margin-top: 0;
+        }
+        .article-meta {
+            margin-top: 15px !important;
+        }
+    
+        /* Culinary Mushrooms Theme */
+        :root {
+            --primary-color: #8B4513;
+            --primary-dark: #654321;
+            --primary-light: #FFF8DC;
+            --accent-color: #D2691E;
+        }
+        
+        /* Theme Color Overrides */
+        .content {
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+            border: 2px solid var(--primary-color);
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, var(--primary-light), var(--primary-light));
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .quote-text {
+            color: var(--primary-dark);
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+        }
+        
+        .subsection-title {
+            color: var(--primary-dark);
+            font-size: 1.4em;
+            font-weight: 600;
+            margin: 25px 0 15px 0;
+            padding-left: 10px;
+            border-left: 3px solid var(--accent-color);
+        }
+        
+        .tip-box {
+            border-left: 4px solid var(--primary-color);
+            background: var(--primary-light);
+        }
+        
+        .tip-title {
+            color: var(--primary-color);
+        }
+        
+        .highlight {
+            border-left: 4px solid var(--accent-color);
+            background: linear-gradient(135deg, #f1f8e9, var(--primary-light));
+        }
+        
+        .warning {
+            border-left: 4px solid #f44336;
+        }
+        
+        .equipment-item {
+            border: 1px solid var(--accent-color);
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+        }
+        
+        .equipment-item h4 {
+            color: var(--primary-color);
+        }
+        
+        .category {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .main-text {
+            font-size: 1.1em;
             line-height: 1.8;
             color: #333;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-
-        .article-title {
-            color: #FF6B6B;
-            font-size: 2.5em;
-            margin-bottom: 30px;
-            margin-top: 0;
-            line-height: 1.3;
-            padding-top: 0;
-        }
-
-        .featured-image {
-            width: 100%;
-            height: auto;
-            aspect-ratio: 4 / 3;
-            object-fit: cover;
-            display: block;
-        }
-
-        .content {
-            padding: 50px;
-        }
-
-        .content h2 {
-            color: #FF6B6B;
-            font-size: 2em;
-            margin-top: 40px;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid #FF6B6B;
-        }
-
-        .content h3 {
-            color: #555;
-            font-size: 1.6em;
-            margin-top: 30px;
-            margin-bottom: 15px;
-        }
-
-        .content h4 {
-            color: #666;
-            font-size: 1.3em;
-            margin-top: 25px;
-            margin-bottom: 12px;
-        }
-
-        .content p {
-            margin-bottom: 20px;
-            font-size: 1.1em;
-            color: #444;
-        }
-
-        .content ul {
             margin: 20px 0;
-            padding-left: 30px;
-        }
-
-        .content li {
-            margin-bottom: 12px;
-            font-size: 1.05em;
-            color: #555;
-        }
-
-        .content strong {
-            color: #222;
-            font-weight: 600;
-        }
-
-        .back-link {
-            display: inline-block;
-            padding: 12px 25px;
-            background: linear-gradient(135deg, #FF6B6B, #8B4513);
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            margin-bottom: 20px;
-            transition: transform 0.3s ease;
-            font-weight: 600;
-        }
-
-        .back-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .navigation {
-            padding: 30px 50px;
-            background: #f8f9fa;
-            border-top: 1px solid #e9ecef;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-btn {
-            padding: 10px 20px;
-            background: #FF6B6B;
-            color: white;
-            text-decoration: none;
+            padding: 15px;
+            background: linear-gradient(135deg, #ffffff, #f9f9f9);
             border-radius: 8px;
-            transition: all 0.3s ease;
+            border-left: 3px solid var(--accent-color);
         }
-
-        .nav-btn:hover {
-            transform: translateX(5px);
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+        
+        .emoji {
+            font-size: 1.5em;
+            margin-left: 10px;
         }
-
-        .nav-btn.prev:hover {
-            transform: translateX(-5px);
+        
+        .read-time, .difficulty {
+            display: inline-block;
+            padding: 5px 15px;
+            margin: 5px 5px 5px 0;
+            border-radius: 20px;
+            font-size: 0.9em;
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            color: #1976d2;
+            font-weight: 500;
         }
-
-        @media (max-width: 768px) {
-            .content {
-                padding: 30px 25px;
-            }
-
-            .article-title {
-                font-size: 1.8em;
-            }
-
-            .featured-image {
-                height: 250px;
-            }
-
-            .navigation {
-                flex-direction: column;
-                gap: 15px;
-            }
+        
+        .difficulty {
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            color: #e65100;
+        }
+        
+        .article-text {
+            line-height: 1.8;
+            color: #444;
+            margin: 15px 0;
+            font-size: 1.05em;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <img src="../../images/culinary-mushrooms_07-wild-vs-cultivated.webp" alt="Funghi selvatici e coltivati" class="featured-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22900%22 height=%22400%22%3E%3Crect fill=%22%23D2691E%22 width=%22900%22 height=%22400%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22white%22 font-size=%2260%22%3E🍄%3C/text%3E%3C/svg%3E'">
+<div class="hero-image"></div>
+<div class="content">
+    <h1 class="title">07 Funghi selvatici e coltivati</h1>
+    <div class="quote-box">
+        <div class="quote-text">Professional Mycology Guide</div>
+    </div>
+    
+<div class="article-meta">
+<span class="category">🍄 Culinary Mushrooms</span>
+<span class="read-time">📖 17 minute read</span>
+<span class="difficulty">🟡 Intermediate</span>
+</div>
 
-        <div class="content">
-            <h1 class="article-title">Funghi selvatici e coltivati</h1>
-            <br>
-<p>In qualità di esperto di identificazione dei funghi, buongustaio e biologo, in questo articolo darò uno sguardo più da vicino alle differenze tra funghi selvatici e coltivati ​​e fornirò una guida pratica per aiutarti a fare una scelta informata.Che tu sia un appassionato di attività all'aria aperta, un cuoco casalingo o un cercatore di cibo gourmet, questo articolo sarà la tua guida ai funghi.</p>
-<br>
+
+            <br><div class="main-text">In qualità di esperto di identificazione dei funghi, buongustaio e biologo, in questo articolo darò uno sguardo più da vicino alle differenze tra funghi selvatici e coltivati ​​e fornirò una guida pratica per aiutarti a fare una scelta informata.Che tu sia un appassionato di attività all'aria aperta, un cuoco casalingo o un cercatore di cibo gourmet, questo articolo sarà la tua guida ai funghi.<span class="emoji">🍄</span></div>
 <p>---</p>
-<br>
-<h2>Perché è importante la selezione dei funghi</h2>
-<br>
-<p>I funghi non sono solo cibo, ma anche una parte importante dell'ecosistema.La scelta dei funghi selvatici o coltivati ​​influisce direttamente sulla tua esperienza culinaria, sulla sicurezza sanitaria e sulla responsabilità ambientale.Negli Stati Uniti, gli uomini di età compresa tra i 30 e i 60 anni tendono a concentrarsi sulla praticità, sulla qualità e sull’esperienza all’aria aperta, che è al centro della nostra discussione.</p>
-<br>
+<div class="section-title">🎯 Perché è importante la selezione dei funghi</div>
+<p class="article-text">I funghi non sono solo cibo, ma anche una parte importante dell'ecosistema.La scelta dei funghi selvatici o coltivati ​​influisce direttamente sulla tua esperienza culinaria, sulla sicurezza sanitaria e sulla responsabilità ambientale.Negli Stati Uniti, gli uomini di età compresa tra i 30 e i 60 anni tendono a concentrarsi sulla praticità, sulla qualità e sull’esperienza all’aria aperta, che è al centro della nostra discussione.</p>
 <p><strong>Suggerimento rapido</strong>: Se non conosci i funghi, iniziare con una varietà coltivata è la scommessa più sicura.</p>
-<br>
 <p>---</p>
-<br>
 <p>##Funghi Coltivati: Bontà Controllata</p>
-<br>
-<h3>Principali tipologie e caratteristiche</h3>
-<br>
-<p>Dopo centinaia di anni di selezione artificiale, i funghi coltivati ​​hanno formato varietà commerciali stabili:</p>
-<br>
-<ul>
+<div class="subsection-title">📌 Principali tipologie e caratteristiche</div>
+<p class="article-text">Dopo centinaia di anni di selezione artificiale, i funghi coltivati ​​hanno formato varietà commerciali stabili:</p><div class="highlight"><ul>
 <li>**Agaricus bisporus**: comprende varietà bianche e marroni, che rappresentano oltre il 70% della produzione mondiale di funghi</li>
 <li>**Fungo Ostrica**: cappello a forma di ventaglio, consistenza morbida, crescita rapida</li>
 <li>**Funghi Shiitake**: ricco sapore legnoso, indispensabile nella cucina asiatica</li>
 <li>**Fungo Enoki**: gambo lungo e sottile, consistenza croccante e tenera, adatto alle zuppe</li>
 <li>**Pleurotus eryngii**: carne densa, può sostituire la carne</li>
 <li>**Maitake**: coltivato in grappoli, si dice abbia benefici per la salute</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>Suggerimento dell'esperto</strong>: le proprietà carnose dei funghi cardoncelli li rendono un'ottima alternativa agli hamburger vegetariani.</p>
-<br>
-<h3>Spiegazione dettagliata della moderna tecnologia di coltivazione</h3>
-<br>
-<p>La coltivazione commerciale dei funghi è un processo attentamente controllato:</p>
-<br>
-<p>1. <strong>Preparazione del substrato</strong>: utilizzare materiali organici sterilizzati come segatura di legno duro, paglia, scafi di semi di cotone o compost di letame equino</p>
-<p>2. <strong>Inoculazione</strong>: iniettare ceppi batterici puri in un ambiente sterile</p>
-<p>3. <strong>Coltura del micelio</strong>: coltivare in un ambiente buio e a temperatura controllata (solitamente 20-24°C) per 2-4 settimane</p>
-<p>4. <strong>Induzione della fruttificazione</strong>: stimola la formazione dei corpi fruttiferi raffreddando, aumentando l'umidità e introducendo luce</p>
-<p>5. <strong>Raccolta</strong>: raccolta manuale o meccanica, solitamente quando il cappello non è completamente espanso</p>
-<br>
+<div class="subsection-title">📌 Spiegazione dettagliata della moderna tecnologia di coltivazione</div>
+<p class="article-text">La coltivazione commerciale dei funghi è un processo attentamente controllato:</p>
+<p class="article-text">1. <strong>Preparazione del substrato</strong>: utilizzare materiali organici sterilizzati come segatura di legno duro, paglia, scafi di semi di cotone o compost di letame equino</p>
+<p class="article-text">2. <strong>Inoculazione</strong>: iniettare ceppi batterici puri in un ambiente sterile</p>
+<p class="article-text">3. <strong>Coltura del micelio</strong>: coltivare in un ambiente buio e a temperatura controllata (solitamente 20-24°C) per 2-4 settimane</p>
+<p class="article-text">4. <strong>Induzione della fruttificazione</strong>: stimola la formazione dei corpi fruttiferi raffreddando, aumentando l'umidità e introducendo luce</p>
+<p class="article-text">5. <strong>Raccolta</strong>: raccolta manuale o meccanica, solitamente quando il cappello non è completamente espanso</p>
 <p><strong>Caso pratico</strong>: una coltivazione di funghi in Pennsylvania riduce i costi e raggiunge una produzione sostenibile riciclando i rifiuti agricoli locali come substrato.</p>
-<br>
-<h3>La scienza del controllo qualità</h3>
-<br>
-<p>Il vantaggio qualitativo dei funghi coltivati ​​deriva da un controllo rigoroso:</p>
-<br>
-<ul>
+<div class="subsection-title">📌 La scienza del controllo qualità</div>
+<p class="article-text">Il vantaggio qualitativo dei funghi coltivati ​​deriva da un controllo rigoroso:</p><div class="highlight"><ul>
 <li>**Coerenza genetica**: la coltura dei tessuti garantisce che ogni lotto di funghi sia geneticamente identico</li>
 <li>**Monitoraggio ambientale**: monitoraggio in tempo reale della concentrazione di CO2, dell'umidità e della temperatura</li>
 <li>**Sicurezza alimentare**: test regolari per metalli pesanti, residui di pesticidi e contaminazione microbica</li>
 <li>**Gestione della freschezza**: raffreddamento rapido a 1°C dopo la raccolta per prolungare la durata di conservazione</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>Supporto dati</strong>: La ricerca mostra che il contenuto di metalli pesanti dei funghi coltivati ​​prodotti in modo standardizzato è inferiore dell'80-90% rispetto a quello dei funghi selvatici.</p>
-<br>
 <p>---</p>
-<br>
-<h2>Funghi selvatici: un dono della natura</h2>
-<br>
-<h3>Diversità sorprendente</h3>
-<br>
-<p>Il mondo dei funghi selvatici è ricco e colorato, con oltre 10.000 specie di macrofunghi solo nel Nord America, centinaia dei quali commestibili.Alcune varietà di stelle includono:</p>
-<br>
-<ul>
+<div class="section-title">🍄 Funghi selvatici: un dono della natura</div>
+<div class="subsection-title">📌 Diversità sorprendente</div>
+<p class="article-text">Il mondo dei funghi selvatici è ricco e colorato, con oltre 10.000 specie di macrofunghi solo nel Nord America, centinaia dei quali commestibili.Alcune varietà di stelle includono:</p><div class="highlight"><ul>
 <li>**Morls**: un tesoro primaverile con cappelli a nido d'ape e sapore di nocciola</li>
 <li>**Finferli**: giallo dorato, profumo di albicocca, poco soggetto agli insetti</li>
 <li>**Boleti**: carne spessa, tubi al posto delle lamelle</li>
 <li>**Matsutake**: Il meglio della cucina giapponese, ricco aroma di cannella</li>
 <li>**Fungo Aragosta**: In realtà un fungo parassita dai colori vivaci</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>AVVISO DI SICUREZZA</strong>: nel Nord America esistono dozzine di specie di funghi velenosi mortali, come gli angeli distruttori e i cappelli della morte, che assomigliano molto alle specie commestibili.</p>
-<br>
-<h3>Guida pratica alla raccolta</h3>
-<br>
-<p>Una raccolta efficace dei funghi selvatici richiede conoscenza, preparazione e abilità:</p>
-<br>
+<div class="subsection-title">📌 Guida pratica alla raccolta</div>
+<p class="article-text">Una raccolta efficace dei funghi selvatici richiede conoscenza, preparazione e abilità:</p>
 <p><strong>Attrezzatura essenziale</strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Cestino di vimini o borsa a rete (permette alle spore di diffondersi)</li>
 <li>Coltello con manico lungo</li>
 <li>Spazzola morbida (per la pulizia)</li>
 <li>Guida sul campo (specifica per regione)</li>
 <li>Dispositivo GPS o mappa dettagliata</li>
 <li>Telefono cellulare (contatto di emergenza)</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>Passaggi di raccolta</strong>:</p>
-<p>1. Scegli la stagione e il clima giusti: 2-3 giorni dopo la pioggia sono i migliori</p>
-<p>2. Identificare gli habitat: diversi funghi preferiscono specie arboree e ambienti specifici</p>
-<p>3. Raccolta completa: estrarre con cura l'intero fungo, conservando le caratteristiche della base</p>
-<p>4. Pulizia preliminare del sito: spazzolare via sporco e detriti</p>
-<p>5. Conservare separatamente: conservare i diversi tipi separatamente per evitare la contaminazione incrociata.</p>
-<br>
+<p class="article-text">1. Scegli la stagione e il clima giusti: 2-3 giorni dopo la pioggia sono i migliori</p>
+<p class="article-text">2. Identificare gli habitat: diversi funghi preferiscono specie arboree e ambienti specifici</p>
+<p class="article-text">3. Raccolta completa: estrarre con cura l'intero fungo, conservando le caratteristiche della base</p>
+<p class="article-text">4. Pulizia preliminare del sito: spazzolare via sporco e detriti</p>
+<p class="article-text">5. Conservare separatamente: conservare i diversi tipi separatamente per evitare la contaminazione incrociata.</p>
 <p><strong>Errori comuni</strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Affidarsi solo all'applicazione del cellulare per l'identificazione (alto tasso di errore)</li>
 <li>Raccolta in zone inquinate (strade, zone industriali)</li>
 <li>Utilizzare sacchetti di plastica (accelera il deterioramento)</li>
 <li>Mescolare funghi diversi (aumenta la difficoltà di identificazione)</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>Esperienza personale</strong>: mentre raccoglievo spugnole nelle Montagne Rocciose del Colorado, ho scoperto che le aree delle foreste di conifere recentemente bruciate erano più produttive, un classico esempio di ecologia fungina.</p>
-<br>
 <p>---</p>
-<br>
-<h2>Sapore e consistenza: una resa dei conti dei sensi</h2>
-<br>
-<h3>Analisi scientifica delle differenze di sapore</h3>
-<br>
-<p>La base chimica del sapore dei funghi sono composti volatili e sostanze che producono odori:</p>
-<br>
-<ul>
+<div class="section-title">🍄 Sapore e consistenza: una resa dei conti dei sensi</div>
+<div class="subsection-title">📌 Analisi scientifica delle differenze di sapore</div>
+<p class="article-text">La base chimica del sapore dei funghi sono composti volatili e sostanze che producono odori:</p><div class="highlight"><ul>
 <li>**Funghi coltivati**: il sapore è relativamente unico, proveniente principalmente da 1-otten-3-olo (alcol di funghi) e composti solforati</li>
 <li>**Funghi selvatici**: il sapore complesso deriva da centinaia di composti, come l'1-otten-3-olo metil estere e il metil cinnamato dei funghi matsutake</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>Esperimento di cucina</strong>: in un test alla cieca, il 75% dei partecipanti è riuscito a distinguere l'utilizzo di funghi porcini selvatici e coltivati ​​nello stesso piatto.</p>
-<br>
-<h3>Confronto e applicazione delle texture</h3>
-<br>
-<p>Le differenze di consistenza influiscono direttamente sui metodi di cottura:</p>
-<br>
-<p>| Tipi di funghi | Caratteristiche strutturali | I migliori metodi di cottura |</p>
+<div class="subsection-title">📌 Confronto e applicazione delle texture</div>
+<p class="article-text">Le differenze di consistenza influiscono direttamente sui metodi di cottura:</p>
+<p class="article-text">| Tipi di funghi | Caratteristiche strutturali | I migliori metodi di cottura |</p>
 <p>|---------|----------|-------------|</p>
-<p>| Funghi bianchi coltivati ​​| Morbido e umido | Soffriggere rapidamente, preparare zuppe e riempire |</p>
-<p>| Funghi shiitake coltivati ​​| Denso e resistente alla cottura | Stufati, barbecue, brodo |</p>
-<p>| Spugnole selvatiche | croccante, vuoto | leggermente fritti nel burro e serviti con salsa di panna |</p>
-<p>| Finferli selvatici | Leggermente duro | Spezzatino lento, salsa |</p>
-<br>
+<p class="article-text">| Funghi bianchi coltivati ​​| Morbido e umido | Soffriggere rapidamente, preparare zuppe e riempire |</p>
+<p class="article-text">| Funghi shiitake coltivati ​​| Denso e resistente alla cottura | Stufati, barbecue, brodo |</p>
+<p class="article-text">| Spugnole selvatiche | croccante, vuoto | leggermente fritti nel burro e serviti con salsa di panna |</p>
+<p class="article-text">| Finferli selvatici | Leggermente duro | Spezzatino lento, salsa |</p>
 <p><strong>Suggerimento dell'esperto</strong>: i funghi selvatici generalmente richiedono una cottura più lunga per sviluppare appieno il sapore e garantire la sicurezza.</p>
-<br>
-<h3>Il selvaggio non è sempre migliore</h3>
-<br>
-<p>Esiste un culto cieco dei funghi selvatici nel mondo alimentare, ma la realtà è più complicata:</p>
-<br>
-<p>-I funghi coltivati ​​sono perfetti nella pizza, nella pasta e nel riso fritto</p>
-<ul>
+<div class="subsection-title">📌 Il selvaggio non è sempre migliore</div>
+<p class="article-text">Esiste un culto cieco dei funghi selvatici nel mondo alimentare, ma la realtà è più complicata:</p>
+<p class="article-text">-I funghi coltivati ​​sono perfetti nella pizza, nella pasta e nel riso fritto</p>
+<div class="highlight"><ul>
 <li>I funghi selvatici sono migliori se preparati in modo semplice, ad esempio saltati in padella nel burro.</li>
 <li>I piatti con un elevato contenuto di umidità possono diluire il sapore delicato dei funghi selvatici</li>
 <li>Alcuni funghi selvatici (come alcuni funghi porcini) sono velenosi se consumati crudi o poco cotti</li>
-</ul>
-<br>
+</ul></div>
 <p>---</p>
-<br>
-<h2>Considerazioni sulla sicurezza: vita o morte</h2>
-<br>
-<h3>Vantaggi per la sicurezza dei funghi coltivati</h3>
-<br>
-<p>I funghi coltivati ​​offrono una sicurezza senza pari:</p>
-<br>
-<ul>
+<div class="section-title">🍄 Considerazioni sulla sicurezza: vita o morte</div>
+<div class="subsection-title">📌 Vantaggi per la sicurezza dei funghi coltivati</div>
+<p class="article-text">I funghi coltivati ​​offrono una sicurezza senza pari:</p><div class="highlight"><ul>
 <li>Nessun rischio di errori di identificazione</li>
 <li>L'ambiente in crescita è privo di inquinamento</li>
 <li>Elaborazione standardizzata</li>
 <li>Origine tracciabile</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>Supporto dati</strong>: il 99% degli incidenti di avvelenamento da funghi negli Stati Uniti negli ultimi 20 anni erano legati all'ingestione accidentale di funghi selvatici velenosi.</p>
-<br>
-<h3>Valutazione del rischio dei funghi selvatici</h3>
-<br>
-<p>La raccolta e il consumo sicuri di funghi selvatici richiedono un approccio sistematico:</p>
-<br>
+<div class="subsection-title">📌 Valutazione del rischio dei funghi selvatici</div>
+<p class="article-text">La raccolta e il consumo sicuri di funghi selvatici richiedono un approccio sistematico:</p>
 <p><strong>Principio della tripla verifica per l'autenticazione</strong>:</p>
-<p>1. Utilizzare almeno due guide autorevoli sul campo per il confronto</p>
-<p>2. Controllare tutte le caratteristiche principali: cappello, branchie, gambo, anello, gambo e impronta sporale</p>
-<p>3. Consultare un esperto locale di funghi o una società micologica</p>
-<br>
+<p class="article-text">1. Utilizzare almeno due guide autorevoli sul campo per il confronto</p>
+<p class="article-text">2. Controllare tutte le caratteristiche principali: cappello, branchie, gambo, anello, gambo e impronta sporale</p>
+<p class="article-text">3. Consultare un esperto locale di funghi o una società micologica</p>
 <p><strong>Gestione del rischio di inquinamento</strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Evitare la raccolta entro 100 metri dalle strade (inquinamento da piombo)</li>
 <li>Stare lontano dai terreni agricoli (deriva dei pesticidi)</li>
 <li>Evitare zone industriali (accumulo di metalli pesanti)</li>
 <li>Comprendere la storia delle radiazioni nucleari locali (alcuni funghi accumulano elementi radioattivi)</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>Caso reale</strong>: un collezionista con 10 anni di esperienza ha ingerito accidentalmente Amanita amanita nello Stato di Washington.L'unico motivo è che non ha controllato tutte le caratteristiche in fretta. Si è ripreso dopo essere stato ricoverato in ospedale per due settimane.</p>
-<br>
 <p>---</p>
-<br>
-<h2>Nutrizione e salute: oltre le nozioni di base</h2>
-<br>
-<h3>Confronto della composizione nutrizionale</h3>
-<br>
-<p>La ricerca moderna rivela la complessità nutrizionale dei funghi:</p>
-<br>
-<p>| Informazioni nutrizionali | Funghi Coltivati ​​| Funghi Selvatici |</p>
+<div class="section-title">🍄 Nutrizione e salute: oltre le nozioni di base</div>
+<div class="subsection-title">📌 Confronto della composizione nutrizionale</div>
+<p class="article-text">La ricerca moderna rivela la complessità nutrizionale dei funghi:</p>
+<p class="article-text">| Informazioni nutrizionali | Funghi Coltivati ​​| Funghi Selvatici |</p>
 <p>|---------|----------|----------|</p>
-<p>| Proteine ​​| 2-3% (peso fresco) | 2-4% (peso fresco) |</p>
-<p>| Vitamina D | Basso (a meno che non sia trattato con raggi UV) | Altamente variabile (determinato dall'esposizione al sole) |</p>
-<p>| Contenuto di selenio | Stabile ma basso | Può essere elevato (dipende dal suolo) |</p>
+<p class="article-text">| Proteine ​​| 2-3% (peso fresco) | 2-4% (peso fresco) |</p>
+<p class="article-text">| Vitamina D | Basso (a meno che non sia trattato con raggi UV) | Altamente variabile (determinato dall'esposizione al sole) |</p>
+<p class="article-text">| Contenuto di selenio | Stabile ma basso | Può essere elevato (dipende dal suolo) |</p>
 <p>| Antiossidanti | Moderato | Di solito più alto |</p>
-<p>| Metalli pesanti | Molto basso | Può essere alto |</p>
-<br>
+<p class="article-text">| Metalli pesanti | Molto basso | Può essere alto |</p>
 <p><strong>SVOLTA SULLA SALUTE</strong>: i funghi coltivati ​​trattati con raggi UV producono livelli di vitamina D2 paragonabili a quelli dei funghi selvatici, un importante vantaggio nutrizionale.</p>
-<br>
-<h3>Ricerca sugli ingredienti funzionali</h3>
-<br>
-<p>Alcuni funghi contengono composti bioattivi specifici:</p>
-<br>
-<ul>
+<div class="subsection-title">📌 Ricerca sugli ingredienti funzionali</div>
+<p class="article-text">Alcuni funghi contengono composti bioattivi specifici:</p><div class="highlight"><ul>
 <li>Il beta-glucano contenuto nel maitake può supportare il sistema immunitario</li>
 <li>Le purine contenute nei funghi shiitake aiutano a mantenere livelli sani di colesterolo</li>
 <li>I triterpenoidi contenuti nel Ganoderma vengono studiati per una varietà di applicazioni sanitarie</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>Avvertenza scientifica</strong>: sebbene promettenti, molte indicazioni sulla salute devono ancora essere confermate da ulteriori studi clinici.</p>
-<br>
 <p>---</p>
-<br>
-<h2>Sostenibilità: responsabilità ecologica</h2>
-<br>
-<h3>Impronta ambientale dei funghi coltivati</h3>
-<br>
-<p>La sostenibilità dei funghi coltivati ​​varia a seconda del sistema di produzione:</p>
-<br>
+<div class="section-title">🍄 Sostenibilità: responsabilità ecologica</div>
+<div class="subsection-title">📌 Impronta ambientale dei funghi coltivati</div>
+<p class="article-text">La sostenibilità dei funghi coltivati ​​varia a seconda del sistema di produzione:</p>
 <p><strong>Aspetti positivi</strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>I funghi richiedono solo 1/10 dell'umidità necessaria per chilogrammo di pomodori</li>
 <li>Come substrati è possibile utilizzare materiali di scarto come fondi di caffè e segatura</li>
 <li>Il sistema agricolo verticale ha un alto tasso di utilizzo del suolo</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>sfida</strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>La pastorizzazione richiede molta energia</li>
 <li>Il climatizzatore consuma elettricità</li>
 <li>Rifiuti di imballaggio in plastica</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>Caso di innovazione</strong>: una startup di New York City coltiva funghi nel seminterrato di edifici adibiti a uffici e utilizza i fondi di caffè dei bar locali per realizzare un'agricoltura urbana a circuito chiuso.</p>
-<br>
-<h3>Pratica etica della raccolta selvaggia</h3>
-<br>
-<p>La raccolta selvaggia responsabile segue i seguenti principi:</p>
-<br>
-<p>1. <strong>Raccolta moderata</strong>: non più del 50% degli individui visibili nella stessa località</p>
-<p>2. <strong>Proteggi il micelio</strong>: taglia o torci delicatamente senza distruggere il micelio sotterraneo</p>
-<p>3. <strong>Rispetto dell'habitat</strong>: non rigirare la lettiera per ridurre l'interferenza ecologica</p>
-<p>4. <strong>Protezione delle specie</strong>: non raccogliere specie rare o in via di estinzione</p>
-<p>5. <strong>Ritiro legale</strong>: ottenere i permessi necessari e rispettare le normative locali</p>
-<br>
+<div class="subsection-title">📌 Pratica etica della raccolta selvaggia</div>
+<p class="article-text">La raccolta selvaggia responsabile segue i seguenti principi:</p>
+<p class="article-text">1. <strong>Raccolta moderata</strong>: non più del 50% degli individui visibili nella stessa località</p>
+<p class="article-text">2. <strong>Proteggi il micelio</strong>: taglia o torci delicatamente senza distruggere il micelio sotterraneo</p>
+<p class="article-text">3. <strong>Rispetto dell'habitat</strong>: non rigirare la lettiera per ridurre l'interferenza ecologica</p>
+<p class="article-text">4. <strong>Protezione delle specie</strong>: non raccogliere specie rare o in via di estinzione</p>
+<p class="article-text">5. <strong>Ritiro legale</strong>: ottenere i permessi necessari e rispettare le normative locali</p>
 <p><strong>Suggerimento dell'esperto</strong>: unisciti a un'organizzazione come la North American Mycological Society per apprendere le migliori pratiche di raccolta e partecipare a progetti di scienza dei cittadini.</p>
-<br>
 <p>---</p>
-<br>
-<h2>Considerazioni economiche: valore vs. costo</h2>
-<br>
-<h3>Analisi comparativa dei prezzi</h3>
-<br>
-<p>Il prezzo dei funghi è influenzato da molti fattori:</p>
-<br>
-<p>| Tipi di funghi | Prezzo medio ($/libbra) | Fluttuazioni dei prezzi |</p>
+<div class="section-title">🍄 Considerazioni economiche: valore vs. costo</div>
+<div class="subsection-title">📌 Analisi comparativa dei prezzi</div>
+<p class="article-text">Il prezzo dei funghi è influenzato da molti fattori:</p>
+<p class="article-text">| Tipi di funghi | Prezzo medio ($/libbra) | Fluttuazioni dei prezzi |</p>
 <p>|---------|----------------|-------------|</p>
-<p>| Funghi bianchi coltivati ​​| 3-5 | Stabile, più economico da acquistare in blocco |</p>
-<p>| Coltivazione funghi shiitake | 5-8 | Leggermente influenzato dalla stagione |</p>
-<p>| Spugnole selvatiche | 20-50| Stagione, resa, tempo |</p>
-<p>| Matsutake selvaggio | 100-400 | Origine, qualità, domanda internazionale |</p>
-<br>
+<p class="article-text">| Funghi bianchi coltivati ​​| 3-5 | Stabile, più economico da acquistare in blocco |</p>
+<p class="article-text">| Coltivazione funghi shiitake | 5-8 | Leggermente influenzato dalla stagione |</p>
+<p class="article-text">| Spugnole selvatiche | 20-50| Stagione, resa, tempo |</p>
+<p class="article-text">| Matsutake selvaggio | 100-400 | Origine, qualità, domanda internazionale |</p>
 <p><strong>Strategia per risparmiare denaro</strong>: acquista funghi selvatici in eccesso durante l'alta stagione e asciugali o congelali per conservarli.</p>
-<br>
-<h3>Possibilità di far crescere il tuo</h3>
-<br>
-<p>La coltivazione domestica dei funghi sta diventando sempre più popolare:</p>
-<br>
-<ul>
+<div class="subsection-title">📌 Possibilità di far crescere il tuo</div>
+<p class="article-text">La coltivazione domestica dei funghi sta diventando sempre più popolare:</p><div class="highlight"><ul>
 <li>Kit per la coltivazione dei funghi: il modo più semplice per iniziare, raccogli in 2-3 settimane</li>
 <li>Inoculazione dei tronchi: i tronchi di legno duro vengono forati e inoculati, raccolti in 6-18 mesi</li>
 <li>Box per coltivazione indoor: un piccolo sistema per controllare l'ambiente</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>Caso pratico</strong>: Un residente di Chicago utilizza una grow box nell'armadio del suo appartamento per produrre 5 libbre di funghi cardoncelli freschi ogni mese per soddisfare le esigenze della sua famiglia.</p>
-<br>
 <p>---</p>
-<br>
-<h2>App di cucina: da casa all'alta gamma</h2>
-<br>
-<h3>Una scelta intelligente per la cucina di tutti i giorni</h3>
-<br>
-<p>Per i pasti di tutti i giorni, i funghi coltivati ​​offrono consistenza ed economia:</p>
-<br>
-<ul>
+<div class="section-title">🍄 App di cucina: da casa all'alta gamma</div>
+<div class="subsection-title">📌 Una scelta intelligente per la cucina di tutti i giorni</div>
+<p class="article-text">Per i pasti di tutti i giorni, i funghi coltivati ​​offrono consistenza ed economia:</p><div class="highlight"><ul>
 <li>Verdure saltate in padella: funghi bianchi, funghi cardoncelli</li>
 <li>Zuppa: funghi Enoki, funghi shiitake</li>
-</ul>
+</ul></div>
 <p>-Barbecue: grande Portobello</p>
-<ul>
+<div class="highlight"><ul>
 <li>Ripieno: togliere la calotta del gambo</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>Suggerimento rapido</strong>: affettare i funghi coltivati ​​ed esporli al sole per alcune ore aumenterà naturalmente i livelli di vitamina D.</p>
-<br>
-<h3>Sapori selvaggi per occasioni speciali</h3>
-<br>
-<p>Quando cerchi un'esperienza culinaria unica, non c'è niente che possa sostituire i funghi selvatici:</p>
-<br>
-<ul>
+<div class="subsection-title">📌 Sapori selvaggi per occasioni speciali</div>
+<p class="article-text">Quando cerchi un'esperienza culinaria unica, non c'è niente che possa sostituire i funghi selvatici:</p><div class="highlight"><ul>
 <li>Spugnole con verdure primaverili e carne tenera</li>
 <li>Salsa alla crema di finferli con pollame o pesce</li>
-</ul>
+</ul></div>
 <p>-Risotto ai porcini</p>
-<ul>
+<div class="highlight"><ul>
 <li>Zuppa chiara Matsutake o grigliata a carbone</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>Suggerimento da professionista</strong>: i funghi selvatici essiccati concentrano il sapore e possono essere macinati in polvere come agente umami naturale.</p>
-<br>
-<h3>Strategia di utilizzo misto</h3>
-<br>
-<p>Combinando i vantaggi di entrambi i tipi di funghi:</p>
-<br>
-<p>1. <strong>Metodo Base + Speciale</strong>: l'80% dei funghi coltivati ​​fornisce volume, il 20% dei funghi selvatici esalta il sapore</p>
-<p>2. <strong>Metodo a strati</strong>: funghi coltivati ​​come base, funghi selvatici come decorazione sopra</p>
-<p>3. <strong>Metodo con la salsa</strong>: usa costosi funghi selvatici per preparare una salsa ricca con ingredienti semplici</p>
-<br>
+<div class="subsection-title">📌 Strategia di utilizzo misto</div>
+<p class="article-text">Combinando i vantaggi di entrambi i tipi di funghi:</p>
+<p class="article-text">1. <strong>Metodo Base + Speciale</strong>: l'80% dei funghi coltivati ​​fornisce volume, il 20% dei funghi selvatici esalta il sapore</p>
+<p class="article-text">2. <strong>Metodo a strati</strong>: funghi coltivati ​​come base, funghi selvatici come decorazione sopra</p>
+<p class="article-text">3. <strong>Metodo con la salsa</strong>: usa costosi funghi selvatici per preparare una salsa ricca con ingredienti semplici</p>
 <p>---</p>
-<br>
-<h2>Tendenze future e innovazione</h2>
-<br>
-<p>L’industria dei funghi sta attraversando cambiamenti rivoluzionari:</p>
-<br>
-<ul>
+<div class="section-title">🍄 Tendenze future e innovazione</div>
+<p class="article-text">L’industria dei funghi sta attraversando cambiamenti rivoluzionari:</p><div class="highlight"><ul>
 <li>**Innovazione nella tecnologia di coltivazione**: vengono commercializzate varietà più difficili da coltivare (come i tartufi)</li>
 <li>**Fattorie verticali indoor**: l'agricoltura urbana riduce l'impronta di carbonio dei trasporti</li>
 <li>**Funghi funzionali**: varietà allevate per specifici benefici per la salute</li>
 <li>**Materiale micelio**: sistema di radici di funghi utilizzato in imballaggi e materiali da costruzione rispettosi dell'ambiente</li>
 <li>**DNA barcoding**: tecnologia per l'identificazione rapida e accurata dei funghi selvatici</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>Prospettiva in avanti</strong>: Nel prossimo decennio, potremmo vedere funghi dal "sapore selvatico" completamente controllati in laboratorio, che combinano sicurezza e sapore complesso.</p>
-<br>
 <p>---</p>
-<br>
-<h2>Guida all'azione personale</h2>
-<br>
-<h3>Da oggi</h3>
-<br>
-<p>Scegli un percorso in base alle tue esigenze e al tuo livello di esperienza:</p>
-<br>
+<div class="section-title">🍄 Guida all'azione personale</div>
+<div class="subsection-title">📌 Da oggi</div>
+<p class="article-text">Scegli un percorso in base alle tue esigenze e al tuo livello di esperienza:</p>
 <p><strong>Se sei nuovo o sei attento alla sicurezza</strong>:</p>
-<p>1. Inizia acquistando funghi coltivati ​​al supermercato</p>
+<p class="article-text">1. Inizia acquistando funghi coltivati ​​al supermercato</p>
 <p>2. Impara come cucinare 3-5 funghi comuni</p>
-<p>3. Partecipa a un corso o un laboratorio di cucina locale</p>
-<p>4. Considera l'esperienza del kit di coltivazione domestica dei funghi</p>
-<br>
+<p class="article-text">3. Partecipa a un corso o un laboratorio di cucina locale</p>
+<p class="article-text">4. Considera l'esperienza del kit di coltivazione domestica dei funghi</p>
 <p><strong>Se hai esperienza e vuoi esplorare i funghi selvatici</strong>:</p>
-<p>1. Unisciti ad una società micologica locale o ad un club di funghi</p>
+<p class="article-text">1. Unisciti ad una società micologica locale o ad un club di funghi</p>
 <p>2. Investi in 2-3 guide autorevoli sul campo</p>
-<p>3. Partecipare alle attività di raccolta guidate da esperti certificati</p>
-<p>4. Inizia con i funghi che sono più facili da identificare e che non hanno somiglianze pericolose</p>
-<p>5. Segui sempre il principio “in caso di dubbio, butta via”.</p>
-<br>
-<h3>Roadmap per il miglioramento continuo</h3>
-<br>
-<p>1. <strong>Fase 1 (0-6 mesi)</strong>: padroneggia la cucina di 5 tipi di funghi coltivati ​​e impara a identificare con precisione 3 funghi selvatici comuni</p>
-<p>2. <strong>Seconda fase (6-12 mesi)</strong>: provare la coltivazione domestica, partecipare ad attività di raccolta ed espandere a 10 tipi di funghi selvatici</p>
-<p>3. <strong>La terza fase (1-2 anni)</strong>: comprendere a fondo l'ecologia dei funghi, provare tecniche di cottura più complesse ed eventualmente guidare i principianti</p>
-<p>4. <strong>Fase Esperto (2+ anni)</strong>: partecipare a progetti di citizen science, esplorare specie rare, scrivere o insegnare</p>
-<br>
+<p class="article-text">3. Partecipare alle attività di raccolta guidate da esperti certificati</p>
+<p class="article-text">4. Inizia con i funghi che sono più facili da identificare e che non hanno somiglianze pericolose</p>
+<p class="article-text">5. Segui sempre il principio “in caso di dubbio, butta via”.</p>
+<div class="subsection-title">📌 Roadmap per il miglioramento continuo</div>
+<p class="article-text">1. <strong>Fase 1 (0-6 mesi)</strong>: padroneggia la cucina di 5 tipi di funghi coltivati ​​e impara a identificare con precisione 3 funghi selvatici comuni</p>
+<p class="article-text">2. <strong>Seconda fase (6-12 mesi)</strong>: provare la coltivazione domestica, partecipare ad attività di raccolta ed espandere a 10 tipi di funghi selvatici</p>
+<p class="article-text">3. <strong>La terza fase (1-2 anni)</strong>: comprendere a fondo l'ecologia dei funghi, provare tecniche di cottura più complesse ed eventualmente guidare i principianti</p>
+<p class="article-text">4. <strong>Fase Esperto (2+ anni)</strong>: partecipare a progetti di citizen science, esplorare specie rare, scrivere o insegnare</p>
 <p>---</p>
-<br>
-<h2>Riepilogo dei punti chiave</h2>
-<br>
-<p>1. I <strong>Funghi coltivati</strong> forniscono un'opzione sicura, conveniente ed economica per l'uso quotidiano e per i principianti</p>
-<p>2. I <strong>Funghi selvatici</strong> offrono sapori complessi, varietà e connessioni naturali, ma richiedono conoscenza, abilità e cautela</p>
-<p>3. <strong>La sicurezza prima di tutto</strong>: l'identificazione dei funghi selvatici deve essere accurata al 100%. In caso di dubbio, non mangiarlo mai.</p>
-<p>4. <strong> Pratica sostenibile </strong>: sia raccolta o acquistata, considera l'impatto ambientale</p>
-<p>5. <strong> La combinazione dei due </strong> crea l'esperienza di funghi più ricca: coltivare i funghi nell'uso quotidiano e godersi tesori selvatici in occasioni speciali</p>
-<br>
-<p>Il mondo dei funghi è vasto e affascinante. Sia che tu scelga la comodità della coltivazione o l'avventura della natura selvaggia, del rispetto della natura, dell'apprendimento continuo e del divertimento sicuro dovrebbe essere il motto di ogni amante dei funghi.Inizia oggi il tuo viaggio di funghi: un mondo pieno di scoperta e prelibatezza ti aspetta.</p>
-<br>
+<div class="section-title">🍄 Riepilogo dei punti chiave</div>
+<p class="article-text">1. I <strong>Funghi coltivati</strong> forniscono un'opzione sicura, conveniente ed economica per l'uso quotidiano e per i principianti</p>
+<p class="article-text">2. I <strong>Funghi selvatici</strong> offrono sapori complessi, varietà e connessioni naturali, ma richiedono conoscenza, abilità e cautela</p>
+<p class="article-text">3. <strong>La sicurezza prima di tutto</strong>: l'identificazione dei funghi selvatici deve essere accurata al 100%. In caso di dubbio, non mangiarlo mai.</p>
+<p class="article-text">4. <strong> Pratica sostenibile </strong>: sia raccolta o acquistata, considera l'impatto ambientale</p>
+<p class="article-text">5. <strong> La combinazione dei due </strong> crea l'esperienza di funghi più ricca: coltivare i funghi nell'uso quotidiano e godersi tesori selvatici in occasioni speciali</p>
+<p class="article-text">Il mondo dei funghi è vasto e affascinante. Sia che tu scelga la comodità della coltivazione o l'avventura della natura selvaggia, del rispetto della natura, dell'apprendimento continuo e del divertimento sicuro dovrebbe essere il motto di ogni amante dei funghi.Inizia oggi il tuo viaggio di funghi: un mondo pieno di scoperta e prelibatezza ti aspetta.</p>
 <p>---</p>
-<br>
-<h2>⚠️ Importante disclaimer</h2>
-<br>
+<div class="section-title">❗ ⚠️ Importante disclaimer</div>
 <p><strong> Questo articolo è solo per riferimento educativo e di informazione.</strong></p>
-<br>
-<h3>Avviso di rischio di consumo di funghi</h3>
-<br>
-<p>1. <strong> Life Safety First </strong>: ci sono rischi intrinseci nell'identificazione di funghi selvatici.Molti funghi tossici sembrano molto simili ai funghi commestibili e ingrandirli accidentalmente possono portare a una grave malattia o persino alla morte.</p>
-<br>
-<p>2. <strong> Identificazione professionale richiesta </strong>: prima di mangiare eventuali funghi selvatici, la conferma al 100% deve essere eseguita da un micologo professionista o da un esperto di identificazione dei funghi certificati.Foto, descrizioni di testo e esperienza personale non sono sufficienti per garantire la sicurezza.</p>
-<br>
-<p>3. <strong> Differenze individuali </strong>: anche i funghi commestibili riconosciuti possono causare reazioni avverse a causa di fattori come la costituzione personale, le reazioni allergiche, il metodo di consumo o l'ambiente di crescita dei funghi.Prova in piccole quantità quando si mangia una nuova varietà per la prima volta.</p>
-<br>
-<p>4. <strong> Differenze geografiche </strong>: ci sono enormi differenze nelle specie di funghi e tossicità in diverse regioni.Le informazioni menzionate in questo articolo potrebbero non essere applicate alla tua regione.Si prega di consultare esperti di micologia locali e organizzazioni autorevoli.</p>
-<br>
-<p>5. <strong> Responsabilità professionale </strong>: l'autore e l'editore non saranno responsabili per eventuali danni diretti o indiretti, malattie o perdite derivanti dall'uso delle informazioni in questo articolo.</p>
-<br>
-<p>Consigli sulla sicurezza ###</p>
-<br>
-<ul>
+<div class="subsection-title">📌 Avviso di rischio di consumo di funghi</div>
+<p class="article-text">1. <strong> Life Safety First </strong>: ci sono rischi intrinseci nell'identificazione di funghi selvatici.Molti funghi tossici sembrano molto simili ai funghi commestibili e ingrandirli accidentalmente possono portare a una grave malattia o persino alla morte.</p>
+<p class="article-text">2. <strong> Identificazione professionale richiesta </strong>: prima di mangiare eventuali funghi selvatici, la conferma al 100% deve essere eseguita da un micologo professionista o da un esperto di identificazione dei funghi certificati.Foto, descrizioni di testo e esperienza personale non sono sufficienti per garantire la sicurezza.</p>
+<p class="article-text">3. <strong> Differenze individuali </strong>: anche i funghi commestibili riconosciuti possono causare reazioni avverse a causa di fattori come la costituzione personale, le reazioni allergiche, il metodo di consumo o l'ambiente di crescita dei funghi.Prova in piccole quantità quando si mangia una nuova varietà per la prima volta.</p>
+<p class="article-text">4. <strong> Differenze geografiche </strong>: ci sono enormi differenze nelle specie di funghi e tossicità in diverse regioni.Le informazioni menzionate in questo articolo potrebbero non essere applicate alla tua regione.Si prega di consultare esperti di micologia locali e organizzazioni autorevoli.</p>
+<p class="article-text">5. <strong> Responsabilità professionale </strong>: l'autore e l'editore non saranno responsabili per eventuali danni diretti o indiretti, malattie o perdite derivanti dall'uso delle informazioni in questo articolo.</p>
+<p>Consigli sulla sicurezza ###</p><div class="highlight"><ul>
 <li>✅ Partecipa ai corsi di formazione di identificazione dei funghi formali</li>
 <li>✅ Unisciti all'Associazione micologia locale o al club di funghi</li>
 <li>✅ Acquista funghi coltivati ​​da fonti affidabili</li>
 <li>✅ Salvare campioni di funghi per le esigenze mediche di emergenza</li>
 <li>✅ Non mangiarlo se hai dubbi</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Ricorda: quando hai domande, l'unica opzione sicura è non mangiarla.La tua sicurezza della vita è molto più importante di qualsiasi pasto di funghi.</strong></p>
-<br>
 <p>---</p>
         </div>
-    </div>
+
+</div>
 </body>
 </html>

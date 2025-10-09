@@ -1,622 +1,465 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Envahisseurs invisibles - Mushroom Ecology</title>
-    <meta name="description" content="Envahisseurs invisibles">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>09 Envahisseurs invisibles - MushroomAiSnap</title>
+<link href="../../mobile-styles.css" rel="stylesheet"/>
+<link href="../../mobile-enhancement.css" rel="stylesheet"/>
+<link href="../../ecology-theme.css" rel="stylesheet"/>
+<style>
+        .hero-image img {
+            max-height: 200px;
+            width: 100%;
+            object-fit: cover;
         }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        .article-card img {
+            max-height: 120px;
+            width: 100%;
+            object-fit: cover;
+        }
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                        url('../../images/mushroom-ecology_09-invasive-fungal-species.webp') center/cover;
+            position: relative;
+            margin-top: 0;
+        }
+        .article-meta {
+            margin-top: 15px !important;
+        }
+    
+        /* Mushroom Ecology Theme */
+        :root {
+            --primary-color: #228B22;
+            --primary-dark: #006400;
+            --primary-light: #F0FFF0;
+            --accent-color: #32CD32;
+        }
+        
+        /* Theme Color Overrides */
+        .content {
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+            border: 2px solid var(--primary-color);
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, var(--primary-light), var(--primary-light));
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .quote-text {
+            color: var(--primary-dark);
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+        }
+        
+        .subsection-title {
+            color: var(--primary-dark);
+            font-size: 1.4em;
+            font-weight: 600;
+            margin: 25px 0 15px 0;
+            padding-left: 10px;
+            border-left: 3px solid var(--accent-color);
+        }
+        
+        .tip-box {
+            border-left: 4px solid var(--primary-color);
+            background: var(--primary-light);
+        }
+        
+        .tip-title {
+            color: var(--primary-color);
+        }
+        
+        .highlight {
+            border-left: 4px solid var(--accent-color);
+            background: linear-gradient(135deg, #f1f8e9, var(--primary-light));
+        }
+        
+        .warning {
+            border-left: 4px solid #f44336;
+        }
+        
+        .equipment-item {
+            border: 1px solid var(--accent-color);
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+        }
+        
+        .equipment-item h4 {
+            color: var(--primary-color);
+        }
+        
+        .category {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .main-text {
+            font-size: 1.1em;
             line-height: 1.8;
             color: #333;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-
-        .article-title {
-            color: #4ECDC4;
-            font-size: 2.5em;
-            margin-bottom: 30px;
-            margin-top: 0;
-            line-height: 1.3;
-            padding-top: 0;
-        }
-
-        .featured-image {
-            width: 100%;
-            height: auto;
-            aspect-ratio: 4 / 3;
-            object-fit: cover;
-            display: block;
-        }
-
-        .content {
-            padding: 50px;
-        }
-
-        .content h2 {
-            color: #4ECDC4;
-            font-size: 2em;
-            margin-top: 40px;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid #4ECDC4;
-        }
-
-        .content h3 {
-            color: #555;
-            font-size: 1.6em;
-            margin-top: 30px;
-            margin-bottom: 15px;
-        }
-
-        .content h4 {
-            color: #666;
-            font-size: 1.3em;
-            margin-top: 25px;
-            margin-bottom: 12px;
-        }
-
-        .content p {
-            margin-bottom: 20px;
-            font-size: 1.1em;
-            color: #444;
-        }
-
-        .content ul {
             margin: 20px 0;
-            padding-left: 30px;
-        }
-
-        .content li {
-            margin-bottom: 12px;
-            font-size: 1.05em;
-            color: #555;
-        }
-
-        .content strong {
-            color: #222;
-            font-weight: 600;
-        }
-
-        .back-link {
-            display: inline-block;
-            padding: 12px 25px;
-            background: linear-gradient(135deg, #4ECDC4, #8B4513);
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            margin-bottom: 20px;
-            transition: transform 0.3s ease;
-            font-weight: 600;
-        }
-
-        .back-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .navigation {
-            padding: 30px 50px;
-            background: #f8f9fa;
-            border-top: 1px solid #e9ecef;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-btn {
-            padding: 10px 20px;
-            background: #4ECDC4;
-            color: white;
-            text-decoration: none;
+            padding: 15px;
+            background: linear-gradient(135deg, #ffffff, #f9f9f9);
             border-radius: 8px;
-            transition: all 0.3s ease;
+            border-left: 3px solid var(--accent-color);
         }
-
-        .nav-btn:hover {
-            transform: translateX(5px);
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+        
+        .emoji {
+            font-size: 1.5em;
+            margin-left: 10px;
         }
-
-        .nav-btn.prev:hover {
-            transform: translateX(-5px);
+        
+        .read-time, .difficulty {
+            display: inline-block;
+            padding: 5px 15px;
+            margin: 5px 5px 5px 0;
+            border-radius: 20px;
+            font-size: 0.9em;
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            color: #1976d2;
+            font-weight: 500;
         }
-
-        @media (max-width: 768px) {
-            .content {
-                padding: 30px 25px;
-            }
-
-            .article-title {
-                font-size: 1.8em;
-            }
-
-            .featured-image {
-                height: 250px;
-            }
-
-            .navigation {
-                flex-direction: column;
-                gap: 15px;
-            }
+        
+        .difficulty {
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            color: #e65100;
+        }
+        
+        .article-text {
+            line-height: 1.8;
+            color: #444;
+            margin: 15px 0;
+            font-size: 1.05em;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <img src="../../images/mushroom-ecology_09-invasive-fungal-species.webp" alt="Envahisseurs invisibles" class="featured-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22900%22 height=%22400%22%3E%3Crect fill=%22%23D2691E%22 width=%22900%22 height=%22400%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22white%22 font-size=%2260%22%3E🍄%3C/text%3E%3C/svg%3E'">
+<div class="hero-image"></div>
+<div class="content">
+    <h1 class="title">09 Envahisseurs invisibles</h1>
+    <div class="quote-box">
+        <div class="quote-text">Professional Mycology Guide</div>
+    </div>
+    
+<div class="article-meta">
+<span class="category">🌱 Mushroom Ecology</span>
+<span class="read-time">📖 20 minute read</span>
+<span class="difficulty">🟡 Intermediate</span>
+</div>
 
-        <div class="content">
-            <h1 class="article-title">Envahisseurs invisibles</h1>
-            <br>
-<h2>Introduction : La menace invisible</h2>
-<br>
-<p>Lorsque vous marchez en forêt, vous marchez peut-être sur les graines d’écosystèmes en mutation.Ces minuscules spores fongiques voyagent à travers les continents au gré de la mondialisation, remodelant nos paysages naturels familiers.En tant qu’expert de longue date en écologie fongique, j’ai été témoin de la manière dont ces micro-organismes modifient discrètement la structure et la fonction des forêts.</p>
-<br>
-<p>Au cours des deux dernières décennies, j’ai retracé le chemin des invasions fongiques des Appalaches jusqu’au nord-ouest du Pacifique.Ces expériences m’ont fait profondément comprendre que l’invasion fongique n’est pas seulement un problème scientifique, mais aussi une crise écologique à laquelle tout le monde devrait prêter attention.Cet article vous plongera dans la vérité sur ce champ de bataille invisible et vous proposera des stratégies pratiques pour y faire face.</p>
-<br>
-<h2>Que sont les espèces envahissantes : redéfinir les menaces écologiques</h2>
-<br>
-<h3>Définition scientifique et caractéristiques clés</h3>
-<br>
-<p>Les espèces envahissantes doivent remplir trois conditions fondamentales : premièrement, elles sont introduites dans des zones non indigènes ; deuxièmement, ils sont capables d’établir une population reproductible et de continuer à se propager ; et enfin, ils causent des dommages importants aux écosystèmes locaux, aux économies ou à la santé humaine.Ceci est fondamentalement différent des « espèces exotiques » : de nombreuses espèces exotiques peuvent coexister harmonieusement avec l'environnement local, tandis que les espèces envahissantes détruiront l'équilibre écologique.</p>
-<br>
+
+            <div class="section-title">🍄 Introduction : La menace invisible</div>
+<div class="main-text">Lorsque vous marchez en forêt, vous marchez peut-être sur les graines d’écosystèmes en mutation.Ces minuscules spores fongiques voyagent à travers les continents au gré de la mondialisation, remodelant nos paysages naturels familiers.En tant qu’expert de longue date en écologie fongique, j’ai été témoin de la manière dont ces micro-organismes modifient discrètement la structure et la fonction des forêts.<span class="emoji">🍄</span></div>
+<p class="article-text">Au cours des deux dernières décennies, j’ai retracé le chemin des invasions fongiques des Appalaches jusqu’au nord-ouest du Pacifique.Ces expériences m’ont fait profondément comprendre que l’invasion fongique n’est pas seulement un problème scientifique, mais aussi une crise écologique à laquelle tout le monde devrait prêter attention.Cet article vous plongera dans la vérité sur ce champ de bataille invisible et vous proposera des stratégies pratiques pour y faire face.</p>
+<div class="section-title">🍄 Que sont les espèces envahissantes : redéfinir les menaces écologiques</div>
+<div class="subsection-title">📌 Définition scientifique et caractéristiques clés</div>
+<p class="article-text">Les espèces envahissantes doivent remplir trois conditions fondamentales : premièrement, elles sont introduites dans des zones non indigènes ; deuxièmement, ils sont capables d’établir une population reproductible et de continuer à se propager ; et enfin, ils causent des dommages importants aux écosystèmes locaux, aux économies ou à la santé humaine.Ceci est fondamentalement différent des « espèces exotiques » : de nombreuses espèces exotiques peuvent coexister harmonieusement avec l'environnement local, tandis que les espèces envahissantes détruiront l'équilibre écologique.</p>
 <p><strong>Cas réel</strong> :</p>
-<p>En 2015, alors que j'effectuais un travail de terrain dans l'État de Washington, j'ai découvert qu'un champignon dévastateur du bois originaire d'Europe se propageait rapidement dans les forêts locales.Le champignon est relativement inoffensif dans son aire de répartition d'origine, mais il est devenu étonnamment agressif dans de nouveaux environnements, tuant des centaines d'arbres matures en trois ans.</p>
-<br>
-<h3>Avantages uniques des champignons en matière d'invasion</h3>
-<br>
-<p>Les champignons possèdent des propriétés biologiques particulières qui en font des envahisseurs efficaces :</p>
-<br>
-<ul>
+<p class="article-text">En 2015, alors que j'effectuais un travail de terrain dans l'État de Washington, j'ai découvert qu'un champignon dévastateur du bois originaire d'Europe se propageait rapidement dans les forêts locales.Le champignon est relativement inoffensif dans son aire de répartition d'origine, mais il est devenu étonnamment agressif dans de nouveaux environnements, tuant des centaines d'arbres matures en trois ans.</p>
+<div class="subsection-title">📌 Avantages uniques des champignons en matière d'invasion</div>
+<p class="article-text">Les champignons possèdent des propriétés biologiques particulières qui en font des envahisseurs efficaces :</p><div class="highlight"><ul>
 <li>**Unité de propagation microscopique** : Une seule spore ne mesure que 5 à 20 microns de diamètre et se propage facilement par le flux d'air.</li>
 <li>**Tough Vitality** : De nombreux champignons peuvent former des spores durables et survivre pendant des années dans des environnements difficiles</li>
 <li>**Reproduction exponentielle** : une fructification mature peut libérer des millions de spores par jour</li>
 <li>**Flexibilité environnementale** : s'adapte à une large gamme de conditions de température, de pH et d'humidité</li>
 <li>** Plasticité génétique ** : La capacité d'évoluer rapidement pour s'adapter à de nouveaux environnements</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>Conseils d'experts</strong> : Apprenez à reconnaître les premiers signes d'invasion : des schémas inhabituels de déclin des arbres, la présence de colonies bactériennes inhabituelles, ce sont tous des signes dont il faut se méfier.</p>
-<br>
-<h2>Canal de communication : le jeu écologique à l'ère de la mondialisation</h2>
-<br>
-<h3>La communication artificielle : le principal moteur</h3>
-<br>
+<div class="section-title">🍄 Canal de communication : le jeu écologique à l'ère de la mondialisation</div>
+<div class="subsection-title">📌 La communication artificielle : le principal moteur</div>
 <p><strong>Commerce de bois et de produits en bois</strong></p>
-<p>C’est la principale voie d’invasion fongique.Une étude à laquelle j'ai participé a révélé qu'environ 23 % des marchandises faisant l'objet du commerce international du bois contenaient des spores fongiques vivantes.Les risques spécifiques comprennent :</p>
-<br>
-<ul>
+<p class="article-text">C’est la principale voie d’invasion fongique.Une étude à laquelle j'ai participé a révélé qu'environ 23 % des marchandises faisant l'objet du commerce international du bois contenaient des spores fongiques vivantes.Les risques spécifiques comprennent :</p><div class="highlight"><ul>
 <li>Matériaux d'emballage en bois non traité</li>
 <li>Meubles et matériaux de construction importés</li>
 <li>Copeaux de bois et biomasse combustible</li>
 <li>Bois d'ornement et artisanat</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>Recommandations d'outils professionnels</strong> :</p>
-<p>Des microscopes portables (100-400x) peuvent être utilisés pour la détection préliminaire des structures de spores sur les surfaces en bois.Pour les travailleurs de terrain sérieux, je recommande d'emporter un petit kit de désinfection contenant un spray d'alcool à 70 % et des lingettes désinfectantes jetables.</p>
-<br>
+<p class="article-text">Des microscopes portables (100-400x) peuvent être utilisés pour la détection préliminaire des structures de spores sur les surfaces en bois.Pour les travailleurs de terrain sérieux, je recommande d'emporter un petit kit de désinfection contenant un spray d'alcool à 70 % et des lingettes désinfectantes jetables.</p>
 <p><strong>Transmission par les plantes et le sol</strong></p>
-<p>Le commerce de l’horticulture est une autre avenue importante :</p>
-<br>
-<ul>
+<p class="article-text">Le commerce de l’horticulture est une autre avenue importante :</p><div class="highlight"><ul>
 <li>Les plants et graines importés contiennent souvent des micro-organismes du sol</li>
 <li>Les plantes en pot et le sol auquel elles sont attachées</li>
 <li>Bulbes et racines de plantes ornementales</li>
 <li>Souches commerciales et milieux de culture</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>Expérience personnelle</strong> :</p>
-<p>Une fois, j'ai aidé le service de quarantaine à intercepter un lot d'érables ornementaux d'Asie, et trois champignons pathogènes introuvables localement ont été détectés dans le sol racinaire.Cette expérience m’a fait réaliser à quel point une quarantaine stricte à l’importation est importante.</p>
-<br>
+<p class="article-text">Une fois, j'ai aidé le service de quarantaine à intercepter un lot d'érables ornementaux d'Asie, et trois champignons pathogènes introuvables localement ont été détectés dans le sol racinaire.Cette expérience m’a fait réaliser à quel point une quarantaine stricte à l’importation est importante.</p>
 <p><strong>Voyages et loisirs</strong></p>
-<p>Chacun de nous peut involontairement devenir un agent de communication :</p>
-<br>
-<ul>
+<p class="article-text">Chacun de nous peut involontairement devenir un agent de communication :</p><div class="highlight"><ul>
 <li>Terre et spores transportées par les semelles de chaussures et les équipements de plein air</li>
-</ul>
+</ul></div>
 <p>-Matériel de camping et châssis de véhicule</p>
-<ul>
+<div class="highlight"><ul>
 <li>Poils d'animaux et produits d'extérieur</li>
 <li>Bâtons de randonnée et pneus de vélo</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>Conseil rapide</strong> :</p>
-<p>Établir des protocoles personnels de biosécurité : Nettoyer soigneusement les semelles et l'équipement lorsque vous vous déplacez entre les zones forestières.Utilisez une brosse dure pour enlever la saleté, puis traitez avec un désinfectant.Cette simple habitude peut réduire considérablement le risque de transmission.</p>
-<br>
-<h3>Le rôle auxiliaire de la communication naturelle</h3>
-<br>
-<p>Même si le vent, l’eau et les animaux peuvent propager des champignons, ces voies naturelles ne deviennent généralement importantes qu’après leur introduction par l’homme.Les recherches montrent que plus de 95 % des invasions fongiques sont initialement provoquées par les activités humaines.</p>
-<br>
-<h2>Cas d'invasion célèbres : changeurs d'écosystème</h2>
-<br>
-<h3>Mildiou du châtaignier : les leçons d'un siècle</h3>
-<br>
+<p class="article-text">Établir des protocoles personnels de biosécurité : Nettoyer soigneusement les semelles et l'équipement lorsque vous vous déplacez entre les zones forestières.Utilisez une brosse dure pour enlever la saleté, puis traitez avec un désinfectant.Cette simple habitude peut réduire considérablement le risque de transmission.</p>
+<div class="subsection-title">📌 Le rôle auxiliaire de la communication naturelle</div>
+<p class="article-text">Même si le vent, l’eau et les animaux peuvent propager des champignons, ces voies naturelles ne deviennent généralement importantes qu’après leur introduction par l’homme.Les recherches montrent que plus de 95 % des invasions fongiques sont initialement provoquées par les activités humaines.</p>
+<div class="section-title">🍄 Cas d'invasion célèbres : changeurs d'écosystème</div>
+<div class="subsection-title">📌 Mildiou du châtaignier : les leçons d'un siècle</div>
 <p><strong>Contexte et influence</strong></p>
-<p>En 1904, la brûlure du châtaignier est arrivée en Amérique du Nord avec des châtaigniers asiatiques importés.En seulement 50 ans, le champignon a presque anéanti le châtaignier d’Amérique qui occupait autrefois 25 pour cent des forêts des Appalaches.En tant qu’espèce pilier de la forêt, sa disparition a déclenché une réaction en chaîne :</p>
-<br>
-<ul>
+<p class="article-text">En 1904, la brûlure du châtaignier est arrivée en Amérique du Nord avec des châtaigniers asiatiques importés.En seulement 50 ans, le champignon a presque anéanti le châtaignier d’Amérique qui occupait autrefois 25 pour cent des forêts des Appalaches.En tant qu’espèce pilier de la forêt, sa disparition a déclenché une réaction en chaîne :</p><div class="highlight"><ul>
 <li>Des dizaines d'insectes dépendants du châtaignier disparaissent</li>
 <li>Les animaux sauvages comme les ours noirs perdent d'importantes sources de nourriture</li>
 <li>Modifications complètes de la structure forestière et du cycle des éléments nutritifs</li>
 <li>L'industrie du bois perd plus de 500 millions de dollars par an (aux valeurs actuelles)</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>Observation sur place</strong> :</p>
-<p>L'automne dernier, alors que j'inspectais les Blue Ridge Mountains, je pouvais encore voir les vieilles souches et les nouveaux plants de racines de châtaigniers d'Amérique.Ces nouveaux plants résistants sont souvent infectés et tués par des champignons avant leur floraison, créant ainsi un cycle tragique.</p>
-<br>
+<p class="article-text">L'automne dernier, alors que j'inspectais les Blue Ridge Mountains, je pouvais encore voir les vieilles souches et les nouveaux plants de racines de châtaigniers d'Amérique.Ces nouveaux plants résistants sont souvent infectés et tués par des champignons avant leur floraison, créant ainsi un cycle tragique.</p>
 <p><strong>Progrès et défis de la gestion</strong></p>
-<p>La méthode de lutte la plus prometteuse actuellement est la lutte biologique utilisant des souches moins virulentes.Ces souches sont porteuses de virus qui réduisent la virulence des bactéries pathogènes.En pratique nous avons constaté :</p>
-<br>
-<ul>
+<p class="article-text">La méthode de lutte la plus prometteuse actuellement est la lutte biologique utilisant des souches moins virulentes.Ces souches sont porteuses de virus qui réduisent la virulence des bactéries pathogènes.En pratique nous avons constaté :</p><div class="highlight"><ul>
 <li>Le taux de réussite de la gestion régionale est d'environ 40 à 60 %</li>
 <li>Le programme de sélection de résistance a produit des hybrides avec 15 % de gènes de châtaignier asiatique</li>
 <li>La lutte chimique est efficace sur les petits arbres paysagers mais pas à l'échelle forestière</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>Guide pratique</strong> :</p>
-<p>Si vous détectez une suspicion de brûlure du châtaignier dans la nature, enregistrez la position GPS et prenez des photos claires des symptômes de l'écorce (fructifications orange et fissures de l'écorce).Signalez-le immédiatement à votre service forestier local et n'essayez pas de le gérer vous-même.</p>
-<br>
-<h3>Mort subite du chêne : un exemple d'invasion moderne</h3>
-<br>
+<p class="article-text">Si vous détectez une suspicion de brûlure du châtaignier dans la nature, enregistrez la position GPS et prenez des photos claires des symptômes de l'écorce (fructifications orange et fissures de l'écorce).Signalez-le immédiatement à votre service forestier local et n'essayez pas de le gérer vous-même.</p>
+<div class="subsection-title">📌 Mort subite du chêne : un exemple d'invasion moderne</div>
 <p><strong>Identification et diagnostic</strong></p>
-<p>Mes collègues de l’Université de Californie à Berkeley ont été les premiers à découvrir cette maladie.Grâce à des années de recherche, nous avons développé un ensemble de méthodes de diagnostic pratiques :</p>
-<br>
-<ul>
+<p class="article-text">Mes collègues de l’Université de Californie à Berkeley ont été les premiers à découvrir cette maladie.Grâce à des années de recherche, nous avons développé un ensemble de méthodes de diagnostic pratiques :</p><div class="highlight"><ul>
 <li>Symptômes foliaires : bords gorgés d'eau, pointes mortes</li>
 <li>Symptômes du tronc : suintements de sève rouge foncé à noire</li>
 <li>Tests rapides : utilisation de bandelettes de test immunochromatographiques (similaires aux tests rapides COVID)</li>
 <li>Confirmation en laboratoire : l'analyse PCR est la méthode la plus fiable</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>Dynamique de propagation</strong></p>
-<p>La propagation de cette bactérie pathogène est très caractéristique :</p>
-<br>
-<ul>
+<p class="article-text">La propagation de cette bactérie pathogène est très caractéristique :</p><div class="highlight"><ul>
 <li>Les éclaboussures de pluie sont la principale méthode de transmission à courte distance</li>
 <li>Le mouvement humain des plantes infectées est la principale cause de propagation sur de longues distances</li>
 <li>Les spores peuvent survivre dans le sol et l'eau pendant des semaines</li>
 <li>Certaines plantes communes du jardin (comme les rhododendrons) sont porteuses asymptomatiques</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>Évaluation de la stratégie de gestion</strong></p>
-<p>Sur la base de 15 années d’expérience en prévention et contrôle, nous avons résumé les stratégies efficaces suivantes :</p>
-<br>
-<ul>
+<p class="article-text">Sur la base de 15 années d’expérience en prévention et contrôle, nous avons résumé les stratégies efficaces suivantes :</p><div class="highlight"><ul>
 <li>Détection précoce et élimination rapide des arbres infectés</li>
 <li>Établir une zone de séparation d'au moins 30 mètres de large</li>
 <li>Restreindre le retrait des plants de pépinière des zones infectées</li>
 <li>L'éducation du public améliore les taux de signalement</li>
-</ul>
-<br>
-<h3>Chytridiomycose de la grenouille : une crise mondiale des amphibiens</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 Chytridiomycose de la grenouille : une crise mondiale des amphibiens</div>
 <p><strong>Mécanismes et impact</strong></p>
-<p>Ce champignon attaque la peau des amphibiens, perturbant leur équilibre électrolytique.Mes recherches sur le terrain en Amérique centrale documentent ses effets dévastateurs :</p>
-<br>
-<ul>
+<p class="article-text">Ce champignon attaque la peau des amphibiens, perturbant leur équilibre électrolytique.Mes recherches sur le terrain en Amérique centrale documentent ses effets dévastateurs :</p><div class="highlight"><ul>
 <li>Le taux de mortalité dépasse 80 % dans les 2-3 semaines suivant l'infection</li>
 <li>Plus de 500 espèces d'amphibiens sont en grave déclin</li>
 <li>90 espèces sont confirmées comme éteintes</li>
 <li>Les zones de haute altitude sont les plus touchées</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>Témoignage personnel</strong> :</p>
-<p>En 2010, je travaillais dans une zone protégée au Panama et j'ai été témoin d'une épidémie de chytridiomycose.En seulement trois mois, la forêt, autrefois peuplée de grenouilles coassantes, est devenue silencieuse.Cette expérience m'a donné une profonde compréhension de la dévastation des invasions biologiques.</p>
-<br>
+<p class="article-text">En 2010, je travaillais dans une zone protégée au Panama et j'ai été témoin d'une épidémie de chytridiomycose.En seulement trois mois, la forêt, autrefois peuplée de grenouilles coassantes, est devenue silencieuse.Cette expérience m'a donné une profonde compréhension de la dévastation des invasions biologiques.</p>
 <p><strong>Protéger la percée</strong></p>
-<p>Ces dernières années, nous avons réalisé des progrès importants :</p>
-<br>
-<ul>
+<p class="article-text">Ces dernières années, nous avons réalisé des progrès importants :</p><div class="highlight"><ul>
 <li>Découvert que certaines populations développent naturellement des résistances</li>
 <li>La gestion de la température contrôle la gravité de l'infection</li>
 <li>Le traitement probiotique est efficace dans des conditions expérimentales</li>
 <li>Les programmes d'élevage en captivité ont réussi à rétablir plusieurs populations menacées</li>
-</ul>
-<br>
-<h2>Impacts au niveau de l'écosystème : effets d'entraînement invisibles</h2>
-<br>
-<h3>Effets en cascade de la perte de biodiversité</h3>
-<br>
+</ul></div>
+<div class="section-title">🍄 Impacts au niveau de l'écosystème : effets d'entraînement invisibles</div>
+<div class="subsection-title">📌 Effets en cascade de la perte de biodiversité</div>
 <p><strong>Effets directs et indirects</strong></p>
-<p>En prenant pour exemple la brûlure du châtaignier, son impact va bien au-delà des châtaigniers eux-mêmes :</p>
-<br>
-<ul>
+<p class="article-text">En prenant pour exemple la brûlure du châtaignier, son impact va bien au-delà des châtaigniers eux-mêmes :</p><div class="highlight"><ul>
 <li>Direct : effondrement de la population de châtaigniers</li>
 <li>Impact indirect de premier niveau : 28 espèces d'insectes obligatoires ont disparu</li>
 <li>Effets indirects secondaires : moins d'oiseaux se nourrissant de ces insectes</li>
 <li>Effets indirects de troisième ordre : changements dans les modes de dispersion des graines et de pollinisation</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>Étude de cas pratique</strong> :</p>
-<p>Mon suivi à long terme dans le parc national des Great Smoky Mountains montre que 50 ans après la disparition des châtaigniers, la composition du couvert forestier a complètement changé.Les zones autrefois dominées par les châtaigniers sont désormais occupées par des chênes et des érables, transformant la communauté végétale du sous-étage.</p>
-<br>
-<h3>Cycle du carbone et dynamique nutritionnelle</h3>
-<br>
+<p class="article-text">Mon suivi à long terme dans le parc national des Great Smoky Mountains montre que 50 ans après la disparition des châtaigniers, la composition du couvert forestier a complètement changé.Les zones autrefois dominées par les châtaigniers sont désormais occupées par des chênes et des érables, transformant la communauté végétale du sous-étage.</p>
+<div class="subsection-title">🔄 Cycle du carbone et dynamique nutritionnelle</div>
 <p><strong>Impact quantifié</strong></p>
-<p>Grâce à la modélisation de l'écosystème, nous avons calculé :</p>
-<br>
-<ul>
+<p class="article-text">Grâce à la modélisation de l'écosystème, nous avons calculé :</p><div class="highlight"><ul>
 <li>Un seul châtaignier adulte peut stocker plus de 3 tonnes de carbone</li>
 <li>La brûlure du châtaignier réduit les stocks de carbone dans les forêts de l'est des États-Unis de 12 à 18 %</li>
 <li>La mort massive des arbres entraîne une augmentation des émissions de carbone à court terme</li>
 <li>La capacité du puits de carbone à long terme chute de plus de 25 %</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>Changements du cycle nutritionnel</strong></p>
-<p>L’invasion fongique modifie les processus anatomiques et la disponibilité des nutriments :</p>
-<br>
-<ul>
+<p class="article-text">L’invasion fongique modifie les processus anatomiques et la disponibilité des nutriments :</p><div class="highlight"><ul>
 <li>Modification du taux de décomposition du bois</li>
 <li>Réorganisation des communautés microbiennes du sol</li>
 <li>Modification des modèles de cycle de l'azote et du phosphore</li>
 <li>Modifications du pH et de la teneur en matière organique</li>
-</ul>
-<br>
-<h3>Augmentation des risques d'incendie</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 Augmentation des risques d'incendie</div>
 <p><strong>Analyse du mécanisme</strong></p>
-<p>Mes recherches sur l'écologie du feu dans les États occidentaux confirment :</p>
-<br>
-<ul>
+<p class="article-text">Mes recherches sur l'écologie du feu dans les États occidentaux confirment :</p><div class="highlight"><ul>
 <li>L'augmentation du nombre d'arbres morts augmente la charge de carburant de 3 à 5 fois</li>
 <li>Le séchage du bois mort réduit les températures d'inflammation</li>
 <li>L'intensité accrue des incendies entraîne davantage de morts d'arbres</li>
 <li>Créer une boucle de rétroaction positive "invasions - incendies - plus d'intrusions"</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>Implications en matière de gestion</strong> :</p>
-<p>Dans les zones forestières fortement envahies, des ajustements aux stratégies de gestion des incendies seront nécessaires, notamment une gestion plus agressive du combustible et des modifications aux protocoles de construction des lignes de contrôle.</p>
-<br>
-<h2>Impact économique : calcul des coûts cachés</h2>
-<br>
-<h3>Analyse détaillée des pertes forestières</h3>
-<br>
-<p>En prenant comme exemple la brûlure du châtaignier, ses impacts économiques comprennent :</p>
-<br>
-<ul>
+<p class="article-text">Dans les zones forestières fortement envahies, des ajustements aux stratégies de gestion des incendies seront nécessaires, notamment une gestion plus agressive du combustible et des modifications aux protocoles de construction des lignes de contrôle.</p>
+<div class="section-title">🍄 Impact économique : calcul des coûts cachés</div>
+<div class="subsection-title">📌 Analyse détaillée des pertes forestières</div>
+<p class="article-text">En prenant comme exemple la brûlure du châtaignier, ses impacts économiques comprennent :</p><div class="highlight"><ul>
 <li>Perte directe de valeur du bois : ~5 milliards de dollars (en valeur actuelle)</li>
-</ul>
-<p>-Perte de services écosystémiques : 2 à 3 milliards de dollars par an</p>
-<ul>
+</ul></div>
+<p class="article-text">-Perte de services écosystémiques : 2 à 3 milliards de dollars par an</p>
+<div class="highlight"><ul>
 <li>Coûts administratifs : dépassent au total 800 millions de dollars américains</li>
 <li>Coûts de transformation industrielle : fermetures de scieries et reconversion des travailleurs</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>Aperçus professionnels</strong> :</p>
-<p>De nombreuses analyses économiques ne calculent que les pertes directes et ignorent la valeur des services à long terme des écosystèmes.Les nouveaux modèles que j’ai contribué à développer montrent que le coût réel est souvent 3 à 5 fois plus élevé que les calculs traditionnels.</p>
-<br>
-<h3>Foresterie urbaine et valeur du paysage</h3>
-<br>
-<p>La maladie hollandaise de l’orme nous rappelle la valeur des arbres urbains :</p>
-<br>
-<ul>
+<p class="article-text">De nombreuses analyses économiques ne calculent que les pertes directes et ignorent la valeur des services à long terme des écosystèmes.Les nouveaux modèles que j’ai contribué à développer montrent que le coût réel est souvent 3 à 5 fois plus élevé que les calculs traditionnels.</p>
+<div class="subsection-title">🌲 Foresterie urbaine et valeur du paysage</div>
+<p class="article-text">La maladie hollandaise de l’orme nous rappelle la valeur des arbres urbains :</p><div class="highlight"><ul>
 <li>L'effet rafraîchissant d'un seul arbre d'ombrage mature équivaut à 5 climatiseurs</li>
 <li>Les arbres de rue peuvent augmenter la valeur d'une propriété de 15 à 20 %</li>
 <li>Augmentation des coûts de gestion des eaux pluviales en raison de la perte d'arbres</li>
 <li>La santé mentale et le bien-être des communautés sont touchés</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>Suggestions pratiques</strong> :</p>
-<p>Les services forestiers municipaux devraient établir des normes de diversité des espèces d'arbres, une seule espèce d'arbre ne dépassant pas 10 % du total des arbres urbains.Cela peut accroître la résilience des forêts urbaines face aux invasions.</p>
-<br>
-<h2>Gestion et contrôle : un guide stratégique pratique</h2>
-<br>
-<h3>Prévention : la ligne de défense la plus efficace</h3>
-<br>
+<p class="article-text">Les services forestiers municipaux devraient établir des normes de diversité des espèces d'arbres, une seule espèce d'arbre ne dépassant pas 10 % du total des arbres urbains.Cela peut accroître la résilience des forêts urbaines face aux invasions.</p>
+<div class="section-title">🍄 Gestion et contrôle : un guide stratégique pratique</div>
+<div class="subsection-title">📌 Prévention : la ligne de défense la plus efficace</div>
 <p><strong>Protocole de biosécurité personnelle</strong></p>
-<p>Sur la base de mon expérience de travail sur le terrain, je recommande les étapes suivantes :</p>
-<br>
-<p>1. Inspection : Vérifiez la présence de boue sur l'équipement avant de quitter la zone forestière</p>
-<p>2. Enlèvement : utilisez une brosse dure et un grattoir pour enlever la saleté visible.</p>
-<p>3. Nettoyage : Lavez les articles lavables à l’eau savonneuse</p>
-<p>4. Désinfection : utilisez de l'alcool à 70 % ou un désinfectant spécial pour les équipements sensibles</p>
-<p>5. Sécher : assurez-vous qu'il est complètement sec avant de l'utiliser sur de nouvelles zones.</p>
-<br>
+<p class="article-text">Sur la base de mon expérience de travail sur le terrain, je recommande les étapes suivantes :</p>
+<p class="article-text">1. Inspection : Vérifiez la présence de boue sur l'équipement avant de quitter la zone forestière</p>
+<p class="article-text">2. Enlèvement : utilisez une brosse dure et un grattoir pour enlever la saleté visible.</p>
+<p class="article-text">3. Nettoyage : Lavez les articles lavables à l’eau savonneuse</p>
+<p class="article-text">4. Désinfection : utilisez de l'alcool à 70 % ou un désinfectant spécial pour les équipements sensibles</p>
+<p class="article-text">5. Sécher : assurez-vous qu'il est complètement sec avant de l'utiliser sur de nouvelles zones.</p>
 <p><strong>Solution de désinfection de qualité professionnelle</strong> :</p>
-<p>Pour les professionnels qui travaillent fréquemment dans différentes zones écologiques, je recommande d’investir dans un nettoyeur vapeur portable.La vapeur au-dessus de 140°F est efficace pour tuer la plupart des spores fongiques et est respectueuse de l'environnement.</p>
-<br>
-<h3>Technologie de détection précoce</h3>
-<br>
+<p class="article-text">Pour les professionnels qui travaillent fréquemment dans différentes zones écologiques, je recommande d’investir dans un nettoyeur vapeur portable.La vapeur au-dessus de 140°F est efficace pour tuer la plupart des spores fongiques et est respectueuse de l'environnement.</p>
+<div class="subsection-title">📌 Technologie de détection précoce</div>
 <p><strong>Le pouvoir de la science citoyenne</strong></p>
-<p>Plusieurs projets réussis auxquels j'ai participé démontrent qu'un public formé est une ressource précieuse pour la détection précoce :</p>
-<br>
-<ul>
+<p class="article-text">Plusieurs projets réussis auxquels j'ai participé démontrent qu'un public formé est une ressource précieuse pour la détection précoce :</p><div class="highlight"><ul>
 <li>Signalez les symptômes suspects à l'aide d'applications comme iNaturalist</li>
 <li>Rejoignez un réseau local de surveillance de la santé des forêts</li>
 <li>Participer à des projets scientifiques communautaires</li>
 <li>Apprenez à utiliser la boîte à outils de diagnostic</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>Outil de diagnostic rapide</strong> :</p>
-<p>Il existe aujourd’hui plusieurs outils d’inspection sur le terrain fiables sur le marché :</p>
-<br>
-<ul>
+<p class="article-text">Il existe aujourd’hui plusieurs outils d’inspection sur le terrain fiables sur le marché :</p><div class="highlight"><ul>
 <li>Bandelettes de test d'immunochromatographie (prix : 10-15$/heure)</li>
 <li>Appareil PCR portable (prix : 2 000-5 000 $)</li>
 <li>Service de codes-barres ADN (prix : 50-100 $/échantillon)</li>
-</ul>
-<br>
-<h3>Stratégies d'éradication et de confinement</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 Stratégies d'éradication et de confinement</div>
 <p><strong>Analyse des conditions de réussite</strong></p>
-<p>Sur la base d’études de cas mondiales, les facteurs clés du succès de l’éradication comprennent :</p>
-<br>
-<ul>
+<p class="article-text">Sur la base d’études de cas mondiales, les facteurs clés du succès de l’éradication comprennent :</p><div class="highlight"><ul>
 <li>Découvert dans les 12 mois suivant l'intrusion</li>
 <li>Isolement géographique (par exemple îles)</li>
 <li>Un soutien financier et politique suffisant</li>
 <li>Structure de gouvernance claire</li>
 <li>Engagement communautaire et collaboration</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>Cadre de gestion pratique</strong></p>
-<p>Pour les intrusions avérées, une gestion hiérarchique est recommandée :</p>
-<br>
-<p>1. Domaine central : dégagement et isolement agressifs</p>
-<p>2. Zone tampon : surveillance intensive et prévention de la propagation</p>
-<p>3. Zones périphériques : éducation du public et détection précoce</p>
-<br>
-<h2>Défis particuliers et orientations futures</h2>
-<br>
-<h3>Synergies liées au changement climatique</h3>
-<br>
-<p>Mes recherches montrent que le changement climatique exacerbe les invasions fongiques :</p>
-<br>
-<ul>
+<p class="article-text">Pour les intrusions avérées, une gestion hiérarchique est recommandée :</p>
+<p class="article-text">1. Domaine central : dégagement et isolement agressifs</p>
+<p class="article-text">2. Zone tampon : surveillance intensive et prévention de la propagation</p>
+<p class="article-text">3. Zones périphériques : éducation du public et détection précoce</p>
+<div class="section-title">🍄 Défis particuliers et orientations futures</div>
+<div class="subsection-title">📌 Synergies liées au changement climatique</div>
+<p class="article-text">Mes recherches montrent que le changement climatique exacerbe les invasions fongiques :</p><div class="highlight"><ul>
 <li>La hausse des températures élargit les habitats appropriés</li>
 <li>Les événements météorologiques extrêmes favorisent la propagation des spores</li>
 <li>Les plantes hôtes sont plus sensibles aux infections en cas de stress climatique</li>
 <li>Les changements phénologiques modifient les interactions hôte-pathogène</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>Modèle prédictif</strong> :</p>
-<p>Le futur modèle de répartition que nous avons développé suggère que d’ici 2050, l’habitat propice à la plupart des champignons pathogènes forestiers se sera déplacé de 200 à 500 kilomètres vers le nord.</p>
-<br>
-<h3>Nouvelle frontière technologique</h3>
-<br>
+<p class="article-text">Le futur modèle de répartition que nous avons développé suggère que d’ici 2050, l’habitat propice à la plupart des champignons pathogènes forestiers se sera déplacé de 200 à 500 kilomètres vers le nord.</p>
+<div class="subsection-title">📌 Nouvelle frontière technologique</div>
 <p><strong>Outil de détection révolutionnaire</strong></p>
-<p>La technologie de l’ADN environnemental (eDNA) change la donne :</p>
-<br>
-<ul>
+<p class="article-text">La technologie de l’ADN environnemental (eDNA) change la donne :</p><div class="highlight"><ul>
 <li>Détecter l'ADN fongique des échantillons de sol ou d'eau</li>
 <li>Détecter les intrusions 6 à 12 mois plus tôt que les méthodes traditionnelles</li>
 <li>Cribler des centaines d'espèces simultanément</li>
 <li>Le coût continue de diminuer (actuellement 100-200 $/échantillon)</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>Applications biotechnologiques</strong></p>
-<p>Bien que controversée, la technologie d’édition génétique montre du potentiel :</p>
-<br>
-<ul>
+<p class="article-text">Bien que controversée, la technologie d’édition génétique montre du potentiel :</p><div class="highlight"><ul>
 <li>Améliorer la résistance des plantes hôtes</li>
 <li>Modifier les champignons pour réduire la toxicité</li>
 <li>Développer le forçage génétique pour contrôler les populations</li>
 <li>Les cadres éthiques et réglementaires sont encore en développement</li>
-</ul>
-<br>
-<p>##Responsabilités particulières et opportunités des cueilleurs de micro-organismes</p>
-<br>
-<h3>Accord de bonnes pratiques</h3>
-<br>
-<p>Fort de 20 ans d'expérience de terrain, j'ai développé le protocole suivant pour les collecteurs de bactéries :</p>
-<br>
+</ul></div>
+<p class="article-text">##Responsabilités particulières et opportunités des cueilleurs de micro-organismes</p>
+<div class="subsection-title">📌 Accord de bonnes pratiques</div>
+<p class="article-text">Fort de 20 ans d'expérience de terrain, j'ai développé le protocole suivant pour les collecteurs de bactéries :</p>
 <p><strong>Normes de désinfection des équipements</strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Chaussures : nettoyez soigneusement avant d'entrer à chaque fois dans de nouvelles zones forestières</li>
 <li>Outils : stériliser les couteaux et pinceaux de collecte avec de l'alcool à 70 %</li>
 <li>Conteneurs : Utiliser des contenants rigides lavables</li>
 <li>Véhicule : Nettoyer régulièrement les pneus et le châssis</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>Éthique de l'échantillonnage</strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Recueillir uniquement le nombre requis de spécimens</li>
 <li>Évitez de partager des matériaux frais entre différentes forêts</li>
 <li>Le séchage des échantillons est plus sûr que la réfrigération</li>
 <li>Se conformer à toutes les réglementations régionales en matière de collecte</li>
-</ul>
-<br>
-<h3>Surveiller la participation au réseau</h3>
-<br>
-<p>Les ramasseurs de champignons sont les « yeux et les oreilles » de la forêt.Je recommande :</p>
-<br>
-<p>1. Apprenez les caractéristiques d’identification des espèces envahissantes courantes</p>
-<p>2. Documenter la santé des arbres sur le site de collecte</p>
-<p>3. Rejoignez un réseau local de surveillance des espèces envahissantes</p>
+</ul></div>
+<div class="subsection-title">📌 Surveiller la participation au réseau</div>
+<p class="article-text">Les ramasseurs de champignons sont les « yeux et les oreilles » de la forêt.Je recommande :</p>
+<p class="article-text">1. Apprenez les caractéristiques d’identification des espèces envahissantes courantes</p>
+<p class="article-text">2. Documenter la santé des arbres sur le site de collecte</p>
+<p class="article-text">3. Rejoignez un réseau local de surveillance des espèces envahissantes</p>
 <p>4. Signalez rapidement les résultats anormaux</p>
-<br>
 <p><strong>Cas réussis</strong> :</p>
-<p>Dans le nord-ouest du Pacifique, un réseau de collecteurs de champignons a contribué à la détection précoce d'un nouveau champignon pathogène du pin, permettant ainsi à la direction de gagner un temps de réponse précieux.</p>
-<br>
-<h2>Cadre de coopération mondial</h2>
-<h3>Initiatives et accords internationaux</h3>
-<br>
-<p>Les projets de coopération internationale auxquels je participe prouvent que la coordination mondiale est cruciale:</p>
-<br>
-<ul>
+<p class="article-text">Dans le nord-ouest du Pacifique, un réseau de collecteurs de champignons a contribué à la détection précoce d'un nouveau champignon pathogène du pin, permettant ainsi à la direction de gagner un temps de réponse précieux.</p><div class="section-title">🍄 Cadre de coopération mondial</div>
+<div class="subsection-title">📌 Initiatives et accords internationaux</div>
+<p class="article-text">Les projets de coopération internationale auxquels je participe prouvent que la coordination mondiale est cruciale:</p><div class="highlight"><ul>
 <li>La Convention internationale de protection des plantes (IPPC) fournit un cadre standard</li>
 <li>La coopération régionale est plus efficace que l'action à un seul pays</li>
 <li>La plate-forme de partage d'informations accélère la réponse</li>
 <li>Projets de recherche conjoints pour améliorer la compréhension</li>
-</ul>
-<br>
-<h3>Stratégie de renforcement des capacités</h3>
-<br>
-<p>Besoins spéciaux des pays en développement:</p>
-<br>
-<ul>
+</ul></div>
+<div class="subsection-title">📌 Stratégie de renforcement des capacités</div>
+<p>Besoins spéciaux des pays en développement:</p><div class="highlight"><ul>
 <li>Développer des outils de test à faible coût</li>
 <li>Établir un laboratoire de référence régional</li>
 <li>Formation du réseau d'experts locaux</li>
 <li>Créer un fonds de réponse rapide</li>
-</ul>
-<br>
-<h2>Future Outlook and Action Call</h2>
-<br>
-<h3>Prédiction des menaces émergentes</h3>
-<br>
-<p>Sur la base des tendances actuelles, nous devons accorder une attention particulière à:</p>
-<br>
-<ul>
+</ul></div>
+<div class="section-title">🚀 Future Outlook and Action Call</div>
+<div class="subsection-title">📌 Prédiction des menaces émergentes</div>
+<p class="article-text">Sur la base des tendances actuelles, nous devons accorder une attention particulière à:</p><div class="highlight"><ul>
 <li>Tregi tropical se propage aux zones tempérées</li>
 <li>Pathogènes fongiques marins (par expédition)</li>
 <li>Problème d'échappement de la culture des champignons comestibles</li>
 <li>Complexe d'invasion symbiotique ininsecte de champignon</li>
-</ul>
-<br>
-<h3>Guide d'action personnelle</h3>
-<br>
-<p>Prenez les mesures suivantes pour protéger les écosystèmes locaux:</p>
-<br>
+</ul></div>
+<div class="subsection-title">📖 Guide d'action personnelle</div>
+<p class="article-text">Prenez les mesures suivantes pour protéger les écosystèmes locaux:</p>
 <p><strong> Action de base (tout le monde) </strong></p>
-<p>-Abide par le principe de "ne pas bouger le bois de chauffage"</p>
-<ul>
+<p class="article-text">-Abide par le principe de "ne pas bouger le bois de chauffage"</p>
+<div class="highlight"><ul>
 <li>Nettoyer un équipement extérieur, surtout avant et après un voyage</li>
 <li>Apprenez à identifier les principaux champignons invasifs locaux</li>
 <li>Soutenir les réglementations strictes de biosécurité</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Engagement avancé (passionnés de plein air) </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Participer aux activités de suppression des espèces envahissantes locales</li>
 <li>Enregistrer et signaler les découvertes suspectes</li>
 <li>Répartir la sensibilisation à la biosécurité aux groupes de plein air</li>
 <li>Sélectionnez des plantes locales pour les activités de jardinage</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Contribution professionnelle (travailleurs dans des domaines connexes) </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Intégrer la biosécurité dans le flux de travail</li>
 <li>Soutenir la recherche et la gestion des espèces envahissantes</li>
 <li>défenseur de l'investissement et des politiques préventives</li>
 <li>Former la prochaine génération de professionnels</li>
-</ul>
-<br>
-<h2>Conclusion: Responsabilité partagée</h2>
-<br>
-<p>L'invasion fongique est un défi complexe et continu, mais pas peu coopératif.Grâce à la compréhension scientifique, aux stratégies pratiques et à l'action collective, nous pouvons atténuer son impact.N'oubliez pas que le coût de la prévention est beaucoup plus bas que la gouvernance et que les avantages de l'action précoce sont exponentiels.</p>
-<br>
-<p>Lorsque nous entrons dans la forêt, nous ne sommes pas seulement des visiteurs, mais aussi des femmes de ménage.Chaque étape ci-dessous nous a la responsabilité de protéger ces écosystèmes.En nettoyant l'équipement, en restant vigilant et en rapportant en temps opportun, chacun de nous peut faire partie de la solution.</p>
-<br>
+</ul></div>
+<div class="section-title">🍄 Conclusion: Responsabilité partagée</div>
+<p class="article-text">L'invasion fongique est un défi complexe et continu, mais pas peu coopératif.Grâce à la compréhension scientifique, aux stratégies pratiques et à l'action collective, nous pouvons atténuer son impact.N'oubliez pas que le coût de la prévention est beaucoup plus bas que la gouvernance et que les avantages de l'action précoce sont exponentiels.</p>
+<p class="article-text">Lorsque nous entrons dans la forêt, nous ne sommes pas seulement des visiteurs, mais aussi des femmes de ménage.Chaque étape ci-dessous nous a la responsabilité de protéger ces écosystèmes.En nettoyant l'équipement, en restant vigilant et en rapportant en temps opportun, chacun de nous peut faire partie de la solution.</p>
 <p><strong> Enfin recommandation </strong>: Investissez dans une suite personnelle de biosécurité pour apprendre à identifier les principales menaces locales et promettre d'être gardien de la santé forestière.À cette époque de la mondialisation, les actions locales ont une signification globale - votre vigilance peut être la clé pour prévenir la prochaine catastrophe écologique.</p>
         </div>
-    </div>
+
+</div>
 </body>
 </html>

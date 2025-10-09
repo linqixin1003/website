@@ -1,652 +1,510 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guida pratica all'identificazione del campo - Mushroom Identification</title>
-    <meta name="description" content="Guida pratica all'identificazione del campo">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>04 Guida pratica all'identificazione del campo - MushroomAiSnap</title>
+<link href="../../mobile-styles.css" rel="stylesheet"/>
+<link href="../../mobile-enhancement.css" rel="stylesheet"/>
+<link href="../../ecology-theme.css" rel="stylesheet"/>
+<style>
+        .hero-image img {
+            max-height: 200px;
+            width: 100%;
+            object-fit: cover;
         }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        .article-card img {
+            max-height: 120px;
+            width: 100%;
+            object-fit: cover;
+        }
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                        url('../../images/mushroom-identification_04-gill-pore-spore-surface-features.webp') center/cover;
+            position: relative;
+            margin-top: 0;
+        }
+        .article-meta {
+            margin-top: 15px !important;
+        }
+    
+        /* Mushroom Identification Theme */
+        :root {
+            --primary-color: #4169E1;
+            --primary-dark: #191970;
+            --primary-light: #F0F8FF;
+            --accent-color: #6495ED;
+        }
+        
+        /* Theme Color Overrides */
+        .content {
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+            border: 2px solid var(--primary-color);
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, var(--primary-light), var(--primary-light));
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .quote-text {
+            color: var(--primary-dark);
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+        }
+        
+        .subsection-title {
+            color: var(--primary-dark);
+            font-size: 1.4em;
+            font-weight: 600;
+            margin: 25px 0 15px 0;
+            padding-left: 10px;
+            border-left: 3px solid var(--accent-color);
+        }
+        
+        .tip-box {
+            border-left: 4px solid var(--primary-color);
+            background: var(--primary-light);
+        }
+        
+        .tip-title {
+            color: var(--primary-color);
+        }
+        
+        .highlight {
+            border-left: 4px solid var(--accent-color);
+            background: linear-gradient(135deg, #f1f8e9, var(--primary-light));
+        }
+        
+        .warning {
+            border-left: 4px solid #f44336;
+        }
+        
+        .equipment-item {
+            border: 1px solid var(--accent-color);
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+        }
+        
+        .equipment-item h4 {
+            color: var(--primary-color);
+        }
+        
+        .category {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .main-text {
+            font-size: 1.1em;
             line-height: 1.8;
             color: #333;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-
-        .article-title {
-            color: #45B7D1;
-            font-size: 2.5em;
-            margin-bottom: 30px;
-            margin-top: 0;
-            line-height: 1.3;
-            padding-top: 0;
-        }
-
-        .featured-image {
-            width: 100%;
-            height: auto;
-            aspect-ratio: 4 / 3;
-            object-fit: cover;
-            display: block;
-        }
-
-        .content {
-            padding: 50px;
-        }
-
-        .content h2 {
-            color: #45B7D1;
-            font-size: 2em;
-            margin-top: 40px;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid #45B7D1;
-        }
-
-        .content h3 {
-            color: #555;
-            font-size: 1.6em;
-            margin-top: 30px;
-            margin-bottom: 15px;
-        }
-
-        .content h4 {
-            color: #666;
-            font-size: 1.3em;
-            margin-top: 25px;
-            margin-bottom: 12px;
-        }
-
-        .content p {
-            margin-bottom: 20px;
-            font-size: 1.1em;
-            color: #444;
-        }
-
-        .content ul {
             margin: 20px 0;
-            padding-left: 30px;
-        }
-
-        .content li {
-            margin-bottom: 12px;
-            font-size: 1.05em;
-            color: #555;
-        }
-
-        .content strong {
-            color: #222;
-            font-weight: 600;
-        }
-
-        .back-link {
-            display: inline-block;
-            padding: 12px 25px;
-            background: linear-gradient(135deg, #45B7D1, #8B4513);
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            margin-bottom: 20px;
-            transition: transform 0.3s ease;
-            font-weight: 600;
-        }
-
-        .back-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .navigation {
-            padding: 30px 50px;
-            background: #f8f9fa;
-            border-top: 1px solid #e9ecef;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-btn {
-            padding: 10px 20px;
-            background: #45B7D1;
-            color: white;
-            text-decoration: none;
+            padding: 15px;
+            background: linear-gradient(135deg, #ffffff, #f9f9f9);
             border-radius: 8px;
-            transition: all 0.3s ease;
+            border-left: 3px solid var(--accent-color);
         }
-
-        .nav-btn:hover {
-            transform: translateX(5px);
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+        
+        .emoji {
+            font-size: 1.5em;
+            margin-left: 10px;
         }
-
-        .nav-btn.prev:hover {
-            transform: translateX(-5px);
+        
+        .read-time, .difficulty {
+            display: inline-block;
+            padding: 5px 15px;
+            margin: 5px 5px 5px 0;
+            border-radius: 20px;
+            font-size: 0.9em;
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            color: #1976d2;
+            font-weight: 500;
         }
-
-        @media (max-width: 768px) {
-            .content {
-                padding: 30px 25px;
-            }
-
-            .article-title {
-                font-size: 1.8em;
-            }
-
-            .featured-image {
-                height: 250px;
-            }
-
-            .navigation {
-                flex-direction: column;
-                gap: 15px;
-            }
+        
+        .difficulty {
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            color: #e65100;
+        }
+        
+        .article-text {
+            line-height: 1.8;
+            color: #444;
+            margin: 15px 0;
+            font-size: 1.05em;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <img src="../../images/mushroom-identification_04-gill-pore-spore-surface-features.webp" alt="Guida pratica all'identificazione del campo" class="featured-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22900%22 height=%22400%22%3E%3Crect fill=%22%23D2691E%22 width=%22900%22 height=%22400%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22white%22 font-size=%2260%22%3E🍄%3C/text%3E%3C/svg%3E'">
+<div class="hero-image"></div>
+<div class="content">
+    <h1 class="title">04 Guida pratica all'identificazione del campo</h1>
+    <div class="quote-box">
+        <div class="quote-text">Professional Mycology Guide</div>
+    </div>
+    
+<div class="article-meta">
+<span class="category">🔍 Mushroom Identification</span>
+<span class="read-time">📖 22 minute read</span>
+<span class="difficulty">🔴 Advanced</span>
+</div>
 
-        <div class="content">
-            <h1 class="article-title">Guida pratica all'identificazione del campo</h1>
-            <br>
-<p>Se la copertura è la "facciata" dei funghi, allora la superficie delle pieghe, dei fori e di altre spore è la "camera del motore" dei funghi: centinaia di milioni di spore vengono prodotte e rilasciate qui per continuare la vita del fungo.Queste strutture non sono solo biologicamente importanti, ma anche una delle caratteristiche più preziose nell'identificazione.Come micologo con 25 anni di esperienza nella collezione sul campo, posso dirti chiaramente: padroneggiare le capacità di osservazione per le caratteristiche della superficie delle spore è un'abilità chiave per distinguere il cibo delizioso commestibile dal tabacco mortale.</p>
-<br>
-<h2>Perché le caratteristiche della superficie delle spore sono così importanti?</h2>
-<br>
-<p>Nella mia prima carriera di collezione, mi mancava quasi l'Amanita velenosa perché ho ignorato l'attaccamento delle pieghe batteriche.Quell'esperienza mi ha fatto capire profondamente che l'identificazione dei funghi non si basa sulla percezione, ma sulla base di un giudizio accurato basato su caratteristiche scientifiche.</p>
-<br>
+
+            <br><div class="main-text">Se la copertura è la "facciata" dei funghi, allora la superficie delle pieghe, dei fori e di altre spore è la "camera del motore" dei funghi: centinaia di milioni di spore vengono prodotte e rilasciate qui per continuare la vita del fungo.Queste strutture non sono solo biologicamente importanti, ma anche una delle caratteristiche più preziose nell'identificazione.Come micologo con 25 anni di esperienza nella collezione sul campo, posso dirti chiaramente: padroneggiare le capacità di osservazione per le caratteristiche della superficie delle spore è un'abilità chiave per distinguere il cibo delizioso commestibile dal tabacco mortale.<span class="emoji">🍄</span></div>
+<div class="section-title">🎯 Perché le caratteristiche della superficie delle spore sono così importanti?</div>
+<p class="article-text">Nella mia prima carriera di collezione, mi mancava quasi l'Amanita velenosa perché ho ignorato l'attaccamento delle pieghe batteriche.Quell'esperienza mi ha fatto capire profondamente che l'identificazione dei funghi non si basa sulla percezione, ma sulla base di un giudizio accurato basato su caratteristiche scientifiche.</p>
 <p><strong> Significato biologico della superficie delle spore </strong></p>
-<br>
-<p>La superficie della spora è il centro riproduttivo dei funghi.Un cappuccio di funghi di medie dimensioni può rilasciare circa 16 milioni di spore al giorno e il numero totale di spore può essere rilasciato durante il ciclo di vita può raggiungere miliardi.Queste spore microscopiche sono diffuse dall'energia eolica, germogliano in micelio in ambienti adeguati e iniziano un nuovo ciclo di vita.</p>
-<br>
+<p class="article-text">La superficie della spora è il centro riproduttivo dei funghi.Un cappuccio di funghi di medie dimensioni può rilasciare circa 16 milioni di spore al giorno e il numero totale di spore può essere rilasciato durante il ciclo di vita può raggiungere miliardi.Queste spore microscopiche sono diffuse dall'energia eolica, germogliano in micelio in ambienti adeguati e iniziano un nuovo ciclo di vita.</p>
 <p><strong> Valore di autorizzazione </strong></p>
-<br>
-<p>Le caratteristiche superficiali della spora forniscono le basi più affidabili per l'identificazione.A differenza del colore del cappuccio che è facilmente influenzato dall'ambiente, la disposizione delle pieghe batteriche, la struttura del foro e il colore delle spore sono relativamente stabili all'interno della specie.I dati dell'American Mycology Association mostrano che circa il 70% delle specie di funghi comuni può essere identificato accuratamente in base alle sole caratteristiche della superficie delle spore.</p>
-<br>
-<h2>Equipaggiamento professionale: lo strumento giusto per investire</h2>
-<br>
+<p class="article-text">Le caratteristiche superficiali della spora forniscono le basi più affidabili per l'identificazione.A differenza del colore del cappuccio che è facilmente influenzato dall'ambiente, la disposizione delle pieghe batteriche, la struttura del foro e il colore delle spore sono relativamente stabili all'interno della specie.I dati dell'American Mycology Association mostrano che circa il 70% delle specie di funghi comuni può essere identificato accuratamente in base alle sole caratteristiche della superficie delle spore.</p>
+<div class="section-title">🍄 Equipaggiamento professionale: lo strumento giusto per investire</div>
 <p><strong> Elenco delle attrezzature di base </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>10x vetro d'ingrandimento portatile: osservare i bordi dei batteri e piccoli buchi</li>
 <li>bisturi: osservazione longitudinale dell'attacco della piega batterica</li>
 <li>Carta da stampa a spore: carta a doppia faccia in bianco e nero o foglio di alluminio</li>
 <li>Camera digitale: dettagli di tiro macro</li>
 <li>Libro dei record di campo: carta impermeabile</li>
 <li>sovrani e grafici a colori</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Gli esperti suggeriscono </strong>: non essere avaro della qualità della lente d'ingrandimento.Quando stavo visitando la foresta pluviale amazzonica, un vetro di ingrandimento 10x di alta qualità mi ha aiutato a distinguere tra due batteri Amanita estremamente simili-uno commestibile e l'altro altamente tossico.</p>
-<br>
-<h2>Tipi di superfici generatrici di spore: una guida pratica all'identificazione</h2>
-<br>
-<h3>Gills/Lamelle: la superficie delle spore più comune</h3>
-<br>
+<div class="section-title">🍄 Tipi di superfici generatrici di spore: una guida pratica all'identificazione</div>
+<div class="subsection-title">📐 Gills/Lamelle: la superficie delle spore più comune</div>
 <p><strong> Spiegazione dettagliata della struttura e della funzione </strong></p>
-<br>
-<p>Le pieghe sono strutture traballanti disposte a irradiarsi verso l'esterno dal centro del pellet.Questo design non è affatto accidentale: massimizza il rapporto superficie e volume e massimizza la resa delle spore.Al microscopio, vedrai che la superficie delle pieghe batteriche è coperta da milioni di baccelli, ognuno dei quali di solito produce quattro spore.</p>
-<br>
+<p class="article-text">Le pieghe sono strutture traballanti disposte a irradiarsi verso l'esterno dal centro del pellet.Questo design non è affatto accidentale: massimizza il rapporto superficie e volume e massimizza la resa delle spore.Al microscopio, vedrai che la superficie delle pieghe batteriche è coperta da milioni di baccelli, ognuno dei quali di solito produce quattro spore.</p>
 <p><strong> abilità di identificazione frontale </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Angolo di osservazione: metti il ​​fungo a testa in giù e osserva dal basso</li>
 <li>Utilizzo della luce: utilizzare la luce laterale per osservare il modello di disposizione delle pieghe di batteri</li>
 <li>Tocca Test: toccare le pieghe germinali dopo aver indossato i guanti per sentire la consistenza</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Rappresentanti tipici e casi pratici </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Toadstrools: compresi i funghi commestibili comuni</li>
 <li>Amanita: contiene le specie di funghi più velenose del mondo</li>
 <li>Genere dei funghi: incluso Agaricus Bisporus coltivato commercialmente</li>
 <li>Genere del genere: comunemente trovato nei prati e nelle aree aperte</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Suggerimenti rapidi </strong>: nelle foreste nordamericane, fai molta attenzione quando si incontrano funghi con calamari a pieghe, perché ci sono una varietà di batteri Amanita tossici distribuiti qui.</p>
-<br>
-<h3>pori/tubi: il logo di Boleto</h3>
-<br>
+<div class="subsection-title">📌 pori/tubi: il logo di Boleto</div>
 <p><strong> Analisi della profondità strutturale e funzionale </strong></p>
-<br>
-<p>La struttura del foro è in realtà le aperture di tubi verticali densamente disposti. Le pareti interne di questi tubi sono coperte di tessuto generatore di spore.Un fatto interessante: gli strati dei pori del tubo di alcuni batteri dei pori vengono aggiornati ogni anno, il che può aiutare a determinare l'età dei funghi.</p>
-<br>
+<p class="article-text">La struttura del foro è in realtà le aperture di tubi verticali densamente disposti. Le pareti interne di questi tubi sono coperte di tessuto generatore di spore.Un fatto interessante: gli strati dei pori del tubo di alcuni batteri dei pori vengono aggiornati ogni anno, il che può aiutare a determinare l'età dei funghi.</p>
 <p><strong> Test pratico per l'identificazione del boleto </strong></p>
-<p>Durante la mia ispezione delle Montagne Rocciose in Colorado dell'anno scorso, ho identificato accuratamente un delizioso boleto che i residenti locali non osano raccogliere attraverso le caratteristiche del buco.Le caratteristiche chiave includono:</p>
-<ul>
+<p class="article-text">Durante la mia ispezione delle Montagne Rocciose in Colorado dell'anno scorso, ho identificato accuratamente un delizioso boleto che i residenti locali non osano raccogliere attraverso le caratteristiche del buco.Le caratteristiche chiave includono:</p>
+<div class="highlight"><ul>
 <li>dimensione e forma del foro</li>
 <li>Reazione di scolorimento del colore</li>
 <li>Difficoltà di separazione dai funghi</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Competenze professionali </strong>: usa la lama per raschiare delicatamente la superficie del foro e osservare i cambiamenti di colore.Alcuni boleto diventeranno blu istantaneamente, che è una caratteristica di identificazione importante.</p>
-<br>
-<h3>denti/spine: una struttura unica</h3>
-<br>
+<div class="subsection-title">📌 denti/spine: una struttura unica</div>
 <p><strong> Punti grandi per l'identificazione del campo </strong></p>
-<p>Le strutture simili a denti sono relativamente rare nella comunità fungina, il che rende facile restringere l'identificazione una volta scoperta. Monkey Erectus è il rappresentante più famoso di esso.Non è solo sicuro e commestibile, ma ha anche un eccellente valore medicinale.</p>
-<br>
+<p class="article-text">Le strutture simili a denti sono relativamente rare nella comunità fungina, il che rende facile restringere l'identificazione una volta scoperta. Monkey Erectus è il rappresentante più famoso di esso.Non è solo sicuro e commestibile, ma ha anche un eccellente valore medicinale.</p>
 <p><strong> Esperienza di raccolta </strong>: Nelle foreste di legno del Michigan, ho scoperto che la ricerca di funghi Erectus sugli alberi morti di faggio ha il più alto tasso di successo.Le loro strutture simili a denti sono bianche puro quando sono tenute e possono essere leggermente gialle mentre maturano.</p>
-<br>
-<h3>FALSE GILLS: caratteristiche esclusive di Chantelle</h3>
-<br>
+<div class="subsection-title">📌 FALSE GILLS: caratteristiche esclusive di Chantelle</div>
 <p><strong> Differenza pratica tra le pieghe fungine </strong></p>
-<br>
-<p>Le pieghe di pseudo-fungus sono una delle caratteristiche più fraintese nell'identificazione dei funghi.Quando stavo guidando un seminario nel Montana, ho scoperto che oltre il 60% dei tirocinanti non era in grado di distinguere con precisione tra le pieghe di montone vere e false all'inizio.</p>
-<br>
+<p class="article-text">Le pieghe di pseudo-fungus sono una delle caratteristiche più fraintese nell'identificazione dei funghi.Quando stavo guidando un seminario nel Montana, ho scoperto che oltre il 60% dei tirocinanti non era in grado di distinguere con precisione tra le pieghe di montone vere e false all'inizio.</p>
 <p><strong> Differenze chiave </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Test di separazione: utilizzare la punta del coltello per provare a isolare le "pieghe batteriche". Le pieghe fungine sono facili da separare e le pieghe pseudo-bacteriali e la carne di fungo sono integrate</li>
 <li>Osservazione dello spessore: le pieghe di pseudobatteri sono più spesse e più schiette</li>
 <li>Modello di biforcazione: le pieghe pseudo-fumuniche hanno spesso biforcazioni irregolari</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Suggerimenti di sicurezza commestibili </strong>: il vero Cantharellus è uno dei funghi commestibili selvaggi più sicuri del mondo e i contraffattori con pieghe fungini possono essere tossici.Questa differenza può essere la differenza tra vita e morte.</p>
-<br>
-<h3>liscio: metodi di produzione di spore non comuni</h3>
-<br>
-<p>Sebbene le superfici relativamente rare e lisce che producono spore siano tipiche in alcuni gruppi.Questi funghi di solito assicurano la trasmissione di spore attraverso altri mezzi, come schizzi di pioggia o insetti li trasportano.</p>
-<br>
-<h2>Spiegazione dettagliata delle caratteristiche della piega batterica: dalla teoria alla pratica</h2>
-<br>
-<h3>Metodo di attacco di piega dei batteri: la caratteristica di identificazione più importante</h3>
-<br>
-<p>Nel corso di identificazione dei funghi che ho insegnato, il modo di attaccare le pieghe di funghi è stata la prima lezione che ho sottolineato.L'importanza di questa funzione non può essere sopravvalutata: può immediatamente restringere l'ambito di identificazione a diversi generi.</p>
-<br>
+<div class="subsection-title">📌 liscio: metodi di produzione di spore non comuni</div>
+<p class="article-text">Sebbene le superfici relativamente rare e lisce che producono spore siano tipiche in alcuni gruppi.Questi funghi di solito assicurano la trasmissione di spore attraverso altri mezzi, come schizzi di pioggia o insetti li trasportano.</p>
+<div class="section-title">🍄 Spiegazione dettagliata delle caratteristiche della piega batterica: dalla teoria alla pratica</div>
+<div class="subsection-title">📌 Metodo di attacco di piega dei batteri: la caratteristica di identificazione più importante</div>
+<p class="article-text">Nel corso di identificazione dei funghi che ho insegnato, il modo di attaccare le pieghe di funghi è stata la prima lezione che ho sottolineato.L'importanza di questa funzione non può essere sopravvalutata: può immediatamente restringere l'ambito di identificazione a diversi generi.</p>
 <p><strong> Metodo di osservazione pratica </strong></p>
-<p>1. Seleziona campioni rappresentativi: scegli uno per ogni età</p>
-<p>2. Tagliamento preciso: usa una lama affilata per tagliare longitudinalmente lungo la linea mediana del gambo</p>
-<p>3. Angolo di osservazione: osservare da più angoli sotto una buona luce</p>
-<p>4. Registra i risultati: disegna o descrivi immediatamente sul libro dei record di campo</p>
-<br>
+<p class="article-text">1. Seleziona campioni rappresentativi: scegli uno per ogni età</p>
+<p class="article-text">2. Tagliamento preciso: usa una lama affilata per tagliare longitudinalmente lungo la linea mediana del gambo</p>
+<p class="article-text">3. Angolo di osservazione: osservare da più angoli sotto una buona luce</p>
+<p class="article-text">4. Registra i risultati: disegna o descrivi immediatamente sul libro dei record di campo</p>
 <p><strong> Valore di identificazione della fritta libera (libera) </strong></p>
-<p>Le pieghe idiopatiche sono una caratteristica chiave del genere Amanita e del Fungo del genere.Se scopri che la cheratina non contatta affatto la cheratina, è probabile che tu stia affrontando membri di questi due importanti genere.Al momento, è necessario controllare immediatamente altre funzionalità:</p>
-<ul>
+<p class="article-text">Le pieghe idiopatiche sono una caratteristica chiave del genere Amanita e del Fungo del genere.Se scopri che la cheratina non contatta affatto la cheratina, è probabile che tu stia affrontando membri di questi due importanti genere.Al momento, è necessario controllare immediatamente altre funzionalità:</p>
+<div class="highlight"><ul>
 <li>Amanita: di solito ha tratti e anelli batterici</li>
 <li>Genere dei funghi: nessun vero sterile</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Gli esperti suggeriscono </strong>: quando si tagliano i funghi longitudinalmente, presta attenzione a mantenere pulita la superficie di taglio ed evitare di spremere e distruggere la struttura fine.Consiglio di usare le lame chirurgiche, sono più precise dei normali coltelli.</p>
-<br>
-<h3>Spaziatura della piega dei batteri: capacità di osservazione quantitativa</h3>
-<br>
-<p>Molte guide all'aperto sono semplicemente descritte come "intensive" o "sparse", ma insegno agli studenti a adottare un approccio quantitativo:</p>
-<br>
+<div class="subsection-title">📌 Spaziatura della piega dei batteri: capacità di osservazione quantitativa</div>
+<p class="article-text">Molte guide all'aperto sono semplicemente descritte come "intensive" o "sparse", ma insegno agli studenti a adottare un approccio quantitativo:</p>
 <p><strong> Protocollo di misurazione standard </strong></p>
-<p>1. Seleziona un'area rappresentativa sul bordo del cappuccio</p>
+<p class="article-text">1. Seleziona un'area rappresentativa sul bordo del cappuccio</p>
 <p>2. Usa un righello per misurare 1 cm di lunghezza</p>
-<p>3. Calcola il numero di pieghe batteriche complete in questa lunghezza</p>
-<p>4. Ripetere le misurazioni in diverse posizioni del cappuccio</p>
-<br>
+<p class="article-text">3. Calcola il numero di pieghe batteriche complete in questa lunghezza</p>
+<p class="article-text">4. Ripetere le misurazioni in diverse posizioni del cappuccio</p>
 <p><strong> Standard di classificazione della spaziatura </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>denso: più di 15 pieghe di batteri per centimetro</li>
 <li>Moderato: 8-15 batteri per centimetro</li>
 <li>Sparse: meno di 8 batteri per centimetro</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Applicazione pratica </strong>: nelle Cascade Mountains, Washington, ho contribuito a confermare un raro Lactobacillus con un conteggio accurato di pieghe (22 pezzi per centimetro).</p>
-<br>
-<h3>batteri Spessore e consistenza: l'arte dell'identificazione tattile</h3>
-<br>
+<div class="subsection-title">📌 batteri Spessore e consistenza: l'arte dell'identificazione tattile</div>
 <p><strong> Standard di misurazione dello spessore </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>stretto: meno di 3 mm</li>
 <li>Medio: 3-5 mm</li>
 <li>larghezza: maggiore di 5 mm</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Protocollo di sicurezza del test di testo </strong></p>
-<p>Evita il contatto diretto della pelle prima di confermare che i funghi non sono a rischio di elevata tossicità.È possibile utilizzare i seguenti metodi:</p>
-<p>1. Usa una punta del coltello pulito per premere i pellet</p>
+<p class="article-text">Evita il contatto diretto della pelle prima di confermare che i funghi non sono a rischio di elevata tossicità.È possibile utilizzare i seguenti metodi:</p>
+<p class="article-text">1. Usa una punta del coltello pulito per premere i pellet</p>
 <p>2. Osserva il metodo di rottura</p>
-<p>3. Usa la punta del coltello per raccogliere piccoli pezzi per osservare</p>
-<br>
+<p class="article-text">3. Usa la punta del coltello per raccogliere piccoli pezzi per osservare</p>
 <p><strong> Tipo di testo e valore di identificazione </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Crisp: caratteristiche tipiche di lactiflora e funghi rossi, schiacciate in piccoli pezzi dopo una leggera pressione</li>
 <li>cera: una caratteristica unica del genere di cera, con una cera chiara durante lo sfregamento</li>
 <li>Turnness: le caratteristiche della maggior parte dei batteri della lignina sono difficili da strappare</li>
-</ul>
-<br>
-<h3>BATTERI COOL COLORE: INCIDI DI Identificazione per i cambiamenti dinamici</h3>
-<br>
-<p>Il colore della piega è probabilmente la caratteristica più fraintesa perché cambia mentre le spore maturano.Ho sviluppato un metodo di osservazione del sistema:</p>
-<br>
+</ul></div>
+<div class="subsection-title">📌 BATTERI COOL COLORE: INCIDI DI Identificazione per i cambiamenti dinamici</div>
+<p class="article-text">Il colore della piega è probabilmente la caratteristica più fraintesa perché cambia mentre le spore maturano.Ho sviluppato un metodo di osservazione del sistema:</p>
 <p><strong> Accordo di osservazione del colore </strong></p>
 <p>1. Raccogli esemplari da diverse fasi di sviluppo</p>
-<p>2. Registra immediatamente il colore iniziale (in condizioni di campo)</p>
-<p>3. Crea stampe di spore per confermare il colore finale</p>
-<p>4. Presta attenzione all'impatto dei fattori ambientali sul colore</p>
-<br>
+<p class="article-text">2. Registra immediatamente il colore iniziale (in condizioni di campo)</p>
+<p class="article-text">3. Crea stampe di spore per confermare il colore finale</p>
+<p class="article-text">4. Presta attenzione all'impatto dei fattori ambientali sul colore</p>
 <p><strong> Modalità di evoluzione del colore comune </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Funghi: bianco → rosa → marrone cioccolato</li>
 <li>Genere genere: bianco → rosa → nero</li>
 <li>Amanita: di solito rimane bianco o leggermente giallo</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Evita gli errori comuni </strong>: non giudicare i colori in base alla sola memoria, usa i grafici a colori standard. Le condizioni di illuminazione possono influenzare significativamente la percezione del colore.</p>
-<br>
-<h2>Caratteristiche dei fori (fori del tubo): la prospettiva degli esperti di Boletus</h2>
-<br>
-<h3>dimensioni e forma dei pori: metodo di misurazione accurata</h3>
-<br>
+<div class="section-title">🍄 Caratteristiche dei fori (fori del tubo): la prospettiva degli esperti di Boletus</div>
+<div class="subsection-title">📌 dimensioni e forma dei pori: metodo di misurazione accurata</div>
 <p><strong> Classificazione delle dimensioni dei pori </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>foro grande: diametro maggiore di 1 mm, chiaramente visibile a occhio nudo</li>
 <li>Piccolo foro: 0,5-1 mm di diametro, è necessario osservare con una lente d'ingrandimento</li>
 <li>Microporo: il diametro è inferiore a 0,5 mm, la superficie sembra liscia</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Competenze di misurazione professionale </strong></p>
-<p>Consiglio di utilizzare il metodo di misurazione del numero di fori per millimetro:</p>
+<p class="article-text">Consiglio di utilizzare il metodo di misurazione del numero di fori per millimetro:</p>
 <p>1. Seleziona un'area rappresentativa</p>
-<p>2. Usa un vetro d'ingrandimento e un micro righello</p>
-<p>3. Contare il numero di fori entro 1 mm di lunghezza</p>
-<p>4. Formula di conversione: dimensione dei pori ≈1/numero di pori per millimetro</p>
-<br>
+<p class="article-text">2. Usa un vetro d'ingrandimento e un micro righello</p>
+<p class="article-text">3. Contare il numero di fori entro 1 mm di lunghezza</p>
+<p class="article-text">4. Formula di conversione: dimensione dei pori ≈1/numero di pori per millimetro</p>
 <p><strong> Caso pratico </strong>: quando si identificano deliziosi boleti, la dimensione del foro è una delle caratteristiche chiave.Il vero bolleta delizioso di solito ha 2-3 buchi per millimetro.</p>
-<br>
-<h3>Reazione di cambiamento del colore: il segreto dell'identificazione chimica</h3>
-<br>
-<p>I pori di alcuni boleto cambieranno il colore dopo essere stati compressi, che è dovuta all'ossidazione dei composti fenolici.Questa reazione è una caratteristica di identificazione estremamente importante.</p>
-<br>
+<div class="subsection-title">📌 Reazione di cambiamento del colore: il segreto dell'identificazione chimica</div>
+<p class="article-text">I pori di alcuni boleto cambieranno il colore dopo essere stati compressi, che è dovuta all'ossidazione dei composti fenolici.Questa reazione è una caratteristica di identificazione estremamente importante.</p>
 <p><strong> Metodo di prova standard </strong></p>
-<p>1. Scegli una superficie del foro tenera e intatta</p>
-<p>2. Premere delicatamente con la parte posteriore del coltello o delle unghie</p>
+<p class="article-text">1. Scegli una superficie del foro tenera e intatta</p>
+<p class="article-text">2. Premere delicatamente con la parte posteriore del coltello o delle unghie</p>
 <p>3. Inizia immediatamente i tempi</p>
-<p>4. Registra la velocità di cambio del colore, il colore finale e il tempo di recupero</p>
-<br>
+<p class="article-text">4. Registra la velocità di cambio del colore, il colore finale e il tempo di recupero</p>
 <p><strong> Tipi di scolorimento del colore comune </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Cambiamento blu: le caratteristiche di alcuni batteri del boleto, la velocità di reazione varia da immediata a diversi minuti</li>
 <li>Browning: reazioni più comuni, meno valore di identificazione</li>
 <li>Red Change: relativamente raro, ma ha un alto valore di identificazione</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Suggerimenti di sicurezza </strong>: la reazione di scolorimento del colore non è un indicatore tossico.Alcuni boleto a forma di blu sono commestibili, mentre alcuni sono tossici invece di scolorimento.</p>
-<br>
-<h2>Produzione di stampa a spore: tecnologia di laboratorio domestico</h2>
-<br>
-<p>La stampa a spore è una delle caratteristiche più affidabili nell'identificazione dei funghi.Dopo più di 20 anni di miglioramento, ho riassunto il metodo più efficace per la stampa di spore:</p>
-<br>
+<div class="section-title">🍄 Produzione di stampa a spore: tecnologia di laboratorio domestico</div>
+<p class="article-text">La stampa a spore è una delle caratteristiche più affidabili nell'identificazione dei funghi.Dopo più di 20 anni di miglioramento, ho riassunto il metodo più efficace per la stampa di spore:</p>
 <p><strong> kit di produzione di stampa di spore professionali </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Carta di stampa a doppia faccia in bianco e nero</li>
 <li>Container trasparente o tazza di vetro</li>
 <li>bottiglia spray per acqua distillata</li>
 <li>bisturi sterile</li>
 <li>Sistema tag</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Ottimizza il processo di produzione </strong></p>
-<p>1. Seleziona il coperchio sterilizzato che è appena stato completamente ampliato</p>
-<p>2. Rimozione di steli sterilizzati in condizioni sterili</p>
-<p>3. Posizionare le spore del cappuccio a faccia in giù sulla carta</p>
-<p>4. Acqua distillata leggermente spruzzata per aumentare l'umidità</p>
-<p>5. Coprire con un contenitore per evitare la tenuta diretta</p>
+<p class="article-text">1. Seleziona il coperchio sterilizzato che è appena stato completamente ampliato</p>
+<p class="article-text">2. Rimozione di steli sterilizzati in condizioni sterili</p>
+<p class="article-text">3. Posizionare le spore del cappuccio a faccia in giù sulla carta</p>
+<p class="article-text">4. Acqua distillata leggermente spruzzata per aumentare l'umidità</p>
+<p class="article-text">5. Coprire con un contenitore per evitare la tenuta diretta</p>
 <p>6. Rimanere a 15-20 ° C</p>
-<br>
 <p><strong> Guida al tempo </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Funghi: 4-8 ore</li>
 <li>Fungo Hole: 12-24 ore</li>
 <li>Esemplari anziani: 2-4 ore possono essere sufficienti</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Suggerimenti per esperti </strong>: l'uso di un foglio di alluminio invece della carta consente di osservare lo spessore e il colore dell'accumulo di spore contemporaneamente, fornendo ulteriori informazioni.</p>
-<br>
-<h2>Sistema di classificazione dei colori a spore</h2>
-<br>
-<p>Sulla base dell'analisi di migliaia di stampe di spore, ho stabilito un sistema pratico di classificazione dei colori:</p>
-<br>
+<div class="section-title">🍄 Sistema di classificazione dei colori a spore</div>
+<p class="article-text">Sulla base dell'analisi di migliaia di stampe di spore, ho stabilito un sistema pratico di classificazione dei colori:</p>
 <p><strong> gruppi di colori principali e tipi rappresentativi </strong></p>
-<br>
 <p>Gruppo di spore bianche</p>
-<ul>
+<div class="highlight"><ul>
 <li>Range di colore: bianco a puro crema</li>
 <li>Rappresentante: la maggior parte dei funghi Amanita e Amanita (Young)</li>
 <li>Abilità di identificazione: osservare il più chiaramente su carta nera</li>
-</ul>
-<br>
+</ul></div>
 <p>Gruppo di spore rosa</p>
-<ul>
+<div class="highlight"><ul>
 <li>Gamma di colori: polvere leggera al salmone</li>
 <li>Rappresentante: funghi, alcuni funghi ad anello</li>
 <li>Applicazione pratica: aiuta a distinguere tra funghi commestibili e amanita tossica</li>
-</ul>
-<br>
+</ul></div>
 <p>Gruppo di spore marrone</p>
-<ul>
+<div class="highlight"><ul>
 <li>Range di colore: marrone tan -abbronzatura al cioccolato fondente</li>
 <li>Rappresentante: la maggior parte dei funghi del genere e il genere dei funghi (maturi)</li>
 <li>Punti di osservazione: è necessaria una buona luce per giudicare accuratamente il tono</li>
-</ul>
-<br>
+</ul></div>
 <p>Gruppo di spore nere</p>
-<ul>
+<div class="highlight"><ul>
 <li>Gamma di colori: nero dal viola scuro a puro nero</li>
 <li>Rappresentante: ombrello fantasma inchiostro, alcuni funghi macchiati</li>
 <li>Proprietà speciali: le stampe di spore possono sembrare umide e brillanti</li>
-</ul>
-<br>
-<h2>Osservazione del microscopio: capacità di identificazione avanzata</h2>
-<br>
-<p>Sebbene la microscopia non sia generalmente richiesta nell'identificazione del campo, in alcuni casi, le caratteristiche microscopiche sono decisive:</p>
-<br>
+</ul></div>
+<div class="section-title">🍄 Osservazione del microscopio: capacità di identificazione avanzata</div>
+<p class="article-text">Sebbene la microscopia non sia generalmente richiesta nell'identificazione del campo, in alcuni casi, le caratteristiche microscopiche sono decisive:</p>
 <p><strong> Quando dovresti aver bisogno di un microscopio </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Identificazione delle specie interne del genere</li>
 <li>Conferma di esemplari difficili</li>
 <li>Scopo della ricerca scientifica</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Caratteristiche microscopiche di base </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Forma e dimensioni delle spore</li>
 <li>Pattern di superficie delle spore</li>
 <li>dimensioni e forma</li>
 <li>Tipo e distribuzione del corpo caseo</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Caso pratico </strong>: in California, ho confermato una nuova specie di Lactobacillus attraverso i modelli di superficie delle spore, con modelli di mesh unici nelle spore.</p>
-<br>
-<h2>Processo di valutazione completa: dal campo al libro di valutazione</h2>
-<br>
-<p>Dopo anni di pratica, ho sviluppato un processo sistematico di osservazione della superficie delle spore:</p>
-<br>
+<div class="section-title">🍄 Processo di valutazione completa: dal campo al libro di valutazione</div>
+<p class="article-text">Dopo anni di pratica, ho sviluppato un processo sistematico di osservazione della superficie delle spore:</p>
 <p><strong> Osservazione preliminare sul campo </strong></p>
 <p>1. Registra il tipo di superficie delle spore</p>
-<p>2. Osservare il metodo di attacco delle pieghe batteriche (se applicabile)</p>
+<p class="article-text">2. Osservare il metodo di attacco delle pieghe batteriche (se applicabile)</p>
 <p>3. Descrivi il colore e la spaziatura</p>
 <p>4. Eseguire un semplice test di trama</p>
-<br>
 <p><strong> Analisi dettagliata di laboratorio </strong></p>
 <p>1. Crea stampe di spore</p>
 <p>2. Misurare accuratamente varie caratteristiche</p>
 <p>3. Registra le modifiche al colore</p>
 <p>4. Eseguire i test chimici necessari</p>
-<br>
 <p><strong> Finalmente confermato </strong></p>
 <p>1. Controlla più funzionalità</p>
 <p>2. Controlla la letteratura professionale</p>
 <p>3. Consultare un esperto se necessario</p>
 <p>4. Salva campioni e record</p>
-<br>
-<h2>errori e soluzioni comuni</h2>
-<br>
-<p>Sulla base dell'esperienza di insegnamento, ho riassunto gli errori più comuni per i principianti:</p>
-<br>
+<div class="section-title">🍄 errori e soluzioni comuni</div>
+<p class="article-text">Sulla base dell'esperienza di insegnamento, ho riassunto gli errori più comuni per i principianti:</p>
 <p><strong> Errore 1: ignora il metodo di attacco delle pieghe dei batteri </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Soluzione: sviluppare l'abitudine dell'osservazione verticale</li>
 <li>Suggerimenti professionali: usa una lama singola per ottenere tagli ordinati</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Errore 2: solo identificazione del colore </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Soluzione: stabilire abitudini di identificazione multi-caratteristica</li>
 <li>Suggerimenti professionali: utilizzare grafici a colori standard</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Errore 3: stampa di spore improprie </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Soluzione: controlla l'umidità e il tempo</li>
 <li>Suggerimenti professionali: usa un foglio di alluminio per ottenere risultati migliori</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Errore 4: nessuna considerazione della fase di sviluppo </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Soluzione: raccogliere esemplari di età diverse</li>
 <li>Competenze professionali: registrare lo stato di sviluppo del campione</li>
-</ul>
-<br>
-<h2>casi di applicazione pratica</h2>
-<br>
-<h3>Caso 1: distinguere il genere di funghi commestibili dall'Amanita velenosa</h3>
-<br>
-<p>Questa è una delle più importanti distinzioni di identificazione in Nord America:</p>
-<br>
+</ul></div>
+<div class="section-title">🍄 casi di applicazione pratica</div>
+<div class="subsection-title">📌 Caso 1: distinguere il genere di funghi commestibili dall'Amanita velenosa</div>
+<p class="article-text">Questa è una delle più importanti distinzioni di identificazione in Nord America:</p>
 <p><strong> Caratteristiche funebri </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Batteri si piega liberi</li>
 <li>Rosa in giovane e maturo cioccolato marrone</li>
 <li>SPORE Stampa marrone scuro</li>
 <li>Nessun vero stent sterile</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Caratteristiche di Amanita </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Batteri si piega liberi o epifiti</li>
 <li>di solito mantenuto bianco o chiaro</li>
 <li>Stampa di spore Bianco</li>
 <li>Ci sono trincee batteriche e anelli batterici</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Differenza tra vita e morte </strong>: questa distinzione può salvarti la vita. Non raccogliere mai i funghi con trogoli batterici e bianco stampato a spore.</p>
-<br>
-<h3>Caso 2: Valutazione commestibile di Boleto</h3>
-<br>
-<p>Nella parte occidentale delle Montagne Rocciose, insegno agli studenti a valutare Boleto usando il seguente processo:</p>
-<p>1. Conferma le caratteristiche del foro per essere conformi alle Boxaceae di famiglia</p>
+<div class="subsection-title">📌 Caso 2: Valutazione commestibile di Boleto</div>
+<p class="article-text">Nella parte occidentale delle Montagne Rocciose, insegno agli studenti a valutare Boleto usando il seguente processo:</p>
+<p class="article-text">1. Conferma le caratteristiche del foro per essere conformi alle Boxaceae di famiglia</p>
 <p>2. Test della reazione di scolorimento del colore</p>
-<p>3. Verificare che l'eact di insetti (specie che gli insetti evitano dovrebbero essere vigili)</p>
-<p>4. Esegui un test del gusto (masticare un piccolo pezzo e sputarlo)</p>
-<br>
+<p class="article-text">3. Verificare che l'eact di insetti (specie che gli insetti evitano dovrebbero essere vigili)</p>
+<p class="article-text">4. Esegui un test del gusto (masticare un piccolo pezzo e sputarlo)</p>
 <p><strong> Avviso di sicurezza importante </strong>: anche i collezionisti esperti dovrebbero essere cauti sul Boleto.Alcune specie possono causare disagio gastrointestinale.</p>
-<br>
-<h3>Caso 3: la differenza tra Chantelles e contraffattori</h3>
-<br>
-<p>Nel nord -ovest del Pacifico, la distinzione tra vera Chantelle e contraffattori tossici è cruciale:</p>
-<br>
+<div class="subsection-title">📌 Caso 3: la differenza tra Chantelles e contraffattori</div>
+<p class="article-text">Nel nord -ovest del Pacifico, la distinzione tra vera Chantelle e contraffattori tossici è cruciale:</p>
 <p><strong> Real Chanterelles </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Piede pseudo-Fungus: spesse, schiette, spesso biforcate</li>
 <li>Colore: uniforme dorato</li>
 <li>Odore: aroma fresco di albicocche</li>
 <li>Modalità di crescita: gruppo singolo o piccolo</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> FALSE CHANTERELLES </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>pieghe fungine: sottili, affilati, non trasparenti</li>
 <li>Colore: tono arancione e rosso</li>
 <li>Odore: nessun profumo speciale o odore spiacevole</li>
 <li>Modalità di crescita: di solito cluster di grandi dimensioni</li>
-</ul>
-<br>
-<h2>competenze avanzate e approfondimenti professionali</h2>
-<br>
-<h3>L'impatto dei fattori ambientali</h3>
-<br>
-<p>Le caratteristiche superficiali delle spore sono influenzate da condizioni ambientali. Ad alte quote, le radiazioni UV possono causare colori più scuri.Un ambiente umido può far apparire la cheratina più densa.</p>
-<br>
-<h3>modello di cambiamento stagionale</h3>
-<br>
-<p>Nel programma di monitoraggio a lungo termine, ho notato cambiamenti stagionali nelle caratteristiche della superficie delle spore in alcune specie.Gli esemplari a molla di solito hanno batteri più densi e colori più chiari.</p>
-<br>
-<h3>Mutazione geografica</h3>
-<br>
-<p>La stessa specie può mostrare sottili differenze in diverse regioni geografiche.Amanita sulla costa occidentale può essere leggermente più densa della stessa specie sulla costa orientale.</p>
-<br>
-<h2>Conclusione: padroneggiare l'identificazione della superficie dell'arte</h2>
-<br>
-<p>Le caratteristiche della superficie che producono spore sono il nucleo dell'identificazione dei funghi.Attraverso l'apprendimento sistematico e la pratica estesa, puoi sviluppare la capacità di identificare accuratamente i funghi.Ricorda i seguenti punti:</p>
-<br>
+</ul></div>
+<div class="section-title">🍄 competenze avanzate e approfondimenti professionali</div>
+<div class="subsection-title">📌 L'impatto dei fattori ambientali</div>
+<p class="article-text">Le caratteristiche superficiali delle spore sono influenzate da condizioni ambientali. Ad alte quote, le radiazioni UV possono causare colori più scuri.Un ambiente umido può far apparire la cheratina più densa.</p>
+<div class="subsection-title">📌 modello di cambiamento stagionale</div>
+<p class="article-text">Nel programma di monitoraggio a lungo termine, ho notato cambiamenti stagionali nelle caratteristiche della superficie delle spore in alcune specie.Gli esemplari a molla di solito hanno batteri più densi e colori più chiari.</p>
+<div class="subsection-title">📌 Mutazione geografica</div>
+<p class="article-text">La stessa specie può mostrare sottili differenze in diverse regioni geografiche.Amanita sulla costa occidentale può essere leggermente più densa della stessa specie sulla costa orientale.</p>
+<div class="section-title">🍄 Conclusione: padroneggiare l'identificazione della superficie dell'arte</div>
+<p class="article-text">Le caratteristiche della superficie che producono spore sono il nucleo dell'identificazione dei funghi.Attraverso l'apprendimento sistematico e la pratica estesa, puoi sviluppare la capacità di identificare accuratamente i funghi.Ricorda i seguenti punti:</p>
 <p><strong> abilità chiave </strong></p>
-<p>1. Osservare con precisione come aderiscono le pieghe batteriche</p>
-<p>2. Produzione sistematica e interpretazione della stampa di spore</p>
-<p>3. Misurazione quantitativa della spaziatura e dello spessore della piega batterica</p>
+<p class="article-text">1. Osservare con precisione come aderiscono le pieghe batteriche</p>
+<p class="article-text">2. Produzione sistematica e interpretazione della stampa di spore</p>
+<p class="article-text">3. Misurazione quantitativa della spaziatura e dello spessore della piega batterica</p>
 <p>4. Identifica la modalità di cambio del colore</p>
-<br>
 <p><strong> Primo principio di sicurezza </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Non identificare mai i funghi basati su una singola funzionalità</li>
 <li>non raccolto o mangiato se incerto</li>
 <li>Impara dagli esperti locali sui tipi unici di regioni</li>
 <li>Partecipa ad attività di raccolta di funghi organizzati</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Percorso di apprendimento continuo </strong></p>
-<p>1. Inizia con tipi comuni e facili da identificare</p>
-<p>2. Studia sistematicamente una famiglia o un genere</p>
-<p>3. Partecipa al seminario di valutazione dei funghi</p>
-<p>4. Stabilire una biblioteca di campioni di funghi personali</p>
+<p class="article-text">1. Inizia con tipi comuni e facili da identificare</p>
+<p class="article-text">2. Studia sistematicamente una famiglia o un genere</p>
+<p class="article-text">3. Partecipa al seminario di valutazione dei funghi</p>
+<p class="article-text">4. Stabilire una biblioteca di campioni di funghi personali</p>
 <p>5. Exchange Experience con gli esperti</p>
-<br>
-<p>L'identificazione della superficie di spore è una scienza e un'arte.Combina osservazione precisa, analisi sistematica e giudizio intuitivo.Padroneggiando queste abilità, non solo puoi goderti il ​​divertimento della collezione di funghi selvatici in modo sicuro, ma contribuire anche alla protezione fungina e alla ricerca scientifica.</p>
-<br>
-<p>Nella prossima guida, approfondiremo le caratteristiche dello stelo e della base: questo è il prossimo passo per perfezionare la cassetta degli attrezzi di identificazione.</p>
-<br>
-<p>Ti auguro un'attenta osservazione, identificazione accurata e raccolta sicura!</p>
-<br>
+<p class="article-text">L'identificazione della superficie di spore è una scienza e un'arte.Combina osservazione precisa, analisi sistematica e giudizio intuitivo.Padroneggiando queste abilità, non solo puoi goderti il ​​divertimento della collezione di funghi selvatici in modo sicuro, ma contribuire anche alla protezione fungina e alla ricerca scientifica.</p>
+<p class="article-text">Nella prossima guida, approfondiremo le caratteristiche dello stelo e della base: questo è il prossimo passo per perfezionare la cassetta degli attrezzi di identificazione.</p>
+<p class="article-text">Ti auguro un'attenta osservazione, identificazione accurata e raccolta sicura!</p>
 <p>---</p>
-<br>
-<h2>⚠️ Importante disclaimer</h2>
-<br>
+<div class="section-title">❗ ⚠️ Importante disclaimer</div>
 <p><strong> Questo articolo è solo per riferimento educativo e di informazione.</strong></p>
-<br>
-<h3>Avviso di rischio di consumo di funghi</h3>
-<br>
-<p>1. <strong> Life Safety First </strong>: ci sono rischi intrinseci nell'identificazione di funghi selvatici.Molti funghi tossici sembrano molto simili ai funghi commestibili e ingrandirli accidentalmente possono portare a una grave malattia o persino alla morte.</p>
-<br>
-<p>2. <strong> Identificazione professionale richiesta </strong>: prima di mangiare eventuali funghi selvatici, la conferma al 100% deve essere eseguita da un micologo professionista o da un esperto di identificazione dei funghi certificati.Foto, descrizioni di testo e esperienza personale non sono sufficienti per garantire la sicurezza.</p>
-<br>
-<p>3. <strong> Differenze individuali </strong>: anche i funghi commestibili riconosciuti possono causare reazioni avverse a causa di fattori come la costituzione personale, le reazioni allergiche, il metodo di consumo o l'ambiente di crescita dei funghi.Prova in piccole quantità quando si mangia una nuova varietà per la prima volta.</p>
-<br>
-<p>4. <strong> Differenze geografiche </strong>: ci sono enormi differenze nelle specie di funghi e tossicità in diverse regioni.Le informazioni menzionate in questo articolo potrebbero non essere applicate alla tua regione.Si prega di consultare esperti di micologia locali e organizzazioni autorevoli.</p>
-<br>
-<p>5. <strong> Responsabilità professionale </strong>: l'autore e l'editore non saranno responsabili per eventuali danni diretti o indiretti, malattie o perdite derivanti dall'uso delle informazioni in questo articolo.</p>
-<br>
-<p>Consigli sulla sicurezza ###</p>
-<br>
-<ul>
+<div class="subsection-title">📌 Avviso di rischio di consumo di funghi</div>
+<p class="article-text">1. <strong> Life Safety First </strong>: ci sono rischi intrinseci nell'identificazione di funghi selvatici.Molti funghi tossici sembrano molto simili ai funghi commestibili e ingrandirli accidentalmente possono portare a una grave malattia o persino alla morte.</p>
+<p class="article-text">2. <strong> Identificazione professionale richiesta </strong>: prima di mangiare eventuali funghi selvatici, la conferma al 100% deve essere eseguita da un micologo professionista o da un esperto di identificazione dei funghi certificati.Foto, descrizioni di testo e esperienza personale non sono sufficienti per garantire la sicurezza.</p>
+<p class="article-text">3. <strong> Differenze individuali </strong>: anche i funghi commestibili riconosciuti possono causare reazioni avverse a causa di fattori come la costituzione personale, le reazioni allergiche, il metodo di consumo o l'ambiente di crescita dei funghi.Prova in piccole quantità quando si mangia una nuova varietà per la prima volta.</p>
+<p class="article-text">4. <strong> Differenze geografiche </strong>: ci sono enormi differenze nelle specie di funghi e tossicità in diverse regioni.Le informazioni menzionate in questo articolo potrebbero non essere applicate alla tua regione.Si prega di consultare esperti di micologia locali e organizzazioni autorevoli.</p>
+<p class="article-text">5. <strong> Responsabilità professionale </strong>: l'autore e l'editore non saranno responsabili per eventuali danni diretti o indiretti, malattie o perdite derivanti dall'uso delle informazioni in questo articolo.</p>
+<p>Consigli sulla sicurezza ###</p><div class="highlight"><ul>
 <li>✅ Partecipa ai corsi di formazione di identificazione dei funghi formali</li>
 <li>✅ Unisciti all'Associazione micologia locale o al club di funghi</li>
 <li>✅ Acquista funghi coltivati ​​da fonti affidabili</li>
 <li>✅ Salvare campioni di funghi per le esigenze mediche di emergenza</li>
 <li>✅ Non mangiarlo se hai dubbi</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Ricorda: quando hai domande, l'unica opzione sicura è non mangiarla. La tua sicurezza della vita è molto più importante di qualsiasi pasto di funghi.</strong></p>
-<br>
 <p>---</p>
         </div>
-    </div>
+
+</div>
 </body>
 </html>

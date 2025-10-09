@@ -1,414 +1,332 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Relaciones Micorrícicas - Mushroom Ecology</title>
-    <meta name="description" content="Relaciones Micorrícicas">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>02 Relaciones Micorrícicas - MushroomAiSnap</title>
+<link href="../../mobile-styles.css" rel="stylesheet"/>
+<link href="../../mobile-enhancement.css" rel="stylesheet"/>
+<link href="../../ecology-theme.css" rel="stylesheet"/>
+<style>
+        .hero-image img {
+            max-height: 200px;
+            width: 100%;
+            object-fit: cover;
         }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        .article-card img {
+            max-height: 120px;
+            width: 100%;
+            object-fit: cover;
+        }
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                        url('../../images/mushroom-ecology_02-mycorrhizal-relationships.webp') center/cover;
+            position: relative;
+            margin-top: 0;
+        }
+        .article-meta {
+            margin-top: 15px !important;
+        }
+    
+        /* Mushroom Ecology Theme */
+        :root {
+            --primary-color: #228B22;
+            --primary-dark: #006400;
+            --primary-light: #F0FFF0;
+            --accent-color: #32CD32;
+        }
+        
+        /* Theme Color Overrides */
+        .content {
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+            border: 2px solid var(--primary-color);
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, var(--primary-light), var(--primary-light));
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .quote-text {
+            color: var(--primary-dark);
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+        }
+        
+        .subsection-title {
+            color: var(--primary-dark);
+            font-size: 1.4em;
+            font-weight: 600;
+            margin: 25px 0 15px 0;
+            padding-left: 10px;
+            border-left: 3px solid var(--accent-color);
+        }
+        
+        .tip-box {
+            border-left: 4px solid var(--primary-color);
+            background: var(--primary-light);
+        }
+        
+        .tip-title {
+            color: var(--primary-color);
+        }
+        
+        .highlight {
+            border-left: 4px solid var(--accent-color);
+            background: linear-gradient(135deg, #f1f8e9, var(--primary-light));
+        }
+        
+        .warning {
+            border-left: 4px solid #f44336;
+        }
+        
+        .equipment-item {
+            border: 1px solid var(--accent-color);
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+        }
+        
+        .equipment-item h4 {
+            color: var(--primary-color);
+        }
+        
+        .category {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .main-text {
+            font-size: 1.1em;
             line-height: 1.8;
             color: #333;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-
-        .article-title {
-            color: #4ECDC4;
-            font-size: 2.5em;
-            margin-bottom: 30px;
-            margin-top: 0;
-            line-height: 1.3;
-            padding-top: 0;
-        }
-
-        .featured-image {
-            width: 100%;
-            height: auto;
-            aspect-ratio: 4 / 3;
-            object-fit: cover;
-            display: block;
-        }
-
-        .content {
-            padding: 50px;
-        }
-
-        .content h2 {
-            color: #4ECDC4;
-            font-size: 2em;
-            margin-top: 40px;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid #4ECDC4;
-        }
-
-        .content h3 {
-            color: #555;
-            font-size: 1.6em;
-            margin-top: 30px;
-            margin-bottom: 15px;
-        }
-
-        .content h4 {
-            color: #666;
-            font-size: 1.3em;
-            margin-top: 25px;
-            margin-bottom: 12px;
-        }
-
-        .content p {
-            margin-bottom: 20px;
-            font-size: 1.1em;
-            color: #444;
-        }
-
-        .content ul {
             margin: 20px 0;
-            padding-left: 30px;
-        }
-
-        .content li {
-            margin-bottom: 12px;
-            font-size: 1.05em;
-            color: #555;
-        }
-
-        .content strong {
-            color: #222;
-            font-weight: 600;
-        }
-
-        .back-link {
-            display: inline-block;
-            padding: 12px 25px;
-            background: linear-gradient(135deg, #4ECDC4, #8B4513);
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            margin-bottom: 20px;
-            transition: transform 0.3s ease;
-            font-weight: 600;
-        }
-
-        .back-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .navigation {
-            padding: 30px 50px;
-            background: #f8f9fa;
-            border-top: 1px solid #e9ecef;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-btn {
-            padding: 10px 20px;
-            background: #4ECDC4;
-            color: white;
-            text-decoration: none;
+            padding: 15px;
+            background: linear-gradient(135deg, #ffffff, #f9f9f9);
             border-radius: 8px;
-            transition: all 0.3s ease;
+            border-left: 3px solid var(--accent-color);
         }
-
-        .nav-btn:hover {
-            transform: translateX(5px);
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+        
+        .emoji {
+            font-size: 1.5em;
+            margin-left: 10px;
         }
-
-        .nav-btn.prev:hover {
-            transform: translateX(-5px);
+        
+        .read-time, .difficulty {
+            display: inline-block;
+            padding: 5px 15px;
+            margin: 5px 5px 5px 0;
+            border-radius: 20px;
+            font-size: 0.9em;
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            color: #1976d2;
+            font-weight: 500;
         }
-
-        @media (max-width: 768px) {
-            .content {
-                padding: 30px 25px;
-            }
-
-            .article-title {
-                font-size: 1.8em;
-            }
-
-            .featured-image {
-                height: 250px;
-            }
-
-            .navigation {
-                flex-direction: column;
-                gap: 15px;
-            }
+        
+        .difficulty {
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            color: #e65100;
+        }
+        
+        .article-text {
+            line-height: 1.8;
+            color: #444;
+            margin: 15px 0;
+            font-size: 1.05em;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <img src="../../images/mushroom-ecology_02-mycorrhizal-relationships.webp" alt="Relaciones Micorrícicas" class="featured-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22900%22 height=%22400%22%3E%3Crect fill=%22%23D2691E%22 width=%22900%22 height=%22400%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22white%22 font-size=%2260%22%3E🍄%3C/text%3E%3C/svg%3E'">
+<div class="hero-image"></div>
+<div class="content">
+    <h1 class="title">02 Relaciones Micorrícicas</h1>
+    <div class="quote-box">
+        <div class="quote-text">Professional Mycology Guide</div>
+    </div>
+    
+<div class="article-meta">
+<span class="category">🌱 Mushroom Ecology</span>
+<span class="read-time">📖 12 minute read</span>
+<span class="difficulty">🟢 Beginner</span>
+</div>
 
-        <div class="content">
-            <h1 class="article-title">Relaciones Micorrícicas</h1>
-            <br>
-<h2>Cooperación Oculta Bajo el Bosque</h2>
-<br>
-<p>Cuando encontré por primera vez ese grupo perfecto de boletus en un bosque de robles de Minnesota, me di cuenta de que no era solo cuestión de suerte. Treinta años de experiencia en el campo me han enseñado que estas deliciosas setas no aparecen al azar: son evidencia visible de una antigua alianza subterránea. Las relaciones micorrícicas, un término del griego que significa "raíz de hongo", representan un sistema de cooperación sofisticado entre plantas y hongos que ha evolucionado durante más de 400 millones de años.</p>
-<br>
-<p>Para los entusiastas del aire libre como tú y yo, entender esta relación no solo significa cosechas más abundantes, sino también una ventana para comprender más profundamente el mundo natural. En esta vasta red subterránea, los árboles y los hongos realizan complejos intercambios de recursos, y nosotros podemos convertirnos en recolectores más eficientes y conscientes al interpretar estas relaciones.</p>
-<br>
-<h2>Fundamentos de las Micorrizas: Más Allá de los Libros de Texto</h2>
-<br>
-<h3>Definición y Esencia</h3>
-<br>
-<p>Las micorrizas (Mycorrhiza) son mucho más que una definición de libro de texto. En el campo, esta es una de las relaciones ecológicas más básicas que puedes observar. En términos simples, aproximadamente el 90% de las plantas terrestres forman esta relación simbiótica con hongos, incluyendo casi todos los árboles forestales que conocemos, desde los robles blancos de Norteamérica hasta los pinos ponderosa del oeste.</p>
-<br>
+
+            <div class="section-title">🍄 Cooperación Oculta Bajo el Bosque</div>
+<div class="main-text">Cuando encontré por primera vez ese grupo perfecto de boletus en un bosque de robles de Minnesota, me di cuenta de que no era solo cuestión de suerte. Treinta años de experiencia en el campo me han enseñado que estas deliciosas setas no aparecen al azar: son evidencia visible de una antigua alianza subterránea. Las relaciones micorrícicas, un término del griego que significa "raíz de hongo", representan un sistema de cooperación sofisticado entre plantas y hongos que ha evolucionado durante más de 400 millones de años.<span class="emoji">🍄</span></div>
+<p class="article-text">Para los entusiastas del aire libre como tú y yo, entender esta relación no solo significa cosechas más abundantes, sino también una ventana para comprender más profundamente el mundo natural. En esta vasta red subterránea, los árboles y los hongos realizan complejos intercambios de recursos, y nosotros podemos convertirnos en recolectores más eficientes y conscientes al interpretar estas relaciones.</p>
+<div class="section-title">🍄 Fundamentos de las Micorrizas: Más Allá de los Libros de Texto</div>
+<div class="subsection-title">📌 Definición y Esencia</div>
+<p class="article-text">Las micorrizas (Mycorrhiza) son mucho más que una definición de libro de texto. En el campo, esta es una de las relaciones ecológicas más básicas que puedes observar. En términos simples, aproximadamente el 90% de las plantas terrestres forman esta relación simbiótica con hongos, incluyendo casi todos los árboles forestales que conocemos, desde los robles blancos de Norteamérica hasta los pinos ponderosa del oeste.</p>
 <p><strong>Puntos Clave de Observación Práctica:</strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Las relaciones micorrícicas están más desarrolladas en bosques maduros</li>
 <li>Esta relación es más crucial en suelos pobres</li>
 <li>Los nuevos bosques pueden necesitar varios años para establecer una red micorrícica completa</li>
-</ul>
-<br>
-<h3>Tipos Principales y su Identificación</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 Tipos Principales y su Identificación</div>
 <p><strong>Micorrizas Ectotróficas (Ectomycorrhiza, ECM)</strong></p>
-<p>Este es el tipo que más nos importa a los recolectores de setas, ya que la gran mayoría de las setas silvestres comestibles pertenecen a este grupo.</p>
-<br>
+<p class="article-text">Este es el tipo que más nos importa a los recolectores de setas, ya que la gran mayoría de las setas silvestres comestibles pertenecen a este grupo.</p>
 <p><strong>Características de Identificación en el Campo:</strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Las raíces de los árboles están envueltas por una funda formada por las hifas del hongo</li>
 <li>Las hifas penetran entre las células de la raíz formando la red de Hartig</li>
 <li>Los cuerpos fructíferos (setas) suelen estar estrechamente asociados con especies arbóreas específicas</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>Recomendación de Experto:</strong> Aprender a identificar árboles con micorrizas ectotróficas es clave para mejorar la eficiencia de la recolección. Las coníferas (pinos, abetos) y muchas frondosas (robles, hayas) suelen formar micorrizas ectotróficas.</p>
-<br>
 <p><strong>Micorrizas Arbusculares (Arbuscular Mycorrhiza, AM)</strong></p>
-<p>Aunque no producen setas visibles, son cruciales para el ecosistema:</p>
-<ul>
+<p class="article-text">Aunque no producen setas visibles, son cruciales para el ecosistema:</p>
+<div class="highlight"><ul>
 <li>Las hifas penetran directamente las células de la raíz de la planta</li>
 <li>Se asocian principalmente con plantas herbáceas y cultivos</li>
 <li>Tienen un profundo impacto en la salud del suelo</li>
-</ul>
-<br>
-<h2>Mecanismos de Funcionamiento Profundo de las Micorrizas Ectotróficas</h2>
-<br>
-<h3>Intercambio de Nutrientes: El Sistema Económico Subterráneo Preciso</h3>
-<br>
+</ul></div>
+<div class="section-title">🍄 Mecanismos de Funcionamiento Profundo de las Micorrizas Ectotróficas</div>
+<div class="subsection-title">📌 Intercambio de Nutrientes: El Sistema Económico Subterráneo Preciso</div>
 <p><strong>Servicios que el Hongo Proporciona a la Planta:</strong></p>
-<br>
-<p>La obtención de agua es el valor más directo de las micorrizas. Durante temporadas de sequía en el oeste de EE. UU., he observado que los pinos con relaciones micorrícicas tenían una tasa de supervivencia cinco veces mayor que sus contrapartes sin micorrizas. La red de hifas expande el área de absorción de las raíces cientos de veces, permitiendo explorar los poros más pequeños del suelo.</p>
-<br>
-<p>El transporte de nitrógeno y fósforo es otro servicio clave. En un estudio de Montana, los hongos micorrícicos contribuyeron con el 80% del nitrógeno y el 90% del fósforo requeridos por los álamos temblones. Las hifas fúngicas pueden secretar ácidos orgánicos para disolver compuestos de fósforo no disponibles, una eficiencia que supera con creces a la de las raíces de las plantas.</p>
-<br>
+<p class="article-text">La obtención de agua es el valor más directo de las micorrizas. Durante temporadas de sequía en el oeste de EE. UU., he observado que los pinos con relaciones micorrícicas tenían una tasa de supervivencia cinco veces mayor que sus contrapartes sin micorrizas. La red de hifas expande el área de absorción de las raíces cientos de veces, permitiendo explorar los poros más pequeños del suelo.</p>
+<p class="article-text">El transporte de nitrógeno y fósforo es otro servicio clave. En un estudio de Montana, los hongos micorrícicos contribuyeron con el 80% del nitrógeno y el 90% del fósforo requeridos por los álamos temblones. Las hifas fúngicas pueden secretar ácidos orgánicos para disolver compuestos de fósforo no disponibles, una eficiencia que supera con creces a la de las raíces de las plantas.</p>
 <p><strong>Retribución de la Planta al Hongo:</strong></p>
-<br>
-<p>Los árboles transfieren entre el 10% y el 30% de los productos de la fotosíntesis a sus socios fúngicos; esta cifra es incluso mayor en entornos pobres. Esto significa que cuando ves un roble frondoso, en realidad está sustentando una vasta red de hongos subterráneos.</p>
-<br>
-<h3>Beneficios Adicionales Más Allá de la Nutrición</h3>
-<br>
+<p class="article-text">Los árboles transfieren entre el 10% y el 30% de los productos de la fotosíntesis a sus socios fúngicos; esta cifra es incluso mayor en entornos pobres. Esto significa que cuando ves un roble frondoso, en realidad está sustentando una vasta red de hongos subterráneos.</p>
+<div class="subsection-title">📌 Beneficios Adicionales Más Allá de la Nutrición</div>
 <p><strong>Mecanismos de Protección para las Plantas:</strong></p>
-<p>En los bosques de secuoyas de California, he observado que la barrera física formada por hongos micorrícicos protege eficazmente contra los patógenos de la pudrición de la raíz. Los hongos también secretan sustancias similares a los antibióticos, creando un microambiente desfavorable para los patógenos.</p>
-<br>
+<p class="article-text">En los bosques de secuoyas de California, he observado que la barrera física formada por hongos micorrícicos protege eficazmente contra los patógenos de la pudrición de la raíz. Los hongos también secretan sustancias similares a los antibióticos, creando un microambiente desfavorable para los patógenos.</p>
 <p><strong>Mejora de la Estructura del Suelo:</strong></p>
-<p>La red de hifas actúa como un pegamento natural, uniendo las partículas del suelo en agregados estables. Experimentos en el estado de Washington mostraron que la erosión del suelo con micorrizas se redujo en más del 40%.</p>
-<br>
+<p class="article-text">La red de hifas actúa como un pegamento natural, uniendo las partículas del suelo en agregados estables. Experimentos en el estado de Washington mostraron que la erosión del suelo con micorrizas se redujo en más del 40%.</p>
 <p><strong>Red de Comunicación entre Plantas:</strong></p>
-<p>La famosa "Wood Wide Web" (Internet del Bosque) existe realmente. Las hifas conectan diferentes árboles, permitiéndoles compartir recursos y transmitir señales de advertencia. He marcado árboles dentro de la misma red micorrícica y descubierto que cuando uno es atacado por plagas, los árboles vecinos activan mecanismos de defensa de forma anticipada.</p>
-<br>
-<h2>Estrategias de Identificación y Localización de Hongos Micorrícicos</h2>
-<br>
-<h3>Pistas Morfológicas y Ecológicas</h3>
-<br>
+<p class="article-text">La famosa "Wood Wide Web" (Internet del Bosque) existe realmente. Las hifas conectan diferentes árboles, permitiéndoles compartir recursos y transmitir señales de advertencia. He marcado árboles dentro de la misma red micorrícica y descubierto que cuando uno es atacado por plagas, los árboles vecinos activan mecanismos de defensa de forma anticipada.</p>
+<div class="section-title">🍄 Estrategias de Identificación y Localización de Hongos Micorrícicos</div>
+<div class="subsection-title">📌 Pistas Morfológicas y Ecológicas</div>
 <p><strong>Incapacidad de Cultivo:</strong></p>
-<p>Las setas micorrícicas verdaderas no pueden crecer en medios de cultivo artificiales. Es por eso que especies preciadas como el matsutake y los boletus aún no pueden cultivarse completamente de manera comercial.</p>
-<br>
+<p class="article-text">Las setas micorrícicas verdaderas no pueden crecer en medios de cultivo artificiales. Es por eso que especies preciadas como el matsutake y los boletus aún no pueden cultivarse completamente de manera comercial.</p>
 <p><strong>Especificidad de Hábitat:</strong></p>
-<p>Las setas micorrícicas aparecen estrictamente cerca de especies arbóreas específicas. Por ejemplo:</p>
-<ul>
+<p class="article-text">Las setas micorrícicas aparecen estrictamente cerca de especies arbóreas específicas. Por ejemplo:</p>
+<div class="highlight"><ul>
 <li>Boletus: cerca de robles y pinos</li>
 <li>Cantarelas (Cantharellus): en bosques mixtos, especialmente robles y pinos</li>
 <li>Matsutake (Tricholoma matsutake): con especies específicas de pino</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>Patrones Estacionales:</strong></p>
-<p>La mayoría de las setas micorrícicas alcanzan su pico de producción en otoño, coincidiendo con el ritmo en que los árboles envían azúcares hacia las raíces para prepararse para el invierno. Suele haber un pico menor en primavera, especialmente después de la lluvia.</p>
-<br>
-<h3>Especificidad de Asociación: La Llave Dorada del Recolector</h3>
-<br>
+<p class="article-text">La mayoría de las setas micorrícicas alcanzan su pico de producción en otoño, coincidiendo con el ritmo en que los árboles envían azúcares hacia las raíces para prepararse para el invierno. Suele haber un pico menor en primavera, especialmente después de la lluvia.</p>
+<div class="subsection-title">📌 Especificidad de Asociación: La Llave Dorada del Recolector</div>
 <p><strong>Asociados de Adaptación Amplia:</strong></p>
-<p>Como la Amanita muscaria, que puede asociarse con varias especies de árboles, desde pinos hasta abedules.</p>
-<br>
+<p class="article-text">Como la Amanita muscaria, que puede asociarse con varias especies de árboles, desde pinos hasta abedules.</p>
 <p><strong>Asociados Altamente Especializados:</strong></p>
-<p>La relación entre el matsutake y pinos específicos, o entre el Suillus grevillei y los alerces, es casi exclusiva. Esta especificidad es nuestra pista más fuerte para encontrar las setas objetivo.</p>
-<br>
+<p class="article-text">La relación entre el matsutake y pinos específicos, o entre el Suillus grevillei y los alerces, es casi exclusiva. Esta especificidad es nuestra pista más fuerte para encontrar las setas objetivo.</p>
 <p><strong>Estrategia de Localización Rápida:</strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Aprende a identificar con precisión las especies de árboles, no solo la forma de las hojas, sino también la textura de la corteza y los hábitos de crecimiento.</li>
 <li>Lleva una guía de campo de árboles locales.</li>
 <li>Usa aplicaciones de identificación de plantas como ayuda.</li>
 <li>Registra las combinaciones de árboles en los puntos de hallazgo exitosos.</li>
-</ul>
-<br>
-<h2>Recolección Práctica: de la Teoría a la Cosecha</h2>
-<br>
-<h3>Método de Búsqueda Sistematizado</h3>
-<br>
+</ul></div>
+<div class="section-title">🍄 Recolección Práctica: de la Teoría a la Cosecha</div>
+<div class="subsection-title">📌 Método de Búsqueda Sistematizado</div>
 <p><strong>Estrategia de Prioridad de Especies Arbóreas:</strong></p>
-<p>¿Buscas una seta específica? Primero encuentra sus árboles asociados. En Colorado, tripliqué mi eficiencia en la recolección de boletus al concentrarme en buscar bosques de pino ponderosa.</p>
-<br>
+<p class="article-text">¿Buscas una seta específica? Primero encuentra sus árboles asociados. En Colorado, tripliqué mi eficiencia en la recolección de boletus al concentrarme en buscar bosques de pino ponderosa.</p>
 <p><strong>Evaluación del Hábitat:</strong></p>
-<p>Los bordes del bosque suelen ser las mejores áreas de búsqueda: hay suficiente luz para promover la fotosíntesis de los árboles mientras se mantiene una humedad adecuada. Los bosques maduros producen de manera más estable que los jóvenes, porque la red micorrícica está bien establecida.</p>
-<br>
+<p class="article-text">Los bordes del bosque suelen ser las mejores áreas de búsqueda: hay suficiente luz para promover la fotosíntesis de los árboles mientras se mantiene una humedad adecuada. Los bosques maduros producen de manera más estable que los jóvenes, porque la red micorrícica está bien establecida.</p>
 <p><strong>Interpretación de las Condiciones del Suelo:</strong></p>
-<p>El pH afecta significativamente la distribución de las setas. Las áreas de piedra caliza suelen tener combinaciones micorrícicas diferentes a las de los suelos ácidos. Llevar herramientas simples de prueba de suelo puede proporcionar pistas valiosas.</p>
-<br>
-<h3>Aprovechamiento de la Temporada</h3>
-<br>
+<p class="article-text">El pH afecta significativamente la distribución de las setas. Las áreas de piedra caliza suelen tener combinaciones micorrícicas diferentes a las de los suelos ácidos. Llevar herramientas simples de prueba de suelo puede proporcionar pistas valiosas.</p>
+<div class="subsection-title">📌 Aprovechamiento de la Temporada</div>
 <p><strong>Ventana de Temperatura y Humedad:</strong></p>
-<p>La aparición ideal de setas requiere una combinación específica de temperatura y humedad del suelo. Uso un termómetro de suelo de inserción para controlar la temperatura; cuando se mantiene estable entre 10-15°C y ha llovido recientemente, es el momento óptimo para salir.</p>
-<br>
+<p class="article-text">La aparición ideal de setas requiere una combinación específica de temperatura y humedad del suelo. Uso un termómetro de suelo de inserción para controlar la temperatura; cuando se mantiene estable entre 10-15°C y ha llovido recientemente, es el momento óptimo para salir.</p>
 <p><strong>Observación Fenológica:</strong></p>
-<p>Registra las etapas fenológicas de los árboles locales (brotes de hojas, floración, fructificación); estos puntos en el tiempo se correlacionan con la aparición de setas. El registro a largo plazo te ayudará a construir un modelo predictivo.</p>
-<br>
-<h3>Optimización de Equipo y Herramientas</h3>
-<br>
+<p class="article-text">Registra las etapas fenológicas de los árboles locales (brotes de hojas, floración, fructificación); estos puntos en el tiempo se correlacionan con la aparición de setas. El registro a largo plazo te ayudará a construir un modelo predictivo.</p>
+<div class="subsection-title">🔧 Optimización de Equipo y Herramientas</div>
 <p><strong>Equipo de Recolección Profesional:</strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Mochila de recolección con cestas ventiladas (evitar bolsas de plástico)</li>
 <li>Cuchillo de campo de alta calidad</li>
 <li>Cepillo de cerdas suaves para limpiar setas</li>
 <li>Dispositivo GPS para registrar puntos productivos</li>
 <li>Medidor de temperatura y humedad del suelo</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>Sistema de Registro de Datos:</strong></p>
-<p>Registra en detalle cada recolección: especies de árboles, condiciones del suelo, patrones climáticos y cantidad cosechada. Con los años, estos datos se convertirán en una herramienta de predicción invaluable.</p>
-<br>
-<h2>Recolección Sostenible: Ética y Técnica</h2>
-<br>
-<h3>Impacto de los Métodos de Recolección</h3>
-<br>
-<p>La investigación científica muestra que los métodos de recolección correctos tienen un impacto mínimo en la red de hifas:</p>
-<ul>
+<p class="article-text">Registra en detalle cada recolección: especies de árboles, condiciones del suelo, patrones climáticos y cantidad cosechada. Con los años, estos datos se convertirán en una herramienta de predicción invaluable.</p>
+<div class="section-title">🍄 Recolección Sostenible: Ética y Técnica</div>
+<div class="subsection-title">📌 Impacto de los Métodos de Recolección</div>
+<p class="article-text">La investigación científica muestra que los métodos de recolección correctos tienen un impacto mínimo en la red de hifas:</p>
+<div class="highlight"><ul>
 <li>Cortar es mejor que arrancar, reduce la alteración del suelo</li>
 <li>Los cuerpos fructíferos maduros ya han liberado esporas, la recolección razonable no afecta la reproducción</li>
 <li>Dejar algunas setas jóvenes asegura una producción continua</li>
-</ul>
-<br>
-<h3>Responsabilidad en la Protección del Hábitat</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 Responsabilidad en la Protección del Hábitat</div>
 <p>Como recolectores responsables, debemos:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Evitar la compactación del suelo, manteniendo intacta la red de hifas</li>
 <li>Apoyar programas de protección de bosques antiguos</li>
 <li>Participar en organizaciones locales de conservación fúngica</li>
 <li>Educar a otros recolectores sobre prácticas sostenibles</li>
-</ul>
-<br>
-<h2>Perspectiva del Ecosistema: Más Allá de la Recolección</h2>
-<br>
-<h3>Piedra Angular de la Salud Forestal</h3>
-<br>
-<p>Las redes micorrícicas son cruciales para la resiliencia del bosque. Después de sequías o plagas, los bosques con redes micorrícicas saludables se recuperan notablemente más rápido.</p>
-<br>
-<h3>Papel Clave en el Ciclo del Carbono</h3>
-<br>
-<p>Las redes de hifas son participantes importantes en el ciclo global del carbono. Fijan el carbono atmosférico en el suelo, y cierto carbono de las hifas puede almacenarse en el suelo durante décadas.</p>
-<br>
-<h3>Adaptación al Cambio Climático</h3>
-<br>
-<p>Las micorrizas pueden ayudar a los bosques a adaptarse al cambio climático:</p>
-<ul>
+</ul></div>
+<div class="section-title">🍄 Perspectiva del Ecosistema: Más Allá de la Recolección</div>
+<div class="subsection-title">🌲 Piedra Angular de la Salud Forestal</div>
+<p class="article-text">Las redes micorrícicas son cruciales para la resiliencia del bosque. Después de sequías o plagas, los bosques con redes micorrícicas saludables se recuperan notablemente más rápido.</p>
+<div class="subsection-title">📌 Papel Clave en el Ciclo del Carbono</div>
+<p class="article-text">Las redes de hifas son participantes importantes en el ciclo global del carbono. Fijan el carbono atmosférico en el suelo, y cierto carbono de las hifas puede almacenarse en el suelo durante décadas.</p>
+<div class="subsection-title">📌 Adaptación al Cambio Climático</div>
+<p class="article-text">Las micorrizas pueden ayudar a los bosques a adaptarse al cambio climático:</p>
+<div class="highlight"><ul>
 <li>Mejoran la resistencia a la sequía de los árboles</li>
 <li>Aumentan la eficiencia en el uso de nutrientes</li>
 <li>Amortiguan el impacto de temperaturas extremas</li>
-</ul>
-<br>
-<p>Sin embargo, los sistemas micorrícicos mismos enfrentan amenazas por el cambio climático, manifestándose en cambios fenológicos y alteraciones en su distribución.</p>
-<br>
-<h2>Análisis Profundo de Casos Especiales</h2>
-<br>
-<h3>Trufas: La Expresión Máxima de la Relación Micorrícica</h3>
-<br>
-<p>Las trufas representan la forma más especializada de relación micorrícica. Mi experiencia trabajando en una granja de trufas de Oregón reveló la precisión de esta relación:</p>
-<br>
+</ul></div>
+<p class="article-text">Sin embargo, los sistemas micorrícicos mismos enfrentan amenazas por el cambio climático, manifestándose en cambios fenológicos y alteraciones en su distribución.</p>
+<div class="section-title">🍄 Análisis Profundo de Casos Especiales</div>
+<div class="subsection-title">📌 Trufas: La Expresión Máxima de la Relación Micorrícica</div>
+<p class="article-text">Las trufas representan la forma más especializada de relación micorrícica. Mi experiencia trabajando en una granja de trufas de Oregón reveló la precisión de esta relación:</p>
 <p><strong>Factores de Éxito:</strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Árboles hospedadores específicos (normalmente robles o avellanos)</li>
 <li>pH y estructura del suelo precisos</li>
 <li>Clima mediterráneo adecuado</li>
 <li>Paciencia: desde la inoculación hasta la primera cosecha se necesitan 5-7 años</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>Evolución de la Técnica de Recolección:</strong></p>
-<p>El método tradicional que utiliza cerdas ha sido reemplazado por perros entrenados, que no dañan la preciada red micorrícica y son más fáciles de controlar.</p>
-<br>
-<h2>Perspectivas Futuras y Guía de Acción</h2>
-<br>
-<h3>Estrategias de Adaptación al Cambio Climático</h3>
-<br>
-<p>Los recolectores a largo plazo ya han observado cambios evidentes:</p>
-<ul>
+<p class="article-text">El método tradicional que utiliza cerdas ha sido reemplazado por perros entrenados, que no dañan la preciada red micorrícica y son más fáciles de controlar.</p>
+<div class="section-title">📖 Perspectivas Futuras y Guía de Acción</div>
+<div class="subsection-title">📌 Estrategias de Adaptación al Cambio Climático</div>
+<p class="article-text">Los recolectores a largo plazo ya han observado cambios evidentes:</p>
+<div class="highlight"><ul>
 <li>Temporadas de aparición de setas adelantadas o retrasadas</li>
 <li>Desplazamiento hacia el norte del rango de distribución de algunas especies</li>
 <li>Aumento de la fluctuación en los rendimientos</li>
-</ul>
-<br>
+</ul></div>
 <p>Las estrategias de respuesta incluyen:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Ajustar las expectativas de tiempo de recolección</li>
 <li>Explorar nuevas áreas de recolección</li>
 <li>Participar en proyectos de ciencia ciudadana para documentar cambios</li>
-</ul>
-<br>
-<h3>Recomendaciones para la Acción de Conservación</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 Recomendaciones para la Acción de Conservación</div>
 <p><strong>A Nivel Individual:</strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Practicar principios de recolección "Sin Dejar Rastro"</li>
 <li>Apoyar la protección del hábitat fúngico</li>
 <li>Unirse a sociedades micológicas locales</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>A Nivel Comunitario:</strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Promover prácticas forestales sostenibles</li>
 <li>Apoyar la investigación en micorrizas</li>
 <li>Establecer programas educativos para recolectores</li>
-</ul>
-<br>
-<h2>Conclusión: Cosechadores de la Sabiduría Subterránea</h2>
-<br>
-<p>Cuando sostenemos en nuestras manos boletus recién recolectados bajo un roble, estamos cosechando no solo un manjar, sino también la cristalización de la sabiduría de millones de años de coevolución. Las relaciones micorrícicas nos recuerdan que el éxito más duradero en la naturaleza proviene de la cooperación, no de la competencia.</p>
-<br>
-<p>Como recolectores modernos, heredamos tradiciones antiguas mientras cargamos con nuevas responsabilidades. Al comprender profundamente estas alianzas subterráneas, no solo podemos convertirnos en recolectores más eficientes, sino también en guardianes del ecosistema.</p>
-<br>
+</ul></div>
+<div class="section-title">🍄 Conclusión: Cosechadores de la Sabiduría Subterránea</div>
+<p class="article-text">Cuando sostenemos en nuestras manos boletus recién recolectados bajo un roble, estamos cosechando no solo un manjar, sino también la cristalización de la sabiduría de millones de años de coevolución. Las relaciones micorrícicas nos recuerdan que el éxito más duradero en la naturaleza proviene de la cooperación, no de la competencia.</p>
+<p class="article-text">Como recolectores modernos, heredamos tradiciones antiguas mientras cargamos con nuevas responsabilidades. Al comprender profundamente estas alianzas subterráneas, no solo podemos convertirnos en recolectores más eficientes, sino también en guardianes del ecosistema.</p>
 <p><strong>Pasos de Acción Inmediatos:</strong></p>
-<p>1. Aprende a identificar las cinco principales especies de árboles micorrícicos en tu área.</p>
-<p>2. Comienza a registrar observaciones de recolección, creando una base de datos personal.</p>
-<p>3. Únete a una sociedad micológica o grupo de recolectores local.</p>
-<p>4. Practica y enseña métodos de recolección sostenibles.</p>
-<p>5. Apoya las iniciativas locales de protección forestal.</p>
-<br>
-<p>Recuerda, cada recolección responsable es un homenaje a esta antigua colaboración. En la red subterránea, el diálogo entre árboles y hongos ha continuado durante millones de años; tenemos el privilegio de ser testigos y participantes de esta conversación.</p>
+<p class="article-text">1. Aprende a identificar las cinco principales especies de árboles micorrícicos en tu área.</p>
+<p class="article-text">2. Comienza a registrar observaciones de recolección, creando una base de datos personal.</p>
+<p class="article-text">3. Únete a una sociedad micológica o grupo de recolectores local.</p>
+<p class="article-text">4. Practica y enseña métodos de recolección sostenibles.</p>
+<p class="article-text">5. Apoya las iniciativas locales de protección forestal.</p>
+<p class="article-text">Recuerda, cada recolección responsable es un homenaje a esta antigua colaboración. En la red subterránea, el diálogo entre árboles y hongos ha continuado durante millones de años; tenemos el privilegio de ser testigos y participantes de esta conversación.</p>
         </div>
-    </div>
+
+</div>
 </body>
 </html>

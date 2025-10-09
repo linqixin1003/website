@@ -1,798 +1,636 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Da floresta à mesa - Culinary Mushrooms</title>
-    <meta name="description" content="Da floresta à mesa">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>01 Da floresta à mesa - MushroomAiSnap</title>
+<link href="../../mobile-styles.css" rel="stylesheet"/>
+<link href="../../mobile-enhancement.css" rel="stylesheet"/>
+<link href="../../ecology-theme.css" rel="stylesheet"/>
+<style>
+        .hero-image img {
+            max-height: 200px;
+            width: 100%;
+            object-fit: cover;
         }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        .article-card img {
+            max-height: 120px;
+            width: 100%;
+            object-fit: cover;
+        }
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                        url('../../images/culinary-mushrooms_01-cleaning-preparation-techniques.webp') center/cover;
+            position: relative;
+            margin-top: 0;
+        }
+        .article-meta {
+            margin-top: 15px !important;
+        }
+    
+        /* Culinary Mushrooms Theme */
+        :root {
+            --primary-color: #8B4513;
+            --primary-dark: #654321;
+            --primary-light: #FFF8DC;
+            --accent-color: #D2691E;
+        }
+        
+        /* Theme Color Overrides */
+        .content {
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+            border: 2px solid var(--primary-color);
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, var(--primary-light), var(--primary-light));
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .quote-text {
+            color: var(--primary-dark);
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+        }
+        
+        .subsection-title {
+            color: var(--primary-dark);
+            font-size: 1.4em;
+            font-weight: 600;
+            margin: 25px 0 15px 0;
+            padding-left: 10px;
+            border-left: 3px solid var(--accent-color);
+        }
+        
+        .tip-box {
+            border-left: 4px solid var(--primary-color);
+            background: var(--primary-light);
+        }
+        
+        .tip-title {
+            color: var(--primary-color);
+        }
+        
+        .highlight {
+            border-left: 4px solid var(--accent-color);
+            background: linear-gradient(135deg, #f1f8e9, var(--primary-light));
+        }
+        
+        .warning {
+            border-left: 4px solid #f44336;
+        }
+        
+        .equipment-item {
+            border: 1px solid var(--accent-color);
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+        }
+        
+        .equipment-item h4 {
+            color: var(--primary-color);
+        }
+        
+        .category {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .main-text {
+            font-size: 1.1em;
             line-height: 1.8;
             color: #333;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-
-        .article-title {
-            color: #FF6B6B;
-            font-size: 2.5em;
-            margin-bottom: 30px;
-            margin-top: 0;
-            line-height: 1.3;
-            padding-top: 0;
-        }
-
-        .featured-image {
-            width: 100%;
-            height: auto;
-            aspect-ratio: 4 / 3;
-            object-fit: cover;
-            display: block;
-        }
-
-        .content {
-            padding: 50px;
-        }
-
-        .content h2 {
-            color: #FF6B6B;
-            font-size: 2em;
-            margin-top: 40px;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid #FF6B6B;
-        }
-
-        .content h3 {
-            color: #555;
-            font-size: 1.6em;
-            margin-top: 30px;
-            margin-bottom: 15px;
-        }
-
-        .content h4 {
-            color: #666;
-            font-size: 1.3em;
-            margin-top: 25px;
-            margin-bottom: 12px;
-        }
-
-        .content p {
-            margin-bottom: 20px;
-            font-size: 1.1em;
-            color: #444;
-        }
-
-        .content ul {
             margin: 20px 0;
-            padding-left: 30px;
-        }
-
-        .content li {
-            margin-bottom: 12px;
-            font-size: 1.05em;
-            color: #555;
-        }
-
-        .content strong {
-            color: #222;
-            font-weight: 600;
-        }
-
-        .back-link {
-            display: inline-block;
-            padding: 12px 25px;
-            background: linear-gradient(135deg, #FF6B6B, #8B4513);
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            margin-bottom: 20px;
-            transition: transform 0.3s ease;
-            font-weight: 600;
-        }
-
-        .back-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .navigation {
-            padding: 30px 50px;
-            background: #f8f9fa;
-            border-top: 1px solid #e9ecef;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-btn {
-            padding: 10px 20px;
-            background: #FF6B6B;
-            color: white;
-            text-decoration: none;
+            padding: 15px;
+            background: linear-gradient(135deg, #ffffff, #f9f9f9);
             border-radius: 8px;
-            transition: all 0.3s ease;
+            border-left: 3px solid var(--accent-color);
         }
-
-        .nav-btn:hover {
-            transform: translateX(5px);
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+        
+        .emoji {
+            font-size: 1.5em;
+            margin-left: 10px;
         }
-
-        .nav-btn.prev:hover {
-            transform: translateX(-5px);
+        
+        .read-time, .difficulty {
+            display: inline-block;
+            padding: 5px 15px;
+            margin: 5px 5px 5px 0;
+            border-radius: 20px;
+            font-size: 0.9em;
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            color: #1976d2;
+            font-weight: 500;
         }
-
-        @media (max-width: 768px) {
-            .content {
-                padding: 30px 25px;
-            }
-
-            .article-title {
-                font-size: 1.8em;
-            }
-
-            .featured-image {
-                height: 250px;
-            }
-
-            .navigation {
-                flex-direction: column;
-                gap: 15px;
-            }
+        
+        .difficulty {
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            color: #e65100;
+        }
+        
+        .article-text {
+            line-height: 1.8;
+            color: #444;
+            margin: 15px 0;
+            font-size: 1.05em;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <img src="../../images/culinary-mushrooms_01-cleaning-preparation-techniques.webp" alt="Da floresta à mesa" class="featured-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22900%22 height=%22400%22%3E%3Crect fill=%22%23D2691E%22 width=%22900%22 height=%22400%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22white%22 font-size=%2260%22%3E🍄%3C/text%3E%3C/svg%3E'">
+<div class="hero-image"></div>
+<div class="content">
+    <h1 class="title">01 Da floresta à mesa</h1>
+    <div class="quote-box">
+        <div class="quote-text">Professional Mycology Guide</div>
+    </div>
+    
+<div class="article-meta">
+<span class="category">🍄 Culinary Mushrooms</span>
+<span class="read-time">📖 26 minute read</span>
+<span class="difficulty">🟡 Intermediate</span>
+</div>
 
-        <div class="content">
-            <h1 class="article-title">Da floresta à mesa</h1>
-            <br>
-<h2>por que a preparação de cogumelos é tão importante</h2>
-<br>
-<p>Aprendi uma verdade há 20 anos na natureza: a qualidade da preparação de cogumelos determina se você gosta de alimentos ou tesouros de resíduos.Os cogumelos são os termômetros mais sensíveis da natureza e refletem com precisão seu nível de manuseio.Como especialista em colecionador de campo do Alasca às Montanhas do Colorado, posso dizer claramente: 90% das falhas de cozimento de cogumelos decorrem da preparação inadequada.</p>
-<br>
-<p>A estrutura celular exclusiva dos cogumelos é como um instrumento de precisão - pode absorver a essência do sabor e amplificar erros.A diferença entre cogumelos selvagens e cogumelos cultivados não é menos do que entre os cavalos selvagens e os cavalos domésticos. O primeiro requer tecnologia de tratamento mais detalhada.Mas de qualquer maneira, a limpeza e a preparação adequadas são essenciais para desbloquear seu potencial de sabor total.</p>
-<br>
+
+            <div class="section-title">🍄 por que a preparação de cogumelos é tão importante</div>
+<div class="main-text">Aprendi uma verdade há 20 anos na natureza: a qualidade da preparação de cogumelos determina se você gosta de alimentos ou tesouros de resíduos.Os cogumelos são os termômetros mais sensíveis da natureza e refletem com precisão seu nível de manuseio.Como especialista em colecionador de campo do Alasca às Montanhas do Colorado, posso dizer claramente: 90% das falhas de cozimento de cogumelos decorrem da preparação inadequada.<span class="emoji">🍄</span></div>
+<p class="article-text">A estrutura celular exclusiva dos cogumelos é como um instrumento de precisão - pode absorver a essência do sabor e amplificar erros.A diferença entre cogumelos selvagens e cogumelos cultivados não é menos do que entre os cavalos selvagens e os cavalos domésticos. O primeiro requer tecnologia de tratamento mais detalhada.Mas de qualquer maneira, a limpeza e a preparação adequadas são essenciais para desbloquear seu potencial de sabor total.</p>
 <p><strong> Caso prático </strong>:</p>
-<p>Nas montanhas de rota amarga de Montana, vi um colecionador experiente transformando US $ 200 Matsutake em blocos de borracha sem odor devido à preparação inadequada.Esta lição me fez perceber profundamente que o processamento de cogumelos não é uma etapa opcional, mas a base para o sucesso do cozimento.</p>
-<br>
-<h2>A ciência dos cogumelos: Compreendendo seus ingredientes</h2>
-<br>
-<p>Os cogumelos são compostos por 90% de umidade e fibras complexas, mas o que realmente determina suas propriedades é a quitina - uma substância que é a mesma que a concha de camarão e caranguejos que dá ao cogumelo uma textura única.Compreender essa base científica é o ponto de partida para o processamento profissional.</p>
-<br>
+<p class="article-text">Nas montanhas de rota amarga de Montana, vi um colecionador experiente transformando US $ 200 Matsutake em blocos de borracha sem odor devido à preparação inadequada.Esta lição me fez perceber profundamente que o processamento de cogumelos não é uma etapa opcional, mas a base para o sucesso do cozimento.</p>
+<div class="section-title">🍄 A ciência dos cogumelos: Compreendendo seus ingredientes</div>
+<p class="article-text">Os cogumelos são compostos por 90% de umidade e fibras complexas, mas o que realmente determina suas propriedades é a quitina - uma substância que é a mesma que a concha de camarão e caranguejos que dá ao cogumelo uma textura única.Compreender essa base científica é o ponto de partida para o processamento profissional.</p>
 <p><strong> A verdade sobre a água da sucção de cogumelos </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Cogumelos frescos podem absorver 25% do peso do corpo na imersão em 2 minutos</li>
 <li>5 minutos de imersão fazem com que as paredes celulares iniciem a ruptura e os compostos de sabor a perder</li>
 <li>A imersão por mais de 10 minutos fará com que os cogumelos percam 30% de seu sabor fresco natural</li>
 <li>Os cogumelos excessivamente absorvidos não podem exceder 212 ° F ao fritar e não podem produzir a reação de Maillard</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Análise da estrutura celular </strong>:</p>
-<p>As células de cogumelos são como reservatórios em miniatura, envolvidos em redes de quitina.O manuseio correto é manter a integridade dessa estrutura.Nos meus testes de laboratório, descobri que a taxa de ruptura de células de cogumelos processada ideal é inferior a 5%, enquanto o tratamento de erro pode atingir 40%.</p>
-<br>
-<h2>Ferramentas e equipamentos profissionais: invista no equipamento certo</h2>
-<br>
-<h3>Kit de ferramentas básico: itens essenciais</h3>
-<br>
+<p class="article-text">As células de cogumelos são como reservatórios em miniatura, envolvidos em redes de quitina.O manuseio correto é manter a integridade dessa estrutura.Nos meus testes de laboratório, descobri que a taxa de ruptura de células de cogumelos processada ideal é inferior a 5%, enquanto o tratamento de erro pode atingir 40%.</p>
+<div class="section-title">🔧 Ferramentas e equipamentos profissionais: invista no equipamento certo</div>
+<div class="subsection-title">📌 Kit de ferramentas básico: itens essenciais</div>
 <p><strong> escova de cogumelos de peito mole </strong>:</p>
-<p>Escolha uma escova natural de texugo ou uma escova especial de cogumelos.Na prática, achei que as cerdas de dureza média são as melhores - muito difíceis para danificar a superfície, muito macias e não limpas.Plano alternativo: nova escova de dentes, mas você deve garantir cerdas.</p>
-<br>
+<p class="article-text">Escolha uma escova natural de texugo ou uma escova especial de cogumelos.Na prática, achei que as cerdas de dureza média são as melhores - muito difíceis para danificar a superfície, muito macias e não limpas.Plano alternativo: nova escova de dentes, mas você deve garantir cerdas.</p>
 <p><strong> Sistema de ferramentas </strong>:</p>
-<p>-Faca do chef: aço japonês de 8 polegadas, mantendo o ângulo da lâmina de 15 graus</p>
-<p>-Sub-faca: faca de paring de 4 polegadas, lida com peças finas</p>
-<ul>
+<p class="article-text">-Faca do chef: aço japonês de 8 polegadas, mantendo o ângulo da lâmina de 15 graus</p>
+<p class="article-text">-Sub-faca: faca de paring de 4 polegadas, lida com peças finas</p>
+<div class="highlight"><ul>
 <li>Faca Sawtooth: especial para cogumelos frágeis</li>
 <li>Haste de afiamento da faca: repare rapidamente a lâmina antes de cada uso</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Ferramenta de medição </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Escala de cozinha digital: precisa para 0,1 g, especialmente importante para a reidratação de cogumelos secos</li>
 <li>Rotador de salada: selecione o modelo ajustável da força centrífuga</li>
-</ul>
-<br>
+</ul></div>
 <p>Equipamento avançado: investimento profissional</p>
-<br>
 <p><strong> Estação de limpeza de cogumelos </strong>:</p>
 <p>Minhas estações de trabalho de campo incluem:</p>
-<ul>
+<div class="highlight"><ul>
 <li>bancada de aço inoxidável dobrável</li>
 <li>Sistema de filtragem de água de três camadas</li>
 <li>Área de inspeção com lupa de luz LED</li>
 <li>uma zona de secagem com temperatura controlável</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Salvar dispositivo </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Máquina de vedação a vácuo: prolongar o prazo de validade dos cogumelos pré -tratados em 3 vezes</li>
 <li>Desidratador profissional: controle preciso da temperatura e sabor de preservação</li>
 <li>geladeira portátil: manter a qualidade durante a coleta</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Conselho de investimento </strong>:</p>
-<p>Os iniciantes investem US $ 200 em ferramentas básicas e os profissionais consideram um sistema completo de US $ 1.000 ou mais.Lembre-se: as ferramentas de qualidade são um investimento único e todo uso é gratificante.</p>
-<br>
-<h2>Limpeza de cogumelos selvagens: Explicação detalhada da tecnologia prática</h2>
-<br>
+<p class="article-text">Os iniciantes investem US $ 200 em ferramentas básicas e os profissionais consideram um sistema completo de US $ 1.000 ou mais.Lembre-se: as ferramentas de qualidade são um investimento único e todo uso é gratificante.</p>
+<div class="section-title">🧹 Limpeza de cogumelos selvagens: Explicação detalhada da tecnologia prática</div>
 <p>Método de escovação a seco: padrão -ouro</p>
-<br>
 <p><strong> Por que este é o método preferido </strong>:</p>
-<p>Nas montanhas do Wind River, em Wyoming, confirmei através de experimentos comparativos que os cogumelos escovados a seco têm uma taxa de retenção 47% maior do que o Umami lavado com água.Este método maximiza a textura e a integridade do sabor dos cogumelos.</p>
-<br>
+<p class="article-text">Nas montanhas do Wind River, em Wyoming, confirmei através de experimentos comparativos que os cogumelos escovados a seco têm uma taxa de retenção 47% maior do que o Umami lavado com água.Este método maximiza a textura e a integridade do sabor dos cogumelos.</p>
 <p><strong> Etapas de operação </strong>:</p>
-<p>1. Estabeleça uma estação de trabalho de limpeza: nível da bancada, iluminação acima de 1.000 lúmens e ferramentas no lugar</p>
-<p>2. Inspeção do sistema: Do limite ao caule, avalie o grau de contaminação</p>
-<p>3. Pincela suavemente: use uma escova macia para remover impurezas em um ângulo de 30 graus ao longo da direção da prega.</p>
-<p>4. Áreas -chave: Preste atenção especial às dobras bacterianas, orifícios de tubo e bases de caule</p>
-<p>5. Inspeção final: verifique se ainda existem impurezas residuais sob forte luz</p>
-<br>
+<p class="article-text">1. Estabeleça uma estação de trabalho de limpeza: nível da bancada, iluminação acima de 1.000 lúmens e ferramentas no lugar</p>
+<p class="article-text">2. Inspeção do sistema: Do limite ao caule, avalie o grau de contaminação</p>
+<p class="article-text">3. Pincela suavemente: use uma escova macia para remover impurezas em um ângulo de 30 graus ao longo da direção da prega.</p>
+<p class="article-text">4. Áreas -chave: Preste atenção especial às dobras bacterianas, orifícios de tubo e bases de caule</p>
+<p class="article-text">5. Inspeção final: verifique se ainda existem impurezas residuais sob forte luz</p>
 <p><strong> Tipos aplicáveis ​​</strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Boletus: especialmente espécimes jovens</li>
 <li>Chanterelles: indivíduos relativamente limpos</li>
 <li>Fungos de coral: estruturas frágeis precisam ser tratadas particularmente</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Recomendações de especialistas </strong>:</p>
-<p>Estabeleça um modo de escovação: sempre comece na área mais limpa e avançando para a área mais suja.Limpe as cerdas uma vez a cada 5 cogumelos para evitar a contaminação cruzada.</p>
-<br>
+<p class="article-text">Estabeleça um modo de escovação: sempre comece na área mais limpa e avançando para a área mais suja.Limpe as cerdas uma vez a cada 5 cogumelos para evitar a contaminação cruzada.</p>
 <p>Limpa de pano molhado: a arte do equilíbrio</p>
-<br>
-<p>Quando as escovas secas não são suficientes para remover impurezas teimosas, os lenços de pano úmido fornecem um compromisso ideal.</p>
-<br>
+<p class="article-text">Quando as escovas secas não são suficientes para remover impurezas teimosas, os lenços de pano úmido fornecem um compromisso ideal.</p>
 <p><strong> Habilidades profissionais </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Use um pano de microfibra levemente úmido (o teor de umidade de 15% é o melhor)</li>
-</ul>
-<p>-Use tecnologia de limpeza unidirecional para evitar atrito de um lado para o outro</p>
-<ul>
+</ul></div>
+<p class="article-text">-Use tecnologia de limpeza unidirecional para evitar atrito de um lado para o outro</p>
+<div class="highlight"><ul>
 <li>Mude as partes sujas do tecido no tempo (a cada 2-3 cogumelos)</li>
 <li>Para a tampa de lula pegajosa, use um pano umedecido com limonada (1 litro de água + 5 ml de suco de limão)</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Dados práticos </strong>:</p>
-<p>Na prática de coleta do Parque Yellowstone, a limpeza de pano úmido é 35% mais eficiente que a limpeza da escova a seco, enquanto a umidade aumenta em apenas 2%.Vale a pena adotar esse compromisso em situações graves de poluição.</p>
-<br>
-<h3>Flush: uma tecnologia de cautela para uso</h3>
-<br>
+<p class="article-text">Na prática de coleta do Parque Yellowstone, a limpeza de pano úmido é 35% mais eficiente que a limpeza da escova a seco, enquanto a umidade aumenta em apenas 2%.Vale a pena adotar esse compromisso em situações graves de poluição.</p>
+<div class="subsection-title">📌 Flush: uma tecnologia de cautela para uso</div>
 <p><strong> Base científica </strong>:</p>
-<p>Estudos micológicos da Universidade da Califórnia mostram que enxaguamento rápido em 30 segundos tem um efeito mínimo na textura de cogumelos.A chave está na velocidade e no processamento subsequente.</p>
-<br>
+<p class="article-text">Estudos micológicos da Universidade da Califórnia mostram que enxaguamento rápido em 30 segundos tem um efeito mínimo na textura de cogumelos.A chave está na velocidade e no processamento subsequente.</p>
 <p><strong> Método correto </strong>:</p>
 <p>1. Use 4 ° C para fluir água, pressão de 2-3Bar</p>
-<p>2. Cogumelos portáteis através do fluxo de água rapidamente (2-3 segundos por face)</p>
-<p>3. Coloque o girador de salada imediatamente (15 segundos de baixa velocidade)</p>
-<p>4. Espalhe em papel absorvente e coloque -o em uma única camada</p>
+<p class="article-text">2. Cogumelos portáteis através do fluxo de água rapidamente (2-3 segundos por face)</p>
+<p class="article-text">3. Coloque o girador de salada imediatamente (15 segundos de baixa velocidade)</p>
+<p class="article-text">4. Espalhe em papel absorvente e coloque -o em uma única camada</p>
 <p>5. Seque a área ventilada por 10 minutos</p>
-<br>
 <p><strong> Situação aplicável </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Cogumelos em áreas arenosas (grãos de areia embutidos na superfície)</li>
 <li>Boletus extremamente sujo</li>
 <li>cogumelos que foram chamados</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Controle de risco </strong>:</p>
-<p>Use apenas se os benefícios da lavagem forem significativamente maiores que os riscos.Minha regra geral é: considere apenas a lavagem se os contaminantes excederem 30% da área da superfície.</p>
-<br>
-<h2>Tipo Processamento Específico: A tecnologia especializada revela</h2>
-<br>
-<h3>Boletus: tratamento nobre</h3>
-<br>
+<p class="article-text">Use apenas se os benefícios da lavagem forem significativamente maiores que os riscos.Minha regra geral é: considere apenas a lavagem se os contaminantes excederem 30% da área da superfície.</p>
+<div class="section-title">🍄 Tipo Processamento Específico: A tecnologia especializada revela</div>
+<div class="subsection-title">📌 Boletus: tratamento nobre</div>
 <p><strong> Tratamento da camada de orifício do tubo </strong>:</p>
-<p>A camada jovem e sólida do orifício do tubo deve ser retida, que é a essência do sabor.Os orifícios do tubo com envelhecimento e amolecimento ou severamente contaminados são raspados com uma faca.</p>
-<br>
-<p>Caso prático: nas montanhas de San Juan, no Colorado, descobri que a melhor ferramenta para tratar a camada de furo de pílulas boreais é uma faca de cabeça rana que raspe suavemente em um ângulo de 45 graus.Os testes mostram que a intensidade de umami da camada de orifício de tubo tratado corretamente é três vezes a da carne de cogumelo.</p>
-<br>
+<p class="article-text">A camada jovem e sólida do orifício do tubo deve ser retida, que é a essência do sabor.Os orifícios do tubo com envelhecimento e amolecimento ou severamente contaminados são raspados com uma faca.</p>
+<p class="article-text">Caso prático: nas montanhas de San Juan, no Colorado, descobri que a melhor ferramenta para tratar a camada de furo de pílulas boreais é uma faca de cabeça rana que raspe suavemente em um ângulo de 45 graus.Os testes mostram que a intensidade de umami da camada de orifício de tubo tratado corretamente é três vezes a da carne de cogumelo.</p>
 <p><strong> Sistema de Avaliação de Aço </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Nível 1: Worm menor de inseto, ressecção local 1cm</li>
 <li>Nível 2: Moderado Worm Worm Worm Worm, Avaliação longitudinal de incisão</li>
 <li>Nível 3: Comido grave de insetos, descarte tudo por razões de segurança</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Habilidades profissionais </strong>:</p>
-<p>Usando o "teste do dedo" - sacudindo a base do caule, o som opaco indica uma cavidade interna e requer uma inspeção adicional.</p>
-<br>
-<h3>chanterelles: relativamente simples, mas não desleixado</h3>
-<br>
+<p class="article-text">Usando o "teste do dedo" - sacudindo a base do caule, o som opaco indica uma cavidade interna e requer uma inspeção adicional.</p>
+<div class="subsection-title">📌 chanterelles: relativamente simples, mas não desleixado</div>
 <p><strong> Pontos de limpeza </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>pregas falsas são relativamente fáceis de limpar</li>
 <li>Verifique se existem agulhas de pinheiro e pequenos insetos nas dobras</li>
 <li>Use uma escova de dentes de cerdas macias para limpar cuidadosamente as rugas</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Experiência prática </strong>:</p>
-<p>Na Península Olímpica no estado de Washington, desenvolvi o "Método de oscilação de Chanterelles": coloquei cogumelos em uma tela e os sacudem suavemente para causar a queda de impurezas.Este método é particularmente eficaz para pequenos insetos ocultos em dobras.</p>
-<br>
-<h3>Morels: desafios e soluções</h3>
-<br>
-<p>A estrutura do favo de mel dos Morels é o maior desafio na limpeza.Após 15 anos de experimentação, resumi três métodos confiáveis:</p>
-<br>
+<p class="article-text">Na Península Olímpica no estado de Washington, desenvolvi o "Método de oscilação de Chanterelles": coloquei cogumelos em uma tela e os sacudem suavemente para causar a queda de impurezas.Este método é particularmente eficaz para pequenos insetos ocultos em dobras.</p>
+<div class="subsection-title">📌 Morels: desafios e soluções</div>
+<p class="article-text">A estrutura do favo de mel dos Morels é o maior desafio na limpeza.Após 15 anos de experimentação, resumi três métodos confiáveis:</p>
 <p><strong> Método 1: Tecnologia longitudinal de meio corte </strong></p>
 <p>1. Corte meio longamente do caule para a ponta</p>
 <p>2. Verifique a câmara interna para obter insetos</p>
-<p>3. Enxágue toda metade do corpo com água fria (2 segundos de cada lado)</p>
+<p class="article-text">3. Enxágue toda metade do corpo com água fria (2 segundos de cada lado)</p>
 <p>4. Drene invertido por pelo menos 30 minutos</p>
-<br>
 <p><strong> Método 2: Método de imersão em salmoura </strong></p>
-<p>1. Prepare uma solução salina de 5% (1 litro de água + 50 gramas de sal)</p>
+<p class="article-text">1. Prepare uma solução salina de 5% (1 litro de água + 50 gramas de sal)</p>
 <p>2. Mergulhe por 10-15 minutos e mexa suavemente</p>
-<p>3. Os insetos saem devido a mudanças na pressão osmótica</p>
+<p class="article-text">3. Os insetos saem devido a mudanças na pressão osmótica</p>
 <p>4. Enxágue bem após a remoção de sal</p>
-<p>5. Toalhas de papel de várias camadas para absorver a umidade</p>
-<br>
+<p class="article-text">5. Toalhas de papel de várias camadas para absorver a umidade</p>
 <p><strong> Método 3: Método de limpeza do fluxo de ar </strong></p>
-<p>Use a lente da câmera para limpar a bomba de ar e soprar o ar comprimido na estrutura do favo de mel em um ângulo de 45 graus.Este método é particularmente eficaz para moros em áreas secas.</p>
-<br>
-<h3>Matsutake: tratamento fino de ingredientes preciosos</h3>
-<br>
-<p>Tradicionalmente, os cogumelos Matsutake nunca são lavados, mas existem alguns ajustes na prática moderna da cozinha.</p>
-<br>
+<p class="article-text">Use a lente da câmera para limpar a bomba de ar e soprar o ar comprimido na estrutura do favo de mel em um ângulo de 45 graus.Este método é particularmente eficaz para moros em áreas secas.</p>
+<div class="subsection-title">📌 Matsutake: tratamento fino de ingredientes preciosos</div>
+<p class="article-text">Tradicionalmente, os cogumelos Matsutake nunca são lavados, mas existem alguns ajustes na prática moderna da cozinha.</p>
 <p><strong> Método tradicional </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Pano molhado limpe cuidadosamente todas as rugas</li>
 <li>escova macia especial para limpar a base</li>
 <li>reter compostos de aroma natural</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Solução alternativa moderna </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>descarga rápida em casos extremos (pontos únicos não excedem 10 segundos)</li>
 <li>Ruir imediatamente secar com papel de cera japonês</li>
 <li>absorver o excesso de água usando o método de preservação de arroz</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Proteção de valor </strong>:</p>
-<p>Considerando que Matsutake pode atingir US $ 100 por libra, o manuseio correto está diretamente relacionado ao valor econômico.Minha experiência é: prefiro sacrificar a perfeição um pouco do que garantir um consumo seguro.</p>
-<br>
-<h2>Identificação e processamento de peças não comestíveis</h2>
-<br>
-<h3>Sistema de estimativa de insetos</h3>
-<br>
-<p>Estabelecer um sistema de avaliação de três níveis:</p>
-<ul>
+<p class="article-text">Considerando que Matsutake pode atingir US $ 100 por libra, o manuseio correto está diretamente relacionado ao valor econômico.Minha experiência é: prefiro sacrificar a perfeição um pouco do que garantir um consumo seguro.</p>
+<div class="section-title">🍄 Identificação e processamento de peças não comestíveis</div>
+<div class="subsection-title">📌 Sistema de estimativa de insetos</div>
+<p class="article-text">Estabelecer um sistema de avaliação de três níveis:</p>
+<div class="highlight"><ul>
 <li>Nível 1: pequenos buracos de minhoca de superfície, remoção local (taxa de perda <5%)</li>
-</ul>
-<p>-Nível 2: Moderado comedor de insetos, o índice comestível precisa ser julgado (taxa de perda de 5 a 30%)</p>
-<ul>
+</ul></div>
+<p class="article-text">-Nível 2: Moderado comedor de insetos, o índice comestível precisa ser julgado (taxa de perda de 5 a 30%)</p>
+<div class="highlight"><ul>
 <li>Nível 3: Comido grave de insetos, descarte tudo por razões de segurança (taxa de perda> 30%)</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> julgamento prático </strong>:</p>
-<p>No deserto de Idaho, desenvolvi o "método de avaliação rápida para vermes de insetos": corte a base do caule e descarte -o se a profundidade do buraco de minhoca exceder 1/3 do diâmetro; Se o buraco de minhoca estiver limitado à superfície, poderá ser retido.</p>
-<br>
-<h3>Guia para o tratamento de trapézios</h3>
-<br>
+<p class="article-text">No deserto de Idaho, desenvolvi o "método de avaliação rápida para vermes de insetos": corte a base do caule e descarte -o se a profundidade do buraco de minhoca exceder 1/3 do diâmetro; Se o buraco de minhoca estiver limitado à superfície, poderá ser retido.</p>
+<div class="subsection-title">📌 Guia para o tratamento de trapézios</div>
 <p><strong> Tipo comestível completo </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Chanterelles: coleira completa</li>
 <li>Pequenos cogumelos: use toda a planta</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Tipos comestíveis seletivos </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Boletus: Teste de tenacidade</li>
 <li>cogumelo shiitake: fibrose antiga de haste precisa ser removida</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Método de teste profissional </strong>:</p>
-<p>Corte o fragmento de 2 cm e prove a textura crua.Se você precisar mastigar mais de três vezes antes de engolir, significa que há muita fibra e é recomendável removê -la.Os talos resistentes reservados podem ser usados ​​para fazer estoque.</p>
-<br>
-<h2>Tecnologia de corte profissional: a forma determina o sabor</h2>
-<br>
-<h3>Seleção e manutenção de ferramentas</h3>
-<br>
+<p class="article-text">Corte o fragmento de 2 cm e prove a textura crua.Se você precisar mastigar mais de três vezes antes de engolir, significa que há muita fibra e é recomendável removê -la.Os talos resistentes reservados podem ser usados ​​para fazer estoque.</p>
+<div class="section-title">🍄 Tecnologia de corte profissional: a forma determina o sabor</div>
+<div class="subsection-title">📌 Seleção e manutenção de ferramentas</div>
 <p><strong> Sistema de ferramentas essenciais </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Faca chef de 8 polegadas: 90% da ferramenta principal para o trabalho</li>
 <li>Faca de paring de 3 polegadas: trabalho de gravura fina</li>
 <li>Faca Sawtooth: manuseie cogumelos frágeis como caneta fantasma</li>
 <li>Special Whetstone: Repare a lâmina a cada 2 horas</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Contrato de manutenção </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Limpe imediatamente após o uso com água morna e detergente neutro</li>
 <li>Armazene após secagem completa</li>
 <li>Use 1000/3000 de malha whetstones por semana para manter</li>
 <li>Serviço de afiação de facas profissionais todos os meses</li>
-</ul>
-<br>
-<h3>Método de corte e cenários de aplicação</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 Método de corte e cenários de aplicação</div>
 <p><strong> Tecnologia de filme (2-4mm) </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Melhor usado para: frite rápido, frito</li>
 <li>Dicas: corte ao longo da textura para manter a espessura uniforme</li>
 <li>Objetivo: maximizar a área de superfície e promover o cozimento uniforme</li>
 <li>Dicas profissionais: Use orientação para a junta para garantir a segurança</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Tecnologia de folha grossa (1-2cm) </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Melhor usado para: assar, cozinhar e cozinhar</li>
 <li>Habilidade: textura cruzada para aumentar a sensibilidade</li>
 <li>Objetivo: Mantenha a textura carnuda</li>
 <li>Dica profissional: a superfície pré-pintada ajuda a temperar o permeado</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Método especial de corte </strong>:</p>
-<p>-Corte em forma de span: exibe texturas bonitas para exibição de culinária de ponta</p>
-<ul>
+<p class="article-text">-Corte em forma de span: exibe texturas bonitas para exibição de culinária de ponta</p>
+<div class="highlight"><ul>
 <li>Julienne Cut: tiras de 3 mm, salada e decoração</li>
 <li>Cubos grossos: 2-3 cm de cubos irregulares, sopas e ensopados</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Dados práticos </strong>:</p>
-<p>Nos testes profissionais de cozinha, o corte correto reduz o tempo de cozimento dos cogumelos em 25% e aumenta a uniformidade da distribuição de sabor em 40%.</p>
-<br>
-<h2>Manutenção de frescura: da coleção à culinária</h2>
-<br>
-<h3>Processe o protocolo imediatamente após a coleta</h3>
-<br>
+<p class="article-text">Nos testes profissionais de cozinha, o corte correto reduz o tempo de cozimento dos cogumelos em 25% e aumenta a uniformidade da distribuição de sabor em 40%.</p>
+<div class="section-title">🍄 Manutenção de frescura: da coleção à culinária</div>
+<div class="subsection-title">📌 Processe o protocolo imediatamente após a coleta</div>
 <p><strong> Princípio dourado de 4 horas </strong>:</p>
-<p>O processamento é concluído dentro de 4 horas após a coleta de campo e a taxa de retenção de qualidade é aumentada em 60%.Para cada atraso de 1 hora, a perda de composto Umami é de 15%.</p>
-<br>
+<p class="article-text">O processamento é concluído dentro de 4 horas após a coleta de campo e a taxa de retenção de qualidade é aumentada em 60%.Para cada atraso de 1 hora, a perda de composto Umami é de 15%.</p>
 <p><strong> Dicas de armazenamento temporário </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Use recipientes respiráveis: as cestas de vime são as melhores cestas de plástico são as melhores</li>
 <li>colocação em camadas: 1 cm de espaço é retido entre os cogumelos</li>
 <li>Evite extrusão: melhor colocação de camada única</li>
 <li>Controle de temperatura: 10-15 ° C Temperatura ambiente</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Experiência prática </strong>:</p>
-<p>Em áreas remotas do Alasca, usei uma caixa de plástico de nível militar separado por várias camadas de tecidos, que mantinham 90% frescos em 12 horas.</p>
-<br>
-<h3>Otimização do sistema de refrigeração</h3>
-<br>
+<p class="article-text">Em áreas remotas do Alasca, usei uma caixa de plástico de nível militar separado por várias camadas de tecidos, que mantinham 90% frescos em 12 horas.</p>
+<div class="subsection-title">📌 Otimização do sistema de refrigeração</div>
 <p><strong> Método correto </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>embalagem de bolsa de papel para evitar selar</li>
 <li>A área mais fria da geladeira (1-3 ° C)</li>
 <li>Controle de umidade: 85-90% de umidade relativa</li>
 <li>Verificação diária: remova as pessoas que começaram a se deteriorar</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Demonstração de erro </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Vedação de saco plástico: aumento de 300% em 24 horas</li>
 <li>Armazenamento pré-limpo: a taxa de crescimento microbiana é aumentada 5 vezes</li>
 <li>armazenamento empilhado: dano de pressão causa degradação da qualidade</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Habilidades profissionais </strong>:</p>
-<p>Use uma caixa de armazenamento fresco de controle de umidade com um higrômetro embutido.Manter 85% de umidade pode prolongar o prazo de validade a 7 dias.</p>
-<br>
-<h2>Tratamento profissional do cultivo de cogumelos</h2>
-<br>
-<h3>Agaricus bisporus (cogumelo branco/marrom)</h3>
-<br>
+<p class="article-text">Use uma caixa de armazenamento fresco de controle de umidade com um higrômetro embutido.Manter 85% de umidade pode prolongar o prazo de validade a 7 dias.</p>
+<div class="section-title">🍄 Tratamento profissional do cultivo de cogumelos</div>
+<div class="subsection-title">📌 Agaricus bisporus (cogumelo branco/marrom)</div>
 <p><strong> Limpeza industrial </strong>:</p>
-<p>O controle do ambiente de cultivo torna esses cogumelos relativamente limpos, mas o tratamento profissional ainda pode melhorar a qualidade.</p>
-<br>
+<p class="article-text">O controle do ambiente de cultivo torna esses cogumelos relativamente limpos, mas o tratamento profissional ainda pode melhorar a qualidade.</p>
 <p><strong> Dicas de preparação </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>O caule é completamente comestível e não precisa ser removido</li>
 <li>determinar o todo ou fatiar de acordo com o tamanho</li>
 <li>Enxaguamento rápido é aceitável, mas deve ser completamente seco</li>
 <li>Descascando tratamento: cogumelos velhos podem remover a pele externa</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Otimização de eficiência </strong>:</p>
-<p>Em uma cozinha comercial, estabeleça processamento de linha de montagem: uma pessoa limpa, uma pessoa apara e fatias de uma pessoa.Essa divisão do trabalho aumenta a eficiência do processamento em 60%.</p>
-<br>
-<h3>cogumelos shiitake: diferenças no manuseio leste e oeste</h3>
-<br>
+<p class="article-text">Em uma cozinha comercial, estabeleça processamento de linha de montagem: uma pessoa limpa, uma pessoa apara e fatias de uma pessoa.Essa divisão do trabalho aumenta a eficiência do processamento em 60%.</p>
+<div class="subsection-title">📌 cogumelos shiitake: diferenças no manuseio leste e oeste</div>
 <p><strong> cogumelos frescos </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Limpe a tampa esterilizada</li>
 <li>O caule decide ficar e ficar com base na idade</li>
 <li>Os cogumelos shiitake antigos podem ser descascados</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Cogumelo shiitake seco </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Água fria reidratada lentamente (4-6 horas)</li>
 <li>Mantenha o sabor rico da água de imersão</li>
 <li>filtração para remover precipitados</li>
 <li>temperatura de reidratação: 20 ° C melhor</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> diferenças culturais </strong>:</p>
-<p>Os chefs japoneses insistem em limpeza tradicional de pano seco, enquanto os chefs ocidentais têm maior probabilidade de enxágue rápida.Meus testes mostram que, sob controle rigoroso, a diferença de sabor entre os dois métodos é inferior a 5%.</p>
-<br>
-<h2>erros comuns e soluções profissionais</h2>
-<br>
-<h3>Erro 1: Over-washing</h3>
-<br>
+<p class="article-text">Os chefs japoneses insistem em limpeza tradicional de pano seco, enquanto os chefs ocidentais têm maior probabilidade de enxágue rápida.Meus testes mostram que, sob controle rigoroso, a diferença de sabor entre os dois métodos é inferior a 5%.</p>
+<div class="section-title">🍄 erros comuns e soluções profissionais</div>
+<div class="subsection-title">📌 Erro 1: Over-washing</div>
 <p><strong> Análise de problemas </strong>:</p>
-<p>A hidratação excessiva causa ruptura celular e perda de substâncias de sabor.Os testes mostram que os cogumelos com excesso de lavagem têm uma redução de 40% na intensidade de umami.</p>
-<br>
+<p class="article-text">A hidratação excessiva causa ruptura celular e perda de substâncias de sabor.Os testes mostram que os cogumelos com excesso de lavagem têm uma redução de 40% na intensidade de umami.</p>
 <p><strong>Solução</strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Estabeleça um "método seco primeiro" pensando</li>
 <li>A lavagem é limitada a situações absolutamente necessárias</li>
 <li>Invista em ferramentas de limpeza de alta qualidade</li>
 <li>Defina o timer para controlar o tempo de lavagem</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Correção prática </strong>:</p>
-<p>Use um testador de umidade para garantir que a umidade da superfície de cogumelos tratada seja inferior a 8%.Se esse limite exceder, o método precisará ser ajustado.</p>
-<br>
-<h3>Erro 2: Limpeza incompleta</h3>
-<br>
+<p class="article-text">Use um testador de umidade para garantir que a umidade da superfície de cogumelos tratada seja inferior a 8%.Se esse limite exceder, o método precisará ser ajustado.</p>
+<div class="subsection-title">🧹 Erro 2: Limpeza incompleta</div>
 <p><strong> Lições práticas </strong>:</p>
-<p>Em um jantar comercial em Montana, um grão de areia arruinou US $ 500 em pratos de cogumelos.</p>
-<br>
+<p class="article-text">Em um jantar comercial em Montana, um grão de areia arruinou US $ 500 em pratos de cogumelos.</p>
 <p><strong> Processo profissional </strong>:</p>
 <p>1. Inspeção preliminar de aparência (olho natal)</p>
-<p>2. Limpeza detalhada de áreas -chave (lupa assistida)</p>
+<p class="article-text">2. Limpeza detalhada de áreas -chave (lupa assistida)</p>
 <p>3. Corte e verifique o interior</p>
 <p>4. Confirmação final da qualidade (teste tátil)</p>
-<br>
-<h3>Erro 3: Armazenamento de pré -processamento</h3>
-<br>
+<div class="subsection-title">📦 Erro 3: Armazenamento de pré -processamento</div>
 <p><strong> Explicação científica </strong>:</p>
-<p>A oxidação da superfície de corte leva a um rápido declínio na qualidade.Os testes mostraram que os cogumelos pré-cortados perderam 25% de seu sabor dentro de 4 horas.</p>
-<br>
+<p class="article-text">A oxidação da superfície de corte leva a um rápido declínio na qualidade.Os testes mostraram que os cogumelos pré-cortados perderam 25% de seu sabor dentro de 4 horas.</p>
 <p><strong> Melhor prática </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Preparação de última hora antes de cozinhar</li>
 <li>Se for necessário pré -tratamento: vedação a vácuo + refrigeração rápida (1 ° C)</li>
 <li>Tratamento antioxidante: leve spray de suco de limão</li>
-</ul>
-<br>
-<h2>habilidades avançadas e considerações profissionais</h2>
-<br>
-<h3>grande sistema de eficiência de processamento</h3>
-<br>
-<p>Estabeleça uma estação de trabalho de linha de montagem:</p>
-<p>1. Estação de recebimento e classificação: avaliação e classificação preliminares</p>
-<p>2. Estação de limpeza preliminar: remoção básica de impurezas</p>
-<p>3. Estação de processamento fino: trabalho específico do tipo</p>
-<p>4. Ponto de verificação da qualidade: controle final da qualidade</p>
-<p>5. Embalagem ou culinária direta: dividido por propósito</p>
-<br>
+</ul></div>
+<div class="section-title">🍄 habilidades avançadas e considerações profissionais</div>
+<div class="subsection-title">📌 grande sistema de eficiência de processamento</div>
+<p class="article-text">Estabeleça uma estação de trabalho de linha de montagem:</p>
+<p class="article-text">1. Estação de recebimento e classificação: avaliação e classificação preliminares</p>
+<p class="article-text">2. Estação de limpeza preliminar: remoção básica de impurezas</p>
+<p class="article-text">3. Estação de processamento fino: trabalho específico do tipo</p>
+<p class="article-text">4. Ponto de verificação da qualidade: controle final da qualidade</p>
+<p class="article-text">5. Embalagem ou culinária direta: dividido por propósito</p>
 <p><strong> Divisão de equipe do Modelo de Trabalho </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Tratamento primário: limpeza básica (iniciantes)</li>
 <li>Processamento fino: trabalho específico da categoria (experiente)</li>
 <li>Controle de qualidade: inspeção final (especialista)</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Dados de eficiência </strong>:</p>
-<p>Nos testes profissionais de cozinha, o sistema da linha de montagem melhora a eficiência do processamento em 80% e reduz a taxa de erro em 65%.</p>
-<br>
+<p class="article-text">Nos testes profissionais de cozinha, o sistema da linha de montagem melhora a eficiência do processamento em 80% e reduz a taxa de erro em 65%.</p>
 <p>Estratégia de maximização de sabor ###</p>
-<br>
 <p><strong> Princípio da intervenção mínima </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Cada etapa de processamento deve ter um propósito claro</li>
 <li>Evite corte e limpeza desnecessários</li>
 <li>Respeite o estado natural dos ingredientes</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Zero Waste Concept </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Fragmentos trapezoidais: básicos de estoque (cozidos e extraídos)</li>
 <li>Parte de acabamento: tempero em pó (moagem a seco)</li>
 <li>Cogumelos imperfeitos: molho e recheio</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Valor econômico </strong>:</p>
-<p>O tratamento com resíduos zero aumenta a utilização de cogumelos de 70% para 95%, o que significa economia significativa de custos em um ambiente de negócios.</p>
-<br>
-<h2>Técnicas de preparação de correspondência e métodos de cozinha</h2>
-<br>
-<h3>Fry e Fry</h3>
-<br>
+<p class="article-text">O tratamento com resíduos zero aumenta a utilização de cogumelos de 70% para 95%, o que significa economia significativa de custos em um ambiente de negócios.</p>
+<div class="section-title">🍄 Técnicas de preparação de correspondência e métodos de cozinha</div>
+<div class="subsection-title">📌 Fry e Fry</div>
 <p><strong> Requisitos -chave </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Superfície absolutamente seca (umidade <5%)</li>
 <li>Folha fina uniforme (3mm melhor)</li>
 <li>começando à temperatura ambiente (20 ° C)</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Habilidades profissionais </strong>:</p>
-<p>Coloque uma única camada para evitar o efeito de vapor e cozinhar e promover a reação real de coque.Use um termômetro infravermelho para garantir que a superfície da panela atinja 200 ° C e adicione cogumelos.</p>
-<br>
+<p class="article-text">Coloque uma única camada para evitar o efeito de vapor e cozinhar e promover a reação real de coque.Use um termômetro infravermelho para garantir que a superfície da panela atinja 200 ° C e adicione cogumelos.</p>
 <p><strong> Dados práticos </strong>:</p>
-<p>A proporção de cogumelos preparados corretamente que produz reações de Maillard quando a fritura é de 85%, enquanto a proporção de preparações inadequadas é de apenas 20%.</p>
-<br>
-<h3>Preparação de cozimento</h3>
-<br>
+<p class="article-text">A proporção de cogumelos preparados corretamente que produz reações de Maillard quando a fritura é de 85%, enquanto a proporção de preparações inadequadas é de apenas 20%.</p>
+<div class="subsection-title">👨‍🍳 Preparação de cozimento</div>
 <p><strong> Melhor status </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>corte um pouco mais espesso (1,5 cm) para manter o suculento</li>
 <li>A superfície pode estar ligeiramente úmida (8-10%) para promover o acessório de tempero</li>
 <li>Tamanho uniforme para garantir o cozimento uniforme</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Dicas profissionais </strong>:</p>
-<p>Pré-marine por 30 minutos, usando uma marinada ácida (suco de limão ou vinagre) para ajudar a suavizar as fibras.</p>
-<br>
+<p class="article-text">Pré-marine por 30 minutos, usando uma marinada ácida (suco de limão ou vinagre) para ajudar a suavizar as fibras.</p>
 <p>Preparação de alimentos crus (tipos aplicáveis)</p>
-<br>
 <p><strong> Segurança primeiro </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Use apenas para confirmar o tipo de comida crua</li>
-</ul>
-<p>-Limpeza e desinfecção ultrafina (desinfetante de nível alimentar)</p>
-<ul>
+</ul></div>
+<p class="article-text">-Limpeza e desinfecção ultrafina (desinfetante de nível alimentar)</p>
+<div class="highlight"><ul>
 <li>Coma imediatamente, não armazenado</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Tipos aplicáveis ​​</strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Young Agaricus bisporus</li>
 <li>Algumas boletus (espécies de alimentos crus confirmados)</li>
 <li>Chanterelles (uso limitado)</li>
-</ul>
-<br>
+</ul></div>
 <p>Contrato de Segurança e Saúde</p>
-<br>
-<h3>especificações de tratamento de toxinas</h3>
-<br>
+<div class="subsection-title">📌 especificações de tratamento de toxinas</div>
 <p><strong> TIPOS DE COBOLHA DE MUSTO </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Morels: contém substâncias hemolíticas e precisa ser fervido por 5 minutos</li>
 <li>Certos Boletus: irritantes gastrointestinais, precisam ser totalmente aquecidos</li>
 <li>Cogumelos shiitake: comer muitos alimentos crus pode causar dermatite</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Precauções para manuseio </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Ferramentas especiais para evitar a contaminação cruzada</li>
 <li>Lavagem completa das mãos e limpeza de equipamentos</li>
 <li>Identifique claramente espécies tóxicas</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Plano de emergência </strong>:</p>
-<p>Estabeleça uma biblioteca de referência de toxicidade de cogumelos, incluindo informações de contato para os centros locais de controle de venenos.O manual ao ar livre que carrego comigo contém 50 características de identificação de cogumelos tóxicas comuns.</p>
-<br>
-<h3>medidas de prevenção de alergia</h3>
-<br>
+<p class="article-text">Estabeleça uma biblioteca de referência de toxicidade de cogumelos, incluindo informações de contato para os centros locais de controle de venenos.O manual ao ar livre que carrego comigo contém 50 características de identificação de cogumelos tóxicas comuns.</p>
+<div class="subsection-title">📌 medidas de prevenção de alergia</div>
 <p><strong> Grupo de risco </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Indivíduos com alergias de fungos</li>
 <li>População imunossuprimida</li>
 <li>Primeira vez tentando algum tipo de cogumelo</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Medidas de proteção </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Use luvas durante o manuseio</li>
 <li>Bom ambiente de ventilação</li>
 <li>Apresente gradualmente novos tipos</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Protocolo de teste </strong>:</p>
-<p>O novo tipo de cogumelos é testado pela primeira vez para a pele: aplique uma pequena quantidade de suco no lado interno do pulso e observe a reação por 24 horas.</p>
-<br>
+<p class="article-text">O novo tipo de cogumelos é testado pela primeira vez para a pele: aplique uma pequena quantidade de suco no lado interno do pulso e observe a reação por 24 horas.</p>
 <p>Guia de ação de nível profissional</p>
-<br>
-<h3>5 melhorias para implementar imediatamente</h3>
-<br>
+<div class="subsection-title">📌 5 melhorias para implementar imediatamente</div>
 <p>1.</p>
-<p>2. <strong> Construa uma estação de trabalho de limpeza </strong>: O espaço dedicado melhora a eficiência em 40%</p>
-<p>3. <strong> Aprenda técnicas específicas do tipo </strong>: Domine as diferenças de tratamento de 3 principais cogumelos</p>
+<p class="article-text">2. <strong> Construa uma estação de trabalho de limpeza </strong>: O espaço dedicado melhora a eficiência em 40%</p>
+<p class="article-text">3. <strong> Aprenda técnicas específicas do tipo </strong>: Domine as diferenças de tratamento de 3 principais cogumelos</p>
 <p>4.</p>
-<p>5. <strong> Pratique o princípio da intervenção mínima </strong>: Cada etapa de processamento deve ter um propósito claro</p>
-<br>
-<h3>Plano de melhoria de habilidades de 30 dias</h3>
-<br>
+<p class="article-text">5. <strong> Pratique o princípio da intervenção mínima </strong>: Cada etapa de processamento deve ter um propósito claro</p>
+<div class="subsection-title">📌 Plano de melhoria de habilidades de 30 dias</div>
 <p><strong> Semana 1: Consolidação da Fundação </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>30 minutos de exercícios de escovação a seco todos os dias</li>
 <li>Aprenda o tratamento específico de Boletus, Chanterelles e Morels</li>
 <li>Estabelecer uma estação de trabalho de limpeza pessoal</li>
 <li>Alvo: 50% de velocidade de processamento mais rápida</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Semana 2: Expansão de tecnologia </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>A maneira correta de praticar a descarga rápida</li>
 <li>Aprenda 5 técnicas de corte profissional</li>
 <li>Comece uma prática de resíduos zero</li>
 <li>Alvo: a taxa de utilização de cogumelos atinge 85%</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Semana 3: Melhoria da eficiência </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>estabelecer um pipeline de processamento pessoal</li>
 <li>Prática cronometrada para melhorar a velocidade</li>
 <li>Tente muitas técnicas de manuseio (trate mais de 2 libras por vez)</li>
 <li>Objetivo: 80% de melhoria na eficiência do processamento</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Semana 4: Proficiente no aplicativo </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Prepare -se em combinação com métodos de cozimento específicos</li>
 <li>Desenvolvendo variantes de habilidades pessoais</li>
 <li>Instrua outras pessoas a consolidar o conhecimento</li>
 <li>Objetivo: Torne -se um especialista em manuseio de cogumelos no grupo</li>
-</ul>
-<br>
-<h2>Conclusão: a maneira de melhorar as habilidades</h2>
-<br>
-<p>A limpeza e a preparação de cogumelos são uma habilidade única que combina ciência, arte e artesanato. Após 20 anos de prática, desde a Tundra do Alasca até o deserto do Arizona, ainda aprendo novas dicas e idéias em cada temporada de cogumelos.</p>
-<br>
+</ul></div>
+<div class="section-title">🍄 Conclusão: a maneira de melhorar as habilidades</div>
+<p class="article-text">A limpeza e a preparação de cogumelos são uma habilidade única que combina ciência, arte e artesanato. Após 20 anos de prática, desde a Tundra do Alasca até o deserto do Arizona, ainda aprendo novas dicas e idéias em cada temporada de cogumelos.</p>
 <p><strong> Resumo dos princípios principais </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>O respeito aos ingredientes é o ponto de partida para o sucesso: entender as propriedades biológicas dos cogumelos</li>
 <li>A secagem é melhor que a umidade: controlar a umidade é o núcleo da tecnologia</li>
 <li>Especificidade sobre a universalidade: cada cogumelo precisa ser tratado exclusivamente</li>
 <li>A eficiência vem do sistema, não da velocidade: estabelecendo processos padronizados</li>
 <li>Segurança é sempre a primeira consideração: nenhum espaço para compromisso</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Caminho de aprendizado contínuo </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Participe de seminários de micologia todos os anos</li>
 <li>Fique em contato com a comunidade de coleção local</li>
 <li>Registre logs de processamento pessoal</li>
 <li>Experimente novas tecnologias e avalie a eficácia</li>
-</ul>
-<br>
-<p>Na jornada da floresta para a mesa, a preparação adequada é um link -chave que conecta alegria e conquistas de culinária.Divulgue o tempo para dominar essas técnicas e você provará a diferença entre profissionalismo e atenção em cada mordida de prato de cogumelos.Lembre -se: Grande cozinha de cogumelos começa com a preparação e finalmente se encontra.</p>
-<br>
-<p>Comida deliciosa e cuidadosamente preparada é naturalmente apresentada.</p>
-<br>
+</ul></div>
+<p class="article-text">Na jornada da floresta para a mesa, a preparação adequada é um link -chave que conecta alegria e conquistas de culinária.Divulgue o tempo para dominar essas técnicas e você provará a diferença entre profissionalismo e atenção em cada mordida de prato de cogumelos.Lembre -se: Grande cozinha de cogumelos começa com a preparação e finalmente se encontra.</p>
+<p class="article-text">Comida deliciosa e cuidadosamente preparada é naturalmente apresentada.</p>
 <p>----</p>
-<br>
-<h2>⚠️ Isenção de responsabilidade importante</h2>
-<br>
+<div class="section-title">🍄 ⚠️ Isenção de responsabilidade importante</div>
 <p><strong> Este artigo é apenas para referência educacional e de informação.</strong></p>
-<br>
 <p>Aviso de risco de consumo de cogumelos</p>
-<br>
-<p>1. <strong> Segurança da vida primeiro </strong>: Existem riscos inerentes na identificação de cogumelos selvagens.Muitos cogumelos tóxicos parecem muito parecidos com os cogumelos comestíveis, e ingeri -los acidentalmente pode levar a doenças graves ou até a morte.</p>
-<br>
-<p>2. <strong> Identificação profissional necessária </strong>: Antes de comer cogumelos selvagens, 100% de confirmação deve ser realizada por um micólogo profissional ou especialista em identificação de cogumelos certificado.Fotos, descrições de texto e experiência pessoal não são suficientes para garantir a segurança.</p>
-<br>
-<p>3. <strong> DIFERENCIDAS INDIVIDUAIS </strong>: Mesmo os cogumelos comestíveis reconhecidos podem causar reações adversas devido a fatores como constituição pessoal, reações alérgicas, método de consumo ou ambiente de crescimento de cogumelos.Tente em pequenas quantidades ao comer uma nova variedade pela primeira vez.</p>
-<br>
-<p>4. <strong> DIFERENCIDAS GEOGRÁFICAS </strong>: Existem enormes diferenças nas espécies de cogumelos e toxicidade em diferentes regiões.As informações mencionadas neste artigo podem não se aplicar à sua região.Consulte especialistas em micologia local e organizações autoritárias.</p>
-<br>
-<p>5. <strong> Responsabilidade Profissional </strong>: O autor e o editor não se responsabilizam por nenhum dano, doença ou perda direta ou indireta decorrente do uso das informações neste artigo.</p>
-<br>
-<h3>Conselho de segurança</h3>
-<br>
-<ul>
+<p class="article-text">1. <strong> Segurança da vida primeiro </strong>: Existem riscos inerentes na identificação de cogumelos selvagens.Muitos cogumelos tóxicos parecem muito parecidos com os cogumelos comestíveis, e ingeri -los acidentalmente pode levar a doenças graves ou até a morte.</p>
+<p class="article-text">2. <strong> Identificação profissional necessária </strong>: Antes de comer cogumelos selvagens, 100% de confirmação deve ser realizada por um micólogo profissional ou especialista em identificação de cogumelos certificado.Fotos, descrições de texto e experiência pessoal não são suficientes para garantir a segurança.</p>
+<p class="article-text">3. <strong> DIFERENCIDAS INDIVIDUAIS </strong>: Mesmo os cogumelos comestíveis reconhecidos podem causar reações adversas devido a fatores como constituição pessoal, reações alérgicas, método de consumo ou ambiente de crescimento de cogumelos.Tente em pequenas quantidades ao comer uma nova variedade pela primeira vez.</p>
+<p class="article-text">4. <strong> DIFERENCIDAS GEOGRÁFICAS </strong>: Existem enormes diferenças nas espécies de cogumelos e toxicidade em diferentes regiões.As informações mencionadas neste artigo podem não se aplicar à sua região.Consulte especialistas em micologia local e organizações autoritárias.</p>
+<p class="article-text">5. <strong> Responsabilidade Profissional </strong>: O autor e o editor não se responsabilizam por nenhum dano, doença ou perda direta ou indireta decorrente do uso das informações neste artigo.</p>
+<div class="subsection-title">📌 Conselho de segurança</div>
+<div class="highlight"><ul>
 <li>✅ Participe de cursos formais de treinamento de identificação de cogumelos</li>
 <li>✅ Junte -se à Associação Local de Micologia ou Clube de Cogumelos</li>
 <li>✅ Compre cogumelos cultivados de fontes confiáveis</li>
 <li>✅ Salvar amostras de cogumelos para necessidades médicas de emergência</li>
 <li>✅ Não coma se tiver alguma dúvida</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Lembre -se: quando você tiver alguma dúvida, a única opção segura é não comê -la.Sua segurança de vida é muito mais importante do que qualquer refeição de cogumelos.</strong></p>
-<br>
 <p>----</p>
         </div>
-    </div>
+
+</div>
 </body>
 </html>

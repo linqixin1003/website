@@ -1,587 +1,471 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Identidad dual de hongos - Culinary Mushrooms</title>
-    <meta name="description" content="Identidad dual de hongos">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>10 Identidad dual de hongos - MushroomAiSnap</title>
+<link href="../../mobile-styles.css" rel="stylesheet"/>
+<link href="../../mobile-enhancement.css" rel="stylesheet"/>
+<link href="../../ecology-theme.css" rel="stylesheet"/>
+<style>
+        .hero-image img {
+            max-height: 200px;
+            width: 100%;
+            object-fit: cover;
         }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        .article-card img {
+            max-height: 120px;
+            width: 100%;
+            object-fit: cover;
+        }
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                        url('../../images/culinary-mushrooms_10-side-dishes-main-courses.webp') center/cover;
+            position: relative;
+            margin-top: 0;
+        }
+        .article-meta {
+            margin-top: 15px !important;
+        }
+    
+        /* Culinary Mushrooms Theme */
+        :root {
+            --primary-color: #8B4513;
+            --primary-dark: #654321;
+            --primary-light: #FFF8DC;
+            --accent-color: #D2691E;
+        }
+        
+        /* Theme Color Overrides */
+        .content {
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+            border: 2px solid var(--primary-color);
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, var(--primary-light), var(--primary-light));
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .quote-text {
+            color: var(--primary-dark);
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+        }
+        
+        .subsection-title {
+            color: var(--primary-dark);
+            font-size: 1.4em;
+            font-weight: 600;
+            margin: 25px 0 15px 0;
+            padding-left: 10px;
+            border-left: 3px solid var(--accent-color);
+        }
+        
+        .tip-box {
+            border-left: 4px solid var(--primary-color);
+            background: var(--primary-light);
+        }
+        
+        .tip-title {
+            color: var(--primary-color);
+        }
+        
+        .highlight {
+            border-left: 4px solid var(--accent-color);
+            background: linear-gradient(135deg, #f1f8e9, var(--primary-light));
+        }
+        
+        .warning {
+            border-left: 4px solid #f44336;
+        }
+        
+        .equipment-item {
+            border: 1px solid var(--accent-color);
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+        }
+        
+        .equipment-item h4 {
+            color: var(--primary-color);
+        }
+        
+        .category {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .main-text {
+            font-size: 1.1em;
             line-height: 1.8;
             color: #333;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-
-        .article-title {
-            color: #FF6B6B;
-            font-size: 2.5em;
-            margin-bottom: 30px;
-            margin-top: 0;
-            line-height: 1.3;
-            padding-top: 0;
-        }
-
-        .featured-image {
-            width: 100%;
-            height: auto;
-            aspect-ratio: 4 / 3;
-            object-fit: cover;
-            display: block;
-        }
-
-        .content {
-            padding: 50px;
-        }
-
-        .content h2 {
-            color: #FF6B6B;
-            font-size: 2em;
-            margin-top: 40px;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid #FF6B6B;
-        }
-
-        .content h3 {
-            color: #555;
-            font-size: 1.6em;
-            margin-top: 30px;
-            margin-bottom: 15px;
-        }
-
-        .content h4 {
-            color: #666;
-            font-size: 1.3em;
-            margin-top: 25px;
-            margin-bottom: 12px;
-        }
-
-        .content p {
-            margin-bottom: 20px;
-            font-size: 1.1em;
-            color: #444;
-        }
-
-        .content ul {
             margin: 20px 0;
-            padding-left: 30px;
-        }
-
-        .content li {
-            margin-bottom: 12px;
-            font-size: 1.05em;
-            color: #555;
-        }
-
-        .content strong {
-            color: #222;
-            font-weight: 600;
-        }
-
-        .back-link {
-            display: inline-block;
-            padding: 12px 25px;
-            background: linear-gradient(135deg, #FF6B6B, #8B4513);
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            margin-bottom: 20px;
-            transition: transform 0.3s ease;
-            font-weight: 600;
-        }
-
-        .back-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .navigation {
-            padding: 30px 50px;
-            background: #f8f9fa;
-            border-top: 1px solid #e9ecef;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-btn {
-            padding: 10px 20px;
-            background: #FF6B6B;
-            color: white;
-            text-decoration: none;
+            padding: 15px;
+            background: linear-gradient(135deg, #ffffff, #f9f9f9);
             border-radius: 8px;
-            transition: all 0.3s ease;
+            border-left: 3px solid var(--accent-color);
         }
-
-        .nav-btn:hover {
-            transform: translateX(5px);
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+        
+        .emoji {
+            font-size: 1.5em;
+            margin-left: 10px;
         }
-
-        .nav-btn.prev:hover {
-            transform: translateX(-5px);
+        
+        .read-time, .difficulty {
+            display: inline-block;
+            padding: 5px 15px;
+            margin: 5px 5px 5px 0;
+            border-radius: 20px;
+            font-size: 0.9em;
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            color: #1976d2;
+            font-weight: 500;
         }
-
-        @media (max-width: 768px) {
-            .content {
-                padding: 30px 25px;
-            }
-
-            .article-title {
-                font-size: 1.8em;
-            }
-
-            .featured-image {
-                height: 250px;
-            }
-
-            .navigation {
-                flex-direction: column;
-                gap: 15px;
-            }
+        
+        .difficulty {
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            color: #e65100;
+        }
+        
+        .article-text {
+            line-height: 1.8;
+            color: #444;
+            margin: 15px 0;
+            font-size: 1.05em;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <img src="../../images/culinary-mushrooms_10-side-dishes-main-courses.webp" alt="Identidad dual de hongos" class="featured-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22900%22 height=%22400%22%3E%3Crect fill=%22%23D2691E%22 width=%22900%22 height=%22400%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22white%22 font-size=%2260%22%3E🍄%3C/text%3E%3C/svg%3E'">
+<div class="hero-image"></div>
+<div class="content">
+    <h1 class="title">10 Identidad dual de hongos</h1>
+    <div class="quote-box">
+        <div class="quote-text">Professional Mycology Guide</div>
+    </div>
+    
+<div class="article-meta">
+<span class="category">🍄 Culinary Mushrooms</span>
+<span class="read-time">📖 18 minute read</span>
+<span class="difficulty">🟡 Intermediate</span>
+</div>
 
-        <div class="content">
-            <h1 class="article-title">Identidad dual de hongos</h1>
-            <br>
-<p>Como experto en hongos, entusiasta y biólogo con 20 años de experiencia, lo llevaré a través de este artículo para explorar el extraordinario potencial de los hongos en el mundo culinario.Ya sea que sea un cocinero casero o un amante de la comida, dominar el arte culinario de los hongos transformará su experiencia gastronómica.</p>
-<br>
-<h2>Los hongos como guarnición: el compañero perfecto para mejorar el plato principal</h2>
-<br>
-<h3>Habilidades básicas de cocina y principios científicos</h3>
-<br>
+
+            <br><div class="main-text">Como experto en hongos, entusiasta y biólogo con 20 años de experiencia, lo llevaré a través de este artículo para explorar el extraordinario potencial de los hongos en el mundo culinario.Ya sea que sea un cocinero casero o un amante de la comida, dominar el arte culinario de los hongos transformará su experiencia gastronómica.<span class="emoji">🍄</span></div>
+<div class="section-title">🍄 Los hongos como guarnición: el compañero perfecto para mejorar el plato principal</div>
+<div class="subsection-title">📌 Habilidades básicas de cocina y principios científicos</div>
 <p><strong> Ciencia y arte de champiñones salteados </strong></p>
-<p>Los hongos salteados pueden parecer simples, pero dominar los principios científicos puede hacer que sus guarniciones cambien de lo ordinario a lo extraordinario.La pared celular de los hongos contiene quitina, que es la misma sustancia que el caparazón de los camarones y los cangrejos, y debe ser lo suficientemente alto como para descomponerse efectivamente.</p>
-<br>
-<p>Caso práctico: utilicé los canterelos elegidos localmente con carne de venado asado durante una cocina salvaje en Montana.La clave es calentar la sartén antes del punto de humo (aproximadamente 200 ° C para el aceite de oliva y aproximadamente 150 ° C para la mantequilla), luego agregue los champiñones para asegurarse de que los chisporrotearan de inmediato.</p>
-<br>
+<p class="article-text">Los hongos salteados pueden parecer simples, pero dominar los principios científicos puede hacer que sus guarniciones cambien de lo ordinario a lo extraordinario.La pared celular de los hongos contiene quitina, que es la misma sustancia que el caparazón de los camarones y los cangrejos, y debe ser lo suficientemente alto como para descomponerse efectivamente.</p>
+<p class="article-text">Caso práctico: utilicé los canterelos elegidos localmente con carne de venado asado durante una cocina salvaje en Montana.La clave es calentar la sartén antes del punto de humo (aproximadamente 200 ° C para el aceite de oliva y aproximadamente 150 ° C para la mantequilla), luego agregue los champiñones para asegurarse de que los chisporrotearan de inmediato.</p>
 <p><strong> Pasos de salteador de hongos profesionales: </strong></p>
-<p>1. Elige el hongo correcto: los hongos shiitake, el agaricus bisporus y los canterelos son adecuados</p>
-<p>2. Pretratamiento: limpie con un paño húmedo para evitar lavar (los hongos absorben agua como esponjas)</p>
-<p>3. Corte: corte o bloquee uniformemente para asegurarse de que esté bien cocido al mismo tiempo</p>
-<p>4. Partita caliente y aceite frío: Use aceite resistente a alta temperatura (aceite de semilla de uva o aceite de oliva refinado)</p>
-<p>5. Colocación de una sola capa: evite la acumulación de vapor y promueva la reacción de coque</p>
-<p>6. Espere pacientemente: no gire en 3-5 minutos para formar una cáscara dorada</p>
-<p>7. Finalmente condimento: apague el calor y agregue el ajo y las hierbas para evitar quemarse</p>
-<br>
+<p class="article-text">1. Elige el hongo correcto: los hongos shiitake, el agaricus bisporus y los canterelos son adecuados</p>
+<p class="article-text">2. Pretratamiento: limpie con un paño húmedo para evitar lavar (los hongos absorben agua como esponjas)</p>
+<p class="article-text">3. Corte: corte o bloquee uniformemente para asegurarse de que esté bien cocido al mismo tiempo</p>
+<p class="article-text">4. Partita caliente y aceite frío: Use aceite resistente a alta temperatura (aceite de semilla de uva o aceite de oliva refinado)</p>
+<p class="article-text">5. Colocación de una sola capa: evite la acumulación de vapor y promueva la reacción de coque</p>
+<p class="article-text">6. Espere pacientemente: no gire en 3-5 minutos para formar una cáscara dorada</p>
+<p class="article-text">7. Finalmente condimento: apague el calor y agregue el ajo y las hierbas para evitar quemarse</p>
 <p><strong> Consejos rápidos </strong>: Agregue una pequeña pizca de sal en las primeras etapas de cocción para ayudar a extraer humedad y acelerar el proceso de dorado.</p>
-<br>
 <p><strong> Cambios químicos de los champiñones asados ​​</strong></p>
-<p>Durante el proceso de tostado, los champiñones sufren reacción y caramelización de Maillard, produciendo más de 150 compuestos de sabor.El control de la temperatura es clave: demasiado bajo causará vapor en lugar de hornear, y demasiado alto quemará el azúcar natural.</p>
-<br>
+<p class="article-text">Durante el proceso de tostado, los champiñones sufren reacción y caramelización de Maillard, produciendo más de 150 compuestos de sabor.El control de la temperatura es clave: demasiado bajo causará vapor en lugar de hornear, y demasiado alto quemará el azúcar natural.</p>
 <p><strong> Guía de expertos para hongos asados: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Rango de temperatura: 190-220 ° C</li>
 <li>Hora: 15-25 minutos, dependiendo del tamaño</li>
 <li>Selección de aceite: aceite de punto de humo alto (aceite de aguacate, aceite de salvado de arroz)</li>
 <li>Tiempo de condimento: condimento básico antes del tostado, ajuste fino después del asado</li>
-</ul>
-<br>
-<h3>Tecnología de guarnición avanzada y combinación creativa</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 Tecnología de guarnición avanzada y combinación creativa</div>
 <p><strong> Interpretación moderna del lodo de hongos </strong></p>
-<p>Una versión mejorada de puré de papas tradicional, los hongos en dolores proporcionan un sabor umami más rico y carbohidratos más bajos.El secreto es eliminar la humedad por completo y concentrar el sabor.</p>
-<br>
+<p class="article-text">Una versión mejorada de puré de papas tradicional, los hongos en dolores proporcionan un sabor umami más rico y carbohidratos más bajos.El secreto es eliminar la humedad por completo y concentrar el sabor.</p>
 <p><strong> Fórmula profesional: </strong></p>
-<p>1. 500 g de champiñones mixtos (champiñones shiitake, champiñones marrones, canterelos)</p>
+<p class="article-text">1. 500 g de champiñones mixtos (champiñones shiitake, champiñones marrones, canterelos)</p>
 <p>2. 2 cucharadas de mantequilla o aceite de oliva</p>
 <p>3. 2 dientes de ajo</p>
 <p>4. 3 cucharadas de crema o leche vegetal</p>
 <p>5. Cantidad apropiada de sal y pimienta blanca</p>
-<br>
 <p><strong> Pasos de producción: </strong></p>
-<p>1. Corta los champiñones y se seca a fuego medio hasta que el agua se evapore</p>
-<p>2. Agregue mantequilla y ajo y continúe frey durante 5 minutos</p>
-<p>3. Transfiera al procesador de alimentos y supere a una pasta delicada</p>
-<p>4. Tamiz para eliminar fibras desborgadas para obtener una textura sedosa</p>
-<p>5. Actualiza la sartén y calienta, agregue crema para ajustar la consistencia</p>
-<br>
+<p class="article-text">1. Corta los champiñones y se seca a fuego medio hasta que el agua se evapore</p>
+<p class="article-text">2. Agregue mantequilla y ajo y continúe frey durante 5 minutos</p>
+<p class="article-text">3. Transfiera al procesador de alimentos y supere a una pasta delicada</p>
+<p class="article-text">4. Tamiz para eliminar fibras desborgadas para obtener una textura sedosa</p>
+<p class="article-text">5. Actualiza la sartén y calienta, agregue crema para ajustar la consistencia</p>
 <p><strong> Ingeniería estructural de llenar los hongos </strong></p>
-<p>Elegir grandes hongos con una estructura fuerte es crucial.El diámetro del hongo portbell debe ser de 10-15 cm y el grosor de la tapa debe ser de 2-3 cm para garantizar que pueda contener el relleno sin agrietarse.</p>
-<br>
+<p class="article-text">Elegir grandes hongos con una estructura fuerte es crucial.El diámetro del hongo portbell debe ser de 10-15 cm y el grosor de la tapa debe ser de 2-3 cm para garantizar que pueda contener el relleno sin agrietarse.</p>
 <p><strong> Ciencia de llenado: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Adhesivos: migas de pan, huevos, queso</li>
 <li>Mejores de sabores: queso parmesano, pimentón ahumado, salsa de Worcester</li>
 <li>Comparación de textura: nueces picadas, cebollas de caramelo, cubos crujientes</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Experiencia personal </strong>: En un concurso de cocina salvaje en Colorado, gané el premio al mejor guarnición usando champiñones rellenos hechos con piñones locales, puerros salvajes y queso de cabra.La clave es precalentar el relleno, reducir el tiempo de cocción y evitar la descarga excesiva de agua de los hongos.</p>
-<br>
-<h3>Análisis en profundidad de combinaciones de guarniciones clásicas</h3>
-<br>
+<div class="subsection-title">📌 Análisis en profundidad de combinaciones de guarniciones clásicas</div>
 <p><strong> El sabor umami del bistec y los champiñones </strong></p>
-<p>El bistec es rico en inosina y los hongos son ricos en ácido guanílico. La combinación de los dos produce un efecto de multiplicación Umami.Científicamente demostró que la fuerza umami de esta combinación es más de 8 veces la de los ingredientes individuales.</p>
-<br>
+<p class="article-text">El bistec es rico en inosina y los hongos son ricos en ácido guanílico. La combinación de los dos produce un efecto de multiplicación Umami.Científicamente demostró que la fuerza umami de esta combinación es más de 8 veces la de los ingredientes individuales.</p>
 <p><strong> Sugerencias de correspondencia profesional: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Bistec de costilla + champiñones Shiitake: rica grasa equilibrada shiitake hongo sabor terroso</li>
 <li>Filet Mignon + Chanterello: carne exquisita con hongos delicados</li>
 <li>New Yorker + Oyster Mushroom: textura sólida con champiñones carnosos</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Ciencia casera de pollo y champiñones asados ​​franceses </strong></p>
-<p>Los hogares franceses tradicionales usan champiñones para absorber el jugo de goteo de pollo asado para formar un ciclo de sabor.El glutamato en hongos y nucleótidos en pollo crea un equilibrio umami perfecto.</p>
-<br>
+<p class="article-text">Los hogares franceses tradicionales usan champiñones para absorber el jugo de goteo de pollo asado para formar un ciclo de sabor.El glutamato en hongos y nucleótidos en pollo crea un equilibrio umami perfecto.</p>
 <p><strong> Puntos de ejecución: </strong></p>
-<p>1. Pon los champiñones en la bandeja para hornear durante los últimos 45 minutos</p>
-<p>2. Gire cada 15 minutos para absorber el jugo de manera uniforme</p>
+<p class="article-text">1. Pon los champiñones en la bandeja para hornear durante los últimos 45 minutos</p>
+<p class="article-text">2. Gire cada 15 minutos para absorber el jugo de manera uniforme</p>
 <p>3. Use hongos mixtos para aumentar la complejidad</p>
-<br>
-<h2>Los hongos como plato principal: una estrategia para la transformación de los roles de apoyo al centro</h2>
-<br>
-<h3>formas científicas de superar el desafío de la entrada</h3>
-<br>
+<div class="section-title">🍄 Los hongos como plato principal: una estrategia para la transformación de los roles de apoyo al centro</div>
+<div class="subsection-title">📌 formas científicas de superar el desafío de la entrada</div>
 <p><strong> Satisfacción Psicología y fisiología </strong></p>
-<p>Como plato principal, los hongos deben cumplir con tres elementos clave: porción visual, satisfacción de la textura e integridad nutricional.Los estudios han demostrado que la "sensación oral" de los alimentos tiene un efecto sobre la satisfacción hasta el 40%.</p>
-<br>
+<p class="article-text">Como plato principal, los hongos deben cumplir con tres elementos clave: porción visual, satisfacción de la textura e integridad nutricional.Los estudios han demostrado que la "sensación oral" de los alimentos tiene un efecto sobre la satisfacción hasta el 40%.</p>
 <p><strong> Estrategias para aumentar la satisfacción: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Comparación de textura: combinada con tostado, fritos y guisos diferentes hongos</li>
 <li>Superposición umacatalog: use múltiples variedades de hongos</li>
 <li>Volumen visual: elija grandes hongos o apilados para presentar</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Bioquímica de equilibrio nutricional </strong></p>
-<p>Los hongos proporcionan proteínas de alta calidad, vitaminas B, selenio y cobre, pero carecen de proteínas completas.La coordinación científica es crucial.</p>
-<br>
+<p class="article-text">Los hongos proporcionan proteínas de alta calidad, vitaminas B, selenio y cobre, pero carecen de proteínas completas.La coordinación científica es crucial.</p>
 <p><strong> Combinación completa de proteínas: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>champiñones + granos enteros (quinua, arroz integral)</li>
 <li>champiñones + frijoles (lentejas, garbanzos)</li>
 <li>hongos + nueces (nueces, almendras)</li>
 <li>Mushons + productos lácteos (queso, yogurt)</li>
-</ul>
-<br>
-<h3>Proyecto de innovación para el plato principal vegetariano</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 Proyecto de innovación para el plato principal vegetariano</div>
 <p><strong> Análisis estructural del "filete" de Porterbello </strong></p>
-<p>Todo el hongo Portbero es similar al filete de filete, pero requiere un tratamiento adicional para lograr la sensación masticable de la carne.</p>
-<br>
+<p class="article-text">Todo el hongo Portbero es similar al filete de filete, pero requiere un tratamiento adicional para lograr la sensación masticable de la carne.</p>
 <p><strong> Tecnología de procesamiento profesional: </strong></p>
-<p>1. Retire los pliegues de esterilización: reduzca el contenido de humedad y aumente la textura de la carne</p>
-<p>2. Presione: Presione con objetos pesados ​​durante 1 hora para drenar el exceso de agua</p>
-<p>3. Englido: use frutas que contengan proteasa (piña, kiwi) para suavizar la fibra</p>
-<p>4. Hornee a alta temperatura: por encima de 200 ° C para formar una carcasa dura</p>
-<br>
+<p class="article-text">1. Retire los pliegues de esterilización: reduzca el contenido de humedad y aumente la textura de la carne</p>
+<p class="article-text">2. Presione: Presione con objetos pesados ​​durante 1 hora para drenar el exceso de agua</p>
+<p class="article-text">3. Englido: use frutas que contengan proteasa (piña, kiwi) para suavizar la fibra</p>
+<p class="article-text">4. Hornee a alta temperatura: por encima de 200 ° C para formar una carcasa dura</p>
 <p><strong> Ingeniería estructural de hongos wellington </strong></p>
-<p>La versión vegetariana de la carne de res tradicional Wellington necesita resolver problemas de control de humedad para evitar que la masa se vuelva suave.</p>
-<br>
+<p class="article-text">La versión vegetariana de la carne de res tradicional Wellington necesita resolver problemas de control de humedad para evitar que la masa se vuelva suave.</p>
 <p><strong> Breakthroughs técnicos clave: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Pure de hongos previo hasta que esté completamente seco</li>
 <li>Coloque la capa a prueba de humedad entre la masa y el relleno (hojas de espinacas o papel de arroz delgado)</li>
 <li>Perforado en la parte inferior para permitir que el vapor escape</li>
 <li>Hornee por un corto período de alta temperatura (220 ° C, 20-25 minutos)</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Caso práctico </strong>: El hongo Wellington que desarrollé para un restaurante Michelin en San Francisco, la clave es agregar nueces tostadas y cebollas caramelizadas al puré de hongos para aumentar el equilibrio de grasa y dulzura.</p>
-<br>
-<h3>La sinergia de sabor del plato principal que contiene carne</h3>
-<br>
+<div class="subsection-title">📌 La sinergia de sabor del plato principal que contiene carne</div>
 <p><strong> Ciencia de salsa de pollo y champiñones </strong></p>
-<p>Tanto el pollo como los champiñones son ricos en glutamato, pero requieren grasa para transportar moléculas de sabor.</p>
-<br>
+<p class="article-text">Tanto el pollo como los champiñones son ricos en glutamato, pero requieren grasa para transportar moléculas de sabor.</p>
 <p><strong> Tecnología de emulsificación de salsa: </strong></p>
-<p>1. Conceptos básicos: Fond (capa de carbón en la parte inferior de la olla)</p>
-<p>2. Deglasto: use vino blanco o jerez para disolver el aficionado</p>
-<p>3. Emulsificación: agregue mantequilla fría y revuelva el fuego</p>
-<p>4. Estable: use una pequeña cantidad de crema o yema de huevo</p>
-<br>
+<p class="article-text">1. Conceptos básicos: Fond (capa de carbón en la parte inferior de la olla)</p>
+<p class="article-text">2. Deglasto: use vino blanco o jerez para disolver el aficionado</p>
+<p class="article-text">3. Emulsificación: agregue mantequilla fría y revuelva el fuego</p>
+<p class="article-text">4. Estable: use una pequeña cantidad de crema o yema de huevo</p>
 <p><strong> Termodinámica del estofado de carne de res y champiñones </strong></p>
-<p>El estofado a largo plazo requiere un control de temperatura preciso para garantizar que los hongos permanezcan en forma sin ablandarse demasiado.</p>
-<br>
+<p class="article-text">El estofado a largo plazo requiere un control de temperatura preciso para garantizar que los hongos permanezcan en forma sin ablandarse demasiado.</p>
 <p><strong> Guía de control de temperatura: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>82-85 ° C: temperatura de guiso ideal, el colágeno se convierte pero los hongos no se pudren</li>
 <li>Tiempo: 1.5-2 horas, ajuste de acuerdo con el tamaño de los cortes de carne</li>
 <li>Tiempo de adición de hongos: duran 45 minutos para mantener la textura</li>
-</ul>
-<br>
-<h2>Análisis técnico de cursos principales internacionales</h2>
-<br>
-<h3>Ciencia de almidón del risotto de hongos italiano</h3>
-<br>
-<p>El alto contenido de almidón alto del arroz Arborio es fundamental para la textura de la crema, pero requiere un control preciso de la adición de líquido.</p>
-<br>
+</ul></div>
+<div class="section-title">🍄 Análisis técnico de cursos principales internacionales</div>
+<div class="subsection-title">🔬 Ciencia de almidón del risotto de hongos italiano</div>
+<p class="article-text">El alto contenido de almidón alto del arroz Arborio es fundamental para la textura de la crema, pero requiere un control preciso de la adición de líquido.</p>
 <p><strong> Habilidades profesionales: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Agregue el caldo caliente en lotes, agrégalo después de cada absorción completa</li>
 <li>Avitación constante para liberar almidón</li>
 <li>Finalmente, agregue la mantequilla fría del fuego y fije la emulsificación</li>
 <li>Los hongos se agregan en dos lotes: inicialmente proporcione un sabor básico y finalmente retenga la textura</li>
-</ul>
-<br>
-<h3>El proyecto Umami del tofu de hongos chino</h3>
-<br>
-<p>El tofu y los champiñones son portadores de Umami, pero requieren alta temperatura y cocción rápida para bloquear la humedad.</p>
-<br>
+</ul></div>
+<div class="subsection-title">📌 El proyecto Umami del tofu de hongos chino</div>
+<p class="article-text">El tofu y los champiñones son portadores de Umami, pero requieren alta temperatura y cocción rápida para bloquear la humedad.</p>
 <p><strong> Puntos clave del control de potencia de fuego: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Pot extremadamente caliente (aproximadamente 250 ° C)</li>
-</ul>
-<p>-Cocina paso a paso: primero saltee los champiñones, sáquelos, luego saltee el tofu y finalmente combine</p>
-<ul>
+</ul></div>
+<p class="article-text">-Cocina paso a paso: primero saltee los champiñones, sáquelos, luego saltee el tofu y finalmente combine</p>
+<div class="highlight"><ul>
 <li>Premezclar salsa para reducir el tiempo en la olla</li>
 <li>Finalmente espesas, envuelve el sabor</li>
-</ul>
-<br>
-<h2>Diseño de decoración e ingeniería visual</h2>
-<br>
-<h3>Psicología visual del contraste de color</h3>
-<br>
-<p>El cerebro humano correlaciona la apariencia de alimentos con el sabor esperado.El color marrón de los hongos requiere fuertes colores de contraste para activar el interés visual.</p>
-<br>
+</ul></div>
+<div class="section-title">🍄 Diseño de decoración e ingeniería visual</div>
+<div class="subsection-title">📌 Psicología visual del contraste de color</div>
+<p class="article-text">El cerebro humano correlaciona la apariencia de alimentos con el sabor esperado.El color marrón de los hongos requiere fuertes colores de contraste para activar el interés visual.</p>
 <p><strong> Esquema de color profesional: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Montones marrón oscuro + hierbas verdes brillantes (perejil, puerros)</li>
 <li>Emparejado con vegetales de naranja (zanahorias, calabazas)</li>
 <li>Use elementos rojos (pimiento, semillas de granada)</li>
 <li>Salsa blanca o barro como lienzo</li>
-</ul>
-<br>
-<h3>Principios arquitectónicos de la estructura tridimensional</h3>
-<br>
-<p>Altamente crea un impacto visual, pero debe mantener la estabilidad estructural.</p>
-<br>
+</ul></div>
+<div class="subsection-title">📌 Principios arquitectónicos de la estructura tridimensional</div>
+<p class="article-text">Altamente crea un impacto visual, pero debe mantener la estabilidad estructural.</p>
 <p><strong> Tecnología de apilamiento: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Fundación: cereal o barro como base</li>
 <li>Capa intermedia: elementos de hongos principales</li>
 <li>Arriba: elementos crujientes o vainilla</li>
 <li>Posicionamiento de salsa: borde de placa o capa inferior para evitar inundar los elementos principales</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Experiencia personal </strong>: La torre de hongos que utilicé en las competiciones de cocción es compactarla por capa con un molde circular, refrigerar durante 15 minutos para fijar la forma y luego retirarla con cuidado.</p>
-<br>
-<h2>Flujo de trabajo práctico y gestión del tiempo</h2>
-<br>
-<h3>Tecnología de coordinación de tiempo de cocina profesional</h3>
-<br>
-<p>Asegurar que todos los componentes estén en el mejor de su condición simultáneamente requiere una precisión de grado militar.</p>
-<br>
+<div class="section-title">🍄 Flujo de trabajo práctico y gestión del tiempo</div>
+<div class="subsection-title">📌 Tecnología de coordinación de tiempo de cocina profesional</div>
+<p class="article-text">Asegurar que todos los componentes estén en el mejor de su condición simultáneamente requiere una precisión de grado militar.</p>
 <p><strong> Método de planificación de tiempo inverso: </strong></p>
 <p>1. Determinar el tiempo de servicio</p>
-<p>2. Calcule los artículos de cocina más largos (como estofado: 2 horas)</p>
-<p>3. Artículo de tiempo medio (champiñones asados: 25 minutos)</p>
-<p>4. Artículo de último minuto (verduras fritas: 5 minutos)</p>
-<br>
+<p class="article-text">2. Calcule los artículos de cocina más largos (como estofado: 2 horas)</p>
+<p class="article-text">3. Artículo de tiempo medio (champiñones asados: 25 minutos)</p>
+<p class="article-text">4. Artículo de último minuto (verduras fritas: 5 minutos)</p>
 <p><strong> Horario de muestra (cena formal): </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>con 2 horas de anticipación: el estofado comienza</li>
 <li>45 minutos de anticipación: asados ​​champiñones en el horno</li>
 <li>15 minutos de anticipación: recaliente la salsa</li>
 <li>5 minutos de anticipación: coloque rápidamente las verduras en la olla</li>
 <li>Antes de servir: ensamblar y colocar la placa</li>
-</ul>
-<br>
-<h3>Ciencias de la seguridad alimentaria en preparación por lotes</h3>
-<br>
-<p>Los hongos pretratados son propensos a la oxidación y el crecimiento microbiano y necesitan ser preservados científicamente.</p>
-<br>
+</ul></div>
+<div class="subsection-title">🔬 Ciencias de la seguridad alimentaria en preparación por lotes</div>
+<p class="article-text">Los hongos pretratados son propensos a la oxidación y el crecimiento microbiano y necesitan ser preservados científicamente.</p>
 <p><strong> Guardar tecnología: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>completamente seco después de la limpieza</li>
 <li>Contenedores sellados, toallas de papel para absorber condensado</li>
 <li>Temperatura: 1-4 ° C</li>
 <li>Hora: hasta 24 horas</li>
-</ul>
-<br>
-<h2>Selección profesional de equipos y herramientas</h2>
-<br>
-<h3>Herramientas esenciales básicas</h3>
-<br>
+</ul></div>
+<div class="section-title">🍄 Selección profesional de equipos y herramientas</div>
+<div class="subsection-title">🔧 Herramientas esenciales básicas</div>
 <p><strong>Cuchillo: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Chef's Knife: 20-25 cm, manejar grandes hongos</li>
-</ul>
+</ul></div>
 <p>-Sub-navegación: 10-12 cm, buen trabajo</p>
-<ul>
+<div class="highlight"><ul>
 <li>Cuchillo de diente de sierra: champiñones en rodajas y cocinadas sin romperse</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> utensilios de cocina: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>sartén de fondo grueso: incluso distribución de calor</li>
 <li>olla de hierro fundido: mantenga alta temperatura y coinque perfectamente</li>
 <li>Pot de guiso: base pesada para evitar ardor</li>
-</ul>
-<br>
-<h3>Equipo de grado profesional</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 Equipo de grado profesional</div>
 <p><strong> Herramientas avanzadas: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Deshidrator: ahorrar hongos estacionales</li>
 <li>Sellador de vacío: decapado y permeabilidad</li>
 <li>Inmersion Cycler: control de temperatura preciso</li>
 <li>Bandeja para freír de acero al carbono: recuperación de calor más rápida</li>
-</ul>
-<br>
-<h2>Ciencia y química de sabor con vino</h2>
-<br>
-<h3>Principio de emparejamiento a nivel molecular</h3>
-<br>
-<p>La combinación de alcohol y champiñones se basa en compuestos de sabor compartidos y comparaciones de texturas.</p>
-<br>
+</ul></div>
+<div class="section-title">🔬 Ciencia y química de sabor con vino</div>
+<div class="subsection-title">📌 Principio de emparejamiento a nivel molecular</div>
+<p class="article-text">La combinación de alcohol y champiñones se basa en compuestos de sabor compartidos y comparaciones de texturas.</p>
 <p><strong> Medición de vinos blancos: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Chardonnay: la sensación mantecosa del envejecimiento de roble y la cremosa salsa de champiñones</li>
 <li>Sauvignon Blanc: salsa rica de corte altamente ácido</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Ciencia del vino tinto: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Pinot Noir: los taninos bajos no abruman los hongos finos</li>
 <li>Syrah: las notas de pimienta complementan el sabor ahumado de los champiñones asados</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Recomendación de expertos </strong>: Los hongos locales con vinos locales suelen ser las mejores sinergias porque comparten características de suelo y clima.</p>
-<br>
-<h2>Resolución de problemas y solución de problemas</h2>
-<br>
-<h3>Errores comunes y soluciones científicas</h3>
-<br>
+<div class="section-title">🍄 Resolución de problemas y solución de problemas</div>
+<div class="subsection-title">📌 Errores comunes y soluciones científicas</div>
 <p><strong> Agua excesiva de los hongos: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Razón: la olla no está lo suficientemente caliente, el vapor está lleno</li>
 <li>Solución: cocine en lotes para garantizar el silbido</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Monotonía típica: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Razón: variedad de hongos individuales, condimento insuficiente</li>
 <li>Solución: mezcle más de 3 tipos de champiñones y sazonelos en capas</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Pobre textura: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Causa: Error de cocción excesiva o temperatura</li>
 <li>Solución: ajuste el tiempo y la temperatura de acuerdo con el tipo de hongo</li>
-</ul>
-<br>
-<h2>Adquisición estacional y adquisición sostenible</h2>
-<br>
-<h3>Protocolo de seguridad de colección de hongos salvajes</h3>
-<br>
-<p>Como biólogo, primero debo enfatizar la seguridad. Hay una gran cantidad de casos de envenenamiento de hongos en los Estados Unidos cada año, la mayoría de los cuales se pueden evitar.</p>
-<br>
+</ul></div>
+<div class="section-title">🍄 Adquisición estacional y adquisición sostenible</div>
+<div class="subsection-title">📌 Protocolo de seguridad de colección de hongos salvajes</div>
+<p class="article-text">Como biólogo, primero debo enfatizar la seguridad. Hay una gran cantidad de casos de envenenamiento de hongos en los Estados Unidos cada año, la mayoría de los cuales se pueden evitar.</p>
 <p><strong> Directrices de recolección de seguridad: </strong></p>
-<p>1. Absolutamente seguro: 100% no comido antes de la identificación</p>
-<p>2. Expertos locales Verifican: Primer variedades recolectadas</p>
-<p>3. Pruebe una pequeña cantidad: intente primero una pequeña cantidad de nuevas variedades</p>
-<p>4. Registro completo: ubicación de colección, tiempo, características</p>
-<br>
+<p class="article-text">1. Absolutamente seguro: 100% no comido antes de la identificación</p>
+<p class="article-text">2. Expertos locales Verifican: Primer variedades recolectadas</p>
+<p class="article-text">3. Pruebe una pequeña cantidad: intente primero una pequeña cantidad de nuevas variedades</p>
+<p class="article-text">4. Registro completo: ubicación de colección, tiempo, características</p>
 <p><strong> Variedades de seguridad recomendadas para principiantes: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Chanterelles: forma de embudo única, sin confusión</li>
 <li>Morel: portada de panal única</li>
 <li>Monstrucción de langosta: naranja brillante, sin peligros especies similares</li>
-</ul>
-<br>
-<h3>Práctica de colección sostenible</h3>
-<br>
-<p>Proteger el ecosistema de hongos garantiza el suministro a largo plazo.</p>
-<br>
+</ul></div>
+<div class="subsection-title">📌 Práctica de colección sostenible</div>
+<p class="article-text">Proteger el ecosistema de hongos garantiza el suministro a largo plazo.</p>
 <p><strong> Colección de ética: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Solo se recolectan entidades de frutas maduras</li>
 <li>Use la bolsa reticular para extender las esporas</li>
 <li>No hay daño al micelio</li>
 <li>cumplir con las regulaciones y límites locales</li>
-</ul>
-<br>
-<h2>Guía de acción: el camino de principiante a experto</h2>
-<br>
-<h3>Curva de aprendizaje gradual</h3>
-<br>
+</ul></div>
+<div class="section-title">📖 Guía de acción: el camino de principiante a experto</div>
+<div class="subsection-title">📌 Curva de aprendizaje gradual</div>
 <p><strong> Etapa 1: Dominio básico (1-3 meses) </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Master 3 Técnicas básicas de cocción: salteado, asado, estofado</li>
 <li>Familiarizado con 5 características comunes de hongos</li>
 <li>Combinación de guarniciones clásicas perfectamente ejecutadas</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Etapa 2: Expansión de habilidades (3-12 meses) </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Platos de hongos internacionales experimentales</li>
 <li>Pruebe el reconocimiento de hongos salvajes (bajo orientación experta)</li>
 <li>Desarrollar un champiñón especializado personal</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Etapa 3: Innovación a nivel de experto (más de 1 año) </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Crea platos de champiñones originales</li>
 <li>Técnicas de colocación profesional maestra</li>
 <li>Guiar a otros para las habilidades de cocina de hongos</li>
-</ul>
-<br>
-<h3>Recomendaciones para la acción ahora</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 Recomendaciones para la acción ahora</div>
 <p><strong> Empiece esta semana: </strong></p>
 <p>1. Compre 3 tipos diferentes de hongos</p>
-<p>2. Practica habilidades básicas de revestimiento de hongos</p>
-<p>3. Prueba un plato principal de hongos simple (como pasta de hongos)</p>
-<br>
+<p class="article-text">2. Practica habilidades básicas de revestimiento de hongos</p>
+<p class="article-text">3. Prueba un plato principal de hongos simple (como pasta de hongos)</p>
 <p><strong> Objetivo para este mes: </strong></p>
-<p>1. Dominar el control de temperatura preciso de los hongos asados</p>
-<p>2. Desarrollar guarniciones personales especiales de hongos especiales</p>
-<p>3. Invite a los amigos a probar el plato principal de hongos y recibir comentarios</p>
-<br>
-<p>El mundo de los hongos es vasto y emocionante, desde guarniciones simples hasta protagonistas centrales complejos, ofrecen infinitas posibilidades de cocina.Dominar estas técnicas y principios científicos, podrá alcanzar todo el potencial de los hongos y crear platos sobresalientes que sean deliciosos y nutritivos.Recuerde que cada experto era un principiante y la clave era comenzar a practicar y aprender de cada experiencia.</p>
-<br>
+<p class="article-text">1. Dominar el control de temperatura preciso de los hongos asados</p>
+<p class="article-text">2. Desarrollar guarniciones personales especiales de hongos especiales</p>
+<p class="article-text">3. Invite a los amigos a probar el plato principal de hongos y recibir comentarios</p>
+<p class="article-text">El mundo de los hongos es vasto y emocionante, desde guarniciones simples hasta protagonistas centrales complejos, ofrecen infinitas posibilidades de cocina.Dominar estas técnicas y principios científicos, podrá alcanzar todo el potencial de los hongos y crear platos sobresalientes que sean deliciosos y nutritivos.Recuerde que cada experto era un principiante y la clave era comenzar a practicar y aprender de cada experiencia.</p>
 <p>---</p>
-<br>
-<h2>⚠️ Descargo de responsabilidad importante</h2>
-<br>
+<div class="section-title">🍄 ⚠️ Descargo de responsabilidad importante</div>
 <p><strong> Este artículo es solo para referencia educativa e información.</strong></p>
-<br>
-<h3>Advertencia de riesgo de consumo de hongos</h3>
-<br>
-<p>1. <strong> Seguridad de la vida Primero </strong>: Existen riesgos inherentes en la identificación de hongos silvestres.Muchos hongos tóxicos se ven muy similares a los hongos comestibles, e ingerirlos accidentalmente puede provocar una enfermedad grave o incluso la muerte.</p>
-<br>
-<p>2. <strong> Se requiere identificación profesional </strong>: Antes de comer hongos silvestres, un micólogo profesional o un experto en identificación de hongos certificado debe realizar el 100%.Las fotos, las descripciones de texto y la experiencia personal no son suficientes para garantizar la seguridad.</p>
-<p>3. <strong> Diferencias individuales </strong>: Incluso los hongos comestibles reconocidos pueden causar reacciones adversas debido a factores como la constitución personal, reacciones alérgicas, método de consumo o entorno de crecimiento de hongos.Intente en pequeñas cantidades cuando coma una nueva variedad por primera vez.</p>
-<br>
-<p>4. <strong> Diferencias geográficas </strong>: Existen grandes diferencias en las especies de hongos y la toxicidad en diferentes regiones.La información mencionada en este artículo no puede aplicarse a su región.Consulte a expertos en micología local y organizaciones autorizadas.</p>
-<br>
-<p>5. <strong> Responsabilidad profesional </strong>: El autor y el editor no serán responsables de ningún daño, enfermedad o pérdida directa o indirecta derivada del uso de la información en este artículo.</p>
-<br>
-<h3>Consejo de seguridad</h3>
-<br>
-<ul>
+<div class="subsection-title">📌 Advertencia de riesgo de consumo de hongos</div>
+<p class="article-text">1. <strong> Seguridad de la vida Primero </strong>: Existen riesgos inherentes en la identificación de hongos silvestres.Muchos hongos tóxicos se ven muy similares a los hongos comestibles, e ingerirlos accidentalmente puede provocar una enfermedad grave o incluso la muerte.</p>
+<p class="article-text">2. <strong> Se requiere identificación profesional </strong>: Antes de comer hongos silvestres, un micólogo profesional o un experto en identificación de hongos certificado debe realizar el 100%.Las fotos, las descripciones de texto y la experiencia personal no son suficientes para garantizar la seguridad.</p>
+<p class="article-text">3. <strong> Diferencias individuales </strong>: Incluso los hongos comestibles reconocidos pueden causar reacciones adversas debido a factores como la constitución personal, reacciones alérgicas, método de consumo o entorno de crecimiento de hongos.Intente en pequeñas cantidades cuando coma una nueva variedad por primera vez.</p>
+<p class="article-text">4. <strong> Diferencias geográficas </strong>: Existen grandes diferencias en las especies de hongos y la toxicidad en diferentes regiones.La información mencionada en este artículo no puede aplicarse a su región.Consulte a expertos en micología local y organizaciones autorizadas.</p>
+<p class="article-text">5. <strong> Responsabilidad profesional </strong>: El autor y el editor no serán responsables de ningún daño, enfermedad o pérdida directa o indirecta derivada del uso de la información en este artículo.</p>
+<div class="subsection-title">📌 Consejo de seguridad</div>
+<div class="highlight"><ul>
 <li>✅ Participe en cursos formales de capacitación de identificación de hongos</li>
 <li>✅ ✅ ✅ ✅ ✅ ✅ ✅ ✅ ✅ ✅ ✅ ✅ ✅ ✅ ✅ ✅ ✅ ✅ ✅ ✅ ✅ ✅ ✅</li>
 <li>✅ Compre hongos cultivados de fuentes confiables</li>
 <li>✅ Guardar muestras de hongos para necesidades médicas de emergencia</li>
 <li>✅ No lo comas si tienes alguna duda</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Recuerde: cuando tiene alguna pregunta, la única opción segura es no comerla.La seguridad de su vida es mucho más importante que cualquier comida de hongos.</strong></p>
-<br>
 <p>---</p>
         </div>
-    </div>
+
+</div>
 </body>
 </html>

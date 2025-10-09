@@ -1,598 +1,491 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Taxonomie des champignons - Mushroom Science</title>
-    <meta name="description" content="Taxonomie des champignons">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>01 Taxonomie des champignons - MushroomAiSnap</title>
+<link href="../../mobile-styles.css" rel="stylesheet"/>
+<link href="../../mobile-enhancement.css" rel="stylesheet"/>
+<link href="../../ecology-theme.css" rel="stylesheet"/>
+<style>
+        .hero-image img {
+            max-height: 200px;
+            width: 100%;
+            object-fit: cover;
         }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        .article-card img {
+            max-height: 120px;
+            width: 100%;
+            object-fit: cover;
+        }
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                        url('../../images/mushroom-science_01-fungal-taxonomy-classification.webp') center/cover;
+            position: relative;
+            margin-top: 0;
+        }
+        .article-meta {
+            margin-top: 15px !important;
+        }
+    
+        /* Mushroom Science Theme */
+        :root {
+            --primary-color: #9370DB;
+            --primary-dark: #4B0082;
+            --primary-light: #F8F4FF;
+            --accent-color: #BA55D3;
+        }
+        
+        /* Theme Color Overrides */
+        .content {
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+            border: 2px solid var(--primary-color);
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, var(--primary-light), var(--primary-light));
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .quote-text {
+            color: var(--primary-dark);
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+        }
+        
+        .subsection-title {
+            color: var(--primary-dark);
+            font-size: 1.4em;
+            font-weight: 600;
+            margin: 25px 0 15px 0;
+            padding-left: 10px;
+            border-left: 3px solid var(--accent-color);
+        }
+        
+        .tip-box {
+            border-left: 4px solid var(--primary-color);
+            background: var(--primary-light);
+        }
+        
+        .tip-title {
+            color: var(--primary-color);
+        }
+        
+        .highlight {
+            border-left: 4px solid var(--accent-color);
+            background: linear-gradient(135deg, #f1f8e9, var(--primary-light));
+        }
+        
+        .warning {
+            border-left: 4px solid #f44336;
+        }
+        
+        .equipment-item {
+            border: 1px solid var(--accent-color);
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+        }
+        
+        .equipment-item h4 {
+            color: var(--primary-color);
+        }
+        
+        .category {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .main-text {
+            font-size: 1.1em;
             line-height: 1.8;
             color: #333;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-
-        .article-title {
-            color: #98D8C8;
-            font-size: 2.5em;
-            margin-bottom: 30px;
-            margin-top: 0;
-            line-height: 1.3;
-            padding-top: 0;
-        }
-
-        .featured-image {
-            width: 100%;
-            height: auto;
-            aspect-ratio: 4 / 3;
-            object-fit: cover;
-            display: block;
-        }
-
-        .content {
-            padding: 50px;
-        }
-
-        .content h2 {
-            color: #98D8C8;
-            font-size: 2em;
-            margin-top: 40px;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid #98D8C8;
-        }
-
-        .content h3 {
-            color: #555;
-            font-size: 1.6em;
-            margin-top: 30px;
-            margin-bottom: 15px;
-        }
-
-        .content h4 {
-            color: #666;
-            font-size: 1.3em;
-            margin-top: 25px;
-            margin-bottom: 12px;
-        }
-
-        .content p {
-            margin-bottom: 20px;
-            font-size: 1.1em;
-            color: #444;
-        }
-
-        .content ul {
             margin: 20px 0;
-            padding-left: 30px;
-        }
-
-        .content li {
-            margin-bottom: 12px;
-            font-size: 1.05em;
-            color: #555;
-        }
-
-        .content strong {
-            color: #222;
-            font-weight: 600;
-        }
-
-        .back-link {
-            display: inline-block;
-            padding: 12px 25px;
-            background: linear-gradient(135deg, #98D8C8, #8B4513);
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            margin-bottom: 20px;
-            transition: transform 0.3s ease;
-            font-weight: 600;
-        }
-
-        .back-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .navigation {
-            padding: 30px 50px;
-            background: #f8f9fa;
-            border-top: 1px solid #e9ecef;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-btn {
-            padding: 10px 20px;
-            background: #98D8C8;
-            color: white;
-            text-decoration: none;
+            padding: 15px;
+            background: linear-gradient(135deg, #ffffff, #f9f9f9);
             border-radius: 8px;
-            transition: all 0.3s ease;
+            border-left: 3px solid var(--accent-color);
         }
-
-        .nav-btn:hover {
-            transform: translateX(5px);
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+        
+        .emoji {
+            font-size: 1.5em;
+            margin-left: 10px;
         }
-
-        .nav-btn.prev:hover {
-            transform: translateX(-5px);
+        
+        .read-time, .difficulty {
+            display: inline-block;
+            padding: 5px 15px;
+            margin: 5px 5px 5px 0;
+            border-radius: 20px;
+            font-size: 0.9em;
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            color: #1976d2;
+            font-weight: 500;
         }
-
-        @media (max-width: 768px) {
-            .content {
-                padding: 30px 25px;
-            }
-
-            .article-title {
-                font-size: 1.8em;
-            }
-
-            .featured-image {
-                height: 250px;
-            }
-
-            .navigation {
-                flex-direction: column;
-                gap: 15px;
-            }
+        
+        .difficulty {
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            color: #e65100;
+        }
+        
+        .article-text {
+            line-height: 1.8;
+            color: #444;
+            margin: 15px 0;
+            font-size: 1.05em;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <img src="../../images/mushroom-science_01-fungal-taxonomy-classification.webp" alt="Taxonomie des champignons" class="featured-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22900%22 height=%22400%22%3E%3Crect fill=%22%23D2691E%22 width=%22900%22 height=%22400%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22white%22 font-size=%2260%22%3E🍄%3C/text%3E%3C/svg%3E'">
+<div class="hero-image"></div>
+<div class="content">
+    <h1 class="title">01 Taxonomie des champignons</h1>
+    <div class="quote-box">
+        <div class="quote-text">Professional Mycology Guide</div>
+    </div>
+    
+<div class="article-meta">
+<span class="category">🔬 Mushroom Science</span>
+<span class="read-time">📖 16 minute read</span>
+<span class="difficulty">🔴 Advanced</span>
+</div>
 
-        <div class="content">
-            <h1 class="article-title">Taxonomie des champignons</h1>
-            <br>
-<p>En tant qu'expert en champignons expérimenté, je sais que la maîtrise de la taxonomie fongique n'est pas seulement une poursuite académique, mais aussi la clé de la sécurité dans la collection sauvage et la cuisine réussie.Au cours des deux dernières décennies, j'ai vu comment la technologie de l'ADN a révolutionné notre compréhension du monde fongique, tout en réalisant à quel point les connaissances taxonomiques solides sont importantes pour chaque amant de champignons.</p>
-<br>
-<h2>Pourquoi la taxonomie fongique est cruciale pour les collectionneurs</h2>
-<br>
-<p>L'automne dernier, je dirigeais un événement de collection dans les Rocheuses, au Colorado, et je suis tombé sur un cas classique.Un participant a choisi avec confiance les "chanterelles" apparemment comestibles, mais grâce à une observation minutieuse et à une analyse microscopique, nous avons constaté que c'était en fait des champignons Jack O'lantern (Omphalotus illudens) - une espèce toxique.Cette expérience met en évidence les dangers de l'identification des champignons par l'apparence seule et l'importance d'une compréhension approfondie de la taxonomie.</p>
-<br>
+
+            <br><div class="main-text">En tant qu'expert en champignons expérimenté, je sais que la maîtrise de la taxonomie fongique n'est pas seulement une poursuite académique, mais aussi la clé de la sécurité dans la collection sauvage et la cuisine réussie.Au cours des deux dernières décennies, j'ai vu comment la technologie de l'ADN a révolutionné notre compréhension du monde fongique, tout en réalisant à quel point les connaissances taxonomiques solides sont importantes pour chaque amant de champignons.<span class="emoji">🍄</span></div>
+<div class="section-title">🎯 Pourquoi la taxonomie fongique est cruciale pour les collectionneurs</div>
+<p class="article-text">L'automne dernier, je dirigeais un événement de collection dans les Rocheuses, au Colorado, et je suis tombé sur un cas classique.Un participant a choisi avec confiance les "chanterelles" apparemment comestibles, mais grâce à une observation minutieuse et à une analyse microscopique, nous avons constaté que c'était en fait des champignons Jack O'lantern (Omphalotus illudens) - une espèce toxique.Cette expérience met en évidence les dangers de l'identification des champignons par l'apparence seule et l'importance d'une compréhension approfondie de la taxonomie.</p>
 <p><strong> Valeur pratique: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Une identification précise peut éviter les erreurs mortelles</li>
 <li>Comprendre les relations avec les espèces aide à découvrir de nouvelles espèces comestibles</li>
 <li>La maîtrise du système de classification peut améliorer l'efficacité de la collecte de champs</li>
 <li>La dénomination scientifique garantit une communication précise dans le monde</li>
-</ul>
-<br>
-<h2>Système de classification des champignons: Cadre de base</h2>
-<br>
-<h3>Explication détaillée du niveau de classification biologique</h3>
-<br>
-<p>Le système de classification biologique est comme un énorme arbre généalogique, divisé en sept niveaux principaux de la signification large à un sens spécifique:</p>
-<br>
-<p>Royaume → Phylum → Classe → Ordre → Famille → Genre → Espèces</p>
-<br>
+</ul></div>
+<div class="section-title">🍄 Système de classification des champignons: Cadre de base</div>
+<div class="subsection-title">📌 Explication détaillée du niveau de classification biologique</div>
+<p class="article-text">Le système de classification biologique est comme un énorme arbre généalogique, divisé en sept niveaux principaux de la signification large à un sens spécifique:</p>
+<p class="article-text">Royaume → Phylum → Classe → Ordre → Famille → Genre → Espèces</p>
 <p><strong> Insight clé: </strong> Les champignons ont été indépendants du monde végétal et ont établi leur propre "monde fongique".Des études génétiques montrent que les champignons sont plus proches des animaux que les plantes - une découverte explique pourquoi les médicaments antifongiques sont souvent toxiques pour l'homme.</p>
-<br>
-<h3>Méthode de nom double: une carte d'identité fongique globalement commune</h3>
-<br>
-<p>Le système à deux noms établi par Carl Linnaeus au XVIIIe siècle est toujours l'étalon-or pour la dénomination fongique.Ce système garantit que chaque espèce a un nom scientifique unique dans le monde.</p>
-<br>
+<div class="subsection-title">📌 Méthode de nom double: une carte d'identité fongique globalement commune</div>
+<p class="article-text">Le système à deux noms établi par Carl Linnaeus au XVIIIe siècle est toujours l'étalon-or pour la dénomination fongique.Ce système garantit que chaque espèce a un nom scientifique unique dans le monde.</p>
 <p><strong> Format de nom: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Nom authentique (lettre primaire, italique) + mot supplémentaire (tous minuscules, italique)</li>
 <li>Exemple: Agaricus bisporus - Le champignon cultivé commun que nous connaissons</li>
 <li>Add facultatif Abréviation du nom: Agaricus bisporus (L.) Schaeff.</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Les experts suggèrent: </strong> L'apprentissage des racines latines peut simplifier considérablement la mémoire.Par exemple, "Bisporus" signifie "deux spores", décrivant les caractéristiques des spores de l'espèce.</p>
-<br>
-<h2>Analyse approfondie des principales catégories de l'industrie des champignons</h2>
-<br>
-<h3>Ascomycota - Le trésor des gourmets</h3>
-<br>
-<p>En tant que phylum le plus abondant de la communauté fongique, les Ascomycètes contient plus de 65 000 espèces connues, représentant environ 75% de tous les champignons décrits.</p>
-<br>
+<div class="section-title">🍄 Analyse approfondie des principales catégories de l'industrie des champignons</div>
+<div class="subsection-title">📌 Ascomycota - Le trésor des gourmets</div>
+<p class="article-text">En tant que phylum le plus abondant de la communauté fongique, les Ascomycètes contient plus de 65 000 espèces connues, représentant environ 75% de tous les champignons décrits.</p>
 <p><strong> Reconnaissance des fonctionnalités: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Les ascospores sont contenues dans les ascospores</li>
 <li>Les spores sont généralement fortement tournées à travers l'ouverture de l'ouverture apicale de l'ascotum</li>
 <li>Morphologie diversifiée: de la levure microscopique aux grands corps de fructification</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Types comestibles importants: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Morel (Morchella): trésor de printemps, capuchon de stérile en nid d'abeille</li>
 <li>Tuber: truffe, diamant dans le monde de la nourriture</li>
 <li>Helvella: une apparence unique de la circoncision cérébrale</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Conseils de collecte: </strong> Les morilles coexistent souvent avec des espèces d'arbres spécifiques, et les rendements ont augmenté la deuxième année après l'incendie - c'est mon expérience que j'ai vérifiée à plusieurs reprises au Montana.</p>
-<br>
-<h3>Basidiomycota - Le champ de bataille principal pour les amateurs de champignons</h3>
-<br>
-<p>Contenant environ 32 000 espèces, les basidiomycètes englobent la plupart des espèces que nous considérons généralement comme des «champignons».</p>
-<br>
+<div class="subsection-title">📌 Basidiomycota - Le champ de bataille principal pour les amateurs de champignons</div>
+<p class="article-text">Contenant environ 32 000 espèces, les basidiomycètes englobent la plupart des espèces que nous considérons généralement comme des «champignons».</p>
 <p><strong> Caractéristiques d'identification: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>basidia basidiospores exogènes</li>
 <li>Morphologie typique des champignons: Cap + structure de tige</li>
 <li>Les spores sont produites sur des structures nichées ou dentées ou dentées</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Groupes comestibles principaux: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Agaricaceae: y compris les champignons communs</li>
 <li>Boletaceae: Viande riche, tubes bactéries remplacer les bactéries plies</li>
 <li>Tricholomataceae: y compris les célèbres champignons</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Expérience pratique dans le domaine: </strong> Dans le nord-ouest du Pacifique, j'ai enseigné aux collectionneurs à distinguer initialement Boletus à travers le «test du pouce» - les espèces comestibles ne deviennent généralement pas rapidement en bleu sous pression.</p>
-<br>
-<h2>Base de classification: l'art de l'identification de la macro au micro</h2>
-<br>
-<h3>Caractéristiques macro - identification préliminaire du domaine</h3>
-<br>
+<div class="section-title">📚 Base de classification: l'art de l'identification de la macro au micro</div>
+<div class="subsection-title">📌 Caractéristiques macro - identification préliminaire du domaine</div>
 <p><strong> MUST POINTS DE L'OBJECTIF MORPHOLOGIQUE: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Forme du couvercle: conique, convexe, forme plate, etc.</li>
 <li>Méthodes d'attachement des champignons: gratuit, direct, prolongé, etc.</li>
 <li>Caractéristiques des tiges bactériennes: s'il y a des anneaux bactériens et des pièges bactériens</li>
 <li>Changement de couleur: réaction de changement de couleur après coupure ou extrusion</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Collection d'informations écologiques: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Substrat de croissance: sol, bois, excréments ou autre</li>
 <li>Plantes compagnon: relation mycorhizienne possible</li>
 <li>Saison et conditions météorologiques: le temps et la demande climatique</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Partage d'expérience personnelle: </strong> Je conserve toujours un journal de collecte détaillé pour enregistrer l'environnement écologique de chaque spécimen.Cette habitude m'a aidé à découvrir une nouvelle espèce potentielle dans le Wyoming.</p>
-<br>
-<h3>Micro Fonctionnalités - Identification précise du laboratoire</h3>
-<br>
+<div class="subsection-title">🔍 Micro Fonctionnalités - Identification précise du laboratoire</div>
 <p><strong> Analyse des spores: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Production d'impression de spores: différentes couleurs fournissent des indices importants</li>
 <li>Taille et forme des spores: ovale, sphérique, angulaire, etc.</li>
 <li>Modèles de surface: lisse, semblable à une verrue, en forme de crête, etc.</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Observation de la structure cellulaire: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>La présence et le type de cystidia</li>
 <li>Structure du mycélium: y a-t-il un joint verrouillé</li>
 <li>Arrangement de structure de la couche de fruits</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Recommandation d'outils professionnels: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>microscope composite de haute qualité (grossissement 1000x)</li>
 <li>Règle de mesure microscopique</li>
 <li>Réactifs chimiques (Koh, réactifs de Melzer, etc.)</li>
-</ul>
-<br>
-<h3>Analyse de l'ADN - La révolution de la taxonomie moderne</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 Analyse de l'ADN - La révolution de la taxonomie moderne</div>
 <p><strong> Sélection du marqueur des gènes: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>sa zone: "code-barres" des champignons</li>
 <li>Régions LSU et SSU: classification avancée</li>
 <li>Analyse multi-sites: améliorer la résolution</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Application pratique: </strong> L'année dernière, j'ai confirmé par le code-barres d'ADN qu'un lot de chanterelle avec des apparences similaires appartenait en fait à trois espèces génétiques différentes, qui ont eu un impact direct sur la formulation des politiques de protection locales.</p>
-<br>
-<h2>Guide pratique des principaux groupes de basidiomycètes</h2>
-<br>
-<h3>AgariComycetes - Forme de champignons classique</h3>
-<br>
+<div class="section-title">📖 Guide pratique des principaux groupes de basidiomycètes</div>
+<div class="subsection-title">📌 AgariComycetes - Forme de champignons classique</div>
 <p><strong> Amanita: la beauté et le danger coexistent </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Caractéristiques d'identification: tranchée bactérienne, bague bactérienne, impression de spores blanches</li>
 <li>Avertissement de sécurité: comprend les espèces de champignons les plus toxiques du monde</li>
 <li>Suggestions de collecte: les débutants devraient éviter de collecter complètement ce genre</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Russula et Lactarius: champignons croustillants </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Test d'identification: les champignons rouges sont friables, lactobacillus qui coule du lait</li>
 <li>Évaluation des saveurs: la qualité est énorme, et elle nécessite un jugement empirique</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Conseils d'experts: </strong> J'ai développé un "système d'identification à trois niveaux" - Caractéristiques macroscopiques de champ → Analyse microscopique de laboratoire → Vérification de l'ADN des espèces difficiles, et ce système a considérablement amélioré ma précision d'identification.</p>
-<br>
-<h2>Règles de dénomination et normes internationales</h2>
-<br>
-<h3>Points clés de la nomenclature des plantes internationales (ICN)</h3>
-<br>
-<p>Bien que le nom soit un règlement de dénomination "plante", les champignons suivent les mêmes règles, qui sont causées par des raisons historiques.</p>
-<br>
+<div class="section-title">🍄 Règles de dénomination et normes internationales</div>
+<div class="subsection-title">📌 Points clés de la nomenclature des plantes internationales (ICN)</div>
+<p class="article-text">Bien que le nom soit un règlement de dénomination "plante", les champignons suivent les mêmes règles, qui sont causées par des raisons historiques.</p>
 <p><strong> Pratique du principe Principe: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Les premiers noms valablement publiés ont la priorité</li>
 <li>Le nom doit répondre aux exigences de format spécifié</li>
 <li>Une publication efficace signifie une description formelle dans des revues scientifiques reconnues</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Système d'échantillon de mode: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Chaque espèce a spécifié des échantillons de modèle comme norme de référence</li>
 <li>Le modèle est conservé dans une salle de spécimen reconnue</li>
 <li>La nouvelle description doit spécifier les échantillons de modèle</li>
-</ul>
-<br>
-<h3>Management différent du nom - Calliailles du changement de nom</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 Management différent du nom - Calliailles du changement de nom</div>
 <p><strong> situation commune: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>La même espèce a été décrite par différents taxonomistes plusieurs fois</li>
 <li>Les preuves ADN conduisent à reclassification des espèces</li>
 <li>Changements de noms causés par les révisions de la classification du genre</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Stratégies d'adaptation: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Utilisez la base de données faisant autorité pour vérifier les derniers noms acceptés</li>
 <li>Comprendre les noms communs, en particulier ceux utilisés dans le livre d'images</li>
 <li>Gardez les connaissances à jour et faites attention aux révisions de classification</li>
-</ul>
-<br>
-<h2>Analyse approfondie et guide pratique pour les genres communs</h2>
-<br>
-<h3>genre important de délicieux et économique</h3>
-<br>
+</ul></div>
+<div class="section-title">🍄 Analyse approfondie et guide pratique pour les genres communs</div>
+<div class="subsection-title">📌 genre important de délicieux et économique</div>
 <p><strong> Agaricus (champignon): </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Reconnaissance sur le terrain: Lorsqu'il est mature, les plis bactéries deviennent roses en brun foncé</li>
 <li>Caractéristiques de cuisson: A. bisporus est les espèces les plus cultivées</li>
 <li>Remarque de sécurité: Évitez la confusion avec Amanita mortel</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Boletus (Poletus): </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Clé d'identification: les tubes bactériens remplacent les plis bactériens et les tiges bactériennes sont généralement épaisses</li>
 <li>Délicieux Représentant: Delicious B. Edulis est très respecté</li>
 <li>Compétences de collecte: choisissez des corps jeunes et serrés pour éviter les vers d'insectes</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Canthalellus (Canthalellus): </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Caractéristiques morphologiques: plis de la trompette en forme de trompette et pseudo-fugus (rides)</li>
 <li>Caractéristiques de saveur: arôme d'abricot, résistant à la cuisine</li>
 <li>Relation écologique: formation de mycorhizie avec des espèces d'arbres spécifiques, difficile à cultiver artificiellement</li>
-</ul>
-<br>
-<h2>Groupes complexes et espèces cachées: apparence trompeuse</h2>
-<br>
-<h3>Étude de cas sur le complexe de champignons de Chanterrello</h3>
-<br>
-<p>Traditionnellement considéré comme une seule espèce, Cantharellus cibarius, est maintenant connu pour contenir des dizaines d'espèces génétiquement distinctes.</p>
-<br>
+</ul></div>
+<div class="section-title">🍄 Groupes complexes et espèces cachées: apparence trompeuse</div>
+<div class="subsection-title">📌 Étude de cas sur le complexe de champignons de Chanterrello</div>
+<p class="article-text">Traditionnellement considéré comme une seule espèce, Cantharellus cibarius, est maintenant connu pour contenir des dizaines d'espèces génétiquement distinctes.</p>
 <p><strong> Challenge d'identification: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>La forme macroscopique est extrêmement similaire</li>
 <li>Les préférences écologiques sont légèrement différentes</li>
 <li>Il y a des distributions géographiques qui se chevauchent</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Impact pratique: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Différentes espèces cachées peuvent avoir différentes qualités comestibles</li>
 <li>La gestion de la conservation doit cibler des espèces génétiques spécifiques</li>
 <li>Les collectionneurs ont besoin de connaître les caractéristiques spécifiques des espèces locales</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Découverte personnelle: </strong> Dans les montagnes des Appalaches du Sud, j'ai découvert une population de chantelles avec une saveur nettement meilleure que la population du Nord, et l'analyse de l'ADN a confirmé qu'ils sont des espèces génétiques différentes.</p>
-<br>
-<h2>Routine quotidienne de la taxonomie</h2>
-<br>
-<h3>Décrivez le processus système d'un nouveau type</h3>
-<br>
+<div class="section-title">🍄 Routine quotidienne de la taxonomie</div>
+<div class="subsection-title">📌 Décrivez le processus système d'un nouveau type</div>
 <p><strong> Étape de la collection avant: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Records détaillés de l'information de l'habitat et des organismes compagnons</li>
 <li>Prenez des photos in situ et enregistrez le statut original</li>
 <li>Collectez des spécimens complets, y compris les pièces souterraines</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Analyse en laboratoire: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Description détaillée et mesure du macromorphisme</li>
 <li>Enregistrement complet des micro fonctionnalités</li>
 <li>Extraction d'ADN et analyse de séquence</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Comparaison de la littérature: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>comparaison détaillée avec des espèces connues</li>
 <li>Consultez la description et les images de l'échantillon de modèle</li>
 <li>Analyser les différences de parents</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> publié officiellement: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Préparer une spécification de la description de l'espèce</li>
 <li>Spécifiez et stockez des spécimens en mode</li>
 <li>Publier un nom valide dans une revue accréditée</li>
-</ul>
-<br>
-<h2>La valeur pratique de la taxonomie: le sens au-delà des universitaires</h2>
-<br>
-<h3>La première ligne de défense pour la collection sûre</h3>
-<br>
+</ul></div>
+<div class="section-title">🍄 La valeur pratique de la taxonomie: le sens au-delà des universitaires</div>
+<div class="subsection-title">📌 La première ligne de défense pour la collection sûre</div>
 <p><strong> Évitement des erreurs mortelles: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>distinction précise entre les champignons comestibles et les espèces similaires toxiques</li>
 <li>Comprendre la portée des intraspécies et éviter les erreurs de jugement</li>
 <li>Caractéristiques d'identification des clés principales sans compter sur un seul indicateur</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> REAL CASE: </strong> En 2018, un collectionneur expérimenté en Californie a considérablement considéré à tort un phalloides Amanita mortel comme des champignons de paille comestibles (Volvarilla volvacea), ce qui a presque causé une tragédie.Les deux ont des auges fongiques, mais les spores sont complètement différentes de couleur - il s'agit d'un exemple concret de la façon dont les connaissances taxonomiques peuvent sauver des vies.</p>
-<br>
-<h3>Conservation et collection durable</h3>
-<br>
+<div class="subsection-title">🛡️ Conservation et collection durable</div>
 <p><strong> Identification des espèces rares: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Comprendre le statut juridique des espèces protégées</li>
 <li>Identifier les espèces écologiques clés et éviter de détruire le réseau mycorhizien</li>
 <li>Participer à la science des citoyens et contribuer à des données distribuées</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Pratique durable: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Utilisez un sac en mailles pour permettre la transmission des spores</li>
 <li>Collection appropriée pour conserver suffisamment d'individus reproducteurs</li>
 <li>Enregistrer et collecter des données et contribuer aux connaissances scientifiques</li>
-</ul>
-<br>
-<h2>Ressources d'information et chemins d'apprentissage</h2>
-<br>
-<p>Guide d'utilisation de la base de données faisant autorité</p>
-<br>
+</ul></div>
+<div class="section-title">🍄 Ressources d'information et chemins d'apprentissage</div>
+<p class="article-text">Guide d'utilisation de la base de données faisant autorité</p>
 <p><strong> Index Fungorum: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Requête de nom et vérification différente du nom</li>
 <li>Classification Meta navigation</li>
 <li>coordonnées expertes</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Mycobank: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Nouvelle plateforme d'inscription</li>
 <li>Base de données de description détaillée et d'image</li>
 <li>Liens de données moléculaires</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Ressources régionales: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>site Web de la North American Fungus Association (NAMA)</li>
 <li>Sociétés fongiques d'État et clubs de collecte</li>
 <li>Activités de collecte guidés locaux</li>
-</ul>
-<br>
-<h3>Suggestions d'apprentissage du système</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 Suggestions d'apprentissage du système</div>
 <p><strong> Étape principale: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>maîtriser les caractéristiques de 10 genres locaux communs</li>
 <li>Apprenez des termes de base et des méthodes d'observation</li>
 <li>Participer à un atelier ou un cours pour débutant</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Avancé et amélioré: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Investissez dans des microscopes de qualité et étude d'identification microscopique</li>
 <li>Participer aux activités de collecte dirigés par des experts</li>
 <li>Créer une bibliothèque de spécimen de référence personnelle</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Niveau d'experts: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Apprendre la technologie de biologie moléculaire</li>
 <li>Recherche en collaboration avec des taxonomistes professionnels</li>
 <li>Contribuer de nouveaux enregistrements ou descriptions</li>
-</ul>
-<br>
-<h2>Défis de taxonomie et orientations futures</h2>
-<br>
-<h3>Les difficultés actuelles sont confrontées</h3>
-<br>
+</ul></div>
+<div class="section-title">🍄 Défis de taxonomie et orientations futures</div>
+<div class="subsection-title">📌 Les difficultés actuelles sont confrontées</div>
 <p><strong> Connaissances vides: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>On estime que 5 à 10% des espèces fongiques sont décrites scientifiquement</li>
 <li>très peu de connaissances de la diversité fongique dans les zones tropicales et les sols</li>
 <li>Recherche inadéquate sur les champignons microbiens et les espèces parasites</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Limitation des ressources: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Le nombre de taxonomistes professionnels a diminué</li>
 <li>Financement et soutien insuffisants du musée des spécimens</li>
 <li>La couverture d'enquête sur le terrain n'est pas complète</li>
-</ul>
-<br>
-<h3>Révolution technologique et perspectives d'avenir</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 Révolution technologique et perspectives d'avenir</div>
 <p><strong> Progrès de la technologie moléculaire: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Application sur le terrain de séquenceurs d'ADN portables</li>
 <li>La métagénomique révèle une diversité fongique cachée</li>
 <li>Compréhension génomique des relations évolutives</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Assistance à l'intelligence artificielle: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Le logiciel de reconnaissance d'image aide à l'identification préliminaire</li>
 <li>L'algorithme prédit la distribution des espèces et le temps d'occurrence</li>
 <li>Mesure et analyse morphologiques automatisées</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Intégration de la science citoyenne: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>L'inaturation et d'autres plateformes collectent des données d'observation</li>
 <li>Les projets scientifiques populaires accélèrent la découverte des espèces</li>
 <li>Les scientifiques communautaires collaborent avec les taxonomistes professionnels</li>
-</ul>
-<br>
-<h2>Guide d'action: étapes pratiques pour commencer maintenant</h2>
-<br>
-<p>1. <strong> Créez des connaissances de base </strong></p>
-<ul>
+</ul></div>
+<div class="section-title">📖 Guide d'action: étapes pratiques pour commencer maintenant</div>
+<p class="article-text">1. <strong> Créez des connaissances de base </strong></p>
+<div class="highlight"><ul>
 <li>Achetez un livre d'images régional local aux champignons</li>
 <li>Apprenez les caractéristiques clés des 10 genres les plus courants</li>
 <li>Maître la technologie de production d'impression des spores</li>
-</ul>
-<br>
-<p>2. <strong> Équipez votre boîte à outils </strong></p>
-<ul>
+</ul></div>
+<p class="article-text">2. <strong> Équipez votre boîte à outils </strong></p>
+<div class="highlight"><ul>
 <li>Équipement sur le terrain: panier, couteau, pinceau, carnet de disques</li>
 <li>Outils d'identification: miroir portable, ensemble de réactifs chimiques</li>
 <li>Équipement de sécurité: gants, guides, coordonnées d'urgence</li>
-</ul>
-<br>
-<p>3. <strong> Plan d'apprentissage du système </strong></p>
-<ul>
+</ul></div>
+<p class="article-text">3. <strong> Plan d'apprentissage du système </strong></p>
+<div class="highlight"><ul>
 <li>Participer aux activités locales de la société de champignons</li>
 <li>Inscrivez-vous à des ateliers ou des cours professionnels</li>
 <li>Trouver des mentors expérimentés</li>
-</ul>
-<br>
+</ul></div>
 <p>4. <strong> Pratique et contribution </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Commencez par des types communs et faciles à identifier</li>
 <li>Créer des enregistrements de collection personnelle et une galerie de photos</li>
 <li>Contribuer des données d'observation à la base de données</li>
-</ul>
-<br>
-<p>5. <strong> Mettre à jour en continu les connaissances </strong></p>
-<ul>
+</ul></div>
+<p class="article-text">5. <strong> Mettre à jour en continu les connaissances </strong></p>
+<div class="highlight"><ul>
 <li>Focus sur les révisions taxonomiques et les nouvelles découvertes</li>
 <li>Participer à des forums en ligne et à des discussions professionnelles</li>
 <li>Revue régulière et mise à jour de la base de données personnelle</li>
-</ul>
-<br>
-<p>La taxonomie fongique n'est pas une discipline statique, mais un domaine dynamique plein de découvertes et de révisions.Chaque collecteur grave peut non seulement améliorer son taux de sécurité et de réussite en maîtrisant les principes de classification, mais aussi contribuer à cet important domaine scientifique.N'oubliez pas que dans le monde des champignons, la connaissance n'est pas seulement le pouvoir - c'est peut-être la différence entre la vie et la mort.</p>
-<br>
-<p>Commencez votre parcours de taxonomie. Chaque voyage dans la nature est une occasion d'apprendre, et chaque spécimen a des histoires qui attendent d'être découvertes.</p>
+</ul></div>
+<p class="article-text">La taxonomie fongique n'est pas une discipline statique, mais un domaine dynamique plein de découvertes et de révisions.Chaque collecteur grave peut non seulement améliorer son taux de sécurité et de réussite en maîtrisant les principes de classification, mais aussi contribuer à cet important domaine scientifique.N'oubliez pas que dans le monde des champignons, la connaissance n'est pas seulement le pouvoir - c'est peut-être la différence entre la vie et la mort.</p>
+<p class="article-text">Commencez votre parcours de taxonomie. Chaque voyage dans la nature est une occasion d'apprendre, et chaque spécimen a des histoires qui attendent d'être découvertes.</p>
         </div>
-    </div>
+
+</div>
 </body>
 </html>

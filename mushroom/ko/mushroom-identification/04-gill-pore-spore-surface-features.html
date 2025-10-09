@@ -1,401 +1,325 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>현장 식별에 대한 실용 가이드 - Mushroom Identification</title>
-    <meta name="description" content="현장 식별에 대한 실용 가이드">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>04 현장 식별에 대한 실용 가이드 - MushroomAiSnap</title>
+<link href="../../mobile-styles.css" rel="stylesheet"/>
+<link href="../../mobile-enhancement.css" rel="stylesheet"/>
+<link href="../../ecology-theme.css" rel="stylesheet"/>
+<style>
+        .hero-image img {
+            max-height: 200px;
+            width: 100%;
+            object-fit: cover;
         }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        .article-card img {
+            max-height: 120px;
+            width: 100%;
+            object-fit: cover;
+        }
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                        url('../../images/mushroom-identification_04-gill-pore-spore-surface-features.webp') center/cover;
+            position: relative;
+            margin-top: 0;
+        }
+        .article-meta {
+            margin-top: 15px !important;
+        }
+    
+        /* Mushroom Identification Theme */
+        :root {
+            --primary-color: #4169E1;
+            --primary-dark: #191970;
+            --primary-light: #F0F8FF;
+            --accent-color: #6495ED;
+        }
+        
+        /* Theme Color Overrides */
+        .content {
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+            border: 2px solid var(--primary-color);
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, var(--primary-light), var(--primary-light));
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .quote-text {
+            color: var(--primary-dark);
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+        }
+        
+        .subsection-title {
+            color: var(--primary-dark);
+            font-size: 1.4em;
+            font-weight: 600;
+            margin: 25px 0 15px 0;
+            padding-left: 10px;
+            border-left: 3px solid var(--accent-color);
+        }
+        
+        .tip-box {
+            border-left: 4px solid var(--primary-color);
+            background: var(--primary-light);
+        }
+        
+        .tip-title {
+            color: var(--primary-color);
+        }
+        
+        .highlight {
+            border-left: 4px solid var(--accent-color);
+            background: linear-gradient(135deg, #f1f8e9, var(--primary-light));
+        }
+        
+        .warning {
+            border-left: 4px solid #f44336;
+        }
+        
+        .equipment-item {
+            border: 1px solid var(--accent-color);
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+        }
+        
+        .equipment-item h4 {
+            color: var(--primary-color);
+        }
+        
+        .category {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .main-text {
+            font-size: 1.1em;
             line-height: 1.8;
             color: #333;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-
-        .article-title {
-            color: #45B7D1;
-            font-size: 2.5em;
-            margin-bottom: 30px;
-            margin-top: 0;
-            line-height: 1.3;
-            padding-top: 0;
-        }
-
-        .featured-image {
-            width: 100%;
-            height: auto;
-            aspect-ratio: 4 / 3;
-            object-fit: cover;
-            display: block;
-        }
-
-        .content {
-            padding: 50px;
-        }
-
-        .content h2 {
-            color: #45B7D1;
-            font-size: 2em;
-            margin-top: 40px;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid #45B7D1;
-        }
-
-        .content h3 {
-            color: #555;
-            font-size: 1.6em;
-            margin-top: 30px;
-            margin-bottom: 15px;
-        }
-
-        .content h4 {
-            color: #666;
-            font-size: 1.3em;
-            margin-top: 25px;
-            margin-bottom: 12px;
-        }
-
-        .content p {
-            margin-bottom: 20px;
-            font-size: 1.1em;
-            color: #444;
-        }
-
-        .content ul {
             margin: 20px 0;
-            padding-left: 30px;
-        }
-
-        .content li {
-            margin-bottom: 12px;
-            font-size: 1.05em;
-            color: #555;
-        }
-
-        .content strong {
-            color: #222;
-            font-weight: 600;
-        }
-
-        .back-link {
-            display: inline-block;
-            padding: 12px 25px;
-            background: linear-gradient(135deg, #45B7D1, #8B4513);
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            margin-bottom: 20px;
-            transition: transform 0.3s ease;
-            font-weight: 600;
-        }
-
-        .back-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .navigation {
-            padding: 30px 50px;
-            background: #f8f9fa;
-            border-top: 1px solid #e9ecef;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-btn {
-            padding: 10px 20px;
-            background: #45B7D1;
-            color: white;
-            text-decoration: none;
+            padding: 15px;
+            background: linear-gradient(135deg, #ffffff, #f9f9f9);
             border-radius: 8px;
-            transition: all 0.3s ease;
+            border-left: 3px solid var(--accent-color);
         }
-
-        .nav-btn:hover {
-            transform: translateX(5px);
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+        
+        .emoji {
+            font-size: 1.5em;
+            margin-left: 10px;
         }
-
-        .nav-btn.prev:hover {
-            transform: translateX(-5px);
+        
+        .read-time, .difficulty {
+            display: inline-block;
+            padding: 5px 15px;
+            margin: 5px 5px 5px 0;
+            border-radius: 20px;
+            font-size: 0.9em;
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            color: #1976d2;
+            font-weight: 500;
         }
-
-        @media (max-width: 768px) {
-            .content {
-                padding: 30px 25px;
-            }
-
-            .article-title {
-                font-size: 1.8em;
-            }
-
-            .featured-image {
-                height: 250px;
-            }
-
-            .navigation {
-                flex-direction: column;
-                gap: 15px;
-            }
+        
+        .difficulty {
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            color: #e65100;
+        }
+        
+        .article-text {
+            line-height: 1.8;
+            color: #444;
+            margin: 15px 0;
+            font-size: 1.05em;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <img src="../../images/mushroom-identification_04-gill-pore-spore-surface-features.webp" alt="현장 식별에 대한 실용 가이드" class="featured-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22900%22 height=%22400%22%3E%3Crect fill=%22%23D2691E%22 width=%22900%22 height=%22400%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22white%22 font-size=%2260%22%3E🍄%3C/text%3E%3C/svg%3E'">
+<div class="hero-image"></div>
+<div class="content">
+    <h1 class="title">04 현장 식별에 대한 실용 가이드</h1>
+    <div class="quote-box">
+        <div class="quote-text">Professional Mycology Guide</div>
+    </div>
+    
+<div class="article-meta">
+<span class="category">🔍 Mushroom Identification</span>
+<span class="read-time">📖 16 minute read</span>
+<span class="difficulty">🔴 Advanced</span>
+</div>
 
-        <div class="content">
-            <h1 class="article-title">현장 식별에 대한 실용 가이드</h1>
-            <br>
-<p>덮개가 버섯의 "외관"이라면, 곰팡이 주름, 구멍 및 기타 포자의 표면은 버섯의 "엔진 챔버"입니다. 곰팡이의 수명을 계속하기 위해 수백만 개의 포자가 생산되고 방출됩니다.이러한 구조는 생물학적으로 중요 할뿐만 아니라 식별에서 가장 귀중한 특징 중 하나입니다.필드 컬렉션에서 25 년의 경험을 가진 마이코 학자로서, 나는 당신에게 명확하게 말할 수 있습니다. 포자 표면 특성에 대한 관찰 기술을 마스터하는 것은 치명적인 담배와 함께 식용 맛있는 음식을 치명적인 담배와 구별하는 데 핵심 기술입니다.</p>
-<br>
-<h2>포자 표면 특성이 왜 그렇게 중요한가요?</h2>
-<br>
-<p>초기 컬렉션 경력에서 나는 박테리아 주름의 부착을 무시했기 때문에 유독 한 아 마니 타를 거의 놓쳤다.그 경험으로 인해 버섯 식별은 인식에 근거한 것이 아니라 과학적 특성에 기초한 정확한 판단에 기초한다는 것을 깊이 깨달았습니다.</p>
-<br>
+
+            <br><div class="main-text">덮개가 버섯의 "외관"이라면, 곰팡이 주름, 구멍 및 기타 포자의 표면은 버섯의 "엔진 챔버"입니다. 곰팡이의 수명을 계속하기 위해 수백만 개의 포자가 생산되고 방출됩니다.이러한 구조는 생물학적으로 중요 할뿐만 아니라 식별에서 가장 귀중한 특징 중 하나입니다.필드 컬렉션에서 25 년의 경험을 가진 마이코 학자로서, 나는 당신에게 명확하게 말할 수 있습니다. 포자 표면 특성에 대한 관찰 기술을 마스터하는 것은 치명적인 담배와 함께 식용 맛있는 음식을 치명적인 담배와 구별하는 데 핵심 기술입니다.<span class="emoji">🍄</span></div>
+<div class="section-title">🎯 포자 표면 특성이 왜 그렇게 중요한가요?</div>
+<p class="article-text">초기 컬렉션 경력에서 나는 박테리아 주름의 부착을 무시했기 때문에 유독 한 아 마니 타를 거의 놓쳤다.그 경험으로 인해 버섯 식별은 인식에 근거한 것이 아니라 과학적 특성에 기초한 정확한 판단에 기초한다는 것을 깊이 깨달았습니다.</p>
 <p><strong> 포자 표면의 생물학적 중요성 </strong></p>
-<br>
-<p>포자의 표면은 버섯의 생식 센터입니다.중간 크기의 버섯 캡은 하루에 약 1,600 만 포자를 방출 할 수 있으며, 수명주기 동안 총 포자 수는 수십억에이를 수 있습니다.이 미세한 포자는 풍력에 의해 퍼지고, 적절한 환경에서 균사체로 발아하며, 새로운 수명주기를 시작합니다.</p>
-<br>
+<p class="article-text">포자의 표면은 버섯의 생식 센터입니다.중간 크기의 버섯 캡은 하루에 약 1,600 만 포자를 방출 할 수 있으며, 수명주기 동안 총 포자 수는 수십억에이를 수 있습니다.이 미세한 포자는 풍력에 의해 퍼지고, 적절한 환경에서 균사체로 발아하며, 새로운 수명주기를 시작합니다.</p>
 <p><strong> 승인 가치 </strong></p>
-<br>
-<p>포자의 표면 특성은 식별을위한 가장 신뢰할 수있는 기초를 제공합니다.환경에 의해 쉽게 영향을받는 캡의 색과는 달리, 박테리아 주름의 배열, 구멍의 구조 및 포자의 색은 종 내에서 비교적 안정적입니다.American Mycology Association의 데이터에 따르면 일반적인 버섯 종의 약 70%가 포자 표면 특성만으로 정확하게 식별 될 수 있습니다.</p>
-<br>
-<h2>전문 장비 : 투자하기에 적합한 도구</h2>
-<br>
+<p class="article-text">포자의 표면 특성은 식별을위한 가장 신뢰할 수있는 기초를 제공합니다.환경에 의해 쉽게 영향을받는 캡의 색과는 달리, 박테리아 주름의 배열, 구멍의 구조 및 포자의 색은 종 내에서 비교적 안정적입니다.American Mycology Association의 데이터에 따르면 일반적인 버섯 종의 약 70%가 포자 표면 특성만으로 정확하게 식별 될 수 있습니다.</p>
+<div class="section-title">🛠️ 전문 장비 : 투자하기에 적합한 도구</div>
 <p><strong> 기본 장비 목록 </strong></p>
 <p>-10X 핸드 헬드 돋보기 유리 : 박테리아 프릴 가장자리와 작은 구멍 관찰</p>
-<ul>
+<div class="highlight"><ul>
 <li>메스 : 박테리아 폴드 부착의 세로 관찰</li>
 <li>포자 인쇄 용지 : 흑백 양면 종이 또는 알루미늄 호일</li>
 <li>디지털 카메라 : 매크로 촬영 세부 사항</li>
 <li>현장 기록 책 : 방수 용지</li>
 <li>통치자와 색상 차트</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 전문가들은 </strong> : 돋보기의 품질에 인색하지 마십시오.아마존 열대 우림을 방문 할 때 고품질 10 배의 돋보기 유리가 매우 유사한 두 개의 아마니타 박테리아 (하나는 식용과 다른 고유 한 독성을 구별하는 데 도움이되었습니다.</p>
-<br>
-<h2>포자 생성 표면의 유형 : 식별을위한 실용 가이드</h2>
-<br>
-<h3>아가미/라멜라 : 가장 일반적인 포자 표면</h3>
-<br>
+<div class="section-title">📖 포자 생성 표면의 유형 : 식별을위한 실용 가이드</div>
+<div class="subsection-title">📌 아가미/라멜라 : 가장 일반적인 포자 표면</div>
 <p><strong> 구조와 기능에 대한 자세한 설명 </strong></p>
-<br>
-<p>주름은 펠렛의 중심에서 바깥쪽으로 방출 된 플라스크 구조물입니다. 이 설계는 결코 우연이 아닙니다. 표면적 대 부피 비율을 최대화하고 포자 수율을 최대화합니다. 현미경 하에서, 박테리아 주름의 표면은 수백만 포드로 덮여 있으며, 각각은 일반적으로 4 개의 포자를 생성합니다.</p>
-<br>
+<p class="article-text">주름은 펠렛의 중심에서 바깥쪽으로 방출 된 플라스크 구조물입니다. 이 설계는 결코 우연이 아닙니다. 표면적 대 부피 비율을 최대화하고 포자 수율을 최대화합니다. 현미경 하에서, 박테리아 주름의 표면은 수백만 포드로 덮여 있으며, 각각은 일반적으로 4 개의 포자를 생성합니다.</p>
 <p><strong> 프론트 식별 기술 </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>관찰 각도 : 버섯을 뒤집고 아래에서 관찰하십시오.</li>
 <li>가벼운 이용 : 측면 조명을 사용하여 박테리아 주름의 배열 패턴을 관찰하십시오.</li>
 <li>터치 테스트 : 장갑을 착용 한 후 세균 주름을 터치하여 질감을 느껴보십시오.</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 전형적인 대표 및 실제 사례 </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Toadstools : 일반적인 식용 버섯 포함</li>
-</ul>
+</ul></div>
 <p>-Amanita : 세계에서 가장 유독 한 버섯 종이 포함되어 있습니다.</p>
-<ul>
+<div class="highlight"><ul>
 <li>버섯 속 : 상업적으로 재배 된 Agaricus bisporus 포함</li>
-</ul>
+</ul></div>
 <p>-Cenus Genus : 잔디밭과 열린 지역에서 일반적으로 발견됩니다.</p>
-<br>
 <p><strong> 빠른 팁 </strong> : 북미 산림에서는 주름진 오징어로 버섯을 만나면 더욱주의를 기울여야합니다.</p>
-<br>
-<h3>모공/튜브 : Boletus의 로고</h3>
-<br>
+<div class="subsection-title">📌 모공/튜브 : Boletus의 로고</div>
 <p><strong> 구조적 및 기능적 깊이 분석 </strong></p>
-<br>
-<p>구멍 구조는 실제로 조밀하게 배열 된 수직 튜브의 개구부입니다. 이 튜브의 내부 벽은 포자 생성 조직으로 덮여 있습니다. 흥미로운 사실 ​​: 특정 기공 박테리아의 튜브 기공 층은 매년 업데이트되어 버섯의 나이를 결정하는 데 도움이됩니다.</p>
-<br>
+<p class="article-text">구멍 구조는 실제로 조밀하게 배열 된 수직 튜브의 개구부입니다. 이 튜브의 내부 벽은 포자 생성 조직으로 덮여 있습니다. 흥미로운 사실 ​​: 특정 기공 박테리아의 튜브 기공 층은 매년 업데이트되어 버섯의 나이를 결정하는 데 도움이됩니다.</p>
 <p><strong> Boletus 식별에 대한 실질적인 테스트 </strong></p>
-<p>작년에 콜로라도의 로키스를 검사하는 동안, 나는 지역 주민들이 구멍의 특성을 통해 감히 모으지 않는 맛있는 볼레 투스를 정확하게 확인했습니다.주요 기능은 다음과 같습니다.</p>
-<ul>
+<p class="article-text">작년에 콜로라도의 로키스를 검사하는 동안, 나는 지역 주민들이 구멍의 특성을 통해 감히 모으지 않는 맛있는 볼레 투스를 정확하게 확인했습니다.주요 기능은 다음과 같습니다.</p>
+<div class="highlight"><ul>
 <li>구멍 크기와 모양</li>
 <li>색 변색 반응</li>
 <li>버섯과 분리의 어려움</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 전문 기술 </strong> : 블레이드를 사용하여 구멍의 표면을 부드럽게 긁어 내고 색상 변화를 관찰하십시오.일부 Boletus는 즉시 파란색으로 변할 것이며, 이는 중요한 식별 기능입니다.</p>
-<br>
-<h3>치아/가시 : 독특한 구조</h3>
-<br>
+<div class="subsection-title">📌 치아/가시 : 독특한 구조</div>
 <p><strong> 현장 식별을위한 큰 포인트 </strong></p>
-<p>곰팡이 커뮤니티에서 치아와 같은 구조는 비교적 드물기 때문에 발견되면 식별을 쉽게 좁힐 수 있습니다. Monkey Erectus는 가장 유명한 대표자입니다.안전하고 식용 일뿐 만 아니라 훌륭한 의약 가치도 있습니다.</p>
-<br>
+<p class="article-text">곰팡이 커뮤니티에서 치아와 같은 구조는 비교적 드물기 때문에 발견되면 식별을 쉽게 좁힐 수 있습니다. Monkey Erectus는 가장 유명한 대표자입니다.안전하고 식용 일뿐 만 아니라 훌륭한 의약 가치도 있습니다.</p>
 <p><strong> 수집 경험 </strong> : 미시간의 나무 숲에서, 나는 너도밤 나무의 죽은 나무에서 Erectus 버섯을 찾는 것이 성공률이 가장 높다는 것을 알았습니다.그들의 치아와 같은 구조는 부드러 우면 순수한 흰색이며 성숙 할 때 약간 노란색 일 수 있습니다.</p>
-<br>
-<h3>False Gills : Chanterelle의 독점 기능</h3>
-<br>
+<div class="subsection-title">📐 False Gills : Chanterelle의 독점 기능</div>
 <p><strong> 곰팡이 주름의 실제 차이 </strong></p>
-<br>
-<p>의사-펀 스 폴드는 버섯 식별에서 가장 오해 된 기능 중 하나입니다.몬태나에서 워크숍을 이끌 때, 나는 연수생의 60% 이상이 처음에 진실과 허위 양고기 주름을 정확하게 구별 할 수 없다는 것을 알았습니다.</p>
-<br>
+<p class="article-text">의사-펀 스 폴드는 버섯 식별에서 가장 오해 된 기능 중 하나입니다.몬태나에서 워크숍을 이끌 때, 나는 연수생의 60% 이상이 처음에 진실과 허위 양고기 주름을 정확하게 구별 할 수 없다는 것을 알았습니다.</p>
 <p><strong> 주요 차이 </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>분리 테스트 : 나이프 팁을 사용하여 "박테리아 주름"을 분리하십시오. 곰팡이 주름은 분리하기 쉽고 의사 박테리아 및 곰팡이 살이 통합됩니다.</li>
 <li>두께 관찰 : Pseudobacteria fold는 더 두껍고 더 둔합니다.</li>
 <li>분기 패턴 : 의사- 펀 스 폴드에는 종종 불규칙한 분기가 있습니다</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 식용 안전 팁 </strong> : 실제 Cantharellus는 세계에서 가장 안전한 야생 식용 곰팡이 중 하나이며, 곰팡이 주름을 가진 위조자는 독성이있을 수 있습니다.이 차이는 삶과 죽음의 차이 일 수 있습니다.</p>
-<br>
-<h3>Smooth : 드문 포자 생산 방법</h3>
-<br>
-<p>비교적 희귀하지만 부드러운 포자 생산 표면은 일부 그룹에서 일반적입니다.이 버섯은 일반적으로 비가 튀거나 곤충과 같은 다른 수단을 통한 포자 전송을 보장합니다.</p>
-<br>
-<h2>박테리아 주름 특성에 대한 자세한 설명 : 이론에서 실습까지</h2>
-<br>
-<h3>박테리아 주름 부착 방법 : 가장 중요한 식별 기능</h3>
-<br>
-<p>내가 가르친 버섯 식별 과정에서 곰팡이 폴드를 부착하는 방법은 내가 강조한 첫 번째 교훈이었습니다.이 기능의 중요성은 과장 될 수 없습니다. 식별 범위를 여러 속으로 즉시 좁힐 수 있습니다.</p>
-<br>
+<div class="subsection-title">📌 Smooth : 드문 포자 생산 방법</div>
+<p class="article-text">비교적 희귀하지만 부드러운 포자 생산 표면은 일부 그룹에서 일반적입니다.이 버섯은 일반적으로 비가 튀거나 곤충과 같은 다른 수단을 통한 포자 전송을 보장합니다.</p>
+<div class="section-title">🍄 박테리아 주름 특성에 대한 자세한 설명 : 이론에서 실습까지</div>
+<div class="subsection-title">📌 박테리아 주름 부착 방법 : 가장 중요한 식별 기능</div>
+<p class="article-text">내가 가르친 버섯 식별 과정에서 곰팡이 폴드를 부착하는 방법은 내가 강조한 첫 번째 교훈이었습니다.이 기능의 중요성은 과장 될 수 없습니다. 식별 범위를 여러 속으로 즉시 좁힐 수 있습니다.</p>
 <p><strong> 실제 관찰 방법 </strong></p>
 <p>1. 대표 표본 선택 : 각 연령에 대해 하나를 선택하십시오</p>
 <p>2. 정확한 절단 : 날카로운 칼날을 사용하여 줄기의 중간 선을 따라 세로 절단</p>
 <p>3. 관찰 각도 : 좋은 빛의 여러 각도에서 관찰</p>
 <p>4. 결과 기록 : 현장 레코드 북에서 즉시 그리거나 설명하십시오.</p>
-<br>
 <p><strong> 무료 (무료) frit의 식별 가치 </strong></p>
-<p>특발성 주름은 Amanita 속과 버섯 속의 주요 특징입니다.케라틴이 케라틴과 전혀 접촉하지 않는다는 것을 알게되면이 두 가지 중요한 속의 구성원이 직면하게 될 것입니다.현재 다른 기능을 즉시 확인해야합니다.</p>
+<p class="article-text">특발성 주름은 Amanita 속과 버섯 속의 주요 특징입니다.케라틴이 케라틴과 전혀 접촉하지 않는다는 것을 알게되면이 두 가지 중요한 속의 구성원이 직면하게 될 것입니다.현재 다른 기능을 즉시 확인해야합니다.</p>
 <p>-Amanita : 보통 박테리아 관과 고리가 있습니다</p>
-<ul>
+<div class="highlight"><ul>
 <li>버섯 속 : 실제 멸균이 없습니다</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 전문가들은 </strong> : 버섯을 세로로 자르면 절단 표면을 깔끔하게 유지하고 미세한 구조를 압박하고 파괴하지 않도록주의하십시오.수술 블레이드를 사용하는 것이 좋습니다. 일반 칼보다 정확합니다.</p>
-<br>
-<h3>박테리아 주름 간격 : 정량적 관찰 기술</h3>
-<br>
-<p>많은 야외 가이드는 단순히 "집중적"또는 "스파스"로 묘사되지만 학생들은 정량적 접근 방식을 취하도록 가르칩니다.</p>
-<br>
+<div class="subsection-title">📌 박테리아 주름 간격 : 정량적 관찰 기술</div>
+<p class="article-text">많은 야외 가이드는 단순히 "집중적"또는 "스파스"로 묘사되지만 학생들은 정량적 접근 방식을 취하도록 가르칩니다.</p>
 <p><strong> 표준 측정 프로토콜 </strong></p>
 <p>1. 캡 가장자리에서 대표 영역을 선택하십시오.</p>
 <p>2. 통치자를 사용하여 길이 1cm를 측정하십시오</p>
 <p>3.이 길이 내에서 완전한 박테리아 주름의 수를 계산합니다.</p>
 <p>4. 캡의 다른 위치에서 측정을 반복하십시오</p>
-<br>
 <p><strong> 간격 분류 표준 </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>밀도 : 15 개 이상의 박테리아가 센티미터를 접습니다</li>
 <li>보통 : 8-15 박테리아는 센티미터를 접습니다</li>
 <li>스파스 : 8 % 미만의 박테리아가 백분율로 접 힙니다</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 실용적인 응용 </strong> : 워싱턴 주 캐스케이드 산맥에서 나는 정확한 수의 주름 (22 피트 %)을 가진 희귀 한 락토 바실러스를 확인하는 데 도움을주었습니다.</p>
-<br>
-<h3>박테리아 주름 두께 및 질감 : 촉각 식별 기술</h3>
-<br>
+<div class="subsection-title">📌 박테리아 주름 두께 및 질감 : 촉각 식별 기술</div>
 <p><strong> 두께 측정 표준 </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>좁은 : 3mm 미만</li>
 <li>중간 : 3-5 mm</li>
 <li>너비 : 5 mm보다 큽니다</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 텍스트 테스트 안전 프로토콜 </strong></p>
-<p>버섯이 높은 독성의 위험이 없음을 확인하기 전에 직접 피부 접촉을 피하십시오. 다음 방법을 사용할 수 있습니다.</p>
+<p class="article-text">버섯이 높은 독성의 위험이 없음을 확인하기 전에 직접 피부 접촉을 피하십시오. 다음 방법을 사용할 수 있습니다.</p>
 <p>1. 깨끗한 나이프 팁을 사용하여 펠릿을 누릅니다.</p>
 <p>2. 파괴 방법을 관찰하십시오</p>
 <p>3. 칼 끝을 사용하여 작은 조각을 골라 관찰하십시오.</p>
-<br>
 <p><strong> 텍스트 유형 및 식별 가치 </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Crisp : Lactiflora와 Red Mushrooms의 전형적인 특성, 가벼운 압박 후 작은 조각으로 분쇄</li>
 <li>왁스 : 왁스 속의 독특한 특징, 문지르면 맑은 왁스 느낌</li>
 <li>강인함 : 대부분의 리그닌 박테리아의 특성은 찢기 어렵습니다.</li>
-</ul>
-<br>
-<h3>박테리아 주름 색상 : 동적 변화에 대한 식별 단서</h3>
-<br>
-<p>주름의 색은 포자가 성숙함에 따라 변화하기 때문에 아마도 가장 오해 된 기능 일 것입니다.시스템 관찰 방법을 개발했습니다.</p>
-<br>
+</ul></div>
+<div class="subsection-title">📌 박테리아 주름 색상 : 동적 변화에 대한 식별 단서</div>
+<p class="article-text">주름의 색은 포자가 성숙함에 따라 변화하기 때문에 아마도 가장 오해 된 기능 일 것입니다.시스템 관찰 방법을 개발했습니다.</p>
 <p><strong> 색상 관찰 계약 </strong></p>
 <p>1. 다른 발달 단계에서 표본을 수집하십시오</p>
 <p>2. 초기 색상을 즉시 기록하십시오 (현장 조건 하에서)</p>
 <p>3. 최종 색상을 확인하기 위해 포자 인쇄물을 만드십시오</p>
 <p>4. 환경 요인이 색상에 미치는 영향에주의를 기울이십시오.</p>
-<br>
 <p><strong> 일반적인 색상 진화 모드 </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>버섯 : 흰색 → 핑크 → 초콜릿 브라운</li>
-</ul>
+</ul></div>
 <p>-Genus 속 : 흰색 → 핑크 → 검은 색</p>
 <p>-Amanita : 보통 흰색 또는 약간 노란색을 유지합니다</p>
-<br>
 <p><strong> 일반적인 실수 방지 </strong> : 메모리만으로는 색상을 판단하지 말고 표준 색상 차트를 사용하십시오.조명 조건은 색상 인식에 크게 영향을 줄 수 있습니다.</p>
-<br>
-<h2>구멍의 특성 (튜브 홀) : Boletus 전문가의 관점</h2>
-<br>
-<h3>기공 크기 및 모양 : 정확한 측정 방법</h3>
-<br>
+<div class="section-title">🛠️ 구멍의 특성 (튜브 홀) : Boletus 전문가의 관점</div>
+<div class="subsection-title">📌 기공 크기 및 모양 : 정확한 측정 방법</div>
 <p><strong> 기공 크기 분류 </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>큰 구멍 : 1mm보다 큰 직경, 육안으로 명확하게 보입니다.</li>
 <li>작은 구멍 : 직경이 0.5-1 mm, 돋보기를 관찰해야합니다.</li>
 <li>마이크로 포어 : 직경은 0.5mm 미만이고 표면은 매끄럽게 보입니다.</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 전문 측정 기술 </strong></p>
 <p>밀리미터 당 홀 수의 측정 방법을 사용하는 것이 좋습니다.</p>
 <p>1. 대표 영역을 선택하십시오</p>
 <p>2. 돋보기와 미세 눈금자를 사용하십시오</p>
 <p>3. 길이 1mm 이내의 구멍 수를 계산하십시오.</p>
 <p>4. 전환 공식 : 기공 크기 ≈1/밀리미터 당 기공 수</p>
-<br>
 <p><strong> 실제 케이스 </strong> : 맛있는 볼레 테스를 식별 할 때 구멍의 크기는 주요 기능 중 하나입니다.진짜 맛있는 볼 레트는 일반적으로 밀리미터 당 2-3 개의 구멍이 있습니다.</p>
-<br>
-<h3>색상 변화 반응 : 화학 식별의 비밀</h3>
-<br>
-<p>일부 볼레 투스의 모공은 압축 후 색이 변할 것입니다. 이는 페놀 화합물의 산화로 인한 것입니다.이 반응은 매우 중요한 식별 기능입니다.</p>
-<br>
+<div class="subsection-title">📌 색상 변화 반응 : 화학 식별의 비밀</div>
+<p class="article-text">일부 볼레 투스의 모공은 압축 후 색이 변할 것입니다. 이는 페놀 화합물의 산화로 인한 것입니다.이 반응은 매우 중요한 식별 기능입니다.</p>
 <p><strong> 표준 테스트 방법 </strong></p>
 <p>1. 부드럽고 온전한 구멍 표면을 선택하십시오</p>
 <p>2. 칼이나 손톱의 뒷면으로 부드럽게 누릅니다.</p>
 <p>3. 즉시 타이밍을 시작하십시오</p>
 <p>4. 색상 변화 속도, 최종 색상 및 복구 시간 기록</p>
-<br>
 <p><strong> 일반적인 색상 변색 유형 </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>파란색 변화 : 특정 boletus 박테리아의 특성, 반응 속도는 즉시 다릅니다.</li>
 <li>브라우닝 : 더 일반적인 반응, 식별 값이 적습니다</li>
 <li>빨간색 변경 : 비교적 드물지만 식별 가치가 높습니다.</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 안전 팁 </strong> : 색상 변색 반응은 독성 지표가 아닙니다.일부 파란색 형태의 볼레 투스는 식용이며 일부는 변색 대신 독성입니다.</p>
-<br>
-<h2>포자 인쇄 생산 : 가정 실험실 기술</h2>
-<br>
-<p>포자 인쇄는 버섯 식별에서 가장 신뢰할 수있는 기능 중 하나입니다.20 년 이상 개선 된 후 포자 인쇄를 만드는 가장 효과적인 방법을 요약했습니다.</p>
-<br>
+<div class="section-title">🍄 포자 인쇄 생산 : 가정 실험실 기술</div>
+<p class="article-text">포자 인쇄는 버섯 식별에서 가장 신뢰할 수있는 기능 중 하나입니다.20 년 이상 개선 된 후 포자 인쇄를 만드는 가장 효과적인 방법을 요약했습니다.</p>
 <p><strong> 전문 포자 인쇄 생산 키트 </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>흑백 양면 포자 인쇄지</li>
 <li>투명 용기 또는 유리 컵</li>
 <li>증류수 스프레이 병</li>
 <li>멸균 메스</li>
 <li>태그 시스템</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 생산 공정 최적화 </strong></p>
 <p>1. 방금 완전히 확장 된 멸균 커버를 선택하십시오.</p>
 <p>2. 멸균 조건에서 멸균 된 줄기 제거</p>
@@ -403,252 +327,187 @@
 <p>4. 증류수를 가볍게 뿌려 습도를 높입니다</p>
 <p>5. 직접 밀봉을 피하기 위해 컨테이너로 덮으십시오</p>
 <p>6. 15-20 ° C에서 숙박하십시오</p>
-<br>
 <p><strong> 시간 가이드 </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>버섯 : 4-8 시간</li>
 <li>구멍 버섯 : 12-24 시간</li>
 <li>노인 표본 : 2-4 시간이면 충분할 수 있습니다</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 전문가 팁 </strong> : 종이 대신 알루미늄 호일을 사용하면 포자 축적의 두께와 색상을 동시에 관찰하여 추가 정보를 제공 할 수 있습니다.</p>
-<br>
-<h2>포자 색상 분류 시스템</h2>
-<br>
+<div class="section-title">🍄 포자 색상 분류 시스템</div>
 <p>수천 개의 포자 인쇄물 분석을 바탕으로 실용적인 색상 분류 시스템을 설정했습니다.</p>
-<br>
 <p><strong> 주요 컬러 그룹 및 대표적인 유형 </strong></p>
-<br>
 <p>흰색 포자 그룹</p>
-<ul>
+<div class="highlight"><ul>
 <li>색상 범위 : 순수한 흰색에서 크림</li>
 <li>대표 : 대부분의 Amanita와 Amanita Mushroom (Young)</li>
 <li>식별 기술 : 검은 종이에서 가장 명확하게 관찰</li>
-</ul>
-<br>
+</ul></div>
 <p>핑크 포자 그룹</p>
-<ul>
+<div class="highlight"><ul>
 <li>색상 범위 : 연어에서 가벼운 가루</li>
 <li>대표 : 버섯, 일부 링 스템 버섯</li>
 <li>실제 적용 : 식용 버섯과 독성 Amanita를 구별하는 데 도움이됩니다.</li>
-</ul>
-<br>
+</ul></div>
 <p>브라운 포자 그룹</p>
-<ul>
+<div class="highlight"><ul>
 <li>색상 범위 : 황갈색에서 다크 초콜릿 브라운</li>
 <li>대표 : 대부분의 속 버섯과 버섯 속 (잘 익은)</li>
 <li>관찰 포인트 : 톤을 정확하게 판단하려면 좋은 빛이 필요합니다.</li>
-</ul>
-<br>
+</ul></div>
 <p>블랙 포자 그룹</p>
-<ul>
+<div class="highlight"><ul>
 <li>색상 범위 : 진한 자주색 검은 색에서 순수한 검은 색</li>
 <li>대표 : 잉크 유령 우산, 일부는 버섯을 발견했습니다</li>
 <li>특수 특성 : 포자 인쇄물이 촉촉하고 반짝이게 보일 수 있습니다.</li>
-</ul>
-<br>
-<h2>현미경 관찰 : 고급 식별 기술</h2>
-<br>
-<p>현장 식별에는 일반적으로 현미경이 필요하지는 않지만 경우에 따라 현미경 특징은 결정적입니다.</p>
-<br>
+</ul></div>
+<div class="section-title">⚡ 현미경 관찰 : 고급 식별 기술</div>
+<p class="article-text">현장 식별에는 일반적으로 현미경이 필요하지는 않지만 경우에 따라 현미경 특징은 결정적입니다.</p>
 <p><strong> 현미경이 필요한시기 </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>내부 종의 식별</li>
 <li>어려운 시편의 확인</li>
 <li>과학 연구의 목적</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 기본 미세한 기능 </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>포자 모양과 크기</li>
 <li>포자 표면 패턴</li>
 <li>바닥 크기와 모양</li>
 <li>신체 유형 및 분포</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 실제 사례 </strong> : 캘리포니아에서는 포자에 독특한 메쉬 패턴이있는 포자 표면 패턴을 통해 새로운 종의 락토 바실러스를 확인했습니다.</p>
-<br>
-<h2>종합 평가 과정 : 필드에서 평가 책까지</h2>
-<br>
+<div class="section-title">🍄 종합 평가 과정 : 필드에서 평가 책까지</div>
 <p>수년간의 연습 후, 나는 체계적인 포자 표면 관찰 과정을 개발했습니다.</p>
-<br>
 <p><strong> 현장에서의 예비 관찰 </strong></p>
 <p>1. 포자 표면 유형을 기록하십시오</p>
 <p>2. 박테리아 주름의 부착 방법을 관찰하십시오 (해당되는 경우)</p>
 <p>3. 색상과 간격을 설명하십시오</p>
 <p>4. 간단한 텍스처 테스트를 수행하십시오</p>
-<br>
 <p><strong> 자세한 실험실 분석 </strong></p>
 <p>1. 포자 인쇄물을 만드십시오</p>
 <p>2. 다양한 특성을 정확하게 측정합니다</p>
 <p>3. 녹음 색상 변경</p>
 <p>4. 필요한 화학 테스트를 수행하십시오</p>
-<br>
 <p><strong> 마침내 확인 </strong></p>
 <p>1. 여러 기능을 확인하십시오</p>
 <p>2. 전문 문학을 확인하십시오</p>
 <p>3. 필요한 경우 전문가에게 문의하십시오</p>
 <p>4. 표본과 기록을 저장하십시오</p>
-<br>
-<h2>일반적인 오류 및 솔루션</h2>
-<br>
+<div class="section-title">🍄 일반적인 오류 및 솔루션</div>
 <p>교육 경험을 바탕으로 초보자에게 가장 일반적인 실수를 요약했습니다.</p>
-<br>
 <p><strong> 오류 1 : 박테리아의 부착 방법을 무시하십시오 </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>해결책 : 수직 관찰의 습관을 개발하십시오</li>
 <li>전문적인 팁 : 단면 블레이드를 사용하여 깔끔한 컷을 얻습니다.</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 오류 2 : 색상 식별 만 </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>해결책 : 다중 기능 식별 습관을 설정하십시오</li>
 <li>전문적인 팁 : 표준 색상 차트를 사용하십시오</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 오류 3 : 부적절한 포자 인쇄 </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>해결책 : 습도와 시간 제어</li>
 <li>전문적인 팁 : 알루미늄 호일을 사용하여 더 나은 결과를 얻으십시오.</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 오류 4 : 발달 단계의 고려 없음 </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>해결책 : 연령대의 표본을 수집하십시오</li>
 <li>전문 기술 : 표본의 개발 상태 기록</li>
-</ul>
-<br>
-<h2>실제 신청 사례</h2>
-<br>
-<h3>사례 1 : 유독 한 Amanita와 식용 버섯 속을 구별</h3>
-<br>
+</ul></div>
+<div class="section-title">🍄 실제 신청 사례</div>
+<div class="subsection-title">📌 사례 1 : 유독 한 Amanita와 식용 버섯 속을 구별</div>
 <p>이것은 북미에서 가장 중요한 식별 차이 중 하나입니다.</p>
-<br>
 <p><strong> 장례식 </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>박테리아는 자유롭게 접습니다</li>
 <li>젊고 성숙한 초콜릿 브라운의 분홍색</li>
 <li>포자 인쇄 진한 갈색</li>
 <li>실제 멸균 스텐트가 없습니다</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Amanita 특성 </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>박테리아는 무료 또는 epiphytic을 접습니다</li>
 <li>보통 흰색 또는 가벼운 상태로 유지됩니다</li>
 <li>포자 인쇄 흰색</li>
 <li>박테리아 트렌치와 박테리아 고리가 있습니다</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 삶과 죽음의 차이 </strong> :이 차이는 당신의 생명을 구할 수 있습니다.박테리아 트로프와 포자 인쇄 흰색으로 버섯을 수집하지 마십시오.</p>
-<br>
-<h3>사례 2 : Boletus의 식용 평가</h3>
-<br>
-<p>록키 산맥의 서쪽 부분에서 나는 학생들에게 다음 과정을 사용하여 볼레 투스를 평가하도록 가르칩니다.</p>
+<div class="subsection-title">📌 사례 2 : Boletus의 식용 평가</div>
+<p class="article-text">록키 산맥의 서쪽 부분에서 나는 학생들에게 다음 과정을 사용하여 볼레 투스를 평가하도록 가르칩니다.</p>
 <p>1. 구멍 특성이 Boletaceae과와 일치하는지 확인</p>
 <p>2. 색상 변화 반응 테스트</p>
 <p>3. 곤충 침입 여부 확인(곤충을 기피하는 종은 주의가 필요함)</p>
 <p>4. 미각검사(작은 조각을 씹어 뱉어낸다)</p>
-<br>
 <p><strong>중요한 안전 경고</strong>: 숙련된 채집자라도 포르치니 버섯에는 주의해야 합니다.일부 종은 위장 장애를 일으킬 수 있습니다.</p>
-<br>
-<h3>사례 3: 살구류와 위조품 구별하기</h3>
-<br>
+<div class="subsection-title">📌 사례 3: 살구류와 위조품 구별하기</div>
 <p>태평양 북서부에서는 실제 살구류와 독성 모조품을 구별하는 것이 중요합니다.</p>
-<br>
 <p><strong>진짜 살구</strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>가짜 아가미: 두껍고, 뭉툭하며, 종종 두 갈래로 갈라집니다.</li>
 <li>색상 : 균일한 황금색 노란색</li>
 <li>냄새 : 신선한 살구 향</li>
 <li>성장 모드: 단일 또는 소그룹</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>가짜 살구류</strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>곰팡이 주름: 얇고 날카로우며 두 갈래로 갈라지지 않음</li>
 <li>색상: 오렌지-레드 톤</li>
 <li>냄새 : 특별한 향이나 불쾌한 냄새는 없습니다.</li>
 <li>성장 패턴: 일반적으로 큰 클러스터에서</li>
-</ul>
-<br>
-<h2>고급 팁 및 전문적인 통찰력</h2>
-<br>
-<h3>환경적 요인의 영향</h3>
-<br>
-<p>포자 표면 특성은 환경 조건의 영향을 받습니다.높은 고도에서는 자외선으로 인해 색상이 더 진해질 수 있습니다.습한 환경에서는 아가미가 더 조밀해 보일 수 있습니다.</p>
-<br>
-<h3>계절변화 패턴</h3>
-<br>
-<p>장기 모니터링 프로젝트를 진행하는 동안 일부 종의 포자 표면 특성이 계절에 따라 변하는 것을 발견했습니다.봄 표본은 일반적으로 아가미가 더 촘촘하고 색상이 더 밝습니다.</p>
-<br>
-<h3>지리적 변화</h3>
-<br>
-<p>동일한 종이라도 지리적 위치에 따라 미묘한 차이를 보일 수 있습니다.서해안의 아마니타는 동해안의 아마니타보다 주름이 약간 더 촘촘할 수 있습니다.</p>
-<br>
-<h2>결론: 포자 표면 식별 기술을 마스터하세요</h2>
-<br>
-<p>포자 생성 표면의 특성 분석은 버섯 식별의 핵심입니다.체계적인 연구와 많은 연습을 통해 버섯을 정확하게 식별하는 능력을 키울 수 있습니다.다음 사항을 기억하세요.</p>
-<br>
+</ul></div>
+<div class="section-title">🛠️ 고급 팁 및 전문적인 통찰력</div>
+<div class="subsection-title">📌 환경적 요인의 영향</div>
+<p class="article-text">포자 표면 특성은 환경 조건의 영향을 받습니다.높은 고도에서는 자외선으로 인해 색상이 더 진해질 수 있습니다.습한 환경에서는 아가미가 더 조밀해 보일 수 있습니다.</p>
+<div class="subsection-title">📌 계절변화 패턴</div>
+<p class="article-text">장기 모니터링 프로젝트를 진행하는 동안 일부 종의 포자 표면 특성이 계절에 따라 변하는 것을 발견했습니다.봄 표본은 일반적으로 아가미가 더 촘촘하고 색상이 더 밝습니다.</p>
+<div class="subsection-title">📌 지리적 변화</div>
+<p class="article-text">동일한 종이라도 지리적 위치에 따라 미묘한 차이를 보일 수 있습니다.서해안의 아마니타는 동해안의 아마니타보다 주름이 약간 더 촘촘할 수 있습니다.</p>
+<div class="section-title">🍄 결론: 포자 표면 식별 기술을 마스터하세요</div>
+<p class="article-text">포자 생성 표면의 특성 분석은 버섯 식별의 핵심입니다.체계적인 연구와 많은 연습을 통해 버섯을 정확하게 식별하는 능력을 키울 수 있습니다.다음 사항을 기억하세요.</p>
 <p><strong>주요 기술</strong></p>
 <p>1. 아가미 부착 방법을 정확하게 관찰한다</p>
 <p>2. 포자문의 체계적인 제작 및 해석</p>
 <p>3. 아가미 간격 및 두께의 정량적 측정</p>
 <p>4. 색상 변화 패턴 식별</p>
-<br>
 <p><strong>안전 제일 원칙</strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>결코 하나의 특성만으로 버섯을 식별하지 마십시오.</li>
 <li>의심스러울 때는 수집하거나 섭취하지 마세요.</li>
 <li>지역 전문가로부터 지역별 종에 대해 알아보세요.</li>
 <li>체계적인 버섯 수집 활동에 참여하세요.</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>지속적인 학습 경로</strong></p>
 <p>1. 일반적이고 쉽게 식별할 수 있는 카테고리부터 시작하세요.</p>
 <p>2. 주제나 속을 체계적으로 연구한다.</p>
 <p>3. 버섯 식별 워크숍에 참석하세요.</p>
 <p>4. 개인 버섯 표본 라이브러리 구축</p>
 <p>5. 전문가와의 경험 교환</p>
-<br>
-<p>포자 표면 식별은 과학이자 예술입니다.정확한 관찰과 체계적인 분석, 직관적인 판단이 결합된 제품입니다.이러한 기술을 익히면 안전하게 야생버섯 채집을 즐길 수 있을 뿐만 아니라, 곰팡이 보전 및 과학연구에도 기여할 수 있습니다.</p>
-<br>
-<p>다음 가이드에서는 식별 도구 상자를 완성하는 다음 단계인 줄기와 기본 특성에 대해 자세히 알아보겠습니다.</p>
-<br>
+<p class="article-text">포자 표면 식별은 과학이자 예술입니다.정확한 관찰과 체계적인 분석, 직관적인 판단이 결합된 제품입니다.이러한 기술을 익히면 안전하게 야생버섯 채집을 즐길 수 있을 뿐만 아니라, 곰팡이 보전 및 과학연구에도 기여할 수 있습니다.</p>
+<p class="article-text">다음 가이드에서는 식별 도구 상자를 완성하는 다음 단계인 줄기와 기본 특성에 대해 자세히 알아보겠습니다.</p>
 <p>세심한 관찰과 정확한 식별, 안전한 수집을 기원합니다!</p>
-<br>
 <p>---</p>
-<br>
-<h2>⚠️ 중요 면책 조항</h2>
-<br>
+<div class="section-title">🍄 ⚠️ 중요 면책 조항</div>
 <p><strong>이 기사는 교육 및 정보 제공 목적으로만 작성되었습니다.</strong></p>
-<br>
-<h3>버섯 섭취에 대한 위험 경고</h3>
-<br>
-<p>1. <strong>생명안전 우선</strong>: 야생버섯 식별에는 내재된 위험이 있습니다.많은 독버섯은 식용 버섯과 매우 유사해 보이며 섭취할 경우 심각한 질병을 일으키거나 심지어 사망할 수도 있습니다.</p>
-<br>
-<p>2. <strong>전문가 식별 필요</strong>: 야생버섯을 먹기 전에 전문 균학자 또는 공인된 버섯 식별 전문가의 100% 확인을 받아야 합니다.사진, 서면 설명, 개인적인 경험만으로는 안전을 보장할 수 없습니다.</p>
-<br>
-<p>3. <strong>개인차</strong> : 식용버섯으로 인정되는 경우에도 개인 체질, 알레르기 반응, 섭취방법, 버섯 재배 환경 등의 요인으로 인해 부작용이 발생할 수 있습니다.처음으로 새로운 품종을 섭취할 때는 소량을 사용해 보세요.</p>
-<br>
-<p>4. <strong>지역적 차이</strong>: 버섯의 종류와 독성은 지역마다 크게 다릅니다.이 문서에 포함된 정보는 귀하의 지역에 적용되지 않을 수 있습니다.현지 균류 전문가 및 당국에 문의하시기 바랍니다.</p>
-<br>
-<p>5. <strong>전문적 책임</strong>: 저자와 출판사는 이 기사의 정보 사용으로 인해 발생하는 직간접적인 피해, 질병 또는 손실에 대해 모든 책임을 부인합니다.</p>
-<br>
-<h3>보안 조언</h3>
-<br>
-<ul>
+<div class="subsection-title">📌 버섯 섭취에 대한 위험 경고</div>
+<p class="article-text">1. <strong>생명안전 우선</strong>: 야생버섯 식별에는 내재된 위험이 있습니다.많은 독버섯은 식용 버섯과 매우 유사해 보이며 섭취할 경우 심각한 질병을 일으키거나 심지어 사망할 수도 있습니다.</p>
+<p class="article-text">2. <strong>전문가 식별 필요</strong>: 야생버섯을 먹기 전에 전문 균학자 또는 공인된 버섯 식별 전문가의 100% 확인을 받아야 합니다.사진, 서면 설명, 개인적인 경험만으로는 안전을 보장할 수 없습니다.</p>
+<p class="article-text">3. <strong>개인차</strong> : 식용버섯으로 인정되는 경우에도 개인 체질, 알레르기 반응, 섭취방법, 버섯 재배 환경 등의 요인으로 인해 부작용이 발생할 수 있습니다.처음으로 새로운 품종을 섭취할 때는 소량을 사용해 보세요.</p>
+<p class="article-text">4. <strong>지역적 차이</strong>: 버섯의 종류와 독성은 지역마다 크게 다릅니다.이 문서에 포함된 정보는 귀하의 지역에 적용되지 않을 수 있습니다.현지 균류 전문가 및 당국에 문의하시기 바랍니다.</p>
+<p class="article-text">5. <strong>전문적 책임</strong>: 저자와 출판사는 이 기사의 정보 사용으로 인해 발생하는 직간접적인 피해, 질병 또는 손실에 대해 모든 책임을 부인합니다.</p>
+<div class="subsection-title">📌 보안 조언</div>
+<div class="highlight"><ul>
 <li>✅ 정식 버섯 식별 교육 과정에 참여하세요.</li>
 <li>✅ 지역 균학회나 버섯 클럽에 가입하세요</li>
 <li>✅ 믿을 수 있는 곳에서 재배된 버섯을 구매하세요</li>
 <li>✅ 응급 의료가 필요한 경우를 대비해 버섯 샘플을 저장하세요</li>
 <li>✅ 의심스러운 경우 섭취하지 마세요.</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>기억하세요: 의심스러울 때 유일한 안전한 선택은 그것을 먹지 않는 것입니다.당신의 생명의 안전은 어떤 버섯 식사보다 훨씬 더 중요합니다.</strong></p>
-<br>
 <p>---</p>
         </div>
-    </div>
+
+</div>
 </body>
 </html>

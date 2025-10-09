@@ -1,587 +1,470 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>La doppia identità di Mushroom - Culinary Mushrooms</title>
-    <meta name="description" content="La doppia identità di Mushroom">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>10 La doppia identità di Mushroom - MushroomAiSnap</title>
+<link href="../../mobile-styles.css" rel="stylesheet"/>
+<link href="../../mobile-enhancement.css" rel="stylesheet"/>
+<link href="../../ecology-theme.css" rel="stylesheet"/>
+<style>
+        .hero-image img {
+            max-height: 200px;
+            width: 100%;
+            object-fit: cover;
         }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        .article-card img {
+            max-height: 120px;
+            width: 100%;
+            object-fit: cover;
+        }
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                        url('../../images/culinary-mushrooms_10-side-dishes-main-courses.webp') center/cover;
+            position: relative;
+            margin-top: 0;
+        }
+        .article-meta {
+            margin-top: 15px !important;
+        }
+    
+        /* Culinary Mushrooms Theme */
+        :root {
+            --primary-color: #8B4513;
+            --primary-dark: #654321;
+            --primary-light: #FFF8DC;
+            --accent-color: #D2691E;
+        }
+        
+        /* Theme Color Overrides */
+        .content {
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+            border: 2px solid var(--primary-color);
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, var(--primary-light), var(--primary-light));
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .quote-text {
+            color: var(--primary-dark);
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+        }
+        
+        .subsection-title {
+            color: var(--primary-dark);
+            font-size: 1.4em;
+            font-weight: 600;
+            margin: 25px 0 15px 0;
+            padding-left: 10px;
+            border-left: 3px solid var(--accent-color);
+        }
+        
+        .tip-box {
+            border-left: 4px solid var(--primary-color);
+            background: var(--primary-light);
+        }
+        
+        .tip-title {
+            color: var(--primary-color);
+        }
+        
+        .highlight {
+            border-left: 4px solid var(--accent-color);
+            background: linear-gradient(135deg, #f1f8e9, var(--primary-light));
+        }
+        
+        .warning {
+            border-left: 4px solid #f44336;
+        }
+        
+        .equipment-item {
+            border: 1px solid var(--accent-color);
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+        }
+        
+        .equipment-item h4 {
+            color: var(--primary-color);
+        }
+        
+        .category {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .main-text {
+            font-size: 1.1em;
             line-height: 1.8;
             color: #333;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-
-        .article-title {
-            color: #FF6B6B;
-            font-size: 2.5em;
-            margin-bottom: 30px;
-            margin-top: 0;
-            line-height: 1.3;
-            padding-top: 0;
-        }
-
-        .featured-image {
-            width: 100%;
-            height: auto;
-            aspect-ratio: 4 / 3;
-            object-fit: cover;
-            display: block;
-        }
-
-        .content {
-            padding: 50px;
-        }
-
-        .content h2 {
-            color: #FF6B6B;
-            font-size: 2em;
-            margin-top: 40px;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid #FF6B6B;
-        }
-
-        .content h3 {
-            color: #555;
-            font-size: 1.6em;
-            margin-top: 30px;
-            margin-bottom: 15px;
-        }
-
-        .content h4 {
-            color: #666;
-            font-size: 1.3em;
-            margin-top: 25px;
-            margin-bottom: 12px;
-        }
-
-        .content p {
-            margin-bottom: 20px;
-            font-size: 1.1em;
-            color: #444;
-        }
-
-        .content ul {
             margin: 20px 0;
-            padding-left: 30px;
-        }
-
-        .content li {
-            margin-bottom: 12px;
-            font-size: 1.05em;
-            color: #555;
-        }
-
-        .content strong {
-            color: #222;
-            font-weight: 600;
-        }
-
-        .back-link {
-            display: inline-block;
-            padding: 12px 25px;
-            background: linear-gradient(135deg, #FF6B6B, #8B4513);
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            margin-bottom: 20px;
-            transition: transform 0.3s ease;
-            font-weight: 600;
-        }
-
-        .back-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .navigation {
-            padding: 30px 50px;
-            background: #f8f9fa;
-            border-top: 1px solid #e9ecef;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-btn {
-            padding: 10px 20px;
-            background: #FF6B6B;
-            color: white;
-            text-decoration: none;
+            padding: 15px;
+            background: linear-gradient(135deg, #ffffff, #f9f9f9);
             border-radius: 8px;
-            transition: all 0.3s ease;
+            border-left: 3px solid var(--accent-color);
         }
-
-        .nav-btn:hover {
-            transform: translateX(5px);
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+        
+        .emoji {
+            font-size: 1.5em;
+            margin-left: 10px;
         }
-
-        .nav-btn.prev:hover {
-            transform: translateX(-5px);
+        
+        .read-time, .difficulty {
+            display: inline-block;
+            padding: 5px 15px;
+            margin: 5px 5px 5px 0;
+            border-radius: 20px;
+            font-size: 0.9em;
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            color: #1976d2;
+            font-weight: 500;
         }
-
-        @media (max-width: 768px) {
-            .content {
-                padding: 30px 25px;
-            }
-
-            .article-title {
-                font-size: 1.8em;
-            }
-
-            .featured-image {
-                height: 250px;
-            }
-
-            .navigation {
-                flex-direction: column;
-                gap: 15px;
-            }
+        
+        .difficulty {
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            color: #e65100;
+        }
+        
+        .article-text {
+            line-height: 1.8;
+            color: #444;
+            margin: 15px 0;
+            font-size: 1.05em;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <img src="../../images/culinary-mushrooms_10-side-dishes-main-courses.webp" alt="La doppia identità di Mushroom" class="featured-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22900%22 height=%22400%22%3E%3Crect fill=%22%23D2691E%22 width=%22900%22 height=%22400%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22white%22 font-size=%2260%22%3E🍄%3C/text%3E%3C/svg%3E'">
+<div class="hero-image"></div>
+<div class="content">
+    <h1 class="title">10 La doppia identità di Mushroom</h1>
+    <div class="quote-box">
+        <div class="quote-text">Professional Mycology Guide</div>
+    </div>
+    
+<div class="article-meta">
+<span class="category">🍄 Culinary Mushrooms</span>
+<span class="read-time">📖 18 minute read</span>
+<span class="difficulty">🟡 Intermediate</span>
+</div>
 
-        <div class="content">
-            <h1 class="article-title">La doppia identità di Mushroom</h1>
-            <br>
-<p>Come esperto di funghi, buongustai e biologi con 20 anni di esperienza, ti porterò attraverso questo articolo per esplorare lo straordinario potenziale dei funghi nel mondo culinario.Che tu sia un cuoco di casa o un amante del cibo, padroneggiare l'arte culinaria dei funghi trasformerà la tua esperienza culinaria.</p>
-<br>
-<h2>funghi come contorno: il partner perfetto per migliorare il corso principale</h2>
-<br>
-<h3>Abilità di cucina di base e principi scientifici</h3>
-<br>
+
+            <br><div class="main-text">Come esperto di funghi, buongustai e biologi con 20 anni di esperienza, ti porterò attraverso questo articolo per esplorare lo straordinario potenziale dei funghi nel mondo culinario.Che tu sia un cuoco di casa o un amante del cibo, padroneggiare l'arte culinaria dei funghi trasformerà la tua esperienza culinaria.<span class="emoji">🍄</span></div>
+<div class="section-title">🍄 funghi come contorno: il partner perfetto per migliorare il corso principale</div>
+<div class="subsection-title">📌 Abilità di cucina di base e principi scientifici</div>
 <p><strong> Scienza e arte dei funghi fritti </strong></p>
-<p>I funghi fritti possono sembrare semplici, ma padroneggiare i principi scientifici può far cambiare i tuoi contorni da ordinari a straordinari.La parete cellulare di funghi contiene chitina, che è la stessa sostanza del guscio di gamberi e granchi, e deve essere abbastanza elevata da decomporsi efficacemente.</p>
-<br>
-<p>Caso pratico: ho usato i Chantelles scelti localmente con cervo arrosto durante una cucina selvaggia nel Montana.La chiave è riscaldare la padella prima del punto di fumo (circa 200 ° C per olio d'oliva e circa 150 ° C per il burro), quindi aggiungere i funghi per assicurarsi che i sfrigolari immediatamente.</p>
-<br>
+<p class="article-text">I funghi fritti possono sembrare semplici, ma padroneggiare i principi scientifici può far cambiare i tuoi contorni da ordinari a straordinari.La parete cellulare di funghi contiene chitina, che è la stessa sostanza del guscio di gamberi e granchi, e deve essere abbastanza elevata da decomporsi efficacemente.</p>
+<p class="article-text">Caso pratico: ho usato i Chantelles scelti localmente con cervo arrosto durante una cucina selvaggia nel Montana.La chiave è riscaldare la padella prima del punto di fumo (circa 200 ° C per olio d'oliva e circa 150 ° C per il burro), quindi aggiungere i funghi per assicurarsi che i sfrigolari immediatamente.</p>
 <p><strong> Passi di frittura di funghi professionisti: </strong></p>
-<p>1. Scegli il fungo giusto: funghi shiitake, agaricus bisporus e canterelle sono tutti adatti</p>
-<p>2. Pretrattamento: pulire con un panno umido per evitare il lavaggio (i funghi assorbono l'acqua come le spugne)</p>
-<p>3. Taglia: fetta o blocca uniformemente per assicurarsi che sia cotto accuratamente allo stesso tempo</p>
-<p>4. Padella calda e olio freddo: utilizzare olio resistente all'alta temperatura (olio di semi di uva o olio d'oliva raffinato)</p>
-<p>5. Posizionamento a singolo strato: evitare l'accumulo di vapore e promuovere la reazione di coking</p>
-<p>6. Attendere pazientemente: non girare entro 3-5 minuti per formare un guscio d'oro</p>
-<p>7. Finalmente condimento: spegnere il caldo e aggiungere aglio ed erbe per evitare di bruciare</p>
-<br>
+<p class="article-text">1. Scegli il fungo giusto: funghi shiitake, agaricus bisporus e canterelle sono tutti adatti</p>
+<p class="article-text">2. Pretrattamento: pulire con un panno umido per evitare il lavaggio (i funghi assorbono l'acqua come le spugne)</p>
+<p class="article-text">3. Taglia: fetta o blocca uniformemente per assicurarsi che sia cotto accuratamente allo stesso tempo</p>
+<p class="article-text">4. Padella calda e olio freddo: utilizzare olio resistente all'alta temperatura (olio di semi di uva o olio d'oliva raffinato)</p>
+<p class="article-text">5. Posizionamento a singolo strato: evitare l'accumulo di vapore e promuovere la reazione di coking</p>
+<p class="article-text">6. Attendere pazientemente: non girare entro 3-5 minuti per formare un guscio d'oro</p>
+<p class="article-text">7. Finalmente condimento: spegnere il caldo e aggiungere aglio ed erbe per evitare di bruciare</p>
 <p><strong> Suggerimenti rapidi </strong>: aggiungi un piccolo pizzico di sale nelle prime fasi della cottura per aiutare a estrarre l'umidità e accelerare il processo di doratura.</p>
-<br>
 <p><strong> Cambiamenti chimici dei funghi arrostiti </strong></p>
-<p>Durante il processo di torrefazione, i funghi subiscono reazione e caramellizzazione Maillard, producendo più di 150 composti aromatici.Il controllo della temperatura è la chiave: troppo basso causerà vapore piuttosto che cottura e troppo alto brucerà lo zucchero naturale.</p>
-<br>
+<p class="article-text">Durante il processo di torrefazione, i funghi subiscono reazione e caramellizzazione Maillard, producendo più di 150 composti aromatici.Il controllo della temperatura è la chiave: troppo basso causerà vapore piuttosto che cottura e troppo alto brucerà lo zucchero naturale.</p>
 <p><strong> Guida degli esperti ai funghi arrostiti: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Intervallo di temperatura: 190-220 ° C</li>
 <li>Tempo: 15-25 minuti, a seconda delle dimensioni</li>
 <li>Selezione dell'olio: olio ad alto punto di fumo (olio di avocado, olio di crusca di riso)</li>
 <li>Tempi di condimento: condimento di base prima della torrefazione, regolazione fine dopo la torrefazione</li>
-</ul>
-<br>
-<h3>Tecnologia avanzata del contorno e combinazione creativa</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 Tecnologia avanzata del contorno e combinazione creativa</div>
 <p><strong> Interpretazione moderna del fango di funghi </strong></p>
-<p>Una versione aggiornata delle patate schiacciate tradizionali, i funghi arricuscati offrono un sapore di umami più ricco e carboidrati inferiori.Il segreto è rimuovere completamente l'umidità e concentrare il sapore.</p>
-<br>
+<p class="article-text">Una versione aggiornata delle patate schiacciate tradizionali, i funghi arricuscati offrono un sapore di umami più ricco e carboidrati inferiori.Il segreto è rimuovere completamente l'umidità e concentrare il sapore.</p>
 <p><strong> Formula professionale: </strong></p>
-<p>1. 500 g di funghi misti (funghi shiitake, funghi marroni, Chanterelles)</p>
+<p class="article-text">1. 500 g di funghi misti (funghi shiitake, funghi marroni, Chanterelles)</p>
 <p>2. 2 cucchiai di burro o olio d'oliva</p>
 <p>3. 2 spicchi d'aglio</p>
 <p>4. 3 cucchiai di crema o latte di pianta</p>
 <p>5. quantità appropriata di sale e pepe bianco</p>
-<br>
 <p><strong> Passaggi di produzione: </strong></p>
-<p>1. Tagliare i funghi e sfrecciare a fuoco medio fino a quando l'acqua evapora</p>
-<p>2. Aggiungi burro e aglio e continua a friggere per 5 minuti</p>
-<p>3. Trasferire al robot da cucina e batterlo in una pasta delicata</p>
-<p>4. Setaccio per rimuovere le fibre senza infrangere per ottenere una consistenza setosa</p>
-<p>5. Aggiorna la padella e scaldala, aggiungi la panna per regolare la consistenza</p>
-<br>
+<p class="article-text">1. Tagliare i funghi e sfrecciare a fuoco medio fino a quando l'acqua evapora</p>
+<p class="article-text">2. Aggiungi burro e aglio e continua a friggere per 5 minuti</p>
+<p class="article-text">3. Trasferire al robot da cucina e batterlo in una pasta delicata</p>
+<p class="article-text">4. Setaccio per rimuovere le fibre senza infrangere per ottenere una consistenza setosa</p>
+<p class="article-text">5. Aggiorna la padella e scaldala, aggiungi la panna per regolare la consistenza</p>
 <p><strong> Ingegneria strutturale del riempimento di funghi </strong></p>
-<p>Scegliere grandi funghi con una struttura forte è cruciale.Il diametro del fungo di Portbell dovrebbe essere di 10-15 cm e lo spessore del cappuccio dovrebbe essere di 2-3 cm per assicurarsi che possa trattenere il ripieno senza crack.</p>
-<br>
+<p class="article-text">Scegliere grandi funghi con una struttura forte è cruciale.Il diametro del fungo di Portbell dovrebbe essere di 10-15 cm e lo spessore del cappuccio dovrebbe essere di 2-3 cm per assicurarsi che possa trattenere il ripieno senza crack.</p>
 <p><strong> Riempimento della scienza: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Adesivi: briciole di pane, uova, formaggio</li>
 <li>Festenti per sapore: parmigiano, paprika affumicata, salsa Worcester</li>
 <li>Confronto di trama: noci tritate, cipolle di caramello, cubi croccanti</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Esperienza personale </strong>: in un concorso di cucina selvaggia in Colorado, ho vinto il miglior premio con il contorno con funghi ripieni realizzati con pinoli locali, porri selvatici e formaggio di capra.La chiave è preriscaldare il ripieno, ridurre i tempi di cottura ed evitare un eccessivo scarico dell'acqua di funghi.</p>
-<br>
-<h3>Analisi approfondita delle combinazioni classiche di contorni</h3>
-<br>
+<div class="subsection-title">📌 Analisi approfondita delle combinazioni classiche di contorni</div>
 <p><strong> Il sapore umami di bistecca e funghi </strong></p>
-<p>La bistecca è ricca di inosina e i funghi sono ricchi di acido guanilico. La combinazione dei due produce un effetto di moltiplicazione umami.Scientificamente dimostrato che la forza umami di questa combinazione è più di 8 volte quella dei singoli ingredienti.</p>
-<br>
+<p class="article-text">La bistecca è ricca di inosina e i funghi sono ricchi di acido guanilico. La combinazione dei due produce un effetto di moltiplicazione umami.Scientificamente dimostrato che la forza umami di questa combinazione è più di 8 volte quella dei singoli ingredienti.</p>
 <p><strong> Suggerimenti corrispondenti professionali: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Bistecca per gli occhi delle costole + Fongo shiitake: sapore terrestre e shiitake ricco di grassi</li>
 <li>Filet Mignon + Chantello: carne squisita con delicati funghi</li>
 <li>New Yorker + Oyster Mushroom: consistenza solida con funghi carnosi</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Scienza fatta in casa di pollo e funghi arrostiti francesi </strong></p>
-<p>Le famiglie tradizionali francesi usano i funghi per assorbire il succo gocciolante del pollo arrosto per formare un ciclo di sapore.Il glutammato in funghi e nucleotidi nel pollo crea un perfetto equilibrio umami.</p>
-<br>
+<p class="article-text">Le famiglie tradizionali francesi usano i funghi per assorbire il succo gocciolante del pollo arrosto per formare un ciclo di sapore.Il glutammato in funghi e nucleotidi nel pollo crea un perfetto equilibrio umami.</p>
 <p><strong> Punti di esecuzione: </strong></p>
-<p>1. Metti i funghi nella teglia negli ultimi 45 minuti</p>
-<p>2. Girare ogni 15 minuti per assorbire uniformemente il succo</p>
+<p class="article-text">1. Metti i funghi nella teglia negli ultimi 45 minuti</p>
+<p class="article-text">2. Girare ogni 15 minuti per assorbire uniformemente il succo</p>
 <p>3. Usa funghi misti per aumentare la complessità</p>
-<br>
-<h2>funghi come corso principale: una strategia per la trasformazione da ruoli di supporto al centro</h2>
-<br>
-<h3>modi scientifici per superare la sfida del antipasto</h3>
-<br>
+<div class="section-title">🍄 funghi come corso principale: una strategia per la trasformazione da ruoli di supporto al centro</div>
+<div class="subsection-title">📌 modi scientifici per superare la sfida del antipasto</div>
 <p><strong> Psicologia e fisiologia della soddisfazione </strong></p>
-<p>Come piatto principale, i funghi devono soddisfare tre elementi chiave: porzione visiva, soddisfazione della trama e integrità nutrizionale.Gli studi hanno dimostrato che la "sensazione orale" del cibo ha un effetto sulla soddisfazione fino al 40%.</p>
-<br>
+<p class="article-text">Come piatto principale, i funghi devono soddisfare tre elementi chiave: porzione visiva, soddisfazione della trama e integrità nutrizionale.Gli studi hanno dimostrato che la "sensazione orale" del cibo ha un effetto sulla soddisfazione fino al 40%.</p>
 <p><strong> Strategie per aumentare la soddisfazione: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Confronto di trama: combinato con i diversi funghi arrostiti, fritti e in umido</li>
 <li>Sovrapposizione Umacatalog: usa più varietà di funghi</li>
 <li>Volume visivo: scegli i funghi grandi o impilati per presentare</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Biochimica nutrizionale dell'equilibrio </strong></p>
-<p>I funghi forniscono proteine ​​di alta qualità, vitamine B, selenio e rame, ma mancano di proteine ​​complete.Il coordinamento scientifico è cruciale.</p>
-<br>
+<p class="article-text">I funghi forniscono proteine ​​di alta qualità, vitamine B, selenio e rame, ma mancano di proteine ​​complete.Il coordinamento scientifico è cruciale.</p>
 <p><strong> Combinazione proteica completa: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Funghi + cereali integrali (quinoa, riso integrale)</li>
 <li>Funghi + fagioli (lenticchie, ceci)</li>
 <li>Fungo + noci (noci, mandorle)</li>
 <li>Funghi + prodotti lattiero -caseari (formaggio, yogurt)</li>
-</ul>
-<br>
-<p>Progetto di innovazione ### per il piatto principale vegetariano</p>
-<br>
+</ul></div>
+<p class="article-text">Progetto di innovazione ### per il piatto principale vegetariano</p>
 <p><strong> Analisi strutturale della "bistecca" di Porterbello </strong></p>
-<p>L'intero fungo di Portbero è simile alla bistecca filettata ma richiede un trattamento aggiuntivo per ottenere la sensazione gommosa della carne.</p>
-<br>
+<p class="article-text">L'intero fungo di Portbero è simile alla bistecca filettata ma richiede un trattamento aggiuntivo per ottenere la sensazione gommosa della carne.</p>
 <p><strong> Tecnologia di elaborazione professionale: </strong></p>
-<p>1. Rimuovere le pieghe di sterilizzazione: ridurre il contenuto di umidità e aumentare la consistenza della carne</p>
-<p>2. Premere: premere con oggetti pesanti per 1 ora per drenare l'acqua in eccesso</p>
-<p>3. Pallo: utilizzare frutti contenenti proteasi (ananas, kiwi) per ammorbidire la fibra</p>
-<p>4. Cuocere ad alta temperatura: sopra i 200 ° C per formare un guscio duro</p>
-<br>
+<p class="article-text">1. Rimuovere le pieghe di sterilizzazione: ridurre il contenuto di umidità e aumentare la consistenza della carne</p>
+<p class="article-text">2. Premere: premere con oggetti pesanti per 1 ora per drenare l'acqua in eccesso</p>
+<p class="article-text">3. Pallo: utilizzare frutti contenenti proteasi (ananas, kiwi) per ammorbidire la fibra</p>
+<p class="article-text">4. Cuocere ad alta temperatura: sopra i 200 ° C per formare un guscio duro</p>
 <p><strong> Ingegneria strutturale di Wellington di funghi </strong> **</p>
-<p>La versione vegetariana del tradizionale Wellington di manzo deve risolvere i problemi di controllo dell'umidità per impedire alla pasticceria di diventare morbida.</p>
-<br>
+<p class="article-text">La versione vegetariana del tradizionale Wellington di manzo deve risolvere i problemi di controllo dell'umidità per impedire alla pasticceria di diventare morbida.</p>
 <p><strong> Breative tecniche chiave: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Pura di funghi pre-friggi fino a quando non è completamente asciutta</li>
 <li>Posizionare lo strato a prova di umidità tra la pasticceria e il ripieno (foglie di spinaci o la carta di riso sottile)</li>
 <li>Perforato in fondo per consentire al vapore di fuggire</li>
 <li>Cuocere per un breve periodo di alta temperatura (220 ° C, 20-25 minuti)</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Caso pratico </strong>: il Wellington di funghi che ho sviluppato per un ristorante Michelin a San Francisco, la chiave è aggiungere noci arrostite e cipolle caramellate alla purea di funghi per aumentare l'equilibrio di grasso e dolcezza.</p>
-<br>
-<h3>il sapore sinergia del piatto principale contenente la carne</h3>
-<br>
+<div class="subsection-title">📌 il sapore sinergia del piatto principale contenente la carne</div>
 <p><strong> Scienza della salsa di pollo e funghi </strong></p>
-<p>Sia il pollo che i funghi sono ricchi di glutammato, ma richiedono grassi per trasportare molecole di sapore.</p>
-<br>
+<p class="article-text">Sia il pollo che i funghi sono ricchi di glutammato, ma richiedono grassi per trasportare molecole di sapore.</p>
 <p><strong> Tecnologia di emulsificazione della salsa: </strong></p>
-<p>1. Nozioni di base: affetto (strato di carbone nella parte inferiore della pentola)</p>
-<p>2. Deglaze: usa il vino bianco o lo sherry per sciogliere il affetto</p>
-<p>3. Emulsificazione: aggiungere burro freddo e mescolare sul fuoco</p>
-<p>4. Stabile: usa una piccola quantità di crema o tuorlo d'uovo</p>
-<br>
+<p class="article-text">1. Nozioni di base: affetto (strato di carbone nella parte inferiore della pentola)</p>
+<p class="article-text">2. Deglaze: usa il vino bianco o lo sherry per sciogliere il affetto</p>
+<p class="article-text">3. Emulsificazione: aggiungere burro freddo e mescolare sul fuoco</p>
+<p class="article-text">4. Stabile: usa una piccola quantità di crema o tuorlo d'uovo</p>
 <p><strong> Termodinamica dello stufato di manzo e funghi </strong></p>
-<p>Lo stufato a lungo termine richiede un controllo preciso della temperatura per garantire che i funghi rimangano in forma senza ammorbidimento eccessiva.</p>
-<br>
+<p class="article-text">Lo stufato a lungo termine richiede un controllo preciso della temperatura per garantire che i funghi rimangano in forma senza ammorbidimento eccessiva.</p>
 <p><strong> Guida al controllo della temperatura: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>82-85 ° C: temperatura di inzuffatura ideale, il collagene viene convertito ma i funghi non marciscono</li>
 <li>Tempo: 1,5-2 ore, regolare in base alle dimensioni dei tagli di manzo</li>
 <li>Tempo di aggiunta dei funghi: ultimo 45 minuti per mantenere la consistenza</li>
-</ul>
-<br>
-<h2>Analisi tecnica dei corsi principali internazionali</h2>
-<br>
-<h3>amido scienza del risotto ai funghi italiani</h3>
-<br>
-<p>L'esclusivo contenuto ad alto amido di riso arborio è fondamentale per la consistenza della crema, ma richiede un controllo preciso dell'aggiunta liquida.</p>
-<br>
+</ul></div>
+<div class="section-title">🍄 Analisi tecnica dei corsi principali internazionali</div>
+<div class="subsection-title">📌 amido scienza del risotto ai funghi italiani</div>
+<p class="article-text">L'esclusivo contenuto ad alto amido di riso arborio è fondamentale per la consistenza della crema, ma richiede un controllo preciso dell'aggiunta liquida.</p>
 <p><strong> Competenze professionali: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Aggiungi brodo caldo nei lotti, aggiungilo dopo ogni assorbimento completo</li>
 <li>Mescola costante per rilasciare l'amido</li>
 <li>Infine, aggiungi il burro freddo dal fuoco e fissa l'emulsificazione</li>
 <li>I funghi vengono aggiunti in due lotti: inizialmente forniscono sapore di base e infine conservano la consistenza</li>
-</ul>
-<br>
-<h3>Il progetto umami del tofu di funghi cinesi</h3>
-<br>
-<p>Il tofu e i funghi sono entrambi vettori umami, ma richiedono una temperatura elevata e una cottura rapida per bloccare l'umidità.</p>
-<br>
+</ul></div>
+<div class="subsection-title">📌 Il progetto umami del tofu di funghi cinesi</div>
+<p class="article-text">Il tofu e i funghi sono entrambi vettori umami, ma richiedono una temperatura elevata e una cottura rapida per bloccare l'umidità.</p>
 <p><strong> Punti chiave del controllo della potenza di fuoco: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Pentola estremamente calda (circa 250 ° C)</li>
-</ul>
-<p>-Cucina passo-passo: prima friggi i funghi, tirali fuori, quindi friggi il tofu e infine combina</p>
-<ul>
+</ul></div>
+<p class="article-text">-Cucina passo-passo: prima friggi i funghi, tirali fuori, quindi friggi il tofu e infine combina</p>
+<div class="highlight"><ul>
 <li>Salsa premix per ridurre il tempo nella pentola</li>
 <li>Finalmente addensare, avvolgere il sapore</li>
-</ul>
-<br>
-<h2>design decorativo e ingegneria visiva</h2>
-<br>
-<h3>Psicologia visiva del contrasto del colore</h3>
-<br>
-<p>Il cervello umano correla l'aspetto del cibo con il sapore previsto.Il colore marrone dei funghi richiede forti colori a contrasto per attivare l'interesse visivo.</p>
-<br>
+</ul></div>
+<div class="section-title">🍄 design decorativo e ingegneria visiva</div>
+<div class="subsection-title">📌 Psicologia visiva del contrasto del colore</div>
+<p class="article-text">Il cervello umano correla l'aspetto del cibo con il sapore previsto.Il colore marrone dei funghi richiede forti colori a contrasto per attivare l'interesse visivo.</p>
 <p><strong> Schema di colori professionale: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Fungo marrone scuro + erbe verde brillante (prezzemolo, porri)</li>
 <li>abbinato a verdure arancioni (carote, zucche)</li>
 <li>Usa elementi rossi (pepe a campana, semi di melograno)</li>
 <li>Salsa bianca o fango come tela</li>
-</ul>
-<br>
-<h3>Principi architettonici della struttura tridimensionale</h3>
-<br>
-<p>Crea un impatto visivo, ma deve mantenere la stabilità strutturale.</p>
-<br>
+</ul></div>
+<div class="subsection-title">📌 Principi architettonici della struttura tridimensionale</div>
+<p class="article-text">Crea un impatto visivo, ma deve mantenere la stabilità strutturale.</p>
 <p><strong> Tecnologia di impilamento: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Fondazione: cereali o fango come base</li>
 <li>strato intermedio: elementi di funghi principali</li>
 <li>Top: elementi croccanti o vaniglia</li>
 <li>Posizionamento della salsa: bordo della piastra o strato inferiore per evitare di inondare gli elementi principali</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Esperienza personale </strong>: la torre di funghi che ho usato nelle competizioni di cottura è di compattare lo strato per strato con uno stampo circolare, refrigerare per 15 minuti per fissare la forma, quindi rimuoverla con cura.</p>
-<br>
-<h2>flusso di lavoro pratico e gestione del tempo</h2>
-<br>
-<h3>tecnologia di coordinamento del tempo della cucina professionale</h3>
-<br>
-<p>Garantire che tutti i componenti siano nella migliore delle ipotesi contemporaneamente richiede una precisione di livello militare.</p>
-<br>
+<div class="section-title">🍄 flusso di lavoro pratico e gestione del tempo</div>
+<div class="subsection-title">📌 tecnologia di coordinamento del tempo della cucina professionale</div>
+<p class="article-text">Garantire che tutti i componenti siano nella migliore delle ipotesi contemporaneamente richiede una precisione di livello militare.</p>
 <p><strong> Metodo di pianificazione del tempo inverso: </strong></p>
 <p>1. Determinare il tempo di porzione</p>
-<p>2. Calcola gli oggetti di cottura più lunghi (come lo stufato: 2 ore)</p>
-<p>3. Articolo a tempo medio (funghi arrostiti: 25 minuti)</p>
-<p>4. Articolo dell'ultimo minuto (verdure fritte: 5 minuti)</p>
-<br>
+<p class="article-text">2. Calcola gli oggetti di cottura più lunghi (come lo stufato: 2 ore)</p>
+<p class="article-text">3. Articolo a tempo medio (funghi arrostiti: 25 minuti)</p>
+<p class="article-text">4. Articolo dell'ultimo minuto (verdure fritte: 5 minuti)</p>
 <p><strong> Programma di esempio (cena formale): </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>2 ore di anticipo: lo stufato inizia</li>
 <li>45 minuti in anticipo: funghi arrosto nel forno</li>
 <li>15 minuti di anticipo: riscaldare la salsa</li>
 <li>5 minuti di anticipo: metti rapidamente le verdure nella pentola</li>
 <li>Prima di servire: assemblare e posizionare la piastra</li>
-</ul>
-<br>
-<h3>scienze della sicurezza alimentare nella preparazione dei batch</h3>
-<br>
-<p>I funghi pretrattati sono inclini all'ossidazione e alla crescita microbica e devono essere preservati scientificamente.</p>
-<br>
+</ul></div>
+<div class="subsection-title">📌 scienze della sicurezza alimentare nella preparazione dei batch</div>
+<p class="article-text">I funghi pretrattati sono inclini all'ossidazione e alla crescita microbica e devono essere preservati scientificamente.</p>
 <p><strong> Salva tecnologia: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>completamente asciutto dopo la pulizia</li>
 <li>Contenitori sigillati, asciugamani di carta per assorbire la condensa</li>
 <li>Temperatura: 1-4 ° C.</li>
 <li>Tempo: fino a 24 ore</li>
-</ul>
-<br>
-<h2>Selezione professionale di attrezzature e strumenti</h2>
-<br>
-<h3>strumenti essenziali di base</h3>
-<br>
+</ul></div>
+<div class="section-title">🍄 Selezione professionale di attrezzature e strumenti</div>
+<div class="subsection-title">📌 strumenti essenziali di base</div>
 <p><strong>Coltello: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Coltello da chef: 20-25 cm, maneggiare i funghi di grandi dimensioni</li>
-</ul>
+</ul></div>
 <p>-Sub-coltello: 10-12 cm, bel lavoro</p>
-<ul>
+<div class="highlight"><ul>
 <li>Coltello a base di sega: funghi tagliati e cotti senza rompere</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Cookware: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Padella di frittura inferiore spessa: anche distribuzione del calore</li>
 <li>Pentola in ghisa: mantieni l'alta temperatura e il coke perfettamente</li>
 <li>Stew Pot: base pesante per impedire la combustione</li>
-</ul>
-<br>
-<h3>attrezzatura di grado professionale</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 attrezzatura di grado professionale</div>
 <p><strong> Strumenti avanzati: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Disidratatore: salva i funghi stagionali</li>
 <li>Sigillatore a vuoto: decapabilità e permeabilità</li>
 <li>Cicler di immersione: controllo della temperatura accurato</li>
 <li>Padella di frittura in acciaio al carbonio: recupero di calore più veloce</li>
-</ul>
-<br>
-<h2>scienza e chimica del sapore con vino</h2>
-<br>
+</ul></div>
+<div class="section-title">🍄 scienza e chimica del sapore con vino</div>
 <p>Principio di accoppiamento a livello molecolare</p>
-<br>
-<p>L'associazione di alcol e funghi si basa su composti aromatici condivisi e confronti delle texture.</p>
-<br>
+<p class="article-text">L'associazione di alcol e funghi si basa su composti aromatici condivisi e confronti delle texture.</p>
 <p><strong> Abbinamento del vino bianco: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Chardonnay: la sensazione burrosa dell'invecchiamento di quercia e della salsa cremosa di funghi</li>
 <li>Sauvignon Blanc: salsa ricca di taglio altamente acido</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Scienza del vino rosso: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Pinot Nero: i tannini bassi non sopraffare i funghi fini</li>
 <li>Syrah: le note di pepe completano il sapore fumoso dei funghi arrostiti</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Raccomandazione di esperti </strong>: i funghi locali con vini locali sono di solito le migliori sinergie perché condividono le caratteristiche del suolo e del clima.</p>
-<br>
-<h2>Risoluzione dei problemi e risoluzione dei problemi</h2>
-<br>
-<h3>errori comuni e soluzioni scientifiche</h3>
-<br>
+<div class="section-title">🍄 Risoluzione dei problemi e risoluzione dei problemi</div>
+<div class="subsection-title">📌 errori comuni e soluzioni scientifiche</div>
 <p><strong> Acqua eccessiva dai funghi: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Motivo: la pentola non è abbastanza calda, il vapore è affollato</li>
 <li>Soluzione: cuocere in lotti per garantire sibilo</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Monotonia tipica: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Motivo: varietà di funghi singoli, condimento insufficiente</li>
 <li>Soluzione: mescolare più di 3 tipi di funghi e condividereli a strati</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Texture scadente: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Causa: errore di cottura o temperatura</li>
 <li>Soluzione: regolare il tempo e la temperatura in base al tipo di funghi</li>
-</ul>
-<br>
-<h2>Approvvigionamento stagionale e acquisizione sostenibile</h2>
-<br>
-<h3>Protocollo di sicurezza della collezione di funghi selvatici</h3>
-<br>
-<p>Come biologo, devo prima enfatizzare la sicurezza. Ci sono un gran numero di casi di avvelenamento da funghi negli Stati Uniti ogni anno, la maggior parte dei quali può essere evitata.</p>
-<br>
+</ul></div>
+<div class="section-title">🍄 Approvvigionamento stagionale e acquisizione sostenibile</div>
+<div class="subsection-title">📌 Protocollo di sicurezza della collezione di funghi selvatici</div>
+<p class="article-text">Come biologo, devo prima enfatizzare la sicurezza. Ci sono un gran numero di casi di avvelenamento da funghi negli Stati Uniti ogni anno, la maggior parte dei quali può essere evitata.</p>
 <p><strong> Linee guida per la raccolta della sicurezza: </strong></p>
-<p>1. Assolutamente sicuro: 100% non mangiato prima dell'identificazione</p>
-<p>2. Esperti locali Verificare: prima varietà raccolte</p>
-<p>3. Prova una piccola quantità: prova prima una piccola quantità di nuove varietà</p>
-<p>4. Record completo: posizione della raccolta, tempo, caratteristiche</p>
-<br>
+<p class="article-text">1. Assolutamente sicuro: 100% non mangiato prima dell'identificazione</p>
+<p class="article-text">2. Esperti locali Verificare: prima varietà raccolte</p>
+<p class="article-text">3. Prova una piccola quantità: prova prima una piccola quantità di nuove varietà</p>
+<p class="article-text">4. Record completo: posizione della raccolta, tempo, caratteristiche</p>
 <p><strong> Varietà di sicurezza consigliate per principianti: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>CHANTERELLES: forma di imbuto unica, nessuna confusione</li>
 <li>Morel: copertina unica a nido d'ape</li>
 <li>Mushro di aragosta: arancione brillante, senza pericoli specie simili</li>
-</ul>
-<br>
-<h3>Pratica della raccolta sostenibile</h3>
-<br>
-<p>La protezione dell'ecosistema dei funghi garantisce una fornitura a lungo termine.</p>
-<br>
+</ul></div>
+<div class="subsection-title">📌 Pratica della raccolta sostenibile</div>
+<p class="article-text">La protezione dell'ecosistema dei funghi garantisce una fornitura a lungo termine.</p>
 <p><strong> Collezione etica: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Vengono raccolte solo entità di frutta matura</li>
 <li>Usa la borsa reticolare per diffondere le spore</li>
 <li>Nessun danno al micelio</li>
 <li>rispettare le normative e i limiti locali</li>
-</ul>
-<br>
-<h2>Guida all'azione: il percorso dal principiante all'esperto</h2>
-<br>
-<h3>curva di apprendimento graduale</h3>
-<br>
+</ul></div>
+<div class="section-title">🍄 Guida all'azione: il percorso dal principiante all'esperto</div>
+<div class="subsection-title">📌 curva di apprendimento graduale</div>
 <p><strong> Fase 1: padronanza di base (1-3 mesi) </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Master 3 Tecniche di cottura di base: pazzo, arrosto, stufato</li>
 <li>Famosa con 5 caratteristiche di funghi comuni</li>
 <li>Combinazione classica di contorni classici perfettamente eseguiti</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Fase 2: espansione delle competenze (3-12 mesi) </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>piatti sperimentali di funghi internazionali</li>
 <li>Prova il riconoscimento dei funghi selvatici (sotto la guida degli esperti)</li>
 <li>Sviluppa l'antipasto di funghi speciali personali</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Fase 3: innovazione a livello di esperti (più di 1 anno) </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Crea piatti di funghi originali</li>
 <li>Master Professional Position Techniques</li>
 <li>Guidando gli altri per le capacità di cucina dei funghi</li>
-</ul>
-<br>
-<h3>Raccomandazioni per l'azione ora</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 Raccomandazioni per l'azione ora</div>
 <p><strong> Inizia questa settimana: </strong></p>
 <p>1. Acquista 3 diversi tipi di funghi</p>
-<p>2. Pratica le abilità di frittura dei funghi di base</p>
-<p>3. Prova un semplice piatto di funghi (come la pasta di funghi)</p>
-<br>
+<p class="article-text">2. Pratica le abilità di frittura dei funghi di base</p>
+<p class="article-text">3. Prova un semplice piatto di funghi (come la pasta di funghi)</p>
 <p><strong> Target per questo mese: </strong></p>
-<p>1. Padroneggiare il controllo preciso della temperatura dei funghi arrostiti</p>
-<p>2. Sviluppa i contorni speciali per i funghi speciali</p>
-<p>3. Invita gli amici a assaggiare il piatto principale dei funghi e ottenere feedback</p>
-<br>
-<p>Il mondo dei funghi è vasto ed eccitante, dai semplici contorni ai complessi protagonisti centrali, offrono infinite possibilità di cucina.Padroneggiando queste tecniche e i principi scientifici, sarai in grado di raggiungere il pieno potenziale dei funghi e creare piatti eccezionali che siano deliziosi e nutrienti.Ricorda che ogni esperto era un principiante e la chiave era iniziare a praticare e imparare da ogni esperienza.</p>
-<br>
+<p class="article-text">1. Padroneggiare il controllo preciso della temperatura dei funghi arrostiti</p>
+<p class="article-text">2. Sviluppa i contorni speciali per i funghi speciali</p>
+<p class="article-text">3. Invita gli amici a assaggiare il piatto principale dei funghi e ottenere feedback</p>
+<p class="article-text">Il mondo dei funghi è vasto ed eccitante, dai semplici contorni ai complessi protagonisti centrali, offrono infinite possibilità di cucina.Padroneggiando queste tecniche e i principi scientifici, sarai in grado di raggiungere il pieno potenziale dei funghi e creare piatti eccezionali che siano deliziosi e nutrienti.Ricorda che ogni esperto era un principiante e la chiave era iniziare a praticare e imparare da ogni esperienza.</p>
 <p>---</p>
-<br>
-<h2>⚠️ Importante disclaimer</h2>
-<br>
+<div class="section-title">❗ ⚠️ Importante disclaimer</div>
 <p><strong> Questo articolo è solo per riferimento educativo e di informazione.</strong></p>
-<br>
-<h3>Avviso di rischio di consumo di funghi</h3>
-<br>
-<p>1. <strong> Life Safety First </strong>: ci sono rischi intrinseci nell'identificazione di funghi selvatici.Molti funghi tossici sembrano molto simili ai funghi commestibili e ingrandirli accidentalmente possono portare a una grave malattia o persino alla morte.</p>
-<br>
-<p>2. <strong> Identificazione professionale richiesta </strong>: prima di mangiare eventuali funghi selvatici, la conferma al 100% deve essere eseguita da un micologo professionista o da un esperto di identificazione dei funghi certificati.Foto, descrizioni di testo e esperienza personale non sono sufficienti per garantire la sicurezza.</p>
-<p>3. <strong> Differenze individuali </strong>: anche i funghi commestibili riconosciuti possono causare reazioni avverse a causa di fattori come la costituzione personale, le reazioni allergiche, il metodo di consumo o l'ambiente di crescita dei funghi.Prova in piccole quantità quando si mangia una nuova varietà per la prima volta.</p>
-<br>
-<p>4. <strong> Differenze geografiche </strong>: ci sono enormi differenze nelle specie di funghi e tossicità in diverse regioni.Le informazioni menzionate in questo articolo potrebbero non essere applicate alla tua regione.Si prega di consultare esperti di micologia locali e organizzazioni autorevoli.</p>
-<br>
-<p>5. <strong> Responsabilità professionale </strong>: l'autore e l'editore non saranno responsabili per eventuali danni diretti o indiretti, malattie o perdite derivanti dall'uso delle informazioni in questo articolo.</p>
-<br>
-<p>Consigli sulla sicurezza ###</p>
-<br>
-<ul>
+<div class="subsection-title">📌 Avviso di rischio di consumo di funghi</div>
+<p class="article-text">1. <strong> Life Safety First </strong>: ci sono rischi intrinseci nell'identificazione di funghi selvatici.Molti funghi tossici sembrano molto simili ai funghi commestibili e ingrandirli accidentalmente possono portare a una grave malattia o persino alla morte.</p>
+<p class="article-text">2. <strong> Identificazione professionale richiesta </strong>: prima di mangiare eventuali funghi selvatici, la conferma al 100% deve essere eseguita da un micologo professionista o da un esperto di identificazione dei funghi certificati.Foto, descrizioni di testo e esperienza personale non sono sufficienti per garantire la sicurezza.</p>
+<p class="article-text">3. <strong> Differenze individuali </strong>: anche i funghi commestibili riconosciuti possono causare reazioni avverse a causa di fattori come la costituzione personale, le reazioni allergiche, il metodo di consumo o l'ambiente di crescita dei funghi.Prova in piccole quantità quando si mangia una nuova varietà per la prima volta.</p>
+<p class="article-text">4. <strong> Differenze geografiche </strong>: ci sono enormi differenze nelle specie di funghi e tossicità in diverse regioni.Le informazioni menzionate in questo articolo potrebbero non essere applicate alla tua regione.Si prega di consultare esperti di micologia locali e organizzazioni autorevoli.</p>
+<p class="article-text">5. <strong> Responsabilità professionale </strong>: l'autore e l'editore non saranno responsabili per eventuali danni diretti o indiretti, malattie o perdite derivanti dall'uso delle informazioni in questo articolo.</p>
+<p>Consigli sulla sicurezza ###</p><div class="highlight"><ul>
 <li>✅ Partecipa ai corsi di formazione di identificazione dei funghi formali</li>
 <li>✅ Unisciti all'Associazione micologia locale o al club di funghi</li>
 <li>✅ Acquista funghi coltivati ​​da fonti affidabili</li>
 <li>✅ Salvare campioni di funghi per le esigenze mediche di emergenza</li>
 <li>✅ Non mangiarlo se hai dubbi</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Ricorda: quando hai domande, l'unica opzione sicura è non mangiarla.La tua sicurezza della vita è molto più importante di qualsiasi pasto di funghi.</strong></p>
-<br>
 <p>---</p>
         </div>
-    </div>
+
+</div>
 </body>
 </html>

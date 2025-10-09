@@ -1,759 +1,621 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>서식지 및 생태 환경 - Mushroom Identification</title>
-    <meta name="description" content="서식지 및 생태 환경">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>08 서식지 및 생태 환경 - MushroomAiSnap</title>
+<link href="../../mobile-styles.css" rel="stylesheet"/>
+<link href="../../mobile-enhancement.css" rel="stylesheet"/>
+<link href="../../ecology-theme.css" rel="stylesheet"/>
+<style>
+        .hero-image img {
+            max-height: 200px;
+            width: 100%;
+            object-fit: cover;
         }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        .article-card img {
+            max-height: 120px;
+            width: 100%;
+            object-fit: cover;
+        }
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                        url('../../images/mushroom-identification_08-habitat-ecological-context.webp') center/cover;
+            position: relative;
+            margin-top: 0;
+        }
+        .article-meta {
+            margin-top: 15px !important;
+        }
+    
+        /* Mushroom Identification Theme */
+        :root {
+            --primary-color: #4169E1;
+            --primary-dark: #191970;
+            --primary-light: #F0F8FF;
+            --accent-color: #6495ED;
+        }
+        
+        /* Theme Color Overrides */
+        .content {
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+            border: 2px solid var(--primary-color);
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, var(--primary-light), var(--primary-light));
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .quote-text {
+            color: var(--primary-dark);
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+        }
+        
+        .subsection-title {
+            color: var(--primary-dark);
+            font-size: 1.4em;
+            font-weight: 600;
+            margin: 25px 0 15px 0;
+            padding-left: 10px;
+            border-left: 3px solid var(--accent-color);
+        }
+        
+        .tip-box {
+            border-left: 4px solid var(--primary-color);
+            background: var(--primary-light);
+        }
+        
+        .tip-title {
+            color: var(--primary-color);
+        }
+        
+        .highlight {
+            border-left: 4px solid var(--accent-color);
+            background: linear-gradient(135deg, #f1f8e9, var(--primary-light));
+        }
+        
+        .warning {
+            border-left: 4px solid #f44336;
+        }
+        
+        .equipment-item {
+            border: 1px solid var(--accent-color);
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+        }
+        
+        .equipment-item h4 {
+            color: var(--primary-color);
+        }
+        
+        .category {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .main-text {
+            font-size: 1.1em;
             line-height: 1.8;
             color: #333;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-
-        .article-title {
-            color: #45B7D1;
-            font-size: 2.5em;
-            margin-bottom: 30px;
-            margin-top: 0;
-            line-height: 1.3;
-            padding-top: 0;
-        }
-
-        .featured-image {
-            width: 100%;
-            height: auto;
-            aspect-ratio: 4 / 3;
-            object-fit: cover;
-            display: block;
-        }
-
-        .content {
-            padding: 50px;
-        }
-
-        .content h2 {
-            color: #45B7D1;
-            font-size: 2em;
-            margin-top: 40px;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid #45B7D1;
-        }
-
-        .content h3 {
-            color: #555;
-            font-size: 1.6em;
-            margin-top: 30px;
-            margin-bottom: 15px;
-        }
-
-        .content h4 {
-            color: #666;
-            font-size: 1.3em;
-            margin-top: 25px;
-            margin-bottom: 12px;
-        }
-
-        .content p {
-            margin-bottom: 20px;
-            font-size: 1.1em;
-            color: #444;
-        }
-
-        .content ul {
             margin: 20px 0;
-            padding-left: 30px;
-        }
-
-        .content li {
-            margin-bottom: 12px;
-            font-size: 1.05em;
-            color: #555;
-        }
-
-        .content strong {
-            color: #222;
-            font-weight: 600;
-        }
-
-        .back-link {
-            display: inline-block;
-            padding: 12px 25px;
-            background: linear-gradient(135deg, #45B7D1, #8B4513);
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            margin-bottom: 20px;
-            transition: transform 0.3s ease;
-            font-weight: 600;
-        }
-
-        .back-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .navigation {
-            padding: 30px 50px;
-            background: #f8f9fa;
-            border-top: 1px solid #e9ecef;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-btn {
-            padding: 10px 20px;
-            background: #45B7D1;
-            color: white;
-            text-decoration: none;
+            padding: 15px;
+            background: linear-gradient(135deg, #ffffff, #f9f9f9);
             border-radius: 8px;
-            transition: all 0.3s ease;
+            border-left: 3px solid var(--accent-color);
         }
-
-        .nav-btn:hover {
-            transform: translateX(5px);
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+        
+        .emoji {
+            font-size: 1.5em;
+            margin-left: 10px;
         }
-
-        .nav-btn.prev:hover {
-            transform: translateX(-5px);
+        
+        .read-time, .difficulty {
+            display: inline-block;
+            padding: 5px 15px;
+            margin: 5px 5px 5px 0;
+            border-radius: 20px;
+            font-size: 0.9em;
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            color: #1976d2;
+            font-weight: 500;
         }
-
-        @media (max-width: 768px) {
-            .content {
-                padding: 30px 25px;
-            }
-
-            .article-title {
-                font-size: 1.8em;
-            }
-
-            .featured-image {
-                height: 250px;
-            }
-
-            .navigation {
-                flex-direction: column;
-                gap: 15px;
-            }
+        
+        .difficulty {
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            color: #e65100;
+        }
+        
+        .article-text {
+            line-height: 1.8;
+            color: #444;
+            margin: 15px 0;
+            font-size: 1.05em;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <img src="../../images/mushroom-identification_08-habitat-ecological-context.webp" alt="서식지 및 생태 환경" class="featured-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22900%22 height=%22400%22%3E%3Crect fill=%22%23D2691E%22 width=%22900%22 height=%22400%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22white%22 font-size=%2260%22%3E🍄%3C/text%3E%3C/svg%3E'">
+<div class="hero-image"></div>
+<div class="content">
+    <h1 class="title">08 서식지 및 생태 환경</h1>
+    <div class="quote-box">
+        <div class="quote-text">Professional Mycology Guide</div>
+    </div>
+    
+<div class="article-meta">
+<span class="category">🔍 Mushroom Identification</span>
+<span class="read-time">📖 18 minute read</span>
+<span class="difficulty">🔴 Advanced</span>
+</div>
 
-        <div class="content">
-            <h1 class="article-title">서식지 및 생태 환경</h1>
-            <br>
-<p>"어디에서 찾았는지 말해 주시면 그것이 무엇인지 말해 줄 수 있습니다." MyCoscience Community 의이 mycosm은 버섯 식별에서 생태 환경의 중심 위치를 보여줍니다.심각한 버섯 사냥꾼의 경우 생태 환경은 종종 형태 학적 특성만큼 중요하며 때로는 더욱 중요합니다.많은 버섯 종은 성장하는 환경과 같은 특정 나무 종, 특정 토양 구성 및 특정 계절 조건에 대한 엄격한 요구 사항을 가지고 있습니다.생태 학적 식별 기술을 마스터하는 것은 가능한 종의 범위를 크게 좁힐 수있을뿐만 아니라 특정 종을 직접 지적하며 생명을 구할 수도 있습니다.</p>
-<br>
-<h2>생태 환경이 버섯 식별의 결정적인 요인 인 이유</h2>
-<br>
-<h3>곰팡이를위한 기본 생존 전략</h3>
-<br>
-<p>이종 영양 유기체로서, 곰팡이는 광합성을 수행 할 수 없으며 환경에서 영양분을 얻어야합니다.그들의 생존 전략을 이해하는 것은 생태 환경을 해석하는 첫 번째 단계입니다.</p>
-<br>
+
+            <br><div class="main-text">"어디에서 찾았는지 말해 주시면 그것이 무엇인지 말해 줄 수 있습니다." MyCoscience Community 의이 mycosm은 버섯 식별에서 생태 환경의 중심 위치를 보여줍니다.심각한 버섯 사냥꾼의 경우 생태 환경은 종종 형태 학적 특성만큼 중요하며 때로는 더욱 중요합니다.많은 버섯 종은 성장하는 환경과 같은 특정 나무 종, 특정 토양 구성 및 특정 계절 조건에 대한 엄격한 요구 사항을 가지고 있습니다.생태 학적 식별 기술을 마스터하는 것은 가능한 종의 범위를 크게 좁힐 수있을뿐만 아니라 특정 종을 직접 지적하며 생명을 구할 수도 있습니다.<span class="emoji">🍄</span></div>
+<div class="section-title">🍄 생태 환경이 버섯 식별의 결정적인 요인 인 이유</div>
+<div class="subsection-title">📚 곰팡이를위한 기본 생존 전략</div>
+<p class="article-text">이종 영양 유기체로서, 곰팡이는 광합성을 수행 할 수 없으며 환경에서 영양분을 얻어야합니다.그들의 생존 전략을 이해하는 것은 생태 환경을 해석하는 첫 번째 단계입니다.</p>
 <p><strong> mycorrhizal 관계 </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>플랜트 루트 시스템으로 복잡한 상호 유익한 네트워크 형성</li>
 <li>곰팡이 균사체는 식물 뿌리의 흡수 영역을 확장하여 물, 인, 질소 및 기타 미네랄을 흡수하는 데 도움이됩니다.</li>
 <li>식물은 광합성에 의해 생성 된 탄수화물 보상</li>
 <li>북아메리카의 혈관 식물의 90%가 생존하기위한 균근 관계에 의존</li>
-</ul>
+</ul></div>
 <p>-이 곰팡이는 매우 구체적이며 특정 나무 종 근처에서만 자랍니다.</p>
-<br>
 <p><strong> 실제 사례 </strong> : 콜로라도 록키 산맥에서의 연습에서, 나는 Boletus Edulis 왕이 거의 성숙한 노란색 소나무와의 균근 관계를 형성한다는 것을 알았습니다.이 종의 연관성에서 벗어나는이 종과 유사한 버섯은 종종 관련이없는 종입니다.</p>
-<br>
 <p><strong> saprophytic 라이프 스타일 </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>자연의 분해 엔지니어, 죽은 유기물 분해</li>
 <li>대상 매트릭스에는 목재, 낙엽 층, 동물 대변, 토양 유기물이 포함됩니다.</li>
 <li>살아있는 식물, 높은 영양 자율성에 의존하지 않습니다</li>
 <li>대부분의 재배 된 식용 곰팡이는이 범주에 속합니다</li>
-</ul>
-<br>
-<p>** 전문가들은 환경 요구 사항이 상대적으로 느슨하고 많은 종을 안전하게 재배하고 식별 할 수 있기 때문에 Saprophytes는 초보자에게 이상적인 출발점이라고 제안합니다.</p>
-<br>
+</ul></div>
+<p class="article-text">** 전문가들은 환경 요구 사항이 상대적으로 느슨하고 많은 종을 안전하게 재배하고 식별 할 수 있기 때문에 Saprophytes는 초보자에게 이상적인 출발점이라고 제안합니다.</p>
 <p><strong> 기생 생존 모드 </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>살아있는 호스트로부터 직접 영양을 얻으십시오</li>
 <li>일반적으로 호스트에게 유해하지만 생태 학적 균형을 유지합니다.</li>
 <li>특정 숙주 종에 대해 매우 구체적입니다</li>
-</ul>
-<br>
-<h3>생태적 특이성의 식별력</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 생태적 특이성의 식별력</div>
 <p><strong> 고도로 전용 유형 예제 </strong> :</p>
 <p>-Tricholoma matsutake 특정 소나무 종과의 공생 만</p>
-<p>-Inonotus obliquus obliquus obliquus obliquus obliquus obliquus obliquus</p>
+<p class="article-text">-Inonotus obliquus obliquus obliquus obliquus obliquus obliquus obliquus</p>
 <p>-cordyceps sinensis 만 기생 고원 박쥐 나방 유충</p>
-<br>
 <p><strong> 생태 일반화 유형 </strong> :</p>
 <p>-Pleurotus ostreatus는 20 개가 넘는 넓은 나무에서 자랄 수 있습니다.</p>
-<ul>
+<div class="highlight"><ul>
 <li>많은 종의 버섯 (agaricus)이 다양한 환경에 적합합니다.</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 빠른 식별 필터링 방법 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>떡갈 나무 아래에서 발견되는 버섯, 즉시 모든 소나무 의무 종을 배제하십시오.</li>
 <li>잔디에서 발견되는 버섯, 모든 목재 부패 종을 제외하고</li>
 <li>생태 정보를 1 층 식별 필터로 사용하면 가능성의 70% 이상을 제거 할 수 있습니다.</li>
-</ul>
-<br>
-<h2>성장 기판 : 버섯의 삶의 기초</h2>
-<br>
-<h3>지구 버섯의 토양 비밀</h3>
-<br>
+</ul></div>
+<div class="section-title">🍄 성장 기판 : 버섯의 삶의 기초</div>
+<div class="subsection-title">📌 지구 버섯의 토양 비밀</div>
 <p><strong> 균근 관련 종을 식별하기위한 핵심 포인트 </strong> :</p>
 <p>-Amanita- 대부분은 균근 공생입니다</p>
 <p>-Boletus- 고도로 의존적 인 나무 종 협회</p>
-<ul>
+<div class="highlight"><ul>
 <li>락타 리우스 - 나무 종은 매우 구체적입니다</li>
 <li>Russula- 광범위한 균근 파트너</li>
-</ul>
+</ul></div>
 <p>-Cantharellus- 특정 나무 종 협회</p>
-<br>
 <p><strong> 실제 관찰 기술 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>버섯의 기초를 조심스럽게 파고 균사체와 뿌리 사이의 연결을 관찰하십시오.</li>
 <li>트리 식별 앱을 사용하여 인근 나무 종을 확인하십시오.</li>
 <li>레코드 트리 거리 및 방향</li>
 <li>참고 : mycorrhizal 버섯은 인위적으로 재배하는 것이 거의 불가능합니다.</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Saprophytic 토양 종의 식별 단서 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>열린 들판이나 나무 아래에서 독립적으로 성장할 수 있습니다.</li>
 <li>유기농 토양을 선호합니다</li>
 <li>퇴비 구역, 정원 및 비옥 한 삼림에서 일반적입니다</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 전문 레코드 템플릿 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>토양 유형 : 모래 (빠른 배수), 집착 (강한 물 보유), 양토 (이상)</li>
 <li>토양 pH : 휴대용 pH 테스트 스트립 사용 (산성 <7, 중성 = 7, 알칼리성> 7)</li>
 <li>식생 커버리지 밀도 : 스파 스 <30%, 중간 30-70%, 밀도> 70%</li>
 <li>잎 층의 두께 : <2cm 얇은, 중간 2-5cm, 두께> 5cm</li>
-</ul>
-<br>
-<h3>리그니콜스 버섯을위한 목재 코드</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 리그니콜스 버섯을위한 목재 코드</div>
 <p><strong> 살아있는 나무의 기생 종의 식별 </strong> :</p>
 <p>-Armillaria Mellea- 유명한 나무 병원체</p>
 <p>-Ganoderma lucidum- 특정 나무 종 선호도</p>
 <p>-Laetiporus sulphureus- 살아있는 나무 가슴 우드 부패</p>
-<br>
 <p><strong> 죽은 목재 saprophytic 종의 풍부한 세계 </strong> :</p>
 <p>-Pleurotus ostreatus- 넓은 잎 나무</p>
-<ul>
+<div class="highlight"><ul>
 <li>Shiitake 버섯 (렌티 큘라 Edodes) - 특정 나무 종 요구 사항</li>
-</ul>
+</ul></div>
 <p>-Yunzhi (Trametes Versicolor) - 목재 일반화 유형</p>
-<br>
 <p><strong> 목재 유형 식별 품질 </strong> :</p>
 <p>-Roadleaf (나무) vs 침엽수 (Cork) - 결정적인 차이</p>
-<ul>
+<div class="highlight"><ul>
 <li>트리 식별 가이드를 사용하여 특정 나무 종을 확인합니다.</li>
 <li>목재 직경 및 붕괴 단계를 기록하십시오</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 목재 부패 단계 분류 시스템 </strong> :</p>
 <p>레벨 1 : 신선한 죽은 나무, 완전한 나무 껍질, 단단한 나무</p>
 <p>레벨 2 : 부분 부패, 부분 껍질이 떨어지고 나무가 부드러워지기 시작합니다.</p>
 <p>레벨 3 : 보통 부패, 대부분의 나무 껍질이 떨어지고 나무는 분명히 부드럽습니다.</p>
 <p>레벨 4 : 매우 부패한 목재는 차단되거나 섬유질입니다</p>
 <p>레벨 5 : 완전히 부패한 나무는 거의 토양이됩니다</p>
-<br>
 <p><strong> 일반적인 오류 회피 </strong> : 겉보기에는 고유 한 버섯이 실제로 묻힌 나무에 연결될 수 있습니다.균근 종의 잘못 판단을 피하기 위해 기초를 부드럽게 파십시오.</p>
-<br>
-<h3>gramineous 잔디 생태학</h3>
-<br>
+<div class="subsection-title">📌 gramineous 잔디 생태학</div>
 <p><strong> 전형적인 초원 환경 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>잔디 관리 : 종종 손질하고 수정할 수 있습니다</li>
 <li>자연 초원 : 관리되지 않은 다양한 종</li>
 <li>목장 : 방목하는 동물의 영향이 있습니다</li>
 <li>파크 그린란드 : 인간 활동이 자주</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 메인 잔디 버섯 종 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>아가리 쿠스 - 식용 및 독성 종을 포함하여</li>
 <li>퍼프 볼 (Lycoperdon) - 습격 잔디 종</li>
-</ul>
+</ul></div>
 <p>-Coprinus- 짧은 수명주기</p>
 <p>-Marasmius Oreades- 전형적인 버섯 링 형성제</p>
-<br>
 <p><strong> 요정 반지에 대한 과학적 설명 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>균사체는 중심 지점에서 방사형 적으로 자랍니다</li>
 <li>외부 원 균사체는 가장 강력한 활동을 가지고 있으며 과일 몸체를 생성합니다.</li>
 <li>수십 년 또는 수백 년 동안 지속될 수 있습니다.</li>
 <li>세 가지 유형 : 버섯 원 전용, 잔디 색상 심화 원, 죽은 잔디 원</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 안전 경고 </strong> : 잔디에는 종종 독성이 많은 Amanita 박테리아, 특히 파괴의 천사 (Amanita Virosa)가 포함되어 있습니다.생태 정보는 형태 학적 식별과 함께 사용해야합니다.</p>
-<br>
-<h3>공동성 버섯의 특별한 적응</h3>
-<br>
+<div class="subsection-title">📌 공동성 버섯의 특별한 적응</div>
 <p><strong> 대변의 특수 유형 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>초식 대변 : 균형 잡힌 영양, 이상</li>
 <li>잡식 대변 : 복잡한 성분과 유형이 적습니다</li>
 <li>육식성 대변 : 수집, 잠재적 병원체를 피하십시오</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 전문 장비 수집 제안 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>특별 대변 컬렉션 핀셋</li>
 <li>독립적 인 환기 용기</li>
 <li>일회용 장갑</li>
 <li>손 세정제</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 안전 경고 </strong> : 비료 버섯에는 종종 정신 활성 물질이 포함되어 있으며 중금속이 축적 될 수 있습니다.현지 법률과 규정을 이해하고 안전이 최우선 과제입니다.</p>
-<br>
-<h2>나무 종 협회 : 균근 버섯의 열쇠</h2>
-<br>
-<h3>왜 나무 종 식별이 중요합니까?</h3>
-<br>
-<p>북미 숲에서는 나무의 85% 이상이 균근 관계를 형성합니다.나무 종 협회는 균근 버섯을 식별하는 데 가장 강력한 단서입니다.</p>
-<br>
+<div class="section-title">🍄 나무 종 협회 : 균근 버섯의 열쇠</div>
+<div class="subsection-title">🎯 왜 나무 종 식별이 중요합니까?</div>
+<p class="article-text">북미 숲에서는 나무의 85% 이상이 균근 관계를 형성합니다.나무 종 협회는 균근 버섯을 식별하는 데 가장 강력한 단서입니다.</p>
 <p><strong> 침엽수 의무 협회 예 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>소나무 (Pinus) : Matsutake, Lactarius Deliciosus</li>
-</ul>
+</ul></div>
 <p>-PICEA : Boletus Pinophilus</p>
-<ul>
+<div class="highlight"><ul>
 <li>전나무 (Abies) : 락타리우스 Deterrimus</li>
-</ul>
+</ul></div>
 <p>-Haryx : Suillus grevillei</p>
-<br>
 <p><strong> Broadleaf Tree 의무 협회 예 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>Quercus : 맛있는 Bolete, Amanita Caesarea</li>
 <li>자작 나무 (Betula) : 자작 나무 Boletus (레시 늄 cabrum)</li>
 <li>너도밤 나무 (Fagus) : 너도밤 나무 레드 버섯 (Russula Mairei)</li>
-</ul>
+</ul></div>
 <p>-Populus : 레시늄 듀리 우스 쿨럼</p>
-<br>
 <p><strong> 빠른 트리 인식 팁 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>소나무 : 바늘 다발 (2, 3 또는 5 바늘)</li>
 <li>오크 : 플라크 잎, 도토리 과일</li>
 <li>자작 나무 : 흰 껍질 껍질, 삼각형 잎</li>
 <li>너도밤 나무 : 타원형 파도 잎이있는 부드러운 회색 껍질</li>
-</ul>
-<br>
-<h3>나무 나이와 스탠드 구조의 영향</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 나무 나이와 스탠드 구조의 영향</div>
 <p><strong> 다른 연령대의 버섯 커뮤니티 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>젊은 숲 (<20 년) : 희소 종, 주로 saprophytic 종</li>
-</ul>
+</ul></div>
 <p>-중년 산림 (20-50 년) : 균근 종이 나타나기 시작합니다.</p>
-<ul>
+<div class="highlight"><ul>
 <li>성숙한 산림 (50-100 년) : 종 다양성의 최고점</li>
 <li>과도한 숲 (> 100 년) : 특수 종이 나타납니다</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 실제 관찰 방법 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>트렁크의 직경 측정 : 흉부 높이 (DBH)의 직경은 나무 시대의 좋은 지표입니다.</li>
 <li>Lin Guan의 폐쇄 정도를 관찰 : 개방 <30%, 중간 30-70%, 폐쇄> 70%</li>
 <li>과민성 식물의 평가 : 산림 건강 반영</li>
 <li>타락한 잎 층의 두께 측정 : 영양 순환 속도를 나타냅니다.</li>
-</ul>
-<br>
-<h2>환경 요인 : 계절 및 미세 환경의 절묘한 영향</h2>
-<br>
-<h3>기후와 계절의 현상 규칙</h3>
-<br>
+</ul></div>
+<div class="section-title">🍄 환경 요인 : 계절 및 미세 환경의 절묘한 영향</div>
+<div class="subsection-title">📌 기후와 계절의 현상 규칙</div>
 <p><strong> 버섯 발생에 대한 온도의 영향 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>저온 유형 : Flammulina Velutipes는 5-10 ° C에서 가장 잘 자랍니다.</li>
 <li>중간 온도 유형 : 대부분의 버섯은 15-25 ° C에 나타납니다</li>
 <li>고온 유형 : 일부 Ganoderma lucidum은 여전히 ​​25 ° C에서 자랄 수 있습니다.</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 습도와 강우의 주요 역할 </strong> :</p>
 <p>-이상적인 조건 : 강우 후 3-7 일, 토양 수분은 60-80%입니다.</p>
-<ul>
+<div class="highlight"><ul>
 <li>토양 히그로 미터를 사용하여 정확한 데이터를 얻습니다</li>
 <li>최근 강우 및 강우 날을 기록하십시오</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 북미 계절 버섯 강간 모드 </strong> :</p>
-<br>
 <p><strong> 봄 (3 월 5 일) </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>Morel (Morchella) : 화재 후 또는 강으로</li>
-</ul>
+</ul></div>
 <p>-Gyromitra : 침엽수 숲의 모래 토양</p>
-<ul>
+<div class="highlight"><ul>
 <li>포니 보이 : 잔디와 열린 땅</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 여름 (6 월 8 월 </strong>) :</p>
 <p>-Cantharellus : 넓은 잎과 혼합 숲</p>
-<ul>
+<div class="highlight"><ul>
 <li>라 마리아 : 젖은 침엽수 숲</li>
 <li>초기 유형의 boletus</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 가을 (9 월 -1 월 </strong>) :</p>
-<ul>
+<div class="highlight"><ul>
 <li>볼레 투스의 후추 기간 : 다양한 균근 종</li>
-</ul>
+</ul></div>
 <p>-Amanita : 다양성의 피크</p>
-<ul>
+<div class="highlight"><ul>
 <li>꿀벌 : 죽은 나무와 살아있는 나무 기지</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 겨울 (12 월 -2 월 </strong>) :</p>
-<ul>
+<div class="highlight"><ul>
 <li>에노키 버섯 : 죽은 나무의 클러스터 성장</li>
 <li>굴 버섯 : 추운 날씨에는 여전히 자랄 수 있습니다</li>
 <li>특정 다형 박테리아 : 다년생 종</li>
-</ul>
-<br>
-<h3>지리 및 고도의 분포 규칙</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 지리 및 고도의 분포 규칙</div>
 <p><strong> 주요 북미 버섯 지역 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>동부 나무 지역 : 오크 및 너도밤 나무 관련 종</li>
 <li>서부 침엽수 산림 지역 : 소나무와 전나무의 관련 종</li>
 <li>남부 아열대 구역 : 독특한 열대 종</li>
 <li>북부 대림 지역 : 가문비 나무 및 자작 나무 관련 종</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 고도 구배의 영향 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>낮은 고도 (<500m) : 공통 유형이 풍부합니다</li>
 <li>중간 고도 (500-1500m) : 피크 종 다양성</li>
 <li>높은 고도 (1500-2500m) : 특수 알파인 종</li>
 <li>매우 높은 고도 (> 2500m) : 희귀 종, 특별한 적응</li>
-</ul>
-<br>
-<h3>미세 환경의 절묘한 영향</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 미세 환경의 절묘한 영향</div>
 <p><strong> 측면의 영향 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>북쪽 경사 : 높은 습도와 안정적인 온도</li>
 <li>사우스 슬로프 : 많은 햇빛과 고온</li>
 <li>동포 : 아침 햇살, 보통 습도</li>
 <li>웨스트 슬로프 : 오후의 높은 빛, 건조기</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 지형 기능의 영향 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>릿지 라인 : 좋은 배수, 건조기</li>
 <li>계곡 바닥 : 높은 습도, 풍부한 종</li>
 <li>슬로프 : 이상적인 수분 조건</li>
 <li>평평한 지역 : 배수에 문제가있을 수 있습니다</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 전문 장비 제안 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>핸드 헬드 GPS : 정확한 위치와 고도를 기록합니다</li>
 <li>포켓 온도계 : 미세 환경 조건 모니터링</li>
 <li>토양 pH 테스트 키트 : 토양 화학 이해</li>
 <li>나무 식별 안내서 : 정확한 나무 종 식별</li>
-</ul>
-<br>
-<h2>생태 기록에 대한 과학적 접근</h2>
-<br>
-<h3>표준화 된 레코드 템플릿</h3>
-<br>
+</ul></div>
+<div class="section-title">🔬 생태 기록에 대한 과학적 접근</div>
+<div class="subsection-title">📌 표준화 된 레코드 템플릿</div>
 <p><strong> 생태 환경의 자세한 기록 테이블 </strong> :</p>
-<br>
 <p><strong> 기본 정보 </strong> :</p>
 <p>날짜 : [연말-일] 시간 : [특정 시간, 날씨 변화를 쉽게 추적 할 수 있습니다]</p>
 <p>위치 : [자세한 위치 설명] GPS 좌표 : [위도, 경도] 고도 : [미터]</p>
-<br>
 <p><strong> 성장 매트릭스 분류 </strong> :</p>
 <p>□ 지구-미세 연관 관련 나무 종 : [특정 나무 종 및 거리]</p>
-<p>□ 목재 성장 - 나무 종 : [특정 나무 종] 목재 상태 : [살아있는 서있는 나무/죽은 서있는 나무/타락한 목재] 부패 학위 : [레벨 1-5]</p>
+<p class="article-text">□ 목재 성장 - 나무 종 : [특정 나무 종] 목재 상태 : [살아있는 서있는 나무/죽은 서있는 나무/타락한 목재] 부패 학위 : [레벨 1-5]</p>
 <p>□ 잔디 - 잔디 유형 : [관리 잔디/천연 초원/비] 잔디 구성 : [설명]</p>
 <p>□ 대변 - 동물 유형 : [특정 동물] 대변 연령 : [신선한/구/건조]</p>
-<br>
 <p><strong> 트리 협회의 상세 기록 </strong> :</p>
-<p>주요 관련 나무 종 : [최근 나무, 5 미터 이내] 나무 연령 추정치 : [Young <30 세/성숙 30-80 세/80 세]</p>
-<p>이차 나무 종 : [주변 10 미터 이내의 모든 나무 종] 숲 구조 : [침엽수 숲 %/넓은 잎 숲 %]</p>
-<p>산림 유형 설명 : [순수 산림/혼합 산림] 산림 캐노피 우울증 : [개방 <30%/중형 30-70%/폐쇄> 70%]</p>
-<br>
+<p class="article-text">주요 관련 나무 종 : [최근 나무, 5 미터 이내] 나무 연령 추정치 : [Young <30 세/성숙 30-80 세/80 세]</p>
+<p class="article-text">이차 나무 종 : [주변 10 미터 이내의 모든 나무 종] 숲 구조 : [침엽수 숲 %/넓은 잎 숲 %]</p>
+<p class="article-text">산림 유형 설명 : [순수 산림/혼합 산림] 산림 캐노피 우울증 : [개방 <30%/중형 30-70%/폐쇄> 70%]</p>
 <p><strong> 환경 조건의 정량화 된 기록 </strong> :</p>
 <p>시즌 : [이른 봄/늦은 봄/초여름/한여름/이른 가을/늦은 가을/겨울]</p>
-<p>기상 조건 : [Sunny/Cloudy/Cloudy/Rain] 최근 강우 : [MM] 비 후일 : [일]</p>
-<p>온도 : [° C] 상대 습도 : [%] 토양 습도 : [건조 <30%/습식 30-60%/습식 60-80%/물 포화> 80%]</p>
-<br>
+<p class="article-text">기상 조건 : [Sunny/Cloudy/Cloudy/Rain] 최근 강우 : [MM] 비 후일 : [일]</p>
+<p class="article-text">온도 : [° C] 상대 습도 : [%] 토양 습도 : [건조 <30%/습식 30-60%/습식 60-80%/물 포화> 80%]</p>
 <p><strong> 지형 및 미세 환경 </strong> :</p>
-<p>고도 : [정확한 미터 수] 지형 특성 : [평평한/부드러운 경사 <15 °/가파른 경사> 15 °/밸리/릿지]</p>
+<p class="article-text">고도 : [정확한 미터 수] 지형 특성 : [평평한/부드러운 경사 <15 °/가파른 경사> 15 °/밸리/릿지]</p>
 <p>방향 : [북쪽 경사/사우스 슬로프/이스트 슬로프/서부 경사/플랫] 경사 : [학위]</p>
 <p>빛 조건 : [전체 햇빛> 6 시간/부분 그늘 3-6 시간/깊은 그늘 <3 시간]]</p>
-<p>식생 밀도 : [스파 스 <30%/중간 30-70%/럭셔리> 70%] 낙엽 잎 층 두께 : [CM]</p>
-<br>
+<p class="article-text">식생 밀도 : [스파 스 <30%/중간 30-70%/럭셔리> 70%] 낙엽 잎 층 두께 : [CM]</p>
 <p><strong> 특별 상황 기록 </strong> :</p>
 <p>□ 버섯 원 □ 클러스터 성장 (수량) □ 솔로 □ 분포 된 분포</p>
-<p>특수 성장 모드 : [자세한 설명] 기타 생물학적 상호 작용 : [곤충 및 동물 활동의 징후]</p>
-<br>
+<p class="article-text">특수 성장 모드 : [자세한 설명] 기타 생물학적 상호 작용 : [곤충 및 동물 활동의 징후]</p>
 <p><strong> 보충 관찰 기록 </strong> :</p>
 <p>[다른 관련 생태 정보, 특별 냄새, 비정상적인 날씨 징후 등]</p>
-<br>
-<h3>실제 사례 분석</h3>
-<br>
+<div class="subsection-title">📌 실제 사례 분석</div>
 <p><strong> 사례 1 : Boletus의 나무 종의 분화 </strong></p>
-<br>
 <p>디스커버리 장면 : 중앙 록키 산맥, 해발 2200 미터</p>
 <p>버섯 A : Pinus Ponderosa의 숲 아래, 트렁크 직경 40-60cm</p>
 <p>→ 높은 확률은 boletus rubriceps -local 맛있는 식용 곰팡이입니다.</p>
-<br>
 <p>버섯 B : 비슷한 외관이지만 Populus tremuloides의 숲 아래에서 발견</p>
 <p>→ 아마도 레시늄 휘장 - 식용이지만 품질이 좋지 않습니다</p>
-<br>
 <p><strong> 생태 학적 평가 가치 </strong> : 외관에 따른 잘못 판단을 피하고 수집의 안전성과 품질을 보장합니다.</p>
-<br>
 <p><strong> 사례 2 : 모렐 서식지 확인 </strong></p>
-<br>
 <p>주요 특징 : 벌집 모양의 캡, 중공 줄기</p>
 <p>생태 단서 : 콜로라도 2012 산불 폐허, 해발 1,800 미터, 남서쪽 경사</p>
-<p>→ Black Morel (Morchella angusticeps) - 종 의무를 발사하십시오</p>
-<br>
+<p class="article-text">→ Black Morel (Morchella angusticeps) - 종 의무를 발사하십시오</p>
 <p><strong> Pro Tip </strong> : 화재 연도를 기록하는 것이 중요하며 일부 모렐은 특정 연도에만 나타납니다.</p>
-<br>
 <p><strong> 사례 3 : 독성이 높은 아 마니 타지 </strong></p>
-<br>
 <p>디스커버리 장면 : 도시 공원의 오크 트리 아래에서 외관이 매력적입니다.</p>
 <p>생태 여과 : 오크 균근 협회 + 박테리아 격리 + 백색 박테리아 주름</p>
-<p>→ 파괴의 천사 (Amanita Bisporigera) - 북미에서 가장 유독 한 버섯 중 하나</p>
-<br>
+<p class="article-text">→ 파괴의 천사 (Amanita Bisporigera) - 북미에서 가장 유독 한 버섯 중 하나</p>
 <p><strong> 생명을 구하는 제안 </strong> : 생태 학적 정보는 형태 학적 특성을 결합하여 잠재적 인 치명적인 실수를 피합니다.</p>
-<br>
-<h2>고급 생태 관찰 기술</h2>
-<br>
-<h3>체계적인 현장 조사 방법</h3>
-<br>
+<div class="section-title">⚡ 고급 생태 관찰 기술</div>
+<div class="subsection-title">📌 체계적인 현장 조사 방법</div>
 <p><strong> 5 단계 관찰 방법 </strong> :</p>
 <p>1. 미세 관찰 : 버섯 자체의 상세한 특성</p>
 <p>2. 인스턴트 환경 : 성장 매트릭스의 특성</p>
 <p>3. 주변 환경 : 반경 5 미터 내의 생태 조건</p>
 <p>4. 산림 토지 특성 : 스탠드 구조와 구성</p>
 <p>5. 지형과 기후 : 거시 경제적 요인</p>
-<br>
 <p><strong> 사진 및 녹음 계약 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>버섯 인시 시트 사진 : 성장 매트릭스와의 관계를 보여줍니다.</li>
 <li>환경 파노라마 : 주변 식물과 지형을 보여줍니다</li>
 <li>나무 종의 클로즈업 : 잎, 나무 껍질, 전체 모양</li>
 <li>서식지 표시 : 특수 지형 또는 특징</li>
 <li>스케일 참조 : 통치자 또는 알려진 물체를 추가합니다</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 전문 장비 목록 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>주요 도구 : GPS 장비, 트리 가이드, 확대 유리</li>
 <li>측정 도구 : 토양 온도계, pH 테스트 스트립, 줄자</li>
 <li>녹음 도구 : 방수 노트북, 디지털 카메라, 음성 레코더</li>
 <li>안전 장비 : 장갑, 응급 처치 키트, 통신 장비</li>
-</ul>
-<br>
-<h3>장기 모니터링 및 현상 연구</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 장기 모니터링 및 현상 연구</div>
 <p><strong> 현상 일정 만들기 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>각 위치에 대한 연간 버섯 생산 패턴 기록</li>
 <li>기후 변화의 장기적인 영향을 추적하십시오</li>
 <li>최고의 획득 시간 창을 예측하십시오</li>
 <li>지역 생태 ​​지식 기반을 구축하십시오</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 시민 과학 참여 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>천연리스트 플랫폼 기록 관찰</li>
 <li>북미 곰팡이 협회 데이터 기여</li>
 <li>지역 곰팡이 사회의 모니터링 프로그램</li>
 <li>대학 연구 프로젝트에 대한 현장 지원</li>
-</ul>
-<br>
-<h2>생태 학습 리소스 및 고급 경로</h2>
-<br>
-<h3>트리 인식 기술 향상</h3>
-<br>
+</ul></div>
+<div class="section-title">⚡ 생태 학습 리소스 및 고급 경로</div>
+<div class="subsection-title">📌 트리 인식 기술 향상</div>
 <p><strong> 권장 도구 및 리소스 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>모바일 앱 : Inaturalist, Leafsnap, Picturethis</li>
 <li>현장 가이드 : Peterson Tree Guide, National Audubon Society Tree Guide</li>
 <li>온라인 코스 : Coursera Plant Recognition Course, 지역 식물학 워크숍</li>
 <li>실제 학습 : 식물 학자들과의 현장 조사</li>
-</ul>
-<br>
-<h3>곰팡이 생태학의 딥 러닝</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 곰팡이 생태학의 딥 러닝</div>
 <p><strong> 전문 학습 경로 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>시작하기 : David Arora의 "버섯이 탈취"</li>
 <li>고급 : John W. Taylor의 곰팡이 생물학</li>
 <li>전공 : 미국의 Mycological Society of America의 과학 연구 논문</li>
 <li>실습 : 펑크 수집 활동 및 균학 회의</li>
-</ul>
-<br>
-<h2>결론 : 생태 학적 식별 기술의 핵심 가치</h2>
-<br>
-<p>생태 및 환경 정보는 버섯 식별을위한 보충 옵션이 아니라 핵심 요소입니다. 20 년의 현장 경험을 바탕으로 식별 오류의 60% 이상이 생태 학적 단서를 무시하거나 오해하는 데 비롯됩니다.소나무 아래에서 발견되는 한 버섯과 떡갈 나무 아래에서 비슷하게 보이는 하나는 완전히 다른 종일 수 있습니다.하나는 귀중한 성분 일 수 있고 다른 하나는 생명을 위협 할 수 있습니다.</p>
-<br>
-<h3>키 기술 요약</h3>
-<br>
+</ul></div>
+<div class="section-title">🍄 결론 : 생태 학적 식별 기술의 핵심 가치</div>
+<p class="article-text">생태 및 환경 정보는 버섯 식별을위한 보충 옵션이 아니라 핵심 요소입니다. 20 년의 현장 경험을 바탕으로 식별 오류의 60% 이상이 생태 학적 단서를 무시하거나 오해하는 데 비롯됩니다.소나무 아래에서 발견되는 한 버섯과 떡갈 나무 아래에서 비슷하게 보이는 하나는 완전히 다른 종일 수 있습니다.하나는 귀중한 성분 일 수 있고 다른 하나는 생명을 위협 할 수 있습니다.</p>
+<div class="subsection-title">📌 키 기술 요약</div>
 <p><strong> 마스터 해야하는 생태 기술 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>정확한 트리 인식 기능</li>
 <li>성장 매트릭스의 과학적 분류</li>
 <li>계절적 현상에 대한 깊은 이해</li>
 <li>미세 환경 요인에 대한 예리한 관찰</li>
 <li>체계적인 기록 습관</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 전문 평가 공식 </strong> :</p>
 <p>형태 학적 특성 + 생태 정보 + 지리적 분포 = 신뢰할 수있는 식별</p>
-<br>
 <p><strong> 안전 제 1 원칙 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>생태 정보는 라이센스가 아닌 안전망입니다.</li>
 <li>식용 유형을 확인하기위한 여러 증거</li>
 <li>의심스러운 경우, 절대 소비하지 마십시오</li>
 <li>지역 전문가로부터 배우는 것이 가장 빠른 방법입니다</li>
-</ul>
-<br>
-<h3>생태 학적 관찰의 광범위한 가치</h3>
-<br>
-<p>생태 관찰 기술을 마스터하면 버섯 식별 능력이 향상 될뿐만 아니라 산림 생태계의 복잡한 상호 작용을 깊이 이해할 수 있습니다.당신은보기 시작할 것입니다 :</p>
-<ul>
+</ul></div>
+<div class="subsection-title">📌 생태 학적 관찰의 광범위한 가치</div>
+<p class="article-text">생태 관찰 기술을 마스터하면 버섯 식별 능력이 향상 될뿐만 아니라 산림 생태계의 복잡한 상호 작용을 깊이 이해할 수 있습니다.당신은보기 시작할 것입니다 :</p>
+<div class="highlight"><ul>
 <li>곰팡이 네트워크가 트리 커뮤니티를 연결하는 방법</li>
 <li>영양소주기의 실제 과정</li>
 <li>종들 사이의 복잡한 공생 관계</li>
 <li>생태계에 대한 기후 변화의 구체적인 영향</li>
-</ul>
-<br>
-<p>이 깊은 생태 학적 이해는 자연과 상호 작용하는 방식을 바꾸어 모든 현장 모험을 발견하고 배울 수있는 기회가 될 것입니다.</p>
-<br>
-<h2>액션 가이드 : 지금 시작하기위한 실용적인 단계</h2>
-<br>
-<h3>초보자를위한 30 일 계획</h3>
-<br>
+</ul></div>
+<p class="article-text">이 깊은 생태 학적 이해는 자연과 상호 작용하는 방식을 바꾸어 모든 현장 모험을 발견하고 배울 수있는 기회가 될 것입니다.</p>
+<div class="section-title">📖 액션 가이드 : 지금 시작하기위한 실용적인 단계</div>
+<div class="subsection-title">📌 초보자를위한 30 일 계획</div>
 <p><strong> 1 주차 : 기본 기술 </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>5 개의 일반적인 현지 나무를 식별하는 법을 배우십시오</li>
 <li>토양 유형의 기본 분류를 마스터하십시오</li>
 <li>간단한 생태 관찰 기록을 시작하십시오</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 2 주차 : 시스템 실습 </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>표준화 된 레코드 테이블 사용</li>
 <li>미세 환경 요인의 관찰</li>
 <li>첫 번째 모니터링 사이트를 만듭니다</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 주 3 주 : 기술 통합 </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>생태 및 형태 학적 식별과 결합</li>
 <li>시민 과학 플랫폼에 참여하십시오</li>
 <li>지역 곰팡이 커뮤니티를 찾으십시오</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 넷째 주 : 지식 확장 </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>전문 생태학 자료를 읽으십시오</li>
 <li>버섯 패턴을 예측하십시오</li>
 <li>다른 초보자를 안내합니다</li>
-</ul>
-<br>
-<h3>전문 장비 건설 목록</h3>
-<br>
+</ul></div>
+<div class="subsection-title">🛠️ 전문 장비 건설 목록</div>
 <p><strong> 기본 장비 ($ 100 이내) </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>트리 식별 가이드 ($ 25)</li>
 <li>핸드 헬드 확대 유리 ($ 15)</li>
 <li>방수 노트북 ($ 10)</li>
 <li>스마트 폰 녹화 앱 (무료)</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 고급 장비 ($ 300 이내) </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>핸드 헬드 GPS 장치 ($ 150)</li>
 <li>토양 테스트 키트 ($ 50)</li>
 <li>전문 사진 장비 ($ 100)</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 전문 장비 ($ 500+) </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>고정밀 환경 모니터 ($ 300)</li>
 <li>전문 현미경 ($ 200+)</li>
 <li>현장 실험실 장비 (가격은 다릅니다)</li>
-</ul>
-<br>
-<p>기억하십시오 : 최고의 장비는 경험 축적과 체계적인 관찰입니다.기본에서 시작하여 점차 생태 식별 기술 시스템을 구축하십시오.</p>
-<br>
-<p>생태 학적 관찰은 경험의 축적으로 계속 깊어지는 평생 기술입니다.모든 야외 모험은 새로운 학습 기회이며 모든 버섯에는 고유 한 생태 이야기가 있습니다.이 탐사 과정을 즐기고 자연 환경을 가장 풍부한 교실로 만드십시오.</p>
-<br>
+</ul></div>
+<p class="article-text">기억하십시오 : 최고의 장비는 경험 축적과 체계적인 관찰입니다.기본에서 시작하여 점차 생태 식별 기술 시스템을 구축하십시오.</p>
+<p class="article-text">생태 학적 관찰은 경험의 축적으로 계속 깊어지는 평생 기술입니다.모든 야외 모험은 새로운 학습 기회이며 모든 버섯에는 고유 한 생태 이야기가 있습니다.이 탐사 과정을 즐기고 자연 환경을 가장 풍부한 교실로 만드십시오.</p>
 <p>발견, 통찰력 및 무한한 경이로움으로 가득 찬 에코 관찰 여행을 기원합니다!</p>
-<br>
 <p>---</p>
-<p>*안전 팁 :이 기사에 제공된 정보는 교육 목적입니다.버섯 식별에는 위험이 있습니다. 전문가의지도하에 배우십시오.여러 증거 확인의 원칙을 따르고 불확실한 버섯에 대해 조심하십시오.*</p>
-<br>
+<p class="article-text">*안전 팁 :이 기사에 제공된 정보는 교육 목적입니다.버섯 식별에는 위험이 있습니다. 전문가의지도하에 배우십시오.여러 증거 확인의 원칙을 따르고 불확실한 버섯에 대해 조심하십시오.*</p>
 <p>---</p>
-<br>
-<h2>⚠️ 중요한 면책 조항</h2>
-<br>
+<div class="section-title">🍄 ⚠️ 중요한 면책 조항</div>
 <p><strong>이 기사는 교육 및 정보 참조를위한 것입니다.</strong></p>
-<br>
-<h3>버섯 소비 위험 경고</h3>
-<br>
-<p>1. <strong> 생명 안전 우선 </strong> : 야생 버섯을 식별하는 데 고유 한 위험이 있습니다.많은 독성 버섯은 식용 버섯과 매우 비슷해 보이며 실수로 그것들을 섭취하면 심각한 질병이나 사망으로 이어질 수 있습니다.</p>
-<br>
-<p>2. <strong> 전문 식별 필수 </strong> : 야생 버섯을 먹기 전에 100% 확인은 전문성 근자 또는 인증 된 버섯 식별 전문가가 수행해야합니다.사진, 텍스트 설명 및 개인 경험은 안전을 보장하기에 충분하지 않습니다.</p>
-<br>
-<p>3. <strong> 개인의 차이 </strong> : 인식 된 식용 버섯조차도 개인 헌법, 알레르기 반응, 소비 방법 또는 버섯 성장 환경과 같은 요인으로 인해 부작용을 일으킬 수 있습니다.처음으로 새로운 품종을 먹을 때 소량으로 시도하십시오.</p>
-<br>
-<p>4. <strong> 지리적 차이 </strong> : 버섯 종과 다른 지역의 독성에는 큰 차이가 있습니다.이 기사에 언급 된 정보는 해당 지역에 적용되지 않을 수 있습니다.현지 Mycology 전문가 및 권위있는 조직에 문의하십시오.</p>
-<br>
-<p>5. <strong> 전문적인 책임 </strong> : 저자와 출판사는이 기사의 정보를 사용하여 발생하는 직접 또는 간접적 인 손상, 질병 또는 손실에 대해 책임을지지 않습니다.</p>
-<br>
-<h3>안전 조언</h3>
-<br>
-<ul>
+<div class="subsection-title">📌 버섯 소비 위험 경고</div>
+<p class="article-text">1. <strong> 생명 안전 우선 </strong> : 야생 버섯을 식별하는 데 고유 한 위험이 있습니다.많은 독성 버섯은 식용 버섯과 매우 비슷해 보이며 실수로 그것들을 섭취하면 심각한 질병이나 사망으로 이어질 수 있습니다.</p>
+<p class="article-text">2. <strong> 전문 식별 필수 </strong> : 야생 버섯을 먹기 전에 100% 확인은 전문성 근자 또는 인증 된 버섯 식별 전문가가 수행해야합니다.사진, 텍스트 설명 및 개인 경험은 안전을 보장하기에 충분하지 않습니다.</p>
+<p class="article-text">3. <strong> 개인의 차이 </strong> : 인식 된 식용 버섯조차도 개인 헌법, 알레르기 반응, 소비 방법 또는 버섯 성장 환경과 같은 요인으로 인해 부작용을 일으킬 수 있습니다.처음으로 새로운 품종을 먹을 때 소량으로 시도하십시오.</p>
+<p class="article-text">4. <strong> 지리적 차이 </strong> : 버섯 종과 다른 지역의 독성에는 큰 차이가 있습니다.이 기사에 언급 된 정보는 해당 지역에 적용되지 않을 수 있습니다.현지 Mycology 전문가 및 권위있는 조직에 문의하십시오.</p>
+<p class="article-text">5. <strong> 전문적인 책임 </strong> : 저자와 출판사는이 기사의 정보를 사용하여 발생하는 직접 또는 간접적 인 손상, 질병 또는 손실에 대해 책임을지지 않습니다.</p>
+<div class="subsection-title">⚠️ 안전 조언</div>
+<div class="highlight"><ul>
 <li>al 공식적인 버섯 식별 훈련 과정에 참여합니다</li>
 <li>c 지역 근육학 협회 또는 버섯 클럽에 가입</li>
 <li>신뢰할 수있는 출처에서 경작 된 버섯을 구매합니다</li>
 <li>응급 의료 요구를 위해 버섯 샘플을 저장하십시오</li>
 <li>의심의 여지가 있다면 먹지 마세요</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 기억하십시오 : 궁금한 점이 있으면 안전한 옵션은 먹지 않는 것입니다.당신의 삶의 안전은 버섯 식사보다 훨씬 중요합니다.</strong></p>
-<br>
 <p>---</p>
         </div>
-    </div>
+
+</div>
 </body>
 </html>

@@ -1,630 +1,510 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DNA 바코드 기술 - Mushroom Science</title>
-    <meta name="description" content="DNA 바코드 기술">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>03 DNA 바코드 기술 - MushroomAiSnap</title>
+<link href="../../mobile-styles.css" rel="stylesheet"/>
+<link href="../../mobile-enhancement.css" rel="stylesheet"/>
+<link href="../../ecology-theme.css" rel="stylesheet"/>
+<style>
+        .hero-image img {
+            max-height: 200px;
+            width: 100%;
+            object-fit: cover;
         }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        .article-card img {
+            max-height: 120px;
+            width: 100%;
+            object-fit: cover;
+        }
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                        url('../../images/mushroom-science_03-dna-barcoding-molecular-identification.webp') center/cover;
+            position: relative;
+            margin-top: 0;
+        }
+        .article-meta {
+            margin-top: 15px !important;
+        }
+    
+        /* Mushroom Science Theme */
+        :root {
+            --primary-color: #9370DB;
+            --primary-dark: #4B0082;
+            --primary-light: #F8F4FF;
+            --accent-color: #BA55D3;
+        }
+        
+        /* Theme Color Overrides */
+        .content {
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+            border: 2px solid var(--primary-color);
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, var(--primary-light), var(--primary-light));
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .quote-text {
+            color: var(--primary-dark);
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+        }
+        
+        .subsection-title {
+            color: var(--primary-dark);
+            font-size: 1.4em;
+            font-weight: 600;
+            margin: 25px 0 15px 0;
+            padding-left: 10px;
+            border-left: 3px solid var(--accent-color);
+        }
+        
+        .tip-box {
+            border-left: 4px solid var(--primary-color);
+            background: var(--primary-light);
+        }
+        
+        .tip-title {
+            color: var(--primary-color);
+        }
+        
+        .highlight {
+            border-left: 4px solid var(--accent-color);
+            background: linear-gradient(135deg, #f1f8e9, var(--primary-light));
+        }
+        
+        .warning {
+            border-left: 4px solid #f44336;
+        }
+        
+        .equipment-item {
+            border: 1px solid var(--accent-color);
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+        }
+        
+        .equipment-item h4 {
+            color: var(--primary-color);
+        }
+        
+        .category {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .main-text {
+            font-size: 1.1em;
             line-height: 1.8;
             color: #333;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-
-        .article-title {
-            color: #98D8C8;
-            font-size: 2.5em;
-            margin-bottom: 30px;
-            margin-top: 0;
-            line-height: 1.3;
-            padding-top: 0;
-        }
-
-        .featured-image {
-            width: 100%;
-            height: auto;
-            aspect-ratio: 4 / 3;
-            object-fit: cover;
-            display: block;
-        }
-
-        .content {
-            padding: 50px;
-        }
-
-        .content h2 {
-            color: #98D8C8;
-            font-size: 2em;
-            margin-top: 40px;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid #98D8C8;
-        }
-
-        .content h3 {
-            color: #555;
-            font-size: 1.6em;
-            margin-top: 30px;
-            margin-bottom: 15px;
-        }
-
-        .content h4 {
-            color: #666;
-            font-size: 1.3em;
-            margin-top: 25px;
-            margin-bottom: 12px;
-        }
-
-        .content p {
-            margin-bottom: 20px;
-            font-size: 1.1em;
-            color: #444;
-        }
-
-        .content ul {
             margin: 20px 0;
-            padding-left: 30px;
-        }
-
-        .content li {
-            margin-bottom: 12px;
-            font-size: 1.05em;
-            color: #555;
-        }
-
-        .content strong {
-            color: #222;
-            font-weight: 600;
-        }
-
-        .back-link {
-            display: inline-block;
-            padding: 12px 25px;
-            background: linear-gradient(135deg, #98D8C8, #8B4513);
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            margin-bottom: 20px;
-            transition: transform 0.3s ease;
-            font-weight: 600;
-        }
-
-        .back-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .navigation {
-            padding: 30px 50px;
-            background: #f8f9fa;
-            border-top: 1px solid #e9ecef;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-btn {
-            padding: 10px 20px;
-            background: #98D8C8;
-            color: white;
-            text-decoration: none;
+            padding: 15px;
+            background: linear-gradient(135deg, #ffffff, #f9f9f9);
             border-radius: 8px;
-            transition: all 0.3s ease;
+            border-left: 3px solid var(--accent-color);
         }
-
-        .nav-btn:hover {
-            transform: translateX(5px);
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+        
+        .emoji {
+            font-size: 1.5em;
+            margin-left: 10px;
         }
-
-        .nav-btn.prev:hover {
-            transform: translateX(-5px);
+        
+        .read-time, .difficulty {
+            display: inline-block;
+            padding: 5px 15px;
+            margin: 5px 5px 5px 0;
+            border-radius: 20px;
+            font-size: 0.9em;
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            color: #1976d2;
+            font-weight: 500;
         }
-
-        @media (max-width: 768px) {
-            .content {
-                padding: 30px 25px;
-            }
-
-            .article-title {
-                font-size: 1.8em;
-            }
-
-            .featured-image {
-                height: 250px;
-            }
-
-            .navigation {
-                flex-direction: column;
-                gap: 15px;
-            }
+        
+        .difficulty {
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            color: #e65100;
+        }
+        
+        .article-text {
+            line-height: 1.8;
+            color: #444;
+            margin: 15px 0;
+            font-size: 1.05em;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <img src="../../images/mushroom-science_03-dna-barcoding-molecular-identification.webp" alt="DNA 바코드 기술" class="featured-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22900%22 height=%22400%22%3E%3Crect fill=%22%23D2691E%22 width=%22900%22 height=%22400%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22white%22 font-size=%2260%22%3E🍄%3C/text%3E%3C/svg%3E'">
+<div class="hero-image"></div>
+<div class="content">
+    <h1 class="title">03 DNA 바코드 기술</h1>
+    <div class="quote-box">
+        <div class="quote-text">Professional Mycology Guide</div>
+    </div>
+    
+<div class="article-meta">
+<span class="category">🔬 Mushroom Science</span>
+<span class="read-time">📖 15 minute read</span>
+<span class="difficulty">🔴 Advanced</span>
+</div>
 
-        <div class="content">
-            <h1 class="article-title">DNA 바코드 기술</h1>
-            <br>
-<h2>왜 DNA 식별이 Mycologics를 변화 시키는가</h2>
-<br>
-<p>핸드 헬드 DNA 시퀀서가있는 숲에서 버섯을 처음 식별했을 때, 나는 mycologic의 게임 규칙이 완전히 바뀌 었다는 것을 깨달았습니다.전통적으로, 우리는 캡의 컬러, 폴드 간격 및 고리의 형태 인 형태 학적 특성에 의존합니다.이제 DNA 바코드 기술을 통해 전문가의 정확성에 가까운 정확도를 달성하는 법을 배우는 것에 대해 진지한 애호가를 허용합니다.</p>
-<br>
-<p>DNA 바코드의 개념은 슈퍼마켓 상품 스캐닝과 유사합니다. 생물학적 DNA의 특정 영역에서 서열을 분석하여 종을 식별합니다.곰팡이의 경우 국제적으로 인정 된 표준 바코드 지역은 (내부 전사 스페이서)입니다.이 기술은 수십 년 동안 미화 학자들을 괴롭힌 문제를 해결할뿐만 아니라 현장 수집가, 요리사 및 연구원들에게 전례없는 정확한 도구를 제공합니다.</p>
-<br>
-<h2>DNA 바코드의 과학적 기초 : 왜 그 지역을 선택해야합니까?</h2>
-<br>
-<h3>지역의 기술적 세부 사항</h3>
-<br>
-<p>그것의 18S-5.8S-28S 리보솜 DNA 유전자 사이에 위치하고 있으며, 2 개의 스페이서 인 ITS1과 ITS2를 함유한다.곰팡이 표준 바코드 영역으로 선택하는 것은 네 가지 주요 장점을 기반으로합니다.</p>
-<br>
+
+            <div class="section-title">🧬 왜 DNA 식별이 Mycologics를 변화 시키는가</div>
+<div class="main-text">핸드 헬드 DNA 시퀀서가있는 숲에서 버섯을 처음 식별했을 때, 나는 mycologic의 게임 규칙이 완전히 바뀌 었다는 것을 깨달았습니다.전통적으로, 우리는 캡의 컬러, 폴드 간격 및 고리의 형태 인 형태 학적 특성에 의존합니다.이제 DNA 바코드 기술을 통해 전문가의 정확성에 가까운 정확도를 달성하는 법을 배우는 것에 대해 진지한 애호가를 허용합니다.<span class="emoji">🍄</span></div>
+<p class="article-text">DNA 바코드의 개념은 슈퍼마켓 상품 스캐닝과 유사합니다. 생물학적 DNA의 특정 영역에서 서열을 분석하여 종을 식별합니다.곰팡이의 경우 국제적으로 인정 된 표준 바코드 지역은 (내부 전사 스페이서)입니다.이 기술은 수십 년 동안 미화 학자들을 괴롭힌 문제를 해결할뿐만 아니라 현장 수집가, 요리사 및 연구원들에게 전례없는 정확한 도구를 제공합니다.</p>
+<div class="section-title">🧬 DNA 바코드의 과학적 기초 : 왜 그 지역을 선택해야합니까?</div>
+<div class="subsection-title">📌 지역의 기술적 세부 사항</div>
+<p class="article-text">그것의 18S-5.8S-28S 리보솜 DNA 유전자 사이에 위치하고 있으며, 2 개의 스페이서 인 ITS1과 ITS2를 함유한다.곰팡이 표준 바코드 영역으로 선택하는 것은 네 가지 주요 장점을 기반으로합니다.</p>
 <p><strong> 이상적인 변화 </strong> : 그 지역은 상대 종을 구별하기 위해 종들 사이에 충분히 큰 차이를 가지고 있지만, intraspecies 변이는 비교적 작으므로 동일한 종의 개별 서열이 기본적으로 일관되도록합니다.실제 데이터에 따르면 대부분의 곰팡이 집단에서 종마다 3-15%가 변하는 반면, intraspecies 변동은 일반적으로 1-2% 미만입니다.</p>
-<br>
 <p><strong> 일반 프라이머 </strong> : 연구원들은 각 종에 대한 특정 프라이머를 설계 할 필요없이 대다수의 곰팡이 집단의 영역을 증폭시킬 수있는 여러 쌍의 범용 프라이머 (예 : ITS1/ITS4, ITS5/ITS)를 개발했습니다.</p>
-<br>
 <p><strong> Domain Rich </strong> : 전 세계의 Mycologists는 Unite, Genbank 및 Bold Systems와 같은 수백만 개의 시퀀스를 포함하는 데이터베이스를 공동으로 구축하여 비교 및 ​​식별을위한 견고한 토대를 제공했습니다.</p>
-<br>
 <p><strong> 증폭력 </strong> : 그 영역의 길이는 중간 정도 (일반적으로 500-700베이스 쌍)를 가지며 PCR 증폭 성공률이 높으며, 이용 가능한 서열은 분해 된 샘플로부터도 얻을 수 있습니다.</p>
-<br>
-<h3>실제 사례 : 북미에서 Amanita 식별의 획기</h3>
-<br>
-<p>태평양 북서부에서는 수집가들이 DNA 바코드가 실제로 죽음의 캡에 가까운 새로운 종 (Amanita Phalloides)이라는 것을 밝혀 질 때까지 수년 동안 식용 종으로 흰색 아마니타를 사용했습니다.이 발견은 수많은 중독 사건을 방해했을 수 있습니다.연구자들은 서열 분석을 통해이 버섯이 알려진 식용 아마니 타와 8.7% 다르다는 것을 발견했으며, 이는 종 등급 차별 임계 값 (보통 3%)보다 훨씬 높았다.</p>
-<br>
-<h2>DNA 바코드에 대한 완전한 가이드</h2>
-<br>
-<h3>샘플 수집 : 현장에서 실험실까지</h3>
-<br>
+<div class="subsection-title">📌 실제 사례 : 북미에서 Amanita 식별의 획기</div>
+<p class="article-text">태평양 북서부에서는 수집가들이 DNA 바코드가 실제로 죽음의 캡에 가까운 새로운 종 (Amanita Phalloides)이라는 것을 밝혀 질 때까지 수년 동안 식용 종으로 흰색 아마니타를 사용했습니다.이 발견은 수많은 중독 사건을 방해했을 수 있습니다.연구자들은 서열 분석을 통해이 버섯이 알려진 식용 아마니 타와 8.7% 다르다는 것을 발견했으며, 이는 종 등급 차별 임계 값 (보통 3%)보다 훨씬 높았다.</p>
+<div class="section-title">🧬 DNA 바코드에 대한 완전한 가이드</div>
+<div class="subsection-title">📌 샘플 수집 : 현장에서 실험실까지</div>
 <p><strong> 수집 도구 준비 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>멸균 장갑 (교차 오염 방지)</li>
 <li>멸균 샘플링 백 또는 종이 백</li>
 <li>휴대용 냉장고 (DNA 무결성 유지)</li>
 <li>GPS 장비 (정확하게 획득 지점을 배치)</li>
 <li>디지털 카메라 (매크로 기능 기록)</li>
 <li>현장 기록부 (레코드 서식지, 호스트, 냄새 등)</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 전문가 추천 </strong> : STEM의 기초를 포함하여 수집 중에 완전한 과일 바디를 유지하십시오. 많은 주요 식별 기능이 여기에 있습니다.이상적으로, 여러 발달 단계의 개인이 수집되며, 완전히 성숙 할 때까지 우산을 열지 않습니다.</p>
-<br>
 <p><strong> 샘플 저장 방법 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>실리콘 젤 건조 방법 : 신선한 샘플을 밀봉 된 용기에 넣고 실리콘 입자와 혼합 한 다음 48 시간 이내에 완전히 건조시킵니다.</li>
-</ul>
+</ul></div>
 <p>-Cryo 저장소 : 장기 저장 용 -20 ° C, -80 ° C 최고</p>
-<ul>
+<div class="highlight"><ul>
 <li>에탄올 보존 : 95% 에탄올은 분자 연구에 적합하지만 형태 학적 특성을 파괴 할 것입니다.</li>
-</ul>
-<br>
-<h3>DNA 추출 : 고품질 샘플의 핵심 단계</h3>
-<br>
+</ul></div>
+<div class="subsection-title">🧬 DNA 추출 : 고품질 샘플의 핵심 단계</div>
 <p><strong> 기본 가정 실험실 프로그램 </strong> :</p>
-<p>1. 건조 된 박테리아 캡 조직 50-100mg을 섭취하여 액체 질소로 미세 분말로 분쇄하십시오.</p>
+<p class="article-text">1. 건조 된 박테리아 캡 조직 50-100mg을 섭취하여 액체 질소로 미세 분말로 분쇄하십시오.</p>
 <p>2. CTAB 추출 완충액을 추가하고 65 ° C에서 30 분 동안 목욕을합니다.</p>
 <p>3. 단백질을 제거하기위한 클로로포름-이소 아밀 알코올 추출</p>
 <p>4. 이소 프로판올은 DNA를 침전시킨다</p>
 <p>5. 70% 에탄올로 세척하고 TE 완충액에 용해</p>
-<br>
 <p><strong> 상용 키트 선택 </strong> : 초보자의 경우 Qiagen Dneasy Plant Mini Kit 또는 MP Biomedicals FastDNA 스핀 키트를 사용하는 것이 좋습니다.</p>
-<br>
 <p><strong> 일반적인 오류 회피 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>오래된 샘플 또는 저하 된 샘플을 사용하지 마십시오</li>
 <li>외인성 DNA 오염 방지 (워크 벤치, 도구 멸균)</li>
 <li>과도하게 말하지 말고 DNA 파손을 유발하십시오</li>
-</ul>
-<br>
-<h3>PCR 증폭 및 시퀀싱 : 핵심 기술 단계</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 PCR 증폭 및 시퀀싱 : 핵심 기술 단계</div>
 <p><strong> 표준 증폭 체계 </strong> :</p>
-<p>-프라이머 선택 : ITS1F (5'-CTTTGGTCATTTAGAGGAAGTAA-3 ') 및 ITS4 (5'-TCCTCCGCTTATTGATGC-3')</p>
-<ul>
+<p class="article-text">-프라이머 선택 : ITS1F (5'-CTTTGGTCATTTAGAGGAAGTAA-3 ') 및 ITS4 (5'-TCCTCCGCTTATTGATGC-3')</p>
+<div class="highlight"><ul>
 <li>반응 시스템 : 약 10-50 ng 템플릿 DNA를 함유 한 25 μl 총 부피</li>
 <li>사이클 조건 : 4 분 동안 94 ° C 사전 저작물; 35 사이클 (94 ° C 30 초, 52 ° C 30 초, 72 ° C 45 초); 72 ° C 최종 연장 7 분</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 시퀀싱 선택 </strong> :</p>
 <p>-Sanger 시퀀싱 : 단일 샘플, 비용은 약 $ 10-15, 처리 시간 1-3 일</p>
-<ul>
+<div class="highlight"><ul>
 <li>고 처리량 시퀀싱 : 환경 샘플 또는 배치 식별에 적합한 비용은 처리량에 따라 다릅니다.</li>
-</ul>
-<br>
-<h3>시퀀스 분석 및 식별 : 데이터 해석 기술</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 시퀀스 분석 및 식별 : 데이터 해석 기술</div>
 <p><strong> 기본 프로세스 </strong> :</p>
 <p>1. 시퀀스 품질 관리 : 저품질 영역을 제거하고 Q 값> 30</p>
 <p>2. Blast Search : NCBI 또는 Unite 데이터베이스의 비교</p>
 <p>3. 유사성 평가 :> 97-99% 유사성은 일반적으로 동일한 종을 나타냅니다.</p>
 <p>4. 계통 발생 학적 분석 : 진화 트리를 구성하여 식별 결과 확인</p>
-<br>
 <p><strong> 실용 기술 </strong> : 가장 높은 일치 결과를 맹목적으로 믿지 마십시오.다수의 높은 매칭 시퀀스를 점검하여 기원과 주석 품질을 확인하십시오.Unite 데이터베이스에서 "종 가설"숫자를 갖는 시퀀스가 ​​선호되며, 이는 전문적으로 주석이 달성되고 신뢰성이 높습니다.</p>
-<br>
-<h2>기본 데이터베이스 및 리소스 플랫폼</h2>
-<br>
-<h3>전문 데이터베이스 비교</h3>
-<br>
+<div class="section-title">📚 기본 데이터베이스 및 리소스 플랫폼</div>
+<div class="subsection-title">🛠️ 전문 데이터베이스 비교</div>
 <p><strong> Unite Database </strong> (https://unite.ut.ee)</p>
-<ul>
+<div class="highlight"><ul>
 <li>곰팡이의 시퀀스를 위해 특별히 설계되었습니다</li>
 <li>오류 식별을 줄이기 위해 종 가정 (SH) 시스템을 제공합니다.</li>
 <li>기본 식별 리소스로 권장됩니다</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> GenBank </strong> (https://www.ncbi.nlm.nih.gov)</p>
-<ul>
+<div class="highlight"><ul>
 <li>모든 생물학적 서열을 포함하는 포괄적 인 데이터베이스</li>
 <li>데이터 볼륨은 크지 만 품질은 다르므로주의해서 사용해야합니다.</li>
 <li>폭발 도구와 함께 최상의 효과</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 굵은 시스템 </strong> (http://www.boldsystems.org)</p>
-<ul>
+<div class="highlight"><ul>
 <li>DNA 바코드 용으로 특별히 설계되었습니다</li>
 <li>형태 학적 및 분자 데이터를 통합합니다</li>
 <li>초보자에게 적합한 사용자 친화적 인 인터페이스</li>
-</ul>
-<br>
-<h3>데이터베이스 사용 정책</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 데이터베이스 사용 정책</div>
 <p><strong> 멀티-다타베이스 검증 </strong> : 중요한 인증은 적어도 두 개의 독립적 인 데이터베이스에서 확인해야합니다.Unite and Bold가 동일한 결과를 제공하면 신뢰성이 크게 향상됩니다.</p>
-<br>
 <p><strong> 시퀀스 품질 평가 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>시퀀스 길이를 확인하십시오 (전체 영역이> 500bp 여야 함)</li>
 <li>제출자의 신뢰성 확인 (연구 조직 vs 검증 된 사용자)</li>
 <li>관련 게시 된 문헌 지원을보십시오</li>
-</ul>
-<br>
-<h2>그 너머 : 다른 분자 마커의 적용</h2>
-<br>
-<h3>보조 식별 마킹 시스템</h3>
-<br>
+</ul></div>
+<div class="section-title">🍄 그 너머 : 다른 분자 마커의 적용</div>
+<div class="subsection-title">📌 보조 식별 마킹 시스템</div>
 <p><strong> LSU (큰 서브 유닛 리보솜 RNA) </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>레벨 이상의 분류 단위의 분류에 적합</li>
 <li>진화율은 느리고 먼 관계 연구에 적합합니다.</li>
 <li>특히 효모 및 미세균 식별에 사용됩니다</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> TEF1-α (번역 연장 계수) </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>난초 난초와 같은 특정 그룹에서 더 높은 종 수준의 해상도</li>
 <li>구별 할 수없는 가까운 친척의 문제를 해결</li>
 <li>그룹 별 프라이머가 필요합니다</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> RPB2 (RNA 폴리머 라제의 두 번째로 큰 서브 유닛) </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>계통 발생 학적 연구에 선호되는 마커 중 하나</li>
 <li>그것과 다른 진화 신호를 제공합니다</li>
 <li>일반적으로 분류 시스템 개정에 사용됩니다</li>
-</ul>
-<br>
-<h3>다중 유전자 관절 분석</h3>
-<br>
-<p>어려운 식별을 위해 여러 유전자 마커를 결합하면 정확도가 크게 향상됩니다.표준 다중 유전자 분석에는 ITS+LSU+RPB2+TEF1-α가 포함되며,이 조합은 상대 종의 구별에서 거의 100%의 성공률을 갖는다.</p>
-<br>
-<h2>실제 응용 프로그램 시나리오</h2>
-<br>
-<h3>식용 버섯의 안전 식별</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 다중 유전자 관절 분석</div>
+<p class="article-text">어려운 식별을 위해 여러 유전자 마커를 결합하면 정확도가 크게 향상됩니다.표준 다중 유전자 분석에는 ITS+LSU+RPB2+TEF1-α가 포함되며,이 조합은 상대 종의 구별에서 거의 100%의 성공률을 갖는다.</p>
+<div class="section-title">🍄 실제 응용 프로그램 시나리오</div>
+<div class="subsection-title">⚠️ 식용 버섯의 안전 식별</div>
 <p><strong> 사례 연구 : 북미 모렐 단지 </strong></p>
-<p>전통적으로 북미 수집가들은 모든 검은 색 모렐을 같은 종으로 간주합니다.DNA 바코드는 이것이 실제로 12 종의 복합체이며, 그 중 일부는 분포 범위가 제한되어 있으며 수집 응력은 국소 멸종으로 이어질 수 있음을 보여줍니다.책임 있고 전문적인 수집가는 이제 지속 가능한 수집을 보장하기 위해 고 부가가치 종의 DNA 검증을 수행합니다.</p>
-<br>
+<p class="article-text">전통적으로 북미 수집가들은 모든 검은 색 모렐을 같은 종으로 간주합니다.DNA 바코드는 이것이 실제로 12 종의 복합체이며, 그 중 일부는 분포 범위가 제한되어 있으며 수집 응력은 국소 멸종으로 이어질 수 있음을 보여줍니다.책임 있고 전문적인 수집가는 이제 지속 가능한 수집을 보장하기 위해 고 부가가치 종의 DNA 검증을 수행합니다.</p>
 <p><strong> 고객 버섯 제품 진정성 검증 </strong></p>
-<p>실험실 테스트에 따르면 시장에 나와있는 "야생 수집 된"버섯의 30%가 실제로 품종이라는 것을 발견했습니다.DNA 바코드를 사용하여 공급 업체의 진술의 진위를 확인할 수 있습니다.특히 Matsutake, Morel 및 Chanterelles와 같은 고 부가가치 종에 적합합니다.</p>
-<br>
-<h3>환경 DNA 모니터링</h3>
-<br>
+<p class="article-text">실험실 테스트에 따르면 시장에 나와있는 "야생 수집 된"버섯의 30%가 실제로 품종이라는 것을 발견했습니다.DNA 바코드를 사용하여 공급 업체의 진술의 진위를 확인할 수 있습니다.특히 Matsutake, Morel 및 Chanterelles와 같은 고 부가가치 종에 적합합니다.</p>
+<div class="subsection-title">🧬 환경 DNA 모니터링</div>
 <p><strong> 혁신적인 기술 </strong> : 토양, 물 또는 공기에서 총 DNA를 추출하고 과일 개체를 배양하거나 관찰하지 않고 고 처리량 시퀀싱을 통해 곰팡이 커뮤니티 구성을 분석하십시오.</p>
-<br>
 <p><strong> 실제 응용 프로그램 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>멸종 위기 종의 분포의 변화 모니터링</li>
 <li>침습성 곰팡이 종의 조기 검출</li>
 <li>산림 생태계 건강 평가</li>
 <li>곰팡이 지역 사회에 대한 기후 변화의 영향 추적</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 실외 운영 안내서 </strong> :</p>
 <p>1. 100-200g의 지표 토양 수집 (잎 층 제거)</p>
 <p>2. 멸균 도구를 사용하여 교차 오염을 피하십시오</p>
 <p>3. 즉시 냉장 또는 스토리지 버퍼를 추가하십시오</p>
 <p>4. 정확한 GPS 좌표 및 환경 매개 변수를 기록하십시오</p>
-<br>
-<h3>법의학 mycologics의 적용</h3>
-<br>
-<p>유독 한 버섯 중독의 경우, DNA 분석은 구토, 요리 잔류 물 및 소화 시스템의 종을 식별하여 의학적 개입에 대한 주요 정보를 제공 할 수 있습니다.2019 년 캘리포니아 중독 사건에서 Amanita Phalloides는 DNA 바코드를 통해 위의 내용물에서 확인되었으며, 의사는 실험적인 해독제를 사용하여 환자의 생명을 성공적으로 구할 수 있도록 안내되었습니다.</p>
-<br>
-<h2>휴대용 DNA 기술 : 현장에서 실시간 식별</h2>
-<br>
-<h3>기술 혁신</h3>
-<br>
+<div class="subsection-title">📌 법의학 mycologics의 적용</div>
+<p class="article-text">유독 한 버섯 중독의 경우, DNA 분석은 구토, 요리 잔류 물 및 소화 시스템의 종을 식별하여 의학적 개입에 대한 주요 정보를 제공 할 수 있습니다.2019 년 캘리포니아 중독 사건에서 Amanita Phalloides는 DNA 바코드를 통해 위의 내용물에서 확인되었으며, 의사는 실험적인 해독제를 사용하여 환자의 생명을 성공적으로 구할 수 있도록 안내되었습니다.</p>
+<div class="section-title">🧬 휴대용 DNA 기술 : 현장에서 실시간 식별</div>
+<div class="subsection-title">📌 기술 혁신</div>
 <p><strong> 옥스포드 나노 포어 미니언 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>팜 시퀀서, USB를 통해 노트북에 연결되었습니다</li>
 <li>실시간 시퀀싱, 데이터 수집은 샘플 준비 후 몇 분 안에 시작됩니다.</li>
 <li>실외 워크 스테이션에 적합합니다</li>
 <li>비용 : 스타터 키트 약 $ 1,000, 시퀀싱 당 비용은 계속 감소합니다.</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 빠른 PCR 장치 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>휴대용 PCR 기기, 배터리 전원</li>
 <li>30 분 이내에 확장을 완료하십시오</li>
 <li>스마트 폰 애플리케이션과 연결하여 운영 프로세스를 단순화하십시오</li>
-</ul>
-<br>
-<h3>필드 워크 플로</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 필드 워크 플로</div>
 <p>1. 현장 샘플 수집 및 기록</p>
 <p>2. 빠른 DNA 추출 (15 분)</p>
 <p>3. 휴대용 PCR 증폭 (30 분)</p>
 <p>4. 미니언 시퀀싱 및 실시간 분석 (1-4 시간)</p>
 <p>5. 위성 네트워크를 통한 액세스 데이터베이스 비교</p>
-<br>
 <p><strong> 실제 경험 </strong> : 몬태나 외곽 지역의 곰팡이 조사 에서이 시스템을 사용하여 3 시간 안에 12 개의 샘플의 현장 식별을 완료했으며 전통적인 방법은 몇 주가 걸렸습니다.</p>
-<br>
-<h2>비용 분석 및 접근성</h2>
-<br>
-<h3>현재 수수료 구조</h3>
-<br>
+<div class="section-title">🍄 비용 분석 및 접근성</div>
+<div class="subsection-title">📌 현재 수수료 구조</div>
 <p><strong> 비즈니스 서비스 </strong> (샘플 보내기) :</p>
-<ul>
+<div class="highlight"><ul>
 <li>단일 샘플 Sanger 시퀀싱 : $ 15-40</li>
 <li>샘플 준비 + 시퀀싱 : $ 50-100</li>
-</ul>
+</ul></div>
 <p>-고 처리량 시퀀싱 (샘플 당) : $ 10-25 (배치)</p>
-<br>
 <p><strong> 셀프 서비스 계획 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>실험실 장비에 대한 초기 투자 : $ 5,000-10,000 (PCR 기기, 전기 영동 장비 등 포함)</li>
 <li>반응 당 소모품 비용 : $ 5-15</li>
 <li>대학 협력 : 많은 연구 기관이 시민 과학 샘플을 받아들이고 비용이 크게 낮습니다.</li>
-</ul>
-<br>
-<h3>비용 하락 추세</h3>
-<br>
-<p>DNA 시퀀싱 비용은 지난 10 년 동안 2008 년 메가베이스 당 0.10 달러에서 2023 년에 0.0001 달러로 1,000 배 감소했습니다.이 추세는 계속되며 개별 곰팡이 식별 비용은 향후 5 년간 시간당 5 달러 이하로 떨어질 것으로 예상됩니다.</p>
-<br>
-<h2>시민 과학 참여 가이드</h2>
-<br>
-<h3>DNA 바코드 프로젝트에 참여하는 방법</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 비용 하락 추세</div>
+<p class="article-text">DNA 시퀀싱 비용은 지난 10 년 동안 2008 년 메가베이스 당 0.10 달러에서 2023 년에 0.0001 달러로 1,000 배 감소했습니다.이 추세는 계속되며 개별 곰팡이 식별 비용은 향후 5 년간 시간당 5 달러 이하로 떨어질 것으로 예상됩니다.</p>
+<div class="section-title">🔬 시민 과학 참여 가이드</div>
+<div class="subsection-title">🧬 DNA 바코드 프로젝트에 참여하는 방법</div>
 <p><strong> INTERALIST 플랫폼 </strong> :</p>
 <p>1. 명확한 버섯 사진을 업로드하십시오</p>
 <p>2. 자세한 수집 정보를 기록하십시오</p>
 <p>3. 예비 공동체 평가를 얻으십시오</p>
 <p>4. DNA 분석을 제출하려면 고품질 관찰을 선택하십시오</p>
-<br>
 <p><strong> 전문 프로젝트 협력 </strong> :</p>
 <p>-NSF 자금 지원“북미 곰팡이 다양성 프로젝트”</p>
-<ul>
+<div class="highlight"><ul>
 <li>다양한 장소의 곰팡이 사회에 대한 특별 연구</li>
 <li>대학 연구 팀의 시민 과학 프로그램</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 샘플 제출 계약 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>연구원에게 연락하여 관심사와 요구를 확인하십시오</li>
 <li>샘플 수집 및 보존 가이드를 따르십시오</li>
-</ul>
+</ul></div>
 <p>-자세한 현장 데이터 및 고품질 사진을 제공하십시오</p>
-<ul>
+<div class="highlight"><ul>
 <li>데이터 공유 및 출판에 동의합니다</li>
-</ul>
-<br>
-<h3>성공적인 사례 : 북미 버섯지도 프로젝트</h3>
-<br>
-<p>시민 과학자들의 공동 노력을 통해이 프로젝트는 지난 5 년간 5,000 개 이상의 지리 회의 샘플을 수집하고 23 개의 새로운 곰팡이 종을 발견하고 23 속의 분류 경계를 수정했으며 기후 변화가 곰팡이 현상에 미치는 영향에 대한 주요 데이터를 제공했습니다.</p>
-<br>
-<h2>한계 및 도전</h2>
-<br>
-<h3>기술적 한계</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 성공적인 사례 : 북미 버섯지도 프로젝트</div>
+<p class="article-text">시민 과학자들의 공동 노력을 통해이 프로젝트는 지난 5 년간 5,000 개 이상의 지리 회의 샘플을 수집하고 23 개의 새로운 곰팡이 종을 발견하고 23 속의 분류 경계를 수정했으며 기후 변화가 곰팡이 현상에 미치는 영향에 대한 주요 데이터를 제공했습니다.</p>
+<div class="section-title">🍄 한계 및 도전</div>
+<div class="subsection-title">📌 기술적 한계</div>
 <p><strong> 불완전한 데이터베이스 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>곰팡이 종의 10-15%만이 참조 서열을 가지고있는 것으로 추정됩니다.</li>
 <li>심각하게 저조한 열대 및 지하 곰팡이</li>
 <li>오류 주석 시퀀스는 데이터베이스를 오염시킵니다</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 유형 내 돌연변이 문제 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>일부 그룹에서는 변형이 크다 (예 : Ectomycorrhizal 곰팡이).</li>
 <li>단일 바코드는 모든 종을 구별 할 수 없습니다</li>
 <li>추가 분자 마커 확인이 필요합니다</li>
-</ul>
-<br>
-<h3>실용적인 도전</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 실용적인 도전</div>
 <p><strong> 자원 요구 사항 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>초기 기술 임계 값이 높습니다</li>
 <li>분자 생물학에 대한 기본 지식이 필요합니다</li>
 <li>샘플 오염의 위험은 항상 존재합니다</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 식별 트랩 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>블라인드 트러스트 데이터베이스 최고 일치</li>
 <li>형태와 생태 데이터를 무시하십시오</li>
 <li>부정적인 결과의 과잉 설명</li>
-</ul>
-<br>
-<h2>미래 개발 방향</h2>
-<br>
-<h3>기술 트렌드</h3>
-<br>
+</ul></div>
+<div class="section-title">🍄 미래 개발 방향</div>
+<div class="subsection-title">📌 기술 트렌드</div>
 <p><strong> 전체 게놈 시퀀싱 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>비용은 계속 감소하고 더 ​​많은 참조 게놈</li>
 <li>바코드를 훨씬 뛰어 넘는 많은 정보를 제공합니다.</li>
 <li>복잡한 분류 문제를 해결하십시오</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 인공 지능 통합 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>기계 학습 자동 시퀀스 분석 및 품질 관리</li>
 <li>이미지 인식 + DNA 데이터 공동 식별</li>
 <li>예측 분포 모델링</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 현장 기술 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>스마트 폰 연결 휴대용 시퀀싱 장치</li>
 <li>실시간 데이터베이스 액세스 및 비교</li>
 <li>증강 현실 인터페이스 가이드 컬렉션</li>
-</ul>
-<br>
-<h3>표준화 및 통합</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 표준화 및 통합</div>
 <p><strong> 글로벌 이니셔티브 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>통합 바코드 방법 및 데이터 표준</li>
 <li>참조 시퀀스 품질 인증 시스템</li>
 <li>형태 및 분자 데이터 통합 ​​플랫폼</li>
-</ul>
-<br>
-<h2>실제 작동 : 초보자부터 능숙하게</h2>
-<br>
-<h3>학습 경로 제안</h3>
-<br>
+</ul></div>
+<div class="section-title">🍄 실제 작동 : 초보자부터 능숙하게</div>
+<div class="subsection-title">📌 학습 경로 제안</div>
 <p><strong> 1 단계 : 기본 </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>온라인 분자 생물학 과정 (Coursera, EDX)</li>
 <li>지역 곰팡이 협회 워크샵</li>
 <li>기본 실험실 안전 교육</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 2 단계 : 기술 개발 </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>DNA 바코드 교육 워크숍에 참여하십시오</li>
 <li>자원 봉사자들은 연구 프로젝트에 참여합니다</li>
 <li>홈 실험실에서 기본 기능을 설정하십시오</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 3 단계 : 전문 응용 프로그램 </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>개인 연구 프로젝트를 수행하십시오</li>
 <li>시민 과학적 발견을 출판하십시오</li>
 <li>새로운 세대의 곰팡이 애호가를 안내하십시오</li>
-</ul>
-<br>
-<h3>필수 리소스 목록</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 필수 리소스 목록</div>
 <p><strong> 연구 자료 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>"곰팡이 분자 시스템"(교과서)</li>
 <li>"DNA 바코드 : 원리 및 응용 프로그램"</li>
-</ul>
+</ul></div>
 <p>-이 자연주의 곰팡이 식별 안내서</p>
-<br>
 <p><strong> 실험실 장비 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>미세 원심 분리기 ($ 200-500)</li>
-</ul>
+</ul></div>
 <p>-PCR 기기 ($ 1,000-3,000)</p>
-<ul>
+<div class="highlight"><ul>
 <li>전기 영동 장비 ($ 200-500)</li>
-</ul>
+</ul></div>
 <p>-Pipepter Set ($ 300-600)</p>
-<br>
 <p><strong> 소모품 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>DNA 추출 키트</li>
-</ul>
+</ul></div>
 <p>-PCR 프라이머 및 마스터 믹스</p>
-<ul>
+<div class="highlight"><ul>
 <li>아가 로스 및 전기 영동 완충액</li>
 <li>멸균 소모품 (튜브, 흡입 헤드 등)</li>
-</ul>
-<br>
-<h2>윤리 및 책임</h2>
-<br>
-<h3>수집 윤리</h3>
-<br>
+</ul></div>
+<div class="section-title">🍄 윤리 및 책임</div>
+<div class="subsection-title">📌 수집 윤리</div>
 <p><strong> 지속 가능한 연습 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>지역 수집 규정 및 한도를 준수합니다</li>
 <li>희귀하고 멸종 위기에 처한 종을 피하십시오</li>
 <li>컬렉션 볼륨이 커뮤니티의 1/3을 초과하지 않습니다.</li>
 <li>비정상적인 발견을 기록하고보고합니다</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> 데이터 공유 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>고품질 시퀀스를 공개 데이터베이스에 제출하십시오</li>
 <li>수집 정보 및 식별의 정확한 라벨링</li>
 <li>원주민의 지식과 권리를 존중하십시오</li>
-</ul>
-<br>
-<h3>과학과 성실성</h3>
-<br>
+</ul></div>
+<div class="subsection-title">🔬 과학과 성실성</div>
 <p><strong> 정확한 식별 </strong> :</p>
-<ul>
+<div class="highlight"><ul>
 <li>발견의 중요성에 대한 과장이 없습니다</li>
 <li>식별의 불확실성을 인식하십시오</li>
 <li>피어 검증 어려운 샘플을 찾으십시오</li>
 <li>잘못된 데이터 및 식별을 수정하십시오</li>
-</ul>
-<br>
-<h2>통합 방법 : 현대 균학의 미래</h2>
-<br>
-<p>DNA 바코드는 전통적인 균학을 대체하는 것이 아니라 그들과 강한 시너지 효과를 형성하는 것입니다. 가장 신뢰할 수있는 식별은 여러 증거 통합에서 비롯됩니다.</p>
-<br>
+</ul></div>
+<div class="section-title">🍄 통합 방법 : 현대 균학의 미래</div>
+<p class="article-text">DNA 바코드는 전통적인 균학을 대체하는 것이 아니라 그들과 강한 시너지 효과를 형성하는 것입니다. 가장 신뢰할 수있는 식별은 여러 증거 통합에서 비롯됩니다.</p>
 <p><strong> 포괄적 인 평가 계약 </strong> :</p>
 <p>1. 현장 매크로 관찰 및 기록</p>
 <p>2. 마이크로 기능 검증</p>
 <p>3. 생태 및 분산 데이터 평가</p>
 <p>4. DNA 바코드 확인</p>
 <p>5. 필요한 경우 화학 분석을 지원합니다</p>
-<br>
-<p>** 전문가들은 제안 : 가장 진보 된 DNA 기술을 사용하더라도 형태 학적 식별 기술을 키우는 것을 무시하지 마십시오.최고의 마이 클리어 전문가는 실험실 데이터와 현장 관찰 경험을 원활하게 결합 할 수있는 사람들입니다.</p>
-<br>
-<h2>액션 가이드 : 지금 시작하십시오</h2>
-<br>
+<p class="article-text">** 전문가들은 제안 : 가장 진보 된 DNA 기술을 사용하더라도 형태 학적 식별 기술을 키우는 것을 무시하지 마십시오.최고의 마이 클리어 전문가는 실험실 데이터와 현장 관찰 경험을 원활하게 결합 할 수있는 사람들입니다.</p>
+<div class="section-title">📖 액션 가이드 : 지금 시작하십시오</div>
 <p><strong> 일주일의 액션 아이템 </strong> :</p>
 <p>1. 3 개의 일반적인 현지 버섯을 선택하고 자세한 사진을 찍습니다.</p>
 <p>2. Inaturalist에서 계정을 만들고 관찰을 업로드하십시오.</p>
 <p>3. 지역 곰팡이 사회의 DNA 바코드 프로젝트 연구</p>
 <p>4. 기본 곰팡이 분자 생물학에 관한 책을 주문하십시오</p>
-<br>
 <p><strong> 이번 달 목표 </strong> :</p>
 <p>1. 온라인 또는 오프라인 DNA 바코드 세미나에 참여하십시오</p>
 <p>2. 샘플 수집 및 보존 시스템을 설정하십시오</p>
 <p>3. 지역 대학 Mycology Research Group에 문의하십시오</p>
 <p>4. 가정용 실험실 예산 및 계획을 준비하십시오</p>
-<br>
 <p><strong> 올해의 비전 </strong> :</p>
 <p>1. 최소 50 개의 토착 종 DNA 바코드를 완료하십시오</p>
 <p>2. 시민의 과학적 발견에 관한 보고서를 발표하십시오</p>
 <p>3. 개인 참조 시퀀스 라이브러리를 만듭니다</p>
 <p>4. DNA 바코드 기술을 배우도록 최소한 한 사람을 안내합니다.</p>
-<br>
-<p>DNA 바코드 기술은 곰팡이 식별을 위해 민주화되어 신분을 진지하게 받아들이는 모든 사람에게 전문 실험실로 한 번 제한됩니다.이 기술은 빠르게 발전하고 있으며 비용은 계속 감소하고 접근성이 증가하고 있습니다.지금은 깊이 배우고 DNA 바코드를 mycology 연습에 통합하기에 완벽한시기입니다.</p>
-<br>
-<p>목표는 자연적인 관찰의 즐거움을 기술로 대체하는 것이 아니라 곰팡이 왕국과의 관계를 심화시키고 식별 신뢰를 향상 시키며 글로벌 곰팡이 지식 시스템에 기여하는 것입니다.신중하게 수집, 신중하게 기록 및 정확하게 식별 된 모든 샘플은 과학에 대한 귀중한 기여입니다.</p>
+<p class="article-text">DNA 바코드 기술은 곰팡이 식별을 위해 민주화되어 신분을 진지하게 받아들이는 모든 사람에게 전문 실험실로 한 번 제한됩니다.이 기술은 빠르게 발전하고 있으며 비용은 계속 감소하고 접근성이 증가하고 있습니다.지금은 깊이 배우고 DNA 바코드를 mycology 연습에 통합하기에 완벽한시기입니다.</p>
+<p class="article-text">목표는 자연적인 관찰의 즐거움을 기술로 대체하는 것이 아니라 곰팡이 왕국과의 관계를 심화시키고 식별 신뢰를 향상 시키며 글로벌 곰팡이 지식 시스템에 기여하는 것입니다.신중하게 수집, 신중하게 기록 및 정확하게 식별 된 모든 샘플은 과학에 대한 귀중한 기여입니다.</p>
         </div>
-    </div>
+
+</div>
 </body>
 </html>

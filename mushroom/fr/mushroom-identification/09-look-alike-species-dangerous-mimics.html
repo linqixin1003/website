@@ -1,466 +1,390 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Les jumeaux mortels du monde des champignons - Mushroom Identification</title>
-    <meta name="description" content="Les jumeaux mortels du monde des champignons">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>09 Les jumeaux mortels du monde des champignons - MushroomAiSnap</title>
+<link href="../../mobile-styles.css" rel="stylesheet"/>
+<link href="../../mobile-enhancement.css" rel="stylesheet"/>
+<link href="../../ecology-theme.css" rel="stylesheet"/>
+<style>
+        .hero-image img {
+            max-height: 200px;
+            width: 100%;
+            object-fit: cover;
         }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        .article-card img {
+            max-height: 120px;
+            width: 100%;
+            object-fit: cover;
+        }
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                        url('../../images/mushroom-identification_09-look-alike-species-dangerous-mimics.webp') center/cover;
+            position: relative;
+            margin-top: 0;
+        }
+        .article-meta {
+            margin-top: 15px !important;
+        }
+    
+        /* Mushroom Identification Theme */
+        :root {
+            --primary-color: #4169E1;
+            --primary-dark: #191970;
+            --primary-light: #F0F8FF;
+            --accent-color: #6495ED;
+        }
+        
+        /* Theme Color Overrides */
+        .content {
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+            border: 2px solid var(--primary-color);
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, var(--primary-light), var(--primary-light));
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .quote-text {
+            color: var(--primary-dark);
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+        }
+        
+        .subsection-title {
+            color: var(--primary-dark);
+            font-size: 1.4em;
+            font-weight: 600;
+            margin: 25px 0 15px 0;
+            padding-left: 10px;
+            border-left: 3px solid var(--accent-color);
+        }
+        
+        .tip-box {
+            border-left: 4px solid var(--primary-color);
+            background: var(--primary-light);
+        }
+        
+        .tip-title {
+            color: var(--primary-color);
+        }
+        
+        .highlight {
+            border-left: 4px solid var(--accent-color);
+            background: linear-gradient(135deg, #f1f8e9, var(--primary-light));
+        }
+        
+        .warning {
+            border-left: 4px solid #f44336;
+        }
+        
+        .equipment-item {
+            border: 1px solid var(--accent-color);
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+        }
+        
+        .equipment-item h4 {
+            color: var(--primary-color);
+        }
+        
+        .category {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .main-text {
+            font-size: 1.1em;
             line-height: 1.8;
             color: #333;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-
-        .article-title {
-            color: #45B7D1;
-            font-size: 2.5em;
-            margin-bottom: 30px;
-            margin-top: 0;
-            line-height: 1.3;
-            padding-top: 0;
-        }
-
-        .featured-image {
-            width: 100%;
-            height: auto;
-            aspect-ratio: 4 / 3;
-            object-fit: cover;
-            display: block;
-        }
-
-        .content {
-            padding: 50px;
-        }
-
-        .content h2 {
-            color: #45B7D1;
-            font-size: 2em;
-            margin-top: 40px;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid #45B7D1;
-        }
-
-        .content h3 {
-            color: #555;
-            font-size: 1.6em;
-            margin-top: 30px;
-            margin-bottom: 15px;
-        }
-
-        .content h4 {
-            color: #666;
-            font-size: 1.3em;
-            margin-top: 25px;
-            margin-bottom: 12px;
-        }
-
-        .content p {
-            margin-bottom: 20px;
-            font-size: 1.1em;
-            color: #444;
-        }
-
-        .content ul {
             margin: 20px 0;
-            padding-left: 30px;
-        }
-
-        .content li {
-            margin-bottom: 12px;
-            font-size: 1.05em;
-            color: #555;
-        }
-
-        .content strong {
-            color: #222;
-            font-weight: 600;
-        }
-
-        .back-link {
-            display: inline-block;
-            padding: 12px 25px;
-            background: linear-gradient(135deg, #45B7D1, #8B4513);
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            margin-bottom: 20px;
-            transition: transform 0.3s ease;
-            font-weight: 600;
-        }
-
-        .back-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .navigation {
-            padding: 30px 50px;
-            background: #f8f9fa;
-            border-top: 1px solid #e9ecef;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-btn {
-            padding: 10px 20px;
-            background: #45B7D1;
-            color: white;
-            text-decoration: none;
+            padding: 15px;
+            background: linear-gradient(135deg, #ffffff, #f9f9f9);
             border-radius: 8px;
-            transition: all 0.3s ease;
+            border-left: 3px solid var(--accent-color);
         }
-
-        .nav-btn:hover {
-            transform: translateX(5px);
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+        
+        .emoji {
+            font-size: 1.5em;
+            margin-left: 10px;
         }
-
-        .nav-btn.prev:hover {
-            transform: translateX(-5px);
+        
+        .read-time, .difficulty {
+            display: inline-block;
+            padding: 5px 15px;
+            margin: 5px 5px 5px 0;
+            border-radius: 20px;
+            font-size: 0.9em;
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            color: #1976d2;
+            font-weight: 500;
         }
-
-        @media (max-width: 768px) {
-            .content {
-                padding: 30px 25px;
-            }
-
-            .article-title {
-                font-size: 1.8em;
-            }
-
-            .featured-image {
-                height: 250px;
-            }
-
-            .navigation {
-                flex-direction: column;
-                gap: 15px;
-            }
+        
+        .difficulty {
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            color: #e65100;
+        }
+        
+        .article-text {
+            line-height: 1.8;
+            color: #444;
+            margin: 15px 0;
+            font-size: 1.05em;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <img src="../../images/mushroom-identification_09-look-alike-species-dangerous-mimics.webp" alt="Les jumeaux mortels du monde des champignons" class="featured-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22900%22 height=%22400%22%3E%3Crect fill=%22%23D2691E%22 width=%22900%22 height=%22400%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22white%22 font-size=%2260%22%3E🍄%3C/text%3E%3C/svg%3E'">
+<div class="hero-image"></div>
+<div class="content">
+    <h1 class="title">09 Les jumeaux mortels du monde des champignons</h1>
+    <div class="quote-box">
+        <div class="quote-text">Professional Mycology Guide</div>
+    </div>
+    
+<div class="article-meta">
+<span class="category">🔍 Mushroom Identification</span>
+<span class="read-time">📖 20 minute read</span>
+<span class="difficulty">🔴 Advanced</span>
+</div>
 
-        <div class="content">
-            <h1 class="article-title">Les jumeaux mortels du monde des champignons</h1>
-            <br>
-<p>Dans le monde de la collecte des champignons, l'apparence peut être un mensonge mortel.Chaque année, les collectionneurs de champignons expérimentés paient un prix élevé pour une mauvaise évaluation, et certains perdent même la vie.En tant que biologiste et expert de la collection de terrain qui participe à des recherches sur des champignons depuis 25 ans, j'ai été témoin de trop de tragédies évitables.Cet article vous fournira un système d'identification complet qui vous aidera en toute confiance à distinguer les champignons comestibles de leurs imitateurs mortels dans la nature.</p>
-<br>
-<h2>Pourquoi le monde des champignons est-il plein de tromperie?</h2>
-<br>
+
+            <br><div class="main-text">Dans le monde de la collecte des champignons, l'apparence peut être un mensonge mortel.Chaque année, les collectionneurs de champignons expérimentés paient un prix élevé pour une mauvaise évaluation, et certains perdent même la vie.En tant que biologiste et expert de la collection de terrain qui participe à des recherches sur des champignons depuis 25 ans, j'ai été témoin de trop de tragédies évitables.Cet article vous fournira un système d'identification complet qui vous aidera en toute confiance à distinguer les champignons comestibles de leurs imitateurs mortels dans la nature.<span class="emoji">🍄</span></div>
+<div class="section-title">🎯 Pourquoi le monde des champignons est-il plein de tromperie?</div>
 <p><strong> Stratégies évolutives et mécanismes de survie </strong></p>
-<br>
-<p>La similitude des champignons n'est pas accidentelle.Dans une perspective évolutive, cela implique de multiples mécanismes.L'évolution convergente a permis à différentes espèces de développer une morphologie similaire dans des niches écologiques similaires.Par exemple, l'apparence du parapluie est en fait l'une des structures de transmission des spores les plus efficaces et est donc évoluée indépendamment par une variété de champignons non pertinents.</p>
-<br>
-<p>Plus de complexité est que de nombreux champignons que nous pensions autrefois étaient des espèces uniques contiennent en fait de multiples «espèces cachées».La technologie moderne de l'analyse de l'ADN a renversé les systèmes de classification traditionnels.Par exemple, les «capuchons de mort» en Amérique du Nord peuvent en fait contenir plusieurs populations avec des différences génétiques significatives, qui se ressemblent presque, mais peuvent avoir une toxicité légèrement différente.</p>
-<br>
+<p class="article-text">La similitude des champignons n'est pas accidentelle.Dans une perspective évolutive, cela implique de multiples mécanismes.L'évolution convergente a permis à différentes espèces de développer une morphologie similaire dans des niches écologiques similaires.Par exemple, l'apparence du parapluie est en fait l'une des structures de transmission des spores les plus efficaces et est donc évoluée indépendamment par une variété de champignons non pertinents.</p>
+<p class="article-text">Plus de complexité est que de nombreux champignons que nous pensions autrefois étaient des espèces uniques contiennent en fait de multiples «espèces cachées».La technologie moderne de l'analyse de l'ADN a renversé les systèmes de classification traditionnels.Par exemple, les «capuchons de mort» en Amérique du Nord peuvent en fait contenir plusieurs populations avec des différences génétiques significatives, qui se ressemblent presque, mais peuvent avoir une toxicité légèrement différente.</p>
 <p><strong> Limites de la perception humaine </strong></p>
-<br>
-<p>Nos cerveaux sont utilisés pour accélérer la reconnaissance des modèles, ce qui est souvent une compétence de survie efficace dans la nature.Mais dans l'identification des champignons, cette capacité peut devenir une faiblesse fatale.Nous avons tendance à nous concentrer sur des caractéristiques remarquables - couleur, taille, forme globale - et ignorer ces caractéristiques d'identification minuscules mais critiques.</p>
-<br>
-<p>Lors de la excursion, j'avais mené, au moins trois collectionneurs qui prétendaient être "dix ans d'expérience" ont presque mangé l'ange de destruction parce qu'ils n'ont pas vérifié la base des champignons.L'attention humaine est limitée et l'identification des champignons nécessite un examen systématique et complet.</p>
-<br>
-<h2>Twins mortels: Guide d'identification et techniques pratiques</h2>
-<br>
-<h3>La différence entre la vie et la mort entre le chapeau de mort et les champignons de paille comestibles</h3>
-<br>
+<p class="article-text">Nos cerveaux sont utilisés pour accélérer la reconnaissance des modèles, ce qui est souvent une compétence de survie efficace dans la nature.Mais dans l'identification des champignons, cette capacité peut devenir une faiblesse fatale.Nous avons tendance à nous concentrer sur des caractéristiques remarquables - couleur, taille, forme globale - et ignorer ces caractéristiques d'identification minuscules mais critiques.</p>
+<p class="article-text">Lors de la excursion, j'avais mené, au moins trois collectionneurs qui prétendaient être "dix ans d'expérience" ont presque mangé l'ange de destruction parce qu'ils n'ont pas vérifié la base des champignons.L'attention humaine est limitée et l'identification des champignons nécessite un examen systématique et complet.</p>
+<div class="section-title">📖 Twins mortels: Guide d'identification et techniques pratiques</div>
+<div class="subsection-title">📌 La différence entre la vie et la mort entre le chapeau de mort et les champignons de paille comestibles</div>
 <p><strong> Cas pratique: </strong></p>
-<p>En 2018, une famille d'immigrants vietnamiens en Californie a collecté des champignons de paille qui, selon eux, étaient courants dans leur ville natale.En conséquence, il s'agissait de plafonds de mort, entraînant la mort de deux personnes et la blessure hépatique de trois personnes a nécessité une transplantation.L'analyse mycologique médico-légale a montré que s'ils examinaient les marques de spores, la tragédie pourrait être complètement évitée.</p>
-<br>
+<p class="article-text">En 2018, une famille d'immigrants vietnamiens en Californie a collecté des champignons de paille qui, selon eux, étaient courants dans leur ville natale.En conséquence, il s'agissait de plafonds de mort, entraînant la mort de deux personnes et la blessure hépatique de trois personnes a nécessité une transplantation.L'analyse mycologique médico-légale a montré que s'ils examinaient les marques de spores, la tragédie pourrait être complètement évitée.</p>
 <p><strong> Caractéristiques clés du chapeau de la mort (Amanita Phalloides): </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Couleurs variables des capuchons: du jaune-vert au vert olive, et peut même être blanc ou marron</li>
 <li>Le Tuck est toujours blanc pur, gratuit (non connecté au Tuck)</li>
 <li>La tige a des anneaux de bactéries blanches évidentes et durables</li>
 <li>La caractéristique la plus critique: un plateau kystique blanc évident enroulé autour de la base du champignon</li>
 <li>odeur: pas d'odeur évidente ou légèrement sucrée lorsqu'elle est jeune, similaire au parfum rose</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Étapes pratiques pour l'identification: </strong></p>
-<br>
-<p>1. <strong> Test d'impression des spores (méthode la plus fiable) </strong></p>
-<ul>
+<p class="article-text">1. <strong> Test d'impression des spores (méthode la plus fiable) </strong></p>
+<div class="highlight"><ul>
 <li>Retirez le capuchon et placez-le sur du papier (ou verre) à moitié blanc et demi-noir, couvrez la tasse et laissez-la reposer pendant 2 à 6 heures</li>
 <li>Capeur de mort: Impression de spores blancs purs</li>
 <li>Champignon de paille: impression de spores roses</li>
 <li>Conseil d'expert: transportez du papier spore avec vous et vous pouvez le tester dans la nature</li>
-</ul>
-<br>
-<p>2. <strong> Technologie d'inspection de base </strong></p>
-<ul>
+</ul></div>
+<p class="article-text">2. <strong> Technologie d'inspection de base </strong></p>
+<div class="highlight"><ul>
 <li>Creusez les champignons intacts et ne les coupez pas au sol</li>
 <li>Utilisez vos doigts pour brosser doucement le sol et part autour de la base</li>
 <li>Le support bactérien du capuchon de mort peut être fragile et fragile et doit être manipulé avec prudence</li>
-</ul>
-<br>
+</ul></div>
 <p>3. <strong> Neuf analyse </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Le capuchon de la mort forme une relation mycorhizienne avec les chênes et les châtaigniers, et pousse toujours sous l'arbre</li>
 <li>Les champignons de paille poussent généralement sur des tas de paille ou du compost et ne comptent pas sur des arbres spécifiques</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Règles de sécurité: </strong></p>
-<p>Si vous trouvez des champignons avec des anneaux, des creux et des plis blancs, considérez-les immédiatement comme potentiellement mortels, sauf si vous êtes mycologue professionnel.</p>
-<br>
-<h3>Angel Of Destruction: la prétention parfaite du tueur blanc</h3>
-<br>
+<p class="article-text">Si vous trouvez des champignons avec des anneaux, des creux et des plis blancs, considérez-les immédiatement comme potentiellement mortels, sauf si vous êtes mycologue professionnel.</p>
+<div class="subsection-title">📌 Angel Of Destruction: la prétention parfaite du tueur blanc</div>
 <p><strong> Cas pratique: </strong></p>
-<p>Un chasseur de champignons avec 15 ans d'expérience a collecté des champignons blancs au Montana ce qu'il considérait comme un ponyball comestible.Il n'a pas vérifié la base car les bouffes de puffle n'ont généralement pas de tiges évidentes.Le résultat a été l'ange de la destruction, qui a eu la chance de survivre mais a connu trois semaines d'échec et de traitement d'organes.</p>
-<br>
+<p class="article-text">Un chasseur de champignons avec 15 ans d'expérience a collecté des champignons blancs au Montana ce qu'il considérait comme un ponyball comestible.Il n'a pas vérifié la base car les bouffes de puffle n'ont généralement pas de tiges évidentes.Le résultat a été l'ange de la destruction, qui a eu la chance de survivre mais a connu trois semaines d'échec et de traitement d'organes.</p>
 <p><strong> Points d'identification de l'ange de destruction (Amanita virosa et espèces apparentées): </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Aspect blanc complet, pur et inoffensif</li>
 <li>contient une amanitotoxine similaire aux bouchons de mort, extrêmement toxique</li>
 <li>Le creux des champignons peut être complètement recouvert de feuilles ou de sols à feuilles caduques et doit être soigneusement fouillé</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Guide pratique pour l'identification: </strong></p>
-<br>
 <p><strong> Différence entre Ponyboy: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Champignons séparés: le bouffant à l'intérieur est uniforme, blanc massif ou devient jaune et rose à mesure qu'il mûrit; L'ange de destruction s'est différencié en capuchons, plis et structures de tiges</li>
 <li>Le Puffball deviendra de la poudre de spores bruns à l'intérieur quand il mûrira; L'ange de la destruction garde les tissus blancs</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Différence par rapport au genre Agaricus: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Tracts stériles espèces de champignons - c'est la différence clé</li>
 <li>Le genre des champignons est passé du rose au brun chocolat à mesure qu'il mûrit</li>
 <li>Impression de spores: le champignon est brun chocolat; L'ange destruction est blanc</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Différence entre les champignons d'huîtres: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Les champignons d'huîtres sont généralement cultivés latéralement ou sans tiges typiques, poussant sur des arbres morts</li>
 <li>Anneau stérile aux champignons à huîtres, plateau stérile</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Recommandation d'outils d'experts: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Transportez une petite pelle extérieure pour une fouille complète des champignons</li>
 <li>Observez les détails de la base à l'aide d'une loupe à main (10x)</li>
 <li>Préparer du papier spore de différentes couleurs (blanc, noir, gris) en fonction des différentes couleurs de spores</li>
-</ul>
-<br>
-<h3>Morels et faux morilles: printemps délicieux et dangereux</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 Morels et faux morilles: printemps délicieux et dangereux</div>
 <p><strong> Cas pratique: </strong></p>
-<p>Un chef professionnel a collecté des morilles seuls en Oregon et a fini par mélanger une petite quantité de faux morilles.Cinq clients qu'il a servis ont été hospitalisés pour une intoxication alimentaire sévère, et son restaurant a également fait face à une action en justice.</p>
-<br>
+<p class="article-text">Un chef professionnel a collecté des morilles seuls en Oregon et a fini par mélanger une petite quantité de faux morilles.Cinq clients qu'il a servis ont été hospitalisés pour une intoxication alimentaire sévère, et son restaurant a également fait face à une action en justice.</p>
 <p><strong> Caractéristiques de Morchella spp.: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Couverture en nid d'abeille unique avec une disposition régulière de fosses</li>
 <li>Le bord du capuchon est complètement connecté à la tige</li>
 <li>L'intérieur est complètement creux, du haut du capuchon à la base de la tige</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Danger de faux morel (Gyromitra esculenta): </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>contient de la méthylhydrazine, qui est l'ingrédient de carburant de fusée</li>
 <li>La toxicité varie d'une personne à l'autre, certaines personnes peuvent faire preuve de tolérance, mais le risque est extrêmement élevé</li>
 <li>La cuisson ne peut que réduire partiellement la toxicité et ne peut pas être complètement supprimée</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Étapes pratiques pour l'identification: </strong></p>
-<br>
-<p>1. <strong> Méthode d'inspection structurelle </strong></p>
-<ul>
+<p class="article-text">1. <strong> Méthode d'inspection structurelle </strong></p>
+<div class="highlight"><ul>
 <li>De vraies morilles: le capuchon ressemble à une ruche régulière, la crête est solide</li>
 <li>Fake Morel: le capuchon est irrégulier dans les plis en forme de cerveau, comme les noyaux de noix</li>
-</ul>
-<br>
-<p>2. <strong> Analyse du point de connexion </strong></p>
-<ul>
+</ul></div>
+<p class="article-text">2. <strong> Analyse du point de connexion </strong></p>
+<div class="highlight"><ul>
 <li>de vrais morilles: le bord du capuchon est complètement fusionné avec le haut de la tige</li>
 <li>Fake Morel: la casquette "se trouve" sur la tige comme un chapeau, et la connexion n'est pas complète</li>
-</ul>
-<br>
+</ul></div>
 <p>3. <strong> Inspection interne </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Champignons coupés longitudinaux: les vrais morilles sont complètement creux; Les fausses morilles ont des substances en coton dans les tiges</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Contrat de traitement de la sécurité: </strong></p>
-<p>Même pour les morilles réelles confirmées, il est recommandé d'essayer d'abord en petites quantités, car certains individus peuvent avoir des réactions sensibles aux espèces de champignons même comestibles.</p>
-<br>
-<h3>Les différences subtiles entre Chanterelle et les imitateurs</h3>
-<br>
+<p class="article-text">Même pour les morilles réelles confirmées, il est recommandé d'essayer d'abord en petites quantités, car certains individus peuvent avoir des réactions sensibles aux espèces de champignons même comestibles.</p>
+<div class="subsection-title">📌 Les différences subtiles entre Chanterelle et les imitateurs</div>
 <p><strong> Le charme unique de Cantharellus Cibarius: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Aspect jaune doré et parfum d'abricot unique</li>
 <li>plis pseudo-fungus épais et bifurqué</li>
 <li>texture solide et légèrement fibreuse</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Identification de Hygropsis Aurantiaca: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Il y a de vrais plis bactéries, minces et tranchants, et pas faciles à diviser</li>
 <li>La couleur est orange et le centre est généralement plus foncé</li>
 <li>Texture douce, manquant de fermeté des chanterelles</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> La beauté fatale de Jack Lantern Mushroom (Omphalotus spp.): </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Dans l'obscurité totale, les plis bactériens des spécimens frais émettent un léger feu vert</li>
 <li>grandir toujours en grappes sur le bois, avec des bases connectées</li>
 <li>provoque une intoxication gastro-intestinale sévère</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Compétences pratiques d'identification: </strong></p>
-<br>
-<p>1. <strong> Test de pliage des bactéries </strong></p>
-<ul>
+<p class="article-text">1. <strong> Test de pliage des bactéries </strong></p>
+<div class="highlight"><ul>
 <li>Essayez doucement d'isoler les plis avec la pointe du couteau: les plis pseudo-fungaux de chanterelles sont difficiles à séparer; Les plis funo-fungaux de chanterelles sont faciles à séparer</li>
 <li>Frottez les plis des bactéries avec vos doigts: la pseudo-bactérie des chanterelles ressemble à de la cire; La pseudo-bactérie se sent plus fragile</li>
-</ul>
-<br>
-<p>2. <strong> Observation en mode de croissance </strong></p>
-<ul>
+</ul></div>
+<p class="article-text">2. <strong> Observation en mode de croissance </strong></p>
+<div class="highlight"><ul>
 <li>Les chanterelles poussent généralement des groupes simples ou petits dans le sol</li>
 <li>Les champignons Jack Lantern poussent toujours sur le bois</li>
-</ul>
-<br>
+</ul></div>
 <p>3. <strong> Identification de l'odeur </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Les chanterelles ont un arôme de fruits distinct</li>
 <li>Les imitateurs n'ont généralement pas d'odeur évidente ou n'ont que une saveur régulière des champignons</li>
-</ul>
-<br>
-<h3>Les pièges et l'identification de Boletus</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 Les pièges et l'identification de Boletus</div>
 <p><strong> Caractéristiques générales de la bolet comestible: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>La plupart des boletus sont comestibles, à des exceptions importantes</li>
 <li>Habituellement, il y a des couches de pores spongieux au lieu de plis bactériens</li>
 <li>De nombreux types de couleur de couleur lorsqu'ils sont blessés</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Identification du type de danger: </strong></p>
-<br>
 <p><strong> Rubroboletus Satanas: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Le capuchon est blanc grisâtre à la couleur olive</li>
 <li>Les orifices sont rouge vif, presque rouge sang</li>
 <li>La tige est épaisse et a des motifs de maille rouge</li>
 <li>La surface coupée peut changer légèrement en bleu ou ne pas changer de couleur</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Tylopilus Fallenus: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>non toxique mais extrêmement amer, un petit morceau peut ruiner toute la pot de soupe</li>
 <li>Les orifices sont roses lorsqu'ils sont matures</li>
 <li>La tige a un réticule sombre</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Conseils de test de dégustation de sécurité: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Ce test n'est effectué que sur des champignons qui ont été initialement confirmés comme en sécurité</li>
 <li>Prenez un petit morceau de bord de stérilisation et mâchez pendant 5 à 10 secondes mais n'avalez pas</li>
 <li>Crachez immédiatement et rincez votre bouche s'il y a un goût amer, épicé ou anormal.</li>
 <li>Ce test n'est utilisé que pour confirmer les espèces comestibles et ne peut pas être utilisée pour exclure les espèces toxiques</li>
-</ul>
-<br>
-<h2>Méthode d'identification du système: stratégie de confirmation des fonctionnalités multiples</h2>
-<br>
+</ul></div>
+<div class="section-title">🍄 Méthode d'identification du système: stratégie de confirmation des fonctionnalités multiples</div>
 <p><strong> Méthode en huit étapes d'identification sur le terrain: </strong></p>
-<br>
-<p>1. <strong> Analyse de l'environnement de croissance </strong></p>
-<ul>
+<p class="article-text">1. <strong> Analyse de l'environnement de croissance </strong></p>
+<div class="highlight"><ul>
 <li>Enregistrez les types d'arbres autour (bois dur, conifère)</li>
 <li>Observer la matrice de croissance (sol, bois, excréments)</li>
 <li>Faites attention à la méthode de croissance des champignons (célibataire, groupe, en grappe)</li>
-</ul>
-<br>
+</ul></div>
 <p>2. <strong> Collection complète </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Utilisez une spatule pour creuser complètement pour vous assurer que la structure de base n'est pas endommagée</li>
 <li>Gardez les spécimens de différentes étapes de maturité</li>
-</ul>
-<br>
-<p>3. <strong> Enregistrement des fonctionnalités macro </strong></p>
-<ul>
+</ul></div>
+<p class="article-text">3. <strong> Enregistrement des fonctionnalités macro </strong></p>
+<div class="highlight"><ul>
 <li>Forme de capuchon, couleur, caractéristiques de surface (visqueux, sec, écailles)</li>
 <li>Couleur, densité et méthode d'attachement des plis / orifices bactériens</li>
 <li>Caractéristiques des tiges (s'il y a des anneaux, des réticules, des échelles)</li>
 <li>Caractéristiques de base (qu'il y ait des creux ou des extensions de type racine)</li>
-</ul>
-<br>
-<p>4. <strong> Test de fonctionnalités fraîches </strong></p>
-<ul>
+</ul></div>
+<p class="article-text">4. <strong> Test de fonctionnalités fraîches </strong></p>
+<div class="highlight"><ul>
 <li>Réaction de changement de couleur: coupez ou extrudez pour observer les changements de couleur</li>
 <li>Vérification du lait: s'il y a la sécrétion de lait et comment la couleur change</li>
 <li>Record d'odeur: l'odeur des surfaces fraîches coupées</li>
-</ul>
-<br>
-<p>5. <strong> Production d'impression de spores </strong></p>
-<ul>
+</ul></div>
+<p class="article-text">5. <strong> Production d'impression de spores </strong></p>
+<div class="highlight"><ul>
 <li>C'est l'une des fonctionnalités d'identification les plus fiables</li>
 <li>La trousse d'outils d'impression de spores portables peut être utilisée dans la nature</li>
 <li>Enregistrez la couleur, la densité et la texture des impressions de spores</li>
-</ul>
-<br>
-<p>6. <strong> Vérification microscopique des fonctionnalités (avancé) </strong></p>
-<ul>
+</ul></div>
+<p class="article-text">6. <strong> Vérification microscopique des fonctionnalités (avancé) </strong></p>
+<div class="highlight"><ul>
 <li>Observez la forme et la taille des spores à l'aide d'un microscope portable</li>
 <li>L'identification professionnelle peut nécessiter une analyse de microstructure plus complexe</li>
-</ul>
-<br>
-<p>7. <strong> Validation croisée multi-ressources </strong></p>
-<ul>
+</ul></div>
+<p class="article-text">7. <strong> Validation croisée multi-ressources </strong></p>
+<div class="highlight"><ul>
 <li>Utiliser au moins trois ressources d'identification indépendantes</li>
 <li>Reportez-vous au dernier guide des sociétés de champignons locaux</li>
-</ul>
-<br>
-<p>8. <strong> Évaluation finale de la sécurité </strong></p>
-<ul>
+</ul></div>
+<p class="article-text">8. <strong> Évaluation finale de la sécurité </strong></p>
+<div class="highlight"><ul>
 <li>Tous les traits indiquent-ils régulièrement la même espèce?</li>
 <li>Toutes les espèces similaires dangereuses possibles ont-elles été exclues?</li>
 <li>Si vous avez une incertitude, suivez le principe de "Déclamer si vous doutez"</li>
-</ul>
-<br>
-<h2>Pièges psychologiques et biais cognitifs</h2>
-<br>
+</ul></div>
+<div class="section-title">🍄 Pièges psychologiques et biais cognitifs</div>
 <p><strong> Danger d'erreur de confirmation: </strong></p>
-<p>Une fois que nous pensons que nous avons trouvé une sorte de champignon comestible, le cerveau recherche inconsciemment des preuves soutenant cette conclusion tout en ignorant les informations contradictoires.</p>
-<br>
+<p class="article-text">Une fois que nous pensons que nous avons trouvé une sorte de champignon comestible, le cerveau recherche inconsciemment des preuves soutenant cette conclusion tout en ignorant les informations contradictoires.</p>
 <p><strong>Solution: </strong></p>
-<p>Utilisez la méthode "Identification aveugle" - Laissez vos compagnons supprimer votre jugement initial et vérifiez à nouveau chaque fonctionnalité de zéro, comme la première fois que vous voyez ce champignon.</p>
-<br>
+<p class="article-text">Utilisez la méthode "Identification aveugle" - Laissez vos compagnons supprimer votre jugement initial et vérifiez à nouveau chaque fonctionnalité de zéro, comme la première fois que vous voyez ce champignon.</p>
 <p><strong> Les conséquences de la confiance excessive: </strong></p>
-<p>Après plusieurs identifications réussies, le collectionneur est sujet à développer une confiance en soi dangereuse.Un mycologue que je connaissais a été hospitalisé après 30 ans de collecte sûre.</p>
-<br>
+<p class="article-text">Après plusieurs identifications réussies, le collectionneur est sujet à développer une confiance en soi dangereuse.Un mycologue que je connaissais a été hospitalisé après 30 ans de collecte sûre.</p>
 <p><strong> L'impact du stress des pairs: </strong></p>
-<p>Quand quelqu'un de l'équipe prétend que "j'ai mangé cela plusieurs fois, pas de problème", beaucoup de gens choisissent d'obéir même s'ils ont des doutes.</p>
-<br>
+<p class="article-text">Quand quelqu'un de l'équipe prétend que "j'ai mangé cela plusieurs fois, pas de problème", beaucoup de gens choisissent d'obéir même s'ils ont des doutes.</p>
 <p><strong> Stratégies d'adaptation: </strong></p>
-<p>Adhérer au principe de la responsabilité personnelle - chacun doit personnellement confirmer l'identité de chaque champignon et n'accepter pas les garanties verbales des autres.</p>
-<br>
-<h2>Recommandations d'équipement et de ressources</h2>
-<br>
+<p class="article-text">Adhérer au principe de la responsabilité personnelle - chacun doit personnellement confirmer l'identité de chaque champignon et n'accepter pas les garanties verbales des autres.</p>
+<div class="section-title">🍄 Recommandations d'équipement et de ressources</div>
 <p><strong> Équipement extérieur de base: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Un couteau avec une lame tranchante</li>
 <li>Petite pelle d'excavation ou couteau de boue</li>
 <li>Papier spore de différentes couleurs (blanc, noir, gris)</li>
@@ -468,115 +392,84 @@
 <li>sacs en papier ou papier ciré pour les spécimens d'emballage</li>
 <li>Emplacement de collecte des enregistrements du système de positionnement global</li>
 <li>Les caméras numériques enregistrent un nouveau statut</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Sélection des ressources de référence: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Un guide régional des champignons avec au moins deux auteurs différents</li>
 <li>Utilisez plusieurs applications d'identification des champignons, mais uniquement en tant qu'aide</li>
 <li>Rejoignez la société de champignons locale pour participer à des sorties et des ateliers sur le terrain</li>
 <li>Abonnez-vous à la dernière newsletter de recherche mycologique</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Outils avancés: </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Microscope portable (400x)</li>
 <li>Kit chimique (pour des tests de réaction en couleur spécifiques)</li>
 <li>boîte à outils d'échantillonnage d'ADN (pour l'identification moléculaire des espèces difficiles)</li>
-</ul>
-<br>
-<h2>Analyse et leçons de cas pratiques</h2>
-<br>
+</ul></div>
+<div class="section-title">🍄 Analyse et leçons de cas pratiques</div>
 <p><strong> Cas 1: transfert dangereux des traditions culturelles </strong></p>
-<p>Un immigrant de Chine a collecté des champignons similaires aux champignons comestibles dans sa ville natale du Pacifique Nord-Ouest.Il ne s'est pas rendu compte que le plafond de mort avait été introduit dans la région depuis l'Europe et était extrêmement similaire à l'espèce qu'il connaissait.En conséquence, toute la famille a été empoisonnée et une personne est décédée.</p>
-<br>
+<p class="article-text">Un immigrant de Chine a collecté des champignons similaires aux champignons comestibles dans sa ville natale du Pacifique Nord-Ouest.Il ne s'est pas rendu compte que le plafond de mort avait été introduit dans la région depuis l'Europe et était extrêmement similaire à l'espèce qu'il connaissait.En conséquence, toute la famille a été empoisonnée et une personne est décédée.</p>
 <p><strong> Leçon: </strong> Lorsque vous déménagez dans un nouvel environnement, les champignons locaux doivent être réappropriés et ne peuvent pas compter sur la connaissance de leur pays d'origine.</p>
-<br>
 <p><strong> Cas 2: Les experts font également des erreurs </strong></p>
-<p>Un professeur mycologique avec 20 ans d'expérience a collecté par erreur les faux morilles comme de vrais morilles dans un cours sur le terrain.Heureusement, l'anomalie a été découverte par les étudiants avant de cuisiner.</p>
-<br>
+<p class="article-text">Un professeur mycologique avec 20 ans d'expérience a collecté par erreur les faux morilles comme de vrais morilles dans un cours sur le terrain.Heureusement, l'anomalie a été découverte par les étudiants avant de cuisiner.</p>
 <p><strong> Leçon: </strong> Même si vous avez une expérience riche, vous devez systématiquement vérifier chaque fonctionnalité et ne pouvez pas être jugée intuitivement.</p>
-<br>
 <p><strong> Cas 3: Danger partiellement correct </strong></p>
-<p>Un collecteur a correctement identifié les chanterelles mais a ignoré la petite quantité de champignons Jack Lantern y mélangés.Bien qu'elle ne soit pas mortelle, elle a provoqué une grave inconfort gastro-intestinal dans toute la famille et est hospitalisée.</p>
-<br>
+<p class="article-text">Un collecteur a correctement identifié les chanterelles mais a ignoré la petite quantité de champignons Jack Lantern y mélangés.Bien qu'elle ne soit pas mortelle, elle a provoqué une grave inconfort gastro-intestinal dans toute la famille et est hospitalisée.</p>
 <p><strong> Leçon: </strong> Chaque champignon doit être vérifié un par un pour chaque collection, et vous ne pouvez pas détendre votre vigilance car la plupart d'entre eux sont corrects.</p>
-<br>
-<h2>La règle d'or pour la collection sûre</h2>
-<br>
+<div class="section-title">🍄 La règle d'or pour la collection sûre</div>
 <p>1. <strong> Règles absolues </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Ne comptez jamais sur une seule fonction d'identification</li>
 <li>Découvrez toujours la base de contrôle des champignons intacts</li>
 <li>Faites toujours des imprimés de spores pour des champignons incertains</li>
 <li>Ne jamais manger des champignons crus (de nombreux types comestibles sont toxiques pour manger cru)</li>
-</ul>
-<br>
-<p>2. <strong> Suggestions de chemin d'apprentissage </strong></p>
-<ul>
+</ul></div>
+<p class="article-text">2. <strong> Suggestions de chemin d'apprentissage </strong></p>
+<div class="highlight"><ul>
 <li>Année 1: seulement 5 «champignons débutants» absolument sûrs sont collectés</li>
 <li>Année 2: Ajouter 3-5 nouveaux types sous la direction d'experts</li>
 <li>années 3 à 5: élargir progressivement les connaissances, mais seules quelques nouvelles espèces sont ajoutées chaque année</li>
 <li>Formation continue : suivez des cours de remise à niveau réguliers même si vous êtes expérimenté</li>
-</ul>
-<br>
-<p>3. <strong>Préparation aux situations d'urgence</strong></p>
-<ul>
+</ul></div>
+<p class="article-text">3. <strong>Préparation aux situations d'urgence</strong></p>
+<div class="highlight"><ul>
 <li>Ayez avec vous les coordonnées d'urgence</li>
 <li>Informez les autres du lieu de collecte et de l'heure de retour prévue</li>
 <li>Conserver des échantillons de chaque espèce collectés au cas où l'empoisonnement nécessiterait une identification</li>
 <li>Connaître les coordonnées du centre antipoison le plus proche</li>
-</ul>
-<br>
-<h2>Conclusion : La sagesse est plus importante que le courage</h2>
-<br>
-<p>Dans le monde de la cueillette de champignons, le plus dangereux n’est souvent pas le champignon lui-même, mais l’excès de confiance du collectionneur.Après 25 ans de recherche et de travail sur le terrain, je reste impressionné et méfiant face à chaque identification.</p>
-<br>
+</ul></div>
+<div class="section-title">🍄 Conclusion : La sagesse est plus importante que le courage</div>
+<p class="article-text">Dans le monde de la cueillette de champignons, le plus dangereux n’est souvent pas le champignon lui-même, mais l’excès de confiance du collectionneur.Après 25 ans de recherche et de travail sur le terrain, je reste impressionné et méfiant face à chaque identification.</p>
 <p>Rappelez-vous ces principes :</p>
-<ul>
+<div class="highlight"><ul>
 <li>La confirmation systématique de plusieurs caractéristiques est la seule méthode fiable</li>
 <li>"En cas de doute, laissez-le" n'est pas de la timidité, mais un signe de professionnalisme</li>
 <li>Chaque identification réussie mérite d'être célébrée, mais chaque abandon en cas d'incertitude est encore plus digne de respect.</li>
-</ul>
-<br>
-<p>Le monde des champignons est plein de surprises et de plats délicieux, mais aussi de dangers cachés.Grâce à la connaissance, au système et à une prudence continue, nous pouvons profiter en toute sécurité de ce don de la nature.</p>
-<br>
+</ul></div>
+<p class="article-text">Le monde des champignons est plein de surprises et de plats délicieux, mais aussi de dangers cachés.Grâce à la connaissance, au système et à une prudence continue, nous pouvons profiter en toute sécurité de ce don de la nature.</p>
 <p><strong>Conseil final :</strong> Aucun repas de champignons ne vaut la peine de risquer votre vie.En cas de doute, jetez-le.Manquer une délicieuse opportunité reviendra toujours, mais manger accidentellement un champignon mortel ne vous donnera peut-être pas une seconde chance.</p>
-<br>
-<p>Que chacune de vos collections de terrain soit remplie de découvertes et de l'assurance d'un retour sain et sauf.</p>
-<br>
+<p class="article-text">Que chacune de vos collections de terrain soit remplie de découvertes et de l'assurance d'un retour sain et sauf.</p>
 <p>---</p>
-<br>
-<h2>⚠️ AVIS DE NON-RESPONSABILITÉ IMPORTANT</h2>
-<br>
+<div class="section-title">🍄 ⚠️ AVIS DE NON-RESPONSABILITÉ IMPORTANT</div>
 <p><strong>Cet article est uniquement destiné à des fins éducatives et informatives.</strong></p>
-<br>
-<h3>Avertissement sur les risques liés à la consommation de champignons</h3>
-<br>
-<p>1. <strong>La sécurité des personnes avant tout</strong> : L'identification des champignons sauvages comporte des risques inhérents.De nombreux champignons vénéneux ressemblent beaucoup aux champignons comestibles et peuvent provoquer des maladies graves, voire la mort, s'ils sont ingérés.</p>
-<br>
-<p>2. <strong>Identification professionnelle requise</strong> : Avant de manger un champignon sauvage, celui-ci doit être confirmé à 100 % par un mycologue professionnel ou un expert certifié en identification de champignons.Les photos, les descriptions écrites et les expériences personnelles ne suffisent pas à garantir la sécurité.</p>
-<br>
-<p>3. <strong>Différences individuelles</strong> : Même les champignons comestibles reconnus peuvent provoquer des réactions indésirables dues à des facteurs tels que la constitution personnelle, les réactions allergiques, les méthodes de consommation ou l'environnement dans lequel les champignons sont cultivés.Essayez-en une petite quantité lorsque vous consommez une nouvelle variété pour la première fois.</p>
-<br>
-<p>4. <strong>Différences régionales</strong> : Les types et la toxicité des champignons varient considérablement selon les régions.Les informations contenues dans cet article peuvent ne pas s'appliquer à votre région.Veuillez consulter vos experts et autorités locaux en mycologie.</p>
-<br>
-<p>5. <strong>Responsabilité professionnelle</strong> : L'auteur et l'éditeur déclinent toute responsabilité pour tout dommage, maladie ou perte direct ou indirect résultant de l'utilisation des informations contenues dans cet article.</p>
-<br>
-<h3>Conseils de sécurité</h3>
-<br>
-<ul>
+<div class="subsection-title">📌 Avertissement sur les risques liés à la consommation de champignons</div>
+<p class="article-text">1. <strong>La sécurité des personnes avant tout</strong> : L'identification des champignons sauvages comporte des risques inhérents.De nombreux champignons vénéneux ressemblent beaucoup aux champignons comestibles et peuvent provoquer des maladies graves, voire la mort, s'ils sont ingérés.</p>
+<p class="article-text">2. <strong>Identification professionnelle requise</strong> : Avant de manger un champignon sauvage, celui-ci doit être confirmé à 100 % par un mycologue professionnel ou un expert certifié en identification de champignons.Les photos, les descriptions écrites et les expériences personnelles ne suffisent pas à garantir la sécurité.</p>
+<p class="article-text">3. <strong>Différences individuelles</strong> : Même les champignons comestibles reconnus peuvent provoquer des réactions indésirables dues à des facteurs tels que la constitution personnelle, les réactions allergiques, les méthodes de consommation ou l'environnement dans lequel les champignons sont cultivés.Essayez-en une petite quantité lorsque vous consommez une nouvelle variété pour la première fois.</p>
+<p class="article-text">4. <strong>Différences régionales</strong> : Les types et la toxicité des champignons varient considérablement selon les régions.Les informations contenues dans cet article peuvent ne pas s'appliquer à votre région.Veuillez consulter vos experts et autorités locaux en mycologie.</p>
+<p class="article-text">5. <strong>Responsabilité professionnelle</strong> : L'auteur et l'éditeur déclinent toute responsabilité pour tout dommage, maladie ou perte direct ou indirect résultant de l'utilisation des informations contenues dans cet article.</p>
+<div class="subsection-title">📌 Conseils de sécurité</div>
+<div class="highlight"><ul>
 <li>✅ Participer à des cours de formation formels sur l'identification des champignons</li>
 <li>✅ Rejoignez une société mycologique locale ou un club champignon</li>
 <li>✅ Achetez des champignons cultivés auprès de sources fiables</li>
 <li>✅ Conservez des échantillons de champignons en cas de besoins médicaux d'urgence</li>
 <li>✅ Si vous avez des doutes, ne le consommez pas</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>N'oubliez pas : en cas de doute, la seule option sûre est de ne pas en manger.La sécurité de votre vie est bien plus importante que n’importe quel repas aux champignons.</strong></p>
-<br>
 <p>---</p>
         </div>
-    </div>
+
+</div>
 </body>
 </html>

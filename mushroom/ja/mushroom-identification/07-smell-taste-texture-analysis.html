@@ -1,399 +1,345 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>はじめに：ビジョンを超えた評価の芸術 - Mushroom Identification</title>
-    <meta name="description" content="はじめに：ビジョンを超えた評価の芸術">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>07 はじめに：ビジョンを超えた評価の芸術 - MushroomAiSnap</title>
+<link href="../../mobile-styles.css" rel="stylesheet"/>
+<link href="../../mobile-enhancement.css" rel="stylesheet"/>
+<link href="../../ecology-theme.css" rel="stylesheet"/>
+<style>
+        .hero-image img {
+            max-height: 200px;
+            width: 100%;
+            object-fit: cover;
         }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        .article-card img {
+            max-height: 120px;
+            width: 100%;
+            object-fit: cover;
+        }
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                        url('../../images/mushroom-identification_07-smell-taste-texture-analysis.webp') center/cover;
+            position: relative;
+            margin-top: 0;
+        }
+        .article-meta {
+            margin-top: 15px !important;
+        }
+    
+        /* Mushroom Identification Theme */
+        :root {
+            --primary-color: #4169E1;
+            --primary-dark: #191970;
+            --primary-light: #F0F8FF;
+            --accent-color: #6495ED;
+        }
+        
+        /* Theme Color Overrides */
+        .content {
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+            border: 2px solid var(--primary-color);
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, var(--primary-light), var(--primary-light));
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .quote-text {
+            color: var(--primary-dark);
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+        }
+        
+        .subsection-title {
+            color: var(--primary-dark);
+            font-size: 1.4em;
+            font-weight: 600;
+            margin: 25px 0 15px 0;
+            padding-left: 10px;
+            border-left: 3px solid var(--accent-color);
+        }
+        
+        .tip-box {
+            border-left: 4px solid var(--primary-color);
+            background: var(--primary-light);
+        }
+        
+        .tip-title {
+            color: var(--primary-color);
+        }
+        
+        .highlight {
+            border-left: 4px solid var(--accent-color);
+            background: linear-gradient(135deg, #f1f8e9, var(--primary-light));
+        }
+        
+        .warning {
+            border-left: 4px solid #f44336;
+        }
+        
+        .equipment-item {
+            border: 1px solid var(--accent-color);
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+        }
+        
+        .equipment-item h4 {
+            color: var(--primary-color);
+        }
+        
+        .category {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .main-text {
+            font-size: 1.1em;
             line-height: 1.8;
             color: #333;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-
-        .article-title {
-            color: #45B7D1;
-            font-size: 2.5em;
-            margin-bottom: 30px;
-            margin-top: 0;
-            line-height: 1.3;
-            padding-top: 0;
-        }
-
-        .featured-image {
-            width: 100%;
-            height: auto;
-            aspect-ratio: 4 / 3;
-            object-fit: cover;
-            display: block;
-        }
-
-        .content {
-            padding: 50px;
-        }
-
-        .content h2 {
-            color: #45B7D1;
-            font-size: 2em;
-            margin-top: 40px;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid #45B7D1;
-        }
-
-        .content h3 {
-            color: #555;
-            font-size: 1.6em;
-            margin-top: 30px;
-            margin-bottom: 15px;
-        }
-
-        .content h4 {
-            color: #666;
-            font-size: 1.3em;
-            margin-top: 25px;
-            margin-bottom: 12px;
-        }
-
-        .content p {
-            margin-bottom: 20px;
-            font-size: 1.1em;
-            color: #444;
-        }
-
-        .content ul {
             margin: 20px 0;
-            padding-left: 30px;
-        }
-
-        .content li {
-            margin-bottom: 12px;
-            font-size: 1.05em;
-            color: #555;
-        }
-
-        .content strong {
-            color: #222;
-            font-weight: 600;
-        }
-
-        .back-link {
-            display: inline-block;
-            padding: 12px 25px;
-            background: linear-gradient(135deg, #45B7D1, #8B4513);
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            margin-bottom: 20px;
-            transition: transform 0.3s ease;
-            font-weight: 600;
-        }
-
-        .back-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .navigation {
-            padding: 30px 50px;
-            background: #f8f9fa;
-            border-top: 1px solid #e9ecef;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-btn {
-            padding: 10px 20px;
-            background: #45B7D1;
-            color: white;
-            text-decoration: none;
+            padding: 15px;
+            background: linear-gradient(135deg, #ffffff, #f9f9f9);
             border-radius: 8px;
-            transition: all 0.3s ease;
+            border-left: 3px solid var(--accent-color);
         }
-
-        .nav-btn:hover {
-            transform: translateX(5px);
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+        
+        .emoji {
+            font-size: 1.5em;
+            margin-left: 10px;
         }
-
-        .nav-btn.prev:hover {
-            transform: translateX(-5px);
+        
+        .read-time, .difficulty {
+            display: inline-block;
+            padding: 5px 15px;
+            margin: 5px 5px 5px 0;
+            border-radius: 20px;
+            font-size: 0.9em;
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            color: #1976d2;
+            font-weight: 500;
         }
-
-        @media (max-width: 768px) {
-            .content {
-                padding: 30px 25px;
-            }
-
-            .article-title {
-                font-size: 1.8em;
-            }
-
-            .featured-image {
-                height: 250px;
-            }
-
-            .navigation {
-                flex-direction: column;
-                gap: 15px;
-            }
+        
+        .difficulty {
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            color: #e65100;
+        }
+        
+        .article-text {
+            line-height: 1.8;
+            color: #444;
+            margin: 15px 0;
+            font-size: 1.05em;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <img src="../../images/mushroom-identification_07-smell-taste-texture-analysis.webp" alt="はじめに：ビジョンを超えた評価の芸術" class="featured-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22900%22 height=%22400%22%3E%3Crect fill=%22%23D2691E%22 width=%22900%22 height=%22400%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22white%22 font-size=%2260%22%3E🍄%3C/text%3E%3C/svg%3E'">
+<div class="hero-image"></div>
+<div class="content">
+    <h1 class="title">07 はじめに：ビジョンを超えた評価の芸術</h1>
+    <div class="quote-box">
+        <div class="quote-text">Professional Mycology Guide</div>
+    </div>
+    
+<div class="article-meta">
+<span class="category">🔍 Mushroom Identification</span>
+<span class="read-time">📖 12 minute read</span>
+<span class="difficulty">🟡 Intermediate</span>
+</div>
 
-        <div class="content">
-            <h1 class="article-title">はじめに：ビジョンを超えた評価の芸術</h1>
-            <br>
-<p>##はじめに：ビジョンを超えた評価の芸術</p>
-<br>
-<p>森の中でゴールデンシャンテレルの群れを初めて発見したとき、私が最も衝撃を与えたのは、漏斗状のエレガントな外観ではなく、豊かなアプリコットの香りでした。その瞬間、私はキノコの識別が色と形を観察する以上のものであることを理解しました。臭気、味、テクスチャは、ユニークでしばしば決定的な識別情報を提供し、これらの感覚の特徴は、同様の外観で非常に異なる特性で種を区別することができます。</p>
-<br>
-<p>20年の野生での経験を持つ菌学者および料理愛好家として、私は視覚的識別のみに依存するあまりにも多くの間違いを目撃しました。一部のキノコには、象徴的な匂いがあります - シャンテレルのアプリコットの香り、ニンニクの強いニンニク風味、そしてスパイシーな乳酸フローラのスパイシーな味はすぐに特定できます。ただし、これらの感覚検査は、厳格な安全規則の下で実行する必要があります。このガイドでは、これらの感覚特性を安全かつ効果的に使用する方法を共有し、マッシュルームの識別の初心者から感覚マスターにあなたを高めます。</p>
-<br>
+
+            <br><div class="main-text">##はじめに：ビジョンを超えた評価の芸術<span class="emoji">🍄</span></div>
+<p class="article-text">森の中でゴールデンシャンテレルの群れを初めて発見したとき、私が最も衝撃を与えたのは、漏斗状のエレガントな外観ではなく、豊かなアプリコットの香りでした。その瞬間、私はキノコの識別が色と形を観察する以上のものであることを理解しました。臭気、味、テクスチャは、ユニークでしばしば決定的な識別情報を提供し、これらの感覚の特徴は、同様の外観で非常に異なる特性で種を区別することができます。</p>
+<p class="article-text">20年の野生での経験を持つ菌学者および料理愛好家として、私は視覚的識別のみに依存するあまりにも多くの間違いを目撃しました。一部のキノコには、象徴的な匂いがあります - シャンテレルのアプリコットの香り、ニンニクの強いニンニク風味、そしてスパイシーな乳酸フローラのスパイシーな味はすぐに特定できます。ただし、これらの感覚検査は、厳格な安全規則の下で実行する必要があります。このガイドでは、これらの感覚特性を安全かつ効果的に使用する方法を共有し、マッシュルームの識別の初心者から感覚マスターにあなたを高めます。</p>
 <p>##臭気特性：目に見えない識別の手がかり</p>
-<br>
 <p>###なぜマッシュルームの識別において臭気が重要であるのか</p>
-<br>
 <p><strong>一意の識別値</strong></p>
-<p>野生の練習では、香りはしばしば「双子種」を区別するための鍵です。私は、何度か同じように見えるキノコに遭遇しました。たとえば、おいしいシャンテルと有毒な偽のシャンテレルは外観が非常に似ていますが、前者はユニークなアプリコットの香りがあり、後者は味がないか、わずかにカビが豊富です。</p>
-<br>
+<p class="article-text">野生の練習では、香りはしばしば「双子種」を区別するための鍵です。私は、何度か同じように見えるキノコに遭遇しました。たとえば、おいしいシャンテルと有毒な偽のシャンテレルは外観が非常に似ていますが、前者はユニークなアプリコットの香りがあり、後者は味がないか、わずかにカビが豊富です。</p>
 <p><strong>化学的基礎と進化的重要性</strong></p>
-<p>キノコの匂いは、菌類によって生成された揮発性有機化合物に由来します。これらの化合物はランダムに生成されるのではなく、明確な進化目的を持っています。</p>
-<ul>
+<p class="article-text">キノコの匂いは、菌類によって生成された揮発性有機化合物に由来します。これらの化合物はランダムに生成されるのではなく、明確な進化目的を持っています。</p>
+<div class="highlight"><ul>
 <li>特定の昆虫や動物を引き付けて胞子を広めるのに役立ちます</li>
 <li>草食動物と競争力のある微生物に対する防御</li>
 <li>代謝プロセスの副産物として</li>
-</ul>
-<br>
-<p>これを理解することは、特定の香りが非常にユニークで安定している理由を理解するのに役立ちます。それらはキノコのサバイバル戦略の一部です。</p>
-<br>
-<h3>Professional Sniffingテクノロジー：安全で効果的な方法</h3>
-<br>
+</ul></div>
+<p class="article-text">これを理解することは、特定の香りが非常にユニークで安定している理由を理解するのに役立ちます。それらはキノコのサバイバル戦略の一部です。</p>
+<div class="subsection-title">🛠️ Professional Sniffingテクノロジー：安全で効果的な方法</div>
 <p><strong>最初に安全：呼吸管を保護します</strong></p>
-<p>キノコを直接深く吸うことは危険な慣習であり、有害な胞子や化学物質を吸い込むかもしれません。正しいテクニックは次のとおりです。</p>
+<p class="article-text">キノコを直接深く吸うことは危険な慣習であり、有害な胞子や化学物質を吸い込むかもしれません。正しいテクニックは次のとおりです。</p>
 <p>1.鼻から15〜20 cm離れたマッシュルームを持ち上げる</p>
 <p>2。マッシュルームと鼻の間を膨らませるために手を使って臭気分子を導く</p>
 <p>3.深部呼吸の代わりに浅い呼吸を使用します</p>
 <p>4.各テストの後、嗅覚システムをしばらく休ませてください</p>
-<br>
 <p><strong>包括的な検査：さまざまな部分の臭気の違い</strong></p>
 <p>キノコのさまざまな部分は、異なる強度の臭気を発する可能性があります。</p>
-<ul>
+<div class="highlight"><ul>
 <li>カバー表面：通常、最も軽い臭い</li>
 <li>バクテリアの折りたたみまたは穴：強い臭気、胞子生産エリア</li>
 <li>胃のベース：時々ユニークな地下水の臭いがあります</li>
 <li>新鮮なカット：最も強い臭気、露出した内部化合物</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>テストとステータスの評価</strong></p>
 <p>臭いの強さは、キノコの状態によって大きく異なります。</p>
-<ul>
+<div class="highlight"><ul>
 <li>収集されたばかりの標本には、最も明白な臭気があります</li>
 <li>わずかにしおれたキノコには、臭気が強いことがあります（水分の減少、濃縮化合物）</li>
 <li>高齢者または乾燥標本の臭いが弱くなったり変化したりします</li>
 <li>特定の種は摩擦または加熱後にのみ臭気を放出します</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>実用的なスキル：弱い臭気を強化する</strong></p>
 <p>臭いが明らかでない場合、私はこれらのプロのヒントを使用します：</p>
-<ul>
+<div class="highlight"><ul>
 <li>キノコを小さなガラス瓶またはビニール袋に15〜30分間密封します</li>
 <li>ナイフの後ろで細菌の小さな部分をそっと押しつぶします</li>
 <li>キノコを手に数分間保持し、体温を使用して揮発性化合物を放出します</li>
 <li>茎を開いて、内部の変化を観察します</li>
-</ul>
-<br>
+</ul></div>
 <p>###一般的な臭いタイプ：喜びから警告まで</p>
-<br>
 <p><strong>心地よい匂い：食用キノコのメトリック</strong></p>
-<br>
 <p>アーモンド/アプリコットアロマ（シャンテル）</p>
-<ul>
+<div class="highlight"><ul>
 <li>甘く、フルーティー、熟したアプリコットや苦いアプリコットカーネルを連想させる</li>
 <li>非常に安定しており、非常に特徴的です</li>
 <li>シャンテレルの重要な識別機能であり、他のキノコとほとんど混同されていません</li>
-</ul>
-<br>
+</ul></div>
 <p>フェンネル/甘草の風味（特定の属）</p>
-<ul>
+<div class="highlight"><ul>
 <li>スターアニスや甘草に似た甘いスパイスの臭い</li>
 <li>約15％の人が遺伝的違いのためにこの臭気を知覚できません</li>
 <li>匂いができない場合は、確認を強制しないでください、他の機能に頼ってください</li>
-</ul>
-<br>
+</ul></div>
 <p>小麦粉/キュウリの風味（多くのアガリカス）</p>
-<ul>
+<div class="highlight"><ul>
 <li>新鮮な小麦粉やカットキュウリのかすかな匂い</li>
 <li>新鮮でニュートラル、通常、キノコがより新鮮であることを示します</li>
 <li>白い胞子プリントと細菌の折り畳みの確認</li>
-</ul>
-<br>
+</ul></div>
 <p>ココナッツアロマ（特定のラクトバチルス）</p>
-<ul>
+<div class="highlight"><ul>
 <li>穏やかなココナッツミルクまたはココナッツオイルの香り</li>
 <li>通常は弱く、慎重な識別が必要です</li>
-</ul>
+</ul></div>
 <p>-Lactobacillus属の識別における補助機能として</p>
-<br>
 <p>バラ/花（特定のバラ色のマッシュルーム）</p>
-<ul>
+<div class="highlight"><ul>
 <li>バラやスミレに似たエレガントな光の花の香り</li>
 <li>通常は非常に弱く、理想的な状態で検出する必要があります</li>
 <li>それはいくつかの珍しい赤いキノコの重要な機能です</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>ニュートラルまたは明白な臭い</strong></p>
-<br>
 <p>典型的なキノコの風味</p>
-<ul>
+<div class="highlight"><ul>
 <li>最も食用の菌類の基本的な匂い</li>
 <li>素朴で、穏やかで、特に強くありません</li>
 <li>識別自体の価値は限られていますが、他の機能を除外する場合に役立ちます</li>
-</ul>
-<br>
+</ul></div>
 <p>完全に無味</p>
-<ul>
+<div class="highlight"><ul>
 <li>多くのキノコには明らかな匂いがありません</li>
 <li>これはまた、強い臭いのある種を除外する貴重な情報でもあります</li>
 <li>テスト中に嗅覚システムが疲れていないことを確認してください</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>警告臭い：本質的に赤いアラート</strong></p>
-<br>
 <p>ニンニク/玉ねぎの風味（ニンニク）</p>
-<ul>
+<div class="highlight"><ul>
 <li>砕いたニンニクに似た、強くて特徴的です</li>
 <li>それは特定の種類の属属Squidの明確な指標です</li>
 <li>食用とおいしい味付けされたキノコ</li>
-</ul>
-<br>
+</ul></div>
 <p>大根の風味（特定の絹で覆われた傘）</p>
-<ul>
+<div class="highlight"><ul>
 <li>新鮮な大根に似たスパイシーな根茎</li>
 <li>警告臭 - 多くの絹の傘には非常に有毒な化合物が含まれています</li>
 <li>そのような臭気に遭遇するとき、非常に慎重です</li>
-</ul>
-<br>
+</ul></div>
 <p>ガス臭/化学味（特定の属）</p>
-<ul>
+<div class="highlight"><ul>
 <li>コールタール、化学インク、またはフェノールに似ています</li>
 <li>毒性化合物の存在の可能性を示す顕著な不自然な臭気</li>
 <li>絶対に食べられない</li>
-</ul>
-<br>
+</ul></div>
 <p>腐肉/糞便の風味（ファレブロワー）</p>
-<ul>
+<div class="highlight"><ul>
 <li>腐った肉に似た強い腐った匂い</li>
 <li>胞子を広めるためにハエを引き付けるために使用されるファロマシー科の特徴です</li>
 <li>臭いは悪いですが、若いときにいくつかの種は食用です</li>
-</ul>
-<br>
+</ul></div>
 <p>カビのある/古い</p>
-<ul>
+<div class="highlight"><ul>
 <li>カビの生えた地下室や湿った段ボールに似ています</li>
 <li>通常、キノコが新鮮でないか、故障し始めていることを示します</li>
 <li>有害な細菌が可能であり、避けるべきです</li>
-</ul>
-<br>
+</ul></div>
 <p>スパイシー/刺激的な味</p>
-<ul>
+<div class="highlight"><ul>
 <li>刺激的で眉をひそめた匂い</li>
 <li>特定のラクトバチルスまたは赤いキノコの特性</li>
 <li>刺激性の化合物を含むことが示されている可能性があります</li>
-</ul>
-<br>
-<h3>Professional Recording Method：個人的な匂いライブラリを確立します</h3>
-<br>
+</ul></div>
+<div class="subsection-title">🛠️ Professional Recording Method：個人的な匂いライブラリを確立します</div>
 <p><strong>標準化された説明用語</strong></p>
 <p>一貫した語彙で臭気を記録します：</p>
-<ul>
+<div class="highlight"><ul>
 <li>快適/不快</li>
 <li>甘い香り/スパイシー/酸っぱい風味</li>
 <li>強い/中/弱い/no</li>
 <li>フルーツアロマ/スパイス/花/化学</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>類推方法は精度を向上させます</strong></p>
 <p>おなじみのアイテムとの比較：</p>
-<ul>
+<div class="highlight"><ul>
 <li>「ビターアーモンドのように」</li>
 <li>「カットキュウリのように」</li>
 <li>「灯油のように」</li>
 <li>「腐った魚のように」</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>強度評価システム</strong></p>
 <p>私が使用する4レベルのシステム：</p>
-<ul>
+<div class="highlight"><ul>
 <li>なし：検出なし</li>
 <li>奇妙なこと：検出するには注意深く匂いがする必要があります</li>
 <li>中程度：明白ですが、強くはありません</li>
 <li>強い：すぐに検出し、周囲の空気を満たします</li>
-</ul>
-<br>
+</ul></div>
 <p>##味の特徴：慎重な識別ツール</p>
-<br>
 <p>###味テストの価値とリスクバランス</p>
-<br>
 <p><strong>識別における決定的な役割</strong></p>
 <p>私の長年のフィールドワーク中、味覚テストは、無数の識別の問題を解決するのに役立ちました。特に：</p>
 <p>-Lactobacillus：スパイシー、マイルド、またはビターは重要な分類特性です</p>
-<ul>
+<div class="highlight"><ul>
 <li>赤いキノコ：味は、食用と毒性の種を区別するための重要な指標です</li>
 <li>ボレタス：苦味と豊かさの間の直接的な相関</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>化学防御の生物学的意義</strong></p>
 <p>キノコの味覚は通常、化学防御システムの直接的な症状です。</p>
-<ul>
+<div class="highlight"><ul>
 <li>スパイシーな風味は、イソチオシアネートなどの防御化合物から来ています</li>
 <li>苦味はしばしばアルカロイドとテルペンから来ます</li>
 <li>これらの化合物は、人間を含む潜在的なユーザーに警告します</li>
-</ul>
-<br>
+</ul></div>
 <p>###噛むが飲み込みテストではないが、厳密な安全プロトコル</p>
-<br>
 <p><strong>絶対的な安全規則</strong></p>
-<br>
 <p>味覚テストは、次の状況でのみ考慮されます。</p>
 <p>1.少なくとも1年のキノコの識別体験があります</p>
 <p>2。他の特性を通じてアマニタなどの非常に有毒な種を除外しました</p>
 <p>3.信頼できる識別参照は、明らかに味覚テストが必要です</p>
 <p>4.専門家のガイダンスがあるか、安全カテゴリでスキルを実践しています</p>
-<br>
 <p><strong>絶対に禁止された味覚テスト：</strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>アマニタ属に属するかもしれないキノコ（あなたがプロの菌学者でない限り）</li>
 <li>まったく認識できないキノコ種</li>
 <li>含まれることが知られている接触毒素の種類（シルクカバー傘など）</li>
 <li>あなたはセキュリティテスト手順に精通していません</li>
 <li>経口潰瘍または傷がある場合</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>プロフェッショナルテストテクノロジー：ステップバイステップガイド</strong></p>
-<br>
 <p>何年も改善した後、次の手順をお勧めします。</p>
 <p>1.新鮮で害虫のない標本を選択し、ペレットの端の小さな部分を切ります（小さな爪のサイズほど）</p>
 <p>2。最初にそれを嗅ぎ、精神的に準備します</p>
@@ -403,515 +349,428 @@
 <p>6. 15秒以内にすべての材料を完全に吐き出します</p>
 <p>7。きれいな水で口を2回洗ってください</p>
 <p>8。他のキノコを食べたりテストしたりする前に30分間待ちます</p>
-<br>
 <p><strong>重要な安全対策：</strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>ジュースでさえ、絶対に部分を飲み込まないでください</li>
 <li>テストボリュームは最小に制御されます - エンドウ豆のサイズは十分です</li>
 <li>味が非常に刺激的または燃えている場合は、すぐに吐き出して口をすすぐ</li>
 <li>遅延反応の可能性を混乱させないように、テストの直後に食べないでください</li>
 <li>口がすすぐために飲料水を持ち歩きます</li>
-</ul>
-<br>
-<h3>Taste Type Lineage：軽度から警告まで</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 Taste Type Lineage：軽度から警告まで</div>
 <p><strong>穏やかなタイプ</strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>明白または軽いキノコの風味はありません</li>
 <li>ニュートラルまたはやや快適</li>
 <li>マッシュルーム、おいしいボレテなどのほとんどの食用キノコの特徴</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> nutyフレーバー</strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>ローストナッツに似た心地よい味</li>
 <li>特定のボレトゥスとシロップの特性</li>
 <li>通常、適切な食用品質を示します</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>苦味</strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>明確で永続的な苦味</li>
 <li>通常、不快です</li>
 <li>食べられないボレタスおよびその他の種で一般的</li>
 <li>苦味は通常、料理から消えません</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>スパイシー/ペッパーの風味</strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>黒胡pepperや唐辛子に似た燃えるような気持ち</li>
-</ul>
+</ul></div>
 <p>-LactobacillusとRhizomaの重要な識別特性</p>
-<ul>
+<div class="highlight"><ul>
 <li>強度は、軽度から非常に強いものまで大きく異なります</li>
 <li>通常、遅延が発生します（10〜15秒かかる場合があります）</li>
-</ul>
-<br>
+</ul></div>
 <p>私が使用したスパイシーな評価：</p>
-<ul>
+<div class="highlight"><ul>
 <li>優しい：わずかな暖かさ</li>
 <li>中程度：明らかな胡pepperyですが、不快ではありません</li>
 <li>スパイシー：強いburning熱感</li>
 <li>非常にスパイシー：耐え難い焦げた熱</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>甘味</strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>ビートやトウモロコシに似たかすかな甘さ</li>
 <li>キノコでは珍しい</li>
 <li>特定の希少種の特性</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>メタリックフレーバー</strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>錆やインクに似た香り</li>
 <li>通常、不快です</li>
 <li>一部のキノコが熟成または損傷している場合に発生する可能性があります</li>
-</ul>
-<br>
+</ul></div>
 <p>###実用アプリケーション：味覚テストの重要なケース</p>
-<br>
 <p><strong>ケース1：Lactobacillus属の正確な決定</strong></p>
-<br>
-<p>Lactobacillusは、私がしばしば味覚テストに依存しているグループです。同様の外観のあるタイプは、完全に異なる食用値を持つ可能性があります。</p>
-<ul>
+<p class="article-text">Lactobacillusは、私がしばしば味覚テストに依存しているグループです。同様の外観のあるタイプは、完全に異なる食用値を持つ可能性があります。</p>
+<div class="highlight"><ul>
 <li>おいしいLactarius eliciosus：軽度またはややナッツの風味、高品質の食用のキノコ</li>
-</ul>
+</ul></div>
 <p>-Lactarius piperatus：非常に辛く、食べられない</p>
 <p>-Lactarius uvidus：最初は穏やかで、次にスパイシーで、生で食べないでください</p>
-<br>
 <p>重要な確認手順：</p>
 <p>1.牛乳があることを確認します（ラクトバチルスの特徴）</p>
 <p>2。牛乳の色の変化を観察します</p>
 <p>3.白い胞子プリントを入手します</p>
 <p>4.最後に、味覚テストの確認</p>
-<br>
 <p><strong>ケース2：Genomerophyllumの食用評価</strong></p>
-<br>
 <p>赤いキノコには多くの種類があり、味は重要な区別機能です。</p>
-<ul>
+<div class="highlight"><ul>
 <li>食用赤いキノコ（Russula vesca）：軽度の高品質の食品</li>
 <li>スパイシーな赤いキノコ（ラスラ絵文字）：非常に辛くて有毒</li>
 <li>しかし、注意してください：これは絶対的なルールではありません、いくつかの穏やかな味の赤いマッシュルームも有毒です</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>ケース3：ボレタスの質の高い判断</strong></p>
-<br>
 <p>ボレタスの中で、味は食用品質に直接関係しています。</p>
-<ul>
+<div class="highlight"><ul>
 <li>おいしいBoletus edulis：マイルドまたはナッツの風味、トップ食用</li>
-</ul>
+</ul></div>
 <p>-Tylopilus Felleus：非常に苦くて食べられない</p>
-<ul>
+<div class="highlight"><ul>
 <li>特定の毒性種も苦い味を持っている可能性があります</li>
-</ul>
-<br>
+</ul></div>
 <p>##テクスチャ特性：構造と構成ウィンドウ</p>
-<br>
 <p>###認証におけるテクスチャの複数の値</p>
-<br>
 <p><strong>構造的手がかりと分類</strong></p>
 <p>テクスチャは、キノコの顕微鏡的菌糸構造を反映しており、重要な分類の手がかりを提供できます。</p>
-<ul>
+<div class="highlight"><ul>
 <li>脆いテクスチャは、菌糸体の構造が球面であることを示します</li>
 <li>繊維質テクスチャは、平行菌糸体構造を示します</li>
 <li>これらの特性は家族レベルで特に価値があります</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>調理の適用性予測</strong></p>
 <p>料理愛好家として、私はテクスチャの特性を非常に重要視しています。</p>
-<ul>
+<div class="highlight"><ul>
 <li>サクサクしたマッシュルームは、迅速な炒め物に適しています</li>
 <li>肉のマッシュルームは、煮込みや調理に適しています</li>
 <li>グルテンキノコはスープに適しています</li>
 <li>ポットの質感を理解する前に、調理効果を予測してください</li>
-</ul>
-<br>
+</ul></div>
 <p>###専門的な評価方法：多次元観察</p>
-<br>
 <p><strong>視覚評価</strong></p>
 <p>触れる前に観察してください：</p>
-<ul>
+<div class="highlight"><ul>
 <li>表面の光沢：ワックスまたはドライ</li>
 <li>構造密度：タイトまたはルーズ</li>
 <li>水分含有量：完全またはしおれます</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>触覚テスト技術</strong></p>
 <p>体系的なタッチ方法の使用：</p>
-<ul>
+<div class="highlight"><ul>
 <li>指を使ってさまざまな部分を軽く押して弾力性をテストします</li>
 <li>細菌の茎を静かにねじって繊維性特性をテストする</li>
 <li>爪でキャップを押して、脆性をテストする</li>
 <li>標本への損傷を避けるために、常に優しさから始めます</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>断絶の観察</strong></p>
 <p>多くの場合、内部構造は重要な情報を提供します。</p>
-<ul>
+<div class="highlight"><ul>
 <li>繊維方向を観察するための細菌の茎の垂直裂傷</li>
 <li>肉の厚さを観察するための細菌キャップの水平カット</li>
 <li>ジュースの分泌と色の変化に注意してください</li>
-</ul>
-<br>
+</ul></div>
 <p>###テクスチャタイプフルスペクトル</p>
-<br>
 <p><strong>クリスピー/脆い</strong></p>
 <p>特徴：</p>
-<ul>
+<div class="highlight"><ul>
 <li>軽い圧力で通常のチャンクに侵入します</li>
 <li>壊れるチョークやクッキーに似ています</li>
 <li>ほぼ弾力性のある直接骨折</li>
-</ul>
-<br>
+</ul></div>
 <p>代表グループ：</p>
 <p>-Lactobacillus</p>
-<ul>
+<div class="highlight"><ul>
 <li>赤いキノコ</li>
 <li>これはこれら2つの属の重要な識別機能です</li>
-</ul>
-<br>
+</ul></div>
 <p>専門的なテスト：</p>
-<ul>
+<div class="highlight"><ul>
 <li>バクテリアフリルの端を優しく押します</li>
 <li>曲げずに、きちんと壊れて、小さな断片に壊れている必要があります</li>
 <li>ステムも同様の脆性を示します</li>
-</ul>
-<br>
+</ul></div>
 <p>検証値：</p>
-<ul>
+<div class="highlight"><ul>
 <li>壊れやすいプリーツは、すぐにlactobacillusまたはRhizomaを指します</li>
 <li>他の特性（牛乳、胞子の色）に基づく確認</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>タフネス/レザー</strong></p>
 <p>特徴：</p>
-<ul>
+<div class="highlight"><ul>
 <li>引き裂くのが難しい</li>
 <li>革またはゴムのような弾力性</li>
 <li>曲げ後に元の形状に部分的に復元されます</li>
 <li>繊維構造は明らかです</li>
-</ul>
-<br>
+</ul></div>
 <p>代表グループ：</p>
-<ul>
+<div class="highlight"><ul>
 <li>ほとんどの木製右マッシュルーム</li>
 <li>多孔質細菌</li>
 <li>特定のリングステムマッシュルーム</li>
-</ul>
-<br>
+</ul></div>
 <p>検証値：</p>
-<ul>
+<div class="highlight"><ul>
 <li>通常、木材分解者として示されています</li>
 <li>それらのほとんどは、硬すぎるので消費には適していません</li>
 <li>このテクスチャーは、多年生種で一般的です</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> waxy </strong></p>
 <p>特徴：</p>
-<ul>
+<div class="highlight"><ul>
 <li>滑らかで厚く、半透明</li>
 <li>ろうそくや石鹸に似たタッチ</li>
 <li>指でこすって特別な滑らかな感覚を作る</li>
 <li>バクテリアの折り畳みは通常、厚くてまばらです</li>
-</ul>
-<br>
+</ul></div>
 <p>代表グループ：</p>
-<ul>
+<div class="highlight"><ul>
 <li>ヒロシベ</li>
 <li>特定の濡れた傘</li>
-</ul>
-<br>
+</ul></div>
 <p>テスト方法：</p>
-<ul>
+<div class="highlight"><ul>
 <li>指で細菌を静かにこすります</li>
 <li>ワックス状のプリーツは厚くて滑らかに感じます</li>
 <li>常に明るい色を伴っています</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>繊維状</strong></p>
 <p>特徴：</p>
-<ul>
+<div class="highlight"><ul>
 <li>繊維の束や肉のテクスチャに似ています</li>
 <li>ストリップに縦断的に引き裂くことができます</li>
 <li>バラバラに侵入するのは簡単ではありません</li>
 <li>明確な糸状構造があります</li>
-</ul>
-<br>
+</ul></div>
 <p>代表グループ：</p>
-<ul>
+<div class="highlight"><ul>
 <li>ほとんどのシルクカバー傘</li>
 <li>特定の属属</li>
 <li>ほとんどのハニーワーム</li>
-</ul>
-<br>
+</ul></div>
 <p>観察スキル：</p>
-<ul>
+<div class="highlight"><ul>
 <li>茎を縦方向に引き裂いて、ファイバーバンドルを観察します</li>
 <li>繊維の厚さと強度に注意してください</li>
 <li>繊維状はしばしばタフネスと組み合わされます</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>ソフト/セルキー</strong></p>
 <p>特徴：</p>
-<ul>
+<div class="highlight"><ul>
 <li>厚いが柔らかくてジューシー</li>
 <li>筋肉または新鮮な果物</li>
 <li>カットしやすく、きちんとした鋭い</li>
 <li>リッチジュース、明らかな体重</li>
-</ul>
-<br>
+</ul></div>
 <p>代表グループ：</p>
-<ul>
+<div class="highlight"><ul>
 <li>ほとんどのボレタス</li>
 <li>キノコ</li>
 <li>ほとんどのキノコ</li>
-</ul>
-<br>
+</ul></div>
 <p>検証値：</p>
-<ul>
+<div class="highlight"><ul>
 <li>通常、優れた食用菌の特徴です</li>
 <li>しかし、これは食用を判断するために使用することはできません</li>
 <li>他の特性に基づく包括的な判断</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>グルテン/ジェルのような</strong></p>
 <p>特徴：</p>
-<ul>
+<div class="highlight"><ul>
 <li>どうやらゼリーやジェルが好きです</li>
 <li>半透明、湿気が豊富です</li>
 <li>滑らかで弾力性</li>
 <li>乾燥中の大幅な収縮</li>
-</ul>
-<br>
+</ul></div>
 <p>代表グループ：</p>
-<ul>
+<div class="highlight"><ul>
 <li>トレメラ</li>
 <li>グリシドバクテリア</li>
 <li>特定のキノコの茎または皮膚</li>
-</ul>
-<br>
+</ul></div>
 <p>観察方法：</p>
-<ul>
+<div class="highlight"><ul>
 <li>触れたら弾力性があり滑らかに感じます</li>
 <li>水分と透明性を観察するために開いてカットします</li>
 <li>通常、非常に明白で、複雑なテストは必要ありません</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>スポンジのような</strong></p>
 <p>特徴：</p>
-<ul>
+<div class="highlight"><ul>
 <li>ナチュラルスポンジに似ています</li>
 <li>多孔質、圧縮性、リバウンド</li>
 <li>軽量で強い吸水</li>
 <li>通常、多孔質構造に関連しています</li>
-</ul>
-<br>
+</ul></div>
 <p>代表グループ：</p>
-<ul>
+<div class="highlight"><ul>
 <li>ボレテのチューブホール層</li>
 <li>特定の多孔質細菌</li>
 <li>モレルの部分構造</li>
-</ul>
-<br>
+</ul></div>
 <p>テストのヒント：</p>
-<ul>
+<div class="highlight"><ul>
 <li>リバウンドを観察するために静かに押します</li>
 <li>圧縮率と回復速度に注意してください</li>
 <li>多くの場合、他のテクスチャと組み合わされます</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> dry/woody </strong></p>
 <p>特徴：</p>
-<ul>
+<div class="highlight"><ul>
 <li>乾燥、硬い、軽量</li>
 <li>バルサやコルクに似ています</li>
 <li>遮断するのは簡単ではなく、力を使用する必要があります</li>
 <li>ノッキングするときに中空の音があります</li>
-</ul>
-<br>
+</ul></div>
 <p>代表グループ：</p>
-<ul>
+<div class="highlight"><ul>
 <li>ひづめのある毛穴</li>
 <li>ほとんどの多孔質細菌</li>
 <li>老化標本</li>
-</ul>
-<br>
+</ul></div>
 <p>観察ポイント：</p>
-<ul>
+<div class="highlight"><ul>
 <li>タッチセンシングの硬度と乾燥</li>
 <li>抵抗を評価するために切断してみてください</li>
 <li>通常、多年生種の特徴</li>
-</ul>
-<br>
+</ul></div>
 <p>###包括的なテクスチャ説明：専門的な録音方法</p>
-<br>
 <p><strong>複数の部品が個別に評価されます</strong></p>
 <p>キノコのさまざまな部分には、多くの場合、テクスチャが異なります。</p>
-<ul>
+<div class="highlight"><ul>
 <li>カバー：肉付きの多いまたは鮮明な場合があります</li>
 <li>真菌の折りたたみ/穴：脆い、ワックス状またはスポンジ</li>
 <li>台形：線維性、脆性または中空</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>完全なレコードテンプレート</strong></p>
 <p>私が使用した標準化された説明：</p>
-<p>「キャップは肉質で、厚さ（厚さ1.5 cmまで）、白くジューシーなカット表面を備えています。プリーツは鮮明で砕けやすく、軽いプレスで小さな部分に壊れています。茎は繊維状で、縦方向にストリップに引き裂かれ、わずかに拡大したベースがあります。</p>
-<br>
+<p class="article-text">「キャップは肉質で、厚さ（厚さ1.5 cmまで）、白くジューシーなカット表面を備えています。プリーツは鮮明で砕けやすく、軽いプレスで小さな部分に壊れています。茎は繊維状で、縦方向にストリップに引き裂かれ、わずかに拡大したベースがあります。</p>
 <p><strong>テキスタイル変更レコード</strong></p>
 <p>テクスチャはライフサイクルとともに変化します：</p>
-<ul>
+<div class="highlight"><ul>
 <li>子供時代：通常は堅実で緊密です</li>
 <li>成熟度：最高のテクスチャを実現するため</li>
 <li>高齢者：硬くなり、木材が柔らかくなり、軟化し、腐敗する可能性があります</li>
 <li>乾燥後：通常は硬くて脆い</li>
-</ul>
-<br>
+</ul></div>
 <p>###調理テクスチャ：身分証明書からダイニングテーブルまで</p>
-<br>
 <p><strong>クッキングテクスチャをテストする理由</strong></p>
 <p>食べ物愛好家として、料理の質感を理解することが重要だと思います。</p>
-<ul>
+<div class="highlight"><ul>
 <li>最後の料理の味を予測します</li>
 <li>最適な調理方法を選択してください</li>
 <li>高品質の材料を無駄にしないでください</li>
-</ul>
-<br>
+</ul></div>
 <p>**安全な試飲の原則​​*</p>
 <p>-100％確認された食用タイプのみをテストします</p>
-<ul>
+<div class="highlight"><ul>
 <li>最初に新しい種を試して、少量だけを食べる（大さじ1杯）</li>
 <li>特定のキノコは安全に調理する必要があります（より多くのLなど）</li>
 <li>個人的なアレルギーの歴史と寛容を理解する</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>調理テクスチャタイプとアプリケーション</strong></p>
 <p>何百もの料理実験に基づいて、私は次のように結論付けました。</p>
-<br>
 <p>しっかりとした状態（shiitakeマッシュルーム、オイスターマッシュルーム）</p>
-<ul>
+<div class="highlight"><ul>
 <li>適しています：炒め物、焙煎、煮込み</li>
 <li>機能：調理後に形を保ち、しっかりしたテクスチャーをしてください</li>
-</ul>
-<br>
+</ul></div>
 <p>クリーミーになる（ボレタス、マッシュルーム）</p>
-<ul>
+<div class="highlight"><ul>
 <li>適しています：シチュー、スープ、ソース</li>
 <li>機能：料理後に柔らかく、豊かな味</li>
-</ul>
-<br>
+</ul></div>
 <p>ガムになる（トレメラ、菌）</p>
-<ul>
+<div class="highlight"><ul>
 <li>適しています：スープ、デザート、コールドミックス</li>
 <li>機能：ゼラチンをリリースし、滑らかで柔らかいテクスチャー</li>
-</ul>
-<br>
+</ul></div>
 <p>サクサクして柔らかくなる（シャンテル、サンゴ菌）</p>
-<ul>
+<div class="highlight"><ul>
 <li>適しています：クイックフライ、フライ</li>
 <li>機能：少し鮮明でユニークな味を保つ</li>
-</ul>
-<br>
+</ul></div>
 <p>タフになる（いくつかのキノコ）</p>
-<ul>
+<div class="highlight"><ul>
 <li>食事や長期の煮込みは避けてください</li>
 <li>機能：それが難しくなり、噛むのは難しい</li>
-</ul>
-<br>
+</ul></div>
 <p>##感覚特性の制限と対処戦略</p>
-<br>
 <p>###主観的な課題とソリューション</p>
-<br>
 <p><strong>個々の知覚の違い</strong></p>
 <p>チームをリードしてフィールド訪問を行うとき、私はしばしば観察します：</p>
-<ul>
+<div class="highlight"><ul>
 <li>約15％の人がフェンネルの匂いの感覚を持っていません（遺伝）</li>
 <li>スパイシーな味覚認識しきい値の個人差は300％に達する可能性があります</li>
 <li>テクスチャの説明には、多くの場合、主観的な逸脱があります</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>専門的な対処戦略</strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>相互検証のために2〜3人のグループを形成します</li>
 <li>標準化された参照を使用して知覚を較正する（シャンテルとアーモンドエッセンシャルオイルの比較など）</li>
 <li>自分の知覚された特性と制限を理解して記録する</li>
 <li>説明を経験豊富な仲間と定期的に比較します</li>
-</ul>
-<br>
+</ul></div>
 <p>###自然の変動性の理解</p>
-<br>
 <p><strong>同じ種の変動の範囲</strong></p>
 <p>同じ種であっても、感覚特性は異なる場合があります。</p>
-<ul>
+<div class="highlight"><ul>
 <li>若い標本には通常、軽い臭気とより硬い質感があります</li>
 <li>成熟中に特徴的なピークに達しました</li>
 <li>代替標本は臭気を変え、テクスチャーを悪化させます</li>
 <li>成長マトリックスは複合生産に影響します</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>プロフェッショナルレコーディング方法</strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>異なる成熟レベルの複数の標本を観察して記録する</li>
 <li>収集時に気象条件と成長環境を示します</li>
 <li>この種の既知のバリエーションの範囲を理解する</li>
 <li>不確実な場合は保守的な判断</li>
-</ul>
-<br>
+</ul></div>
 <p>###システム識別：感覚特性の適切な位置</p>
-<br>
 <p><strong>かけがえのない補足の役割</strong></p>
 <p>感覚特性は非常に貴重ですが、覚えておくことが重要です。</p>
-<ul>
+<div class="highlight"><ul>
 <li>最終的な識別は、匂いや味だけに頼ることではできません</li>
 <li>形態学的特性と組み合わせて使用​​する必要があります</li>
 <li>生態学的および季節情報を考慮する必要があります</li>
 <li>胞子印刷などの客観的な特性はより信頼性が高くなります</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>包括的な評価式</strong></p>
 <p>私が使用する決定ツリー：</p>
-<p>臭気の特性 +味覚特性 +テクスチャ特性 +高音 +顕微鏡特性 +胞子印刷色 +生態学的情報 +季節因子=信頼できる識別</p>
-<br>
-<h2>Professional Record System：個人データベースの確立</h2>
-<br>
+<p class="article-text">臭気の特性 +味覚特性 +テクスチャ特性 +高音 +顕微鏡特性 +胞子印刷色 +生態学的情報 +季節因子=信頼できる識別</p>
+<div class="section-title">🛠️ Professional Record System：個人データベースの確立</div>
 <p>###標準化された感覚レコードテンプレート</p>
-<br>
 <p>長年の最適化の後、次の記録形式をお勧めします。</p>
-<br>
 <p><strong> odor </strong></p>
 <p>[メインタイプ]、[強度レベル]、[特別な説明]、[テスト方法]</p>
-<br>
 <p><strong>匂い</strong></p>
 <p>[テスト/未テスト]、テストなど：[タイプ]、[強度]、[遅延時間]、[持続時間]</p>
-<br>
 <p><strong>テクスチャ</strong></p>
 <p>表紙：[説明]、[厚さ]、[弾力性]</p>
 <p>バクテリアの折りたたみ/穴：[説明]、[骨端の方法]、[反応検査]</p>
 <p>台形：[説明]、[内部構造]、[繊維]</p>
 <p>ベース：[説明]、[特別な構造]</p>
-<br>
 <p><strong>特別な観察</strong></p>
 <p>[その他の感覚特性]、[状況を変える]、[比較メモ]</p>
-<br>
 <p>###実用的な記録の例</p>
-<br>
-<p>「臭い：明らかなアーモンドの香り、中程度の強度、切断後に強化された、ファンテスト。フレーバー：テストされていません（匂いと形態によってシャンテルとして確認されている。 料理。"</p>
-<br>
-<p>「臭い：かすかな小麦粉の匂い、密閉されてテストを強化する必要があります。味：軽度のテスト（安全タイプ）、短い気性の後に中程度のスパイシーを発症し、15秒以内に嘔吐します。</p>
-<br>
+<p class="article-text">「臭い：明らかなアーモンドの香り、中程度の強度、切断後に強化された、ファンテスト。フレーバー：テストされていません（匂いと形態によってシャンテルとして確認されている。 料理。"</p>
+<p class="article-text">「臭い：かすかな小麦粉の匂い、密閉されてテストを強化する必要があります。味：軽度のテスト（安全タイプ）、短い気性の後に中程度のスパイシーを発症し、15秒以内に嘔吐します。</p>
 <p>##安全慣行の概要：専門的な検査リスト</p>
-<br>
 <p>###臭気の安全性プロトコル</p>
-<ul>
+<div class="highlight"><ul>
 <li>✓常にファン方法を使用して直接吸入を避ける</li>
 <li>✓古い材料を避けるために、新鮮な標本をテストします</li>
 <li>✓複数のテストの間に匂いを休ませます</li>
 <li>✓毒性種が疑われるときは、より遠く離れている</li>
 <li>✓テスト条件と環境要因を記録します</li>
-</ul>
-<br>
+</ul></div>
 <p>###味テストのための絶対ガイドライン</p>
-<ul>
+<div class="highlight"><ul>
 <li>✓十分な経験と知識がある場合にのみ</li>
 <li>✓「噛むが飲み込むのではない」という原則を厳密に順守する</li>
 <li>✓最小テスト数量（エンドウ豆のサイズ）</li>
@@ -920,82 +779,60 @@
 <li>✗あらゆる種類のアマニタのテストは絶対にありません</li>
 <li>馴染みのないキノコをテストしないでください</li>
 <li>vistich洗面ステップをスキップしないでください</li>
-</ul>
-<br>
+</ul></div>
 <p>###テクスチャテストのための専門的な方法</p>
-<ul>
+<div class="highlight"><ul>
 <li>✓さまざまな部分を体系的にテストします</li>
 <li>✓穏やかなテストから始めて、段階的に段階的に</li>
 <li>✓各部分の一意の特性を記録します</li>
 <li>✓Brittlenessなどの重要な識別特性に注意してください</li>
 <li>✓ビジョンと包括的な判断を組み合わせる</li>
-</ul>
-<br>
+</ul></div>
 <p>##結論：感覚識別の芸術を習得します</p>
-<br>
-<p>臭い、味、テクスチャーは、マッシュルーム識別ツールボックスのユニークで強力なツールです。それらは一目ぼれしていて、習得が困難ですが、経験が蓄積するにつれて、専門的な菌学者のようなこれらの特性を特定して利用することができます。特定のキノコの象徴的な臭いは、シャンテレレスのアプリコットの香りやニンニクのニンニクの香りなど、即座に識別し、多くの時間と労力を節約できます。</p>
-<br>
+<p class="article-text">臭い、味、テクスチャーは、マッシュルーム識別ツールボックスのユニークで強力なツールです。それらは一目ぼれしていて、習得が困難ですが、経験が蓄積するにつれて、専門的な菌学者のようなこれらの特性を特定して利用することができます。特定のキノコの象徴的な臭いは、シャンテレレスのアプリコットの香りやニンニクのニンニクの香りなど、即座に識別し、多くの時間と労力を節約できます。</p>
 <p><strong>重要な専門ポイント：</strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>安全は常に感覚検査の最初の原則です</li>
 <li>標準化された用語を使用してレコード値を増やします</li>
 <li>体系的なテスト方法は、信頼できる結果を確保します</li>
 <li>利用可能なすべての機能に基づく包括的な判断</li>
 <li>各ツールの制限を理解し、尊重します</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>プロの成長経路：</strong></p>
-<p>今日から、感覚機能はすべてのフィールドコレクションに体系的に記録されています。最初は難しいと感じるかもしれませんが、数か月後には、次のことができる「感覚ライブラリ」を構築することになります。</p>
-<ul>
+<p class="article-text">今日から、感覚機能はすべてのフィールドコレクションに体系的に記録されています。最初は難しいと感じるかもしれませんが、数か月後には、次のことができる「感覚ライブラリ」を構築することになります。</p>
+<div class="highlight"><ul>
 <li>匂いによって一般的なタイプを特定します</li>
 <li>テクスチャ予測による分類の帰属</li>
 <li>味覚テストの安全で効果的な使用</li>
 <li>同様の種を自信を持って区別します</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>最後のリマインダー：</strong></p>
-<p>感覚の特徴は、すべてではありませんが、パズルを識別するための重要な部分です。それらは、従来の形態学的識別を置き換えるのではなく、補完します。特定の機能（脆弱なプリーツなど）には高い識別値がありますが、他の証拠と組み合わせる必要があります。</p>
-<br>
-<p>ますます多くのキノコをチェックすると、感覚の視力が改善され続けます。あなたはあなたの心の中に豊かな「匂いアーカイブ」と「テクスチャメモリ」を構築し、これらの一見主観的な特徴を信頼できる識別ツールにします。</p>
-<br>
+<p class="article-text">感覚の特徴は、すべてではありませんが、パズルを識別するための重要な部分です。それらは、従来の形態学的識別を置き換えるのではなく、補完します。特定の機能（脆弱なプリーツなど）には高い識別値がありますが、他の証拠と組み合わせる必要があります。</p>
+<p class="article-text">ますます多くのキノコをチェックすると、感覚の視力が改善され続けます。あなたはあなたの心の中に豊かな「匂いアーカイブ」と「テクスチャメモリ」を構築し、これらの一見主観的な特徴を信頼できる識別ツールにします。</p>
 <p>森に足を踏み入れて、感覚探査の旅を始めてください。すべての発見が安全で驚きに満ちていますように！</p>
-<br>
 <p>---</p>
-<br>
-<p>*この記事は、20年間の専門的なマイコロジー研究とフィールドの実践経験に基づいています。すべての安全アドバイスに厳密に従う必要があります。初めて新しい種を試すときは、地元の菌学の専門家と一緒に旅行するか、組織化されたキノコ識別活動に参加することをお勧めします。*</p>
-<br>
+<p class="article-text">*この記事は、20年間の専門的なマイコロジー研究とフィールドの実践経験に基づいています。すべての安全アドバイスに厳密に従う必要があります。初めて新しい種を試すときは、地元の菌学の専門家と一緒に旅行するか、組織化されたキノコ識別活動に参加することをお勧めします。*</p>
 <p>---</p>
-<br>
 <p>##⚠️重要な免責事項</p>
-<br>
 <p><strong>この記事は、教育および情報の参照のみです。 </strong></p>
-<br>
 <p>###マッシュルーム消費リスク警告</p>
-<br>
-<p>1。多くの有毒なキノコは食用のキノコに非常によく似ており、それらを誤って摂取すると、深刻な病気や死に至る可能性があります。</p>
-<br>
-<p>2。<strong>専門的な識別が必要です</strong>：野生のキノコを食べる前に、専門の菌学者またはマッシュルーム識別の専門家が100％の確認を行う必要があります。写真、テキストの説明、個人的な経験は、安全を確保するのに十分ではありません。</p>
-<br>
-<p>3。<strong>個人差</strong>：認識された食用キノコでさえ、個人憲法、アレルギー反応、消費方法、またはキノコの成長環境などの要因により、副作用を引き起こす可能性があります。初めて新しい品種を食べるときは、少量を試してください。</p>
-<br>
-<p>4。<strong>地理的な違い</strong>：さまざまな地域では、キノコ種と毒性に大きな違いがあります。この記事に記載されている情報は、お住まいの地域には適用されない場合があります。地元のマイコロジーの専門家と権威ある組織に相談してください。</p>
-<br>
+<p class="article-text">1。多くの有毒なキノコは食用のキノコに非常によく似ており、それらを誤って摂取すると、深刻な病気や死に至る可能性があります。</p>
+<p class="article-text">2。<strong>専門的な識別が必要です</strong>：野生のキノコを食べる前に、専門の菌学者またはマッシュルーム識別の専門家が100％の確認を行う必要があります。写真、テキストの説明、個人的な経験は、安全を確保するのに十分ではありません。</p>
+<p class="article-text">3。<strong>個人差</strong>：認識された食用キノコでさえ、個人憲法、アレルギー反応、消費方法、またはキノコの成長環境などの要因により、副作用を引き起こす可能性があります。初めて新しい品種を食べるときは、少量を試してください。</p>
+<p class="article-text">4。<strong>地理的な違い</strong>：さまざまな地域では、キノコ種と毒性に大きな違いがあります。この記事に記載されている情報は、お住まいの地域には適用されない場合があります。地元のマイコロジーの専門家と権威ある組織に相談してください。</p>
 <p>5。</p>
-<br>
 <p>###安全アドバイス</p>
-<br>
 <p>-cholly正式なキノコ識別トレーニングコースに参加します</p>
-<ul>
+<div class="highlight"><ul>
 <li>地元のMycology AssociationまたはMushroom Clubに参加する</li>
 <li>信頼できるソースから栽培されたマッシュルームを購入します</li>
 <li>sergency緊急医療ニーズのためにマッシュルームサンプルを保存します</li>
 <li>✅あなたが疑いがあればそれを食べないでください</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>覚えておいてください：質問がある場合、唯一の安全な選択肢はそれを食べないことです。あなたの人生の安全は、キノコの食事よりもはるかに重要です。</strong></p>
-<br>
 <p>---</p>
         </div>
-    </div>
+
+</div>
 </body>
 </html>

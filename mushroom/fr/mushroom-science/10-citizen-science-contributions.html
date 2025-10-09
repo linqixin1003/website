@@ -1,447 +1,360 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tout le monde est mycologue - Mushroom Science</title>
-    <meta name="description" content="Tout le monde est mycologue">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>10 Tout le monde est mycologue - MushroomAiSnap</title>
+<link href="../../mobile-styles.css" rel="stylesheet"/>
+<link href="../../mobile-enhancement.css" rel="stylesheet"/>
+<link href="../../ecology-theme.css" rel="stylesheet"/>
+<style>
+        .hero-image img {
+            max-height: 200px;
+            width: 100%;
+            object-fit: cover;
         }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        .article-card img {
+            max-height: 120px;
+            width: 100%;
+            object-fit: cover;
+        }
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                        url('../../images/mushroom-science_10-citizen-science-contributions.webp') center/cover;
+            position: relative;
+            margin-top: 0;
+        }
+        .article-meta {
+            margin-top: 15px !important;
+        }
+    
+        /* Mushroom Science Theme */
+        :root {
+            --primary-color: #9370DB;
+            --primary-dark: #4B0082;
+            --primary-light: #F8F4FF;
+            --accent-color: #BA55D3;
+        }
+        
+        /* Theme Color Overrides */
+        .content {
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+            border: 2px solid var(--primary-color);
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, var(--primary-light), var(--primary-light));
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .quote-text {
+            color: var(--primary-dark);
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+        }
+        
+        .subsection-title {
+            color: var(--primary-dark);
+            font-size: 1.4em;
+            font-weight: 600;
+            margin: 25px 0 15px 0;
+            padding-left: 10px;
+            border-left: 3px solid var(--accent-color);
+        }
+        
+        .tip-box {
+            border-left: 4px solid var(--primary-color);
+            background: var(--primary-light);
+        }
+        
+        .tip-title {
+            color: var(--primary-color);
+        }
+        
+        .highlight {
+            border-left: 4px solid var(--accent-color);
+            background: linear-gradient(135deg, #f1f8e9, var(--primary-light));
+        }
+        
+        .warning {
+            border-left: 4px solid #f44336;
+        }
+        
+        .equipment-item {
+            border: 1px solid var(--accent-color);
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+        }
+        
+        .equipment-item h4 {
+            color: var(--primary-color);
+        }
+        
+        .category {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .main-text {
+            font-size: 1.1em;
             line-height: 1.8;
             color: #333;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-
-        .article-title {
-            color: #98D8C8;
-            font-size: 2.5em;
-            margin-bottom: 30px;
-            margin-top: 0;
-            line-height: 1.3;
-            padding-top: 0;
-        }
-
-        .featured-image {
-            width: 100%;
-            height: auto;
-            aspect-ratio: 4 / 3;
-            object-fit: cover;
-            display: block;
-        }
-
-        .content {
-            padding: 50px;
-        }
-
-        .content h2 {
-            color: #98D8C8;
-            font-size: 2em;
-            margin-top: 40px;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid #98D8C8;
-        }
-
-        .content h3 {
-            color: #555;
-            font-size: 1.6em;
-            margin-top: 30px;
-            margin-bottom: 15px;
-        }
-
-        .content h4 {
-            color: #666;
-            font-size: 1.3em;
-            margin-top: 25px;
-            margin-bottom: 12px;
-        }
-
-        .content p {
-            margin-bottom: 20px;
-            font-size: 1.1em;
-            color: #444;
-        }
-
-        .content ul {
             margin: 20px 0;
-            padding-left: 30px;
-        }
-
-        .content li {
-            margin-bottom: 12px;
-            font-size: 1.05em;
-            color: #555;
-        }
-
-        .content strong {
-            color: #222;
-            font-weight: 600;
-        }
-
-        .back-link {
-            display: inline-block;
-            padding: 12px 25px;
-            background: linear-gradient(135deg, #98D8C8, #8B4513);
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            margin-bottom: 20px;
-            transition: transform 0.3s ease;
-            font-weight: 600;
-        }
-
-        .back-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .navigation {
-            padding: 30px 50px;
-            background: #f8f9fa;
-            border-top: 1px solid #e9ecef;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-btn {
-            padding: 10px 20px;
-            background: #98D8C8;
-            color: white;
-            text-decoration: none;
+            padding: 15px;
+            background: linear-gradient(135deg, #ffffff, #f9f9f9);
             border-radius: 8px;
-            transition: all 0.3s ease;
+            border-left: 3px solid var(--accent-color);
         }
-
-        .nav-btn:hover {
-            transform: translateX(5px);
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+        
+        .emoji {
+            font-size: 1.5em;
+            margin-left: 10px;
         }
-
-        .nav-btn.prev:hover {
-            transform: translateX(-5px);
+        
+        .read-time, .difficulty {
+            display: inline-block;
+            padding: 5px 15px;
+            margin: 5px 5px 5px 0;
+            border-radius: 20px;
+            font-size: 0.9em;
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            color: #1976d2;
+            font-weight: 500;
         }
-
-        @media (max-width: 768px) {
-            .content {
-                padding: 30px 25px;
-            }
-
-            .article-title {
-                font-size: 1.8em;
-            }
-
-            .featured-image {
-                height: 250px;
-            }
-
-            .navigation {
-                flex-direction: column;
-                gap: 15px;
-            }
+        
+        .difficulty {
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            color: #e65100;
+        }
+        
+        .article-text {
+            line-height: 1.8;
+            color: #444;
+            margin: 15px 0;
+            font-size: 1.05em;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <img src="../../images/mushroom-science_10-citizen-science-contributions.webp" alt="Tout le monde est mycologue" class="featured-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22900%22 height=%22400%22%3E%3Crect fill=%22%23D2691E%22 width=%22900%22 height=%22400%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22white%22 font-size=%2260%22%3E🍄%3C/text%3E%3C/svg%3E'">
+<div class="hero-image"></div>
+<div class="content">
+    <h1 class="title">10 Tout le monde est mycologue</h1>
+    <div class="quote-box">
+        <div class="quote-text">Professional Mycology Guide</div>
+    </div>
+    
+<div class="article-meta">
+<span class="category">🔬 Mushroom Science</span>
+<span class="read-time">📖 25 minute read</span>
+<span class="difficulty">🔴 Advanced</span>
+</div>
 
-        <div class="content">
-            <h1 class="article-title">Tout le monde est mycologue</h1>
-            <br>
-<h2>Qu'est-ce que la science civique?</h2>
-<br>
-<p>La science des citoyens fait référence au processus de participation du public à la recherche scientifique. Les scientifiques non professionnels promeuvent les progrès scientifiques en collectant des données, en analysant les informations et en soulevant même des questions de recherche.Dans le domaine de la mycologie, la science civique a une longue tradition - les amateurs de champignons amateur ont apporté des contributions irremplaçables à cette discipline à travers des siècles d'observation et d'enregistrement.</p>
-<br>
+
+            <div class="section-title">🍄 Qu'est-ce que la science civique?</div>
+<div class="main-text">La science des citoyens fait référence au processus de participation du public à la recherche scientifique. Les scientifiques non professionnels promeuvent les progrès scientifiques en collectant des données, en analysant les informations et en soulevant même des questions de recherche.Dans le domaine de la mycologie, la science civique a une longue tradition - les amateurs de champignons amateur ont apporté des contributions irremplaçables à cette discipline à travers des siècles d'observation et d'enregistrement.<span class="emoji">🍄</span></div>
 <p><strong> Perspective experte </strong>: En tant que biologiste qui est engagé dans la recherche sur les champignons depuis plus de 20 ans, je peux vous dire clairement qu'au moins un tiers des découvertes importantes du mycosme moderne découlent des contributions des amateurs.De la découverte de nouvelles espèces à l'enregistrement des gammes de distribution, les yeux et les cahiers des scientifiques citoyens sont devenus des extensions importantes de l'exploration scientifique.</p>
-<br>
-<h2>Pourquoi la mycologie est-elle particulièrement adaptée à la science civique?</h2>
-<br>
-<h3>Haute accessibilité</h3>
-<br>
-<p>Les champignons se trouvent dans presque tous les coins de la planète - des parcs de la ville à la nature éloignée, des pelouses d'arrière-cour aux forêts denses.Contrairement à de nombreux autres groupes biologiques, vous n'avez pas besoin d'autorisations spéciales ou d'équipement coûteux pour commencer à observer et à enregistrer des champignons.</p>
-<br>
+<div class="section-title">🎯 Pourquoi la mycologie est-elle particulièrement adaptée à la science civique?</div>
+<div class="subsection-title">📌 Haute accessibilité</div>
+<p class="article-text">Les champignons se trouvent dans presque tous les coins de la planète - des parcs de la ville à la nature éloignée, des pelouses d'arrière-cour aux forêts denses.Contrairement à de nombreux autres groupes biologiques, vous n'avez pas besoin d'autorisations spéciales ou d'équipement coûteux pour commencer à observer et à enregistrer des champignons.</p>
 <p><strong> Cas pratique </strong>: Je me souviens d'un professeur à la retraite de Chicago qui a enregistré 87 champignons différents en un an à moins de trois pâtés de maisons près de son seul domicile, dont deux espèces qui n'ont pas été enregistrées dans la région à l'époque.</p>
-<br>
-<h3>macrovisibilité</h3>
-<br>
-<p>Contrairement aux micro-organismes qui nécessitent un microscope pour observer, la plupart des champignons sont visibles à l'œil nu et ont des caractéristiques évidentes.Cette visibilité permet aux gens ordinaires de faire des observations et des enregistrements significatifs.</p>
-<br>
-<h3>Diversité incroyable</h3>
-<br>
-<p>Il existe plus de 14 000 espèces de champignons connus dans le monde et les scientifiques estiment que cela ne représente que 20 à 30% du total réel.Cette diversité signifie que les amateurs ont une réelle occasion de découvrir des espèces qui n'ont pas été documentées en science.</p>
-<br>
-<h3>Saisonnalité évidente</h3>
-<br>
-<p>Le modèle d'apparence saisonnière des champignons fournit des conditions idéales pour une surveillance à long terme.Les enregistrements d'année après année permettent de précieux ensembles de données, en particulier dans la recherche sur le changement climatique.</p>
-<br>
-<h3>Soutien passionné à la communauté</h3>
-<br>
-<p>Les amateurs de champignons du monde entier forment un passionné, compétent et disposé à partager.Qu'il s'agisse d'un forum en ligne ou d'une société de champignons locaux, les nouveaux arrivants peuvent trouver de riches ressources d'apprentissage et des conseils.</p>
-<br>
-<h3>Demande d'énormes données</h3>
-<br>
-<p>Les scientifiques professionnels ne peuvent pas couvrir toutes les zones géographiques et tous les points dans le temps.Le réseau d'observation distribué des scientifiques des citoyens comble cette lacune critique.</p>
-<br>
-<h2>Les principaux domaines de contribution de la science citoyenne en mycologie</h2>
-<br>
-<h3>Données de distribution des espèces</h3>
-<br>
+<div class="subsection-title">📌 macrovisibilité</div>
+<p class="article-text">Contrairement aux micro-organismes qui nécessitent un microscope pour observer, la plupart des champignons sont visibles à l'œil nu et ont des caractéristiques évidentes.Cette visibilité permet aux gens ordinaires de faire des observations et des enregistrements significatifs.</p>
+<div class="subsection-title">📌 Diversité incroyable</div>
+<p class="article-text">Il existe plus de 14 000 espèces de champignons connus dans le monde et les scientifiques estiment que cela ne représente que 20 à 30% du total réel.Cette diversité signifie que les amateurs ont une réelle occasion de découvrir des espèces qui n'ont pas été documentées en science.</p>
+<div class="subsection-title">📌 Saisonnalité évidente</div>
+<p class="article-text">Le modèle d'apparence saisonnière des champignons fournit des conditions idéales pour une surveillance à long terme.Les enregistrements d'année après année permettent de précieux ensembles de données, en particulier dans la recherche sur le changement climatique.</p>
+<div class="subsection-title">📌 Soutien passionné à la communauté</div>
+<p class="article-text">Les amateurs de champignons du monde entier forment un passionné, compétent et disposé à partager.Qu'il s'agisse d'un forum en ligne ou d'une société de champignons locaux, les nouveaux arrivants peuvent trouver de riches ressources d'apprentissage et des conseils.</p>
+<div class="subsection-title">📌 Demande d'énormes données</div>
+<p class="article-text">Les scientifiques professionnels ne peuvent pas couvrir toutes les zones géographiques et tous les points dans le temps.Le réseau d'observation distribué des scientifiques des citoyens comble cette lacune critique.</p>
+<div class="section-title">🍄 Les principaux domaines de contribution de la science citoyenne en mycologie</div>
+<div class="subsection-title">📌 Données de distribution des espèces</div>
 <p><strong> Éléments de base du dossier d'observation </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Photos de haute qualité (plusieurs angles)</li>
 <li>Positionnement GPS précis</li>
 <li>Date et heure spécifiques</li>
 <li>Description détaillée de l'habitat</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Plateforme de données principale </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Inaturalist: la plus grande plate-forme d'observation bio-observation au monde, une aide à l'identification d'IA conviviale et puissante</li>
 <li>Observer des champignons: une plate-forme d'observation des champignons dédiée qui fournit des champs de données plus détaillés et une communauté de discussion professionnelle</li>
 <li>base de données des sociétés fongiques dans diverses régions</li>
 <li>plates-formes émergentes spécifiques aux champignons telles que Fungimap (Australie) et atlas fongique danois</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Valeur des données et application </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>combler les lacunes géographiques dans la distribution des espèces</li>
 <li>Découvrez de nouveaux enregistrements de distribution</li>
 <li>Suivre les changements de gamme d'espèces (comme la migration avec le changement climatique)</li>
 <li>dessiner des cartes de distribution précises des espèces</li>
 <li>Évaluation régionale de la biodiversité</li>
 <li>Identifier les zones de priorité de protection et les points chauds des espèces rares</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Mécanisme de contrôle de la qualité </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Les experts vérifient les photos et les résultats d'identification</li>
 <li>Système de correction des erreurs d'aide mutuelle communautaire</li>
 <li>Améliorer la capacité d'identification personnelle grâce à la formation et à l'expérience</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Conseils rapides </strong>: Prenez toujours des photos de champignons sous plusieurs angles - en bas, en bas, en côté et en environnement de croissance. Une pièce ou une règle en tant que référence peut considérablement améliorer la précision de l'identification.</p>
-<br>
-<h3>Recherche de phénologie</h3>
-<br>
+<div class="subsection-title">📌 Recherche de phénologie</div>
 <p><strong> Qu'est-ce que la phénologie </strong>?La phénologie étudie les événements biologiques périodiques et leur relation avec les conditions environnementales.En mycologie, cela se réfère principalement au temps de production des champignons, à la durée et à l'abondance des champignons.</p>
-<br>
 <p><strong> Points d'enregistrement </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Date de la première observation d'une espèce spécifique par an</li>
 <li>période de pointe de la production de champignons</li>
 <li>Dernière date observée</li>
 <li>abondance relative (clairsemée, commune, riche)</li>
 <li>lié aux conditions météorologiques (précipitations, température)</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> La valeur de la science citoyenne </strong>:</p>
-<p>Il est impossible pour les scientifiques professionnels de visiter tous les emplacements d'intérêt chaque semaine.Les scientifiques des citoyens ont accumulé des ensembles de données irremplaçables à long terme par le biais d'observations localisées et continues au cours de nombreuses années.</p>
-<br>
+<p class="article-text">Il est impossible pour les scientifiques professionnels de visiter tous les emplacements d'intérêt chaque semaine.Les scientifiques des citoyens ont accumulé des ensembles de données irremplaçables à long terme par le biais d'observations localisées et continues au cours de nombreuses années.</p>
 <p><strong> Projets bien connus </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>USA National Phenology Network (évolutif aux dossiers fongiques)</li>
 <li>Programme de surveillance phénologique de la British Fungal Society</li>
 <li>Projets d'enregistrement saisonniers de la société fongique régionale</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Expérience personnelle </strong>: J'ai rencontré un Forester à la retraite dans le Michigan. Il a insisté pour enregistrer le temps de production des champignons de 45 champignons communs dans sa bois pendant plus de 30 ans. Son ensemble de données a été cité dans trois articles scientifiques sur les effets du changement climatique.</p>
-<br>
-<h3>Surveillance des espèces rares et menacées</h3>
-<br>
+<div class="subsection-title">📌 Surveillance des espèces rares et menacées</div>
 <p><strong> Espèces rares découvertes </strong>:</p>
-<p>Les cueilleurs de champignons amateurs explorent souvent des zones éloignées difficiles à atteindre par les scientifiques professionnels, ce qui leur donne la possibilité de découvrir des espèces rares.</p>
-<br>
+<p class="article-text">Les cueilleurs de champignons amateurs explorent souvent des zones éloignées difficiles à atteindre par les scientifiques professionnels, ce qui leur donne la possibilité de découvrir des espèces rares.</p>
 <p><strong> Processus de rapport </strong>:</p>
-<p>1. Découvrez des champignons rares inhabituels ou suspects</p>
-<p>2. Prenez des photos de haute qualité et enregistrez des emplacements détaillés</p>
-<p>3. Rapport via une plate-forme appropriée ou contactez directement des experts fongiques locaux</p>
-<p>4. Recueillir des spécimens sous la direction d'un expert si nécessaire (uniquement si nécessaire et légal)</p>
-<br>
+<p class="article-text">1. Découvrez des champignons rares inhabituels ou suspects</p>
+<p class="article-text">2. Prenez des photos de haute qualité et enregistrez des emplacements détaillés</p>
+<p class="article-text">3. Rapport via une plate-forme appropriée ou contactez directement des experts fongiques locaux</p>
+<p class="article-text">4. Recueillir des spécimens sous la direction d'un expert si nécessaire (uniquement si nécessaire et légal)</p>
 <p><strong> Surveillance du point fixe </strong>:</p>
-<p>Les bénévoles visitent régulièrement des emplacements spécifiques pour suivre les changements de population et le statut d'habitat des espèces rares connues, fournissant des avertissements précoces pour la gestion de la conservation.</p>
-<br>
+<p class="article-text">Les bénévoles visitent régulièrement des emplacements spécifiques pour suivre les changements de population et le statut d'habitat des espèces rares connues, fournissant des avertissements précoces pour la gestion de la conservation.</p>
 <p><strong> Contributions du répertoire rouge </strong>:</p>
-<p>Les données scientifiques des citoyens soutiennent directement l'évaluation de l'Union mondiale pour la conservation de la nature (UICN) des espèces menacées, fournissant des gammes de distribution clés et des informations sur la tendance des populations.</p>
-<br>
-<h3>Détection précoce des espèces envahissantes</h3>
-<br>
+<p class="article-text">Les données scientifiques des citoyens soutiennent directement l'évaluation de l'Union mondiale pour la conservation de la nature (UICN) des espèces menacées, fournissant des gammes de distribution clés et des informations sur la tendance des populations.</p>
+<div class="subsection-title">📌 Détection précoce des espèces envahissantes</div>
 <p><strong> Identifier les espèces envahissantes </strong>:</p>
-<p>Faites attention aux espèces de champignons qui semblent inhabituelles, émergentes ou connues sous le nom d'invasive.</p>
-<br>
+<p class="article-text">Faites attention aux espèces de champignons qui semblent inhabituelles, émergentes ou connues sous le nom d'invasive.</p>
 <p><strong> Contrat de rapport </strong>:</p>
-<p>Lorsque des espèces envahissantes suspectées sont trouvées, signalez-la immédiatement aux autorités ou experts concernés par le biais de canaux appropriés.</p>
-<br>
+<p class="article-text">Lorsque des espèces envahissantes suspectées sont trouvées, signalez-la immédiatement aux autorités ou experts concernés par le biais de canaux appropriés.</p>
 <p><strong> Surveillance diffusion </strong>:</p>
-<p>Suivez la distribution de pointe des espèces d'invasion connues, collectez des données de propagation et des données de taux et soutenir la prise de décision de gestion.</p>
-<br>
+<p class="article-text">Suivez la distribution de pointe des espèces d'invasion connues, collectez des données de propagation et des données de taux et soutenir la prise de décision de gestion.</p>
 <p><strong> Cas réussis </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Rapport précoce de la brûlure de châtaignier en Amérique du Nord</li>
 <li>Découverte précoce de la mort subite en chêne</li>
 <li>Suivi de la diffusion des bactéries du miel</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Recommandation d'experts </strong>: Découvrez les principales espèces fongiques invasives de votre région.Ces connaissances peuvent vous aider à détecter de nouvelles invasions tôt et à gagner un temps précieux pour les mesures de contrôle.</p>
-<br>
-<h3>Découverte de nouvelles espèces</h3>
-<br>
+<div class="subsection-title">📌 Découverte de nouvelles espèces</div>
 <p><strong> Processus de découverte </strong>:</p>
-<p>Les amateurs découvrent des champignons qui semblent inhabituels → prendre des photos de haute qualité et les télécharger sur des plateformes professionnelles → attirer l'attention des experts → Les experts effectuent une analyse morphologique et ADN → Confirmer en tant que nouvelle espèce</p>
-<br>
+<p class="article-text">Les amateurs découvrent des champignons qui semblent inhabituels → prendre des photos de haute qualité et les télécharger sur des plateformes professionnelles → attirer l'attention des experts → Les experts effectuent une analyse morphologique et ADN → Confirmer en tant que nouvelle espèce</p>
 <p><strong> Honneurs et reconnaissance </strong>:</p>
-<p>Dans certains cas, de nouvelles espèces seront nommées d'après le découvreur, ou le découvreur amateur deviendra co-auteur des articles scientifiques.</p>
-<br>
+<p class="article-text">Dans certains cas, de nouvelles espèces seront nommées d'après le découvreur, ou le découvreur amateur deviendra co-auteur des articles scientifiques.</p>
 <p><strong> réels cas </strong>:</p>
-<p>Grâce à la seule plate-forme inaturaliste, des dizaines de nouvelles espèces fongiques ont été découvertes dans le monde, y compris une variété d'exophage en Amérique du Nord et plusieurs Boletus en Europe.</p>
-<br>
-<h3>Éducation et sensibilisation du public</h3>
-<br>
+<p class="article-text">Grâce à la seule plate-forme inaturaliste, des dizaines de nouvelles espèces fongiques ont été découvertes dans le monde, y compris une variété d'exophage en Amérique du Nord et plusieurs Boletus en Europe.</p>
+<div class="subsection-title">📌 Éducation et sensibilisation du public</div>
 <p><strong> Communication des connaissances </strong>:</p>
-<p>Des amateurs expérimentés enseignent aux novices à travers des ateliers, des activités de sélection des champignons et des plateformes en ligne pour former un cycle de transfert de connaissances vertueux.</p>
-<br>
+<p class="article-text">Des amateurs expérimentés enseignent aux novices à travers des ateliers, des activités de sélection des champignons et des plateformes en ligne pour former un cycle de transfert de connaissances vertueux.</p>
 <p><strong> Amélioration de la sensibilisation du public </strong>:</p>
-<p>Promouvoir le soutien du public à la protection des champignons en démontrant la beauté et l'importance des champignons, et rompre la superstition et la peur des champignons.</p>
-<br>
+<p class="article-text">Promouvoir le soutien du public à la protection des champignons en démontrant la beauté et l'importance des champignons, et rompre la superstition et la peur des champignons.</p>
 <p><strong> Engagement communautaire </strong>:</p>
-<p>Les bénévoles partagent des connaissances fongiques dans les conférences scolaires et les activités de la nuit des sciences communautaires pour améliorer leur intérêt pour l'éducation STEM (science, technologie, ingénierie et mathématiques).</p>
-<br>
-<h3>Collection et préservation des spécimens</h3>
-<br>
+<p class="article-text">Les bénévoles partagent des connaissances fongiques dans les conférences scolaires et les activités de la nuit des sciences communautaires pour améliorer leur intérêt pour l'éducation STEM (science, technologie, ingénierie et mathématiques).</p>
+<div class="subsection-title">📌 Collection et préservation des spécimens</div>
 <p><strong> Contributions du pavillon des spécimens </strong>:</p>
-<p>Les amateurs peuvent donner des spécimens de haute qualité aux musées et aux salles de spécimens pour combler les lacunes de la collection et fournir du matériel pour de futures recherches.</p>
-<br>
+<p class="article-text">Les amateurs peuvent donner des spécimens de haute qualité aux musées et aux salles de spécimens pour combler les lacunes de la collection et fournir du matériel pour de futures recherches.</p>
 <p><strong> ÉTHIQUE DE COLLECTION </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Seule la quantité nécessaire pour la collecte et l'identification ou la recherche scientifique</li>
 <li>Laisser suffisamment de personnes pour assurer la transmission des spores</li>
 <li>Aucune espèce rare connue ou suspectée</li>
 <li>Respectez toutes les réglementations et exigences de licence pertinentes</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Méthode de collecte standard </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Collection de spécimens complets (y compris les pièces souterraines)</li>
 <li>Collecter des individus à partir de plusieurs étapes de développement</li>
 <li>Sélectionnez des échantillons représentatifs (éviter les individus trop petits ou trop vieux)</li>
 <li>Utilisez des sacs en papier pour stocker différentes espèces</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Étiquette des spécimens </strong>:</p>
-<p>Il doit inclure des numéros de champ, des emplacements précis, des dates, des noms de collection et des références à des descriptions et photos détaillées.</p>
-<br>
+<p class="article-text">Il doit inclure des numéros de champ, des emplacements précis, des dates, des noms de collection et des références à des descriptions et photos détaillées.</p>
 <p><strong> Sauver la technologie </strong>:</p>
-<p>Séchez les échantillons à temps (de préférence le jour de la collecte) pour vous assurer qu'ils sont complètement secs (cassants mais pas durs), utilisez des boules de mites pour prévenir les insectes et fournissent des conditions de stockage à long terme appropriées.</p>
-<br>
-<h2>Explication détaillée des principales plateformes et projets</h2>
-<br>
-<h3>Inaturalist</h3>
-<br>
-<p>En tant que plus grande plate-forme d'observation bio-observation au monde, l'inaturation est devenue le premier choix pour les citoyens scientifiques en raison de sa facilité d'utilisation et de son fort soutien communautaire.</p>
-<br>
+<p class="article-text">Séchez les échantillons à temps (de préférence le jour de la collecte) pour vous assurer qu'ils sont complètement secs (cassants mais pas durs), utilisez des boules de mites pour prévenir les insectes et fournissent des conditions de stockage à long terme appropriées.</p>
+<div class="section-title">🍄 Explication détaillée des principales plateformes et projets</div>
+<div class="subsection-title">📌 Inaturalist</div>
+<p class="article-text">En tant que plus grande plate-forme d'observation bio-observation au monde, l'inaturation est devenue le premier choix pour les citoyens scientifiques en raison de sa facilité d'utilisation et de son fort soutien communautaire.</p>
 <p><strong> Avantages </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Application mobile intuitive, observations d'enregistrement à tout moment, n'importe où</li>
 <li>Suggestions d'identification axées sur l'AI (améliorées en continu)</li>
 <li>Observation de vérification de la communauté experte mondiale</li>
 <li>Les données sont utilisées directement pour la recherche scientifique et la prise de décision de conservation</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Conseils d'utilisation </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Faites un usage complet des fonctions d'identification de l'IA comme point de départ, pas le point final</li>
 <li>Fournir autant d'angle et d'informations sur l'habitat que possible</li>
 <li>Participer activement à la communauté et aider à valider les observations des autres (à mesure que l'expérience se développe)</li>
-</ul>
-<br>
-<h3>Observer aux champignons</h3>
-<br>
-<p>Cette plate-forme destinée spécifiquement aux champignons offre des options d'enregistrement de données plus professionnelles et est très favorisée par les passionnés de vétérans.</p>
-<br>
+</ul></div>
+<div class="subsection-title">📌 Observer aux champignons</div>
+<p class="article-text">Cette plate-forme destinée spécifiquement aux champignons offre des options d'enregistrement de données plus professionnelles et est très favorisée par les passionnés de vétérans.</p>
 <p><strong> fonctionnalités professionnelles </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Champ d'enregistrement d'observation détaillé</li>
 <li>Système de discussion et d'identification approfondie</li>
 <li>Fonction de suivi des échantillons</li>
 <li>Lien direct vers des bases de données scientifiques</li>
-</ul>
-<br>
-<h3>Société des champignons régionaux</h3>
-<br>
-<p>Les sociétés fongiques locales sont une plaque tournante importante pour la participation scientifique des citoyens, à condition:</p>
-<ul>
+</ul></div>
+<div class="subsection-title">📌 Société des champignons régionaux</div>
+<p class="article-text">Les sociétés fongiques locales sont une plaque tournante importante pour la participation scientifique des citoyens, à condition:</p>
+<div class="highlight"><ul>
 <li>Activités et formation régulières de la cueillette des champignons</li>
 <li>Projet de collecte de données localisés</li>
 <li>Statistiques et listes de contrôle des espèces annuelles</li>
 <li>Projet de surveillance à long terme</li>
-</ul>
-<br>
-<h3>Projets de recherche spécifiques</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 Projets de recherche spécifiques</div>
 <p><strong> Fouchons perdus et trouvés (Royaume-Uni) </strong>:</p>
-<p>Recherchez des espèces qui ont été enregistrées dans l'histoire mais qui n'ont pas été vues depuis des années et évaluent leur statut actuel.</p>
-<br>
+<p class="article-text">Recherchez des espèces qui ont été enregistrées dans l'histoire mais qui n'ont pas été vues depuis des années et évaluent leur statut actuel.</p>
 <p><strong> Élément de liste rouge des champignons </strong>:</p>
-<p>Évaluer les statuts en voie de disparition des espèces, en fournissant une base pour les priorités de conservation.</p>
-<br>
+<p class="article-text">Évaluer les statuts en voie de disparition des espèces, en fournissant une base pour les priorités de conservation.</p>
 <p><strong> Enquête sur la diversité fongique urbaine </strong>:</p>
-<p>Étudiez la diversité fongique dans les environnements urbains et comprenez l'impact de l'urbanisation sur les communautés fongiques.</p>
-<br>
-<h2>Comment faire une contribution de haute qualité: un guide des meilleures pratiques</h2>
-<br>
-<h3>L'art de prendre des photos</h3>
-<br>
+<p class="article-text">Étudiez la diversité fongique dans les environnements urbains et comprenez l'impact de l'urbanisation sur les communautés fongiques.</p>
+<div class="section-title">🍄 Comment faire une contribution de haute qualité: un guide des meilleures pratiques</div>
+<div class="subsection-title">📌 L'art de prendre des photos</div>
 <p><strong> Groupe de photos de base </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>haut du capuchon (affiche la couleur, la texture et la forme)</li>
 <li>Bactéries plies ou bas du pore</li>
 <li>côté (montrant des tiges et des anneaux)</li>
 <li>Base (y compris la tranchée ou la structure d'attachement)</li>
 <li>Environnement de croissance (affiche l'habitat et les usines de compagnie)</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Détails avancés </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Des photos extrêmement rapprochées montrent l'espacement et la fixation des plis bactériens</li>
 <li>Photos d'impression de spores (si possible)</li>
 <li>Slice affiche la structure interne et les changements de couleur</li>
 <li>les individus à différentes étapes de développement</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Intégrité des métadonnées </strong>:</p>
-<p>Assurez-vous que les photos contiennent ou associent des dates précises, des heures, des coordonnées GPS et des conditions météorologiques.</p>
-<br>
-<h3>Norme de journalisation des données</h3>
-<br>
+<p class="article-text">Assurez-vous que les photos contiennent ou associent des dates précises, des heures, des coordonnées GPS et des conditions météorologiques.</p>
+<div class="subsection-title">📌 Norme de journalisation des données</div>
 <p><strong> Informations requises </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Emplacement: les coordonnées GPS plus la description du texte</li>
 <li>Date: spécifique à la date</li>
 <li>Habitat: type de forêt, espèces d'arbres dominantes, caractéristiques du sol, terrain</li>
 <li>Matrice: bois (espèces d'arbres et degré de pourriture), sol, feuilles ou excréments tombées, etc.</li>
 <li>Méthode de quantité et de croissance: solitaire, dispersé ou en grappe</li>
 <li>Estimation de l'abondance: nombre d'individus ou zone de couverture</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Valeur des informations supplémentaires </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Description de l'odeur (juste l'odeur)</li>
 <li>Goût (juste un peu, jamais avaler, et seulement pour les espèces sûres connues)</li>
 <li>Couleur d'impression de spores</li>
@@ -449,256 +362,179 @@
 <li>Le degré de ver insecte</li>
 <li>Autres espèces fongiques autour</li>
 <li>Notes d'observation personnelles</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Autorité </strong>:</p>
-<p>Marquez clairement votre diplôme d'identification. "Peut-être que c'est du type xx" est beaucoup plus précieux que le mauvais "c'est du type xx".Soyez prêt à accepter les corrections et à les considérer comme des opportunités d'apprentissage.</p>
-<br>
-<h3>Collection des spécimens responsables</h3>
-<br>
+<p class="article-text">Marquez clairement votre diplôme d'identification. "Peut-être que c'est du type xx" est beaucoup plus précieux que le mauvais "c'est du type xx".Soyez prêt à accepter les corrections et à les considérer comme des opportunités d'apprentissage.</p>
+<div class="subsection-title">📌 Collection des spécimens responsables</div>
 <p><strong> ÉTHIQUE DE COLLECTION </strong>:</p>
-<p>Collectez uniquement lorsque cela est nécessaire et suivez le principe de "aucune trace" à l'avenir.Pour les espèces rares rares ou suspectées, seules les photos sont prises mais non collectées.</p>
-<br>
+<p class="article-text">Collectez uniquement lorsque cela est nécessaire et suivez le principe de "aucune trace" à l'avenir.Pour les espèces rares rares ou suspectées, seules les photos sont prises mais non collectées.</p>
 <p><strong> Technologie de collecte professionnelle </strong>:</p>
-<p>Utilisez une spatule ou un couteau pour creuser le spécimen intact pour vous assurer que la partie souterraine n'est pas endommagée.Préparez des sacs en papier ou des conteneurs séparés pour différentes espèces.</p>
-<br>
+<p class="article-text">Utilisez une spatule ou un couteau pour creuser le spécimen intact pour vous assurer que la partie souterraine n'est pas endommagée.Préparez des sacs en papier ou des conteneurs séparés pour différentes espèces.</p>
 <p><strong> TAG IMPORTANCE </strong>:</p>
-<p>Les balises de champ doivent contenir des nombres uniques, correspondant à des enregistrements détaillés.Utilisez de l'encre étanche pour éviter la perte d'informations.</p>
-<br>
+<p class="article-text">Les balises de champ doivent contenir des nombres uniques, correspondant à des enregistrements détaillés.Utilisez de l'encre étanche pour éviter la perte d'informations.</p>
 <p><strong> Méthode de sauvegarde </strong>:</p>
-<p>Le séchage opportun est la clé pour préserver la qualité.Les déshydrateurs alimentaires, les filets de séchage assistés par les ventilateurs ou les sacs en papier de ventilation simples sont toutes des méthodes efficaces.Après avoir été complètement séché, stockez dans un récipient hermétique résistant aux insectes.</p>
-<br>
-<h3>participer efficacement à la communauté</h3>
-<br>
+<p class="article-text">Le séchage opportun est la clé pour préserver la qualité.Les déshydrateurs alimentaires, les filets de séchage assistés par les ventilateurs ou les sacs en papier de ventilation simples sont toutes des méthodes efficaces.Après avoir été complètement séché, stockez dans un récipient hermétique résistant aux insectes.</p>
+<div class="subsection-title">📌 participer efficacement à la communauté</div>
 <p><strong> Étiquette interactive en ligne </strong>:</p>
-<p>Après avoir téléchargé et observé, attendez patiemment l'identification et les commentaires.À mesure que l'expérience s'accumule, aidez à identifier les observations des autres.Soyez toujours respectueux et constructif.</p>
-<br>
+<p class="article-text">Après avoir téléchargé et observé, attendez patiemment l'identification et les commentaires.À mesure que l'expérience s'accumule, aidez à identifier les observations des autres.Soyez toujours respectueux et constructif.</p>
 <p><strong> Participation de la société locale </strong>:</p>
-<p>Rejoindre une société de champignons locale accélère non seulement l'apprentissage, mais offre également des opportunités de bénévolat telles que l'organisation des événements ou les conseils pour les débutants.</p>
-<br>
+<p class="article-text">Rejoindre une société de champignons locale accélère non seulement l'apprentissage, mais offre également des opportunités de bénévolat telles que l'organisation des événements ou les conseils pour les débutants.</p>
 <p><strong> Décision de partage des données </strong>:</p>
-<p>Comprendre la signification de différentes options de licence de données.Pour les espèces rares ou en voie de disparition, envisagez de retarder la divulgation de l'emplacement ou de l'utilisation de coordonnées floues pour éviter une sur-acquisition.</p>
-<br>
-<h2>chemin d'amélioration des compétences</h2>
-<br>
-<h3>Stratégies d'apprentissage continu</h3>
-<br>
+<p class="article-text">Comprendre la signification de différentes options de licence de données.Pour les espèces rares ou en voie de disparition, envisagez de retarder la divulgation de l'emplacement ou de l'utilisation de coordonnées floues pour éviter une sur-acquisition.</p>
+<div class="section-title">🍄 chemin d'amélioration des compétences</div>
+<div class="subsection-title">📌 Stratégies d'apprentissage continu</div>
 <p><strong> Ressources recommandées </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Guide régional des champignons en plein air (comme "Guide en plein air des champignons nord-américains")</li>
 <li>Cours professionnels (tels que les cours de certification de la Société des champignons)</li>
 <li>Plateforme d'apprentissage en ligne (cours de mystologie sur Coursera, EDX)</li>
 <li>Activités et ateliers de choix des champignons dirigés par des experts</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Compétences en microscopie </strong>:</p>
-<p>Pour les passionnés qui souhaitent apprendre profondément, les compétences de microscopie de base peuvent ouvrir un nouveau monde d'identification.De nombreuses espèces indiscernables doivent être identifiées avec précision par le biais de caractéristiques microscopiques.</p>
-<br>
-<h3>Direction professionnelle</h3>
-<br>
+<p class="article-text">Pour les passionnés qui souhaitent apprendre profondément, les compétences de microscopie de base peuvent ouvrir un nouveau monde d'identification.De nombreuses espèces indiscernables doivent être identifiées avec précision par le biais de caractéristiques microscopiques.</p>
+<div class="subsection-title">📌 Direction professionnelle</div>
 <p><strong> Stratégie de mise au point </strong>:</p>
-<p>Passez à un apprentissage étendu pour se concentrer sur des groupes spécifiques (tels que les boletes, Amanita ou Coral) ou des niches écologiques spécifiques (telles que les champignons fécaux, Tirulosa).</p>
-<br>
+<p class="article-text">Passez à un apprentissage étendu pour se concentrer sur des groupes spécifiques (tels que les boletes, Amanita ou Coral) ou des niches écologiques spécifiques (telles que les champignons fécaux, Tirulosa).</p>
 <p><strong> Path expert local </strong>:</p>
-<p>Devenez un expert des champignons dans votre région, construisez une liste d'espèces locales et surveillez les changements à long terme.</p>
-<br>
-<h3>Développement des compétences d'identification</h3>
-<br>
+<p class="article-text">Devenez un expert des champignons dans votre région, construisez une liste d'espèces locales et surveillez les changements à long terme.</p>
+<div class="subsection-title">📌 Développement des compétences d'identification</div>
 <p><strong> Méthode d'apprentissage avancé </strong>:</p>
-<p>En commençant par des espèces communes et faciles à identifier, défient progressivement des groupes plus difficiles.</p>
-<br>
+<p class="article-text">En commençant par des espèces communes et faciles à identifier, défient progressivement des groupes plus difficiles.</p>
 <p><strong> Mastering des caractéristiques clés </strong>:</p>
-<p>Apprenez et appliquez habilement les caractéristiques d'identification clés: couleur d'impression des spores, méthode d'attachement du pli bactérien, présence ou absence de creux et anneaux bactériens, réaction de décoloration des couleurs, etc.</p>
-<br>
+<p class="article-text">Apprenez et appliquez habilement les caractéristiques d'identification clés: couleur d'impression des spores, méthode d'attachement du pli bactérien, présence ou absence de creux et anneaux bactériens, réaction de décoloration des couleurs, etc.</p>
 <p><strong> Resource Cross-Verification </strong>:</p>
-<p>Ne pas compter sur une seule source d'informations, des références croisées à plusieurs guides de terrain, des ressources en ligne et des opinions d'experts.</p>
-<br>
+<p class="article-text">Ne pas compter sur une seule source d'informations, des références croisées à plusieurs guides de terrain, des ressources en ligne et des opinions d'experts.</p>
 <p><strong>Humeur maussade</strong>:</p>
-<p>Détendu pour admettre l'incertitude et voir les erreurs dans le cadre du processus d'apprentissage.</p>
-<br>
-<h2>défis et solutions</h2>
-<br>
-<h3>Précision d'authentification</h3>
-<br>
+<p class="article-text">Détendu pour admettre l'incertitude et voir les erreurs dans le cadre du processus d'apprentissage.</p>
+<div class="section-title">🍄 défis et solutions</div>
+<div class="subsection-title">📌 Précision d'authentification</div>
 <p><strong> Challenge </strong>: Le taux d'erreur d'identification amateur est élevé, ce qui affecte la qualité des données.</p>
 <p><strong>Solution</strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Utiliser le système de vérification expert</li>
 <li>Cherchez un consensus multi-personnes</li>
 <li>Utilisez l'assistance AI comme référence plutôt que comme autorité</li>
 <li>L'éducation continue améliore les compétences personnelles</li>
-</ul>
-<br>
-<h3>La qualité des données est incohérente</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 La qualité des données est incohérente</div>
 <p><strong> Challenge </strong>: Les enregistrements d'observation sont des informations incomplètes ou incorrectes communes.</p>
-<br>
 <p><strong>Solution</strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>La plate-forme fournit des conseils clairs et des champs requis</li>
 <li>Mettre en œuvre le mécanisme d'inspection de la qualité des données</li>
 <li>Améliorer les normes d'enregistrement grâce à la formation</li>
-</ul>
-<br>
-<h3>La motivation des participants maintenait</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 La motivation des participants maintenait</div>
 <p><strong> Challenge </strong>: L'intérêt des bénévoles diminue avec le temps.</p>
-<br>
 <p><strong>Solution</strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Établir un mécanisme de rétroaction efficace</li>
 <li>Fournir une reconnaissance et des récompenses (certificats, classements)</li>
 <li>Renforcer l'appartenance à la communauté</li>
 <li>Afficher les résultats et l'impact (tels que les remerciements papier)</li>
-</ul>
-<br>
-<h3>barrières techniques</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 barrières techniques</div>
 <p><strong> Challenge </strong>: Certaines personnes (comme les personnes âgées) font face à des barrières à l'utilisation technique.</p>
-<br>
 <p><strong>Solution</strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Simplifiez l'interface utilisateur</li>
 <li>Fournir une variété de façons de participer (y compris les dossiers papier)</li>
 <li>Encourager l'assistance mutuelle intergénérationnelle</li>
-</ul>
-<br>
-<h3>biais d'échantillonnage</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 biais d'échantillonnage</div>
 <p><strong> Challenge </strong>: Les données tend vers les emplacements facilement accessibles et les espèces remarquables.</p>
-<br>
 <p><strong>Solution</strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Sensibiliser les problèmes de préjugés</li>
 <li>Encourager l'échantillonnage ciblé</li>
 <li>attirer un groupe diversifié de participants</li>
-</ul>
-<br>
-<h2>Cas et impacts réussis</h2>
-<br>
-<h3>Découverte de nouvelles espèces</h3>
-<br>
-<p>Le nombre de nouvelles espèces fongiques découvertes par la plate-forme scientifique citoyenne continue de croître.Par exemple, un chasseur de champignons amateurs de l'État de Washington publié sur des photos inaturalistes a conduit à la découverte d'un nouveau champignon bois, une espèce maintenant nommée d'après son nom de famille.</p>
-<br>
-<h3>Valeur de surveillance à long terme</h3>
-<br>
-<p>Une enseignante du secondaire en Californie insiste pour enregistrer la phénologie locale des champignons pendant 25 ans, et son ensemble de données fournit des preuves clés pour comprendre l'impact du changement climatique sur les communautés fongiques, soutenant la publication de deux articles scientifiques importants.</p>
-<br>
-<h3>Action protectrice promue</h3>
-<br>
-<p>Au Colorado, le rapport rare des champignons des citoyens scientifiques a directement conduit à l'inclusion d'un habitat important dans le système de surface protégé, évitant les dommages du développement.</p>
-<br>
-<h3>Détection précoce des espèces envahissantes</h3>
-<br>
-<p>Un randonneur de l'Oregon a découvert tôt un champignon invasif des maladies des arbres, ce qui a incité la déclaration a permis à la direction de prendre des mesures de confinement rapides pour éviter une propagation plus large.</p>
-<br>
-<h3>contributions à la recherche climatique</h3>
-<br>
-<p>Les données phénologiques scientifiques citoyennes de toute l'Amérique du Nord ont été adoptées par plusieurs documents de recherche sur le changement climatique pour aider les scientifiques à comprendre comment le réchauffement climatique affecte les modèles saisonniers des champignons.</p>
-<br>
-<h2>Système d'accréditation et de récompense</h2>
-<br>
-<h3>reconnu par la communauté scientifique</h3>
-<br>
-<p>Les contributions des citoyens scientifiques sont reconnues de diverses manières:</p>
-<ul>
+</ul></div>
+<div class="section-title">🍄 Cas et impacts réussis</div>
+<div class="subsection-title">📌 Découverte de nouvelles espèces</div>
+<p class="article-text">Le nombre de nouvelles espèces fongiques découvertes par la plate-forme scientifique citoyenne continue de croître.Par exemple, un chasseur de champignons amateurs de l'État de Washington publié sur des photos inaturalistes a conduit à la découverte d'un nouveau champignon bois, une espèce maintenant nommée d'après son nom de famille.</p>
+<div class="subsection-title">📌 Valeur de surveillance à long terme</div>
+<p class="article-text">Une enseignante du secondaire en Californie insiste pour enregistrer la phénologie locale des champignons pendant 25 ans, et son ensemble de données fournit des preuves clés pour comprendre l'impact du changement climatique sur les communautés fongiques, soutenant la publication de deux articles scientifiques importants.</p>
+<div class="subsection-title">📌 Action protectrice promue</div>
+<p class="article-text">Au Colorado, le rapport rare des champignons des citoyens scientifiques a directement conduit à l'inclusion d'un habitat important dans le système de surface protégé, évitant les dommages du développement.</p>
+<div class="subsection-title">📌 Détection précoce des espèces envahissantes</div>
+<p class="article-text">Un randonneur de l'Oregon a découvert tôt un champignon invasif des maladies des arbres, ce qui a incité la déclaration a permis à la direction de prendre des mesures de confinement rapides pour éviter une propagation plus large.</p>
+<div class="subsection-title">📌 contributions à la recherche climatique</div>
+<p class="article-text">Les données phénologiques scientifiques citoyennes de toute l'Amérique du Nord ont été adoptées par plusieurs documents de recherche sur le changement climatique pour aider les scientifiques à comprendre comment le réchauffement climatique affecte les modèles saisonniers des champignons.</p>
+<div class="section-title">🍄 Système d'accréditation et de récompense</div>
+<div class="subsection-title">📌 reconnu par la communauté scientifique</div>
+<p class="article-text">Les contributions des citoyens scientifiques sont reconnues de diverses manières:</p>
+<div class="highlight"><ul>
 <li>Remerciements dans les articles scientifiques</li>
 <li>devenir co-auteur dans des découvertes importantes</li>
 <li>Citations formelles dans l'ensemble de données d'étude</li>
-</ul>
-<br>
-<h3>Reconnaissance de la communauté</h3>
-<br>
-<p>Les sociétés fongiques locales et nationales reconnaissent les contributeurs exceptionnels par le biais de prix, de membres honoraires et de reconnaissance spéciale.</p>
-<br>
-<h3>Satisfaction personnelle</h3>
-<br>
-<p>En plus de la reconnaissance externe, la participation à la science civique apporte également:</p>
-<ul>
+</ul></div>
+<div class="subsection-title">📌 Reconnaissance de la communauté</div>
+<p class="article-text">Les sociétés fongiques locales et nationales reconnaissent les contributeurs exceptionnels par le biais de prix, de membres honoraires et de reconnaissance spéciale.</p>
+<div class="subsection-title">📌 Satisfaction personnelle</div>
+<p class="article-text">En plus de la reconnaissance externe, la participation à la science civique apporte également:</p>
+<div class="highlight"><ul>
 <li>Un sentiment d'accomplissement qui apporte une contribution tangible à la science et à la conservation</li>
 <li>Opportunités d'apprentissage continu et de croissance personnelle</li>
 <li>Connexion sociale et appartenance à la communauté</li>
 <li>Santé et joie des activités de plein air</li>
-</ul>
-<br>
-<h3>Possibilités de carrière</h3>
-<br>
-<p>Pour certains, les passe-temps peuvent devenir des opportunités de carrière:</p>
-<ul>
+</ul></div>
+<div class="subsection-title">📌 Possibilités de carrière</div>
+<p class="article-text">Pour certains, les passe-temps peuvent devenir des opportunités de carrière:</p>
+<div class="highlight"><ul>
 <li>Guides et éducateurs de MyCoscience</li>
 <li>consultant en culture de champignons</li>
 <li>Le rôle des champignons experts en consultation environnementale</li>
 <li>Postes professionnels dans l'organisation de protection</li>
-</ul>
-<br>
-<h2>Direction du développement futur</h2>
-<br>
-<h3>Amélioration de la technologie</h3>
-<br>
-<p>La Future Citizen Science Plateforme intégrera des outils d'identification d'IA plus avancés, des informations sur la réalité augmentée (AR) et des fonctions d'enregistrement de données automatisées pour réduire le seuil de participation et améliorer la qualité des données.</p>
-<br>
-<h3>Extension du réseau mondial</h3>
-<br>
-<p>Les méthodes standardisées, la coopération transfrontalière et le partage de données en temps réel maximiseront la valeur des données scientifiques des citoyens et soutiendront la recherche mycologique à l'échelle mondiale.</p>
-<br>
-<h3>mode de participation approfondi</h3>
-<br>
-<p>Le rôle des citoyens scientifiques s'étendra de la collecte de données purs à l'analyse des données, à l'interprétation et même à la conception du problème de recherche pour atteindre une participation scientifique plus profonde.</p>
-<br>
-<h3>Renforcer l'impact de la politique</h3>
-<br>
-<p>À mesure que la qualité et la quantité des données s'améliorent, les données scientifiques des citoyens joueront un plus grand rôle dans les politiques de protection et les décisions de gestion.</p>
-<br>
-<h2>Comment démarrer: un guide pratique de l'action</h2>
-<br>
-<h3>Méthode en sept étapes pour les débutants</h3>
-<br>
-<p>1. <strong> Télécharger les applications de base </strong>: Commencez par l'inaturation ou l'observateur de champignons et familiarisez-vous avec l'interface et les fonctions.</p>
-<p>2. <strong> Rejoignez la communauté locale </strong>: Trouvez et rejoignez la société fongique ou l'organisation d'histoire naturelle dans votre région.</p>
-<p>3. <strong> Commencez le record </strong>: Commencez par votre arrière-cour, votre parc local ou votre piste de randonnée, enregistrez chaque observation des champignons.</p>
-<p>4. <strong> Apprentissage du système </strong>: Obtenez un bon guide régional en plein air et participez à un atelier pour débutant.</p>
-<p>5. <strong> Participer aux activités collectives </strong>: Participez à des activités de cueillette de champignons organisées par la Société des champignons et apprenez des personnes expérimentées.</p>
-<p>6. <strong> Pratique continue </strong>: Établir des habitudes d'observation régulières, enregistrement et apprentissage continu.</p>
-<p>7. <strong> redonner à la communauté </strong>: Alors que l'expérience s'accumule, aidez les autres débutants à démarrer.</p>
-<br>
-<h3>Framework de paramètre cible</h3>
-<br>
+</ul></div>
+<div class="section-title">🍄 Direction du développement futur</div>
+<div class="subsection-title">📌 Amélioration de la technologie</div>
+<p class="article-text">La Future Citizen Science Plateforme intégrera des outils d'identification d'IA plus avancés, des informations sur la réalité augmentée (AR) et des fonctions d'enregistrement de données automatisées pour réduire le seuil de participation et améliorer la qualité des données.</p>
+<div class="subsection-title">📌 Extension du réseau mondial</div>
+<p class="article-text">Les méthodes standardisées, la coopération transfrontalière et le partage de données en temps réel maximiseront la valeur des données scientifiques des citoyens et soutiendront la recherche mycologique à l'échelle mondiale.</p>
+<div class="subsection-title">📌 mode de participation approfondi</div>
+<p class="article-text">Le rôle des citoyens scientifiques s'étendra de la collecte de données purs à l'analyse des données, à l'interprétation et même à la conception du problème de recherche pour atteindre une participation scientifique plus profonde.</p>
+<div class="subsection-title">📌 Renforcer l'impact de la politique</div>
+<p class="article-text">À mesure que la qualité et la quantité des données s'améliorent, les données scientifiques des citoyens joueront un plus grand rôle dans les politiques de protection et les décisions de gestion.</p>
+<div class="section-title">🍄 Comment démarrer: un guide pratique de l'action</div>
+<div class="subsection-title">📌 Méthode en sept étapes pour les débutants</div>
+<p class="article-text">1. <strong> Télécharger les applications de base </strong>: Commencez par l'inaturation ou l'observateur de champignons et familiarisez-vous avec l'interface et les fonctions.</p>
+<p class="article-text">2. <strong> Rejoignez la communauté locale </strong>: Trouvez et rejoignez la société fongique ou l'organisation d'histoire naturelle dans votre région.</p>
+<p class="article-text">3. <strong> Commencez le record </strong>: Commencez par votre arrière-cour, votre parc local ou votre piste de randonnée, enregistrez chaque observation des champignons.</p>
+<p class="article-text">4. <strong> Apprentissage du système </strong>: Obtenez un bon guide régional en plein air et participez à un atelier pour débutant.</p>
+<p class="article-text">5. <strong> Participer aux activités collectives </strong>: Participez à des activités de cueillette de champignons organisées par la Société des champignons et apprenez des personnes expérimentées.</p>
+<p class="article-text">6. <strong> Pratique continue </strong>: Établir des habitudes d'observation régulières, enregistrement et apprentissage continu.</p>
+<p class="article-text">7. <strong> redonner à la communauté </strong>: Alors que l'expérience s'accumule, aidez les autres débutants à démarrer.</p>
+<div class="subsection-title">📌 Framework de paramètre cible</div>
 <p><strong> Objectifs à court terme (3 premiers mois) </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>familier avec 10-20 champignons locaux communs</li>
 <li>Master les techniques de photographie et d'enregistrement de base</li>
 <li>Établir des habitudes d'observation régulières</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Objectif à moyen terme (6 mois à 2 ans) </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Capable d'identifier 50 à 100 espèces locales en toute confiance</li>
 <li>Explorez une variété d'habitats</li>
 <li>Contribuer des données à au moins un projet spécialisé</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Objectifs à long terme (plus de 2 ans) </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Développer une expertise dans les domaines professionnels</li>
 <li>faire des contributions scientifiquement précieuses (comme les nouveaux dossiers de distribution)</li>
 <li>Guide la nouvelle génération de scientifiques citoyens</li>
-</ul>
-<br>
-<h2>Conclusion: Votre observation est très importante</h2>
-<br>
-<p>La science des citoyens n'est pas seulement une partie importante de la mycologie, mais aussi un pont reliant le grand public à l'exploration scientifique.Chaque passionné - sans expérience, peut apporter des contributions significatives.De la documentation du premier champignon de l'arrière-cour à la découverte possible de nouvelles espèces, votre observation est une compréhension humaine du royaume fongique.</p>
-<br>
-<p>Rejoignez le réseau mondial des mycologues pour faire partie de cette expédition scientifique.La prochaine découverte majeure pourrait provenir de votre prochaine observation sur le terrain.Commencez maintenant, le royaume le plus mystérieux de la nature attend votre exploration.</p>
-<br>
+</ul></div>
+<div class="section-title">🍄 Conclusion: Votre observation est très importante</div>
+<p class="article-text">La science des citoyens n'est pas seulement une partie importante de la mycologie, mais aussi un pont reliant le grand public à l'exploration scientifique.Chaque passionné - sans expérience, peut apporter des contributions significatives.De la documentation du premier champignon de l'arrière-cour à la découverte possible de nouvelles espèces, votre observation est une compréhension humaine du royaume fongique.</p>
+<p class="article-text">Rejoignez le réseau mondial des mycologues pour faire partie de cette expédition scientifique.La prochaine découverte majeure pourrait provenir de votre prochaine observation sur le terrain.Commencez maintenant, le royaume le plus mystérieux de la nature attend votre exploration.</p>
 <p><strong> Liste d'action maintenant </strong>:</p>
-<p>1. Téléchargez une application Citizen Science aujourd'hui</p>
-<p>2. Faites une observation locale des champignons cette semaine</p>
-<p>3. Prenez une activité ou un cours lié aux champignons ce mois-ci</p>
-<p>4. Maître l'identification de 10 champignons communs ce trimestre</p>
-<p>5. Contribuer au moins 50 enregistrements de haute qualité à la base de données scientifique cette année</p>
-<br>
-<p>N'oubliez pas que dans le domaine des mycologiques, tout le monde peut devenir un découvreur.Votre curiosité et votre attention aux détails peuvent être la clé pour débloquer le prochain puzzle scientifique.</p>
+<p class="article-text">1. Téléchargez une application Citizen Science aujourd'hui</p>
+<p class="article-text">2. Faites une observation locale des champignons cette semaine</p>
+<p class="article-text">3. Prenez une activité ou un cours lié aux champignons ce mois-ci</p>
+<p class="article-text">4. Maître l'identification de 10 champignons communs ce trimestre</p>
+<p class="article-text">5. Contribuer au moins 50 enregistrements de haute qualité à la base de données scientifique cette année</p>
+<p class="article-text">N'oubliez pas que dans le domaine des mycologiques, tout le monde peut devenir un découvreur.Votre curiosité et votre attention aux détails peuvent être la clé pour débloquer le prochain puzzle scientifique.</p>
         </div>
-    </div>
+
+</div>
 </body>
 </html>

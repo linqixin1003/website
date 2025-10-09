@@ -1,757 +1,619 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hábitat y entorno ecológico - Mushroom Identification</title>
-    <meta name="description" content="Hábitat y entorno ecológico">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>08 Hábitat y entorno ecológico - MushroomAiSnap</title>
+<link href="../../mobile-styles.css" rel="stylesheet"/>
+<link href="../../mobile-enhancement.css" rel="stylesheet"/>
+<link href="../../ecology-theme.css" rel="stylesheet"/>
+<style>
+        .hero-image img {
+            max-height: 200px;
+            width: 100%;
+            object-fit: cover;
         }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        .article-card img {
+            max-height: 120px;
+            width: 100%;
+            object-fit: cover;
+        }
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                        url('../../images/mushroom-identification_08-habitat-ecological-context.webp') center/cover;
+            position: relative;
+            margin-top: 0;
+        }
+        .article-meta {
+            margin-top: 15px !important;
+        }
+    
+        /* Mushroom Identification Theme */
+        :root {
+            --primary-color: #4169E1;
+            --primary-dark: #191970;
+            --primary-light: #F0F8FF;
+            --accent-color: #6495ED;
+        }
+        
+        /* Theme Color Overrides */
+        .content {
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+            border: 2px solid var(--primary-color);
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, var(--primary-light), var(--primary-light));
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .quote-text {
+            color: var(--primary-dark);
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+        }
+        
+        .subsection-title {
+            color: var(--primary-dark);
+            font-size: 1.4em;
+            font-weight: 600;
+            margin: 25px 0 15px 0;
+            padding-left: 10px;
+            border-left: 3px solid var(--accent-color);
+        }
+        
+        .tip-box {
+            border-left: 4px solid var(--primary-color);
+            background: var(--primary-light);
+        }
+        
+        .tip-title {
+            color: var(--primary-color);
+        }
+        
+        .highlight {
+            border-left: 4px solid var(--accent-color);
+            background: linear-gradient(135deg, #f1f8e9, var(--primary-light));
+        }
+        
+        .warning {
+            border-left: 4px solid #f44336;
+        }
+        
+        .equipment-item {
+            border: 1px solid var(--accent-color);
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+        }
+        
+        .equipment-item h4 {
+            color: var(--primary-color);
+        }
+        
+        .category {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .main-text {
+            font-size: 1.1em;
             line-height: 1.8;
             color: #333;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-
-        .article-title {
-            color: #45B7D1;
-            font-size: 2.5em;
-            margin-bottom: 30px;
-            margin-top: 0;
-            line-height: 1.3;
-            padding-top: 0;
-        }
-
-        .featured-image {
-            width: 100%;
-            height: auto;
-            aspect-ratio: 4 / 3;
-            object-fit: cover;
-            display: block;
-        }
-
-        .content {
-            padding: 50px;
-        }
-
-        .content h2 {
-            color: #45B7D1;
-            font-size: 2em;
-            margin-top: 40px;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid #45B7D1;
-        }
-
-        .content h3 {
-            color: #555;
-            font-size: 1.6em;
-            margin-top: 30px;
-            margin-bottom: 15px;
-        }
-
-        .content h4 {
-            color: #666;
-            font-size: 1.3em;
-            margin-top: 25px;
-            margin-bottom: 12px;
-        }
-
-        .content p {
-            margin-bottom: 20px;
-            font-size: 1.1em;
-            color: #444;
-        }
-
-        .content ul {
             margin: 20px 0;
-            padding-left: 30px;
-        }
-
-        .content li {
-            margin-bottom: 12px;
-            font-size: 1.05em;
-            color: #555;
-        }
-
-        .content strong {
-            color: #222;
-            font-weight: 600;
-        }
-
-        .back-link {
-            display: inline-block;
-            padding: 12px 25px;
-            background: linear-gradient(135deg, #45B7D1, #8B4513);
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            margin-bottom: 20px;
-            transition: transform 0.3s ease;
-            font-weight: 600;
-        }
-
-        .back-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .navigation {
-            padding: 30px 50px;
-            background: #f8f9fa;
-            border-top: 1px solid #e9ecef;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-btn {
-            padding: 10px 20px;
-            background: #45B7D1;
-            color: white;
-            text-decoration: none;
+            padding: 15px;
+            background: linear-gradient(135deg, #ffffff, #f9f9f9);
             border-radius: 8px;
-            transition: all 0.3s ease;
+            border-left: 3px solid var(--accent-color);
         }
-
-        .nav-btn:hover {
-            transform: translateX(5px);
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+        
+        .emoji {
+            font-size: 1.5em;
+            margin-left: 10px;
         }
-
-        .nav-btn.prev:hover {
-            transform: translateX(-5px);
+        
+        .read-time, .difficulty {
+            display: inline-block;
+            padding: 5px 15px;
+            margin: 5px 5px 5px 0;
+            border-radius: 20px;
+            font-size: 0.9em;
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            color: #1976d2;
+            font-weight: 500;
         }
-
-        @media (max-width: 768px) {
-            .content {
-                padding: 30px 25px;
-            }
-
-            .article-title {
-                font-size: 1.8em;
-            }
-
-            .featured-image {
-                height: 250px;
-            }
-
-            .navigation {
-                flex-direction: column;
-                gap: 15px;
-            }
+        
+        .difficulty {
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            color: #e65100;
+        }
+        
+        .article-text {
+            line-height: 1.8;
+            color: #444;
+            margin: 15px 0;
+            font-size: 1.05em;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <img src="../../images/mushroom-identification_08-habitat-ecological-context.webp" alt="Hábitat y entorno ecológico" class="featured-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22900%22 height=%22400%22%3E%3Crect fill=%22%23D2691E%22 width=%22900%22 height=%22400%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22white%22 font-size=%2260%22%3E🍄%3C/text%3E%3C/svg%3E'">
+<div class="hero-image"></div>
+<div class="content">
+    <h1 class="title">08 Hábitat y entorno ecológico</h1>
+    <div class="quote-box">
+        <div class="quote-text">Professional Mycology Guide</div>
+    </div>
+    
+<div class="article-meta">
+<span class="category">🔍 Mushroom Identification</span>
+<span class="read-time">📖 23 minute read</span>
+<span class="difficulty">🔴 Advanced</span>
+</div>
 
-        <div class="content">
-            <h1 class="article-title">Hábitat y entorno ecológico</h1>
-            <br>
-<p>"Dime dónde lo encontraste, y puedo decirte qué podría ser". Este mycosm de la comunidad de microsciencia revela la posición central del entorno ecológico en la identificación de hongos.Para los cazadores de hongos graves, el entorno ecológico a menudo es tan importante como las características morfológicas y, a veces, aún más crítica.Muchas especies de hongos tienen requisitos estrictos en su entorno de crecimiento: especies de árboles específicas, composición específica del suelo y condiciones estacionales específicas.Dominar las habilidades de identificación ecológica no solo puede limitar en gran medida el rango de posibles especies, sino que también apuntar directamente a especies específicas e incluso puede salvar su vida.</p>
-<br>
-<h2>¿Por qué es el entorno ecológico el factor decisivo en la identificación de hongos?</h2>
-<br>
-<h3>Estrategias básicas de supervivencia para hongos</h3>
-<br>
-<p>Como organismos heterotróficos, los hongos no pueden realizar fotosíntesis y deben obtener nutrientes del medio ambiente.Comprender sus estrategias de supervivencia es el primer paso para interpretar el entorno ecológico.</p>
-<br>
+
+            <br><div class="main-text">"Dime dónde lo encontraste, y puedo decirte qué podría ser". Este mycosm de la comunidad de microsciencia revela la posición central del entorno ecológico en la identificación de hongos.Para los cazadores de hongos graves, el entorno ecológico a menudo es tan importante como las características morfológicas y, a veces, aún más crítica.Muchas especies de hongos tienen requisitos estrictos en su entorno de crecimiento: especies de árboles específicas, composición específica del suelo y condiciones estacionales específicas.Dominar las habilidades de identificación ecológica no solo puede limitar en gran medida el rango de posibles especies, sino que también apuntar directamente a especies específicas e incluso puede salvar su vida.<span class="emoji">🍄</span></div>
+<div class="section-title">🎯 ¿Por qué es el entorno ecológico el factor decisivo en la identificación de hongos?</div>
+<div class="subsection-title">📌 Estrategias básicas de supervivencia para hongos</div>
+<p class="article-text">Como organismos heterotróficos, los hongos no pueden realizar fotosíntesis y deben obtener nutrientes del medio ambiente.Comprender sus estrategias de supervivencia es el primer paso para interpretar el entorno ecológico.</p>
 <p><strong> Relación micorrícola </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Formar redes complejas mutuamente beneficiosas con sistemas de raíces vegetales</li>
 <li>El micelio fúngico expande el área de absorción de las raíces vegetales para ayudar a absorber agua, fósforo, nitrógeno y otros minerales</li>
 <li>Las plantas recompensan los carbohidratos producidos por la fotosíntesis</li>
 <li>El 90% de las plantas vasculares en América del Norte dependen de la relación micorrícola para sobrevivir</li>
 <li>Estos hongos son altamente específicos y solo crecen cerca de especies de árboles específicas</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Caso práctico </strong>: En mi práctica en las montañas rocosas de Colorado, descubrí que el rey boletus edulis casi solo forma una relación micorrícola con pino amarillo maduro.Los hongos similares a esta especie que se desvían de la asociación de esta especie a menudo son especies no relacionadas.</p>
-<br>
 <p><strong> estilo de vida saprófico </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Ingenieros de descomposición de la naturaleza, descomposición de la materia orgánica muerta</li>
 <li>La matriz objetivo incluye madera, capas caducifolias, heces de animales, materia orgánica del suelo</li>
 <li>No depende de plantas vivas, alta autonomía nutricional</li>
 <li>Los hongos comestibles más cultivados pertenecen a esta categoría</li>
-</ul>
-<br>
-<p>** Los expertos sugieren que los saprófitos son un punto de partida ideal para principiantes porque sus requisitos ambientales son relativamente flojos y muchas especies pueden cultivarse e identificarse de manera segura.</p>
-<br>
+</ul></div>
+<p class="article-text">** Los expertos sugieren que los saprófitos son un punto de partida ideal para principiantes porque sus requisitos ambientales son relativamente flojos y muchas especies pueden cultivarse e identificarse de manera segura.</p>
 <p><strong> Modo de supervivencia parásita </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Obtenga la nutrición directamente de un anfitrión vivo</li>
 <li>generalmente dañino para el huésped, pero mantiene el equilibrio ecológico</li>
 <li>Altamente específico para especies huésped específicas</li>
-</ul>
-<br>
-<h3>La fuerza de identificación de la especificidad ecológica</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 La fuerza de identificación de la especificidad ecológica</div>
 <p><strong> Ejemplos de tipo muy dedicado </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Matsutake de Tricholoma solo simbiótico con especies de pino específicas</li>
 <li>inonotus obliquus obliquus obliquus obliquus obliquus obliquus</li>
 <li>Cordyceps sinensis solo larvas de polilla de la meseta parásita</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Tipos de generalización ecológica </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Pleurotus ostreatus puede crecer en más de 20 árboles de hoja ancha</li>
 <li>Muchas especies de hongos (agarico) se adaptan a una variedad de entornos</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Método de filtrado de identificación rápida </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Los hongos que se encuentran bajo robles, excluyen inmediatamente a todas las especies obligadas de pino</li>
 <li>hongos que se encuentran en la hierba, excluyendo todas las especies de descomposición de la madera</li>
 <li>El uso de información ecológica como filtro de identificación de la primera capa puede eliminar más del 70% de la posibilidad</li>
-</ul>
-<br>
-<h2>sustrato de crecimiento: la base de la vida de los hongos</h2>
-<br>
-<h3>Los secretos del suelo de los hongos terrestres</h3>
-<br>
+</ul></div>
+<div class="section-title">🍄 sustrato de crecimiento: la base de la vida de los hongos</div>
+<div class="subsection-title">📌 Los secretos del suelo de los hongos terrestres</div>
 <p><strong> Puntos clave para identificar especies relacionadas con la micorrícola </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Amanita - La mayoría de ellos son simbiosis micorrícola</li>
 <li>Boletus - Asociación de especies de árboles altamente dependientes</li>
 <li>Lactarius - Las especies de árboles son altamente específicas</li>
 <li>Russula - extensos socios micorrícicos</li>
 <li>Cantharellus - Asociación específica de especies arbóreas</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Habilidades de observación práctica </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Excave cuidadosamente la base de los hongos y observe la conexión entre el micelio y las raíces</li>
 <li>Use la aplicación de identificación de árbol para confirmar las especies de árboles cercanas</li>
 <li>Registro de distancia y orientación del árbol</li>
 <li>Nota: los hongos micorrícicos son casi imposibles de cultivar artificialmente</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Pistas de identificación de especies de suelo saprófótica </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>puede crecer de forma independiente en campos abiertos o debajo de los árboles</li>
 <li>Prefiere el suelo rico en orgánicos</li>
 <li>Común en áreas de compost, jardines y bosques fértiles</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Plantilla de registro profesional </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Tipo de suelo: arenoso (drenaje rápido), pegajoso (fuerte retención de agua), franco (ideal)</li>
 <li>PH del suelo: Use tiras de prueba de pH portátiles (acidy <7, neutral = 7, alcalino> 7)</li>
 <li>Densidad de cobertura vegetal: escaso <30%, medio 30-70%, denso> 70%</li>
 <li>Espesor de la capa de hoja: <2 cm delgada, mediana 2-5 cm, espesor> 5 cm</li>
-</ul>
-<br>
-<h3>Código de madera para hongos lignicolos</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 Código de madera para hongos lignicolos</div>
 <p><strong> Identificación de especies parásitas de árboles vivos </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Armillaria melea - Patógeno de árbol famoso</li>
 <li>Ganoderma lucidum - Preferencias específicas de especies de árboles</li>
 <li>Laetiporus sulphureus - Decadencia de duramen de árbol de árboles vivos</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> El rico mundo de las especies saprófitas de madera muerta </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Pleurotus ostreatus - Árbol de hoja ancha</li>
 <li>hongos shiitake (lentinula edodes) - requisitos específicos de especies de árboles</li>
 <li>Yunzhi (Trametes Versicolor) - Tipos de generalización de madera</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Calidad para la identificación del tipo de madera </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Broadleaf (madera dura) vs coníferas (corcho) - diferencia decisiva</li>
 <li>Use la guía de identificación de árboles para confirmar especies de árboles específicas</li>
 <li>Registre el diámetro de la madera y la fase de descomposición</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Sistema de clasificación de la etapa de descomposición de la madera </strong>:</p>
-<p>Nivel 1: Madera Dead Fresh, corteza completa, madera dura</p>
-<p>Nivel 2: Decadencia parcial, corteza parcial se cae y la madera comienza a ablandar</p>
-<p>Nivel 3: Decadencia moderada, la mayor parte de la corteza se cae y la madera obviamente se suaviza</p>
-<p>Nivel 4: Muy decadente, la madera es en bloque o fibrosa</p>
-<p>Nivel 5: completamente descompuesto, la madera casi se convierte en tierra</p>
-<br>
+<p class="article-text">Nivel 1: Madera Dead Fresh, corteza completa, madera dura</p>
+<p class="article-text">Nivel 2: Decadencia parcial, corteza parcial se cae y la madera comienza a ablandar</p>
+<p class="article-text">Nivel 3: Decadencia moderada, la mayor parte de la corteza se cae y la madera obviamente se suaviza</p>
+<p class="article-text">Nivel 4: Muy decadente, la madera es en bloque o fibrosa</p>
+<p class="article-text">Nivel 5: completamente descompuesto, la madera casi se convierte en tierra</p>
 <p><strong> Evitación de errores comunes </strong>: Los hongos aparentemente nativos pueden estar conectados a la madera enterrada. Excave suavemente la base para confirmar para evitar el juicio erróneo de las especies micorrícicas.</p>
-<br>
-<h3>Ecología de la hierba gramínea</h3>
-<br>
+<div class="subsection-title">📌 Ecología de la hierba gramínea</div>
 <p><strong> ambiente típico de pastizales </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Administrar céspedes: a menudo recortes, posiblemente fertilizar</li>
 <li>Meado natural: especies variadas, sin administrar</li>
 <li>rancho: hay influencias de animales de pastoreo</li>
 <li>Park Groenlandia: actividades humanas con frecuencia</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Especies de hongos de hierba principal </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Agarico - incluyendo especies comestibles y tóxicas</li>
 <li>Puffball (Lycoperdon) - Especies de hierba saurada</li>
 <li>Corrino - Ciclo de vida corto</li>
 <li>Marasmius Oreades - Agente de formación de anillos de hongos típicos</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Explicación científica de los anillos de hadas </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>El micelio crece radialmente desde el punto central</li>
 <li>El micelio del círculo exterior tiene la actividad más fuerte y produce cuerpos fructíferos</li>
 <li>Puede durar décadas o incluso cientos de años</li>
 <li>Tres tipos: solo círculo de hongos, círculo de profundización del color de la hierba, círculo de hierba muerta</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Advertencia de seguridad </strong>: La hierba a menudo contiene especies altamente tóxicas de bacterias de Amanita, especialmente el ángel de la destrucción (Amanita virosa).La información ecológica debe usarse en combinación con identificación morfológica.</p>
-<br>
-<h3>Adaptación especial de hongos coprófilos</h3>
-<br>
+<div class="subsection-title">📌 Adaptación especial de hongos coprófilos</div>
 <p><strong> Especialidad del tipo de heces </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Heces herbívoras: nutrición equilibrada, ideal</li>
 <li>Heces omnívoras: ingredientes complejos y menos tipos</li>
 <li>Heces carnívoras: evite la recolección, patógenos potenciales</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Sugerencias de recolección de equipos profesionales </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Tweezers de colección de heces especiales</li>
 <li>Contenedor de ventilación independiente</li>
 <li>Guantes desechables</li>
 <li>Alcohol en gel</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Advertencia de seguridad </strong>: Los hongos fertilizantes a menudo contienen sustancias psicoactivas y pueden acumular metales pesados.Comprender las leyes y regulaciones locales, la seguridad es la primera prioridad.</p>
-<br>
-<h2>Asociación de especies de árboles: la clave para los hongos micorrícicos</h2>
-<br>
-<h3>¿Por qué es crucial la identificación de especies de árboles?</h3>
-<br>
-<p>En los bosques de América del Norte, más del 85% de los árboles forman relaciones micorrícicas. La asociación de especies de árboles es la pista más fuerte para identificar los hongos micorrícicos.</p>
-<br>
+<div class="section-title">🍄 Asociación de especies de árboles: la clave para los hongos micorrícicos</div>
+<div class="subsection-title">🎯 ¿Por qué es crucial la identificación de especies de árboles?</div>
+<p class="article-text">En los bosques de América del Norte, más del 85% de los árboles forman relaciones micorrícicas. La asociación de especies de árboles es la pista más fuerte para identificar los hongos micorrícicos.</p>
 <p><strong> Ejemplo de asociación Obligación de coníferas </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Pine Tree (Pinus): Matsutake, Lactarius deliciosa</li>
 <li>Picea: Boletus pinophilus</li>
 <li>Fir (Abies): Lactarius Deterrimus</li>
 <li>Laryx: Suillus Grevillei</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Ejemplo de asociación Obligación del árbol de hoja ancha </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Quercus: deliciosa Bolete, Amanita Césarea</li>
 <li>Birch (Betula): Birch Boletus (leccinum scabrum)</li>
 <li>Beech (fagus): hongo rojo de haya (Russula Mairei)</li>
 <li>Populus: Leccinum duriusculum</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Consejos de reconocimiento de árbol rápido </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Pino: paquetes de agujas (2, 3 o 5 agujas)</li>
 <li>Oak: hojas escamosas, fruta de bellota</li>
 <li>Birch: corteza de pelado blanco, hojas triangulares</li>
 <li>Beech: corteza gris suave con hojas onduladas ovales</li>
-</ul>
-<br>
-<h3>Efectos de la edad y la estructura de los stands</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 Efectos de la edad y la estructura de los stands</div>
 <p><strong> Comunidades de hongos de diferentes edades </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Bosque joven (<20 años): especies dispersas, principalmente especies saprófitas</li>
-</ul>
-<p>-Bosque de mediana edad (20-50 años): comienzan a aparecer especies micorrícicas</p>
-<ul>
+</ul></div>
+<p class="article-text">-Bosque de mediana edad (20-50 años): comienzan a aparecer especies micorrícicas</p>
+<div class="highlight"><ul>
 <li>Bosque maduro (50-100 años): pico en la diversidad de especies</li>
 <li>Bosque demasiado maduro (> 100 años): aparecen especies especializadas</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Método de observación práctica </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Mida el diámetro del tronco: el diámetro de la altura del pecho (DBH) es un buen indicador de la edad del árbol</li>
 <li>Observe el grado de cierre de Lin Guan: abierto <30%, medio 30-70%, cerrado> 70%</li>
 <li>Evaluación de la vegetación del menor forestal: reflejar la salud del bosque</li>
 <li>Mida el grosor de la capa de hoja caída: indica la velocidad de circulación de nutrientes</li>
-</ul>
-<br>
-<h2>Factores ambientales: la exquisita influencia de las estaciones y el microambiente</h2>
-<br>
-<h3>Reglas fenológicas de clima y estaciones</h3>
-<br>
+</ul></div>
+<div class="section-title">🍄 Factores ambientales: la exquisita influencia de las estaciones y el microambiente</div>
+<div class="subsection-title">📌 Reglas fenológicas de clima y estaciones</div>
 <p><strong> El impacto de la temperatura en la ocurrencia de hongos </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Tipo de baja temperatura: las velutipas de flammulina se cultivan mejor a 5-10 ° C</li>
 <li>Tipo de temperatura media: la mayoría de los hongos aparecen a 15-25 ° C</li>
 <li>Tipo de alta temperatura: algunos ganoderma lucidum aún pueden crecer a> 25 ° C</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> El papel clave de la humedad y la lluvia </strong>:</p>
-<p>-Condiciones ideales: 3-7 días después de la lluvia, la humedad del suelo es de 60-80%</p>
-<ul>
+<p class="article-text">-Condiciones ideales: 3-7 días después de la lluvia, la humedad del suelo es de 60-80%</p>
+<div class="highlight"><ul>
 <li>Obtenga datos precisos utilizando un higrómetro de suelo</li>
 <li>Registro los días recientes de lluvia y lluvia</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Modo de violación de hongos estacional de América del Norte </strong>:</p>
-<br>
 <p><strong> Primavera (marzo-mayo) </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Morel (Morchella): después de un fuego o por un río</li>
 <li>Gyromitra: suelo arenoso en bosques de coníferas</li>
 <li>Ponyboy: hierba y tierra abierta</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Summer (junio-agosto </strong>):</p>
-<ul>
+<div class="highlight"><ul>
 <li>Cantharellus: bosque de hoja ancha y mixta</li>
 <li>Ramaria: bosque de coníferas húmedas</li>
 <li>Tipos tempranos de boleto</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Otoño (septiembre-noviembre </strong>):</p>
-<ul>
+<div class="highlight"><ul>
 <li>Período de pimienta de boletus: varias especies micorrícicas</li>
 <li>Amanita: pico de diversidad</li>
 <li>gusano de miel: árboles muertos y bases de árboles vivos</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Invierno (diciembre-febrero </strong>):</p>
-<ul>
+<div class="highlight"><ul>
 <li>Enoki Mushrooms: crecimiento de clúster en árboles muertos</li>
 <li>hongos de ostras: todavía pueden crecer en climas fríos</li>
 <li>Ciertas bacterias poliporosas: especies perennes</li>
-</ul>
-<br>
-<h3>Reglas de distribución de geografía y altitud</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 Reglas de distribución de geografía y altitud</div>
 <p><strong> Regiones de hongos principales de América del Norte </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Área de madera dura oriental: especies relacionadas con el roble y haya</li>
 <li>Área del bosque de coníferas occidental: especies relacionadas de pino y abeto</li>
 <li>Zona subtropical del sur: especies tropicales únicas</li>
 <li>Área del bosque boreal del norte: especies relacionadas con abdillo y abedul</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Efecto del gradiente de altitud </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>baja altitud (<500m): rico en tipos comunes</li>
 <li>Altitud media (500-1500m): diversidad de especies pico</li>
 <li>ALTA ALTUDA (1500-2500m): especies alpinas especializadas</li>
 <li>extremadamente alta altitud (> 2500m): especies raras, adaptación especial</li>
-</ul>
-<br>
-<h3>La exquisita influencia del microambiente</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 La exquisita influencia del microambiente</div>
 <p><strong> Impacto del aspecto </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Pendiente norte: alta humedad y temperatura estable</li>
 <li>South Slope: mucha sol y alta temperatura</li>
 <li>Dongpo: sol de la mañana, humedad moderada</li>
 <li>West Slope: alta luz en la tarde, secadora</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Influencia de las características topográficas </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Línea de cresta: buen drenaje, secador</li>
 <li>fondo del valle: alta humedad, abundante especies</li>
 <li>Mid-pendiente: condiciones de humedad ideales</li>
 <li>Área plana: puede haber problemas con el drenaje</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Sugerencias de equipos profesionales </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>GPS portátil: registrar la posición precisa y la altitud</li>
 <li>Termómetro de bolsillo: monitoreo de condiciones microambientales</li>
 <li>Kit de prueba de pH del suelo: comprensión de la química del suelo</li>
 <li>Guía de identificación de árboles: identificación precisa de las especies de árboles</li>
-</ul>
-<br>
-<h2>Enfoque científico para la grabación ecológica</h2>
-<br>
-<h3>Plantilla de registro estandarizada</h3>
-<br>
+</ul></div>
+<div class="section-title">🍄 Enfoque científico para la grabación ecológica</div>
+<div class="subsection-title">📌 Plantilla de registro estandarizada</div>
 <p><strong> Tabla de registro detallada del entorno ecológico </strong>:</p>
-<br>
 <p><strong> Información básica </strong>:</p>
-<p>Fecha: [año en el día] Hora: [hora específica, fácil de rastrear los cambios meteorológicos]</p>
-<p>Ubicación: [Descripción detallada de la ubicación] Coordenadas GPS: [Latitud, Longitud] Altitud: [Medios]</p>
-<br>
+<p class="article-text">Fecha: [año en el día] Hora: [hora específica, fácil de rastrear los cambios meteorológicos]</p>
+<p class="article-text">Ubicación: [Descripción detallada de la ubicación] Coordenadas GPS: [Latitud, Longitud] Altitud: [Medios]</p>
 <p><strong> Clasificación de matriz de crecimiento </strong>:</p>
-<p>□ Especies de árboles relacionados con la tierra mycorrícola: [Especie de árboles específicas y distancia]</p>
-<p>□ Crecimiento de madera - Especies de árboles: [Especie de árbol específica] Estado de madera: [madera de pie viva/madera de pie muerta/madera caída] Grado de descomposición: [Nivel 1-5]</p>
-<p>□ Grass - Tipo de hierba: [Césped de gestión/prado natural/lluvia] Composición de hierba: [Descripción]</p>
-<p>□ Fecal - Tipo de animal: [animal específico] Edad fecal: [fresco/viejo/seco]</p>
-<br>
+<p class="article-text">□ Especies de árboles relacionados con la tierra mycorrícola: [Especie de árboles específicas y distancia]</p>
+<p class="article-text">□ Crecimiento de madera - Especies de árboles: [Especie de árbol específica] Estado de madera: [madera de pie viva/madera de pie muerta/madera caída] Grado de descomposición: [Nivel 1-5]</p>
+<p class="article-text">□ Grass - Tipo de hierba: [Césped de gestión/prado natural/lluvia] Composición de hierba: [Descripción]</p>
+<p class="article-text">□ Fecal - Tipo de animal: [animal específico] Edad fecal: [fresco/viejo/seco]</p>
 <p><strong> Registros detallados de la asociación de árboles </strong>:</p>
-<p>Principal especie de árbol asociada: [Árbol reciente, dentro de 5 metros] Estimación de la edad del árbol: [Young <30 años/maduro 30-80 años/viejos> 80 años]</p>
-<p>Especies de árboles secundarios: [Todas las especies de árboles dentro de los 10 metros alrededor] Estructura del bosque: [CONIFER bosque %/bosque de hoja ancha %]</p>
-<p>Descripción del tipo de bosque: [bosque puro/bosque mixto] depresión del dosel del bosque: [abierto <30%/medio 30-70%/cerrado> 70%]</p>
-<br>
+<p class="article-text">Principal especie de árbol asociada: [Árbol reciente, dentro de 5 metros] Estimación de la edad del árbol: [Young <30 años/maduro 30-80 años/viejos> 80 años]</p>
+<p class="article-text">Especies de árboles secundarios: [Todas las especies de árboles dentro de los 10 metros alrededor] Estructura del bosque: [CONIFER bosque %/bosque de hoja ancha %]</p>
+<p class="article-text">Descripción del tipo de bosque: [bosque puro/bosque mixto] depresión del dosel del bosque: [abierto <30%/medio 30-70%/cerrado> 70%]</p>
 <p><strong> Registros cuantitados de condiciones ambientales </strong>:</p>
-<p>Temporada: [principios de primavera/finales de primavera/principios de verano/mediano verano/principios de otoño/finales de otoño/invierno]</p>
-<p>Condiciones climáticas: [Sunny/Cloudy/Cloudy/Rain] Ripa de lluvia reciente: [MM] Número de días después de la lluvia: [días]</p>
-<p>Temperatura: [° C] Humedad relativa: [%] Humedad del suelo: [seco <30%/húmedo 30-60%/húmedo 60-80%/agua saturada> 80%]</p>
-<br>
+<p class="article-text">Temporada: [principios de primavera/finales de primavera/principios de verano/mediano verano/principios de otoño/finales de otoño/invierno]</p>
+<p class="article-text">Condiciones climáticas: [Sunny/Cloudy/Cloudy/Rain] Ripa de lluvia reciente: [MM] Número de días después de la lluvia: [días]</p>
+<p class="article-text">Temperatura: [° C] Humedad relativa: [%] Humedad del suelo: [seco <30%/húmedo 30-60%/húmedo 60-80%/agua saturada> 80%]</p>
 <p><strong> Terreno y microambiente </strong>:</p>
-<p>Altitud: [Número preciso de metros] Características topográficas: [pendiente plana/lisa <15 °/pendiente empinada> 15 °/valle/cresta]</p>
-<p>Dirección: [Pendiente Norte/South Slope/East Slope/Western Slope/Flat] Slope: [grados]</p>
-<p>Condiciones de luz: [Sol completo> 6 horas/sombra parcial 3-6 horas/sombra profunda <3 horas]</p>
-<p>Densidad de vegetación: [escaso <30%/medio 30-70%/lujo> 70%] espesor de capa de hoja caducifolio: [cm]</p>
-<br>
+<p class="article-text">Altitud: [Número preciso de metros] Características topográficas: [pendiente plana/lisa <15 °/pendiente empinada> 15 °/valle/cresta]</p>
+<p class="article-text">Dirección: [Pendiente Norte/South Slope/East Slope/Western Slope/Flat] Slope: [grados]</p>
+<p class="article-text">Condiciones de luz: [Sol completo> 6 horas/sombra parcial 3-6 horas/sombra profunda <3 horas]</p>
+<p class="article-text">Densidad de vegetación: [escaso <30%/medio 30-70%/lujo> 70%] espesor de capa de hoja caducifolio: [cm]</p>
 <p><strong> Registro de situación especial </strong>:</p>
-<p>□ Círculo de hongos □ Crecimiento del clúster (cantidad) □ Solo □ Distribución dispersa</p>
-<p>Modo de crecimiento especial: [Descripción detallada] Otras interacciones biológicas: [Signos de insectos y actividades animales]</p>
-<br>
+<p class="article-text">□ Círculo de hongos □ Crecimiento del clúster (cantidad) □ Solo □ Distribución dispersa</p>
+<p class="article-text">Modo de crecimiento especial: [Descripción detallada] Otras interacciones biológicas: [Signos de insectos y actividades animales]</p>
 <p><strong> Registros de observación complementarios </strong>:</p>
-<p>[Cualquier otra información ecológica relevante, olores especiales, signos climáticos anormales, etc.]</p>
-<br>
-<h3>Análisis práctico de casos</h3>
-<br>
+<p class="article-text">[Cualquier otra información ecológica relevante, olores especiales, signos climáticos anormales, etc.]</p>
+<div class="subsection-title">📌 Análisis práctico de casos</div>
 <p><strong> Caso 1: Diferenciación de especies arbóreas de Boletus </strong></p>
-<br>
-<p>Escena de descubrimiento: Central Rocky Mountains, 2200 metros sobre el nivel del mar</p>
-<p>Monstrucción A: debajo del bosque de Pinus Ponderosa, diámetro del tronco 40-60 cm</p>
-<p>→ La alta probabilidad es Boletus Rubricps - hongos comestibles deliciosos locales</p>
-<br>
-<p>Hongo B: apariencia similar, pero se encuentra debajo del bosque de Populus tremuloides</p>
-<p>→ probablemente leccino insigne - comestible pero mala calidad</p>
-<br>
+<p class="article-text">Escena de descubrimiento: Central Rocky Mountains, 2200 metros sobre el nivel del mar</p>
+<p class="article-text">Monstrucción A: debajo del bosque de Pinus Ponderosa, diámetro del tronco 40-60 cm</p>
+<p class="article-text">→ La alta probabilidad es Boletus Rubricps - hongos comestibles deliciosos locales</p>
+<p class="article-text">Hongo B: apariencia similar, pero se encuentra debajo del bosque de Populus tremuloides</p>
+<p class="article-text">→ probablemente leccino insigne - comestible pero mala calidad</p>
 <p><strong> Valor de evaluación ecológica </strong>: Evite el juicio erróneo basado en la apariencia y garantiza la seguridad y la calidad de la recolección.</p>
-<br>
 <p><strong> Caso 2: Confirmación de hábitat de Morel </strong></p>
-<br>
-<p>Características clave: tapa tipo panal, tallo hueco</p>
-<p>Pistas ecológicas: ruinas de incendios forestales de Colorado 2012, 1,800 metros sobre el nivel del mar, la pendiente del suroeste</p>
-<p>→ Morel negro (Morchella angustíceps) - Especies obligatorias de fuego</p>
-<br>
+<p class="article-text">Características clave: tapa tipo panal, tallo hueco</p>
+<p class="article-text">Pistas ecológicas: ruinas de incendios forestales de Colorado 2012, 1,800 metros sobre el nivel del mar, la pendiente del suroeste</p>
+<p class="article-text">→ Morel negro (Morchella angustíceps) - Especies obligatorias de fuego</p>
 <p><strong> Tip Tip </strong>: Es crucial registrar un año de fuego, y algunas morenas solo aparecen en años específicos.</p>
-<br>
 <p><strong> Caso 3: Evite la Amanita altamente tóxica </strong></p>
-<br>
-<p>Escena de descubrimiento: debajo del roble en el parque de la ciudad, la apariencia es atractiva</p>
-<p>Filtración ecológica: asociación micorrícola de roble + contención de bacterias + pliegues de bacterias blancas</p>
-<p>→ posible para el ángel de la destrucción (Amanita bisporigera) - uno de los hongos más venenosos de América del Norte</p>
-<br>
+<p class="article-text">Escena de descubrimiento: debajo del roble en el parque de la ciudad, la apariencia es atractiva</p>
+<p class="article-text">Filtración ecológica: asociación micorrícola de roble + contención de bacterias + pliegues de bacterias blancas</p>
+<p class="article-text">→ posible para el ángel de la destrucción (Amanita bisporigera) - uno de los hongos más venenosos de América del Norte</p>
 <p><strong> Sugerencias que salvan vidas </strong>: La información ecológica combina características morfológicas para evitar posibles errores fatales.</p>
-<br>
-<h2>habilidades de observación ecológica avanzadas</h2>
-<br>
-<h3>Método de encuesta de campo sistemático</h3>
-<br>
+<div class="section-title">🍄 habilidades de observación ecológica avanzadas</div>
+<div class="subsection-title">📌 Método de encuesta de campo sistemático</div>
 <p><strong> Método de observación de cinco pasos </strong>:</p>
-<p>1. Microobservación: características detalladas de los hongos mismos</p>
-<p>2. Entorno instantáneo: propiedades de la matriz de crecimiento</p>
-<p>3. Ambiente circundante: condiciones ecológicas dentro de un radio de 5 metros</p>
-<p>4. Características de la tierra del bosque: estructura y composición de stands</p>
+<p class="article-text">1. Microobservación: características detalladas de los hongos mismos</p>
+<p class="article-text">2. Entorno instantáneo: propiedades de la matriz de crecimiento</p>
+<p class="article-text">3. Ambiente circundante: condiciones ecológicas dentro de un radio de 5 metros</p>
+<p class="article-text">4. Características de la tierra del bosque: estructura y composición de stands</p>
 <p>5. Topografía y clima: factores macroeconómicos</p>
-<br>
 <p><strong> Acuerdo de fotografía y grabación </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Foto in situ de hongos: muestra la relación con la matriz de crecimiento</li>
 <li>Panorámico ambiental: exhibir la vegetación y el terreno circundantes</li>
 <li>Primer plano de especies de árboles: hojas, corteza, forma general</li>
 <li>Señal del hábitat: terreno o característica especial</li>
 <li>Referencia de escala: agregar regla o objeto conocido</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Lista de equipos profesionales </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Herramientas principales: equipo GPS, guía de árboles, lupa</li>
 <li>Herramientas de medición: termómetro de suelo, tira de prueba de pH, cinta métrica</li>
 <li>Herramientas de grabación: cuaderno impermeable, cámara digital, grabadora de voz</li>
 <li>Equipo de seguridad: guantes, kits de primeros auxilios, equipo de comunicación</li>
-</ul>
-<br>
-<h3>Monitoreo a largo plazo e investigación fenológica</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 Monitoreo a largo plazo e investigación fenológica</div>
 <p><strong> Crear un calendario de fenómenos </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Registre el patrón de producción anual de hongos para cada ubicación</li>
 <li>rastrear el impacto a largo plazo del cambio climático</li>
 <li>Predecir la mejor ventana de tiempo de adquisición</li>
 <li>Establecer una base de conocimiento ecológico local</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Participación de la ciencia ciudadana </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Observación de registro de plataforma inaturalista</li>
 <li>Contribución de datos de la Asociación de Hongos de América del Norte</li>
 <li>Programa de monitoreo de la sociedad de hongos locales</li>
 <li>Asistencia de campo para proyectos de investigación universitaria</li>
-</ul>
-<br>
-<h2>Recursos de aprendizaje ecológico y caminos avanzados</h2>
-<br>
-<h3>Mejora de las habilidades de reconocimiento de árboles</h3>
-<br>
+</ul></div>
+<div class="section-title">🍄 Recursos de aprendizaje ecológico y caminos avanzados</div>
+<div class="subsection-title">📌 Mejora de las habilidades de reconocimiento de árboles</div>
 <p><strong> Herramientas y recursos recomendados </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Aplicación móvil: inaturalista, Leafsnap, PictureThis</li>
 <li>Guía de campo: Peterson Tree Guide, National Audubon Society Guide de árboles</li>
 <li>Cursos en línea: curso de reconocimiento de plantas de Coursera, taller de botánica local</li>
 <li>Aprendizaje práctico: encuesta de campo con botánicos</li>
-</ul>
-<br>
-<h3>Aprendizaje profundo de la ecología fúngica</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 Aprendizaje profundo de la ecología fúngica</div>
 <p><strong> Ruta de aprendizaje profesional </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Comenzando: "Mushrooms desmitificados" de David Arora "</li>
 <li>Avanzado: la biología fúngica de John W. Taylor</li>
 <li>Mayor: documentos de investigación científica de la Sociedad Micológica de América</li>
 <li>Práctica: actividades guiadas de recolección de hongos y conferencias de micología</li>
-</ul>
-<br>
-<h2>Conclusión: el valor central de las habilidades de identificación ecológica</h2>
-<br>
-<p>La información ecológica y ambiental no es una opción complementaria para la identificación de hongos, sino un elemento central. Según mis 20 años de experiencia en el campo, más del 60% de los errores de identificación se derivan de ignorar o leer mal las pistas ecológicas.Un hongo que se encuentra debajo de un pino y otro que se ve de manera similar debajo de un roble puede ser una especie completamente diferente: uno puede ser un ingrediente precioso y el otro puede ser potencialmente mortal.</p>
-<br>
-<h3>Resumen de habilidades clave</h3>
-<br>
+</ul></div>
+<div class="section-title">🍄 Conclusión: el valor central de las habilidades de identificación ecológica</div>
+<p class="article-text">La información ecológica y ambiental no es una opción complementaria para la identificación de hongos, sino un elemento central. Según mis 20 años de experiencia en el campo, más del 60% de los errores de identificación se derivan de ignorar o leer mal las pistas ecológicas.Un hongo que se encuentra debajo de un pino y otro que se ve de manera similar debajo de un roble puede ser una especie completamente diferente: uno puede ser un ingrediente precioso y el otro puede ser potencialmente mortal.</p>
+<div class="subsection-title">📌 Resumen de habilidades clave</div>
 <p><strong> Habilidades ecológicas que deben ser dominadas </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Capacidad precisa de reconocimiento de árboles</li>
 <li>Clasificación científica de la matriz de crecimiento</li>
 <li>Una comprensión profunda de la fenología estacional</li>
 <li>Una gran observación de los factores microambientales</li>
 <li>Hábitos de grabación sistematizados</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Fórmula de evaluación profesional </strong>:</p>
-<p>Características morfológicas + información ecológica + distribución geográfica = identificación confiable</p>
-<br>
+<p class="article-text">Características morfológicas + información ecológica + distribución geográfica = identificación confiable</p>
 <p><strong> Primer principio de seguridad </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>La información ecológica es una red de seguridad, no una licencia</li>
 <li>Evidencia múltiple para confirmar el tipo de comestible</li>
 <li>En caso de duda, nunca consumas</li>
 <li>Aprender de los expertos locales es la forma más rápida</li>
-</ul>
-<br>
-<h3>El valor de largo alcance de la observación ecológica</h3>
-<br>
-<p>El dominio de las habilidades de observación ecológica no solo mejora las capacidades de identificación de hongos, sino que también le permite comprender profundamente las complejas interacciones de los ecosistemas forestales.Empezarás a ver:</p>
-<ul>
+</ul></div>
+<div class="subsection-title">📌 El valor de largo alcance de la observación ecológica</div>
+<p class="article-text">El dominio de las habilidades de observación ecológica no solo mejora las capacidades de identificación de hongos, sino que también le permite comprender profundamente las complejas interacciones de los ecosistemas forestales.Empezarás a ver:</p>
+<div class="highlight"><ul>
 <li>Cómo las redes de hongos conectan las comunidades de árboles</li>
 <li>El verdadero proceso del ciclo de nutrientes</li>
 <li>Relaciones simbióticas complejas entre especies</li>
 <li>Impacto específico del cambio climático en los ecosistemas</li>
-</ul>
-<br>
-<p>Esta comprensión ecológica profunda cambiará la forma en que interactúas con la naturaleza, lo que hace que cada aventura de campo sea una oportunidad para descubrir y aprender.</p>
-<br>
-<h2>Guía de acción: pasos prácticos para comenzar ahora</h2>
-<br>
-<h3>Plan de 30 días para principiantes</h3>
-<br>
+</ul></div>
+<p class="article-text">Esta comprensión ecológica profunda cambiará la forma en que interactúas con la naturaleza, lo que hace que cada aventura de campo sea una oportunidad para descubrir y aprender.</p>
+<div class="section-title">📖 Guía de acción: pasos prácticos para comenzar ahora</div>
+<div class="subsection-title">📌 Plan de 30 días para principiantes</div>
 <p><strong> Semana 1: Habilidades básicas </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Aprenda a identificar 5 árboles locales comunes</li>
 <li>Dominar la clasificación básica de los tipos de suelo</li>
 <li>Comience a registrar observaciones ecológicas simples</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Semana 2: Práctica del sistema </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Uso de tablas de registro estandarizadas</li>
 <li>Practicar observación de factores de microambiente</li>
 <li>Cree el primer sitio de monitoreo</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Semana 3: Integración de habilidades </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Combinado con identificación ecológica y morfológica</li>
 <li>Participar en la plataforma de ciencias ciudadanas</li>
 <li>Encuentra una comunidad de hongos locales</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Cuarta semana: expansión del conocimiento </strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Leer materiales de ecología profesional</li>
 <li>Intenta predecir el patrón de hongos</li>
 <li>Guiar a otros principiantes</li>
-</ul>
-<br>
-<h3>Lista de construcción de equipos profesionales</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 Lista de construcción de equipos profesionales</div>
 <p><strong> Equipo básico (dentro de $ 100) </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Guía de identificación de árboles ($ 25)</li>
 <li>Glasión de lupa portátil ($ 15)</li>
 <li>Notebook impermeable ($ 10)</li>
 <li>Aplicación de grabación de teléfonos inteligentes (gratis)</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Equipo avanzado (dentro de $ 300) </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Dispositivo GPS portátil ($ 150)</li>
 <li>Kit de prueba de suelo ($ 50)</li>
 <li>Equipo de fotografía profesional ($ 100)</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Equipo profesional ($ 500+) </strong>:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Monitor ambiental de alta precisión ($ 300)</li>
 <li>Microscopio profesional ($ 200+)</li>
 <li>Equipo de laboratorio de campo (los precios varían)</li>
-</ul>
-<br>
-<p>Recuerde: el mejor equipo es la acumulación de experiencia y la observación sistemática. Comience desde lo básico y establezca gradualmente su sistema de habilidades de identificación ecológica.</p>
-<br>
-<p>La observación ecológica es una habilidad de por vida que continúa profundizándose con la acumulación de experiencia.Cada aventura al aire libre es una nueva oportunidad de aprendizaje, y cada hongo tiene su propia historia ecológica única.Disfrute de este proceso de exploración y haga del entorno natural su aula más rica.</p>
-<br>
-<p>¡Desea su viaje de observación ecológica llena de descubrimientos, ideas e infinita maravilla!</p>
-<br>
+</ul></div>
+<p class="article-text">Recuerde: el mejor equipo es la acumulación de experiencia y la observación sistemática. Comience desde lo básico y establezca gradualmente su sistema de habilidades de identificación ecológica.</p>
+<p class="article-text">La observación ecológica es una habilidad de por vida que continúa profundizándose con la acumulación de experiencia.Cada aventura al aire libre es una nueva oportunidad de aprendizaje, y cada hongo tiene su propia historia ecológica única.Disfrute de este proceso de exploración y haga del entorno natural su aula más rica.</p>
+<p class="article-text">¡Desea su viaje de observación ecológica llena de descubrimientos, ideas e infinita maravilla!</p>
 <p>---</p>
-<p>*Consejos de seguridad: la información proporcionada en este artículo es para fines educativos.Existen riesgos en la identificación de hongos, aprenda bajo la guía de expertos.Siempre siga el principio de confirmación de evidencia múltiple y tenga cuidado con cualquier hongo incierto.*</p>
-<br>
+<p class="article-text">*Consejos de seguridad: la información proporcionada en este artículo es para fines educativos.Existen riesgos en la identificación de hongos, aprenda bajo la guía de expertos.Siempre siga el principio de confirmación de evidencia múltiple y tenga cuidado con cualquier hongo incierto.*</p>
 <p>---</p>
-<br>
-<h2>⚠️ Descargo de responsabilidad importante</h2>
-<br>
+<div class="section-title">🍄 ⚠️ Descargo de responsabilidad importante</div>
 <p><strong> Este artículo es solo para referencia educativa e información.</strong></p>
-<br>
-<h3>Advertencia de riesgo de consumo de hongos</h3>
-<br>
-<p>1. <strong> Seguridad de la vida Primero </strong>: Existen riesgos inherentes en la identificación de hongos silvestres.Muchos hongos tóxicos se ven muy similares a los hongos comestibles, e ingerirlos accidentalmente puede provocar una enfermedad grave o incluso la muerte.</p>
-<br>
-<p>2. <strong> Se requiere identificación profesional </strong>: Antes de comer hongos silvestres, un micólogo profesional o un experto en identificación de hongos certificado debe realizar el 100%.Las fotos, las descripciones de texto y la experiencia personal no son suficientes para garantizar la seguridad.</p>
-<br>
-<p>3. <strong> Diferencias individuales </strong>: Incluso los hongos comestibles reconocidos pueden causar reacciones adversas debido a factores como la constitución personal, reacciones alérgicas, método de consumo o entorno de crecimiento de hongos.Intente en pequeñas cantidades cuando coma una nueva variedad por primera vez.</p>
-<br>
-<p>4. <strong> Diferencias geográficas </strong>: Existen grandes diferencias en las especies de hongos y la toxicidad en diferentes regiones.La información mencionada en este artículo no puede aplicarse a su región.Consulte a expertos en micología local y organizaciones autorizadas.</p>
-<br>
-<p>5. <strong> Responsabilidad profesional </strong>: El autor y el editor no serán responsables de ningún daño, enfermedad o pérdida directa o indirecta derivada del uso de la información en este artículo.</p>
-<br>
-<h3>Consejo de seguridad</h3>
-<br>
-<ul>
+<div class="subsection-title">📌 Advertencia de riesgo de consumo de hongos</div>
+<p class="article-text">1. <strong> Seguridad de la vida Primero </strong>: Existen riesgos inherentes en la identificación de hongos silvestres.Muchos hongos tóxicos se ven muy similares a los hongos comestibles, e ingerirlos accidentalmente puede provocar una enfermedad grave o incluso la muerte.</p>
+<p class="article-text">2. <strong> Se requiere identificación profesional </strong>: Antes de comer hongos silvestres, un micólogo profesional o un experto en identificación de hongos certificado debe realizar el 100%.Las fotos, las descripciones de texto y la experiencia personal no son suficientes para garantizar la seguridad.</p>
+<p class="article-text">3. <strong> Diferencias individuales </strong>: Incluso los hongos comestibles reconocidos pueden causar reacciones adversas debido a factores como la constitución personal, reacciones alérgicas, método de consumo o entorno de crecimiento de hongos.Intente en pequeñas cantidades cuando coma una nueva variedad por primera vez.</p>
+<p class="article-text">4. <strong> Diferencias geográficas </strong>: Existen grandes diferencias en las especies de hongos y la toxicidad en diferentes regiones.La información mencionada en este artículo no puede aplicarse a su región.Consulte a expertos en micología local y organizaciones autorizadas.</p>
+<p class="article-text">5. <strong> Responsabilidad profesional </strong>: El autor y el editor no serán responsables de ningún daño, enfermedad o pérdida directa o indirecta derivada del uso de la información en este artículo.</p>
+<div class="subsection-title">📌 Consejo de seguridad</div>
+<div class="highlight"><ul>
 <li>✅ Participe en cursos formales de capacitación de identificación de hongos</li>
 <li>✅ ✅ ✅ ✅ ✅ ✅ ✅ ✅ ✅ ✅ ✅ ✅ ✅ ✅ ✅ ✅ ✅ ✅ ✅ ✅ ✅ ✅ ✅</li>
 <li>✅ Compre hongos cultivados de fuentes confiables</li>
 <li>✅ Guardar muestras de hongos para necesidades médicas de emergencia</li>
 <li>✅ No lo comas si tienes alguna duda</li>
-</ul>
-<br>
+</ul></div>
 <p><strong> Recuerde: cuando tiene alguna pregunta, la única opción segura es no comerla.La seguridad de su vida es mucho más importante que cualquier comida de hongos.</strong></p>
-<br>
 <p>---</p>
         </div>
-    </div>
+
+</div>
 </body>
 </html>

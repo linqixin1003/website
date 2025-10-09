@@ -1,414 +1,332 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mykorrhiza-Beziehungen - Mushroom Ecology</title>
-    <meta name="description" content="Mykorrhiza-Beziehungen">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>02 Mykorrhiza-Beziehungen - MushroomAiSnap</title>
+<link href="../../mobile-styles.css" rel="stylesheet"/>
+<link href="../../mobile-enhancement.css" rel="stylesheet"/>
+<link href="../../ecology-theme.css" rel="stylesheet"/>
+<style>
+        .hero-image img {
+            max-height: 200px;
+            width: 100%;
+            object-fit: cover;
         }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        .article-card img {
+            max-height: 120px;
+            width: 100%;
+            object-fit: cover;
+        }
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                        url('../../images/mushroom-ecology_02-mycorrhizal-relationships.webp') center/cover;
+            position: relative;
+            margin-top: 0;
+        }
+        .article-meta {
+            margin-top: 15px !important;
+        }
+    
+        /* Mushroom Ecology Theme */
+        :root {
+            --primary-color: #228B22;
+            --primary-dark: #006400;
+            --primary-light: #F0FFF0;
+            --accent-color: #32CD32;
+        }
+        
+        /* Theme Color Overrides */
+        .content {
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+            border: 2px solid var(--primary-color);
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, var(--primary-light), var(--primary-light));
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .quote-text {
+            color: var(--primary-dark);
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+        }
+        
+        .subsection-title {
+            color: var(--primary-dark);
+            font-size: 1.4em;
+            font-weight: 600;
+            margin: 25px 0 15px 0;
+            padding-left: 10px;
+            border-left: 3px solid var(--accent-color);
+        }
+        
+        .tip-box {
+            border-left: 4px solid var(--primary-color);
+            background: var(--primary-light);
+        }
+        
+        .tip-title {
+            color: var(--primary-color);
+        }
+        
+        .highlight {
+            border-left: 4px solid var(--accent-color);
+            background: linear-gradient(135deg, #f1f8e9, var(--primary-light));
+        }
+        
+        .warning {
+            border-left: 4px solid #f44336;
+        }
+        
+        .equipment-item {
+            border: 1px solid var(--accent-color);
+            background: linear-gradient(135deg, #ffffff, var(--primary-light));
+        }
+        
+        .equipment-item h4 {
+            color: var(--primary-color);
+        }
+        
+        .category {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .main-text {
+            font-size: 1.1em;
             line-height: 1.8;
             color: #333;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-
-        .article-title {
-            color: #4ECDC4;
-            font-size: 2.5em;
-            margin-bottom: 30px;
-            margin-top: 0;
-            line-height: 1.3;
-            padding-top: 0;
-        }
-
-        .featured-image {
-            width: 100%;
-            height: auto;
-            aspect-ratio: 4 / 3;
-            object-fit: cover;
-            display: block;
-        }
-
-        .content {
-            padding: 50px;
-        }
-
-        .content h2 {
-            color: #4ECDC4;
-            font-size: 2em;
-            margin-top: 40px;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid #4ECDC4;
-        }
-
-        .content h3 {
-            color: #555;
-            font-size: 1.6em;
-            margin-top: 30px;
-            margin-bottom: 15px;
-        }
-
-        .content h4 {
-            color: #666;
-            font-size: 1.3em;
-            margin-top: 25px;
-            margin-bottom: 12px;
-        }
-
-        .content p {
-            margin-bottom: 20px;
-            font-size: 1.1em;
-            color: #444;
-        }
-
-        .content ul {
             margin: 20px 0;
-            padding-left: 30px;
-        }
-
-        .content li {
-            margin-bottom: 12px;
-            font-size: 1.05em;
-            color: #555;
-        }
-
-        .content strong {
-            color: #222;
-            font-weight: 600;
-        }
-
-        .back-link {
-            display: inline-block;
-            padding: 12px 25px;
-            background: linear-gradient(135deg, #4ECDC4, #8B4513);
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            margin-bottom: 20px;
-            transition: transform 0.3s ease;
-            font-weight: 600;
-        }
-
-        .back-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .navigation {
-            padding: 30px 50px;
-            background: #f8f9fa;
-            border-top: 1px solid #e9ecef;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-btn {
-            padding: 10px 20px;
-            background: #4ECDC4;
-            color: white;
-            text-decoration: none;
+            padding: 15px;
+            background: linear-gradient(135deg, #ffffff, #f9f9f9);
             border-radius: 8px;
-            transition: all 0.3s ease;
+            border-left: 3px solid var(--accent-color);
         }
-
-        .nav-btn:hover {
-            transform: translateX(5px);
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+        
+        .emoji {
+            font-size: 1.5em;
+            margin-left: 10px;
         }
-
-        .nav-btn.prev:hover {
-            transform: translateX(-5px);
+        
+        .read-time, .difficulty {
+            display: inline-block;
+            padding: 5px 15px;
+            margin: 5px 5px 5px 0;
+            border-radius: 20px;
+            font-size: 0.9em;
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            color: #1976d2;
+            font-weight: 500;
         }
-
-        @media (max-width: 768px) {
-            .content {
-                padding: 30px 25px;
-            }
-
-            .article-title {
-                font-size: 1.8em;
-            }
-
-            .featured-image {
-                height: 250px;
-            }
-
-            .navigation {
-                flex-direction: column;
-                gap: 15px;
-            }
+        
+        .difficulty {
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            color: #e65100;
+        }
+        
+        .article-text {
+            line-height: 1.8;
+            color: #444;
+            margin: 15px 0;
+            font-size: 1.05em;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <img src="../../images/mushroom-ecology_02-mycorrhizal-relationships.webp" alt="Mykorrhiza-Beziehungen" class="featured-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22900%22 height=%22400%22%3E%3Crect fill=%22%23D2691E%22 width=%22900%22 height=%22400%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22white%22 font-size=%2260%22%3E🍄%3C/text%3E%3C/svg%3E'">
+<div class="hero-image"></div>
+<div class="content">
+    <h1 class="title">02 Mykorrhiza-Beziehungen</h1>
+    <div class="quote-box">
+        <div class="quote-text">Professional Mycology Guide</div>
+    </div>
+    
+<div class="article-meta">
+<span class="category">🌱 Mushroom Ecology</span>
+<span class="read-time">📖 9 minute read</span>
+<span class="difficulty">🟢 Beginner</span>
+</div>
 
-        <div class="content">
-            <h1 class="article-title">Mykorrhiza-Beziehungen</h1>
-            <br>
-<h2>Geheime Kooperation unter dem Waldboden</h2>
-<br>
-<p>Als ich zum ersten Mal jene perfekten Steinpilze in den Eichenwäldern Minnesotas entdeckte, wurde mir klar, dass dies nicht nur Glück war. Dreißig Jahre Felderfahrung sagten mir, dass diese köstlichen Pilze nicht zufällig auftauchen – sie sind der sichtbare Beweis einer uralten, unterirdischen Allianz. Mykorrhiza-Beziehungen, ein Begriff aus dem Griechischen für "Pilzwurzel", repräsentieren ein ausgeklügeltes Kooperationssystem zwischen Pflanzen und Pilzen, das sich über 400 Millionen Jahre entwickelt hat.</p>
-<br>
-<p>Für Naturliebhaber wie Sie und mich bedeutet das Verständnis dieser Beziehung nicht nur eine reichere Ausbeute, sondern auch ein tieferes Verständnis der natürlichen Welt. In diesem weitläufigen unterirdischen Netzwerk tauschen Bäume und Pilze komplexe Ressourcen aus, und indem wir diese Beziehungen entschlüsseln, können wir effizientere und bewusstere Sammler werden.</p>
-<br>
-<h2>Mykorrhiza-Grundlagen: Ein Verständnis jenseits des Lehrbuchs</h2>
-<br>
-<h3>Definition und Wesen</h3>
-<br>
-<p>Mykorrhiza ist weit mehr als eine Lehrbuchdefinition. Im Feld ist dies eine der grundlegendsten ökologischen Beziehungen, die man beobachten kann. Einfach ausgedrückt bilden etwa 90 % der Landpflanzen diese symbiotische Beziehung mit Pilzen, darunter fast alle uns vertrauten Waldbäume – von der Weiß-Eiche Nordamerikas bis zur Gelb-Kiefer des Westens.</p>
-<br>
+
+            <div class="section-title">🍄 Geheime Kooperation unter dem Waldboden</div>
+<div class="main-text">Als ich zum ersten Mal jene perfekten Steinpilze in den Eichenwäldern Minnesotas entdeckte, wurde mir klar, dass dies nicht nur Glück war. Dreißig Jahre Felderfahrung sagten mir, dass diese köstlichen Pilze nicht zufällig auftauchen – sie sind der sichtbare Beweis einer uralten, unterirdischen Allianz. Mykorrhiza-Beziehungen, ein Begriff aus dem Griechischen für "Pilzwurzel", repräsentieren ein ausgeklügeltes Kooperationssystem zwischen Pflanzen und Pilzen, das sich über 400 Millionen Jahre entwickelt hat.<span class="emoji">🍄</span></div>
+<p class="article-text">Für Naturliebhaber wie Sie und mich bedeutet das Verständnis dieser Beziehung nicht nur eine reichere Ausbeute, sondern auch ein tieferes Verständnis der natürlichen Welt. In diesem weitläufigen unterirdischen Netzwerk tauschen Bäume und Pilze komplexe Ressourcen aus, und indem wir diese Beziehungen entschlüsseln, können wir effizientere und bewusstere Sammler werden.</p>
+<div class="section-title">📚 Mykorrhiza-Grundlagen: Ein Verständnis jenseits des Lehrbuchs</div>
+<div class="subsection-title">📌 Definition und Wesen</div>
+<p class="article-text">Mykorrhiza ist weit mehr als eine Lehrbuchdefinition. Im Feld ist dies eine der grundlegendsten ökologischen Beziehungen, die man beobachten kann. Einfach ausgedrückt bilden etwa 90 % der Landpflanzen diese symbiotische Beziehung mit Pilzen, darunter fast alle uns vertrauten Waldbäume – von der Weiß-Eiche Nordamerikas bis zur Gelb-Kiefer des Westens.</p>
 <p><strong>Praktische Beobachtungspunkte:</strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Mykorrhiza-Beziehungen sind in reifen Wäldern am stärksten entwickelt</li>
 <li>In mageren Böden ist diese Beziehung entscheidender</li>
 <li>Neue Aufforstungsflächen können Jahre brauchen, um vollständige Mykorrhiza-Netzwerke aufzubauen</li>
-</ul>
-<br>
-<h3>Haupttypen und ihre Identifizierung</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 Haupttypen und ihre Identifizierung</div>
 <p><strong>Ektomykorrhiza (ECM)</strong></p>
-<p>Dies ist der Typ, der uns Sammlern am meisten am Herzen liegt, da die überwältigende Mehrheit der köstlichen Wildpilze dazu gehört.</p>
-<br>
+<p class="article-text">Dies ist der Typ, der uns Sammlern am meisten am Herzen liegt, da die überwältigende Mehrheit der köstlichen Wildpilze dazu gehört.</p>
 <p><strong>Feldidentifikationsmerkmale:</strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Baumwurzeln sind von einer Scheide aus Pilzmyzel umhüllt</li>
 <li>Hyphen durchdringen die Wurzelzellzwischenräume und bilden ein Hartig-Netz</li>
 <li>Fruchtkörper (Pilze) sind meist eng mit bestimmten Baumarten assoziiert</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>Expertenrat:</strong> Das Erlernen der Identifizierung von Ektomykorrhiza-Bäumen ist der Schlüssel zur Steigerung der Sammeleffizienz. Nadelbäume (Kiefern, Fichten) und viele Laubbäume (Eichen, Buchen) bilden typischerweise Ektomykorrhiza.</p>
-<br>
 <p><strong>Endomykorrhiza (Arbusculäre Mykorrhiza, AM)</strong></p>
-<p>Obwohl sie keine sichtbaren Pilze produzieren, sind sie für das Ökosystem entscheidend:</p>
-<ul>
+<p class="article-text">Obwohl sie keine sichtbaren Pilze produzieren, sind sie für das Ökosystem entscheidend:</p>
+<div class="highlight"><ul>
 <li>Hyphen dringen direkt in die Pflanzenwurzelzellen ein</li>
 <li>Hauptsächlich mit Krautpflanzen und Kulturpflanzen assoziiert</li>
 <li>Hat tiefgreifende Auswirkungen auf die Bodengesundheit</li>
-</ul>
-<br>
-<h2>Tiefere Funktionsmechanismen der Ektomykorrhiza</h2>
-<br>
-<h3>Nährstoffaustausch: Ein präzises ökonomisches System unter der Erde</h3>
-<br>
+</ul></div>
+<div class="section-title">🍄 Tiefere Funktionsmechanismen der Ektomykorrhiza</div>
+<div class="subsection-title">📌 Nährstoffaustausch: Ein präzises ökonomisches System unter der Erde</div>
 <p><strong>Dienstleistungen des Pilzes für die Pflanze:</strong></p>
-<br>
-<p>Die Wasseraufnahme ist der direkteste Wert der Mykorrhiza. Während Dürreperioden im Westen der USA habe ich beobachtet, dass Kiefern mit Mykorrhiza eine fünfmal höhere Überlebensrate aufwiesen als vergleichbare ohne. Das Myzelnetzwerk erweitert die Wurzelabsorptionsfläche um das Hunderte fache und kann die winzigsten Bodenporen erkunden.</p>
-<br>
-<p>Der Transport von Stickstoff und Phosphor ist ein weiterer Schlüsseldienst. In einer Studie in Montana lieferten Mykorrhiza-Pilze 80 % des benötigten Stickstoffs und 90 % des Phosphors für Espenbäume. Pilzhyphen können organische Säuren ausscheiden, um nicht verfügbare Phosphorverbindungen zu lösen – eine Effizienz, die die von Pflanzenwurzeln bei weitem übertrifft.</p>
-<br>
+<p class="article-text">Die Wasseraufnahme ist der direkteste Wert der Mykorrhiza. Während Dürreperioden im Westen der USA habe ich beobachtet, dass Kiefern mit Mykorrhiza eine fünfmal höhere Überlebensrate aufwiesen als vergleichbare ohne. Das Myzelnetzwerk erweitert die Wurzelabsorptionsfläche um das Hunderte fache und kann die winzigsten Bodenporen erkunden.</p>
+<p class="article-text">Der Transport von Stickstoff und Phosphor ist ein weiterer Schlüsseldienst. In einer Studie in Montana lieferten Mykorrhiza-Pilze 80 % des benötigten Stickstoffs und 90 % des Phosphors für Espenbäume. Pilzhyphen können organische Säuren ausscheiden, um nicht verfügbare Phosphorverbindungen zu lösen – eine Effizienz, die die von Pflanzenwurzeln bei weitem übertrifft.</p>
 <p><strong>Gegenleistung der Pflanze an den Pilz:</strong></p>
-<br>
-<p>Bäume leiten 10–30 % ihrer Photosyntheseprodukte an ihre Pilzpartner – eine Zahl, die in kargen Umgebungen sogar noch höher ist. Das bedeutet, wenn Sie eine üppige Eiche sehen, ernährt diese tatsächlich ein riesiges unterirdisches Pilznetzwerk.</p>
-<br>
-<h3>Zusätzliche Vorteile über die Ernährung hinaus</h3>
-<br>
+<p class="article-text">Bäume leiten 10–30 % ihrer Photosyntheseprodukte an ihre Pilzpartner – eine Zahl, die in kargen Umgebungen sogar noch höher ist. Das bedeutet, wenn Sie eine üppige Eiche sehen, ernährt diese tatsächlich ein riesiges unterirdisches Pilznetzwerk.</p>
+<div class="subsection-title">📌 Zusätzliche Vorteile über die Ernährung hinaus</div>
 <p><strong>Pflanzenschutzmechanismen:</strong></p>
-<p>In den Redwood-Wäldern Kaliforniens habe ich beobachtet, dass die von Mykorrhiza-Pilzen gebildete physikalische Barriere effektiv vor Wurzelfäuleerregern schützt. Pilze scheiden auch antibiotische Substanzen aus und schaffen ein für Pathogene ungünstiges Mikroklima.</p>
-<br>
+<p class="article-text">In den Redwood-Wäldern Kaliforniens habe ich beobachtet, dass die von Mykorrhiza-Pilzen gebildete physikalische Barriere effektiv vor Wurzelfäuleerregern schützt. Pilze scheiden auch antibiotische Substanzen aus und schaffen ein für Pathogene ungünstiges Mikroklima.</p>
 <p><strong>Verbesserung der Bodenstruktur:</strong></p>
-<p>Myzelnetzwerke wirken wie natürlicher Kleber, der Bodenpartikel zu stabilen Aggregaten verbindet. Experimente im Bundesstaat Washington zeigten, dass die Erosionsrate von Boden mit Mykorrhiza um über 40 % reduziert war.</p>
-<br>
+<p class="article-text">Myzelnetzwerke wirken wie natürlicher Kleber, der Bodenpartikel zu stabilen Aggregaten verbindet. Experimente im Bundesstaat Washington zeigten, dass die Erosionsrate von Boden mit Mykorrhiza um über 40 % reduziert war.</p>
 <p><strong>Kommunikationsnetzwerk zwischen Pflanzen:</strong></p>
-<p>Das berühmte "Wood Wide Web" (Internet des Waldes) existiert tatsächlich. Myzel verbindet verschiedene Bäume und ermöglicht ihnen, Ressourcen zu teilen und Warnsignale zu übertragen. Ich habe Bäume im selben Mykorrhiza-Netzwerk markiert und festgestellt, dass benachbarte Bäume Abwehrmechanismen frühzeitig aktivierten, wenn einer von Schädlingen befallen wurde.</p>
-<br>
-<h2>Identifizierungs- und Lokalisierungsstrategien für Mykorrhiza-Pilze</h2>
-<br>
-<h3>Morphologische und ökologische Hinweise</h3>
-<br>
+<p class="article-text">Das berühmte "Wood Wide Web" (Internet des Waldes) existiert tatsächlich. Myzel verbindet verschiedene Bäume und ermöglicht ihnen, Ressourcen zu teilen und Warnsignale zu übertragen. Ich habe Bäume im selben Mykorrhiza-Netzwerk markiert und festgestellt, dass benachbarte Bäume Abwehrmechanismen frühzeitig aktivierten, wenn einer von Schädlingen befallen wurde.</p>
+<div class="section-title">🍄 Identifizierungs- und Lokalisierungsstrategien für Mykorrhiza-Pilze</div>
+<div class="subsection-title">📌 Morphologische und ökologische Hinweise</div>
 <p><strong>Nicht-Kultivierbarkeit:</strong></p>
-<p>Echte Mykorrhiza-Pilze können nicht auf künstlichen Nährmedien wachsen. Deshalb können Kostbarkeiten wie Matsutake und Steinpilze bis heute nicht vollständig kommerziell kultiviert werden.</p>
-<br>
+<p class="article-text">Echte Mykorrhiza-Pilze können nicht auf künstlichen Nährmedien wachsen. Deshalb können Kostbarkeiten wie Matsutake und Steinpilze bis heute nicht vollständig kommerziell kultiviert werden.</p>
 <p><strong>Habitat-Spezifität:</strong></p>
-<p>Mykorrhiza-Pilze erscheinen strikt in der Nähe bestimmter Baumarten. Zum Beispiel:</p>
-<ul>
+<p class="article-text">Mykorrhiza-Pilze erscheinen strikt in der Nähe bestimmter Baumarten. Zum Beispiel:</p>
+<div class="highlight"><ul>
 <li>Steinpilze: In der Nähe von Eichen, Kiefern</li>
 <li>Pfifferlinge: In Mischwäldern, besonders Eichen und Kiefern</li>
 <li>Matsutake: Bei bestimmten Kiefernarten</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>Saisonale Muster:</strong></p>
-<p>Die meisten Mykorrhiza-Pilze erreichen ihren Produktionshöhepunkt im Herbst, was mit dem Rhythmus übereinstimmt, in dem Bäume Zucker nach unten transportieren, um sich auf den Winter vorzubereiten. Ein kleinerer Höhepunkt tritt im Frühjahr auf, besonders nach Regenfällen.</p>
-<br>
-<h3>Partnerspezifität: Der Goldschlüssel des Sammlers</h3>
-<br>
+<p class="article-text">Die meisten Mykorrhiza-Pilze erreichen ihren Produktionshöhepunkt im Herbst, was mit dem Rhythmus übereinstimmt, in dem Bäume Zucker nach unten transportieren, um sich auf den Winter vorzubereiten. Ein kleinerer Höhepunkt tritt im Frühjahr auf, besonders nach Regenfällen.</p>
+<div class="subsection-title">📌 Partnerspezifität: Der Goldschlüssel des Sammlers</div>
 <p><strong>Weit anpassungsfähige Partner:</strong></p>
-<p>Wie der Fliegenpilz (Amanita muscaria), der mit verschiedenen Baumarten zusammenarbeiten kann, von Kiefern bis hin zu Birken.</p>
-<br>
+<p class="article-text">Wie der Fliegenpilz (Amanita muscaria), der mit verschiedenen Baumarten zusammenarbeiten kann, von Kiefern bis hin zu Birken.</p>
 <p><strong>Hochspezialisierte Partner:</strong></p>
-<p>Die Beziehung zwischen Matsutake und bestimmten Kiefern oder Lärchen-Röhrlingen und Lärchen ist fast exklusiv. Diese Spezifität ist unser stärkster Hinweis bei der Suche nach Zielpilzen.</p>
-<br>
+<p class="article-text">Die Beziehung zwischen Matsutake und bestimmten Kiefern oder Lärchen-Röhrlingen und Lärchen ist fast exklusiv. Diese Spezifität ist unser stärkster Hinweis bei der Suche nach Zielpilzen.</p>
 <p><strong>Schnell-Lokalisierungsstrategie:</strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Lernen Sie, Baumarten präzise zu identifizieren – nicht nur die Blattform, sondern auch die Rindenstruktur und Wuchseigenschaften</li>
 <li>Führen Sie einen Feldführer für lokale Baumarten mit</li>
 <li>Verwenden Sie Pflanzenbestimmungs-Apps zur Unterstützung</li>
 <li>Dokumentieren Sie Baumkombinationen an erfolgreichen Fundpunkten</li>
-</ul>
-<br>
-<h2>Praktisches Sammeln: Von der Theorie zur Ernte</h2>
-<br>
-<h3>Systematische Suchmethoden</h3>
-<br>
+</ul></div>
+<div class="section-title">🍄 Praktisches Sammeln: Von der Theorie zur Ernte</div>
+<div class="subsection-title">📌 Systematische Suchmethoden</div>
 <p><strong>Baumarten-zuerst-Strategie:</strong></p>
-<p>Auf der Suche nach einem bestimmten Pilz? Finden Sie zuerst seine Partnerbäume. In Colorado habe ich meine Steinpilz-Sammeleffizienz verdreifacht, indem ich mich auf die Suche in Gelb-Kiefern-Wäldern konzentrierte.</p>
-<br>
+<p class="article-text">Auf der Suche nach einem bestimmten Pilz? Finden Sie zuerst seine Partnerbäume. In Colorado habe ich meine Steinpilz-Sammeleffizienz verdreifacht, indem ich mich auf die Suche in Gelb-Kiefern-Wäldern konzentrierte.</p>
 <p><strong>Habitat-Bewertung:</strong></p>
-<p>Waldrandzonen sind oft die besten Suchgebiete – ausreichend Licht fördert die Photosynthese der Bäume, bei gleichzeitig angemessener Feuchtigkeit. Reife Wälder produzieren stabiler als junge Bestände, da das Mykorrhiza-Netzwerk bereits voll etabliert ist.</p>
-<br>
+<p class="article-text">Waldrandzonen sind oft die besten Suchgebiete – ausreichend Licht fördert die Photosynthese der Bäume, bei gleichzeitig angemessener Feuchtigkeit. Reife Wälder produzieren stabiler als junge Bestände, da das Mykorrhiza-Netzwerk bereits voll etabliert ist.</p>
 <p><strong>Interpretation der Bodenbedingungen:</strong></p>
-<p>Der pH-Wert beeinflusst die Pilzverteilung erheblich. Kalksteinregionen weisen oft andere Mykorrhiza-Kombinationen auf als saure Böden. Einfache Bodentest-Kits können wertvolle Hinweise liefern.</p>
-<br>
-<h3>Erfassung des saisonalen Zeitpunkts</h3>
-<br>
+<p class="article-text">Der pH-Wert beeinflusst die Pilzverteilung erheblich. Kalksteinregionen weisen oft andere Mykorrhiza-Kombinationen auf als saure Böden. Einfache Bodentest-Kits können wertvolle Hinweise liefern.</p>
+<div class="subsection-title">📌 Erfassung des saisonalen Zeitpunkts</div>
 <p><strong>Temperatur- und Feuchtigkeitsfenster:</strong></p>
-<p>Ideales Pilzwachstum erfordert eine bestimmte Kombination aus Bodentemperatur und -feuchtigkeit. Ich verwende ein Einstich-Bodenthermometer, um die Bodentemperatur zu überwachen. Wenn sie stabil bei 10–15 °C liegt und es近期 Niederschläge gab, ist der beste Zeitpunkt für einen Ausflug.</p>
-<br>
+<p class="article-text">Ideales Pilzwachstum erfordert eine bestimmte Kombination aus Bodentemperatur und -feuchtigkeit. Ich verwende ein Einstich-Bodenthermometer, um die Bodentemperatur zu überwachen. Wenn sie stabil bei 10–15 °C liegt und es近期 Niederschläge gab, ist der beste Zeitpunkt für einen Ausflug.</p>
 <p><strong>Phänologische Beobachtungen:</strong></p>
-<p>Dokumentieren Sie die phänologischen Phasen lokaler Bäume – Zeitpunkte wie Blattaustrieb, Blüte oder Fruchtbildung korrelieren mit dem Pilzwachstum. Langzeitaufzeichnungen helfen Ihnen, ein Vorhersagemodell zu erstellen.</p>
-<br>
-<h3>Optimierung von Ausrüstung und Werkzeugen</h3>
-<br>
+<p class="article-text">Dokumentieren Sie die phänologischen Phasen lokaler Bäume – Zeitpunkte wie Blattaustrieb, Blüte oder Fruchtbildung korrelieren mit dem Pilzwachstum. Langzeitaufzeichnungen helfen Ihnen, ein Vorhersagemodell zu erstellen.</p>
+<div class="subsection-title">🔧 Optimierung von Ausrüstung und Werkzeugen</div>
 <p><strong>Professionelle Sammelausrüstung:</strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Sammeltasche mit belüftetem Korb (Plastiktüten vermeiden)</li>
 <li>Hochwertiges Feldmesser</li>
 <li>Weiche Bürste zur Reinigung der Pilze</li>
 <li>GPS-Gerät zur Dokumentation ertragreicher Stellen</li>
 <li>Boden-Temperatur- und Feuchtigkeitsmesser</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>Datenaufzeichnungssystem:</strong></p>
-<p>Dokumentieren Sie jedes Sammelereignis detailliert: Baumarten, Bodenbedingungen, Wetterbedingungen und Erntemenge. Diese Daten werden über die Jahre zu einem unschätzbaren Vorhersagewerkzeug.</p>
-<br>
-<h2>Nachhaltiges Sammeln: Ethik und Technik</h2>
-<br>
-<h3>Auswirkungen der Sammelmethode</h3>
-<br>
-<p>Wissenschaftliche Studien zeigen, dass korrekte Sammelmethoden minimale Auswirkungen auf das Myzelnetzwerk haben:</p>
-<ul>
+<p class="article-text">Dokumentieren Sie jedes Sammelereignis detailliert: Baumarten, Bodenbedingungen, Wetterbedingungen und Erntemenge. Diese Daten werden über die Jahre zu einem unschätzbaren Vorhersagewerkzeug.</p>
+<div class="section-title">🍄 Nachhaltiges Sammeln: Ethik und Technik</div>
+<div class="subsection-title">📌 Auswirkungen der Sammelmethode</div>
+<p class="article-text">Wissenschaftliche Studien zeigen, dass korrekte Sammelmethoden minimale Auswirkungen auf das Myzelnetzwerk haben:</p>
+<div class="highlight"><ul>
 <li>Schneiden ist besser als Herausziehen, um Bodenstörungen zu reduzieren</li>
 <li>Ausgereifte Fruchtkörper haben bereits Sporen abgegeben, angemessenes Sammeln beeinträchtigt die Vermehrung nicht</li>
 <li>Zurücklassen einiger junger Pilze sichert anhaltende Produktion</li>
-</ul>
-<br>
-<h3>Verantwortung für den Habitatschutz</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 Verantwortung für den Habitatschutz</div>
 <p>Als verantwortungsvolle Sammler sollten wir:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Bodenverdichtung vermeiden, um das Myzelnetzwerk intakt zu halten</li>
 <li>Altwaldschutzprogramme unterstützen</li>
 <li>An lokalen Pilzschutzorganisationen teilnehmen</li>
 <li>Andere Sammler in nachhaltigen Praktiken unterweisen</li>
-</ul>
-<br>
-<h2>Ökosystem-Perspektive: Über das Sammeln hinaus</h2>
-<br>
-<h3>Grundpfeiler der Waldgesundheit</h3>
-<br>
-<p>Mykorrhiza-Netzwerke sind entscheidend für die Widerstandsfähigkeit des Waldes. Nach Dürre oder Schädlingsbefall erholen sich Waldgebiete mit gesunden Mykorrhiza-Netzwerken deutlich schneller.</p>
-<br>
-<h3>Schlüsselrolle im Kohlenstoffkreislauf</h3>
-<br>
-<p>Myzelnetzwerke sind wichtige Akteure im globalen Kohlenstoffkreislauf. Sie binden atmosphärischen Kohlenstoff im Boden, wobei bestimmte Arten von Myzel-Kohlenstoff über Jahrzehnte im Boden gespeichert werden können.</p>
-<br>
-<h3>Bewältigung des Klimawandels</h3>
-<br>
-<p>Mykorrhiza könnte Wäldern helfen, sich an den Klimawandel anzupassen:</p>
-<ul>
+</ul></div>
+<div class="section-title">🍄 Ökosystem-Perspektive: Über das Sammeln hinaus</div>
+<div class="subsection-title">📌 Grundpfeiler der Waldgesundheit</div>
+<p class="article-text">Mykorrhiza-Netzwerke sind entscheidend für die Widerstandsfähigkeit des Waldes. Nach Dürre oder Schädlingsbefall erholen sich Waldgebiete mit gesunden Mykorrhiza-Netzwerken deutlich schneller.</p>
+<div class="subsection-title">📌 Schlüsselrolle im Kohlenstoffkreislauf</div>
+<p class="article-text">Myzelnetzwerke sind wichtige Akteure im globalen Kohlenstoffkreislauf. Sie binden atmosphärischen Kohlenstoff im Boden, wobei bestimmte Arten von Myzel-Kohlenstoff über Jahrzehnte im Boden gespeichert werden können.</p>
+<div class="subsection-title">📌 Bewältigung des Klimawandels</div>
+<p class="article-text">Mykorrhiza könnte Wäldern helfen, sich an den Klimawandel anzupassen:</p>
+<div class="highlight"><ul>
 <li>Erhöhte Trockenheitsresistenz der Bäume</li>
 <li>Verbesserte Nährstoffnutzungseffizienz</li>
 <li>Abpufferung von Extremtemperaturen</li>
-</ul>
-<br>
-<p>Gleichzeitig ist das Mykorrhiza-System selbst durch den Klimawandel bedroht, was sich in veränderter Phänologie und Verschiebungen der Verbreitungsgebiete zeigt.</p>
-<br>
-<h2>Tiefenanalyse spezieller Fälle</h2>
-<br>
-<h3>Trüffel: Die ultimative Darstellung der Mykorrhiza-Beziehung</h3>
-<br>
-<p>Trüffel repräsentieren die höchste Form der Spezialisierung in Mykorrhiza-Beziehungen. Meine Erfahrungen auf einer Trüffelfarm in Oregon offenbarten die Präzision dieser Beziehung:</p>
-<br>
+</ul></div>
+<p class="article-text">Gleichzeitig ist das Mykorrhiza-System selbst durch den Klimawandel bedroht, was sich in veränderter Phänologie und Verschiebungen der Verbreitungsgebiete zeigt.</p>
+<div class="section-title">🍄 Tiefenanalyse spezieller Fälle</div>
+<div class="subsection-title">📌 Trüffel: Die ultimative Darstellung der Mykorrhiza-Beziehung</div>
+<p class="article-text">Trüffel repräsentieren die höchste Form der Spezialisierung in Mykorrhiza-Beziehungen. Meine Erfahrungen auf einer Trüffelfarm in Oregon offenbarten die Präzision dieser Beziehung:</p>
 <p><strong>Erfolgsfaktoren:</strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Spezifische Wirtsbäume (typischerweise Eichen oder Haseln)</li>
 <li>Genaue Boden-pH-Werte und -Struktur</li>
 <li>Geeignetes mediterranes Klima</li>
 <li>Geduldiges Warten – 5–7 Jahre von der Impfung bis zur ersten Ernte</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>Evolution der Erntetechnik:</strong></p>
-<p>Die traditionelle Verwendung von Sauen wurde durch trainierte Hunde ersetzt, die das wertvolle Mykorrhiza-Netzwerk nicht beschädigen und leichter zu kontrollieren sind.</p>
-<br>
-<h2>Zukunftsaussichten und Aktionsleitfaden</h2>
-<br>
-<h3>Anpassungsstrategien an den Klimawandel</h3>
-<br>
-<p>Langjährige Sammler haben bereits deutliche Veränderungen beobachtet:</p>
-<ul>
+<p class="article-text">Die traditionelle Verwendung von Sauen wurde durch trainierte Hunde ersetzt, die das wertvolle Mykorrhiza-Netzwerk nicht beschädigen und leichter zu kontrollieren sind.</p>
+<div class="section-title">🍄 Zukunftsaussichten und Aktionsleitfaden</div>
+<div class="subsection-title">📌 Anpassungsstrategien an den Klimawandel</div>
+<p class="article-text">Langjährige Sammler haben bereits deutliche Veränderungen beobachtet:</p>
+<div class="highlight"><ul>
 <li>Pilzsaison beginnt früher oder später</li>
 <li>Nordwärtsverschiebung des Verbreitungsgebiets einiger Arten</li>
 <li>Verstärkte Ertragsschwankungen</li>
-</ul>
-<br>
+</ul></div>
 <p>Bewältigungsstrategien umfassen:</p>
-<ul>
+<div class="highlight"><ul>
 <li>Anpassung der Erntezeiterwartungen</li>
 <li>Erkundung neuer Sammelgebiete</li>
 <li>Teilnahme an Bürgerwissenschaftsprojekten zur Dokumentation von Veränderungen</li>
-</ul>
-<br>
-<h3>Handlungsempfehlungen zum Schutz</h3>
-<br>
+</ul></div>
+<div class="subsection-title">📌 Handlungsempfehlungen zum Schutz</div>
 <p><strong>Auf individueller Ebene:</strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Praktizieren Sie "Hinterlasse keine Spuren"-Sammelprinzipien</li>
 <li>Unterstützen Sie den Schutz von Pilzhabitaten</li>
 <li>Engagieren Sie sich in lokalen mycologischen Vereinen</li>
-</ul>
-<br>
+</ul></div>
 <p><strong>Auf Gemeindeebene:</strong></p>
-<ul>
+<div class="highlight"><ul>
 <li>Fördern Sie nachhaltige Forstpraktiken</li>
 <li>Unterstützen Sie die Mykorrhiza-Forschung</li>
 <li>Etablieren Sie Bildungsprogramme für Sammler</li>
-</ul>
-<br>
-<h2>Schlusswort: Erntende unterirdischer Weisheit</h2>
-<br>
-<p>Wenn wir Steinpilze in Händen halten, die wir gerade unter einer Eiche gesammelt haben, ernten wir nicht nur Köstliches, sondern auch die Weisheit von Millionen Jahren gemeinsamer Evolution. Mykorrhiza-Beziehungen erinnern uns daran, dass der nachhaltigste Erfolg in der Natur aus Kooperation und nicht aus Wettbewerb erwächst.</p>
-<br>
-<p>Als moderne Sammler erben wir eine alte Tradition und tragen gleichzeitig neue Verantwortung. Durch ein tiefes Verständnis dieser unterirdischen Allianzen können wir nicht nur effizientere Sammler, sondern auch Hüter des Ökosystems werden.</p>
-<br>
+</ul></div>
+<div class="section-title">🍄 Schlusswort: Erntende unterirdischer Weisheit</div>
+<p class="article-text">Wenn wir Steinpilze in Händen halten, die wir gerade unter einer Eiche gesammelt haben, ernten wir nicht nur Köstliches, sondern auch die Weisheit von Millionen Jahren gemeinsamer Evolution. Mykorrhiza-Beziehungen erinnern uns daran, dass der nachhaltigste Erfolg in der Natur aus Kooperation und nicht aus Wettbewerb erwächst.</p>
+<p class="article-text">Als moderne Sammler erben wir eine alte Tradition und tragen gleichzeitig neue Verantwortung. Durch ein tiefes Verständnis dieser unterirdischen Allianzen können wir nicht nur effizientere Sammler, sondern auch Hüter des Ökosystems werden.</p>
 <p><strong>Sofort umsetzbare Schritte:</strong></p>
-<p>1. Lernen Sie, die fünf Haupt-Mykorrhiza-Baumarten in Ihrer Region zu identifizieren</p>
-<p>2. Beginnen Sie, Ihre Sammelbeobachtungen zu dokumentieren und eine persönliche Datenbank aufzubauen</p>
-<p>3. Treten Sie einem lokalen mycologischen Verein oder einer Sammlergruppe bei</p>
-<p>4. Praktizieren und vermitteln Sie nachhaltige Sammelmethoden</p>
+<p class="article-text">1. Lernen Sie, die fünf Haupt-Mykorrhiza-Baumarten in Ihrer Region zu identifizieren</p>
+<p class="article-text">2. Beginnen Sie, Ihre Sammelbeobachtungen zu dokumentieren und eine persönliche Datenbank aufzubauen</p>
+<p class="article-text">3. Treten Sie einem lokalen mycologischen Verein oder einer Sammlergruppe bei</p>
+<p class="article-text">4. Praktizieren und vermitteln Sie nachhaltige Sammelmethoden</p>
 <p>5. Unterstützen Sie lokale Waldschutzinitiativen</p>
-<br>
-<p>Denken Sie daran: Jedes verantwortungsvolle Sammeln ist eine Hommage an diese uralte Kooperation. Im unterirdischen Netzwerk dauert der Dialog zwischen Bäumen und Pilzen seit Millionen von Jahren an – wir haben das Privileg, Zeugen und Teilnehmer dieses Dialogs zu sein.</p>
+<p class="article-text">Denken Sie daran: Jedes verantwortungsvolle Sammeln ist eine Hommage an diese uralte Kooperation. Im unterirdischen Netzwerk dauert der Dialog zwischen Bäumen und Pilzen seit Millionen von Jahren an – wir haben das Privileg, Zeugen und Teilnehmer dieses Dialogs zu sein.</p>
         </div>
-    </div>
+
+</div>
 </body>
 </html>

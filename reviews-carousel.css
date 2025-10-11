@@ -1,0 +1,621 @@
+/**
+ * 用户评价轮播样式
+ * 包含卡片设计、动画、导航控制
+ */
+
+/* ==================== 评价区域布局 ==================== */
+.reviews-section {
+    padding: 100px 0;
+    background: linear-gradient(135deg, 
+        rgba(249, 250, 251, 1) 0%, 
+        rgba(255, 255, 255, 1) 100%
+    );
+    position: relative;
+    overflow: hidden;
+}
+
+.reviews-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(102, 126, 234, 0.3), 
+        transparent
+    );
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-header h2 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 15px;
+    background: linear-gradient(135deg, #1e293b, #667eea);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.section-header p {
+    font-size: 1.2rem;
+    color: #64748b;
+}
+
+/* ==================== 轮播容器 ==================== */
+.reviews-carousel {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 50px;
+    padding: 20px 0;
+}
+
+.reviews-track {
+    display: flex;
+    gap: 30px;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 0 10px;
+}
+
+/* ==================== 评价卡片 ==================== */
+.review-card {
+    min-width: 400px;
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.08),
+        0 4px 10px rgba(0, 0, 0, 0.04);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.review-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #667eea, #764ba2);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+}
+
+.review-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 
+        0 20px 50px rgba(0, 0, 0, 0.12),
+        0 8px 20px rgba(102, 126, 234, 0.15);
+}
+
+.review-card:hover::before {
+    transform: scaleX(1);
+}
+
+/* 引号装饰 */
+.review-card::after {
+    content: '"';
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 120px;
+    font-family: Georgia, serif;
+    color: rgba(102, 126, 234, 0.05);
+    line-height: 1;
+    pointer-events: none;
+}
+
+/* ==================== 评价头部 ==================== */
+.review-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.user-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    flex-shrink: 0;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.review-card:hover .user-avatar {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.user-info {
+    flex: 1;
+}
+
+.user-info h4 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 5px;
+}
+
+.user-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    color: #64748b;
+}
+
+.user-role {
+    font-weight: 500;
+}
+
+.separator {
+    color: #cbd5e1;
+}
+
+.review-date {
+    color: #94a3b8;
+}
+
+.rating {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.stars {
+    color: #fbbf24;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    text-shadow: 0 2px 4px rgba(251, 191, 36, 0.3);
+}
+
+.rating-number {
+    font-weight: 700;
+    color: #1e293b;
+    font-size: 1.1rem;
+}
+
+/* ==================== 评价内容 ==================== */
+.review-content {
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.review-content p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #475569;
+    margin: 0;
+    font-style: italic;
+}
+
+/* ==================== 评价底部 ==================== */
+.review-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    position: relative;
+    z-index: 1;
+}
+
+.app-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    background: linear-gradient(135deg, 
+        rgba(102, 126, 234, 0.1), 
+        rgba(118, 75, 162, 0.1)
+    );
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #667eea;
+}
+
+.verified {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.85rem;
+    color: #10b981;
+    font-weight: 500;
+}
+
+.verified::before {
+    content: '✓';
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    background: #10b981;
+    color: white;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 18px;
+    font-size: 0.7rem;
+}
+
+/* ==================== 导航控制 ==================== */
+.reviews-navigation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.nav-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: white;
+    border: 2px solid rgba(102, 126, 234, 0.2);
+    color: #667eea;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.nav-btn:hover {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    border-color: transparent;
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+}
+
+.nav-btn:active {
+    transform: scale(0.95);
+}
+
+.nav-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.nav-btn:disabled:hover {
+    background: white;
+    color: #667eea;
+    transform: scale(1);
+}
+
+/* 指示点 */
+.reviews-dots {
+    display: flex;
+    gap: 10px;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(102, 126, 234, 0.2);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dot.active {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    width: 30px;
+    border-radius: 5px;
+}
+
+.dot:hover {
+    background: rgba(102, 126, 234, 0.4);
+    transform: scale(1.2);
+}
+
+/* ==================== 评分摘要 ==================== */
+.reviews-summary {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.summary-stats {
+    display: flex;
+    gap: 60px;
+    align-items: center;
+}
+
+.overall-rating {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.rating-large {
+    font-size: 5rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+}
+
+.rating-details {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.stars-large {
+    color: #fbbf24;
+    font-size: 1.5rem;
+    letter-spacing: 3px;
+    text-shadow: 0 2px 4px rgba(251, 191, 36, 0.3);
+}
+
+.rating-count {
+    font-size: 0.9rem;
+    color: #64748b;
+}
+
+/* 评分分布 */
+.rating-distribution {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.dist-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.dist-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #475569;
+    min-width: 40px;
+}
+
+.dist-bar {
+    flex: 1;
+    height: 8px;
+    background: rgba(102, 126, 234, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.dist-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #667eea, #764ba2);
+    border-radius: 10px;
+    transition: width 1s ease;
+    position: relative;
+}
+
+.dist-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+    );
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+.dist-percent {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #667eea;
+    min-width: 45px;
+    text-align: right;
+}
+
+/* ==================== 响应式设计 ==================== */
+@media (max-width: 1200px) {
+    .review-card {
+        min-width: 350px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .reviews-section {
+        padding: 80px 0;
+    }
+    
+    .section-header h2 {
+        font-size: 2.5rem;
+    }
+    
+    .review-card {
+        min-width: 320px;
+    }
+    
+    .summary-stats {
+        gap: 40px;
+    }
+    
+    .rating-large {
+        font-size: 4rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .reviews-section {
+        padding: 60px 0;
+    }
+    
+    .section-header h2 {
+        font-size: 2rem;
+    }
+    
+    .section-header p {
+        font-size: 1rem;
+    }
+    
+    .reviews-track {
+        gap: 15px;
+    }
+    
+    .review-card {
+        min-width: 280px;
+        padding: 25px;
+    }
+    
+    .review-card::after {
+        font-size: 80px;
+    }
+    
+    .user-avatar {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+    }
+    
+    .user-info h4 {
+        font-size: 1rem;
+    }
+    
+    .user-meta {
+        font-size: 0.8rem;
+    }
+    
+    .review-content p {
+        font-size: 0.95rem;
+    }
+    
+    .nav-btn {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .reviews-summary {
+        padding: 30px 20px;
+    }
+    
+    .summary-stats {
+        flex-direction: column;
+        gap: 30px;
+        align-items: flex-start;
+    }
+    
+    .rating-large {
+        font-size: 3.5rem;
+    }
+    
+    .stars-large {
+        font-size: 1.2rem;
+    }
+    
+    .rating-distribution {
+        width: 100%;
+    }
+}
+
+/* ==================== 加载动画 ==================== */
+@keyframes review-slide-in {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.review-card {
+    animation: review-slide-in 0.6s ease-out both;
+}
+
+.review-card:nth-child(1) { animation-delay: 0.1s; }
+.review-card:nth-child(2) { animation-delay: 0.2s; }
+.review-card:nth-child(3) { animation-delay: 0.3s; }
+.review-card:nth-child(4) { animation-delay: 0.4s; }
+.review-card:nth-child(5) { animation-delay: 0.5s; }
+.review-card:nth-child(6) { animation-delay: 0.6s; }
+
+/* ==================== 暗色模式 ==================== */
+@media (prefers-color-scheme: dark) {
+    .reviews-section {
+        background: linear-gradient(135deg, 
+            rgba(15, 23, 42, 1) 0%, 
+            rgba(30, 41, 59, 1) 100%
+        );
+    }
+    
+    .section-header h2 {
+        background: linear-gradient(135deg, #f1f5f9, #667eea);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+    
+    .section-header p {
+        color: #94a3b8;
+    }
+    
+    .review-card {
+        background: rgba(30, 41, 59, 0.8);
+        backdrop-filter: blur(10px);
+    }
+    
+    .user-info h4 {
+        color: #f1f5f9;
+    }
+    
+    .review-content p {
+        color: #cbd5e1;
+    }
+    
+    .reviews-summary {
+        background: rgba(30, 41, 59, 0.8);
+        backdrop-filter: blur(10px);
+    }
+    
+    .dist-label {
+        color: #cbd5e1;
+    }
+    
+    .rating-count {
+        color: #94a3b8;
+    }
+}

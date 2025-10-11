@@ -1,0 +1,573 @@
+/**
+ * Hero区域增强样式
+ * 包含动态背景、粒子效果、实时数据展示
+ */
+
+/* ==================== Hero背景效果 ==================== */
+.hero {
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+#particles-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.gradient-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(118, 75, 162, 0.15) 0%, transparent 50%),
+        linear-gradient(135deg, 
+            rgba(255, 255, 255, 0.95) 0%, 
+            rgba(249, 250, 251, 0.9) 100%
+        );
+}
+
+.hero-container {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+}
+
+/* ==================== Hero徽章 ==================== */
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 20px;
+    background: linear-gradient(135deg, 
+        rgba(102, 126, 234, 0.1) 0%, 
+        rgba(118, 75, 162, 0.1) 100%
+    );
+    border: 1px solid rgba(102, 126, 234, 0.3);
+    border-radius: 50px;
+    margin-bottom: 25px;
+    backdrop-filter: blur(10px);
+    animation: badge-float 3s ease-in-out infinite;
+}
+
+.badge-icon {
+    font-size: 1.2rem;
+    animation: badge-pulse 2s ease-in-out infinite;
+}
+
+.badge-text {
+    font-size: 0.9rem;
+    font-weight: 600;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+@keyframes badge-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+@keyframes badge-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+/* ==================== Hero标题增强 ==================== */
+.hero-content h1 {
+    font-size: 4.5rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 25px;
+    background: linear-gradient(135deg, 
+        #1e293b 0%, 
+        #475569 50%, 
+        #667eea 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: title-slide-in 0.8s ease-out;
+}
+
+.hero-subtitle {
+    font-size: 1.3rem;
+    line-height: 1.8;
+    color: #475569;
+    margin-bottom: 30px;
+    animation: subtitle-fade-in 1s ease-out 0.2s both;
+}
+
+@keyframes title-slide-in {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes subtitle-fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==================== 实时数据展示 ==================== */
+.hero-stats {
+    display: flex;
+    gap: 40px;
+    margin: 35px 0;
+    animation: stats-fade-in 1s ease-out 0.4s both;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: #64748b;
+    font-weight: 500;
+}
+
+.pulse-dot {
+    width: 10px;
+    height: 10px;
+    background: #10b981;
+    border-radius: 50%;
+    display: inline-block;
+    animation: pulse-animation 2s ease-in-out infinite;
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+}
+
+@keyframes pulse-animation {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.6;
+        transform: scale(1.2);
+    }
+}
+
+@keyframes stats-fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(-15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==================== 增强按钮样式 ==================== */
+.btn.enhanced {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 32px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn.btn-primary.enhanced {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    box-shadow: 
+        0 10px 25px rgba(102, 126, 234, 0.3),
+        0 4px 10px rgba(118, 75, 162, 0.2);
+}
+
+.btn.btn-primary.enhanced:hover {
+    transform: translateY(-3px);
+    box-shadow: 
+        0 15px 35px rgba(102, 126, 234, 0.4),
+        0 6px 15px rgba(118, 75, 162, 0.3);
+}
+
+.btn-shine {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+    );
+    transform: translateX(-100%) translateY(-100%);
+}
+
+.btn.enhanced:hover .btn-shine {
+    animation: shine 0.8s ease;
+}
+
+@keyframes shine {
+    to {
+        transform: translateX(100%) translateY(100%);
+    }
+}
+
+.btn-icon {
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+.btn.enhanced:hover .btn-icon {
+    transform: scale(1.2) rotate(5deg);
+}
+
+.btn-text {
+    position: relative;
+    z-index: 1;
+}
+
+/* ==================== 信任标识 ==================== */
+.trust-badges {
+    display: flex;
+    gap: 30px;
+    margin-top: 35px;
+    animation: trust-fade-in 1s ease-out 0.6s both;
+}
+
+.trust-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(102, 126, 234, 0.2);
+}
+
+.stars {
+    color: #fbbf24;
+    font-size: 1rem;
+    letter-spacing: 2px;
+}
+
+.trust-item .icon {
+    font-size: 1.2rem;
+}
+
+.rating-text {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #475569;
+}
+
+@keyframes trust-fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==================== 增强应用图标 ==================== */
+.apps-showcase.enhanced {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    padding: 40px;
+}
+
+.apps-showcase.enhanced .app-icon {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+.icon-emoji {
+    font-size: 4rem;
+    transition: transform 0.4s ease;
+    position: relative;
+    z-index: 2;
+}
+
+.icon-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #475569;
+    position: relative;
+    z-index: 2;
+}
+
+.icon-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80%;
+    height: 80%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 1;
+}
+
+.app-icon[data-app="bird"] .icon-glow {
+    background: radial-gradient(circle, rgba(74, 144, 226, 0.3) 0%, transparent 70%);
+}
+
+.app-icon[data-app="rock"] .icon-glow {
+    background: radial-gradient(circle, rgba(139, 115, 85, 0.3) 0%, transparent 70%);
+}
+
+.app-icon[data-app="mushroom"] .icon-glow {
+    background: radial-gradient(circle, rgba(76, 175, 80, 0.3) 0%, transparent 70%);
+}
+
+.app-icon[data-app="insect"] .icon-glow {
+    background: radial-gradient(circle, rgba(255, 167, 38, 0.3) 0%, transparent 70%);
+}
+
+.apps-showcase.enhanced .app-icon:hover {
+    transform: 
+        translateY(-15px) 
+        rotateX(10deg) 
+        rotateY(5deg) 
+        scale(1.05);
+    box-shadow: 
+        0 20px 50px rgba(0, 0, 0, 0.15),
+        0 0 30px rgba(102, 126, 234, 0.2);
+}
+
+.apps-showcase.enhanced .app-icon:hover .icon-emoji {
+    transform: scale(1.15) rotate(5deg);
+}
+
+.apps-showcase.enhanced .app-icon:hover .icon-glow {
+    opacity: 1;
+}
+
+/* ==================== 浮动元素 ==================== */
+.floating-elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.float-item {
+    position: absolute;
+    font-size: 2rem;
+    opacity: 0.3;
+    animation: float-animation 6s ease-in-out infinite;
+    animation-delay: var(--delay, 0s);
+    top: 50%;
+    left: 50%;
+    transform: translate(var(--x, 0), var(--y, 0));
+}
+
+@keyframes float-animation {
+    0%, 100% {
+        transform: translate(var(--x, 0), var(--y, 0)) translateY(0) rotate(0deg);
+        opacity: 0.3;
+    }
+    50% {
+        transform: translate(var(--x, 0), var(--y, 0)) translateY(-30px) rotate(10deg);
+        opacity: 0.5;
+    }
+}
+
+/* ==================== 响应式设计 ==================== */
+@media (max-width: 1024px) {
+    .hero-content h1 {
+        font-size: 3.5rem;
+    }
+    
+    .hero-stats {
+        gap: 25px;
+    }
+    
+    .stat-value {
+        font-size: 2rem;
+    }
+    
+    .apps-showcase.enhanced {
+        gap: 20px;
+        padding: 30px;
+    }
+    
+    .apps-showcase.enhanced .app-icon {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .icon-emoji {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        min-height: auto;
+        padding: 80px 0 60px;
+    }
+    
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .hero-stats {
+        flex-direction: column;
+        gap: 20px;
+        align-items: flex-start;
+    }
+    
+    .stat-item {
+        text-align: left;
+    }
+    
+    .stat-value {
+        font-size: 1.8rem;
+        justify-content: flex-start;
+    }
+    
+    .trust-badges {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .apps-showcase.enhanced {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+        padding: 20px;
+    }
+    
+    .apps-showcase.enhanced .app-icon {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .icon-emoji {
+        font-size: 2.5rem;
+    }
+    
+    .icon-label {
+        font-size: 0.8rem;
+    }
+    
+    .btn.enhanced {
+        padding: 14px 24px;
+        font-size: 1rem;
+    }
+    
+    .floating-elements {
+        display: none;
+    }
+}
+
+/* ==================== 暗色模式支持 ==================== */
+@media (prefers-color-scheme: dark) {
+    .gradient-overlay {
+        background: 
+            radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.2) 0%, transparent 50%),
+            radial-gradient(circle at 80% 80%, rgba(118, 75, 162, 0.2) 0%, transparent 50%),
+            linear-gradient(135deg, 
+                rgba(15, 23, 42, 0.95) 0%, 
+                rgba(30, 41, 59, 0.9) 100%
+            );
+    }
+    
+    .hero-content h1 {
+        background: linear-gradient(135deg, 
+            #f1f5f9 0%, 
+            #cbd5e1 50%, 
+            #667eea 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+    
+    .hero-subtitle {
+        color: #cbd5e1;
+    }
+    
+    .stat-label {
+        color: #94a3b8;
+    }
+    
+    .rating-text {
+        color: #cbd5e1;
+    }
+    
+    .apps-showcase.enhanced .app-icon {
+        background: rgba(30, 41, 59, 0.8);
+    }
+    
+    .icon-label {
+        color: #cbd5e1;
+    }
+}

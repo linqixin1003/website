@@ -1,0 +1,298 @@
+/**
+ * 日间/夜间模式样式
+ * 支持系统偏好和手动切换
+ */
+
+/* ==================== CSS变量定义 ==================== */
+:root {
+    /* 亮色模式 */
+    --bg-primary: #ffffff;
+    --bg-secondary: #f9fafb;
+    --bg-tertiary: #f1f5f9;
+    
+    --text-primary: #1e293b;
+    --text-secondary: #475569;
+    --text-tertiary: #64748b;
+    
+    --border-color: rgba(0, 0, 0, 0.1);
+    --shadow-sm: 0 4px 10px rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.12);
+    --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.15);
+    
+    --gradient-primary: linear-gradient(135deg, #667eea, #764ba2);
+    --gradient-bg: linear-gradient(135deg, rgba(249, 250, 251, 1), rgba(255, 255, 255, 1));
+}
+
+/* ==================== 暗色模式变量 ==================== */
+[data-theme="dark"] {
+    --bg-primary: #0f172a;
+    --bg-secondary: #1e293b;
+    --bg-tertiary: #334155;
+    
+    --text-primary: #f1f5f9;
+    --text-secondary: #cbd5e1;
+    --text-tertiary: #94a3b8;
+    
+    --border-color: rgba(255, 255, 255, 0.1);
+    --shadow-sm: 0 4px 10px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.5);
+    
+    --gradient-primary: linear-gradient(135deg, #667eea, #764ba2);
+    --gradient-bg: linear-gradient(135deg, rgba(15, 23, 42, 1), rgba(30, 41, 59, 1));
+}
+
+/* ==================== 全局暗色模式样式 ==================== */
+[data-theme="dark"] body {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .navbar {
+    background: rgba(15, 23, 42, 0.95);
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .nav-menu a {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .hero {
+    background: var(--gradient-bg);
+}
+
+[data-theme="dark"] .gradient-overlay {
+    background: 
+        radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(118, 75, 162, 0.15) 0%, transparent 50%),
+        var(--gradient-bg);
+}
+
+[data-theme="dark"] .app-card {
+    background: rgba(30, 41, 59, 0.8);
+    backdrop-filter: blur(10px);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .app-card h3 {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .app-card p {
+    color: var(--text-secondary);
+}
+
+[data-theme="dark"] .feature-item {
+    background: rgba(30, 41, 59, 0.6);
+}
+
+[data-theme="dark"] .about {
+    background: var(--bg-secondary);
+}
+
+[data-theme="dark"] .contact {
+    background: var(--bg-primary);
+}
+
+[data-theme="dark"] .footer {
+    background: var(--bg-secondary);
+    border-top-color: rgba(255, 255, 255, 0.1);
+}
+
+/* ==================== 模式切换按钮 ==================== */
+.theme-toggle {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1) rotate(10deg);
+    box-shadow: 0 12px 35px rgba(102, 126, 234, 0.5);
+}
+
+.theme-toggle:active {
+    transform: scale(0.95);
+}
+
+/* 图标容器 */
+.theme-toggle-icons {
+    position: relative;
+    width: 30px;
+    height: 30px;
+}
+
+.theme-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.5rem;
+    transition: all 0.4s ease;
+}
+
+.theme-icon.sun {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(0deg) scale(1);
+}
+
+.theme-icon.moon {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(180deg) scale(0);
+}
+
+[data-theme="dark"] .theme-icon.sun {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(-180deg) scale(0);
+}
+
+[data-theme="dark"] .theme-icon.moon {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(0deg) scale(1);
+}
+
+/* 波纹效果 */
+.theme-toggle::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+}
+
+.theme-toggle:active::before {
+    width: 100px;
+    height: 100px;
+}
+
+/* 提示文本 */
+.theme-toggle-tooltip {
+    position: absolute;
+    right: 70px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(10px);
+    transition: all 0.3s ease;
+}
+
+.theme-toggle:hover .theme-toggle-tooltip {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+[data-theme="dark"] .theme-toggle-tooltip {
+    background: rgba(255, 255, 255, 0.9);
+    color: #1e293b;
+}
+
+/* ==================== 过渡动画 ==================== */
+body {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navbar,
+.hero,
+.app-card,
+.feature-item,
+.about,
+.contact,
+.footer,
+.review-card,
+.reviews-summary {
+    transition: 
+        background-color 0.3s ease,
+        border-color 0.3s ease,
+        color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+/* ==================== 响应式设计 ==================== */
+@media (max-width: 768px) {
+    .theme-toggle {
+        width: 50px;
+        height: 50px;
+        bottom: 20px;
+        right: 20px;
+    }
+    
+    .theme-icon {
+        font-size: 1.3rem;
+    }
+    
+    .theme-toggle-tooltip {
+        display: none;
+    }
+}
+
+/* ==================== 辅助功能 ==================== */
+.theme-toggle:focus {
+    outline: 3px solid rgba(102, 126, 234, 0.5);
+    outline-offset: 3px;
+}
+
+.theme-toggle:focus:not(:focus-visible) {
+    outline: none;
+}
+
+/* ==================== 加载动画 ==================== */
+@keyframes theme-toggle-appear {
+    from {
+        opacity: 0;
+        transform: scale(0) rotate(-180deg);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+.theme-toggle {
+    animation: theme-toggle-appear 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.5s both;
+}
+
+/* ==================== 系统偏好检测 ==================== */
+@media (prefers-color-scheme: dark) {
+    /* 当用户没有手动设置时，默认跟随系统 */
+    body:not([data-user-preference]) {
+        background: var(--bg-primary);
+        color: var(--text-primary);
+    }
+}
+
+/* ==================== 打印样式 ==================== */
+@media print {
+    .theme-toggle {
+        display: none;
+    }
+    
+    [data-theme="dark"] {
+        --bg-primary: #ffffff;
+        --bg-secondary: #f9fafb;
+        --text-primary: #1e293b;
+        --text-secondary: #475569;
+    }
+}

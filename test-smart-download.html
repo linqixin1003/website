@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Download Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .device-info {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .download-buttons-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 15px 0;
+        }
+        .btn-download {
+            padding: 0;
+            background: transparent;
+            border: none;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.2s ease;
+            text-decoration: none;
+        }
+        .btn-download:hover {
+            transform: scale(1.05);
+        }
+        .btn-download img {
+            display: block;
+            height: 40px;
+            width: auto;
+        }
+        .test-button {
+            background: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .test-button:hover {
+            background: #45a049;
+        }
+        .result {
+            background: #f0f0f0;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧪 Smart Download System Test</h1>
+    
+    <div class="test-section">
+        <h2>Device Detection</h2>
+        <div class="device-info" id="deviceInfo">
+            <strong>Detected Device:</strong> <span id="detectedDevice">Loading...</span><br>
+            <strong>User Agent:</strong> <span id="userAgent"></span>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>🦜 BirdAiSnap Download Test</h2>
+        <p>Test the smart download for BirdAiSnap:</p>
+        
+        <div class="download-buttons-group">
+            <a href="https://apps.apple.com/us/app/birdaisnap-bird-identify/id6747970025" class="btn-download ios-download" target="_blank" data-app-type="bird">
+                <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on App Store">
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=com.bird.ai.snap" class="btn-download android-download" target="_blank" data-app-type="bird">
+                <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play">
+            </a>
+        </div>
+        
+        <button class="test-button" onclick="testSmartDownload('bird')">Test Smart Download (Bird)</button>
+        <div class="result" id="birdResult"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>🪨 RockAiSnap Download Test</h2>
+        <p>Test the smart download for RockAiSnap:</p>
+        
+        <div class="download-buttons-group">
+            <a href="https://apps.apple.com/us/app/rockaisnap-rock-identify/id6751223713" class="btn-download ios-download" target="_blank" data-app-type="rock">
+                <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on App Store">
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=com.rock.ai.snap" class="btn-download android-download" target="_blank" data-app-type="rock">
+                <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play">
+            </a>
+        </div>
+        
+        <button class="test-button" onclick="testSmartDownload('rock')">Test Smart Download (Rock)</button>
+        <div class="result" id="rockResult"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>🍄 MushroomAiSnap Download Test</h2>
+        <p>Test the smart download for MushroomAiSnap (iOS not available yet):</p>
+        
+        <div class="download-buttons-group">
+            <a href="#" class="btn-download ios-download" target="_blank" data-app-type="mushroom" style="opacity: 0.6; pointer-events: none;">
+                <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Coming Soon to App Store">
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=com.mushroom.ai.snap" class="btn-download android-download" target="_blank" data-app-type="mushroom">
+                <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play">
+            </a>
+        </div>
+        
+        <button class="test-button" onclick="testSmartDownload('mushroom')">Test Smart Download (Mushroom)</button>
+        <div class="result" id="mushroomResult"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>Manual Tests</h2>
+        <button class="test-button" onclick="testDeviceDetection()">Test Device Detection</button>
+        <button class="test-button" onclick="testAllUrls()">Test All URLs</button>
+        <button class="test-button" onclick="testIPhoneSpecific()">iPhone Specific Test</button>
+        <button class="test-button" onclick="testDirectLinks()">Test Direct Links</button>
+        <div class="result" id="manualResult"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>🔧 Debug Console</h2>
+        <p>Open browser console (F12) to see detailed logs</p>
+        <div class="result" id="debugResult">
+            <strong>Console logs will appear here:</strong><br>
+            <div id="consoleOutput" style="font-family: monospace; background: #000; color: #0f0; padding: 10px; max-height: 200px; overflow-y: auto;"></div>
+        </div>
+    </div>
+
+    <script src="smart-download.js"></script>
+    <script>
+        // 页面加载时显示设备信息
+        document.addEventListener('DOMContentLoaded', function() {
+            const device = detectDevice();
+            document.getElementById('detectedDevice').textContent = device;
+            document.getElementById('userAgent').textContent = navigator.userAgent;
+        });
+
+        // 测试智能下载功能
+        function testSmartDownload(appType) {
+            const device = detectDevice();
+            const url = getDownloadUrl(appType);
+            const resultElement = document.getElementById(appType + 'Result');
+            
+            resultElement.innerHTML = `
+                <strong>Test Result:</strong><br>
+                Detected Device: ${device}<br>
+                Selected URL: ${url}<br>
+                <em>Click would open: ${url}</em>
+            `;
+            
+            // 实际调用智能下载函数（但不真正打开窗口）
+            console.log(`Smart download test for ${appType}: ${url}`);
+        }
+
+        // 测试设备检测
+        function testDeviceDetection() {
+            const device = detectDevice();
+            const resultElement = document.getElementById('manualResult');
+            
+            resultElement.innerHTML = `
+                <strong>Device Detection Test:</strong><br>
+                User Agent: ${navigator.userAgent}<br>
+                Detected Device: ${device}<br>
+                iOS Test: ${/iphone|ipad|ipod|macintosh|mac os x/i.test(navigator.userAgent)}<br>
+                Android Test: ${/android/i.test(navigator.userAgent)}
+            `;
+        }
+
+        // 测试所有URL
+        function testAllUrls() {
+            const apps = ['bird', 'rock', 'mushroom'];
+            const device = detectDevice();
+            let results = `<strong>All URLs Test (Device: ${device}):</strong><br>`;
+            
+            apps.forEach(app => {
+                const url = getDownloadUrl(app);
+                results += `${app}: ${url}<br>`;
+            });
+            
+            document.getElementById('manualResult').innerHTML = results;
+        }
+
+        // iPhone特定测试
+        function testIPhoneSpecific() {
+            const device = detectDevice();
+            const resultElement = document.getElementById('manualResult');
+            
+            let results = `<strong>iPhone Specific Test:</strong><br>`;
+            results += `Current Device: ${device}<br>`;
+            results += `Is iOS: ${device === 'ios'}<br>`;
+            results += `User Agent: ${navigator.userAgent}<br><br>`;
+            
+            // 测试各种跳转方法
+            results += `<strong>Testing jump methods:</strong><br>`;
+            
+            const testUrl = 'https://apps.apple.com/us/app/birdaisnap-bird-identify/id6747970025';
+            
+            // 方法1测试
+            try {
+                results += `Method 1 (window.location): Available<br>`;
+            } catch (e) {
+                results += `Method 1 (window.location): Error - ${e.message}<br>`;
+            }
+            
+            // 方法2测试
+            try {
+                results += `Method 2 (window.open): Available<br>`;
+            } catch (e) {
+                results += `Method 2 (window.open): Error - ${e.message}<br>`;
+            }
+            
+            // 方法3测试
+            try {
+                const link = document.createElement('a');
+                link.href = testUrl;
+                results += `Method 3 (createElement): Available<br>`;
+            } catch (e) {
+                results += `Method 3 (createElement): Error - ${e.message}<br>`;
+            }
+            
+            resultElement.innerHTML = results;
+        }
+
+        // 测试直接链接
+        function testDirectLinks() {
+            const resultElement = document.getElementById('manualResult');
+            
+            let results = `<strong>Direct Link Test:</strong><br>`;
+            
+            // 创建测试链接
+            const testLinks = [
+                { name: 'Bird iOS', url: 'https://apps.apple.com/us/app/birdaisnap-bird-identify/id6747970025' },
+                { name: 'Rock iOS', url: 'https://apps.apple.com/us/app/rockaisnap-rock-identify/id6751223713' },
+                { name: 'Bird Android', url: 'https://play.google.com/store/apps/details?id=com.bird.ai.snap' }
+            ];
+            
+            testLinks.forEach(linkInfo => {
+                results += `<a href="${linkInfo.url}" target="_blank" style="display: inline-block; margin: 5px; padding: 8px; background: #007cba; color: white; text-decoration: none; border-radius: 4px;">${linkInfo.name}</a><br>`;
+            });
+            
+            results += `<br><em>Click the links above to test direct navigation</em>`;
+            
+            resultElement.innerHTML = results;
+        }
+
+        // 捕获console.log并显示在页面上
+        const originalLog = console.log;
+        console.log = function(...args) {
+            originalLog.apply(console, args);
+            const consoleOutput = document.getElementById('consoleOutput');
+            if (consoleOutput) {
+                const logEntry = args.join(' ') + '<br>';
+                consoleOutput.innerHTML += logEntry;
+                consoleOutput.scrollTop = consoleOutput.scrollHeight;
+            }
+        };
+
+        // 覆盖原始的window.open以便测试
+        const originalOpen = window.open;
+        window.open = function(url, target) {
+            console.log(`Would open: ${url} in ${target}`);
+            
+            // 在iPhone上，尝试实际打开链接而不是显示alert
+            const device = detectDevice();
+            if (device === 'ios') {
+                console.log('iOS detected, attempting real navigation...');
+                // 实际尝试打开链接
+                return originalOpen.call(window, url, target);
+            } else {
+                alert(`Test Mode: Would open ${url}`);
+                return null;
+            }
+        };
+    </script>
+</body>
+</html>

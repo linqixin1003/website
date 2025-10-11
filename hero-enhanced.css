@@ -320,41 +320,53 @@
 .apps-showcase.enhanced {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 30px;
-    padding: 40px;
+    gap: 25px;
+    padding: 30px;
+    max-width: 380px;
+    margin: 0 auto;
 }
 
 .apps-showcase.enhanced .app-icon {
     position: relative;
-    width: 150px;
-    height: 150px;
+    width: 100%;
+    aspect-ratio: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 30px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    gap: 12px;
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.95) 0%, 
+        rgba(248, 250, 252, 0.9) 100%
+    );
+    border-radius: 28px;
+    box-shadow: 
+        0 4px 15px rgba(0, 0, 0, 0.08),
+        0 1px 3px rgba(0, 0, 0, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.8);
     cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     transform-style: preserve-3d;
     perspective: 1000px;
 }
 
 .icon-emoji {
-    font-size: 4rem;
-    transition: transform 0.4s ease;
+    font-size: 3.5rem;
+    line-height: 1;
+    transition: transform 0.3s ease;
     position: relative;
     z-index: 2;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
 }
 
 .icon-label {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 700;
     color: #1e293b;
+    letter-spacing: 0.3px;
     position: relative;
     z-index: 2;
+    text-align: center;
 }
 
 .icon-glow {
@@ -387,18 +399,16 @@
 }
 
 .apps-showcase.enhanced .app-icon:hover {
-    transform: 
-        translateY(-15px) 
-        rotateX(10deg) 
-        rotateY(5deg) 
-        scale(1.05);
+    transform: translateY(-8px) scale(1.03);
     box-shadow: 
-        0 20px 50px rgba(0, 0, 0, 0.15),
-        0 0 30px rgba(102, 126, 234, 0.2);
+        0 12px 30px rgba(0, 0, 0, 0.12),
+        0 4px 10px rgba(102, 126, 234, 0.15),
+        0 0 0 3px rgba(102, 126, 234, 0.1);
+    border-color: rgba(102, 126, 234, 0.3);
 }
 
 .apps-showcase.enhanced .app-icon:hover .icon-emoji {
-    transform: scale(1.15) rotate(5deg);
+    transform: scale(1.1);
 }
 
 .apps-showcase.enhanced .app-icon:hover .icon-glow {
@@ -414,17 +424,19 @@
     height: 100%;
     pointer-events: none;
     z-index: 0;
+    opacity: 0.4;
 }
 
 .float-item {
     position: absolute;
-    font-size: 2rem;
-    opacity: 0.3;
-    animation: float-animation 6s ease-in-out infinite;
+    font-size: 1.8rem;
+    opacity: 0.2;
+    animation: float-animation 8s ease-in-out infinite;
     animation-delay: var(--delay, 0s);
     top: 50%;
     left: 50%;
     transform: translate(var(--x, 0), var(--y, 0));
+    filter: blur(0.5px);
 }
 
 @keyframes float-animation {
@@ -455,15 +467,19 @@
     .apps-showcase.enhanced {
         gap: 20px;
         padding: 30px;
+        max-width: 350px;
     }
     
     .apps-showcase.enhanced .app-icon {
-        width: 120px;
-        height: 120px;
+        gap: 10px;
     }
     
     .icon-emoji {
-        font-size: 3rem;
+        font-size: 3.2rem;
+    }
+    
+    .icon-label {
+        font-size: 0.8rem;
     }
 }
 
@@ -507,19 +523,20 @@
         grid-template-columns: repeat(2, 1fr);
         gap: 15px;
         padding: 20px;
+        max-width: 100%;
     }
     
     .apps-showcase.enhanced .app-icon {
-        width: 100px;
-        height: 100px;
+        gap: 8px;
     }
     
     .icon-emoji {
-        font-size: 2.5rem;
+        font-size: 2.8rem;
     }
     
     .icon-label {
-        font-size: 0.8rem;
+        font-size: 0.75rem;
+        letter-spacing: 0.2px;
     }
     
     .btn.enhanced {

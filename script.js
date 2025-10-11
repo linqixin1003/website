@@ -1052,3 +1052,41 @@ if (document.readyState === 'loading') {
     // 延迟执行以确保DOM完全加载
     setTimeout(safeDOMContentLoaded, 100);
 }
+
+// ==================== 应用卡片点击处理 ====================
+/**
+ * 处理应用卡片点击事件
+ * - 点击下载按钮 → 跳转应用商店
+ * - 点击卡片其他区域 → 跳转详情页
+ */
+document.addEventListener('DOMContentLoaded', function() {
+    // 为所有应用卡片添加点击处理
+    document.querySelectorAll('.app-card[data-detail-url]').forEach(card => {
+        const detailUrl = card.getAttribute('data-detail-url');
+        
+        // 为卡片添加点击事件
+        card.addEventListener('click', function(e) {
+            // 检查点击的是否是下载按钮或其子元素
+            const isDownloadButton = e.target.closest('.btn-download, .ios-download, .android-download');
+            
+            // 如果点击的不是下载按钮，则跳转到详情页
+            if (!isDownloadButton && detailUrl) {
+                window.location.href = detailUrl;
+            }
+            // 如果点击的是下载按钮，不做任何处理，让按钮的默认行为生效
+        });
+        
+        // 为卡片添加悬停样式提示
+        card.style.cursor = 'pointer';
+    });
+    
+    // 确保下载按钮的点击事件不会冒泡到卡片
+    document.querySelectorAll('.app-card .btn-download').forEach(button => {
+        button.addEventListener('click', function(e) {
+            // 阻止事件冒泡到父元素（卡片）
+            e.stopPropagation();
+        });
+    });
+    
+    console.log('App card click handlers initialized');
+});

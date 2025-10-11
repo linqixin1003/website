@@ -147,53 +147,66 @@ function updateDownloadButtons() {
     
     console.log('Updating download buttons for device:', device);
     
-    // 查找所有下载按钮并更新
-    document.querySelectorAll('[data-app-type]').forEach(button => {
+    // 特殊处理：直接为iOS按钮添加正确的href（不添加事件监听）
+    document.querySelectorAll('.ios-download').forEach(button => {
+        const appType = button.getAttribute('data-app-type');
+        if (appType && APP_STORE_LINKS[appType]) {
+            button.href = APP_STORE_LINKS[appType].ios;
+            button.target = '_blank';
+            button.rel = 'noopener noreferrer';
+            console.log(`Set iOS button href for ${appType}:`, button.href);
+            
+            // 移除可能存在的点击事件处理器
+            if (button._smartDownloadHandler) {
+                button.removeEventListener('click', button._smartDownloadHandler);
+                delete button._smartDownloadHandler;
+            }
+        }
+    });
+    
+    // 特殊处理：直接为Android按钮添加正确的href（不添加事件监听）
+    document.querySelectorAll('.android-download').forEach(button => {
+        const appType = button.getAttribute('data-app-type');
+        if (appType && APP_STORE_LINKS[appType]) {
+            button.href = APP_STORE_LINKS[appType].android;
+            button.target = '_blank';
+            button.rel = 'noopener noreferrer';
+            console.log(`Set Android button href for ${appType}:`, button.href);
+            
+            // 移除可能存在的点击事件处理器
+            if (button._smartDownloadHandler) {
+                button.removeEventListener('click', button._smartDownloadHandler);
+                delete button._smartDownloadHandler;
+            }
+        }
+    });
+    
+    // 查找所有通用下载按钮（既不是ios-download也不是android-download）
+    document.querySelectorAll('[data-app-type]:not(.ios-download):not(.android-download)').forEach(button => {
         const appType = button.getAttribute('data-app-type');
         const links = APP_STORE_LINKS[appType];
         
         if (links) {
-            // 更新链接
+            // 更新链接为当前设备对应的链接
             const targetUrl = links[device] || links.android;
             button.href = targetUrl;
             
-            console.log(`Updated button for ${appType}:`, targetUrl);
+            console.log(`Updated generic button for ${appType}:`, targetUrl);
             
             // 移除原有的点击事件监听器
-            button.removeEventListener('click', button._smartDownloadHandler);
+            if (button._smartDownloadHandler) {
+                button.removeEventListener('click', button._smartDownloadHandler);
+            }
             
-            // 添加新的点击事件处理器
+            // 添加新的点击事件处理器（仅为通用按钮）
             button._smartDownloadHandler = function(e) {
                 e.preventDefault();
-                console.log('Button clicked for:', appType);
+                console.log('Generic button clicked for:', appType);
                 smartDownload(appType);
                 return false;
             };
             
             button.addEventListener('click', button._smartDownloadHandler);
-            
-            // 更新按钮文本（可选）
-            if (isIOS && button.textContent && button.textContent.includes('Download')) {
-                button.innerHTML = button.innerHTML.replace('Download Now', 'Download on App Store');
-            }
-        }
-    });
-    
-    // 特殊处理：直接为iOS按钮添加正确的href
-    document.querySelectorAll('.ios-download').forEach(button => {
-        const appType = button.getAttribute('data-app-type');
-        if (appType && APP_STORE_LINKS[appType]) {
-            button.href = APP_STORE_LINKS[appType].ios;
-            console.log(`Set iOS button href for ${appType}:`, button.href);
-        }
-    });
-    
-    // 特殊处理：直接为Android按钮添加正确的href
-    document.querySelectorAll('.android-download').forEach(button => {
-        const appType = button.getAttribute('data-app-type');
-        if (appType && APP_STORE_LINKS[appType]) {
-            button.href = APP_STORE_LINKS[appType].android;
-            console.log(`Set Android button href for ${appType}:`, button.href);
         }
     });
 }

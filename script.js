@@ -948,7 +948,25 @@ function initModernInteractions() {
         }
     });
 
-    // 2. 滚动显示动画 (Scroll Reveal)
+    // 2. 移动端菜单切换
+    const navToggle = document.querySelector('.nav-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+    if (navToggle && navMenu) {
+        navToggle.addEventListener('click', () => {
+            navToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // 点击菜单项后关闭菜单
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+    }
+
+    // 3. 滚动显示动画 (Scroll Reveal)
     const revealElements = document.querySelectorAll('.app-card, .feature-card, .stat-item, .hero-content > *, .hero-image');
     
     // 初始状态
@@ -973,7 +991,7 @@ function initModernInteractions() {
 
     revealElements.forEach(el => revealObserver.observe(el));
 
-    // 3. 磁性按钮效果 (Subtle Magnetic Buttons)
+    // 4. 磁性按钮效果 (Subtle Magnetic Buttons)
     const magneticBtns = document.querySelectorAll('.btn.enhanced');
     magneticBtns.forEach(btn => {
         btn.addEventListener('mousemove', (e) => {
@@ -989,7 +1007,7 @@ function initModernInteractions() {
         });
     });
 
-    // 4. 3D 应用图标悬停
+    // 5. 3D 应用图标悬停
     const appIcons = document.querySelectorAll('.apps-showcase.enhanced .app-icon');
     appIcons.forEach(icon => {
         icon.addEventListener('mousemove', (e) => {

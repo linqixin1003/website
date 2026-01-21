@@ -84,49 +84,52 @@ body {
     padding: 0 var(--spacing-md);
 }
 
-/* 导航栏样式 - 现代玻璃拟态 */
+/* 导航栏样式 - 极致稳定版 */
 .navbar {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     background: var(--bg-navbar);
-    backdrop-filter: blur(12px) saturate(180%);
-    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    backdrop-filter: blur(15px) saturate(180%);
+    -webkit-backdrop-filter: blur(15px) saturate(180%);
     z-index: 1000;
-    padding: 1rem 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-    box-shadow: var(--shadow-sm);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+    transition: all 0.3s ease;
 }
 
 .navbar.scrolled {
-    padding: 0.75rem 0;
+    padding: 0.5rem 0;
     background: rgba(255, 255, 255, 0.9);
-    box-shadow: var(--shadow-md);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
 }
 
 .nav-container {
     max-width: 1280px;
     margin: 0 auto;
-    padding: 0 var(--spacing-md);
+    padding: 0 1.5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
+}
+
+.nav-logo {
+    flex: 0 0 auto;
 }
 
 .nav-logo h2 {
-    font-size: 1.5rem;
-    font-weight: 800;
-    letter-spacing: -0.025em;
+    font-size: 1.4rem;
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    margin: 0;
+    color: var(--primary); /* 增加回退颜色 */
     background: var(--grad-primary);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    transition: transform 0.3s ease;
-}
-
-.nav-logo:hover h2 {
-    transform: scale(1.02);
+    cursor: pointer;
 }
 
 .nav-menu {
@@ -134,17 +137,22 @@ body {
     list-style: none;
     gap: 2rem;
     align-items: center;
-    margin-left: 2rem;
+    margin: 0;
+    padding: 0;
 }
 
 .nav-menu a {
     text-decoration: none;
     color: var(--text-secondary);
-    font-weight: 500;
-    font-size: 0.95rem;
-    transition: all 0.3s ease;
-    position: relative;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
     padding: 0.5rem 0;
+    position: relative;
+}
+
+.nav-menu a:hover {
+    color: var(--primary);
 }
 
 .nav-menu a::after {
@@ -154,23 +162,47 @@ body {
     left: 0;
     width: 0;
     height: 2px;
-    background: var(--grad-primary);
+    background: var(--primary);
     transition: width 0.3s ease;
-    border-radius: var(--radius-full);
-}
-
-.nav-menu a:hover {
-    color: var(--primary);
+    border-radius: 2px;
 }
 
 .nav-menu a:hover::after {
     width: 100%;
 }
 
-.language-switcher {
-    margin-left: auto;
-    margin-right: 1.5rem;
-    position: relative;
+.nav-right-side {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex: 0 0 auto;
+}
+
+/* 移动端菜单开关 */
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.nav-toggle span {
+    width: 25px;
+    height: 2px;
+    background: var(--text-primary);
+    border-radius: 2px;
+    transition: 0.3s;
+}
+
+@media (max-width: 1024px) {
+    .nav-menu {
+        display: none; /* 暂时隐藏，直到 JS 初始化移动端逻辑 */
+    }
+    
+    .nav-toggle {
+        display: flex;
+    }
 }
 
 .lang-dropdown {
@@ -1289,29 +1321,51 @@ main {
     background: #94a3b8;
 }
 
-/* 导航栏移动端适配美化 */
 @media (max-width: 1024px) {
     .nav-menu {
         position: fixed;
         top: 0;
         right: -100%;
-        width: 80%;
+        width: 280px;
         height: 100vh;
         background: white;
         flex-direction: column;
         justify-content: center;
-        transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
-        z-index: 999;
+        padding: 2rem;
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: -10px 0 40px rgba(0, 0, 0, 0.1);
+        z-index: 2000;
+        display: flex; /* 覆盖之前的 display: none */
     }
 
     .nav-menu.active {
-        right: 0;
+        transform: translateX(-100%);
+    }
+
+    .nav-menu li {
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-menu a {
+        font-size: 1.25rem;
+        padding: 1rem;
+        display: block;
     }
 
     .nav-toggle {
-        display: block;
-        cursor: pointer;
+        display: flex;
+        z-index: 2001;
+    }
+    
+    .nav-toggle.active span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+    }
+    .nav-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+    .nav-toggle.active span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
     }
 }
 

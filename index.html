@@ -131,13 +131,20 @@
     
     <!-- 防止闪屏：初始隐藏页面，等JS加载完成后显示 -->
     <style>
-        body { opacity: 0; transition: opacity 0.3s ease; }
+        body { opacity: 0; transition: opacity 0.4s ease-out; background-color: #f8fafc; }
         body.page-ready { opacity: 1; }
     </style>
     <script>
-        // 页面加载后显示，设置超时确保即使JS出错也能显示
-        window.addEventListener('load', function() { document.body.classList.add('page-ready'); });
-        setTimeout(function() { document.body.classList.add('page-ready'); }, 1000);
+        // 确保页面最终一定会显示
+        window.addEventListener('load', function() { 
+            setTimeout(function() {
+                document.body.classList.add('page-ready'); 
+            }, 100);
+        });
+        // 兜底方案
+        setTimeout(function() { 
+            document.body.classList.add('page-ready'); 
+        }, 800);
     </script>
     <link rel="stylesheet" href="app-cards-3d.css">
     <link rel="stylesheet" href="reviews-carousel.css">
@@ -193,13 +200,15 @@
                 <li><a href="#about" data-i18n="nav.about">About</a></li>
                 <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
             </ul>
-            <div class="language-switcher">
-                <!-- 语言下拉菜单将由JavaScript动态创建 -->
-            </div>
-            <div class="nav-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
+            <div class="nav-right-side">
+                <div class="language-switcher">
+                    <!-- 语言下拉菜单将由JavaScript动态创建 -->
+                </div>
+                <div class="nav-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </div>
         </div>
     </nav>

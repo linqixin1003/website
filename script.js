@@ -972,6 +972,41 @@ function initModernInteractions() {
     });
 
     revealElements.forEach(el => revealObserver.observe(el));
+
+    // 3. 磁性按钮效果 (Subtle Magnetic Buttons)
+    const magneticBtns = document.querySelectorAll('.btn.enhanced');
+    magneticBtns.forEach(btn => {
+        btn.addEventListener('mousemove', (e) => {
+            const rect = btn.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            
+            btn.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px) scale(1.05)`;
+        });
+        
+        btn.addEventListener('mouseleave', () => {
+            btn.style.transform = '';
+        });
+    });
+
+    // 4. 3D 应用图标悬停
+    const appIcons = document.querySelectorAll('.apps-showcase.enhanced .app-icon');
+    appIcons.forEach(icon => {
+        icon.addEventListener('mousemove', (e) => {
+            const rect = icon.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            
+            const rotateX = -y * 0.15;
+            const rotateY = x * 0.15;
+            
+            icon.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(20px)`;
+        });
+        
+        icon.addEventListener('mouseleave', () => {
+            icon.style.transform = '';
+        });
+    });
 }
 
 // 为链接添加语言参数的函数

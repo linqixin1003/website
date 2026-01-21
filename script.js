@@ -904,6 +904,9 @@ function initializePage() {
     }
     isInitialized = true;
     
+    // 显示页面，防止闪屏
+    document.body.classList.add('page-ready');
+    
     console.log('DOM loaded, initializing page...');
     
     // 检查 URL 参数中是否有语言设置

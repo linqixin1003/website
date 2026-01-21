@@ -1,535 +1,225 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Color & Streak Testing - BirdAiSnap</title>
-<link href="../../mobile-styles.css" rel="stylesheet"/>
-<link href="../../mobile-enhancement.css" rel="stylesheet"/>
-<link href="../../ecology-theme.css" rel="stylesheet"/>
-<style>
-        /* Rock Identification Theme - Green */
-        :root {
-            --primary-color: #4CAF50;
-            --primary-dark: #2E7D32;
-            --primary-light: #E8F5E8;
-            --accent-color: #81C784;
-        }
-        
-        .hero-image img {
-            max-height: 200px;
-            width: 100%;
-            object-fit: cover;
-        }
-        .article-card img {
-            max-height: 120px;
-            width: 100%;
-            object-fit: cover;
-        }
-        .hero-image {
-            width: 100%;
-            height: 400px;
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
-                        url('../../images/rock/Rock&Mineral_Identification/04_Color_&_Streak_Analysis.webp') center/cover;
-            position: relative;
-            margin-top: 0;
-        }
-        .article-meta {
-            margin-top: 15px !important;
-        }
-        
-        /* Theme Color Overrides */
-        .content {
-            background: linear-gradient(135deg, #ffffff, var(--primary-light));
-            border: 2px solid var(--primary-color);
-            padding: 50px 35px 40px 35px !important;
-            margin: -30px 15px 20px 15px !important;
-            max-width: 1200px;
-            margin-left: auto !important;
-            margin-right: auto !important;
-        }
-        
-        /* Responsive padding adjustments */
-        @media screen and (max-width: 768px) {
-            .content {
-                padding: 40px 25px 30px 25px !important;
-                margin: -30px 10px 20px 10px !important;
-            }
-        }
-        
-        @media screen and (max-width: 480px) {
-            .content {
-                padding: 35px 20px 25px 20px !important;
-                margin: -30px 8px 20px 8px !important;
-            }
-            
-            /* Mobile optimization - flatten hierarchy */
-            .equipment-list {
-                margin: 20px 0;
-            }
-            
-            .equipment-item {
-                padding: 15px;
-                margin: 12px 0;
-                border-radius: 6px;
-            }
-            
-            .equipment-item h4 {
-                font-size: 16px;
-                margin-bottom: 8px;
-            }
-            
-            .tip-box, .highlight, .warning {
-                padding: 15px;
-                margin: 20px 0;
-                border-radius: 6px;
-            }
-            
-            .tip-title {
-                font-size: 16px;
-                margin-bottom: 10px;
-            }
-            
-            .section-title {
-                font-size: 18px;
-                margin: 25px 0 15px 0;
-                padding-bottom: 8px;
-            }
-            
-            .main-text {
-                font-size: 15px;
-                line-height: 1.6;
-                margin: 15px 0;
-            }
-            
-            ul, ol {
-                padding-left: 20px;
-                margin: 10px 0;
-            }
-            
-            li {
-                margin: 6px 0;
-                font-size: 14px;
-                line-height: 1.5;
-            }
-        }
-        
-        .quote-box {
-            background: linear-gradient(135deg, var(--primary-light), #C8E6C9);
-            border-left: 4px solid var(--primary-color);
-        }
-        
-        .quote-text {
-            color: var(--primary-dark);
-        }
-        
-        .section-title {
-            color: var(--primary-color);
-            border-bottom: 2px solid var(--accent-color);
-        }
-        
-        .tip-box {
-            border-left: 4px solid var(--primary-color);
-            background: var(--primary-light);
-        }
-        
-        .tip-title {
-            color: var(--primary-color);
-        }
-        
-        .highlight {
-            border-left: 4px solid var(--accent-color);
-            background: linear-gradient(135deg, #f1f8e9, var(--primary-light));
-        }
-        
-        .warning {
-            border-left: 4px solid #f44336;
-        }
-        
-        .equipment-item {
-            border: 1px solid var(--accent-color);
-            background: linear-gradient(135deg, #ffffff, var(--primary-light));
-            padding: 20px;
-            margin: 15px 0;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        }
-        
-        .equipment-item h4 {
-            color: var(--primary-color);
-            margin-bottom: 10px;
-            font-size: 18px;
-        }
-        
-        .equipment-item p {
-            margin-bottom: 0;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color and Streak Analysis - Rock Explorer</title>
+    <meta name="description" content="Learn how color and streak analysis can help identify minerals and understand their composition and formation.">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-        }
-        
-        /* Improved spacing for all text elements */
-        .main-text {
-            margin: 25px 0;
-            line-height: 1.7;
-        }
-        
-        .section-title {
-            margin: 35px 0 20px 0;
-            padding-bottom: 10px;
-        }
-        
-        .tip-box, .highlight, .warning {
-            margin: 25px 0;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
             padding: 20px;
-            border-radius: 8px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
         }
         
-        .equipment-list {
-            margin: 25px 0;
+        .article-header {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            text-align: center;
         }
         
-        ul, ol {
-            padding-left: 25px;
-            margin: 15px 0;
+        h1 {
+            color: #8B4513;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .article-meta {
+            color: #666;
+            font-style: italic;
+        }
+        
+        .content {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        .rock-image {
+            width: 100%;
+            height: 300px;
+            background: #ddd;
+            border-radius: 10px;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 1.2em;
+        }
+        
+        h2 {
+            color: #8B4513;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        
+        h3 {
+            color: #A0522D;
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+        
+        ul {
+            margin-left: 20px;
+            margin-bottom: 20px;
         }
         
         li {
-            margin: 8px 0;
-            line-height: 1.6;
+            margin-bottom: 8px;
         }
         
-        .category {
-            background: var(--primary-color);
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #f2f2f2;
+            color: #8B4513;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background: #8B4513;
             color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+        
+        .back-link:hover {
+            background: #D2691E;
         }
     </style>
 </head>
 <body>
-<div class="hero-image"></div>
-<div class="content">
-    <h1 class="title">Color & Streak Testing</h1>
-    
-    <div class="quote-box">
-        <div class="quote-text">Mastering Visual Identification Techniques</div>
+    <div class="article-header">
+        <h1>Color and Streak Analysis</h1>
+        <p class="article-meta">Mineral Coloration • Streak Testing • Identification</p>
     </div>
     
-    <div class="main-text">
-        Color and streak are among the most accessible diagnostic properties for mineral identification. While color can be misleading due to impurities and weathering, understanding both surface color and streak color provides powerful identification tools for the field geologist.
-    </div>
-    
-    <div class="article-meta">
-        <span class="category">Rock Identification</span>
-        <span class="read-time">📖 16 minute read</span>
-        <span class="difficulty">🟡 Intermediate</span>
-    </div>
-    
-    <div class="quote-box">
-        <div class="main-text">"Color catches the eye, but streak reveals the truth - never trust surface appearances alone."</div>
-        <cite>— Dr. Helen Rodriguez, Mineralogist</cite>
-    </div>
-    
-    <div class="section-title">🎨 Understanding Mineral Color</div>
-    
-    <div class="main-text">
-        Color is often the first property we notice in minerals, but it can be both the most helpful and most misleading characteristic. Understanding the causes of color helps us use this property effectively.
-    </div>
-    
-    <div class="equipment-list">
-        <div class="equipment-item">
-            <h4>🧬 Idiochromatic Minerals</h4>
-            <p><strong>Inherent color from essential elements:</strong> Malachite (green from copper), azurite (blue from copper), pyrite (brass yellow from iron-sulfur). Color is diagnostic and reliable.</p>
+    <div class="content">
+        <div class="rock-image">
+            [Placeholder: Mineral Color and Streak Examples]
         </div>
-        <div class="equipment-item">
-            <h4>🌈 Allochromatic Minerals</h4>
-            <p><strong>Variable color from trace impurities:</strong> Quartz (clear, purple, pink, smoky), corundum (ruby, sapphire), fluorite (purple, green, yellow, colorless).</p>
-        </div>
-        <div class="equipment-item">
-            <h4>✨ Pseudochromatic Effects</h4>
-            <p><strong>Color from physical phenomena:</strong> Labradorite schiller, opal play-of-color, interference colors in thin films. Not true mineral color.</p>
-        </div>
-    </div>
-    
-    <div class="section-title">⚠️ Color Pitfalls</div>
-    
-    <div class="warning">
-        <div class="warning-title">🚨 Common Color Mistakes</div>
+        
+        <p>Color and streak are among the most noticeable properties of minerals, providing valuable clues for identification. While color can be variable due to impurities, streak—the color of a mineral's powder—is often a more reliable diagnostic feature.</p>
+        
+        <h2>Mineral Color</h2>
+        
+        <h3>How Minerals Get Their Color</h3>
+        <p>The color of a mineral is primarily determined by its chemical composition and atomic structure. Specific elements or impurities within the crystal lattice can absorb certain wavelengths of light, resulting in the characteristic colors we observe.</p>
+        
+        <h3>Types of Color in Minerals</h3>
         <ul>
-            <li><strong>Weathering:</strong> Iron staining makes everything look rusty brown</li>
-            <li><strong>Tarnish:</strong> Metallic minerals develop surface films (chalcopyrite looks rainbow-colored)</li>
-            <li><strong>Lighting:</strong> Incandescent vs. daylight vs. UV affects color perception</li>
-            <li><strong>Inclusions:</strong> Foreign material can completely mask true color</li>
+            <li><strong>Idiochromatic color:</strong> Inherent color determined by the mineral's essential chemical composition (e.g., sulfur is always yellow)</li>
+            <li><strong>Allochromatic color:</strong> Color caused by trace impurities or defects in the crystal structure (e.g., corundum is colorless in pure form but becomes ruby with chromium impurities)</li>
+            <li><strong>Pseudochromatic color:</strong> Color resulting from optical effects such as light interference or diffraction (e.g., the play of colors in opal)</li>
         </ul>
-    </div>
-    
-    <div class="tip-box">
-        <div class="tip-title">💡 Color Testing Best Practices</div>
+        
+        <h3>Limitations of Color for Identification</h3>
+        <p>While color is often the first property we notice, it can be misleading for several reasons:</p>
         <ul>
-            <li>Always observe color on fresh, unweathered surfaces</li>
-            <li>Use consistent lighting conditions (preferably natural daylight)</li>
-            <li>Compare with known reference specimens when possible</li>
-            <li>Note color variations within the same specimen</li>
-            <li>Consider the geological context and expected minerals</li>
+            <li>Many minerals occur in multiple colors (e.g., quartz can be clear, white, purple, pink, or brown)</li>
+            <li>Weathering can change a mineral's surface color</li>
+            <li>Impurities can significantly alter color even within the same mineral species</li>
         </ul>
-    </div>
-    
-    <div class="section-title">✨ Streak Testing Fundamentals</div>
-    
-    <div class="main-text">
-        Streak is the color of a mineral's powder and is more reliable than surface color because it eliminates the effects of weathering and surface coatings. This simple test can distinguish between minerals that appear identical.
-    </div>
-    
-    <div class="equipment-list">
-        <div class="equipment-item">
-            <h4>🧪 Streak Plate Specifications</h4>
-            <p>Utilize unglazed porcelain bisque with Mohs hardness 6.5-7.0 to ensure consistent abrasion. White porcelain optimizes contrast for chromophore visualization. Black porcelain enhances detection of light-colored streaks from colorless or white minerals. Surface roughness should be 2-5 μm for optimal powder liberation.</p>
-        </div>
-        <div class="equipment-item">
-            <h4>⚡ Testing Technique</h4>
-            <p>Draw mineral firmly across plate with steady pressure. Clean plate between tests. Test multiple spots if streak is faint.</p>
-        </div>
-        <div class="equipment-item">
-            <h4>🔍 Observation Tips</h4>
-            <p>View streak under good lighting. Note intensity and exact color. Some streaks change color when wet vs. dry.</p>
-        </div>
-    </div>
-    
-    <div class="section-title">🌈 Diagnostic Streak Colors</div>
-    
-    <div class="main-text">
-        Certain streak colors are highly diagnostic and can provide immediate identification:
-    </div>
-    
-    <div class="equipment-list">
-        <div class="equipment-item">
-            <h4>🔴 Red to Brown Streaks</h4>
-            <p><strong>Hematite (Fe₂O₃):</strong> Red to reddish-brown from Fe³⁺ charge transfer transitions<br>
-            <strong>Cinnabar (HgS):</strong> Bright red from mercury-sulfur intervalence bands (acute toxicity - minimize exposure)<br>
-            <strong>Realgar (As₄S₄):</strong> Orange-red from As-S molecular orbital interactions (carcinogenic - use fume hood)</p>
-        </div>
-        <div class="equipment-item">
-            <h4>⚫ Black Streaks</h4>
-            <p><strong>Magnetite:</strong> Black (magnetic)<br>
-            <strong>Chromite:</strong> Brown to black<br>
-            <strong>Ilmenite:</strong> Black to brownish-black</p>
-        </div>
-        <div class="equipment-item">
-            <h4>🟡 Yellow to Brown Streaks</h4>
-            <p><strong>Goethite:</strong> Yellow-brown to brown<br>
-            <strong>Limonite:</strong> Yellow-brown (mixture)<br>
-            <strong>Pyrite:</strong> Greenish-black to brownish-black</p>
-        </div>
-        <div class="equipment-item">
-            <h4>🟢 Green Streaks</h4>
-            <p><strong>Malachite:</strong> Green (matches mineral color)<br>
-            <strong>Chrysocolla:</strong> Light green to blue-green<br>
-            <strong>Atacamite:</strong> Apple green</p>
-        </div>
-    </div>
-    
-    <div class="section-title">⚪ White and Colorless Streaks</div>
-    
-    <div class="main-text">
-        Most silicate minerals produce white or colorless streaks, which helps eliminate metallic and highly colored minerals:
-    </div>
-    
-    <div class="equipment-list">
-        <div class="equipment-item">
-            <h4>💎 Silicate Minerals</h4>
-            <p>Quartz, feldspar, mica, pyroxene, amphibole - all show white to colorless streaks. Use other properties for distinction.</p>
-        </div>
-        <div class="equipment-item">
-            <h4>🧂 Carbonate Minerals</h4>
-            <p>Calcite, dolomite, aragonite - white streaks. Distinguished by hardness, crystal form, and acid reaction.</p>
-        </div>
-        <div class="equipment-item">
-            <h4>💧 Sulfate Minerals</h4>
-            <p>Gypsum, anhydrite, barite - white streaks. Hardness and specific gravity help distinguish.</p>
-        </div>
-    </div>
-    
-    <div class="section-title">🔬 Advanced Streak Analysis</div>
-    
-    <div class="main-text">
-        Professional mineralogists use advanced streak testing techniques for challenging identifications:
-    </div>
-    
-    <div class="tip-box">
-        <div class="tip-title">🎯 Professional Techniques</div>
+        
+        <h2>The Streak Test</h2>
+        
+        <h3>What is Streak?</h3>
+        <p>Streak is the color of a mineral when it is powdered by being scratched across an unglazed porcelain plate. This test reveals the true color of the mineral, unaffected by surface coatings or weathering.</p>
+        
+        <h3>How to Perform the Streak Test</h3>
+        <ol>
+            <li>Obtain an unglazed porcelain streak plate</li>
+            <li>Select a fresh, clean surface of the mineral sample</li>
+            <li>Gently but firmly rub the mineral across the streak plate</li>
+            <li>Observe the color of the powder left behind</li>
+        </ol>
+        
+        <h3>Special Considerations</h3>
         <ul>
-            <li><strong>Powder examination:</strong> Use hand lens to examine streak powder texture</li>
-            <li><strong>Magnetic testing:</strong> Test streak powder with magnet (magnetite streak is magnetic)</li>
-            <li><strong>Chemical testing:</strong> Apply acid to streak powder for carbonates</li>
-            <li><strong>Fluorescence:</strong> Some streak powders fluoresce under UV light</li>
+            <li>Minerals harder than porcelain (Mohs hardness >6.5) will scratch the streak plate instead of leaving a powder</li>
+            <li>For very hard minerals, you can crush a small sample to observe the powder color</li>
+            <li>Some minerals may have a streak that is different from their visible color</li>
         </ul>
+        
+        <h2>Common Minerals and Their Streak Colors</h2>
+        <table>
+            <tr>
+                <th>Mineral</th>
+                <th>Common Color(s)</th>
+                <th>Streak Color</th>
+            </tr>
+            <tr>
+                <td>Hematite</td>
+                <td>Silver, gray, red, brown</td>
+                <td>Reddish-brown</td>
+            </tr>
+            <tr>
+                <td>Magnetite</td>
+                <td>Black</td>
+                <td>Black</td>
+            </tr>
+            <tr>
+                <td>Pyrite</td>
+                <td>Brass yellow</td>
+                <td>Greenish-black</td>
+            </tr>
+            <tr>
+                <td>Galena</td>
+                <td>Lead gray</td>
+                <td>Gray to black</td>
+            </tr>
+            <tr>
+                <td>Chalcopyrite</td>
+                <td>Brass yellow to golden</td>
+                <td>Greenish-black</td>
+            </tr>
+            <tr>
+                <td>Calcite</td>
+                <td>Colorless, white, gray, yellow, green, blue</td>
+                <td>White</td>
+            </tr>
+            <tr>
+                <td>Quartz</td>
+                <td>Colorless, white, purple, pink, brown</td>
+                <td>White (usually no visible streak)</td>
+            </tr>
+            <tr>
+                <td>Gypsum</td>
+                <td>Colorless, white, gray</td>
+                <td>White</td>
+            </tr>
+        </table>
+        
+        <h2>Practical Applications</h2>
+        <p>Color and streak analysis are essential tools for field geologists, mineral collectors, and professionals in mining and mineral exploration. These simple tests can quickly narrow down the identification of unknown specimens and provide insights into the mineral's composition and potential uses.</p>
+        
+        <a href="../../rock-app.html" class="back-link">← Back to Rock Explorer</a>
     </div>
-    
-    <div class="section-title">⚖️ Hardness Limitations</div>
-    
-    <div class="main-text">
-        Streak testing has limitations based on mineral hardness:
-    </div>
-    
-    <div class="warning">
-        <div class="warning-title">🔨 Hardness Constraints</div>
-        <ul>
-            <li><strong>Hard minerals (>7):</strong> Cannot streak on porcelain plate</li>
-            <li><strong>Alternative methods:</strong> Crush small fragment, observe powder color</li>
-            <li><strong>Steel plate option:</strong> Use steel plate for very hard minerals (less reliable)</li>
-            <li><strong>Safety note:</strong> Crushing produces sharp fragments - use safety glasses</li>
-        </ul>
-    </div>
-    
-    <div class="section-title">🎨 Color-Streak Combinations</div>
-    
-    <div class="main-text">
-        The combination of surface color and streak color provides powerful diagnostic information:
-    </div>
-    
-    <div class="equipment-list">
-        <div class="equipment-item">
-            <h4>🥇 Gold vs. Pyrite</h4>
-            <p><strong>Gold:</strong> Golden color, golden streak, soft, malleable<br>
-            <strong>Pyrite:</strong> Brassy color, greenish-black streak, hard, brittle</p>
-        </div>
-        <div class="equipment-item">
-            <h4>🔶 Hematite Varieties</h4>
-            <p><strong>Specular hematite:</strong> Metallic gray, red streak<br>
-            <strong>Red hematite:</strong> Red color, red streak<br>
-            <strong>Kidney ore:</strong> Reddish-brown, red streak</p>
-        </div>
-        <div class="equipment-item">
-            <h4>🟤 Iron Oxides</h4>
-            <p><strong>Magnetite:</strong> Black color, black streak, magnetic<br>
-            <strong>Hematite:</strong> Various colors, red streak, non-magnetic<br>
-            <strong>Goethite:</strong> Yellow-brown color, yellow-brown streak</p>
-        </div>
-    </div>
-    
-    <div class="section-title">🌟 Special Color Phenomena</div>
-    
-    <div class="main-text">
-        Some minerals exhibit special optical effects that aid in identification:
-    </div>
-    
-    <div class="equipment-list">
-        <div class="equipment-item">
-            <h4>🌈 Iridescence</h4>
-            <p><strong>Chalcopyrite:</strong> Rainbow tarnish on fresh surfaces<br>
-            <strong>Bornite:</strong> "Peacock ore" - purple and blue tarnish</p>
-        </div>
-        <div class="equipment-item">
-            <h4>⚡ Schiller Effect</h4>
-            <p><strong>Labradorite:</strong> Blue, green, gold flashes<br>
-            <strong>Moonstone:</strong> Blue or white adularescence</p>
-        </div>
-        <div class="equipment-item">
-            <h4>🔥 Play of Color</h4>
-            <p><strong>Opal:</strong> Flashing rainbow colors<br>
-            <strong>Fire opal:</strong> Orange to red body color with play of color</p>
-        </div>
-    </div>
-    
-    <div class="section-title">🧪 Chemical Color Tests</div>
-    
-    <div class="main-text">
-        Some minerals can be identified by color changes during chemical testing:
-    </div>
-    
-    <div class="warning">
-        <div class="warning-title">⚗️ Safety First</div>
-        Always use proper safety equipment and ventilation when performing chemical tests. Some reactions produce toxic fumes.
-    </div>
-    
-    <div class="equipment-list">
-        <div class="equipment-item">
-            <h4>🔥 Flame Tests</h4>
-            <p><strong>Copper minerals:</strong> Green flame<br>
-            <strong>Sodium minerals:</strong> Yellow flame<br>
-            <strong>Potassium minerals:</strong> Violet flame</p>
-        </div>
-        <div class="equipment-item">
-            <h4>💧 Acid Reactions</h4>
-            <p><strong>Malachite + HCl:</strong> Effervesces, solution turns blue-green<br>
-            <strong>Azurite + HCl:</strong> Effervesces, solution turns blue</p>
-        </div>
-    </div>
-    
-    <div class="section-title">📸 Documentation Techniques</div>
-    
-    <div class="main-text">
-        Proper documentation of color and streak observations is essential for scientific work:
-    </div>
-    
-    <div class="tip-box">
-        <div class="tip-title">📝 Recording Observations</div>
-        <ul>
-            <li>Use standardized color charts when possible (Munsell color system)</li>
-            <li>Photograph specimens under consistent lighting</li>
-            <li>Include scale objects in photographs</li>
-            <li>Note lighting conditions and camera settings</li>
-            <li>Record both fresh and weathered surface colors</li>
-        </ul>
-    </div>
-    
-    <div class="section-title">🎓 Building Color Recognition Skills</div>
-    
-    <div class="main-text">
-        Developing expertise in color-based identification requires systematic practice:
-    </div>
-    
-    <div class="equipment-list">
-        <div class="equipment-item">
-            <h4>👁️ Train Your Eye</h4>
-            <p>Study reference collections under different lighting conditions. Practice describing colors precisely using geological terminology.</p>
-        </div>
-        <div class="equipment-item">
-            <h4>📚 Learn Color Terminology</h4>
-            <p>Master geological color terms: vitreous, resinous, pearly, adamantine, metallic, earthy, dull.</p>
-        </div>
-        <div class="equipment-item">
-            <h4>🔄 Practice Regularly</h4>
-            <p>Test known specimens repeatedly. Build memory associations between colors, streaks, and mineral names.</p>
-        </div>
-        <div class="equipment-item">
-            <h4>🏛️ Visit Collections</h4>
-            <p>Study museum specimens with excellent lighting and labeling. Compare varieties of the same mineral.</p>
-        </div>
-    </div>
-    
-    <div class="section-title">🌍 Field Applications</div>
-    
-    <div class="main-text">
-        Color and streak testing are particularly valuable in field situations where advanced equipment isn't available:
-    </div>
-    
-    <div class="highlight">
-        <strong>Field Tip:</strong> Carry a small streak plate in your field kit. A broken piece of unglazed ceramic tile works well and is more durable than laboratory plates.
-    </div>
-    
-    <div class="section-title">🔬 Laboratory Confirmation</div>
-    
-    <div class="main-text">
-        While color and streak are excellent diagnostic tools, laboratory confirmation may be needed for:
-    </div>
-    
-    <div class="equipment-list">
-        <div class="equipment-item">
-            <h4>📡 X-ray Diffraction</h4>
-            <p>Definitive identification of minerals with similar color and streak but different crystal structures.</p>
-        </div>
-        <div class="equipment-item">
-            <h4>⚗️ Chemical Analysis</h4>
-            <p>Precise determination of composition for solid solution minerals and complex chemistries.</p>
-        </div>
-        <div class="equipment-item">
-            <h4>🔬 Optical Microscopy</h4>
-            <p>Detailed study of optical properties and internal textures not visible to the naked eye.</p>
-        </div>
-    </div>
-    
-    <div class="highlight">
-        <strong>Remember:</strong> Color and streak are powerful tools when used correctly, but they should always be combined with other diagnostic properties for reliable identification. The key is systematic observation and understanding the limitations of visual properties.
-    </div>
-    
-</div>
 </body>
 </html>

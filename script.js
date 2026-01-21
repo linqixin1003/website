@@ -928,7 +928,50 @@ function initializePage() {
     // 为应用卡片添加点击处理
     setupAppCardHandlers();
     
+    // 初始化现代 UI 交互
+    initModernInteractions();
+    
     console.log('Page initialization complete');
+}
+
+/**
+ * 初始化现代 UI 交互
+ */
+function initModernInteractions() {
+    // 1. 导航栏滚动效果
+    const navbar = document.querySelector('.navbar');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+
+    // 2. 滚动显示动画 (Scroll Reveal)
+    const revealElements = document.querySelectorAll('.app-card, .feature-card, .stat-item, .hero-content > *, .hero-image');
+    
+    // 初始状态
+    revealElements.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+    });
+
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+                revealObserver.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    });
+
+    revealElements.forEach(el => revealObserver.observe(el));
 }
 
 // 为链接添加语言参数的函数

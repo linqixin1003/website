@@ -904,8 +904,7 @@ function initializePage() {
     }
     isInitialized = true;
     
-    // 显示页面，防止闪屏
-    document.body.classList.add('page-ready');
+    // 防闪屏逻辑已移至index.html内联脚本（visibility方案）
     
     console.log('DOM loaded, initializing page...');
     
@@ -966,21 +965,21 @@ function initModernInteractions() {
         });
     }
 
-    // 3. 滚动显示动画 (Scroll Reveal)
-    const revealElements = document.querySelectorAll('.app-card, .feature-card, .stat-item, .hero-content > *, .hero-image');
+    // 3. 滚动显示动画 (Scroll Reveal) - 使用CSS类控制，避免与CSS动画冲突
+    // 排除Hero内容，它们由hero-enhanced.css控制
+    const revealElements = document.querySelectorAll('.app-card, .feature-card, .about-content, .contact-content');
     
-    // 初始状态
+    // 使用CSS类控制初始状态，不使用inline style
     revealElements.forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(20px)';
-        el.style.transition = 'opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+        el.classList.add('reveal-hidden');
     });
 
     const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
+                // 使用CSS类控制显示，避免冲突
+                entry.target.classList.remove('reveal-hidden');
+                entry.target.classList.add('reveal-visible');
                 revealObserver.unobserve(entry.target);
             }
         });

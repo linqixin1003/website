@@ -129,27 +129,25 @@
     <link rel="stylesheet" href="dark-mode.css">
     <link rel="stylesheet" href="hero-enhanced.css">
     
-    <!-- 防止闪屏：初始隐藏页面，等JS加载完成后显示 -->
-    <style>
-        body { opacity: 0; transition: opacity 0.4s ease-out; background-color: #f8fafc; }
-        body.page-ready { opacity: 1; }
+    <!-- 防止闪屏：使用visibility方案，同步显示 -->
+    <style id="critical-anti-flash">
+        /* 新方案：使用visibility避免布局重排 */
+        html:not(.loaded) { visibility: hidden; }
+        html.loaded { visibility: visible; }
+        body { background-color: #ffffff; min-height: 100vh; }
     </style>
     <script>
-        // 确保页面最终一定会显示
-        window.addEventListener('load', function() { 
-            setTimeout(function() {
-                document.body.classList.add('page-ready'); 
-            }, 100);
-        });
-        // 兜底方案
-        setTimeout(function() { 
-            document.body.classList.add('page-ready'); 
-        }, 800);
+        // 同步执行，立即显示页面
+        document.documentElement.classList.add('loaded');
     </script>
+    <!-- 字体预连接优化 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="app-cards-3d.css">
     <link rel="stylesheet" href="reviews-carousel.css">
     <link rel="stylesheet" href="social-share.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- 优化字体加载：减少字重，使用optional避免FOUT -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=optional" rel="stylesheet">
     <style>
         .download-buttons-group {
             display: flex;

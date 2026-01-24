@@ -1927,7 +1927,12 @@ main {
     overflow: hidden;
 }
 
-/* app-card hover 效果由 app-cards-3d.css 统一控制 */
+/* app-card hover 效果：仅显示边框，避免闪屏 */
+.app-card:hover {
+    border-color: rgba(99, 102, 241, 0.5);
+    transform: none !important; /* 强制无位移 */
+    box-shadow: var(--shadow-premium) !important; /* 强制保持原阴影 */
+}
 
 .app-card > * {
     position: relative;
@@ -1939,6 +1944,10 @@ main {
         rgba(76, 175, 80, 0.1) 0%, 
         rgba(255, 255, 255, 0.95) 100%);
     border: 2px solid transparent; /* 默认无边框 */
+}
+
+.app-card.featured:hover {
+    border-color: #667eea; /* 悬停显示紫色边框 */
 }
 
 .app-card.featured:focus-within {

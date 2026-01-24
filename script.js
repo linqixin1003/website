@@ -965,30 +965,8 @@ function initModernInteractions() {
         });
     }
 
-    // 3. 滚动显示动画 (Scroll Reveal) - 使用CSS类控制，避免与CSS动画冲突
-    // 排除Hero内容，它们由hero-enhanced.css控制
-    const revealElements = document.querySelectorAll('.app-card, .feature-card, .about-content, .contact-content');
-    
-    // 使用CSS类控制初始状态，不使用inline style
-    revealElements.forEach(el => {
-        el.classList.add('reveal-hidden');
-    });
-
-    const revealObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                // 使用CSS类控制显示，避免冲突
-                entry.target.classList.remove('reveal-hidden');
-                entry.target.classList.add('reveal-visible');
-                revealObserver.unobserve(entry.target);
-            }
-        });
-    }, {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    });
-
-    revealElements.forEach(el => revealObserver.observe(el));
+    // 3. 滚动显示动画已禁用 - 防止闪烁
+    // 所有元素直接可见，不使用 reveal-hidden/reveal-visible
 
     // 4. 磁性按钮效果 (Subtle Magnetic Buttons)
     const magneticBtns = document.querySelectorAll('.btn.enhanced');

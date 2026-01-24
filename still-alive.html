@@ -4,25 +4,82 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- 防止闪屏 -->
-    <style>body{opacity:0;transition:opacity .3s ease}body.page-ready{opacity:1}</style>
-    <script>window.addEventListener('load',function(){document.body.classList.add('page-ready')});setTimeout(function(){document.body.classList.add('page-ready')},1000);</script>
+    <!-- 防止闪屏：使用visibility方案 -->
+    <style id="critical-anti-flash">
+        html:not(.loaded) { visibility: hidden; }
+        html.loaded { visibility: visible; }
+        body { background-color: #ffffff; min-height: 100vh; }
+    </style>
+    <script>document.documentElement.classList.add('loaded');</script>
     
     <title>Still Alive? - Personal Safety Guardian | Dead Man's Switch App</title>
-    <meta name="description" content="Still Alive? is a 'Dead Man's Switch' safety app designed for people living alone. Daily check-ins, automatic emergency alerts, and peace of mind.">
-    <meta name="keywords" content="still alive, dead man's switch, safety app, emergency alert, check-in app, alone safety, elderly care">
+    <meta name="description" content="Still Alive? is a privacy-first 'Dead Man's Switch' safety app for people living alone. Daily check-ins with automatic emergency alerts to trusted contacts. No GPS tracking, no data sharing.">
+    <meta name="keywords" content="still alive app, dead man's switch, safety app for living alone, emergency alert app, check-in app, elderly safety, solo traveler safety, personal safety guardian">
+    <meta name="author" content="Lingjue LLC">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://birdid.net/still-alive.html">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://birdid.net/still-alive.html">
-    <meta property="og:title" content="Still Alive? - Personal Safety Guardian">
-    <meta property="og:description" content="Your personal 'Dead Man's Switch' safety guardian. Daily check-ins and automatic emergency alerts.">
+    <meta property="og:title" content="Still Alive? - Personal Safety Guardian for People Living Alone">
+    <meta property="og:description" content="Privacy-first 'Dead Man's Switch' app. Daily check-ins and automatic emergency alerts to trusted contacts. No GPS tracking.">
     <meta property="og:image" content="https://birdid.net/images/still-alive-og.jpg">
 
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="dark-mode.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- GEO Optimized Schema.org Structured Data -->
+    
+    <!-- BreadcrumbList Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://birdid.net/"},
+        {"@type": "ListItem", "position": 2, "name": "Apps", "item": "https://birdid.net/#apps"},
+        {"@type": "ListItem", "position": 3, "name": "Still Alive?", "item": "https://birdid.net/still-alive.html"}
+      ]
+    }
+    </script>
+    
+    <!-- SoftwareApplication Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Still Alive?",
+      "alternateName": "Dead Man's Switch Safety App",
+      "description": "Still Alive? is a privacy-first personal safety app for people living alone. Daily check-in reminders with automatic emergency alerts to trusted contacts if you don't respond. No GPS tracking, no location sharing, no data collection.",
+      "applicationCategory": "HealthApplication",
+      "applicationSubCategory": "Personal Safety",
+      "operatingSystem": "Android 8.0+",
+      "installUrl": "https://play.google.com/store/apps/details?id=com.lingjue.live",
+      "softwareVersion": "1.0",
+      "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+      "author": {"@type": "Organization", "name": "Lingjue LLC"},
+      "featureList": ["Daily safety check-in reminders", "Automatic alerts to 1-5 emergency contacts", "Customizable check-in schedules", "Privacy-first - no GPS tracking", "Works without constant internet", "24/7 monitoring system", "Simple one-tap confirmation"]
+    }
+    </script>
+    
+    <!-- FAQPage Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type": "Question", "name": "What is a Dead Man's Switch app?", "acceptedAnswer": {"@type": "Answer", "text": "A Dead Man's Switch app like Still Alive? sends automatic alerts to your emergency contacts if you don't check in within a specified time. It's designed for people living alone, solo travelers, and anyone who wants peace of mind knowing someone will be notified if something happens."}},
+        {"@type": "Question", "name": "Does Still Alive track my location?", "acceptedAnswer": {"@type": "Answer", "text": "No! Still Alive? is designed with privacy first. We do NOT track your GPS location, do NOT share your data with third parties, and do NOT collect personal information. The app only sends a simple 'I'm okay' or 'Alert needed' signal."}},
+        {"@type": "Question", "name": "Who is Still Alive for?", "acceptedAnswer": {"@type": "Answer", "text": "Still Alive? is perfect for: seniors living alone, remote workers, solo travelers, outdoor adventurers, people with medical conditions, and anyone who wants their loved ones to know they're safe without constant phone calls."}},
+        {"@type": "Question", "name": "How many emergency contacts can I add?", "acceptedAnswer": {"@type": "Answer", "text": "You can add 1-5 trusted emergency contacts. Each contact will receive an alert if you miss your check-in. You can customize which contacts are notified and in what order."}},
+        {"@type": "Question", "name": "What happens if I forget to check in?", "acceptedAnswer": {"@type": "Answer", "text": "If you miss your check-in, Still Alive? sends you multiple reminders. If you still don't respond within the grace period you set, the app automatically sends an alert to your emergency contacts with your pre-written message."}},
+        {"@type": "Question", "name": "Is Still Alive free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes! Still Alive? is free to download and use. All core safety features are included at no cost. We believe everyone deserves peace of mind."}}
+      ]
+    }
+    </script>
     
     <style>
         .app-hero {

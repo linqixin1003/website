@@ -973,7 +973,7 @@ function initModernInteractions() {
     const magneticBtns = document.querySelectorAll('.btn.enhanced');
     magneticBtns.forEach(btn => {
         // ... (removed to prevent flicker)
-    });
+        });
     */
 
     // 5. 3D 应用图标悬停已禁用 - 防止闪烁
@@ -981,7 +981,7 @@ function initModernInteractions() {
     const appIcons = document.querySelectorAll('.apps-showcase.enhanced .app-icon');
     appIcons.forEach(icon => {
         // ... (removed to prevent flicker)
-    });
+        });
     */
 }
 

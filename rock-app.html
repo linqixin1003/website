@@ -4,9 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- 防止闪屏 -->
-    <style>body{opacity:0;transition:opacity .3s ease}body.page-ready{opacity:1}</style>
-    <script>window.addEventListener('load',function(){document.body.classList.add('page-ready')});setTimeout(function(){document.body.classList.add('page-ready')},1000);</script>
+    <!-- 防止闪屏：使用visibility方案 -->
+    <style id="critical-anti-flash">
+        html:not(.loaded) { visibility: hidden; }
+        html.loaded { visibility: visible; }
+        body { background-color: #ffffff; min-height: 100vh; }
+    </style>
+    <script>document.documentElement.classList.add('loaded');</script>
     
     <!-- Primary Meta Tags -->
     <title>RockAiSnap - AI Rock & Mineral Identification | Identify Rocks, Minerals & Gemstones</title>
@@ -76,34 +80,71 @@
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Schema.org Structured Data -->
+    <!-- GEO Optimized Schema.org Structured Data -->
+    
+    <!-- BreadcrumbList Schema -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "MobileApplication",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://birdid.net/"},
+        {"@type": "ListItem", "position": 2, "name": "Apps", "item": "https://birdid.net/#apps"},
+        {"@type": "ListItem", "position": 3, "name": "RockAiSnap", "item": "https://birdid.net/rock-app.html"}
+      ]
+    }
+    </script>
+    
+    <!-- SoftwareApplication Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
       "name": "RockAiSnap",
-      "description": "AI-powered rock and mineral identification app. Instantly identify rocks, minerals, gemstones, and geological formations.",
-      "applicationCategory": "EducationApplication",
-      "operatingSystem": "Android",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      },
-      "author": {
-        "@type": "Organization",
-        "name": "Lingjue LLC",
-        "email": "lingjuetech@gmail.com"
-      },
-      "downloadUrl": "https://play.google.com/store/apps/details?id=com.rock.ai.snap",
-      "screenshot": "https://linqixin1003.github.io/website/images/rock/Rock_Identification_Techniques/01_Complete_Field_Ientification_Guide.webp",
-      "featureList": [
-        "AI-powered rock identification",
-        "Mineral and gemstone recognition",
-        "Geological formation analysis",
-        "Crystal property database",
-        "Rock collecting guide",
-        "Comprehensive geology knowledge library"
+      "alternateName": "Rock & Mineral Identifier",
+      "description": "RockAiSnap is the leading AI-powered rock and mineral identification app. Identify 5,000+ rocks, minerals, and gemstones instantly. Perfect for geology students, rock collectors, and outdoor enthusiasts.",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "iOS 14.0+, Android 8.0+",
+      "downloadUrl": "https://apps.apple.com/us/app/rockaisnap-rock-identify/id6751223713",
+      "installUrl": "https://play.google.com/store/apps/details?id=com.rock.ai.snap",
+      "softwareVersion": "1.5",
+      "datePublished": "2024-03-01",
+      "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+      "aggregateRating": {"@type": "AggregateRating", "ratingValue": "4.3", "ratingCount": "5823", "bestRating": "5"},
+      "author": {"@type": "Organization", "name": "Lingjue LLC"},
+      "featureList": ["AI rock and mineral identification", "5,000+ minerals database", "Chemical composition analysis", "Mohs hardness reference", "Geological formation info", "Offline mode support"]
+    }
+    </script>
+    
+    <!-- HowTo Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "How to Identify Rocks and Minerals with RockAiSnap",
+      "description": "Learn how to accurately identify rocks, minerals, and gemstones using the AI-powered RockAiSnap app.",
+      "totalTime": "PT30S",
+      "step": [
+        {"@type": "HowToStep", "position": 1, "name": "Photograph the Rock", "text": "Take a clear photo of the rock or mineral. Ensure good lighting and capture the texture and color."},
+        {"@type": "HowToStep", "position": 2, "name": "AI Analysis", "text": "RockAiSnap's AI compares your photo against 5,000+ minerals in our database."},
+        {"@type": "HowToStep", "position": 3, "name": "View Results", "text": "Get identification with mineral name, chemical formula, Mohs hardness, and formation info."},
+        {"@type": "HowToStep", "position": 4, "name": "Learn & Collect", "text": "Explore detailed geology information and add to your rock collection."}
+      ]
+    }
+    </script>
+    
+    <!-- FAQPage Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type": "Question", "name": "What is the best app for rock identification?", "acceptedAnswer": {"@type": "Answer", "text": "RockAiSnap is rated as one of the best rock identification apps with AI-powered recognition of 5,000+ minerals, rocks, and gemstones. It provides chemical composition, Mohs hardness, and geological information instantly."}},
+        {"@type": "Question", "name": "How accurate is AI mineral identification?", "acceptedAnswer": {"@type": "Answer", "text": "RockAiSnap achieves 90% accuracy in mineral identification. For best results, photograph rocks in good lighting and capture distinctive features like crystal structure, luster, and color."}},
+        {"@type": "Question", "name": "Can RockAiSnap identify gemstones?", "acceptedAnswer": {"@type": "Answer", "text": "Yes! RockAiSnap can identify gemstones including quartz, amethyst, sapphire, and more. It provides information about gem quality, value factors, and geological origin."}},
+        {"@type": "Question", "name": "Does RockAiSnap work offline?", "acceptedAnswer": {"@type": "Answer", "text": "Yes! RockAiSnap supports offline mode. Download the mineral database and identify rocks anywhere - perfect for fieldwork and hiking."}},
+        {"@type": "Question", "name": "Is RockAiSnap useful for geology students?", "acceptedAnswer": {"@type": "Answer", "text": "Absolutely! RockAiSnap is used by geology students and professors worldwide. It provides scientific data including chemical formulas, crystal systems, and formation processes."}},
+        {"@type": "Question", "name": "Can I identify meteorites with RockAiSnap?", "acceptedAnswer": {"@type": "Answer", "text": "Yes! RockAiSnap includes meteorite identification capabilities. It can help distinguish between meteorites and terrestrial rocks based on visual characteristics."}}
       ]
     }
     </script>

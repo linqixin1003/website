@@ -4,9 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- 防止闪屏 -->
-    <style>body{opacity:0;transition:opacity .3s ease}body.page-ready{opacity:1}</style>
-    <script>window.addEventListener('load',function(){document.body.classList.add('page-ready')});setTimeout(function(){document.body.classList.add('page-ready')},1000);</script>
+    <!-- 防止闪屏：使用visibility方案，同步显示 -->
+    <style id="critical-anti-flash">
+        html:not(.loaded) { visibility: hidden; }
+        html.loaded { visibility: visible; }
+        body { background-color: #fdfbf7; min-height: 100vh; }
+    </style>
+    <script>
+        document.documentElement.classList.add('loaded');
+    </script>
     
     <!-- Primary Meta Tags -->
     <title>MushroomAiSnap - AI Mushroom Identification | Safe Foraging Guide & 10,000+ Species</title>
@@ -39,6 +45,7 @@
     
     <!-- Stylesheets -->
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="mushroom-styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Schema.org Structured Data -->
@@ -276,17 +283,15 @@
         <section id="contact" class="contact">
             <div class="container">
                 <h2>Join Our Safety-First Community</h2>
-                <div class="contact-content" style="max-width: 600px; margin: 0 auto; text-align: center;">
-                    <p style="margin-bottom: 30px;">We've built MushroomAiSnap in collaboration with mycologists and foraging experts to create the safest mushroom identification app. Join our growing community of safe mushroom foragers.</p>
+                <div class="contact-content mushroom-contact-container">
+                    <p>We've built MushroomAiSnap in collaboration with mycologists and foraging experts to create the safest mushroom identification app. Join our growing community of safe mushroom foragers.</p>
                     <a href="https://mail.google.com/mail/?view=cm&fs=1&to=lingjuetech@gmail.com&su=[MushroomAiSnap] Community Join Request" 
                        target="_blank"
-                       style="display: inline-block; background: linear-gradient(135deg, #8B4513, #A0522D); color: white; text-decoration: none; padding: 18px 50px; border-radius: 50px; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 8px 25px rgba(139, 69, 19, 0.4);"
-                       onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 12px 35px rgba(139, 69, 19, 0.5)';"
-                       onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 25px rgba(139, 69, 19, 0.4)';">
+                       class="mushroom-contact-btn">
                         🍄 Join Community via Email
                     </a>
-                    <p style="margin-top: 25px; color: #666; font-size: 0.95rem;">
-                        Email: <strong style="user-select: all; cursor: text; background: #f5f5f5; padding: 5px 10px; border-radius: 4px;">lingjuetech@gmail.com</strong>
+                    <p class="mushroom-email-info">
+                        Email: <strong>lingjuetech@gmail.com</strong>
                     </p>
                 </div>
             </div>

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heat Safety for Daily Routines - Still Alive?</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --accent: #6fbf9b;
+            --accent-light: #b9e3cf;
+            --accent-dark: #3f8b6a;
+            --surface: #ffffff;
+            --text: #1f1f1f;
+            --muted: #6e6e6e;
+            --bg: #f6f4f1;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+        }
+
+        .status-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 44px;
+            background: rgba(0, 0, 0, 0.78);
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 18px;
+            font-size: 14px;
+            z-index: 10;
+        }
+
+        .status-icons {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #ffffff;
+            opacity: 0.8;
+        }
+
+        .status-pill {
+            width: 22px;
+            height: 10px;
+            border-radius: 6px;
+            border: 1px solid #ffffff;
+            position: relative;
+            opacity: 0.8;
+        }
+
+        .status-pill::after {
+            content: "";
+            position: absolute;
+            right: 2px;
+            top: 2px;
+            width: 6px;
+            height: 4px;
+            border-radius: 3px;
+            background: #ffffff;
+        }
+
+        .back-button {
+            position: fixed;
+            top: 58px;
+            left: 18px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: none;
+            background: rgba(0, 0, 0, 0.6);
+            color: #ffffff;
+            font-size: 18px;
+            cursor: pointer;
+            z-index: 9;
+        }
+
+        .hero {
+            margin-top: 44px;
+            padding: 28px 20px 80px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            color: #ffffff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero h1 {
+            margin: 12px 0 10px;
+            font-size: 26px;
+            font-weight: 700;
+        }
+
+        .hero p {
+            margin: 0;
+            font-size: 14px;
+            max-width: 320px;
+            line-height: 1.5;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-size: 11px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            background: rgba(255, 255, 255, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+
+        .hero-icon {
+            position: absolute;
+            right: 20px;
+            bottom: 12px;
+            width: 80px;
+            height: 80px;
+            opacity: 0.18;
+        }
+
+        .content {
+            background: var(--surface);
+            margin: -50px 18px 24px;
+            border-radius: 20px;
+            padding: 24px 20px 28px;
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+        }
+
+        .meta {
+            font-size: 12px;
+            color: var(--muted);
+            margin-bottom: 16px;
+        }
+
+        .section {
+            margin-top: 18px;
+        }
+
+        .section h2 {
+            margin: 0 0 10px;
+            font-size: 18px;
+        }
+
+        .section p {
+            margin: 0 0 12px;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #3d3d3d;
+        }
+
+        .section ul {
+            margin: 0;
+            padding-left: 18px;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #3d3d3d;
+        }
+
+        .callout {
+            background: #eef8f3;
+            border-left: 4px solid var(--accent);
+            padding: 12px 14px;
+            border-radius: 10px;
+            font-size: 13px;
+            color: #3d3d3d;
+        }
+
+        .source {
+            margin-top: 18px;
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+        .source a {
+            color: var(--accent-dark);
+            text-decoration: none;
+        }
+
+        .footer {
+            text-align: center;
+            margin-bottom: 36px;
+        }
+
+        .footer a {
+            color: var(--accent-dark);
+            text-decoration: none;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="status-bar">
+        <span id="current-time">4:58</span>
+        <div class="status-icons" aria-hidden="true">
+            <span class="status-dot"></span>
+            <span class="status-dot"></span>
+            <span class="status-dot"></span>
+            <span class="status-pill"></span>
+        </div>
+    </div>
+
+    <button class="back-button" onclick="history.back()" aria-label="Go back">&larr;</button>
+
+    <header class="hero">
+        <span class="tag">Wellness</span>
+        <h1>Heat Safety for Daily Routines</h1>
+        <p>Stay cool and hydrated during hot days and heat waves.</p>
+        <svg class="hero-icon" viewBox="0 0 64 64" aria-hidden="true">
+            <path d="M32 50C20 42 14 34 14 24a10 10 0 0 1 18-6 10 10 0 0 1 18 6c0 10-6 18-18 26z" fill="none" stroke="#ffffff" stroke-width="3" stroke-linejoin="round"></path>
+        </svg>
+    </header>
+
+    <main class="content">
+        <div class="meta">5 min read - Updated Feb 3, 2026</div>
+        <section class="section">
+            <h2>Plan for Heat</h2>
+            <p>Shift errands to cooler hours and monitor local alerts.</p>
+            <ul>
+                <li>Avoid peak afternoon heat</li>
+                <li>Wear light, breathable clothing</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2>Cool Down</h2>
+            <p>Use fans, shade, and cool showers to lower body temperature.</p>
+        </section>
+
+        <section class="section">
+            <h2>Check on Others</h2>
+            <p>Reach out to neighbors or family who may be at higher risk.</p>
+            <div class="callout">Tip: keep a water bottle visible to remind yourself to drink often.</div>
+        </section>
+        <div class="source">
+            Source: <a href="https://www.cdc.gov/disasters/extremeheat/" target="_blank" rel="noopener">CDC - Extreme Heat</a>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <a href="../still-alive-mobile.html">Back to Tips</a>
+    </footer>
+
+    <script>
+        const timeElement = document.getElementById("current-time");
+        const updateTime = () => {
+            const now = new Date();
+            const hours = now.getHours();
+            const minutes = String(now.getMinutes()).padStart(2, "0");
+            timeElement.textContent = `${hours}:${minutes}`;
+        };
+        updateTime();
+        setInterval(updateTime, 60000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Still Alive? - Safety Encyclopedia</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FF6B4A;
+            --primary-light: #FF8E75;
+            --primary-dark: #E55A3A;
+            --bg: #0f0f0f;
+            --surface: #1a1a1a;
+            --surface-elevated: #252525;
+            --text: #ffffff;
+            --text-secondary: #a0a0a0;
+            --text-muted: #666666;
+            --border: rgba(255,255,255,0.08);
+            --safe-top: env(safe-area-inset-top, 0px);
+            --safe-bottom: env(safe-area-inset-bottom, 0px);
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        .app-container {
+            min-height: 100vh;
+            padding-top: var(--safe-top);
+            padding-bottom: calc(80px + var(--safe-bottom));
+        }
+
+        /* Header */
+        .app-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(15, 15, 15, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .app-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .logo-text {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .lang-select {
+            background: var(--surface-elevated);
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .header-title {
+            font-size: 28px;
+            font-weight: 800;
+            margin: 0;
+            background: linear-gradient(135deg, #fff 0%, #ccc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header-subtitle {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin: 6px 0 0;
+        }
+
+        /* Categories */
+        .categories-section {
+            padding: 20px;
+        }
+
+        .section-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 0 0 14px;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .category-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 18px 16px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .category-card:active {
+            transform: scale(0.97);
+            background: var(--surface-elevated);
+        }
+
+        .category-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            margin-bottom: 12px;
+        }
+
+        .category-card[data-category="preparedness"] .category-icon { background: rgba(255, 107, 74, 0.15); }
+        .category-card[data-category="check-in"] .category-icon { background: rgba(154, 110, 232, 0.15); }
+        .category-card[data-category="home-safety"] .category-icon { background: rgba(106, 165, 246, 0.15); }
+        .category-card[data-category="wellness"] .category-icon { background: rgba(111, 191, 155, 0.15); }
+        .category-card[data-category="science"] .category-icon { background: rgba(95, 120, 224, 0.15); }
+
+        .category-name {
+            font-size: 15px;
+            font-weight: 600;
+            margin: 0 0 4px;
+        }
+
+        .category-count {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* Articles Section */
+        .articles-section {
+            padding: 0 20px 20px;
+        }
+
+        .articles-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 14px;
+        }
+
+        .filter-chips {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 4px;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+
+        .filter-chips::-webkit-scrollbar {
+            display: none;
+        }
+
+        .chip {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .chip.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: #fff;
+        }
+
+        .article-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .article-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 16px;
+            display: none;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.2s ease;
+        }
+
+        .article-card.visible {
+            display: block;
+        }
+
+        .article-card:active {
+            transform: scale(0.98);
+            background: var(--surface-elevated);
+        }
+
+        .article-tag {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
+        }
+
+        .article-card[data-category="preparedness"] .article-tag { background: rgba(255, 107, 74, 0.15); color: #FF6B4A; }
+        .article-card[data-category="check-in"] .article-tag { background: rgba(154, 110, 232, 0.15); color: #9a6ee8; }
+        .article-card[data-category="home-safety"] .article-tag { background: rgba(106, 165, 246, 0.15); color: #6aa5f6; }
+        .article-card[data-category="wellness"] .article-tag { background: rgba(111, 191, 155, 0.15); color: #6fbf9b; }
+        .article-card[data-category="science"] .article-tag { background: rgba(95, 120, 224, 0.15); color: #5f78e0; }
+
+        .article-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin: 0 0 6px;
+            line-height: 1.4;
+        }
+
+        .article-meta {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .article-arrow {
+            float: right;
+            color: var(--text-muted);
+            font-size: 18px;
+            margin-top: -24px;
+        }
+
+        /* Bottom Navigation */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(15, 15, 15, 0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-top: 1px solid var(--border);
+            padding: 12px 0 calc(12px + var(--safe-bottom));
+            display: flex;
+            justify-content: space-around;
+            z-index: 100;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 10px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-item.active {
+            color: var(--primary);
+        }
+
+        .nav-icon {
+            font-size: 22px;
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-muted);
+        }
+
+        .empty-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .article-card.visible {
+            animation: fadeIn 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <div class="header-top">
+                <div class="app-logo">
+                    <div class="logo-icon">💚</div>
+                    <span class="logo-text">Still Alive?</span>
+                </div>
+                <select class="lang-select" id="langSelect" onchange="changeLanguage(this.value)">
+                    <option value="en">🇺🇸 EN</option>
+                    <option value="de">🇩🇪 DE</option>
+                    <option value="fr">🇫🇷 FR</option>
+                    <option value="es">🇪🇸 ES</option>
+                    <option value="it">🇮🇹 IT</option>
+                    <option value="pt">🇵🇹 PT</option>
+                    <option value="ja">🇯🇵 JA</option>
+                    <option value="ko">🇰🇷 KO</option>
+                    <option value="ru">🇷🇺 RU</option>
+                    <option value="zh">🇨🇳 ZH</option>
+                </select>
+            </div>
+            <h1 class="header-title" data-i18n="title">Safety Encyclopedia</h1>
+            <p class="header-subtitle" data-i18n="subtitle">25 essential tips for daily safety and peace of mind</p>
+        </header>
+
+        <section class="categories-section">
+            <h2 class="section-title" data-i18n="categories">Categories</h2>
+            <div class="category-grid">
+                <div class="category-card" data-category="preparedness" onclick="filterByCategory('preparedness')">
+                    <div class="category-icon">🎒</div>
+                    <h3 class="category-name" data-i18n="cat-preparedness">Preparedness</h3>
+                    <p class="category-count">10 <span data-i18n="articles">articles</span></p>
+                </div>
+                <div class="category-card" data-category="check-in" onclick="filterByCategory('check-in')">
+                    <div class="category-icon">✅</div>
+                    <h3 class="category-name" data-i18n="cat-checkin">Check-In</h3>
+                    <p class="category-count">4 <span data-i18n="articles">articles</span></p>
+                </div>
+                <div class="category-card" data-category="home-safety" onclick="filterByCategory('home-safety')">
+                    <div class="category-icon">🏠</div>
+                    <h3 class="category-name" data-i18n="cat-home">Home Safety</h3>
+                    <p class="category-count">5 <span data-i18n="articles">articles</span></p>
+                </div>
+                <div class="category-card" data-category="wellness" onclick="filterByCategory('wellness')">
+                    <div class="category-icon">💚</div>
+                    <h3 class="category-name" data-i18n="cat-wellness">Wellness</h3>
+                    <p class="category-count">4 <span data-i18n="articles">articles</span></p>
+                </div>
+                <div class="category-card" data-category="science" onclick="filterByCategory('science')" style="grid-column: span 2;">
+                    <div class="category-icon">🔬</div>
+                    <h3 class="category-name" data-i18n="cat-science">Science</h3>
+                    <p class="category-count">2 <span data-i18n="articles">articles</span></p>
+                </div>
+            </div>
+        </section>
+
+        <section class="articles-section">
+            <div class="articles-header">
+                <h2 class="section-title" data-i18n="all-articles">All Articles</h2>
+            </div>
+            <div class="filter-chips">
+                <button class="chip active" data-filter="all" onclick="filterByCategory('all')" data-i18n="filter-all">All</button>
+                <button class="chip" data-filter="preparedness" onclick="filterByCategory('preparedness')" data-i18n="cat-preparedness">Preparedness</button>
+                <button class="chip" data-filter="check-in" onclick="filterByCategory('check-in')" data-i18n="cat-checkin">Check-In</button>
+                <button class="chip" data-filter="home-safety" onclick="filterByCategory('home-safety')" data-i18n="cat-home">Home Safety</button>
+                <button class="chip" data-filter="wellness" onclick="filterByCategory('wellness')" data-i18n="cat-wellness">Wellness</button>
+                <button class="chip" data-filter="science" onclick="filterByCategory('science')" data-i18n="cat-science">Science</button>
+            </div>
+            <div class="article-list" id="articleList">
+                <!-- Preparedness (10) -->
+                <a class="article-card visible" data-category="preparedness" data-file="01-emergency-kit-essentials.html">
+                    <span class="article-tag" data-i18n="cat-preparedness">Preparedness</span>
+                    <h3 class="article-title" data-title="01">Emergency Kit Essentials</h3>
+                    <p class="article-meta">6 min read</p>
+                    <span class="article-arrow">›</span>
+                </a>
+                <a class="article-card visible" data-category="preparedness" data-file="04-power-outage-readiness.html">
+                    <span class="article-tag" data-i18n="cat-preparedness">Preparedness</span>
+                    <h3 class="article-title" data-title="04">Power Outage Readiness</h3>
+                    <p class="article-meta">5 min read</p>
+                    <span class="article-arrow">›</span>
+                </a>
+                <a class="article-card visible" data-category="preparedness" data-file="06-emergency-prep-older-adults.html">
+                    <span class="article-tag" data-i18n="cat-preparedness">Preparedness</span>
+                    <h3 class="article-title" data-title="06">Emergency Prep for Older Adults</h3>
+                    <p class="article-meta">6 min read</p>
+                    <span class="article-arrow">›</span>
+                </a>
+                <a class="article-card visible" data-category="preparedness" data-file="08-evacuation-ready-checklist.html">
+                    <span class="article-tag" data-i18n="cat-preparedness">Preparedness</span>
+                    <h3 class="article-title" data-title="08">Evacuation Ready Checklist</h3>
+                    <p class="article-meta">5 min read</p>
+                    <span class="article-arrow">›</span>
+                </a>
+                <a class="article-card visible" data-category="preparedness" data-file="09-water-storage-basics.html">
+                    <span class="article-tag" data-i18n="cat-preparedness">Preparedness</span>
+                    <h3 class="article-title" data-title="09">Water Storage Basics</h3>
+                    <p class="article-meta">4 min read</p>
+                    <span class="article-arrow">›</span>
+                </a>
+                <a class="article-card visible" data-category="preparedness" data-file="10-shelter-in-place-planning.html">
+                    <span class="article-tag" data-i18n="cat-preparedness">Preparedness</span>
+                    <h3 class="article-title" data-title="10">Shelter-in-Place Planning</h3>
+                    <p class="article-meta">5 min read</p>
+                    <span class="article-arrow">›</span>
+                </a>
+                <a class="article-card visible" data-category="preparedness" data-file="19-cold-weather-readiness.html">
+                    <span class="article-tag" data-i18n="cat-preparedness">Preparedness</span>
+                    <h3 class="article-title" data-title="19">Cold Weather Readiness</h3>
+                    <p class="article-meta">5 min read</p>
+                    <span class="article-arrow">›</span>
+                </a>
+                <a class="article-card visible" data-category="preparedness" data-file="22-emergency-alerts-wea.html">
+                    <span class="article-tag" data-i18n="cat-preparedness">Preparedness</span>
+                    <h3 class="article-title" data-title="22">How Emergency Alerts Work</h3>
+                    <p class="article-meta">4 min read</p>
+                    <span class="article-arrow">›</span>
+                </a>
+                <a class="article-card visible" data-category="preparedness" data-file="23-weather-watches-warnings.html">
+                    <span class="article-tag" data-i18n="cat-preparedness">Preparedness</span>
+                    <h3 class="article-title" data-title="23">Watches vs Warnings</h3>
+                    <p class="article-meta">3 min read</p>
+                    <span class="article-arrow">›</span>
+                </a>
+                <a class="article-card visible" data-category="preparedness" data-file="11-trusted-contacts-list.html">
+                    <span class="article-tag" data-i18n="cat-preparedness">Preparedness</span>
+                    <h3 class="article-title" data-title="11">Build a Trusted Contacts List</h3>
+                    <p class="article-meta">4 min read</p>
+                    <span class="article-arrow">›</span>
+                </a>
+
+                <!-- Check-In (4) -->
+                <a class="article-card visible" data-category="check-in" data-file="02-personal-check-in-plan.html">
+                    <span class="article-tag" data-i18n="cat-checkin">Check-In</span>
+                    <h3 class="article-title" data-title="02">Create a Personal Check-In Plan</h3>
+                    <p class="article-meta">5 min read</p>
+                    <span class="article-arrow">›</span>
+                </a>
+                <a class="article-card visible" data-category="check-in" data-file="12-missed-check-in-steps.html">
+                    <span class="article-tag" data-i18n="cat-checkin">Check-In</span>
+                    <h3 class="article-title" data-title="12">Missed Check-In Escalation Steps</h3>
+                    <p class="article-meta">5 min read</p>
+                    <span class="article-arrow">›</span>
+                </a>
+                <a class="article-card visible" data-category="check-in" data-file="13-travel-check-in-routine.html">
+                    <span class="article-tag" data-i18n="cat-checkin">Check-In</span>
+                    <h3 class="article-title" data-title="13">Travel Check-In Routine</h3>
+                    <p class="article-meta">4 min read</p>
+                    <span class="article-arrow">›</span>
+                </a>
+                <a class="article-card visible" data-category="check-in" data-file="14-share-medical-notes.html">
+                    <span class="article-tag" data-i18n="cat-checkin">Check-In</span>
+                    <h3 class="article-title" data-title="14">Share Medical Notes Safely</h3>
+                    <p class="article-meta">5 min read</p>
+                    <span class="article-arrow">›</span>
+                </a>
+
+                <!-- Home Safety (5) -->
+                <a class="article-card visible" data-category="home-safety" data-file="03-prevent-falls-at-home.html">
+                    <span class="article-tag" data-i18n="cat-home">Home Safety</span>
+                    <h3 class="article-title" data-title="03">Prevent Falls at Home</h3>
+                    <p class="article-meta">5 min read</p>
+                    <span class="article-arrow">›</span>
+                </a>
+                <a class="article-card visible" data-category="home-safety" data-file="05-home-fire-escape-basics.html">
+                    <span class="article-tag" data-i18n="cat-home">Home Safety</span>
+                    <h3 class="article-title" data-title="05">Home Fire Escape Basics</h3>
+                    <p class="article-meta">6 min read</p>
+                    <span class="article-arrow">›</span>
+                </a>
+                <a class="article-card visible" data-category="home-safety" data-file="15-smoke-alarm-maintenance.html">
+                    <span class="article-tag" data-i18n="cat-home">Home Safety</span>
+                    <h3 class="article-title" data-title="15">Smoke Alarm Maintenance</h3>
+                    <p class="article-meta">4 min read</p>
+                    <span class="article-arrow">›</span>
+                </a>
+                <a class="article-card visible" data-category="home-safety" data-file="16-carbon-monoxide-safety.html">
+                    <span class="article-tag" data-i18n="cat-home">Home Safety</span>
+                    <h3 class="article-title" data-title="16">Carbon Monoxide Safety</h3>
+                    <p class="article-meta">4 min read</p>
+                    <span class="article-arrow">›</span>
+                </a>
+                <a class="article-card visible" data-category="home-safety" data-file="17-safer-bathroom-setup.html">
+                    <span class="article-tag" data-i18n="cat-home">Home Safety</span>
+                    <h3 class="article-title" data-title="17">Safer Bathroom Setup</h3>
+                    <p class="article-meta">4 min read</p>
+                    <span class="article-arrow">›</span>
+                </a>
+
+                <!-- Wellness (4) -->
+                <a class="article-card visible" data-category="wellness" data-file="07-fall-risk-facts.html">
+                    <span class="article-tag" data-i18n="cat-wellness">Wellness</span>
+                    <h3 class="article-title" data-title="07">Fall Risk Facts and Prevention</h3>
+                    <p class="article-meta">5 min read</p>
+                    <span class="article-arrow">›</span>
+                </a>
+                <a class="article-card visible" data-category="wellness" data-file="18-heat-safety-routine.html">
+                    <span class="article-tag" data-i18n="cat-wellness">Wellness</span>
+                    <h3 class="article-title" data-title="18">Heat Safety for Daily Routines</h3>
+                    <p class="article-meta">5 min read</p>
+                    <span class="article-arrow">›</span>
+                </a>
+                <a class="article-card visible" data-category="wellness" data-file="20-medication-organization.html">
+                    <span class="article-tag" data-i18n="cat-wellness">Wellness</span>
+                    <h3 class="article-title" data-title="20">Medication Organization for Emergencies</h3>
+                    <p class="article-meta">5 min read</p>
+                    <span class="article-arrow">›</span>
+                </a>
+                <a class="article-card visible" data-category="wellness" data-file="24-hydration-basics.html">
+                    <span class="article-tag" data-i18n="cat-wellness">Wellness</span>
+                    <h3 class="article-title" data-title="24">Hydration Basics Under Stress</h3>
+                    <p class="article-meta">4 min read</p>
+                    <span class="article-arrow">›</span>
+                </a>
+
+                <!-- Science (2) -->
+                <a class="article-card visible" data-category="science" data-file="21-stress-reset-after-emergency.html">
+                    <span class="article-tag" data-i18n="cat-science">Science</span>
+                    <h3 class="article-title" data-title="21">Stress Reset After an Emergency</h3>
+                    <p class="article-meta">5 min read</p>
+                    <span class="article-arrow">›</span>
+                </a>
+                <a class="article-card visible" data-category="science" data-file="25-social-connection-safety.html">
+                    <span class="article-tag" data-i18n="cat-science">Science</span>
+                    <h3 class="article-title" data-title="25">Social Connection and Safety</h3>
+                    <p class="article-meta">5 min read</p>
+                    <span class="article-arrow">›</span>
+                </a>
+            </div>
+        </section>
+    </div>
+
+    <nav class="bottom-nav">
+        <a class="nav-item active" href="#">
+            <span class="nav-icon">📚</span>
+            <span data-i18n="nav-tips">Tips</span>
+        </a>
+        <a class="nav-item" href="javascript:void(0)" onclick="window.location.href='still-alive.html'">
+            <span class="nav-icon">ℹ️</span>
+            <span data-i18n="nav-about">About</span>
+        </a>
+    </nav>
+
+    <script>
+        // Translations
+        const translations = {
+            en: {
+                title: "Safety Encyclopedia",
+                subtitle: "25 essential tips for daily safety and peace of mind",
+                categories: "Categories",
+                "all-articles": "All Articles",
+                articles: "articles",
+                "cat-preparedness": "Preparedness",
+                "cat-checkin": "Check-In",
+                "cat-home": "Home Safety",
+                "cat-wellness": "Wellness",
+                "cat-science": "Science",
+                "filter-all": "All",
+                "nav-tips": "Tips",
+                "nav-about": "About",
+                titles: {
+                    "01": "Emergency Kit Essentials",
+                    "02": "Create a Personal Check-In Plan",
+                    "03": "Prevent Falls at Home",
+                    "04": "Power Outage Readiness",
+                    "05": "Home Fire Escape Basics",
+                    "06": "Emergency Prep for Older Adults",
+                    "07": "Fall Risk Facts and Prevention",
+                    "08": "Evacuation Ready Checklist",
+                    "09": "Water Storage Basics",
+                    "10": "Shelter-in-Place Planning",
+                    "11": "Build a Trusted Contacts List",
+                    "12": "Missed Check-In Escalation Steps",
+                    "13": "Travel Check-In Routine",
+                    "14": "Share Medical Notes Safely",
+                    "15": "Smoke Alarm Maintenance",
+                    "16": "Carbon Monoxide Safety",
+                    "17": "Safer Bathroom Setup",
+                    "18": "Heat Safety for Daily Routines",
+                    "19": "Cold Weather Readiness",
+                    "20": "Medication Organization for Emergencies",
+                    "21": "Stress Reset After an Emergency",
+                    "22": "How Emergency Alerts Work",
+                    "23": "Watches vs Warnings",
+                    "24": "Hydration Basics Under Stress",
+                    "25": "Social Connection and Safety"
+                }
+            },
+            de: {
+                title: "Sicherheitslexikon",
+                subtitle: "25 wichtige Tipps für tägliche Sicherheit und Gelassenheit",
+                categories: "Kategorien",
+                "all-articles": "Alle Artikel",
+                articles: "Artikel",
+                "cat-preparedness": "Vorbereitung",
+                "cat-checkin": "Check-In",
+                "cat-home": "Haussicherheit",
+                "cat-wellness": "Wohlbefinden",
+                "cat-science": "Wissenschaft",
+                "filter-all": "Alle",
+                "nav-tips": "Tipps",
+                "nav-about": "Info",
+                titles: {
+                    "01": "Grundlagen der Notfallausrüstung",
+                    "02": "Erstellen Sie einen persönlichen Check-In-Plan",
+                    "03": "Stürze zu Hause vermeiden",
+                    "04": "Vorbereitung auf Stromausfälle",
+                    "05": "Grundlagen der Brandfluchtwege",
+                    "06": "Notfallvorbereitung für ältere Erwachsene",
+                    "07": "Sturzrisiko-Fakten und Prävention",
+                    "08": "Evakuierungs-Checkliste",
+                    "09": "Grundlagen der Wasserspeicherung",
+                    "10": "Planung für Schutzräume",
+                    "11": "Liste vertrauenswürdiger Kontakte erstellen",
+                    "12": "Eskalationsschritte bei verpasstem Check-In",
+                    "13": "Reise-Check-In-Routine",
+                    "14": "Medizinische Notizen sicher teilen",
+                    "15": "Wartung von Rauchmeldern",
+                    "16": "Kohlenmonoxid-Sicherheit",
+                    "17": "Sichereres Badezimmer einrichten",
+                    "18": "Hitzesicherheit im Alltag",
+                    "19": "Vorbereitung auf kaltes Wetter",
+                    "20": "Medikamentenorganisation für Notfälle",
+                    "21": "Stressabbau nach einem Notfall",
+                    "22": "Wie Notfallwarnungen funktionieren",
+                    "23": "Wetterwarnungen verstehen",
+                    "24": "Flüssigkeitszufuhr unter Stress",
+                    "25": "Soziale Verbindung und Sicherheit"
+                }
+            },
+            zh: {
+                title: "安全百科",
+                subtitle: "25条日常安全与心理安宁的必备提示",
+                categories: "分类",
+                "all-articles": "全部文章",
+                articles: "篇文章",
+                "cat-preparedness": "应急准备",
+                "cat-checkin": "签到",
+                "cat-home": "家居安全",
+                "cat-wellness": "健康",
+                "cat-science": "科学",
+                "filter-all": "全部",
+                "nav-tips": "提示",
+                "nav-about": "关于",
+                titles: {
+                    "01": "应急包必备物品",
+                    "02": "制定个人签到计划",
+                    "03": "预防家中跌倒",
+                    "04": "停电应急准备",
+                    "05": "家庭火灾逃生基础",
+                    "06": "老年人应急准备",
+                    "07": "跌倒风险事实与预防",
+                    "08": "疏散准备清单",
+                    "09": "储水基础知识",
+                    "10": "就地避难计划",
+                    "11": "建立可信联系人名单",
+                    "12": "错过签到的升级步骤",
+                    "13": "旅行签到流程",
+                    "14": "安全共享医疗记录",
+                    "15": "烟雾报警器维护",
+                    "16": "一氧化碳安全",
+                    "17": "更安全的浴室设置",
+                    "18": "日常生活防暑安全",
+                    "19": "寒冷天气应急准备",
+                    "20": "紧急情况下的药物整理",
+                    "21": "紧急事件后的压力恢复",
+                    "22": "紧急警报如何运作",
+                    "23": "气象监视与警告的区别",
+                    "24": "压力下的补水基础",
+                    "25": "社交联系与安全"
+                }
+            },
+            ja: {
+                title: "安全百科事典",
+                subtitle: "日常の安全と心の平和のための25の必須ヒント",
+                categories: "カテゴリー",
+                "all-articles": "すべての記事",
+                articles: "記事",
+                "cat-preparedness": "準備",
+                "cat-checkin": "チェックイン",
+                "cat-home": "家の安全",
+                "cat-wellness": "ウェルネス",
+                "cat-science": "科学",
+                "filter-all": "すべて",
+                "nav-tips": "ヒント",
+                "nav-about": "について",
+                titles: {
+                    "01": "緊急キットの必需品",
+                    "02": "個人チェックインプランを作成する",
+                    "03": "家庭での転倒を防ぐ",
+                    "04": "停電への備え",
+                    "05": "火災避難の基本",
+                    "06": "高齢者のための緊急準備",
+                    "07": "転倒リスクの事実と予防",
+                    "08": "避難準備チェックリスト",
+                    "09": "水の備蓄の基本",
+                    "10": "屋内退避の計画",
+                    "11": "信頼できる連絡先リストを作成する",
+                    "12": "チェックイン漏れ時のエスカレーション手順",
+                    "13": "旅行中のチェックインルーティン",
+                    "14": "医療メモを安全に共有する",
+                    "15": "煙感知器のメンテナンス",
+                    "16": "一酸化炭素の安全対策",
+                    "17": "より安全なバスルームの設置",
+                    "18": "日常生活での暑さ対策",
+                    "19": "寒さへの備え",
+                    "20": "緊急時の薬の整理",
+                    "21": "緊急事態後のストレス回復",
+                    "22": "緊急警報の仕組み",
+                    "23": "注意報と警報の違い",
+                    "24": "ストレス下での水分補給",
+                    "25": "社会的つながりと安全"
+                }
+            },
+            ko: {
+                title: "안전 백과사전",
+                subtitle: "일상 안전과 마음의 평화를 위한 25가지 필수 팁",
+                categories: "카테고리",
+                "all-articles": "모든 기사",
+                articles: "기사",
+                "cat-preparedness": "대비",
+                "cat-checkin": "체크인",
+                "cat-home": "가정 안전",
+                "cat-wellness": "웰빙",
+                "cat-science": "과학",
+                "filter-all": "전체",
+                "nav-tips": "팁",
+                "nav-about": "정보",
+                titles: {
+                    "01": "비상 키트 필수품",
+                    "02": "개인 체크인 계획 만들기",
+                    "03": "가정 내 낙상 예방",
+                    "04": "정전 대비",
+                    "05": "화재 대피 기본 사항",
+                    "06": "고령자를 위한 비상 준비",
+                    "07": "낙상 위험 사실과 예방",
+                    "08": "대피 준비 체크리스트",
+                    "09": "물 저장 기본 사항",
+                    "10": "대피소 계획",
+                    "11": "신뢰할 수 있는 연락처 목록 만들기",
+                    "12": "체크인 누락 시 에스컬레이션 단계",
+                    "13": "여행 중 체크인 루틴",
+                    "14": "의료 메모 안전하게 공유하기",
+                    "15": "연기 감지기 유지 관리",
+                    "16": "일산화탄소 안전",
+                    "17": "더 안전한 욕실 설치",
+                    "18": "일상에서의 더위 안전",
+                    "19": "추운 날씨 대비",
+                    "20": "비상 시 약물 정리",
+                    "21": "비상 후 스트레스 회복",
+                    "22": "비상 경보 작동 방식",
+                    "23": "주의보 vs 경보",
+                    "24": "스트레스 상황에서의 수분 섭취",
+                    "25": "사회적 연결과 안전"
+                }
+            },
+            fr: {
+                title: "Encyclopédie de sécurité",
+                subtitle: "25 conseils essentiels pour la sécurité quotidienne",
+                categories: "Catégories",
+                "all-articles": "Tous les articles",
+                articles: "articles",
+                "cat-preparedness": "Préparation",
+                "cat-checkin": "Vérification",
+                "cat-home": "Sécurité domestique",
+                "cat-wellness": "Bien-être",
+                "cat-science": "Science",
+                "filter-all": "Tous",
+                "nav-tips": "Conseils",
+                "nav-about": "À propos",
+                titles: {
+                    "01": "Lessentiel du kit durgence",
+                    "02": "Créer un plan de vérification personnel",
+                    "03": "Prévenir les chutes à domicile",
+                    "04": "Préparation aux pannes de courant",
+                    "05": "Bases de lévacuation incendie",
+                    "06": "Préparation durgence pour les seniors",
+                    "07": "Risques de chute et prévention",
+                    "08": "Liste de contrôle dévacuation",
+                    "09": "Bases du stockage deau",
+                    "10": "Planification du confinement",
+                    "11": "Créer une liste de contacts de confiance",
+                    "12": "Étapes descalade après un rendez-vous manqué",
+                    "13": "Routine de vérification en voyage",
+                    "14": "Partager ses notes médicales en sécurité",
+                    "15": "Entretien des détecteurs de fumée",
+                    "16": "Sécurité monoxyde de carbone",
+                    "17": "Aménagement sécurisé de la salle de bain",
+                    "18": "Sécurité thermique au quotidien",
+                    "19": "Préparation au froid",
+                    "20": "Organisation des médicaments pour les urgences",
+                    "21": "Récupération du stress après une urgence",
+                    "22": "Comment fonctionnent les alertes durgence",
+                    "23": "Veilles vs Alertes météo",
+                    "24": "Hydratation sous stress",
+                    "25": "Connexion sociale et sécurité"
+                }
+            },
+            es: {
+                title: "Enciclopedia de seguridad",
+                subtitle: "25 consejos esenciales para la seguridad diaria",
+                categories: "Categorías",
+                "all-articles": "Todos los artículos",
+                articles: "artículos",
+                "cat-preparedness": "Preparación",
+                "cat-checkin": "Control",
+                "cat-home": "Seguridad del hogar",
+                "cat-wellness": "Bienestar",
+                "cat-science": "Ciencia",
+                "filter-all": "Todos",
+                "nav-tips": "Consejos",
+                "nav-about": "Acerca de",
+                titles: {
+                    "01": "Lo esencial del kit de emergencia",
+                    "02": "Crea un plan de control personal",
+                    "03": "Prevenir caídas en casa",
+                    "04": "Preparación para cortes de energía",
+                    "05": "Conceptos básicos de escape de incendios",
+                    "06": "Preparación de emergencia para adultos mayores",
+                    "07": "Datos y prevención de riesgo de caídas",
+                    "08": "Lista de verificación de evacuación",
+                    "09": "Conceptos básicos de almacenamiento de agua",
+                    "10": "Planificación de refugio en el lugar",
+                    "11": "Crea una lista de contactos de confianza",
+                    "12": "Pasos de escalada por control perdido",
+                    "13": "Rutina de control durante viajes",
+                    "14": "Compartir notas médicas de forma segura",
+                    "15": "Mantenimiento de detectores de humo",
+                    "16": "Seguridad contra monóxido de carbono",
+                    "17": "Configuración segura del baño",
+                    "18": "Seguridad térmica en rutinas diarias",
+                    "19": "Preparación para el clima frío",
+                    "20": "Organización de medicamentos para emergencias",
+                    "21": "Recuperación del estrés después de una emergencia",
+                    "22": "Cómo funcionan las alertas de emergencia",
+                    "23": "Vigilancias vs Advertencias",
+                    "24": "Hidratación bajo estrés",
+                    "25": "Conexión social y seguridad"
+                }
+            },
+            it: {
+                title: "Enciclopedia della sicurezza",
+                subtitle: "25 consigli essenziali per la sicurezza quotidiana",
+                categories: "Categorie",
+                "all-articles": "Tutti gli articoli",
+                articles: "articoli",
+                "cat-preparedness": "Preparazione",
+                "cat-checkin": "Verifica",
+                "cat-home": "Sicurezza domestica",
+                "cat-wellness": "Benessere",
+                "cat-science": "Scienza",
+                "filter-all": "Tutti",
+                "nav-tips": "Consigli",
+                "nav-about": "Info",
+                titles: {
+                    "01": "Elementi essenziali del kit di emergenza",
+                    "02": "Crea un piano di verifica personale",
+                    "03": "Prevenire le cadute in casa",
+                    "04": "Preparazione per blackout",
+                    "05": "Basi per la fuga in caso di incendio",
+                    "06": "Preparazione alle emergenze per anziani",
+                    "07": "Fatti e prevenzione del rischio di caduta",
+                    "08": "Lista di controllo per evacuazione",
+                    "09": "Basi per la conservazione dellacqua",
+                    "10": "Pianificazione del rifugio sul posto",
+                    "11": "Crea una lista di contatti fidati",
+                    "12": "Passaggi di escalation per mancato controllo",
+                    "13": "Routine di controllo in viaggio",
+                    "14": "Condividere note mediche in sicurezza",
+                    "15": "Manutenzione dei rilevatori di fumo",
+                    "16": "Sicurezza monossido di carbonio",
+                    "17": "Configurazione sicura del bagno",
+                    "18": "Sicurezza termica nelle routine quotidiane",
+                    "19": "Preparazione per il freddo",
+                    "20": "Organizzazione farmaci per emergenze",
+                    "21": "Recupero dallo stress dopo unemergenza",
+                    "22": "Come funzionano gli avvisi di emergenza",
+                    "23": "Avvisi vs Allerte meteo",
+                    "24": "Idratazione sotto stress",
+                    "25": "Connessione sociale e sicurezza"
+                }
+            },
+            pt: {
+                title: "Enciclopédia de segurança",
+                subtitle: "25 dicas essenciais para segurança diária",
+                categories: "Categorias",
+                "all-articles": "Todos os artigos",
+                articles: "artigos",
+                "cat-preparedness": "Preparação",
+                "cat-checkin": "Verificação",
+                "cat-home": "Segurança doméstica",
+                "cat-wellness": "Bem-estar",
+                "cat-science": "Ciência",
+                "filter-all": "Todos",
+                "nav-tips": "Dicas",
+                "nav-about": "Sobre",
+                titles: {
+                    "01": "Itens essenciais do kit de emergência",
+                    "02": "Crie um plano de verificação pessoal",
+                    "03": "Prevenir quedas em casa",
+                    "04": "Preparação para quedas de energia",
+                    "05": "Noções básicas de fuga de incêndio",
+                    "06": "Preparação de emergência para idosos",
+                    "07": "Fatos e prevenção de risco de queda",
+                    "08": "Lista de verificação de evacuação",
+                    "09": "Noções básicas de armazenamento de água",
+                    "10": "Planejamento de abrigo no local",
+                    "11": "Crie uma lista de contatos confiáveis",
+                    "12": "Etapas de escalonamento por verificação perdida",
+                    "13": "Rotina de verificação em viagens",
+                    "14": "Compartilhar notas médicas com segurança",
+                    "15": "Manutenção de detectores de fumaça",
+                    "16": "Segurança contra monóxido de carbono",
+                    "17": "Configuração segura do banheiro",
+                    "18": "Segurança térmica nas rotinas diárias",
+                    "19": "Preparação para o frio",
+                    "20": "Organização de medicamentos para emergências",
+                    "21": "Recuperação do estresse após uma emergência",
+                    "22": "Como funcionam os alertas de emergência",
+                    "23": "Avisos vs Alertas meteorológicos",
+                    "24": "Hidratação sob estresse",
+                    "25": "Conexão social e segurança"
+                }
+            },
+            ru: {
+                title: "Энциклопедия безопасности",
+                subtitle: "25 важных советов для повседневной безопасности",
+                categories: "Категории",
+                "all-articles": "Все статьи",
+                articles: "статей",
+                "cat-preparedness": "Подготовка",
+                "cat-checkin": "Проверка",
+                "cat-home": "Домашняя безопасность",
+                "cat-wellness": "Здоровье",
+                "cat-science": "Наука",
+                "filter-all": "Все",
+                "nav-tips": "Советы",
+                "nav-about": "О нас",
+                titles: {
+                    "01": "Основы аварийного набора",
+                    "02": "Создайте личный план проверки",
+                    "03": "Предотвращение падений дома",
+                    "04": "Готовность к отключению электричества",
+                    "05": "Основы эвакуации при пожаре",
+                    "06": "Подготовка к ЧС для пожилых",
+                    "07": "Факты о риске падения и профилактика",
+                    "08": "Контрольный список эвакуации",
+                    "09": "Основы хранения воды",
+                    "10": "Планирование укрытия на месте",
+                    "11": "Создайте список доверенных контактов",
+                    "12": "Шаги эскалации при пропущенной проверке",
+                    "13": "Рутина проверки в поездках",
+                    "14": "Безопасный обмен медицинскими записями",
+                    "15": "Обслуживание дымовых извещателей",
+                    "16": "Безопасность при угарном газе",
+                    "17": "Более безопасная ванная комната",
+                    "18": "Безопасность в жару в повседневной жизни",
+                    "19": "Готовность к холодной погоде",
+                    "20": "Организация лекарств для экстренных случаев",
+                    "21": "Восстановление после стресса",
+                    "22": "Как работают экстренные оповещения",
+                    "23": "Предупреждения и штормовые оповещения",
+                    "24": "Гидратация при стрессе",
+                    "25": "Социальные связи и безопасность"
+                }
+            }
+        };
+
+        let currentLang = 'en';
+
+        // Language change
+        function changeLanguage(lang) {
+            currentLang = lang;
+            const t = translations[lang] || translations.en;
+            
+            // Update all i18n elements
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (t[key]) el.textContent = t[key];
+            });
+
+            // Update article titles
+            document.querySelectorAll('[data-title]').forEach(el => {
+                const num = el.getAttribute('data-title');
+                if (t.titles && t.titles[num]) {
+                    el.textContent = t.titles[num];
+                }
+            });
+
+            // Update article links
+            updateArticleLinks(lang);
+            
+            // Store preference
+            localStorage.setItem('stillalive-lang', lang);
+        }
+
+        function updateArticleLinks(lang) {
+            document.querySelectorAll('.article-card').forEach(card => {
+                const file = card.getAttribute('data-file');
+                if (lang === 'en') {
+                    card.href = `still-alive-tips/${file}`;
+                } else {
+                    card.href = `${lang}/still-alive-tips/${file}`;
+                }
+            });
+        }
+
+        // Category filter
+        function filterByCategory(category) {
+            // Update chips
+            document.querySelectorAll('.chip').forEach(chip => {
+                chip.classList.toggle('active', chip.getAttribute('data-filter') === category);
+            });
+
+            // Filter articles
+            document.querySelectorAll('.article-card').forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.classList.add('visible');
+                } else {
+                    card.classList.remove('visible');
+                }
+            });
+
+            // Scroll to articles section
+            document.querySelector('.articles-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            // Load saved language
+            const savedLang = localStorage.getItem('stillalive-lang') || 'en';
+            document.getElementById('langSelect').value = savedLang;
+            changeLanguage(savedLang);
+
+            // Initialize article links
+            updateArticleLinks(savedLang);
+        });
+
+        // Expose functions for WebView
+        window.StillAliveApp = {
+            changeLanguage,
+            filterByCategory,
+            getCurrentLang: () => currentLang
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Poop - AI Digestive Health Tracker | Monitor Bowel Habits & Hydration</title>
+    <meta name="description" content="Track your digestive health with Happy Poop. AI-powered bowel movement logging, Bristol stool scale analysis, hydration tracking, and personalized health insights. Free download.">
+    <meta name="keywords" content="poop tracker, bowel movement app, digestive health, Bristol stool scale, hydration tracker, gut health, constipation tracker, health monitoring">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://birdid.net/happy-poop-app.html">
+    <meta property="og:title" content="Happy Poop - AI Digestive Health Tracker">
+    <meta property="og:description" content="Monitor your digestive health with AI. Track bowel movements, hydration, and get personalized insights.">
+    
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    
+    <!-- 防止闪屏：必须在所有外部 CSS 之前执行 -->
+    <script>
+        (function() {
+            var storageKey = 'theme-preference';
+            var stored = null;
+            try { stored = localStorage.getItem(storageKey); } catch(e) {}
+            var theme = stored || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            document.documentElement.setAttribute('data-theme', theme);
+            document.documentElement.classList.add('no-transition');
+        })();
+    </script>
+    <style id="critical-anti-flash">
+        html[data-theme="light"] body, body { background-color: #ffffff; min-height: 100vh; }
+        html[data-theme="dark"] body { background-color: #0f172a; min-height: 100vh; }
+        html.no-transition, html.no-transition *, html.no-transition *::before, html.no-transition *::after {
+            transition: none !important;
+        }
+    </style>
+    
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="dark-mode.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --hp-primary: #A78BFA;
+            --hp-secondary: #2DD4BF;
+            --hp-accent: #FB7185;
+            --hp-bg: #F2F2F7;
+            --hp-card: #FFFFFF;
+            --hp-text: #1C1C1E;
+            --hp-muted: #8E8E93;
+        }
+        
+        .hp-hero {
+            background: linear-gradient(135deg, var(--hp-primary) 0%, var(--hp-accent) 100%);
+            color: white;
+            padding: 120px 0 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hp-hero::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(30px, 30px) rotate(180deg); }
+        }
+        
+        .hp-hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .hp-hero-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+            display: inline-block;
+            animation: bounce 2s ease-in-out infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        .hp-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+        
+        .hp-hero p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+        }
+        
+        .hp-download-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .hp-download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 24px;
+            background: #000000; /* Apple style black */
+            color: white;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .hp-download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.25);
+            background: #1a1a1a;
+        }
+        
+        .hp-download-text {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            line-height: 1.1;
+        }
+        
+        .hp-download-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            opacity: 0.8;
+            font-weight: 500;
+        }
+        
+        .hp-download-store {
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+        
+        .hp-download-btn img {
+            height: 24px;
+        }
+        
+        .hp-stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+        
+        .hp-stat {
+            text-align: center;
+        }
+        
+        .hp-stat-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+        }
+        
+        .hp-stat-label {
+            font-size: 0.9rem;
+            opacity: 0.85;
+        }
+        
+        /* Features Section */
+        .hp-features {
+            padding: 100px 0;
+            background: var(--hp-bg);
+        }
+        
+        .hp-features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .hp-feature-card {
+            background: var(--hp-card);
+            border-radius: 24px;
+            padding: 36px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .hp-feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+        }
+        
+        .hp-feature-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+        
+        .hp-feature-card:nth-child(1) .hp-feature-icon { background: linear-gradient(135deg, #A78BFA20, #A78BFA40); }
+        .hp-feature-card:nth-child(2) .hp-feature-icon { background: linear-gradient(135deg, #2DD4BF20, #2DD4BF40); }
+        .hp-feature-card:nth-child(3) .hp-feature-icon { background: linear-gradient(135deg, #FB718520, #FB718540); }
+        .hp-feature-card:nth-child(4) .hp-feature-icon { background: linear-gradient(135deg, #60A5FA20, #60A5FA40); }
+        .hp-feature-card:nth-child(5) .hp-feature-icon { background: linear-gradient(135deg, #FBBF2420, #FBBF2440); }
+        .hp-feature-card:nth-child(6) .hp-feature-icon { background: linear-gradient(135deg, #34D39920, #34D39940); }
+        
+        .hp-feature-card h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--hp-text);
+            margin-bottom: 12px;
+        }
+        
+        .hp-feature-card p {
+            color: var(--hp-muted);
+            line-height: 1.7;
+        }
+        
+        /* Bristol Scale Section */
+        .hp-bristol {
+            padding: 100px 0;
+            background: white;
+        }
+        
+        .hp-bristol-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .hp-section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .hp-section-title h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--hp-text);
+            margin-bottom: 16px;
+        }
+        
+        .hp-section-title p {
+            font-size: 1.2rem;
+            color: var(--hp-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .hp-bristol-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        
+        .hp-bristol-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 20px;
+            background: var(--hp-bg);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .hp-bristol-item:hover {
+            transform: scale(1.02);
+        }
+        
+        .hp-bristol-item.healthy {
+            background: linear-gradient(135deg, #D1FAE520, #34D39920);
+            border: 2px solid #34D399;
+        }
+        
+        .hp-bristol-emoji {
+            font-size: 32px;
+            min-width: 48px;
+            text-align: center;
+        }
+        
+        .hp-bristol-info h4 {
+            font-weight: 600;
+            color: var(--hp-text);
+            margin-bottom: 4px;
+        }
+        
+        .hp-bristol-info p {
+            font-size: 0.9rem;
+            color: var(--hp-muted);
+            margin: 0;
+        }
+        
+        .hp-bristol-badge {
+            background: #34D399;
+            color: white;
+            font-size: 0.75rem;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-weight: 600;
+            margin-left: auto;
+        }
+        
+        /* Articles Section */
+        .hp-articles {
+            padding: 100px 0;
+            background: var(--hp-bg);
+        }
+        
+        .hp-articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .hp-article-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .hp-article-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        }
+        
+        .hp-article-header {
+            padding: 24px 24px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .hp-article-icon {
+            font-size: 32px;
+        }
+        
+        .hp-article-tag {
+            font-size: 0.75rem;
+            padding: 4px 12px;
+            border-radius: 20px;
+            background: var(--hp-primary);
+            color: white;
+            font-weight: 600;
+        }
+        
+        .hp-article-content {
+            padding: 16px 24px 24px;
+        }
+        
+        .hp-article-content h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--hp-text);
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+        
+        .hp-article-content p {
+            font-size: 0.9rem;
+            color: var(--hp-muted);
+            line-height: 1.6;
+            margin: 0;
+        }
+        
+        .hp-view-all {
+            text-align: center;
+            margin-top: 50px;
+        }
+        
+        .hp-view-all a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 32px;
+            background: linear-gradient(135deg, var(--hp-primary), var(--hp-accent));
+            color: white;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(167, 139, 250, 0.3);
+        }
+        
+        .hp-view-all a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(167, 139, 250, 0.4);
+        }
+        
+        /* CTA Section */
+        .hp-cta {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--hp-primary) 0%, var(--hp-accent) 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .hp-cta h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+        
+        .hp-cta p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+        
+        /* Back Link */
+        .hp-back-link {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 100;
+            background: white;
+            color: var(--hp-text);
+            padding: 12px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .hp-back-link:hover {
+            transform: translateX(-5px);
+            box-shadow: 0 6px 25px rgba(0,0,0,0.15);
+        }
+        
+        @media (max-width: 768px) {
+            .hp-hero h1 { font-size: 2.2rem; }
+            .hp-hero p { font-size: 1.1rem; }
+            .hp-stat-value { font-size: 1.8rem; }
+            .hp-stats-bar { gap: 30px; }
+            .hp-section-title h2 { font-size: 1.8rem; }
+            .hp-bristol-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="hp-back-link">← Back to Home</a>
+    
+    <!-- Hero Section -->
+    <section class="hp-hero">
+        <div class="hp-hero-content">
+            <div class="hp-hero-icon">💩</div>
+            <h1>Happy Poop</h1>
+            <p>Your AI-powered digestive health companion. Track bowel movements, monitor hydration, and receive personalized health insights.</p>
+            
+            <div class="hp-download-buttons">
+                <a href="https://play.google.com/store/apps/details?id=com.happypoop.app" class="hp-download-btn" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play" style="height: 32px; filter: brightness(0) invert(1);"> <!-- White icon -->
+                    <div class="hp-download-text">
+                        <span class="hp-download-label">GET IT ON</span>
+                        <span class="hp-download-store">Google Play</span>
+                    </div>
+                </a>
+                <a href="#" class="hp-download-btn" style="opacity: 0.8; cursor: not-allowed;">
+                    <svg viewBox="0 0 384 512" style="height: 28px; fill: white;"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 52.3-11.4 69.5-34.3z"/></svg>
+                    <div class="hp-download-text">
+                        <span class="hp-download-label">Coming Soon</span>
+                        <span class="hp-download-store">App Store</span>
+                    </div>
+                </a>
+            </div>
+            
+            <div class="hp-stats-bar">
+                <div class="hp-stat">
+                    <div class="hp-stat-value">50K+</div>
+                    <div class="hp-stat-label">Active Users</div>
+                </div>
+                <div class="hp-stat">
+                    <div class="hp-stat-value">4.7</div>
+                    <div class="hp-stat-label">App Rating</div>
+                </div>
+                <div class="hp-stat">
+                    <div class="hp-stat-value">1M+</div>
+                    <div class="hp-stat-label">Logs Recorded</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Features Section -->
+    <section class="hp-features">
+        <div class="hp-section-title">
+            <h2>Smart Health Tracking</h2>
+            <p>Comprehensive tools to understand and improve your digestive wellness</p>
+        </div>
+        
+        <div class="hp-features-grid">
+            <div class="hp-feature-card">
+                <div class="hp-feature-icon">💩</div>
+                <h3>Bristol Scale Tracking</h3>
+                <p>Log your bowel movements using the medically-recognized Bristol Stool Scale. Understand what's normal and identify potential issues early.</p>
+            </div>
+            
+            <div class="hp-feature-card">
+                <div class="hp-feature-icon">💧</div>
+                <h3>Hydration Monitor</h3>
+                <p>Track daily water intake with smart reminders. Stay hydrated and maintain optimal digestive function with personalized goals.</p>
+            </div>
+            
+            <div class="hp-feature-card">
+                <div class="hp-feature-icon">📊</div>
+                <h3>Health Score Analysis</h3>
+                <p>Get a comprehensive health score based on regularity, stool quality, and hydration levels. Watch your progress over time.</p>
+            </div>
+            
+            <div class="hp-feature-card">
+                <div class="hp-feature-icon">🤖</div>
+                <h3>AI Health Assistant</h3>
+                <p>Ask questions about your digestive health and receive personalized, evidence-based guidance from our AI assistant.</p>
+            </div>
+            
+            <div class="hp-feature-card">
+                <div class="hp-feature-icon">📈</div>
+                <h3>Trends & Insights</h3>
+                <p>Visualize weekly rhythms, hourly patterns, and long-term trends. Discover connections between diet, lifestyle, and gut health.</p>
+            </div>
+            
+            <div class="hp-feature-card">
+                <div class="hp-feature-icon">📋</div>
+                <h3>Expert Reports</h3>
+                <p>Generate detailed health reports to share with your healthcare provider. Make informed decisions about your wellness journey.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Bristol Scale Section -->
+    <section class="hp-bristol">
+        <div class="hp-bristol-container">
+            <div class="hp-section-title">
+                <h2>Bristol Stool Scale</h2>
+                <p>Understand your digestive health through the medically-recognized classification system</p>
+            </div>
+            
+            <div class="hp-bristol-grid">
+                <div class="hp-bristol-item">
+                    <span class="hp-bristol-emoji">🫘</span>
+                    <div class="hp-bristol-info">
+                        <h4>Type 1 - Hard Lumps</h4>
+                        <p>Separate hard lumps, like nuts</p>
+                    </div>
+                </div>
+                <div class="hp-bristol-item">
+                    <span class="hp-bristol-emoji">🥜</span>
+                    <div class="hp-bristol-info">
+                        <h4>Type 2 - Lumpy Sausage</h4>
+                        <p>Sausage-shaped but lumpy</p>
+                    </div>
+                </div>
+                <div class="hp-bristol-item healthy">
+                    <span class="hp-bristol-emoji">🌭</span>
+                    <div class="hp-bristol-info">
+                        <h4>Type 3 - Cracked Sausage</h4>
+                        <p>Like a sausage with cracks</p>
+                    </div>
+                    <span class="hp-bristol-badge">Healthy</span>
+                </div>
+                <div class="hp-bristol-item healthy">
+                    <span class="hp-bristol-emoji">🍌</span>
+                    <div class="hp-bristol-info">
+                        <h4>Type 4 - Smooth Snake</h4>
+                        <p>Smooth and soft, like a snake</p>
+                    </div>
+                    <span class="hp-bristol-badge">Ideal</span>
+                </div>
+                <div class="hp-bristol-item">
+                    <span class="hp-bristol-emoji">🫛</span>
+                    <div class="hp-bristol-info">
+                        <h4>Type 5 - Soft Blobs</h4>
+                        <p>Soft blobs with clear edges</p>
+                    </div>
+                </div>
+                <div class="hp-bristol-item">
+                    <span class="hp-bristol-emoji">☁️</span>
+                    <div class="hp-bristol-info">
+                        <h4>Type 6 - Mushy</h4>
+                        <p>Fluffy pieces with ragged edges</p>
+                    </div>
+                </div>
+                <div class="hp-bristol-item">
+                    <span class="hp-bristol-emoji">💧</span>
+                    <div class="hp-bristol-info">
+                        <h4>Type 7 - Watery</h4>
+                        <p>Entirely liquid, no solid pieces</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Health Articles Section -->
+    <section class="hp-articles">
+        <div class="hp-section-title">
+            <h2>Health Knowledge Base</h2>
+            <p>Expert-curated articles to help you understand your body's signals</p>
+        </div>
+        
+        <div class="hp-articles-grid">
+            <a href="zh/still-alive-tips/01-emergency-kit-essentials.html" class="hp-article-card">
+                <div class="hp-article-header">
+                    <span class="hp-article-icon">💩</span>
+                    <span class="hp-article-tag">Bowel Health</span>
+                </div>
+                <div class="hp-article-content">
+                    <h3>Understanding Stool Color & Shape</h3>
+                    <p>Learn what different stool colors and shapes indicate about your digestive health.</p>
+                </div>
+            </a>
+            
+            <a href="zh/still-alive-tips/07-fall-risk-facts.html" class="hp-article-card">
+                <div class="hp-article-header">
+                    <span class="hp-article-icon">🚽</span>
+                    <span class="hp-article-tag">Urinary Health</span>
+                </div>
+                <div class="hp-article-content">
+                    <h3>Urine Color & Health Signals</h3>
+                    <p>What your urine color reveals about hydration and potential health concerns.</p>
+                </div>
+            </a>
+            
+            <a href="zh/still-alive-tips/16-trusted-contacts-list.html" class="hp-article-card">
+                <div class="hp-article-header">
+                    <span class="hp-article-icon">💧</span>
+                    <span class="hp-article-tag">Hydration</span>
+                </div>
+                <div class="hp-article-content">
+                    <h3>Daily Hydration Guide</h3>
+                    <p>How much water you really need and tips to stay properly hydrated.</p>
+                </div>
+            </a>
+            
+            <a href="zh/still-alive-tips/20-smoke-alarm-maintenance.html" class="hp-article-card">
+                <div class="hp-article-header">
+                    <span class="hp-article-icon">🏃</span>
+                    <span class="hp-article-tag">Fitness</span>
+                </div>
+                <div class="hp-article-content">
+                    <h3>Daily Fitness Routine</h3>
+                    <p>Simple exercises to support digestive health and overall wellness.</p>
+                </div>
+            </a>
+            
+            <a href="zh/still-alive-tips/24-cold-weather-readiness.html" class="hp-article-card">
+                <div class="hp-article-header">
+                    <span class="hp-article-icon">🥗</span>
+                    <span class="hp-article-tag">Nutrition</span>
+                </div>
+                <div class="hp-article-content">
+                    <h3>Balanced Diet Principles</h3>
+                    <p>Nutrition fundamentals for optimal digestive and gut health.</p>
+                </div>
+            </a>
+            
+            <a href="zh/still-alive-tips/30-social-connection-safety.html" class="hp-article-card">
+                <div class="hp-article-header">
+                    <span class="hp-article-icon">✅</span>
+                    <span class="hp-article-tag">Self-Check</span>
+                </div>
+                <div class="hp-article-content">
+                    <h3>Daily Body Checklist</h3>
+                    <p>A 5-minute daily routine to monitor your body's key health signals.</p>
+                </div>
+            </a>
+        </div>
+        
+        <div class="hp-view-all">
+            <a href="happy-poop-mobile.html">View All 25 Articles →</a>
+        </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section class="hp-cta">
+        <h2>Start Your Gut Health Journey</h2>
+        <p>Join thousands of users who have improved their digestive wellness with Happy Poop.</p>
+        <div class="hp-download-buttons">
+            <a href="https://play.google.com/store/apps/details?id=com.happypoop.app" class="hp-download-btn" target="_blank">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play" style="height: 28px;">
+                Download Free
+            </a>
+        </div>
+    </section>
+    
+    <script src="dark-mode.js"></script>
+    <script src="happy-poop-lang.js"></script>
+</body>
+</html>

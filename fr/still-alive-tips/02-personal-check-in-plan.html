@@ -1,279 +1,115 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-theme="bowel">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create a Personal Check-In Plan - Still Alive?</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --accent: #9a6ee8;
-            --accent-light: #cbb0f2;
-            --accent-dark: #6d3bbb;
-            --surface: #ffffff;
-            --text: #1f1f1f;
-            --muted: #6e6e6e;
-            --bg: #f6f4f1;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-        }
-
-        .status-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 44px;
-            background: rgba(0, 0, 0, 0.78);
-            color: #ffffff;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 18px;
-            font-size: 14px;
-            z-index: 10;
-        }
-
-        .status-icons {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .status-dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: #ffffff;
-            opacity: 0.8;
-        }
-
-        .status-pill {
-            width: 22px;
-            height: 10px;
-            border-radius: 6px;
-            border: 1px solid #ffffff;
-            position: relative;
-            opacity: 0.8;
-        }
-
-        .status-pill::after {
-            content: "";
-            position: absolute;
-            right: 2px;
-            top: 2px;
-            width: 6px;
-            height: 4px;
-            border-radius: 3px;
-            background: #ffffff;
-        }
-
-        .back-button {
-            position: fixed;
-            top: 58px;
-            left: 18px;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            border: none;
-            background: rgba(0, 0, 0, 0.6);
-            color: #ffffff;
-            font-size: 18px;
-            cursor: pointer;
-            z-index: 9;
-        }
-
-        .hero {
-            margin-top: 44px;
-            padding: 28px 20px 80px;
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
-            color: #ffffff;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero h1 {
-            margin: 12px 0 10px;
-            font-size: 26px;
-            font-weight: 700;
-        }
-
-        .hero p {
-            margin: 0;
-            font-size: 14px;
-            max-width: 320px;
-            line-height: 1.5;
-        }
-
-        .tag {
-            display: inline-block;
-            padding: 4px 10px;
-            border-radius: 999px;
-            font-size: 11px;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            background: rgba(255, 255, 255, 0.25);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-        }
-
-        .hero-icon {
-            position: absolute;
-            right: 20px;
-            bottom: 12px;
-            width: 80px;
-            height: 80px;
-            opacity: 0.18;
-        }
-
-        .content {
-            background: var(--surface);
-            margin: -50px 18px 24px;
-            border-radius: 20px;
-            padding: 24px 20px 28px;
-            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
-        }
-
-        .meta {
-            font-size: 12px;
-            color: var(--muted);
-            margin-bottom: 16px;
-        }
-
-        .section {
-            margin-top: 18px;
-        }
-
-        .section h2 {
-            margin: 0 0 10px;
-            font-size: 18px;
-        }
-
-        .section p {
-            margin: 0 0 12px;
-            font-size: 14px;
-            line-height: 1.6;
-            color: #3d3d3d;
-        }
-
-        .section ul {
-            margin: 0;
-            padding-left: 18px;
-            font-size: 14px;
-            line-height: 1.6;
-            color: #3d3d3d;
-        }
-
-        .callout {
-            background: #f4f0fb;
-            border-left: 4px solid var(--accent);
-            padding: 12px 14px;
-            border-radius: 10px;
-            font-size: 13px;
-            color: #3d3d3d;
-        }
-
-        .source {
-            margin-top: 18px;
-            font-size: 12px;
-            color: var(--muted);
-        }
-
-        .source a {
-            color: var(--accent-dark);
-            text-decoration: none;
-        }
-
-        .footer {
-            text-align: center;
-            margin-bottom: 36px;
-        }
-
-        .footer a {
-            color: var(--accent-dark);
-            text-decoration: none;
-            font-weight: 600;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Fréquence et rythme des selles : trouver votre normale - Happy Poop</title>
+    <link rel="stylesheet" href="../../article-theme-v2.css">
 </head>
 <body>
-    <div class="status-bar">
-        <span id="current-time">4:55</span>
-        <div class="status-icons" aria-hidden="true">
-            <span class="status-dot"></span>
-            <span class="status-dot"></span>
-            <span class="status-dot"></span>
-            <span class="status-pill"></span>
+    <header class="hero-section">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <div class="article-meta-top">
+                <span>Santé Intestinale</span>
+                <span>•</span>
+                <span>8 min de lecture</span>
+            </div>
+            <h1 class="hero-title">Fréquence et rythme des selles : trouver votre normale</h1>
+            
         </div>
-    </div>
-
-    <button class="back-button" onclick="history.back()" aria-label="Go back">←</button>
-
-    <header class="hero">
-        <span class="tag">Check-In</span>
-        <h1>Créer un plan de vérification personnel</h1>
-        <p>Define who gets notified, how often you check in, and what happens if you miss one.</p>
-        <svg class="hero-icon" viewBox="0 0 64 64" aria-hidden="true">
-            <circle cx="32" cy="32" r="20" fill="none" stroke="#ffffff" stroke-width="3"></circle>
-            <path d="M24 32l6 6 12-14" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
-        </svg>
     </header>
-
-    <main class="content">
-        <div class="meta">5 min read • Updated Feb 3, 2026</div>
-
-        <section class="section">
-            <h2>Pick the Right People</h2>
-            <p>Choose 1-3 trusted contacts who will answer quickly and can take action. Make sure they agree to the plan and know your typical routine.</p>
-        </section>
-
-        <section class="section">
-            <h2>Set Your Cadence</h2>
-            <p>Decide how often to check in based on your risk and lifestyle. Daily for higher risk, every other day for lower risk.</p>
-            <ul>
-                <li>Set a consistent time window to reduce confusion.</li>
-                <li>Use reminders in Still Alive to stay on schedule.</li>
-            </ul>
-        </section>
-
-        <section class="section">
-            <h2>Define Escalation Steps</h2>
-            <p>Agree on what happens if you miss a check-in. Start with a call or text, then move to a visit or emergency services if needed.</p>
-            <div class="callout">Tip: write the escalation steps in a shared note so everyone follows the same process.</div>
-        </section>
-
-        <section class="section">
-            <h2>Share Key Information</h2>
-            <p>Give contacts your address, medical details, and any entry instructions for your home. Store critical numbers in one place.</p>
-        </section>
-
-        <div class="source">
-            Source: <a href="https://www.ready.gov/plan" target="_blank" rel="noopener">Ready.gov - Make a Plan</a>
+    <div class="summary-card">
+        <div class="summary-title">⚡ TL;DR</div>
+        <ul class="summary-list">
+            <li><strong>Plage normale :</strong> Une consommation comprise entre 3 fois par jour et 3 fois par semaine est médicalement normale.</li>
+            <li><strong>La cohérence compte plus</strong> que la fréquence : ce qui compte, c'est un comportement personnel régulier.</li>
+            <li><strong>Le réflexe gastrocolique</strong> est le déclencheur intégré de votre corps : utilisez-le en prenant votre petit-déjeuner.</li>
+            <li><strong>Les changements soudains</strong> dans votre schéma établi (d'une durée de plus de deux semaines) méritent une évaluation médicale.</li>
+        </ul>
+    </div>
+    <article class="content-container">
+        <div class="content-block">
+            <p class="intro-text">"Docteur, est-ce normal que j'y aille seulement un jour sur deux ?" C’est l’une des questions les plus courantes que j’entends en clinique. Il existe une anxiété presque universelle selon laquelle nous devrions avoir exactement une selle par jour – comme sur des roulettes. La vérité est bien plus nuancée et bien plus rassurante. Votre intestin a son propre rythme, façonné par votre génétique, votre régime alimentaire, votre niveau d'activité, votre stress et même les bactéries vivant dans votre intestin. Comprendre votre normalité personnelle est bien plus précieux que suivre l'emploi du temps de quelqu'un d'autre.</p>
+            <h2>📊 Ce que dit la science sur la fréquence "normale"</h2>
+<p>Des études sur de grandes populations montrent systématiquement que la fréquence des selles saines varie de <strong>trois fois par jour à trois fois par semaine</strong>. Une étude historique de 2010 publiée dans le <em>Scandinavian Journal of Gastroenterology</em> a interrogé plus de 4 000 adultes et a révélé que la fréquence la plus courante était une fois par jour, mais que cela ne représentait qu'environ 40 % des personnes. Les 60 % restants étaient répartis sur tout le spectre normal.</p>
+<p>Ce qui compte le plus, ce n'est pas d'atteindre un chiffre magique. Il s'agit de savoir si votre modèle est <strong>cohérent, confortable et complet</strong>. Si vous y allez deux fois par jour et que vous le faites toujours, c'est normal. Si vous y allez tous les deux jours sans forcer ni ballonner, c'est tout aussi sain. Des problèmes surviennent lorsque votre modèle établi change de manière significative sans raison évidente.</p>
+<div class="info-box">
+<div class="info-box-title">📋 Les trois C pour des habitudes intestinales saines</div>
+<p>
+<strong>Cohérent :</strong> votre fréquence ne varie pas énormément d'une semaine à l'autre.<br/><br/>
+<strong>Confortable :</strong> Vous ne faites pas d'efforts excessifs et les mouvements ne provoquent pas de douleur.<br/><br/>
+<strong>Complet</strong> : vous ressentez ensuite un sentiment d'évacuation – aucun sentiment persistant qu'il y a plus à venir.
+                </p>
+</div>
+            <h2>🧠 Le réflexe gastrocolique : votre déclencheur intégré</h2>
+<p>Avez-vous déjà remarqué que vous ressentez souvent le besoin d'y aller peu de temps après avoir mangé, surtout après le petit-déjeuner ? C'est le <strong>réflexe gastrocolique</strong>, l'un des réflexes les plus puissants et les plus prévisibles de votre système digestif.</p>
+<p>Voici comment cela fonctionne : lorsque la nourriture pénètre dans votre estomac et étire la paroi de l'estomac, votre système nerveux envoie des signaux à votre côlon pour qu'il commence à se contracter. Ces contractions, appelées <strong>mouvements de masse</strong>, poussent les déchets existants vers le rectum. Le réflexe est plus fort le matin après votre premier repas, car votre côlon a été relativement calme pendant le sommeil et est prêt à réagir.</p>
+<p>Ce réflexe est la raison pour laquelle les gastro-entérologues recommandent fortement de <strong>prendre un petit-déjeuner</strong> si vous essayez d'établir une régularité. Même un petit repas – un morceau de pain grillé, une banane, une tasse de yaourt – suffit à le déclencher. Le café amplifie l'effet : des études montrent que le café caféiné et décaféiné stimulent l'activité motrice du côlon dans les quatre minutes suivant l'ingestion, augmentant le réflexe gastrocolique jusqu'à 60 %.</p>
+            <h2>🌅 Construire une routine matinale pour la régularité</h2>
+<p>Votre côlon est une créature d'habitude. Il réagit magnifiquement à la routine et mal au chaos. Voici un protocole matinal fondé sur des données probantes qui exploite les rythmes naturels de votre corps :</p>
+<div class="checklist">
+<div class="checklist-item">
+<div class="check-icon">1</div>
+<div><strong>Réveillez-vous à une heure constante.</strong> Votre côlon a également des rythmes circadiens. La motilité du côlon culmine tôt le matin, ce qui en fait la fenêtre optimale pour aller à la selle.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">2</div>
+<div><strong>Boire un verre d'eau immédiatement.</strong> Après 6 à 8 heures de sommeil, votre corps est déshydraté. L'eau active le réflexe gastrocolique et ramollit les selles restées dans le côlon pendant la nuit.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">3</div>
+<div><strong>Prenez votre petit-déjeuner dans les 30 minutes qui suivent votre réveil.</strong> Même quelque chose de petit déclenche le réflexe gastrocolique. Les options riches en fibres (gruau, pain grillé à grains entiers, fruits) sont idéales.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">4</div>
+<div><strong>Asseyez-vous sur les toilettes à la même heure chaque jour</strong>, que vous en ressentiez ou non le besoin. Passez 5 à 10 minutes maximum. Cela entraîne votre côlon à s'attendre à une évacuation à ce moment-là.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">5</div>
+<div><strong>N'ignorez pas cette envie.</strong> Lorsque vous la ressentez, partez. La suppression habituelle de l'envie affaiblit le réflexe de défécation au fil du temps et peut conduire à une constipation chronique.</div>
+</div>
+</div>
+            <h2>⏰ Facteurs qui affectent votre rythme</h2>
+<p>Comprendre ce qui modifie votre transit intestinal vous aide à garder le contrôle. Voici les influenceurs les plus courants :</p>
+<p><strong>Changements de régime</strong> : une augmentation ou une diminution soudaine des fibres peut modifier considérablement la fréquence. Lorsque vous ajoutez des fibres, augmentez-les progressivement – ​​d’environ 5 grammes par semaine – pour donner à votre microbiome intestinal le temps de s’adapter. Des augmentations rapides provoquent des ballonnements, des gaz et des crampes.</p>
+<p><strong>Voyages</strong> : les changements de fuseau horaire, de régime alimentaire, de source d'eau et de routine provoquent généralement la « constipation du voyageur ». Votre côlon n'aime pas les surprises. Maintenir son hydratation et manger des fibres en voyage permet de préserver son rythme.</p>
+<p><strong>Stress et anxiété</strong> : l'axe intestin-cerveau est bidirectionnel. Le stress aigu peut déclencher la diarrhée (via le transit accéléré du système nerveux sympathique), tandis que le stress chronique provoque souvent la constipation. Il a été démontré que la méditation, l'exercice et la thérapie cognitivo-comportementale améliorent la régularité intestinale lors d'essais cliniques.</p>
+<p><strong>Médicaments</strong> : les opioïdes, les antidépresseurs (en particulier les tricycliques), les antihistaminiques, les inhibiteurs calciques et les suppléments de fer sont souvent responsables du ralentissement du transit. Si vous avez commencé un nouveau médicament et avez remarqué un changement, discutez des alternatives avec votre médecin.</p>
+<p><strong>Activité physique</strong> : l'exercice régulier modéré, en particulier la marche, le jogging et le yoga, stimule la motilité du côlon. Une méta-analyse de 2019 a révélé que l’exercice réduisait les symptômes de constipation de 37 % par rapport aux témoins sédentaires. Vous n'avez pas besoin de marathons ; une marche quotidienne de 30 minutes suffit.</p>
+            <h2>🚩 Lorsque les changements de fréquence signalent un problème</h2>
+<p>Toutes les fluctuations ne sont pas préoccupantes. Un jour ou deux d’irrégularité après un festin de vacances ou une semaine stressante est tout à fait normal. Mais certains modèles méritent une enquête.</p>
+<div class="warning-box">
+<div class="warning-title">🚨 Drapeaux rouges : consultez votre médecin si vous remarquez</div>
+<ul class="warning-list">
+<li><strong>Changement persistant durant plus de 2 à 3 semaines</strong> sans cause évidente (nouveau régime alimentaire, voyage, médicaments).</li>
+<li><strong>Constipation et diarrhée alternées</strong> : une caractéristique du syndrome du côlon irritable, mais qui mérite également un dépistage pour d'autres affections.</li>
+<li><strong>Un rétrécissement progressif des selles</strong> associé à une diminution de la fréquence – pourrait indiquer un problème structurel au niveau du côlon.</li>
+<li><strong>Nouvelle constipation après 50 ans</strong> sans explication claire : le dépistage du cancer colorectal doit être discuté.</li>
+<li><strong>Changement de fréquence accompagné de sang, d'une perte de poids inexpliquée ou de douleurs abdominales sévères.</strong></li>
+</ul>
+</div>
+            <h2>🔬 Populations particulières : ce qui est différent</h2>
+<p><strong>Personnes âgées</strong> : le transit colique ralentit avec l'âge en raison de la diminution de la densité des cellules nerveuses dans la paroi du côlon (un processus appelé dégénérescence neuronale). La réduction de l’activité physique, la prise de médicaments et la diminution de l’apport hydrique aggravent le problème. De nombreuses personnes âgées constatent que cette fréquence chute à 3 à 4 fois par semaine : c'est normal si cela est confortable, mais cela doit être surveillé.</p>
+<p><strong>Femmes enceintes</strong> : la progestérone détend les muscles lisses dans tout le corps, y compris le côlon, ralentissant considérablement le transit. Jusqu'à 40 % des femmes enceintes souffrent de constipation. Les suppléments de fer prescrits pendant la grossesse aggravent la situation. L'augmentation des fibres, de l'eau et de l'exercice doux sont des recommandations de première intention.</p>
+<p><strong>Travailleurs postés</strong> : les perturbations des rythmes circadiens affectent directement la motilité du côlon. Des études montrent que les travailleurs postés présentent des taux plus élevés de constipation et de symptômes du SCI. Maintenir des heures de repas constantes, même si les heures de sommeil varient, permet de préserver une certaine régularité.</p>
+<div class="info-box">
+<div class="info-box-title">💡 Le résultat</div>
+<p>Arrêtez de comparer vos habitudes intestinales à celles des autres. Suivez votre propre modèle pendant 2 à 4 semaines à l'aide d'un simple journal ou d'une application. Notez le temps, la cohérence (utilisez l’échelle de Bristol) et tous les symptômes associés. Cette base de référence personnelle est l’outil le plus utile pour détecter rapidement des changements significatifs. Votre normal est votre normal – et le savoir est puissant.</p>
+</div>
         </div>
-    </main>
-
-    <footer class="footer">
-        <a href="../../still-alive-mobile.html">Retour aux conseils</a>
-    </footer>
-
+    </article>
+    <nav class="floating-nav">
+        <a href="../../happy-poop-mobile.html" class="back-btn">← Retour</a>
+        <a href="#" class="share-btn" onclick="navigator.share({title: 'Fréquence et rythme des selles : trouver votre normale', url: window.location.href}); return false;">📤</a>
+    </nav>
     <script>
-        const timeElement = document.getElementById("current-time");
-        const updateTime = () => {
-            const now = new Date();
-            const hours = now.getHours();
-            const minutes = String(now.getMinutes()).padStart(2, "0");
-            timeElement.textContent = `${hours}:${minutes}`;
-        };
-        updateTime();
-        setInterval(updateTime, 60000);
+        document.querySelectorAll('.checklist-item').forEach(item => {
+            item.addEventListener('click', () => {
+                item.style.backgroundColor = '#F3F4F6';
+                setTimeout(() => item.style.backgroundColor = 'transparent', 200);
+            });
+        });
     </script>
 </body>
 </html>

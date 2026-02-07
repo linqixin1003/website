@@ -1,278 +1,161 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-theme="bowel">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Emergency Kit Essentials - Still Alive?</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --accent: #ff7a5a;
-            --accent-light: #ffb199;
-            --accent-dark: #c4553b;
-            --surface: #ffffff;
-            --text: #1f1f1f;
-            --muted: #6e6e6e;
-            --bg: #f6f4f1;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-        }
-
-        .status-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 44px;
-            background: rgba(0, 0, 0, 0.78);
-            color: #ffffff;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 18px;
-            font-size: 14px;
-            z-index: 10;
-        }
-
-        .status-icons {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .status-dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: #ffffff;
-            opacity: 0.8;
-        }
-
-        .status-pill {
-            width: 22px;
-            height: 10px;
-            border-radius: 6px;
-            border: 1px solid #ffffff;
-            position: relative;
-            opacity: 0.8;
-        }
-
-        .status-pill::after {
-            content: "";
-            position: absolute;
-            right: 2px;
-            top: 2px;
-            width: 6px;
-            height: 4px;
-            border-radius: 3px;
-            background: #ffffff;
-        }
-
-        .back-button {
-            position: fixed;
-            top: 58px;
-            left: 18px;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            border: none;
-            background: rgba(0, 0, 0, 0.6);
-            color: #ffffff;
-            font-size: 18px;
-            cursor: pointer;
-            z-index: 9;
-        }
-
-        .hero {
-            margin-top: 44px;
-            padding: 28px 20px 80px;
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
-            color: #ffffff;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero h1 {
-            margin: 12px 0 10px;
-            font-size: 26px;
-            font-weight: 700;
-        }
-
-        .hero p {
-            margin: 0;
-            font-size: 14px;
-            max-width: 320px;
-            line-height: 1.5;
-        }
-
-        .tag {
-            display: inline-block;
-            padding: 4px 10px;
-            border-radius: 999px;
-            font-size: 11px;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            background: rgba(255, 255, 255, 0.25);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-        }
-
-        .hero-icon {
-            position: absolute;
-            right: 20px;
-            bottom: 12px;
-            width: 80px;
-            height: 80px;
-            opacity: 0.18;
-        }
-
-        .content {
-            background: var(--surface);
-            margin: -50px 18px 24px;
-            border-radius: 20px;
-            padding: 24px 20px 28px;
-            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
-        }
-
-        .meta {
-            font-size: 12px;
-            color: var(--muted);
-            margin-bottom: 16px;
-        }
-
-        .section {
-            margin-top: 18px;
-        }
-
-        .section h2 {
-            margin: 0 0 10px;
-            font-size: 18px;
-        }
-
-        .section p {
-            margin: 0 0 12px;
-            font-size: 14px;
-            line-height: 1.6;
-            color: #3d3d3d;
-        }
-
-        .section ul {
-            margin: 0;
-            padding-left: 18px;
-            font-size: 14px;
-            line-height: 1.6;
-            color: #3d3d3d;
-        }
-
-        .callout {
-            background: #f7f1ed;
-            border-left: 4px solid var(--accent);
-            padding: 12px 14px;
-            border-radius: 10px;
-            font-size: 13px;
-            color: #3d3d3d;
-        }
-
-        .source {
-            margin-top: 18px;
-            font-size: 12px;
-            color: var(--muted);
-        }
-
-        .source a {
-            color: var(--accent-dark);
-            text-decoration: none;
-        }
-
-        .footer {
-            text-align: center;
-            margin-bottom: 36px;
-        }
-
-        .footer a {
-            color: var(--accent-dark);
-            text-decoration: none;
-            font-weight: 600;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Понимание цвета и формы стула: барометр здоровья кишечника - Happy Poop</title>
+    <link rel="stylesheet" href="../../article-theme-v2.css">
 </head>
 <body>
-    <div class="status-bar">
-        <span id="current-time">4:54</span>
-        <div class="status-icons" aria-hidden="true">
-            <span class="status-dot"></span>
-            <span class="status-dot"></span>
-            <span class="status-dot"></span>
-            <span class="status-pill"></span>
+    <header class="hero-section">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <div class="article-meta-top">
+                <span>Здоровье кишечника</span>
+                <span>•</span>
+                <span>8 мин чтения</span>
+            </div>
+            <h1 class="hero-title">Понимание цвета и формы стула: барометр здоровья кишечника</h1>
+            
         </div>
-    </div>
-
-    <button class="back-button" onclick="history.back()" aria-label="Go back">←</button>
-
-    <header class="hero">
-        <span class="tag">Preparedness</span>
-        <h1>Основы аварийного набора</h1>
-        <p>Build a 72-hour kit that keeps you safe, calm, and connected if normal routines are disrupted.</p>
-        <svg class="hero-icon" viewBox="0 0 64 64" aria-hidden="true">
-            <rect x="12" y="22" width="40" height="30" rx="6" fill="none" stroke="#ffffff" stroke-width="3"></rect>
-            <rect x="22" y="14" width="20" height="10" rx="4" fill="none" stroke="#ffffff" stroke-width="3"></rect>
-            <path d="M20 36h24" stroke="#ffffff" stroke-width="3" stroke-linecap="round"></path>
-        </svg>
     </header>
-
-    <main class="content">
-        <div class="meta">6 min read • Updated Feb 3, 2026</div>
-
-        <section class="section">
-            <h2>Core Supplies</h2>
-            <p>Your kit should cover the basics for at least three days. Focus on items that keep you hydrated, nourished, and able to communicate.</p>
-            <ul>
-                <li>Water: about 1 gallon per person per day.</li>
-                <li>Non-perishable food plus a manual can opener.</li>
-                <li>Flashlight, batteries, and a phone power bank.</li>
-                <li>First-aid kit and essential medications.</li>
-                <li>Copies of IDs, insurance cards, and key contacts.</li>
-            </ul>
-        </section>
-
-        <section class="section">
-            <h2>Personalize for Your Routine</h2>
-            <p>Add items that match your daily needs: medical devices, pet supplies, mobility aids, or comfort items that help reduce stress.</p>
-        </section>
-
-        <section class="section">
-            <h2>Store and Rotate</h2>
-            <p>Keep the kit in a reachable spot and refresh food, water, and batteries every 6-12 months.</p>
-            <div class="callout">Tip: put a reminder in Still Alive to review your kit every season.</div>
-        </section>
-
-        <div class="source">
-            Source: <a href="https://www.ready.gov/kit" target="_blank" rel="noopener">Ready.gov - Build a Kit</a>
+    <div class="summary-card">
+        <div class="summary-title">⚡ TL;DR</div>
+        <ul class="summary-list">
+            <li><strong>Здоровый исходный показатель.</strong> Средне-коричневый, гладкий стул в форме колбаски (Бристольский тип 3–4) — золотой стандарт.</li>
+            <li><strong>Цвет имеет значение.</strong> Черный дегтеобразный, ярко-красный или бледно-глинистый стул требует немедленной медицинской помощи.</li>
+            <li><strong>Зелёный и жёлтый</strong> — обычно диетические — листовая зелень, пищевые красители или продукты быстрого транзита.</li>
+            <li><strong>Быстрое решение:</strong> увеличьте потребление клетчатки и воды, чтобы достичь идеальной формы за несколько дней.</li>
+        </ul>
+    </div>
+    <article class="content-container">
+        <div class="content-block">
+            <p class="intro-text">Вот что я говорю каждому пациенту при первом посещении: самый информативный отчет о состоянии здоровья, который вы когда-либо получите, будет лежать в унитазе каждый божий день — бесплатно. Ваш стул — удивительно честный посланник. Его цвет, форма, консистенция и даже плавучесть отражают то, что вы съели, насколько хорошо вы это переварили, насколько вы обезвожены и заслуживает ли внимания что-то более глубокое. Большинство людей смывают, даже не взглянув. К тому времени, как вы прочтете эту статью, вы точно будете знать, на что обращать внимание и когда следует позвонить своему врачу.</p>
+            <h2>🎨 Цвет стула: что на самом деле означает каждый оттенок</h2>
+<p>Нормальный стул варьируется от <strong>светло-коричневого до темно-шоколадно-коричневого</strong>. Этот коричневый цвет обусловлен стеркобилином, пигментом, образующимся, когда кишечные бактерии расщепляют билирубин — продукт отходов старых эритроцитов, перерабатываемых печенью. Если цвет значительно отличается, стоит проверить.</p>
+<div class="checklist">
+<div class="checklist-item">
+<div class="check-icon" style="background:#5C4033; color:white;">●</div>
+<div>
+<strong>Коричневый (от светлого до темного)</strong>
+<p>Нормально. Желчь расщепилась должным образом. Изменение оттенка изо дня в день совершенно нормально и обычно отражает различия в питании.</p>
+</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon" style="background:#228B22; color:white;"> ●</div>
+<div>
+<strong>Зеленый</strong>
+<p>Обычно безвреден. Распространенные причины включают шпинат, капусту, зеленый пищевой краситель, добавки железа или быстрый кишечный транзит (желчь не успевает полностью расщепиться). Иногда наблюдается при применении антибиотиков.</p>
+</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon" style="background:#DAA520; color:white;"> ●</div>
+<div>
+<strong>Желтый или жирный</strong>
+<p>Может указывать на избыток жира в кале (стеаторея). Если он бледно-желтый, имеет неприятный запах и плавает, можно предположить целиакию, хронический панкреатит или мальабсорбцию желчных кислот. Периодический желтый стул после жирной еды не вызывает беспокойства.</p>
+</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon" style="background:#FF8C00; color:white;"> ●</div>
+<div>
+<strong>Оранжевый</strong>
+<p>Обычно диетические — морковь, сладкий картофель, продукты с бета-каротином или искусственными красителями. Редко указывает на проблемы с желчевыводящей системой. Обычно беспокоиться не о чем.</p>
+</div>
+</div>
+</div>
+<div class="warning-box">
+<div class="warning-title">🚨 Три цвета, требующие медицинской помощи</div>
+<ul class="warning-list">
+<li><strong>Черный или смолистый цвет (мелена):</strong> предполагает кровотечение в верхних отделах желудочно-кишечного тракта — желудке или пищеводе. Кровь становится черной, когда она переваривается. Исключение: препараты железа, субсалицилат висмута (пепто-бисмол) и черная солодка могут вызывать безвредное потемнение.</li>
+<li><strong>Ярко-красный или кровавый (гематохезия):</strong> Указывает на кровотечение в нижних отделах желудочно-кишечного тракта — геморрой, анальные трещины, дивертикулярную болезнь или полипы. Необходимо оценивать даже небольшое количество красной крови, особенно после 45 лет.</li>
+<li><strong>Бледный, глинистого или белого цвета:</strong> Указывает на недостаток желчи, достигающей кишечника. Это может сигнализировать об обструкции желчевыводящих путей (камни в желчном пузыре, опухоли), заболевании печени или патологии головки поджелудочной железы. Немедленно обратитесь к врачу.</li>
+</ul>
+</div>
+            <h2>📏 Бристольская шкала стула: ваш табель успеваемости на основе формы</h2>
+<p>Разработанная в Бристольском университете в 1997 году <strong>Бристольская шкала формы стула</strong> делит стул на семь типов в зависимости от формы и консистенции. Оно напрямую коррелирует со временем прохождения через толстую кишку — как долго отходы задерживаются в толстой кишке.</p>
+<div class="info-box">
+<div class="info-box-title">📊 Объяснение семи типов</div>
+<р>
+<strong>Тип 1 — Отдельные твердые комочки (например, орехи):</strong> Тяжелый запор. Стул находился в толстой кишке слишком долго, и почти вся вода впиталась. Часто больно проходить мимо.<br/><br/>
+<strong>Тип 2 — Колбаскообразный, но комковатый:</strong> Легкий запор. Лучше, чем Тип 1, но все же указывает на медленный транзит. Необходимо больше клетчатки и воды.<br/><br/>
+<strong>Тип 3 — Колбаса с поверхностными трещинами:</strong> Нормальная. Это здоровый стул с хорошей гидратацией и достаточным количеством клетчатки.<br/><br/>
+<strong>Тип 4 — Гладкая, мягкая колбаска или змея:</strong> Идеально. Это золотой стандарт: его легко пройти, он хорошо сформирован и указывает на оптимальную пищеварительную функцию.<br/><br/>
+<strong>Тип 5 — Мягкие капли с четкими краями:</strong> Слегка рыхлые. Может указывать на легкую пищевую непереносимость или на небольшое ускорение транзита. Не обязательно проблематично, если время от времени.<br/><br/>
+<strong>Тип 6. Пушистые, мягкие кусочки с неровными краями:</strong> На грани диареи. Может сигнализировать о воспалении, инфекции или пищевой непереносимости.<br/><br/>
+<strong>Тип 7 — Полностью жидкий, без твердых частиц:</strong> Диарея. Стул прошел через толстую кишку слишком быстро, чтобы впитать воду. Если сохраняется более 48 часов, проведите расследование.
+                </p>
+</div>
+            <h2>🔍 Помимо цвета и формы: другие подсказки, на которые стоит обратить внимание</h2>
+<p>Ваш табурет общается не только внешним видом. Обратите внимание на эти дополнительные сигналы:</p>
+<p><strong>Плавучесть</strong>. Стул, который постоянно плавает, часто содержит избыток газов или жира. Периодическое всплывание — это нормально. Постоянное всплывание с жирным блеском предполагает мальабсорбцию жира.</p>
+<p><strong>Запах:</strong> Весь стул имеет запах. Это нормальный бактериальный метаболизм. Однако необычно неприятный сернистый запах, который представляет собой заметное отклонение от исходного уровня, может указывать на инфекцию (например, <em>Clostridioides difficile</em>), мальабсорбцию или воспалительное заболевание кишечника.</p>
+<p><strong>Слизь.</strong> Тонкий слой слизи является нормальным явлением: слизистая оболочка кишечника вырабатывает ее для смазки. Видимая, вязкая или чрезмерная слизь может указывать на синдром раздраженного кишечника, инфекцию или воспалительное заболевание кишечника.</p>
+<p><strong>Непереваренная пища.</strong> Зерна кукурузы, семена и кожура овощей обычно выглядят неповрежденными. Это нормально — их целлюлозные оболочки сопротивляются пищеварению. Однако постоянное наблюдение больших кусков непереваренной пищи может указывать на то, что вы едите слишком быстро или у вас недостаточно пищеварительных ферментов.</p>
+            <h2>🩺 Когда обратиться к врачу</h2>
+<p>Большинство изменений стула носят временный характер и связаны с диетой. Но определенные закономерности должны побудить вас обратиться к врачу — в идеале раньше, чем позже.</p>
+<div class="checklist">
+<div class="checklist-item">
+<div class="check-icon">⚠️</div>
+<div><strong>Кровь в стуле</strong> — ярко-красная, темная или черная — которую нельзя объяснить едой или добавками.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">⚠️</div>
+<div><strong>Постоянное изменение цвета</strong>, продолжающееся более 2 недель без очевидной диетической причины.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">⚠️</div>
+<div><strong>Постоянный узкий, тонкий стул</strong> — может указывать на сужение или непроходимость толстой кишки.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">⚠️</div>
+<div><strong>Необъяснимая потеря веса</strong> в сочетании с изменениями в работе кишечника.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">⚠️</div>
+<div><strong>Стул бледного или глинистого цвета</strong> — всегда требует обследования на предмет проблем с желчевыводящей системой или печенью.</div>
+</div>
+</div>
+            <h2>🥗 Корректировка диеты для улучшения формы стула</h2>
+<p>Самый быстрый способ улучшить качество стула — это то, что вы едите и пьете. Вот ваш научно обоснованный план действий:</p>
+<div class="checklist">
+<div class="checklist-item">
+<div class="check-icon">✓</div>
+<div><strong>Старайтесь потреблять 25–30 г клетчатки в день.</strong> Смешайте растворимую клетчатку (овсяные хлопья, фасоль, яблоки, подорожник) с нерастворимой клетчаткой (цельная пшеница, овощи, отруби). Растворимая клетчатка образует гель, смягчающий стул; нерастворимая клетчатка увеличивает объем и ускоряет транзит.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">✓</div>
+<div><strong>Пейте не менее 8 чашек (2 литров) воды в день.</strong> Клетчатка без воды может усугубить запор. Думайте о клетчатке как о губке: для работы ей нужна вода.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">✓</div>
+<div><strong>Включайте в свой рацион продукты, богатые пробиотиками.</strong> Йогурт, кефир, квашеная капуста и кимчи поддерживают разнообразный кишечный микробиом, который напрямую влияет на качество стула.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">✓</div>
+<div><strong>Ограничьте употребление ультраобработанных продуктов.</strong> Высокое содержание сахара, низкое содержание клетчатки и искусственные добавки могут нарушить перистальтику кишечника и баланс микробиома.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">✓</div>
+<div><strong>Двигайтесь.</strong> Даже 20-минутная ежедневная прогулка стимулирует перистальтику кишечника и может заметно улучшить время прохождения через неделю.</div>
+</div>
+</div>
+<div class="info-box">
+<div class="info-box-title">💡 3-секундная проверка туалета</div>
+<p>Прежде чем смыть краску, уделите три секунды взгляду. Спросите себя: <strong>Какого цвета? Какая форма? Есть что-нибудь необычное?</strong> Эта быстрая привычка, практикуемая ежедневно, позволяет выявить проблемы на ранней стадии, когда они лучше всего поддаются лечению. Ваша интуиция говорит с вами каждый день. Все, что вам нужно сделать, это слушать.</p>
+</div>
         </div>
-    </main>
-
-    <footer class="footer">
-        <a href="../../still-alive-mobile.html">Назад к советам</a>
-    </footer>
-
+    </article>
+    <nav class="floating-nav">
+        <a href="../../happy-poop-mobile.html" class="back-btn">← Назад</a>
+        <a href="#" class="share-btn" onclick="navigator.share({title: 'Понимание цвета и формы стула: барометр здоровья кишечника', url: window.location.href}); return false;">📤</a>
+    </nav>
     <script>
-        const timeElement = document.getElementById("current-time");
-        const updateTime = () => {
-            const now = new Date();
-            const hours = now.getHours();
-            const minutes = String(now.getMinutes()).padStart(2, "0");
-            timeElement.textContent = `${hours}:${minutes}`;
-        };
-        updateTime();
-        setInterval(updateTime, 60000);
+        document.querySelectorAll('.checklist-item').forEach(item => {
+            item.addEventListener('click', () => {
+                item.style.backgroundColor = '#F3F4F6';
+                setTimeout(() => item.style.backgroundColor = 'transparent', 200);
+            });
+        });
     </script>
 </body>
 </html>

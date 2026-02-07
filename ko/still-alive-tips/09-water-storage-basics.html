@@ -1,269 +1,115 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" data-theme="urinary">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Water Storage Basics - Still Alive?</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --accent: #ff7a5a;
-            --accent-light: #ffb199;
-            --accent-dark: #c4553b;
-            --surface: #ffffff;
-            --text: #1f1f1f;
-            --muted: #6e6e6e;
-            --bg: #f6f4f1;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-        }
-
-        .status-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 44px;
-            background: rgba(0, 0, 0, 0.78);
-            color: #ffffff;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 18px;
-            font-size: 14px;
-            z-index: 10;
-        }
-
-        .status-icons {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .status-dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: #ffffff;
-            opacity: 0.8;
-        }
-
-        .status-pill {
-            width: 22px;
-            height: 10px;
-            border-radius: 6px;
-            border: 1px solid #ffffff;
-            position: relative;
-            opacity: 0.8;
-        }
-
-        .status-pill::after {
-            content: "";
-            position: absolute;
-            right: 2px;
-            top: 2px;
-            width: 6px;
-            height: 4px;
-            border-radius: 3px;
-            background: #ffffff;
-        }
-
-        .back-button {
-            position: fixed;
-            top: 58px;
-            left: 18px;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            border: none;
-            background: rgba(0, 0, 0, 0.6);
-            color: #ffffff;
-            font-size: 18px;
-            cursor: pointer;
-            z-index: 9;
-        }
-
-        .hero {
-            margin-top: 44px;
-            padding: 28px 20px 80px;
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
-            color: #ffffff;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero h1 {
-            margin: 12px 0 10px;
-            font-size: 26px;
-            font-weight: 700;
-        }
-
-        .hero p {
-            margin: 0;
-            font-size: 14px;
-            max-width: 320px;
-            line-height: 1.5;
-        }
-
-        .tag {
-            display: inline-block;
-            padding: 4px 10px;
-            border-radius: 999px;
-            font-size: 11px;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            background: rgba(255, 255, 255, 0.25);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-        }
-
-        .hero-icon {
-            position: absolute;
-            right: 20px;
-            bottom: 12px;
-            width: 80px;
-            height: 80px;
-            opacity: 0.18;
-        }
-
-        .content {
-            background: var(--surface);
-            margin: -50px 18px 24px;
-            border-radius: 20px;
-            padding: 24px 20px 28px;
-            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
-        }
-
-        .meta {
-            font-size: 12px;
-            color: var(--muted);
-            margin-bottom: 16px;
-        }
-
-        .section {
-            margin-top: 18px;
-        }
-
-        .section h2 {
-            margin: 0 0 10px;
-            font-size: 18px;
-        }
-
-        .section p {
-            margin: 0 0 12px;
-            font-size: 14px;
-            line-height: 1.6;
-            color: #3d3d3d;
-        }
-
-        .section ul {
-            margin: 0;
-            padding-left: 18px;
-            font-size: 14px;
-            line-height: 1.6;
-            color: #3d3d3d;
-        }
-
-        .callout {
-            background: #f7f1ed;
-            border-left: 4px solid var(--accent);
-            padding: 12px 14px;
-            border-radius: 10px;
-            font-size: 13px;
-            color: #3d3d3d;
-        }
-
-        .source {
-            margin-top: 18px;
-            font-size: 12px;
-            color: var(--muted);
-        }
-
-        .source a {
-            color: var(--accent-dark);
-            text-decoration: none;
-        }
-
-        .footer {
-            text-align: center;
-            margin-bottom: 36px;
-        }
-
-        .footer a {
-            color: var(--accent-dark);
-            text-decoration: none;
-            font-weight: 600;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>요실금 예방 및 관리: 통제력 회복 - Happy Poop</title>
+    <link rel="stylesheet" href="../../article-theme-v2.css">
 </head>
 <body>
-    <div class="status-bar">
-        <span id="current-time">4:58</span>
-        <div class="status-icons" aria-hidden="true">
-            <span class="status-dot"></span>
-            <span class="status-dot"></span>
-            <span class="status-dot"></span>
-            <span class="status-pill"></span>
+    <header class="hero-section">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <div class="article-meta-top">
+                <span>Urinary Health</span>
+                <span>•</span>
+                <span>9분 읽기</span>
+            </div>
+            <h1 class="hero-title">요실금 예방 및 관리: 통제력 회복</h1>
+            
         </div>
-    </div>
-
-    <button class="back-button" onclick="history.back()" aria-label="Go back">&larr;</button>
-
-    <header class="hero">
-        <span class="tag">Preparedness</span>
-        <h1>물 저장 기본 사항</h1>
-        <p>Store safe water for drinking, cooking, and medications when services are disrupted.</p>
-        <svg class="hero-icon" viewBox="0 0 64 64" aria-hidden="true">
-            <rect x="12" y="22" width="40" height="30" rx="6" fill="none" stroke="#ffffff" stroke-width="3"></rect>
-            <rect x="22" y="14" width="20" height="10" rx="4" fill="none" stroke="#ffffff" stroke-width="3"></rect>
-            <path d="M20 36h24" stroke="#ffffff" stroke-width="3" stroke-linecap="round"></path>
-        </svg>
     </header>
-
-    <main class="content">
-        <div class="meta">4 min read - Updated Feb 3, 2026</div>
-        <section class="section">
-            <h2>How Much to Store</h2>
-            <p>Plan for at least one gallon per person per day and a minimum of three days.</p>
-        </section>
-
-        <section class="section">
-            <h2>Safe Containers</h2>
-            <p>Use clean, food-grade containers and keep them sealed and shaded.</p>
-        </section>
-
-        <section class="section">
-            <h2>Rotation Plan</h2>
-            <p>Replace stored water on a schedule so it stays fresh.</p>
-            <div class="callout">Tip: label containers with the fill date and set a quarterly reminder.</div>
-        </section>
-        <div class="source">
-            Source: <a href="https://www.ready.gov/water" target="_blank" rel="noopener">Ready.gov - Water</a>
+    <div class="summary-card">
+        <div class="summary-title">⚡ TL;DR</div>
+        <ul class="summary-list">
+            <li><strong>요실금은 일반적인 것이 아니라 일반적인 현상입니다</strong>. 이는 전 세계적으로 4억 명이 넘는 사람들에게 영향을 미치며 대부분의 경우 치료가 가능합니다.</li>
+            <li><strong>네 가지 주요 유형:</strong> 스트레스, 충동, 과잉, 기능성 - 각각 원인과 해결책이 다릅니다.</li>
+            <li><strong>골반저 운동</strong>은 1차 치료법이며 3개월 이내에 누출을 50~70%까지 줄일 수 있습니다.</li>
+            <li>체중 관리, 유동적인 타이밍, 식단 조정과 같은 <strong>생활 방식의 변화</strong>는 실질적인 변화를 가져옵니다.</li>
+            <li><strong>침묵으로 고통받지 마세요</strong> — 현대 치료법은 물리 치료부터 최소 침습 수술까지 다양하며 성공률이 높습니다.</li>
+        </ul>
+    </div>
+    <article class="content-container">
+        <div class="content-block">
+            <p class="intro-text">솔직히 말해서 요실금만큼 불필요한 수치심을 불러일으키는 건강 주제는 거의 없습니다. 거의 모든 유형에 대한 효과적인 치료법이 존재하는 경우 수백만 명의 사람들이 운동을 건너뛰고, 여행을 피하고, "만일의 경우"에 어두운 옷을 입는 등 누출을 중심으로 조용히 생활을 재정비합니다. 비뇨기과 의사로서 제가 모든 환자에게 전하는 첫 번째 메시지는 요실금은 의학적 상태이지 성격상의 결함이 아니며 거의 항상 개선 가능하다는 것입니다.</p>
+            <h2>📋 네 가지 유형의 이해</h2>
+<p>모든 요실금이 동일한 것은 아닙니다. 치료법이 크게 다르기 때문에 유형을 식별하는 것이 가장 먼저이자 가장 중요한 단계입니다.</p>
+<p><strong>복압성 요실금</strong>은 기침, 재채기, 웃기, 물건을 들어올리거나 뛰어오르는 등 방광에 가해지는 물리적 압력이 요도 괄약근을 압도할 때 발생합니다. 젊은 여성과 중년 여성에게 가장 흔한 유형으로, 종종 임신, 출산, 폐경 중 호르몬 변화와 관련이 있습니다. 남성의 경우 전립선 수술 후에 가장 흔히 발생합니다. 근본적인 문제는 골반저 근육과 결합 조직이 약하거나 손상된 것입니다.</p>
+<p><strong>절박성 요실금</strong>(누출이 있는 과민성 방광이라고도 함)은 화장실에 갈 때까지 지체할 수 없을 만큼 갑작스럽고 강렬한 배뇨 충동을 의미합니다. 방광 근육은 잘못된 시기에 무의식적으로 수축합니다. 원인으로는 신경학적 질환(뇌졸중, 파킨슨병, 다발성 경화증), 방광 자극 등이 있으며 때로는 식별할 수 있는 원인이 전혀 없는 경우도 있습니다.</p>
+<p><strong>범람 요실금</strong>은 방광이 완전히 비워지지 않아 지속적으로 방울이 흘러내릴 때 발생합니다. 남성의 일반적인 원인으로는 요도를 막는 전립선 비대증(BPH)이 있습니다. 여성의 경우 심각한 골반 장기 탈출이나 당뇨병으로 인한 신경 손상으로 인해 발생할 수 있습니다. 방광은 본질적으로 넘치게 채워져 넘칩니다.</p>
+<p><strong>기능성 요실금</strong>은 요로계가 잘 작동하지만 신체적 또는 인지적 장벽으로 인해 제때에 화장실에 갈 수 없음을 의미합니다. 예를 들어 심각한 관절염으로 인해 바지 단추를 풀기 어렵거나 치매로 인해 방향 감각 상실이 발생하는 경우가 있습니다. 솔루션은 방광이 아닌 장벽에 중점을 둡니다.</p>
+<div class="info-box">
+<div class="info-box-title">혼합성 요실금</div>
+<p>많은 사람, 특히 50세 이상의 여성은 스트레스와 절박 요실금을 동시에 경험합니다. 이를 혼합성 요실금이라고 합니다. 좋은 소식은 지배적인 유형을 치료하면 두 가지 모두 개선되는 경우가 많다는 것입니다. 의사는 어떤 구성 요소가 가장 문제를 일으키는지 식별하는 데 도움을 줄 수 있습니다.</p>
+</div>
+            <h2>💪 골반저 강화: 가장 강력한 도구</h2>
+<p>골반저근 훈련(일반적으로 케겔 운동이라고 함)은 복압 및 절박 요실금에 대한 가장 기본적인 치료법입니다. 여러 무작위 대조 시험에서는 일관된 케겔 운동을 통해 3~6개월 내에 누출 사례가 50~70% 감소하는 것으로 나타났습니다.</p>
+<p>핵심은 올바르게 수행하는 것입니다. 연구에 따르면 최대 30%의 사람들이 케겔 운동을 잘못 수행하는 것으로 나타났습니다. 즉, 들어올리는 대신 힘을 아래로 내리거나 잘못된 근육(골반저 대신 복부, 엉덩이 또는 허벅지)을 사용하는 것입니다.</p>
+<div class="checklist">
+<div class="checklist-item">
+<div class="check-icon">✓</div>
+<div><strong>근육 식별:</strong> 소변의 흐름이 중간에 멈춘다고 상상해 보세요. 이것이 바로 골반저 근육입니다. (배뇨 중에는 실제로 연습하지 마십시오.)</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">✓</div>
+<div><strong>천천히 시작:</strong> 3~5초 동안 수축하고 같은 시간 동안 이완합니다. 하루에 3세트, 10회 반복하세요.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">✓</div>
+<div><strong>점진적 진행:</strong> 몇 주에 걸쳐 최대 10초 동안 유지하세요. 긴급 상황 제어를 위해 빠른 '플릭' 수축(1초 켜짐, 1초 꺼짐)을 추가하세요.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">✓</div>
+<div><strong>"The Knack" 사용:</strong> 기침, 재채기 또는 물건을 들기 직전에 골반저 근육을 미리 수축시키세요. 이러한 능동적인 압박은 실시간으로 스트레스 누출을 방지할 수 있습니다.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">✓</div>
+<div><strong>전문적인 지도 고려:</strong> 골반저 물리치료사는 바이오피드백을 사용하여 귀하가 올바른 근육을 사용하고 있는지 확인하고 맞춤형 프로그램을 설계할 수 있습니다.</div>
+</div>
+</div>
+            <h2>📓 방광 일기: 진단의 초능력</h2>
+<p>치료 계획이 성공하려면 먼저 자신의 패턴을 이해해야 합니다. 3~7일 동안 보관되는 방광 일기에는 각 배뇨의 시간과 양, 수분 섭취량, 긴급 상황 및 누출 사건이 기록됩니다. 이 간단한 도구는 여러분이 전혀 알아차리지 못했던 패턴을 드러내는 경우가 많습니다. 커피를 두 잔 마신 후 누출이 가장 심하거나, 긴급함이 늦은 오후에 최고조에 달할 수도 있습니다.</p>
+<p>방광 일기를 약속 장소에 가져가세요. 이는 의사에게 대화만 하는 것보다 실행 가능한 데이터를 더 많이 제공하고 시간 경과에 따른 개선을 추적하는 데 도움이 됩니다. 무료 방광 일기 앱을 사용하거나 간단한 노트북도 괜찮습니다.</p>
+            <h2>⏰ 시간 제한 배뇨: 방광 훈련</h2>
+<p>시간 제한 배뇨(촉발 배뇨 또는 예정된 배변이라고도 함)는 충동에 의한 것이 아니라 시간에 맞춰 소변을 보는 것을 의미합니다. 많은 사람들에게 2시간마다 편안한 간격으로 시작하고 필요성을 느끼든 느끼지 않든 무효화하십시오. 이렇게 하면 방광이 과도하게 채워지는 것을 방지하고 긴급 상황을 줄일 수 있습니다.</p>
+<p>몇 주에 걸쳐 점차적으로 15~30분씩 간격을 늘려 편안한 3~4시간 간격에 도달하세요. 골반저 운동과 결합된 시기적 배뇨는 절박 요실금에 대한 가장 효과적인 행동 중재 중 하나이며, 임상 연구에서 성공률은 50~80%입니다.</p>
+            <h2>🥗 변화를 만드는 생활 방식 수정</h2>
+<p>증거에 기초한 몇 가지 생활 방식 변화로 요실금 발생률을 크게 줄일 수 있습니다.</p>
+<p><strong>체중 관리:</strong> 과도한 체중은 방광에 가해지는 복강 내 압력을 증가시킵니다. 연구에 따르면 체중을 5~10%만 감량해도 복압성 요실금 증상을 거의 50% 줄일 수 있는 것으로 나타났습니다. 이는 귀하가 할 수 있는 가장 영향력 있는 변화 중 하나입니다.</p>
+<p><strong>식이 유발 요인:</strong> 카페인, 알코올, 탄산음료, 인공 감미료, 매운 음식, 산성 음식(토마토, 감귤류)은 방광 내막을 자극하여 긴급 상황을 악화시킬 수 있습니다. 2주 동안 한 번에 하나의 카테고리를 제거하고 그 효과를 기록해 보세요.</p>
+<p><strong>수분 관리:</strong> 수분 섭취를 과도하게 제한하지 마십시오. 농축된 소변은 실제로 방광을 더 자극합니다. 대신, 하루 종일 꾸준하고 적당한 섭취를 목표로 하고 잠자리에 들기 2~3시간 전에 점차 줄여보세요.</p>
+<p><strong>변비 예방:</strong> 직장 전체가 방광을 압박하여 절박뇨와 정체가 모두 악화될 수 있습니다. 적절한 섬유질, 수분 공급 및 신체 활동이 활동을 계속하게 합니다.</p>
+<p><strong>금연:</strong> 흡연은 만성 기침과 결합 조직에 대한 독성 영향으로 인한 복압성 요실금의 위험을 두 배로 증가시킵니다.</p>
+<div class="warning-box">
+<div class="warning-title">⚠️ 위험 신호 — 즉시 의사의 진찰을 받으세요</div>
+<ul class="warning-list">
+<li>갑작스러운 요실금 발병(감염, 신경학적 사건 또는 약물 부작용을 나타낼 수 있음)</li>
+<li>혈뇨, 통증, 발열을 동반하는 요실금</li>
+<li>배뇨 시작이 어렵거나 소변 흐름이 매우 약함(폐쇄 가능성)</li>
+<li>'안장 부위'(허벅지 안쪽, 엉덩이)의 무감각 — 긴급 평가가 필요한 신경 압박을 나타낼 수 있음</li>
+<li>허리 부상, 수술 또는 신경학적 증상 후 새로운 요실금</li>
+</ul>
+</div>
+            <h2>💊 약물이나 수술을 고려해야 하는 경우</h2>
+<p>8~12주간의 지속적인 노력에도 불구하고 행동 접근 방식이 적절하게 개선되지 않으면 의료 및 수술 옵션이 도움이 될 수 있습니다.</p>
+<p><strong>절박성 요실금의 경우:</strong> 항콜린제(옥시부티닌, 톨테로딘, 솔리페나신) 또는 베타-3 작용제 미라베그론은 과민성 방광 수축을 진정시킬 수 있습니다. 방광벽에 보톡스를 주사하는 것은 난치성 질환에 매우 효과적입니다. 천골 신경 자극(작은 이식 장치)은 다른 치료에 반응하지 않는 환자에게 효과적입니다.</p>
+<p><strong>복압성 요실금의 경우:</strong> 중요도 슬링은 가장 일반적인 수술 방법으로, 장기적인 성공률은 80~90%입니다. 요도 주위에 주입되는 벌킹제는 덜 침습적인 옵션을 제공합니다. 전립선 수술 후 남성의 경우 인공 요도 괄약근이 여전히 표준으로 남아 있습니다.</p>
+            <h2>💬 낙인을 깨기</h2>
+<p>아마도 치료에 있어 가장 큰 장벽은 의학적 문제가 아니라 정서적 문제일 것입니다. 연구에 따르면 사람들은 의료 서비스 제공자에게 요실금에 대해 언급하기까지 평균 6~8년을 기다립니다. 그 기간 동안 그들은 사회 활동을 중단하고 운동을 덜 하며 우울증과 불안을 경험하는 비율이 더 높습니다.</p>
+<p>현실은 다음과 같습니다. 담당 의사는 이전에 모든 내용을 들어본 적이 있습니다. 요실금은 비뇨기과 및 산부인과에서 가장 흔한 질환 중 하나입니다. 판단은 없습니다. 단지 돕고 싶은 마음만 있을 뿐입니다. 당신은 자유롭게 웃고, 자신감 있게 운동하고, 밤새 잠을 잘 수 있는 자격이 있습니다. 치료는 대화로 시작됩니다.</p>
         </div>
-    </main>
-
-    <footer class="footer">
-        <a href="../../still-alive-mobile.html">팁으로 돌아가기</a>
-    </footer>
-
+    </article>
+    <nav class="floating-nav">
+        <a href="../../happy-poop-mobile.html" class="back-btn">← 뒤로</a>
+        <a href="#" class="share-btn" onclick="navigator.share({title: '요실금 예방 및 관리: 통제력 회복', url: window.location.href}); return false;">📤</a>
+    </nav>
     <script>
-        const timeElement = document.getElementById("current-time");
-        const updateTime = () => {
-            const now = new Date();
-            const hours = now.getHours();
-            const minutes = String(now.getMinutes()).padStart(2, "0");
-            timeElement.textContent = `${hours}:${minutes}`;
-        };
-        updateTime();
-        setInterval(updateTime, 60000);
+        document.querySelectorAll('.checklist-item').forEach(item => {
+            item.addEventListener('click', () => {
+                item.style.backgroundColor = '#F3F4F6';
+                setTimeout(() => item.style.backgroundColor = 'transparent', 200);
+            });
+        });
     </script>
 </body>
 </html>

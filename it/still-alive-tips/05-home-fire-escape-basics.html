@@ -1,273 +1,159 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="it" data-theme="bowel">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Fire Escape Basics - Still Alive?</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --accent: #ef6a5b;
-            --accent-light: #f6b0a8;
-            --accent-dark: #b3473f;
-            --surface: #ffffff;
-            --text: #1f1f1f;
-            --muted: #6e6e6e;
-            --bg: #f6f4f1;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-        }
-
-        .status-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 44px;
-            background: rgba(0, 0, 0, 0.78);
-            color: #ffffff;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 18px;
-            font-size: 14px;
-            z-index: 10;
-        }
-
-        .status-icons {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .status-dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: #ffffff;
-            opacity: 0.8;
-        }
-
-        .status-pill {
-            width: 22px;
-            height: 10px;
-            border-radius: 6px;
-            border: 1px solid #ffffff;
-            position: relative;
-            opacity: 0.8;
-        }
-
-        .status-pill::after {
-            content: "";
-            position: absolute;
-            right: 2px;
-            top: 2px;
-            width: 6px;
-            height: 4px;
-            border-radius: 3px;
-            background: #ffffff;
-        }
-
-        .back-button {
-            position: fixed;
-            top: 58px;
-            left: 18px;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            border: none;
-            background: rgba(0, 0, 0, 0.6);
-            color: #ffffff;
-            font-size: 18px;
-            cursor: pointer;
-            z-index: 9;
-        }
-
-        .hero {
-            margin-top: 44px;
-            padding: 28px 20px 80px;
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
-            color: #ffffff;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero h1 {
-            margin: 12px 0 10px;
-            font-size: 26px;
-            font-weight: 700;
-        }
-
-        .hero p {
-            margin: 0;
-            font-size: 14px;
-            max-width: 320px;
-            line-height: 1.5;
-        }
-
-        .tag {
-            display: inline-block;
-            padding: 4px 10px;
-            border-radius: 999px;
-            font-size: 11px;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            background: rgba(255, 255, 255, 0.25);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-        }
-
-        .hero-icon {
-            position: absolute;
-            right: 20px;
-            bottom: 12px;
-            width: 80px;
-            height: 80px;
-            opacity: 0.18;
-        }
-
-        .content {
-            background: var(--surface);
-            margin: -50px 18px 24px;
-            border-radius: 20px;
-            padding: 24px 20px 28px;
-            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
-        }
-
-        .meta {
-            font-size: 12px;
-            color: var(--muted);
-            margin-bottom: 16px;
-        }
-
-        .section {
-            margin-top: 18px;
-        }
-
-        .section h2 {
-            margin: 0 0 10px;
-            font-size: 18px;
-        }
-
-        .section p {
-            margin: 0 0 12px;
-            font-size: 14px;
-            line-height: 1.6;
-            color: #3d3d3d;
-        }
-
-        .section ul {
-            margin: 0;
-            padding-left: 18px;
-            font-size: 14px;
-            line-height: 1.6;
-            color: #3d3d3d;
-        }
-
-        .callout {
-            background: #fff0ef;
-            border-left: 4px solid var(--accent);
-            padding: 12px 14px;
-            border-radius: 10px;
-            font-size: 13px;
-            color: #3d3d3d;
-        }
-
-        .source {
-            margin-top: 18px;
-            font-size: 12px;
-            color: var(--muted);
-        }
-
-        .source a {
-            color: var(--accent-dark);
-            text-decoration: none;
-        }
-
-        .footer {
-            text-align: center;
-            margin-bottom: 36px;
-        }
-
-        .footer a {
-            color: var(--accent-dark);
-            text-decoration: none;
-            font-weight: 600;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Gestire la stitichezza: soluzioni basate sull'evidenza che funzionano davvero - Happy Poop</title>
+    <link rel="stylesheet" href="../../article-theme-v2.css">
 </head>
 <body>
-    <div class="status-bar">
-        <span id="current-time">4:56</span>
-        <div class="status-icons" aria-hidden="true">
-            <span class="status-dot"></span>
-            <span class="status-dot"></span>
-            <span class="status-dot"></span>
-            <span class="status-pill"></span>
+    <header class="hero-section">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <div class="article-meta-top">
+                <span>Salute Intestinale</span>
+                <span>•</span>
+                <span>9 min di lettura</span>
+            </div>
+            <h1 class="hero-title">Gestire la stitichezza: soluzioni basate sull'evidenza che funzionano davvero</h1>
+            
         </div>
-    </div>
-
-    <button class="back-button" onclick="history.back()" aria-label="Go back">←</button>
-
-    <header class="hero">
-        <span class="tag">Home Safety</span>
-        <h1>Basi per la fuga in caso di incendio</h1>
-        <p>Plan two exits, keep alarms working, and practice so everyone knows what to do.</p>
-        <svg class="hero-icon" viewBox="0 0 64 64" aria-hidden="true">
-            <path d="M32 10c6 8 12 12 12 22a12 12 0 0 1-24 0c0-6 3-10 6-14 3-4 5-6 6-8z" fill="none" stroke="#ffffff" stroke-width="3" stroke-linejoin="round"></path>
-        </svg>
     </header>
-
-    <main class="content">
-        <div class="meta">6 min read • Updated Feb 3, 2026</div>
-
-        <section class="section">
-            <h2>Plan Two Ways Out</h2>
-            <p>Identify two exits from every room if possible. Keep keys and window tools accessible.</p>
-            <ul>
-                <li>Choose a meeting spot outside the home.</li>
-                <li>Share the plan with everyone in the household.</li>
-            </ul>
-        </section>
-
-        <section class="section">
-            <h2>Smoke Alarms Matter</h2>
-            <p>Test alarms monthly and replace batteries at least once a year.</p>
-            <div class="callout">Tip: set a seasonal reminder in Still Alive to check alarms.</div>
-        </section>
-
-        <section class="section">
-            <h2>Practice the Drill</h2>
-            <p>Run a quick drill twice a year so everyone can move quickly and calmly.</p>
-        </section>
-
-        <div class="source">
-            Source: <a href="https://www.redcross.org/get-help/how-to-prepare-for-emergencies/types-of-emergencies/fire.html" target="_blank" rel="noopener">American Red Cross - Home Fire Safety</a>
+    <div class="summary-card">
+        <div class="summary-title">⚡ TL;DR</div>
+        <ul class="summary-list">
+            <li><strong>Definizione:</strong> meno di 3 movimenti intestinali a settimana E/O tensione, feci dure o evacuazione incompleta.</li>
+            <li><strong>Passaggio 1:</strong> aumenta la fibra (25-30 g/giorno), l'acqua (2+ litri) e l'attività fisica.</li>
+            <li><strong>Passaggio 2:</strong> se i cambiamenti nello stile di vita non sono sufficienti, i lassativi osmotici (PEG 3350) sono sicuri ed efficaci per l'uso quotidiano.</li>
+            <li><strong>Un punto di svolta:</strong> sollevare le ginocchia con un poggiapiedi può ridurre lo sforzo fino al 50%.</li>
+        </ul>
+    </div>
+    <article class="content-container">
+        <div class="content-block">
+            <p class="intro-text">La stitichezza è probabilmente il disturbo digestivo più comune nel mondo sviluppato. Colpisce circa il 16% di tutti gli adulti a livello globale, salendo al 33% tra gli over 60. Eppure, nonostante la sua prevalenza, è cronicamente sottotrattato, in parte perché le persone sono imbarazzate a menzionarlo, e in parte perché ci sono così tanti consigli contrastanti in giro. Succo di prugna, clisteri di caffè, tisane, purificazioni disintossicanti... il rumore è assordante. Andiamo oltre con ciò che dice realmente la scienza.</p>
+            <h2>📋 Cos'è (e non è) realmente la stitichezza</h2>
+<p>Dal punto di vista medico, utilizziamo i <strong>criteri di Roma IV</strong> per definire la stitichezza funzionale. Devi avere almeno due dei seguenti sintomi negli ultimi tre mesi, con esordio almeno sei mesi fa:</p>
+<div class="checklist">
+<div class="checklist-item">
+<div class="check-icon">•</div>
+<div>Sforzo durante più del 25% dei movimenti intestinali</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">•</div>
+<div>Feci grumose o dure (Bristol Tipo 1–2) in più del 25% dei movimenti</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">•</div>
+<div>Sensazione di evacuazione incompleta più del 25% delle volte</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">•</div>
+<div>Sensazione di ostruzione o blocco anorettale</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">•</div>
+<div>Manovre manuali per facilitare la defecazione</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">•</div>
+<div>Meno di 3 movimenti intestinali spontanei a settimana</div>
+</div>
+</div>
+<p>Nota che la frequenza da sola non definisce la stitichezza. Se vai a giorni alterni ma le tue feci sono morbide, facili da espellere e ti senti completo, non è stitichezza. Al contrario, se lo fai ogni giorno ma ti sforzi dolorosamente con pellet duri, si tratta di stitichezza.</p>
+            <h2>🔍 Cause comuni: ricerca della radice del problema</h2>
+<p>Un trattamento efficace inizia con l'identificazione della causa. Ecco le categorie principali:</p>
+<div class="info-box">
+<div class="info-box-title">📊 Le quattro grandi cause</div>
+<p>
+<strong>1. Fattori dietetici:</strong> il basso apporto di fibre è la causa più comune in tutto il mondo. L’adulto occidentale medio consuma solo 12-15 g di fibre al giorno, circa la metà della quantità raccomandata. Un'assunzione inadeguata di acqua aggrava il problema, poiché le fibre hanno bisogno di acqua per ammassare le feci in modo efficace.<br/><br/>
+<strong>2. Stile di vita sedentario:</strong> l'inattività fisica rallenta il transito del colon. Il colon risponde al movimento: le contrazioni dei muscoli scheletrici stimolano la peristalsi attraverso percorsi meccanici e neurali.<br/><br/>
+<strong>3. Farmaci:</strong> gli oppioidi sono i più noti (la stitichezza indotta da oppioidi colpisce il 40-80% dei pazienti). Altri delinquenti comuni includono bloccanti dei canali del calcio, integratori di ferro, anticolinergici, antidepressivi (triciclici e SSRI) e antiacidi contenenti alluminio.<br/><br/>
+<strong>4. Disfunzione del pavimento pelvico (defecazione dissinergica):</strong> Fino al 40% dei pazienti con stitichezza cronica, il problema non è il transito lento, ma la contrazione paradossale dei muscoli del pavimento pelvico durante il tentativo di defecazione. Invece di rilassarsi per consentire il passaggio delle feci, i muscoli si contraggono. Questo spesso non viene rilevato e richiede test specialistici (manometria anorettale) per la diagnosi.
+                </p>
+</div>
+            <h2>🌾 Fibra: il tuo strumento più potente (usato correttamente)</h2>
+<p>Non tutte le fibre sono uguali. Comprendere la differenza tra fibra solubile e insolubile ti aiuterà a scegliere l'approccio giusto.</p>
+<p><strong>Fibra solubile</strong> (psillio, avena, fagioli, mele, semi di lino) si dissolve in acqua per formare una sostanza gelatinosa. Ammorbidisce le feci, aumenta la massa ed è più delicato sul tratto gastrointestinale. La buccia di psillio è l'integratore più studiato ed è raccomandato come terapia di prima linea da tutte le principali linee guida di gastroenterologia.</p>
+<p><strong>Le fibre insolubili</strong> (crusca di frumento, cereali integrali, bucce di verdure, noci) non si dissolvono: aggiungono volume e accelerano il transito attraverso il colon. Tuttavia, nei pazienti affetti da stitichezza a transito lento, grandi quantità di fibre insolubili possono peggiorare il gonfiore e il disagio senza migliorare i sintomi.</p>
+<div class="info-box">
+<div class="info-box-title">💡 La regola empirica della fibra</div>
+<p><strong>Inizia con poco, procedi lentamente.</strong> Aumenta le fibre di 5 grammi a settimana fino al tuo obiettivo di 25-30 g al giorno. Aumenti rapidi causano gonfiore, crampi e gas mentre il microbioma intestinale si adatta. Abbina sempre la fibra a una maggiore assunzione di acqua: almeno un bicchiere d'acqua in più per ogni 5 g di fibra in più. Se avverti un gonfiore significativo, preferisci la fibra solubile (psillio) a quella insolubile (crusca).</p>
+</div>
+            <h2>💊 Lassativi: una guida pratica</h2>
+<p>Quando le misure relative allo stile di vita da sole non bastano, il passo successivo sono i lassativi. Ecco la gerarchia che seguo nella pratica:</p>
+<div class="checklist">
+<div class="checklist-item">
+<div class="check-icon">1</div>
+<div><strong>Lassativi osmotici (di prima linea):</strong> il glicole polietilenico (PEG 3350/Miralax) attira l'acqua nel colon, ammorbidendo le feci. Non crea dipendenza, ha effetti collaterali minimi ed è sicuro per l'uso quotidiano a lungo termine. Il lattulosio è un’alternativa ma provoca più gonfiore. I prodotti a base di magnesio (latte di magnesia, citrato di magnesio) sono efficaci ma dovrebbero essere evitati nei pazienti con malattie renali.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">2</div>
+<div><strong>Lassativi stimolanti (seconda linea):</strong> Bisacodyl (Dulcolax) e senna stimolano direttamente le contrazioni del colon. Funzionano entro 6-12 ore e sono adatti per l'uso intermittente o di soccorso. Nonostante i miti persistenti, NON causano dipendenza o “intestino pigro” se usati alle dosi raccomandate. Tuttavia, non sono ideali per l'uso quotidiano a lungo termine.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">3</div>
+<div><strong>Ammorbidenti per le feci:</strong> il docusato di sodio (Colace) è ampiamente prescritto, ma le prove della sua efficacia sono sorprendentemente deboli. Uno studio del 2005 ha scoperto che non era migliore del placebo. Se hai bisogno di ammorbidimento, gli agenti osmotici sono più efficaci.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">4</div>
+<div><strong>Opzioni di prescrizione:</strong> per i casi refrattari, il linaclotide (Linzess), la plecanatide (Trulance) e la prucalopride (Motegrity) offrono meccanismi mirati. Questi dovrebbero essere discussi con il tuo gastroenterologo se le opzioni da banco falliscono dopo 8-12 settimane.</div>
+</div>
+</div>
+            <h2>🪑 Postura in bagno: il vantaggio dello squat</h2>
+<p>Ecco un semplice cambiamento che può fare una differenza sostanziale: <strong>solleva i piedi mentre sei seduto sul water.</strong></p>
+<p>Quando ti siedi su un WC standard con i piedi appoggiati sul pavimento, l'angolo anorettale è di circa 90 gradi. Il muscolo puborettale, che avvolge il retto come una fionda, mantiene una piega che aiuta con la continenza ma rende più difficile l'evacuazione.</p>
+<p>Quando sollevi le ginocchia sopra i fianchi (utilizzando un poggiapiedi, libri impilati o un prodotto commerciale come Squatty Potty), l'angolo anorettale si apre a circa 120-130 gradi. Questo rilassa il muscolo puborettale, raddrizza il canale rettale e consente il passaggio delle feci con uno sforzo notevolmente inferiore.</p>
+<p>Uno studio del 2019 pubblicato sul <em>Journal of Clinical Gastroenterology</em> ha rilevato che l'uso di un poggiapiedi per WC ha ridotto lo sforzo del 50%, ha ridotto il tempo trascorso in bagno del 30% e ha migliorato la sensazione di evacuazione completa. È gratuito, sicuro e ha effetto immediato.</p>
+            <h2>🧠 Terapia con biofeedback: quando i muscoli sono il problema</h2>
+<p>Se soffri di defecazione dissinergica, ovvero in cui i muscoli del pavimento pelvico si contraggono invece di rilassarsi durante i tentativi di movimento intestinale, nessuna quantità di fibre o lassativi risolverà completamente il problema. È qui che entra in gioco la <strong>terapia con biofeedback</strong>.</p>
+<p>Il biofeedback utilizza sensori posizionati all'interno o in prossimità del retto per fornire feedback visivo o uditivo in tempo reale sull'attività dei muscoli del pavimento pelvico. In 4-6 sedute, un terapista specializzato insegna a coordinare consapevolmente il rilassamento del pavimento pelvico con la spinta addominale. Le percentuali di successo variano dal 70 all'80% e i risultati sono duraturi: la maggior parte dei pazienti mantiene il miglioramento anni dopo.</p>
+<div class="warning-box">
+<div class="warning-title">🚨 Segnali d'allarme: quando la stitichezza necessita di una valutazione urgente</div>
+<ul class="warning-list">
+<li><strong>Stipsi di nuova insorgenza dopo i 50 anni</strong>: giustifica lo screening del cancro del colon-retto.</li>
+<li><strong>Sangue nelle feci o sulla carta igienica</strong>: non dare per scontato che si tratti di emorroidi senza valutazione.</li>
+<li><strong>Perdita di peso involontaria</strong> accompagnata da stitichezza.</li>
+<li><strong>Grave dolore o distensione addominale</strong>: potrebbe indicare un'ostruzione.</li>
+<li><strong>Storia familiare di cancro del colon-retto o malattia infiammatoria intestinale.</strong></li>
+<li><strong>Nessun movimento intestinale per più di 7 giorni</strong>: prendere in considerazione l'occlusione, soprattutto nei pazienti anziani o che fanno uso di oppioidi.</li>
+</ul>
+</div>
+            <h2>📝 Il tuo piano d'azione anti-stitichezza</h2>
+<div class="checklist">
+<div class="checklist-item">
+<div class="check-icon"> ✓</div>
+<div><strong>Settimana 1:</strong> aggiungi un integratore di fibre (inizia con 1 cucchiaino di psillio al giorno) e bevi 2 bicchieri d'acqua in più. Inizia una passeggiata quotidiana di 20 minuti.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon"> ✓</div>
+<div><strong>Settimana 2:</strong> aumenta la fibra a 2 cucchiaini al giorno. Inizia a usare un poggiapiedi per WC. Stabilisci un orario mattutino costante per andare in bagno (sedersi per 5 minuti dopo la colazione).</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon"> ✓</div>
+<div><strong>Settimana 3–4:</strong> continua ad aumentare le fibre fino al raggiungimento dell'obiettivo (25–30 g/giorno dal cibo + integratori). Se hai ancora difficoltà, aggiungi PEG 3350 (un tappo al giorno).</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon"> ✓</div>
+<div><strong>Settimana 8+:</strong> Se i sintomi persistono nonostante quanto sopra, consultare un gastroenterologo. Potresti trarre beneficio dal test della manometria anorettale o dalla prescrizione di farmaci.</div>
+</div>
+</div>
+<div class="info-box">
+<div class="info-box-title">💡 Un ultimo pensiero</div>
+<p>La stitichezza non è un difetto di carattere, un segno di pigrizia o qualcosa che dovresti semplicemente "risolvere". È una condizione medica con meccanismi ben compresi e trattamenti efficaci. Se i cambiamenti nello stile di vita non sono sufficienti, non arrenderti: intensifica. Il tuo gastroenterologo dispone di un vasto kit di strumenti e insieme potrai trovare ciò che funziona per il tuo corpo.</p>
+</div>
         </div>
-    </main>
-
-    <footer class="footer">
-        <a href="../../still-alive-mobile.html">Torna ai consigli</a>
-    </footer>
-
+    </article>
+    <nav class="floating-nav">
+        <a href="../../happy-poop-mobile.html" class="back-btn">← Indietro</a>
+        <a href="#" class="share-btn" onclick="navigator.share({title: 'Gestire la stitichezza: soluzioni basate sull\'evidenza che funzionano davvero', url: window.location.href}); return false;">📤</a>
+    </nav>
     <script>
-        const timeElement = document.getElementById("current-time");
-        const updateTime = () => {
-            const now = new Date();
-            const hours = now.getHours();
-            const minutes = String(now.getMinutes()).padStart(2, "0");
-            timeElement.textContent = `${hours}:${minutes}`;
-        };
-        updateTime();
-        setInterval(updateTime, 60000);
+        document.querySelectorAll('.checklist-item').forEach(item => {
+            item.addEventListener('click', () => {
+                item.style.backgroundColor = '#F3F4F6';
+                setTimeout(() => item.style.backgroundColor = 'transparent', 200);
+            });
+        });
     </script>
 </body>
 </html>

@@ -1,278 +1,161 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-theme="bowel">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Emergency Kit Essentials - Still Alive?</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --accent: #ff7a5a;
-            --accent-light: #ffb199;
-            --accent-dark: #c4553b;
-            --surface: #ffffff;
-            --text: #1f1f1f;
-            --muted: #6e6e6e;
-            --bg: #f6f4f1;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-        }
-
-        .status-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 44px;
-            background: rgba(0, 0, 0, 0.78);
-            color: #ffffff;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 18px;
-            font-size: 14px;
-            z-index: 10;
-        }
-
-        .status-icons {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .status-dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: #ffffff;
-            opacity: 0.8;
-        }
-
-        .status-pill {
-            width: 22px;
-            height: 10px;
-            border-radius: 6px;
-            border: 1px solid #ffffff;
-            position: relative;
-            opacity: 0.8;
-        }
-
-        .status-pill::after {
-            content: "";
-            position: absolute;
-            right: 2px;
-            top: 2px;
-            width: 6px;
-            height: 4px;
-            border-radius: 3px;
-            background: #ffffff;
-        }
-
-        .back-button {
-            position: fixed;
-            top: 58px;
-            left: 18px;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            border: none;
-            background: rgba(0, 0, 0, 0.6);
-            color: #ffffff;
-            font-size: 18px;
-            cursor: pointer;
-            z-index: 9;
-        }
-
-        .hero {
-            margin-top: 44px;
-            padding: 28px 20px 80px;
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
-            color: #ffffff;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero h1 {
-            margin: 12px 0 10px;
-            font-size: 26px;
-            font-weight: 700;
-        }
-
-        .hero p {
-            margin: 0;
-            font-size: 14px;
-            max-width: 320px;
-            line-height: 1.5;
-        }
-
-        .tag {
-            display: inline-block;
-            padding: 4px 10px;
-            border-radius: 999px;
-            font-size: 11px;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            background: rgba(255, 255, 255, 0.25);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-        }
-
-        .hero-icon {
-            position: absolute;
-            right: 20px;
-            bottom: 12px;
-            width: 80px;
-            height: 80px;
-            opacity: 0.18;
-        }
-
-        .content {
-            background: var(--surface);
-            margin: -50px 18px 24px;
-            border-radius: 20px;
-            padding: 24px 20px 28px;
-            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
-        }
-
-        .meta {
-            font-size: 12px;
-            color: var(--muted);
-            margin-bottom: 16px;
-        }
-
-        .section {
-            margin-top: 18px;
-        }
-
-        .section h2 {
-            margin: 0 0 10px;
-            font-size: 18px;
-        }
-
-        .section p {
-            margin: 0 0 12px;
-            font-size: 14px;
-            line-height: 1.6;
-            color: #3d3d3d;
-        }
-
-        .section ul {
-            margin: 0;
-            padding-left: 18px;
-            font-size: 14px;
-            line-height: 1.6;
-            color: #3d3d3d;
-        }
-
-        .callout {
-            background: #f7f1ed;
-            border-left: 4px solid var(--accent);
-            padding: 12px 14px;
-            border-radius: 10px;
-            font-size: 13px;
-            color: #3d3d3d;
-        }
-
-        .source {
-            margin-top: 18px;
-            font-size: 12px;
-            color: var(--muted);
-        }
-
-        .source a {
-            color: var(--accent-dark);
-            text-decoration: none;
-        }
-
-        .footer {
-            text-align: center;
-            margin-bottom: 36px;
-        }
-
-        .footer a {
-            color: var(--accent-dark);
-            text-decoration: none;
-            font-weight: 600;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Comprendre la couleur et la forme des selles : votre baromètre de la santé intestinale - Happy Poop</title>
+    <link rel="stylesheet" href="../../article-theme-v2.css">
 </head>
 <body>
-    <div class="status-bar">
-        <span id="current-time">4:54</span>
-        <div class="status-icons" aria-hidden="true">
-            <span class="status-dot"></span>
-            <span class="status-dot"></span>
-            <span class="status-dot"></span>
-            <span class="status-pill"></span>
+    <header class="hero-section">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <div class="article-meta-top">
+                <span>Santé Intestinale</span>
+                <span>•</span>
+                <span>8 min de lecture</span>
+            </div>
+            <h1 class="hero-title">Comprendre la couleur et la forme des selles : votre baromètre de la santé intestinale</h1>
+            
         </div>
-    </div>
-
-    <button class="back-button" onclick="history.back()" aria-label="Go back">←</button>
-
-    <header class="hero">
-        <span class="tag">Preparedness</span>
-        <h1>Lessentiel du kit durgence</h1>
-        <p>Build a 72-hour kit that keeps you safe, calm, and connected if normal routines are disrupted.</p>
-        <svg class="hero-icon" viewBox="0 0 64 64" aria-hidden="true">
-            <rect x="12" y="22" width="40" height="30" rx="6" fill="none" stroke="#ffffff" stroke-width="3"></rect>
-            <rect x="22" y="14" width="20" height="10" rx="4" fill="none" stroke="#ffffff" stroke-width="3"></rect>
-            <path d="M20 36h24" stroke="#ffffff" stroke-width="3" stroke-linecap="round"></path>
-        </svg>
     </header>
-
-    <main class="content">
-        <div class="meta">6 min read • Updated Feb 3, 2026</div>
-
-        <section class="section">
-            <h2>Core Supplies</h2>
-            <p>Your kit should cover the basics for at least three days. Focus on items that keep you hydrated, nourished, and able to communicate.</p>
-            <ul>
-                <li>Water: about 1 gallon per person per day.</li>
-                <li>Non-perishable food plus a manual can opener.</li>
-                <li>Flashlight, batteries, and a phone power bank.</li>
-                <li>First-aid kit and essential medications.</li>
-                <li>Copies of IDs, insurance cards, and key contacts.</li>
-            </ul>
-        </section>
-
-        <section class="section">
-            <h2>Personalize for Your Routine</h2>
-            <p>Add items that match your daily needs: medical devices, pet supplies, mobility aids, or comfort items that help reduce stress.</p>
-        </section>
-
-        <section class="section">
-            <h2>Store and Rotate</h2>
-            <p>Keep the kit in a reachable spot and refresh food, water, and batteries every 6-12 months.</p>
-            <div class="callout">Tip: put a reminder in Still Alive to review your kit every season.</div>
-        </section>
-
-        <div class="source">
-            Source: <a href="https://www.ready.gov/kit" target="_blank" rel="noopener">Ready.gov - Build a Kit</a>
+    <div class="summary-card">
+        <div class="summary-title">⚡ TL;DR</div>
+        <ul class="summary-list">
+            <li><strong>Base de référence saine :</strong> Les selles lisses, brun moyen, en forme de saucisse (Bristol Type 3–4) constituent la référence.</li>
+            <li><strong>La couleur compte</strong> : les selles noires goudronneuses, rouge vif ou de couleur argile pâle nécessitent des soins médicaux rapides.</li>
+            <li><strong>Vert et jaune</strong> est généralement diététique : légumes-feuilles, colorants alimentaires ou transit rapide.</li>
+            <li><strong>Solution rapide</strong> : augmentez votre consommation de fibres et d'eau pour atteindre une forme idéale en quelques jours.</li>
+        </ul>
+    </div>
+    <article class="content-container">
+        <div class="content-block">
+            <p class="intro-text">Voici quelque chose que je dis à chaque patient lors de sa première visite : le rapport de santé le plus informatif que vous recevrez jamais se trouve dans la cuvette de vos toilettes chaque jour, gratuitement. Vos selles sont un messager remarquablement honnête. Sa couleur, sa forme, sa consistance et même sa flottabilité reflètent ce que vous avez mangé, la façon dont vous l'avez digéré, votre degré d'hydratation et si quelque chose de plus profond mérite votre attention. La plupart des gens tirent la chasse sans un regard. Au moment où vous aurez terminé cet article, vous saurez exactement quoi rechercher et quand appeler votre médecin.</p>
+            <h2>🎨 Couleur des selles : ce que chaque nuance signifie réellement</h2>
+<p>Les selles normales vont du <strong>bronzage clair au brun chocolat noir</strong>. Cette couleur brune provient de la stercobiline, un pigment créé lorsque les bactéries intestinales décomposent la bilirubine – un déchet des vieux globules rouges traités par votre foie. Lorsque la couleur s'écarte considérablement, cela vaut la peine d'enquêter.</p>
+<div class="checklist">
+<div class="checklist-item">
+<div class="check-icon" style="background:#5C4033; color:white;">●</div>
+<div>
+<strong>Marron (clair à foncé)</strong>
+<p>Normal. La bile a été correctement décomposée. Les variations de teintes au jour le jour sont parfaitement acceptables et reflètent généralement des différences alimentaires.</p>
+</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon" style="background:#228B22; color:white;">●</div>
+<div>
+<strong>Vert</strong>
+<p>Généralement inoffensif. Les causes courantes incluent les épinards, le chou frisé, le colorant alimentaire vert, les suppléments de fer ou le transit intestinal rapide (la bile n'a pas eu le temps de se décomposer complètement). Parfois observé avec l'utilisation d'antibiotiques.</p>
+</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon" style="background:#DAA520; color:white;">●</div>
+<div>
+<strong>Jaune ou gras</strong>
+<p>Peut indiquer un excès de graisse dans les selles (stéatorrhée). S'il est jaune pâle, nauséabond et flotte, envisagez la maladie cœliaque, la pancréatite chronique ou la malabsorption des acides biliaires. Des selles jaunes occasionnelles après un repas riche en graisses ne sont pas alarmantes.</p>
+</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon" style="background:#FF8C00; color:white;">●</div>
+<div>
+<strong>Orange</strong>
+<p>Généralement diététique : carottes, patates douces, aliments contenant du bêta-carotène ou des colorants artificiels. Indique rarement un problème biliaire. Généralement, il n'y a pas de quoi s'inquiéter.</p>
+</div>
+</div>
+</div>
+<div class="warning-box">
+<div class="warning-title">🚨 Trois couleurs qui nécessitent des soins médicaux</div>
+<ul class="warning-list">
+<li><strong>Noir ou goudronneux (méléna)</strong> : suggère un saignement dans le tractus gastro-intestinal supérieur – estomac ou œsophage. Le sang devient noir au fur et à mesure qu’il est digéré. Exception : les suppléments de fer, le sous-salicylate de bismuth (Pepto-Bismol) et la réglisse noire peuvent tous provoquer un assombrissement inoffensif.</li>
+<li><strong>Rouge vif ou sanglant (hématochezie)</strong> : indique un saignement dans le tractus gastro-intestinal inférieur : hémorroïdes, fissures anales, maladie diverticulaire ou polypes. Même de petites quantités de sang rouge doivent être évaluées, surtout après 45 ans.</li>
+<li><strong>Pâle, de couleur argileuse ou blanche :</strong> Indique un manque de bile atteignant les intestins. Cela peut signaler une obstruction des voies biliaires (calculs biliaires, tumeurs), une maladie du foie ou une pathologie de la tête pancréatique. Demandez rapidement une évaluation médicale.</li>
+</ul>
+</div>
+            <h2>📏 L'échelle des selles de Bristol : votre bulletin basé sur la forme</h2>
+<p>Développée à l'Université de Bristol en 1997, l'<strong>échelle de forme des selles Bristol</strong> classe les selles en sept types en fonction de leur forme et de leur consistance. Cela est directement corrélé au temps de transit dans le côlon, c'est-à-dire la durée pendant laquelle les déchets passent dans votre gros intestin.</p>
+<div class="info-box">
+<div class="info-box-title">📊 Les sept types expliqués</div>
+<p>
+<strong>Type 1 — Morceaux durs séparés (comme des noix) :</strong> Constipation sévère. Les selles sont restées trop longtemps dans le côlon et presque toute l’eau a été absorbée. Souvent douloureux à passer.<br/><br/>
+<strong>Type 2 – En forme de saucisse mais grumeleux :</strong> Légère constipation. Mieux que le type 1 mais indique toujours un transit lent. Plus de fibres et d'eau nécessaires.<br/><br/>
+<strong>Type 3 — Saucisse avec fissures superficielles :</strong> Normal. Ce sont des selles saines avec une bonne hydratation et suffisamment de fibres.<br/><br/>
+<strong>Type 4 — Saucisse ou serpent lisse et moelleux :</strong> Idéal. Il s'agit de la référence : facile à réussir, bien formé et indique une fonction digestive optimale.<br/><br/>
+<strong>Type 5 — Blobs mous avec des bords nets :</strong> Légèrement lâches. Peut indiquer une légère intolérance alimentaire ou un transit légèrement rapide. Pas nécessairement problématique si occasionnel.<br/><br/>
+<strong>Type 6 – Morceaux moelleux et pâteux avec des bords irréguliers :</strong> à la limite de la diarrhée. Peut signaler une inflammation, une infection ou une intolérance alimentaire.<br/><br/>
+<strong>Type 7 — Entièrement liquide, sans morceaux solides :</strong> Diarrhée. Les selles ont traversé le côlon trop rapidement pour pouvoir absorber l’eau. En cas de persistance au-delà de 48 heures, enquêter.
+                </p>
+</div>
+            <h2>🔍 Au-delà de la couleur et de la forme : d'autres indices à noter</h2>
+<p>Vos selles communiquent au-delà de leur simple apparence. Faites attention à ces signaux supplémentaires :</p>
+<p><strong>Flottabilité</strong> : les selles qui flottent constamment contiennent souvent un excès de gaz ou de graisse. Un flottement occasionnel est normal ; un flottement persistant avec un éclat gras suggère une malabsorption des graisses.</p>
+<p><strong>Odeur :</strong> Toutes les selles sentent. C'est le métabolisme bactérien normal. Cependant, une odeur sulfureuse inhabituellement nauséabonde qui représente un changement marqué par rapport à votre valeur de base pourrait indiquer une infection (comme <em>Clostridioides difficile</em>), une malabsorption ou une maladie inflammatoire de l'intestin.</p>
+<p><strong>Mucus</strong> : une fine couche de mucus est normale : votre muqueuse intestinale la produit pour la lubrification. Un mucus visible, filandreux ou excessif peut indiquer un syndrome du côlon irritable, une infection ou une maladie inflammatoire de l'intestin.</p>
+<p><strong>Aliments non digérés</strong> : les grains de maïs, les graines et les peaux de légumes semblent généralement intacts. C'est normal : leurs coquilles de cellulose résistent à la digestion. Cependant, voir constamment de gros morceaux d'aliments non digérés peut suggérer que vous mangez trop vite ou que votre taux d'enzymes digestives est insuffisant.</p>
+            <h2>🩺Quand consulter votre médecin</h2>
+<p>La plupart des changements dans les selles sont temporaires et liés au régime alimentaire. Mais certains modèles devraient inciter à une visite médicale, idéalement le plus tôt possible.</p>
+<div class="checklist">
+<div class="checklist-item">
+<div class="check-icon">⚠️</div>
+<div><strong>Sang dans les selles</strong> – qu'elles soient rouge vif, foncé ou noir – qui ne peut pas être expliqué par la nourriture ou les suppléments.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">⚠️</div>
+<div><strong>Changement de couleur persistant</strong> durant plus de 2 semaines sans cause alimentaire évidente.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">⚠️</div>
+<div><strong>Selles étroites et fines comme un crayon</strong> de façon constante – pourraient indiquer un rétrécissement ou une obstruction du côlon.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">⚠️</div>
+<div><strong>Perte de poids inexpliquée</strong> combinée à des changements dans les habitudes intestinales.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">⚠️</div>
+<div><strong>Selles pâles ou de couleur argile</strong> : justifient toujours une enquête en cas de problèmes biliaires ou hépatiques.</div>
+</div>
+</div>
+            <h2>🥗 Ajustements du régime alimentaire pour une meilleure forme des selles</h2>
+<p>Le moyen le plus rapide d'améliorer la qualité de vos selles consiste à manger et à boire. Voici votre plan d'action fondé sur des données probantes :</p>
+<div class="checklist">
+<div class="checklist-item">
+<div class="check-icon"> ✓</div>
+<div><strong>Visez 25 à 30 g de fibres par jour.</strong> Mélangez les fibres solubles (avoine, haricots, pommes, psyllium) avec des fibres insolubles (blé complet, légumes, son). Les fibres solubles forment un gel qui ramollit les selles ; les fibres insolubles ajoutent du volume et accélèrent le transit.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon"> ✓</div>
+<div><strong>Boire au moins 8 tasses (2 litres) d'eau par jour.</strong> Les fibres sans eau peuvent en fait aggraver la constipation. Considérez les fibres comme une éponge : elles ont besoin d'eau pour fonctionner.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon"> ✓</div>
+<div><strong>Incluez des aliments riches en probiotiques.</strong> Le yaourt, le kéfir, la choucroute et le kimchi soutiennent un microbiome intestinal diversifié, ce qui influence directement la qualité des selles.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon"> ✓</div>
+<div><strong>Limitez les aliments ultra-transformés.</strong> Une teneur élevée en sucre, une faible teneur en fibres et des additifs artificiels peuvent perturber la motilité intestinale et l'équilibre du microbiome.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon"> ✓</div>
+<div><strong>Bougez votre corps.</strong> Même une marche quotidienne de 20 minutes stimule le péristaltisme intestinal et peut améliorer sensiblement le temps de transit en une semaine.</div>
+</div>
+</div>
+<div class="info-box">
+<div class="info-box-title">💡 Le contrôle des toilettes en 3 secondes</div>
+<p>Avant de tirer la chasse d'eau, prenez trois secondes pour y jeter un coup d'œil. Posez-vous la question : <strong>De quelle couleur ? Quelle forme ? Quelque chose d'inhabituel ?</strong> Cette habitude rapide — pratiquée quotidiennement — peut détecter les problèmes tôt, au moment où ils sont le plus faciles à traiter. Votre instinct vous parle tous les jours. Tout ce que vous avez à faire est d'écouter.</p>
+</div>
         </div>
-    </main>
-
-    <footer class="footer">
-        <a href="../../still-alive-mobile.html">Retour aux conseils</a>
-    </footer>
-
+    </article>
+    <nav class="floating-nav">
+        <a href="../../happy-poop-mobile.html" class="back-btn">← Retour</a>
+        <a href="#" class="share-btn" onclick="navigator.share({title: 'Comprendre la couleur et la forme des selles : votre baromètre de la santé intestinale', url: window.location.href}); return false;">📤</a>
+    </nav>
     <script>
-        const timeElement = document.getElementById("current-time");
-        const updateTime = () => {
-            const now = new Date();
-            const hours = now.getHours();
-            const minutes = String(now.getMinutes()).padStart(2, "0");
-            timeElement.textContent = `${hours}:${minutes}`;
-        };
-        updateTime();
-        setInterval(updateTime, 60000);
+        document.querySelectorAll('.checklist-item').forEach(item => {
+            item.addEventListener('click', () => {
+                item.style.backgroundColor = '#F3F4F6';
+                setTimeout(() => item.style.backgroundColor = 'transparent', 200);
+            });
+        });
     </script>
 </body>
 </html>

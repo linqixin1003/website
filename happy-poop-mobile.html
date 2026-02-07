@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Health Knowledge - Happy Poop</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --accent: #A78BFA;
+            --accent-light: #C4B5FD;
+            --accent-dark: #7C3AED;
+            --teal: #2DD4BF;
+            --rose: #FB7185;
+            --surface: #ffffff;
+            --text: #1C1C1E;
+            --muted: #8E8E93;
+            --bg: #F2F2F7;
+        }
+        
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.5;
+            min-height: 100vh;
+            padding-bottom: 80px;
+        }
+        
+        /* Status Bar - REMOVED for better UX */
+        /* Web apps should not simulate native status bars as it conflicts with browser UI */
+        
+        /* Header */
+        .header {
+            padding: 20px 20px 16px;
+            background: rgba(255, 255, 255, 0.85); /* Light transparent background */
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            color: var(--text);
+            position: sticky;
+            top: 0;
+            z-index: 90;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .header h1 {
+            font-size: 24px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent-dark), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
+        }
+        
+        .header p {
+            font-size: 13px;
+            color: var(--muted);
+            font-weight: 500;
+        }
+        
+        /* Category Chips - Apple Style */
+        .chips-container {
+            display: flex;
+            gap: 12px;
+            padding: 12px 20px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            background: rgba(255,255,255,0.8);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 73px; /* Height of header */
+            z-index: 80;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .chip {
+            padding: 8px 16px;
+            background: white;
+            border: 1px solid rgba(0,0,0,0.08);
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        
+        .chip.active {
+            background: var(--text);
+            color: white;
+            border-color: var(--text);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transform: scale(1.02);
+        }
+        
+        /* Articles List */
+        .articles-list {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        
+        .article-card {
+            background: white;
+            border-radius: 20px; /* More rounded */
+            padding: 20px;
+            box-shadow: 
+                0 4px 6px -1px rgba(0, 0, 0, 0.02),
+                0 10px 15px -3px rgba(0, 0, 0, 0.04); /* Layered shadow */
+            display: flex;
+            gap: 16px;
+            align-items: center; /* Center align items */
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+        
+        .article-card:hover {
+            transform: translateY(-4px) scale(1.01);
+            box-shadow: 
+                0 10px 20px -5px rgba(0, 0, 0, 0.05),
+                0 20px 25px -5px rgba(0, 0, 0, 0.05);
+        }
+        
+        .article-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            flex-shrink: 0;
+        }
+        
+        .article-icon.bowel { background: linear-gradient(135deg, #A78BFA20, #A78BFA40); }
+        .article-icon.urinary { background: linear-gradient(135deg, #60A5FA20, #60A5FA40); }
+        .article-icon.menstrual { background: linear-gradient(135deg, #F472B620, #F472B640); }
+        .article-icon.hydration { background: linear-gradient(135deg, #2DD4BF20, #2DD4BF40); }
+        .article-icon.fitness { background: linear-gradient(135deg, #FB718520, #FB718540); }
+        .article-icon.nutrition { background: linear-gradient(135deg, #34D39920, #34D39940); }
+        
+        .article-content {
+            flex: 1;
+            min-width: 0;
+        }
+        
+        .article-tag {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .article-tag.bowel { background: #A78BFA20; color: #7C3AED; }
+        .article-tag.urinary { background: #60A5FA20; color: #2563EB; }
+        .article-tag.menstrual { background: #F472B620; color: #DB2777; }
+        .article-tag.hydration { background: #2DD4BF20; color: #0D9488; }
+        .article-tag.fitness { background: #FB718520; color: #DC2626; }
+        .article-tag.nutrition { background: #34D39920; color: #059669; }
+        
+        .article-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 4px;
+            line-height: 1.4;
+        }
+        
+        .article-meta {
+            font-size: 12px;
+            color: var(--muted);
+        }
+        
+        .article-arrow {
+            color: var(--muted);
+            font-size: 18px;
+            align-self: center;
+        }
+        
+        /* Bottom Nav */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 70px;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border-top: 1px solid #E5E7EB;
+            z-index: 100;
+        }
+        
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            text-decoration: none;
+            color: var(--muted);
+            font-size: 10px;
+            font-weight: 500;
+            padding: 8px 16px;
+            transition: all 0.2s ease;
+        }
+        
+        .nav-item.active {
+            color: var(--accent);
+        }
+        
+        .nav-item .icon {
+            font-size: 24px;
+        }
+        
+        /* Hidden by default */
+        .article-card[data-category] {
+            display: flex;
+        }
+        
+        .article-card.hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-top">
+            <div>
+                <h1>Happy Poop</h1>
+                <p>Daily Gut Health Insights</p>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Category Chips -->
+    <div class="chips-container">
+        <button class="chip active" data-filter="all">All</button>
+        <button class="chip" data-filter="bowel">Bowel Health</button>
+        <button class="chip" data-filter="urinary">Urinary</button>
+        <button class="chip" data-filter="menstrual">Menstrual</button>
+        <button class="chip" data-filter="hydration">Hydration</button>
+        <button class="chip" data-filter="fitness">Fitness</button>
+        <button class="chip" data-filter="nutrition">Nutrition</button>
+    </div>
+    
+    <!-- Articles List -->
+    <div class="articles-list">
+        <!-- Bowel Health (1-6) -->
+        <a href="zh/still-alive-tips/01-emergency-kit-essentials.html" class="article-card" data-category="bowel">
+            <div class="article-icon bowel"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:32px;height:32px;color:#7C3AED"><path d="M12 24c0-6 4-12 12-12s12 6 12 12-4 14-12 14-12-8-12-14z"/><circle cx="18" cy="22" r="2" fill="currentColor"/><circle cx="30" cy="22" r="2" fill="currentColor"/><path d="M20 30c2 2 6 2 8 0"/></svg></div>
+            <div class="article-content">
+                <span class="article-tag bowel">Bowel Health</span>
+                <h3 class="article-title">Understanding Stool Color & Shape</h3>
+                <p class="article-meta">8 min read • Expert Guide</p>
+            </div>
+            <span class="article-arrow">›</span>
+        </a>
+        
+        <a href="zh/still-alive-tips/02-personal-check-in-plan.html" class="article-card" data-category="bowel">
+            <div class="article-icon bowel"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:32px;height:32px;color:#7C3AED"><rect x="8" y="10" width="32" height="28" rx="4"/><path d="M8 18h32"/><path d="M16 10V6"/><path d="M32 10V6"/><circle cx="24" cy="30" r="6"/><path d="M24 27v4l2 2"/></svg></div>
+            <div class="article-content">
+                <span class="article-tag bowel">Bowel Health</span>
+                <h3 class="article-title">Bowel Movement Frequency & Rhythm</h3>
+                <p class="article-meta">6 min read • Expert Guide</p>
+            </div>
+            <span class="article-arrow">›</span>
+        </a>
+        
+        <a href="zh/still-alive-tips/03-prevent-falls-at-home.html" class="article-card" data-category="bowel">
+            <div class="article-icon bowel"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:32px;height:32px;color:#7C3AED"><path d="M18 8h12c2 0 4 2 4 4v8c0 6-4 12-10 16-6-4-10-10-10-16v-8c0-2 2-4 4-4z"/><path d="M24 18v8"/><circle cx="24" cy="32" r="2" fill="currentColor"/></svg></div>
+            <div class="article-content">
+                <span class="article-tag bowel">Bowel Health</span>
+                <h3 class="article-title">Anal Itching & Daily Care</h3>
+                <p class="article-meta">7 min read • Expert Guide</p>
+            </div>
+            <span class="article-arrow">›</span>
+        </a>
+        
+        <a href="zh/still-alive-tips/04-power-outage-readiness.html" class="article-card" data-category="bowel">
+            <div class="article-icon bowel"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:32px;height:32px;color:#7C3AED"><circle cx="24" cy="24" r="14"/><path d="M24 14v14"/><circle cx="24" cy="36" r="3" fill="currentColor"/></svg></div>
+            <div class="article-content">
+                <span class="article-tag bowel">Bowel Health</span>
+                <h3 class="article-title">Hemorrhoid Recognition & Prevention</h3>
+                <p class="article-meta">8 min read • Expert Guide</p>
+            </div>
+            <span class="article-arrow">›</span>
+        </a>
+        
+        <a href="zh/still-alive-tips/05-home-fire-escape-basics.html" class="article-card" data-category="bowel">
+            <div class="article-icon bowel"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:32px;height:32px;color:#7C3AED"><path d="M14 14c0 0 4 4 10 4s10-4 10-4"/><path d="M14 24c0 0 4-4 10-4s10 4 10 4"/><path d="M14 34c0 0 4 4 10 4s10-4 10-4"/><line x1="6" y1="24" x2="14" y2="24" stroke-dasharray="2 2"/><line x1="34" y1="24" x2="42" y2="24" stroke-dasharray="2 2"/></svg></div>
+            <div class="article-content">
+                <span class="article-tag bowel">Bowel Health</span>
+                <h3 class="article-title">Managing Constipation</h3>
+                <p class="article-meta">7 min read • Expert Guide</p>
+            </div>
+            <span class="article-arrow">›</span>
+        </a>
+        
+        <a href="zh/still-alive-tips/06-emergency-prep-older-adults.html" class="article-card" data-category="bowel">
+            <div class="article-icon bowel"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:32px;height:32px;color:#7C3AED"><path d="M24 8v8l6 4"/><circle cx="24" cy="28" r="14"/><path d="M18 28h12"/><path d="M24 22v12"/></svg></div>
+            <div class="article-content">
+                <span class="article-tag bowel">Bowel Health</span>
+                <h3 class="article-title">Emergency Diarrhea Response</h3>
+                <p class="article-meta">6 min read • Expert Guide</p>
+            </div>
+            <span class="article-arrow">›</span>
+        </a>
+        
+        <!-- Urinary Health (7-10) -->
+        <a href="zh/still-alive-tips/07-fall-risk-facts.html" class="article-card" data-category="urinary">
+            <div class="article-icon urinary"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:32px;height:32px;color:#2563EB"><path d="M16 8h16v6l-4 4v18c0 2-2 4-4 4h-8c-2 0-4-2-4-4V18l-4-4V8z"/><path d="M16 20h16" stroke-dasharray="3 3"/><path d="M16 28h16" stroke-dasharray="3 3"/></svg></div>
+            <div class="article-content">
+                <span class="article-tag urinary">Urinary Health</span>
+                <h3 class="article-title">Urine Color & Health Signals</h3>
+                <p class="article-meta">7 min read • Expert Guide</p>
+            </div>
+            <span class="article-arrow">›</span>
+        </a>
+        
+        <a href="zh/still-alive-tips/08-evacuation-ready-checklist.html" class="article-card" data-category="urinary">
+            <div class="article-icon urinary"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:32px;height:32px;color:#2563EB"><circle cx="24" cy="24" r="16"/><path d="M24 12v12l8 4"/><path d="M10 38l4-4"/><path d="M38 38l-4-4"/></svg></div>
+            <div class="article-content">
+                <span class="article-tag urinary">Urinary Health</span>
+                <h3 class="article-title">Urination Frequency & Habits</h3>
+                <p class="article-meta">6 min read • Expert Guide</p>
+            </div>
+            <span class="article-arrow">›</span>
+        </a>
+        
+        <a href="zh/still-alive-tips/09-water-storage-basics.html" class="article-card" data-category="urinary">
+            <div class="article-icon urinary"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:32px;height:32px;color:#2563EB"><path d="M24 6l16 10v12c0 10-8 14-16 14S8 38 8 28V16L24 6z"/><path d="M18 24l4 4 8-8"/></svg></div>
+            <div class="article-content">
+                <span class="article-tag urinary">Urinary Health</span>
+                <h3 class="article-title">Incontinence Prevention & Management</h3>
+                <p class="article-meta">8 min read • Expert Guide</p>
+            </div>
+            <span class="article-arrow">›</span>
+        </a>
+        
+        <a href="zh/still-alive-tips/10-shelter-in-place-planning.html" class="article-card" data-category="urinary">
+            <div class="article-icon urinary"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:32px;height:32px;color:#2563EB"><path d="M24 6c0 0-10 14-10 24a10 10 0 0 0 20 0c0-10-10-24-10-24z"/><path d="M19 30l10-10"/><path d="M19 20l10 10"/></svg></div>
+            <div class="article-content">
+                <span class="article-tag urinary">Urinary Health</span>
+                <h3 class="article-title">UTI Warning Signs</h3>
+                <p class="article-meta">7 min read • Expert Guide</p>
+            </div>
+            <span class="article-arrow">›</span>
+        </a>
+        <!-- Menstrual Health (11-15) -->
+        <a href="zh/still-alive-tips/11-menstrual-pain-relief.html" class="article-card" data-category="menstrual">
+            <div class="article-icon menstrual"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:32px;height:32px;color:#DB2777"><path d="M24 8c-8 0-14 6-14 14 0 10 14 20 14 20s14-10 14-20c0-8-6-14-14-14z"/><path d="M16 22h16"/><path d="M24 16v12"/></svg></div>
+            <div class="article-content">
+                <span class="article-tag menstrual">Menstrual</span>
+                <h3 class="article-title">Menstrual Pain Relief</h3>
+                <p class="article-meta">8 min read • Expert Guide</p>
+            </div>
+            <span class="article-arrow">›</span>
+        </a>
+
+        <a href="zh/still-alive-tips/12-menstrual-flow-check.html" class="article-card" data-category="menstrual">
+            <div class="article-icon menstrual"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:32px;height:32px;color:#DB2777"><path d="M24 6c0 0-10 14-10 24a10 10 0 0 0 20 0c0-10-10-24-10-24z"/><path d="M18 28h12"/><path d="M20 32h8"/><path d="M22 36h4"/></svg></div>
+            <div class="article-content">
+                <span class="article-tag menstrual">Menstrual</span>
+                <h3 class="article-title">Check Your Menstrual Flow</h3>
+                <p class="article-meta">7 min read • Expert Guide</p>
+            </div>
+            <span class="article-arrow">›</span>
+        </a>
+
+        <a href="zh/still-alive-tips/13-sex-during-period.html" class="article-card" data-category="menstrual">
+            <div class="article-icon menstrual"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:32px;height:32px;color:#DB2777"><path d="M16 18c-4 0-8 4-8 10s8 12 8 12 8-6 8-12-4-10-8-10z"/><path d="M32 18c-4 0-8 4-8 10s8 12 8 12 8-6 8-12-4-10-8-10z"/></svg></div>
+            <div class="article-content">
+                <span class="article-tag menstrual">Menstrual</span>
+                <h3 class="article-title">Sex During Menstruation</h3>
+                <p class="article-meta">6 min read • Expert Guide</p>
+            </div>
+            <span class="article-arrow">›</span>
+        </a>
+
+        <a href="zh/still-alive-tips/14-period-hygiene-basics.html" class="article-card" data-category="menstrual">
+            <div class="article-icon menstrual"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:32px;height:32px;color:#DB2777"><rect x="14" y="16" width="20" height="24" rx="4"/><path d="M14 24h20"/><path d="M24 8v8"/><circle cx="24" cy="32" r="4"/></svg></div>
+            <div class="article-content">
+                <span class="article-tag menstrual">Menstrual</span>
+                <h3 class="article-title">Period Hygiene Basics</h3>
+                <p class="article-meta">5 min read • Expert Guide</p>
+            </div>
+            <span class="article-arrow">›</span>
+        </a>
+
+        <a href="zh/still-alive-tips/15-diet-exercise-period.html" class="article-card" data-category="menstrual">
+            <div class="article-icon menstrual"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:32px;height:32px;color:#DB2777"><circle cx="16" cy="16" r="8"/><path d="M16 24v16"/><path d="M10 32h12"/><path d="M32 12v6a6 6 0 0 1-6 6"/><path d="M38 12v6a6 6 0 0 0 0 12h-6"/></svg></div>
+            <div class="article-content">
+                <span class="article-tag menstrual">Menstrual</span>
+                <h3 class="article-title">Diet & Exercise on Period</h3>
+                <p class="article-meta">7 min read • Expert Guide</p>
+            </div>
+            <span class="article-arrow">›</span>
+        </a>
+
+        
+        <!-- Hydration (11-14) -->
+        <a href="zh/still-alive-tips/16-trusted-contacts-list.html" class="article-card" data-category="hydration">
+            <div class="article-icon hydration"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:32px;height:32px;color:#0D9488"><path d="M14 12h20l-4 28H18L14 12z"/><path d="M12 12h24"/><path d="M18 24c2 2 6 2 8 0s6-2 8 0"/><path d="M24 4v8"/></svg></div>
+            <div class="article-content">
+                <span class="article-tag hydration">Hydration</span>
+                <h3 class="article-title">Daily Hydration Guide</h3>
+                <p class="article-meta">6 min read • Expert Guide</p>
+            </div>
+            <span class="article-arrow">›</span>
+        </a>
+        
+        <a href="zh/still-alive-tips/17-missed-check-in-steps.html" class="article-card" data-category="hydration">
+            <div class="article-icon hydration"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:32px;height:32px;color:#0D9488"><path d="M24 6c0 0-12 16-12 28a12 12 0 0 0 24 0c0-12-12-28-12-28z"/><path d="M18 32l3-6 3 4 3-4 3 6" stroke-dasharray="2 2"/></svg></div>
+            <div class="article-content">
+                <span class="article-tag hydration">Hydration</span>
+                <h3 class="article-title">Dehydration Warning Signs</h3>
+                <p class="article-meta">5 min read • Expert Guide</p>
+            </div>
+            <span class="article-arrow">›</span>
+        </a>
+        
+        <a href="zh/still-alive-tips/18-travel-check-in-routine.html" class="article-card" data-category="hydration">
+            <div class="article-icon hydration"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:32px;height:32px;color:#0D9488"><rect x="10" y="18" width="28" height="22" rx="4"/><path d="M18 18v-6a6 6 0 0 1 12 0v6"/><path d="M24 28v6"/><circle cx="24" cy="32" r="4"/></svg></div>
+            <div class="article-content">
+                <span class="article-tag hydration">Hydration</span>
+                <h3 class="article-title">Healthy Weight Management</h3>
+                <p class="article-meta">8 min read • Expert Guide</p>
+            </div>
+            <span class="article-arrow">›</span>
+        </a>
+        
+        <a href="zh/still-alive-tips/19-share-medical-notes.html" class="article-card" data-category="hydration">
+            <div class="article-icon hydration"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:32px;height:32px;color:#0D9488"><path d="M8 36l8-12 8 8 8-16 8 12"/><rect x="6" y="12" width="36" height="28" rx="2"/></svg></div>
+            <div class="article-content">
+                <span class="article-tag hydration">Hydration</span>
+                <h3 class="article-title">Weight Fluctuations & Health</h3>
+                <p class="article-meta">7 min read • Expert Guide</p>
+            </div>
+            <span class="article-arrow">›</span>
+        </a>
+        
+        <!-- Fitness (15-18) -->
+        <a href="zh/still-alive-tips/20-smoke-alarm-maintenance.html" class="article-card" data-category="fitness">
+            <div class="article-icon fitness"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:32px;height:32px;color:#DC2626"><circle cx="24" cy="10" r="6"/><path d="M24 16v10"/><path d="M16 22l8 4 8-4"/><path d="M18 36l6-10 6 10"/><path d="M14 42l4-6"/><path d="M34 42l-4-6"/></svg></div>
+            <div class="article-content">
+                <span class="article-tag fitness">Fitness</span>
+                <h3 class="article-title">Daily Fitness Plan</h3>
+                <p class="article-meta">8 min read • Expert Guide</p>
+            </div>
+            <span class="article-arrow">›</span>
+        </a>
+        
+        <a href="zh/still-alive-tips/21-carbon-monoxide-safety.html" class="article-card" data-category="fitness">
+            <div class="article-icon fitness"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:32px;height:32px;color:#DC2626"><path d="M12 24c0 0 4-12 12-12s12 12 12 12-4 12-12 12-12-12-12-12z"/><path d="M20 20l8 8"/><path d="M28 20l-8 8"/><path d="M8 12l4 4"/><path d="M36 12l4 4"/></svg></div>
+            <div class="article-content">
+                <span class="article-tag fitness">Fitness</span>
+                <h3 class="article-title">Sports Injury Prevention</h3>
+                <p class="article-meta">7 min read • Expert Guide</p>
+            </div>
+            <span class="article-arrow">›</span>
+        </a>
+        
+        <a href="zh/still-alive-tips/22-safer-bathroom-setup.html" class="article-card" data-category="fitness">
+            <div class="article-icon fitness"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:32px;height:32px;color:#DC2626"><rect x="12" y="20" width="24" height="16" rx="2"/><path d="M16 20v-8c0-2 2-4 4-4h8c2 0 4 2 4 4v8"/><path d="M20 36v6"/><path d="M28 36v6"/><path d="M8 28c4 0 4 4 8 4"/><path d="M32 32c4 0 4-4 8-4"/></svg></div>
+            <div class="article-content">
+                <span class="article-tag fitness">Fitness</span>
+                <h3 class="article-title">Prolonged Sitting & Circulation</h3>
+                <p class="article-meta">6 min read • Expert Guide</p>
+            </div>
+            <span class="article-arrow">›</span>
+        </a>
+        
+        <a href="zh/still-alive-tips/23-heat-safety-routine.html" class="article-card" data-category="fitness">
+            <div class="article-icon fitness"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:32px;height:32px;color:#DC2626"><circle cx="24" cy="12" r="6"/><path d="M24 18v8"/><path d="M16 26l8-2 8 2"/><ellipse cx="24" cy="32" rx="10" ry="6"/><path d="M14 32v8"/><path d="M34 32v8"/></svg></div>
+            <div class="article-content">
+                <span class="article-tag fitness">Fitness</span>
+                <h3 class="article-title">Core Muscle Training</h3>
+                <p class="article-meta">8 min read • Expert Guide</p>
+            </div>
+            <span class="article-arrow">›</span>
+        </a>
+        
+        <!-- Nutrition (19-25) -->
+        <a href="zh/still-alive-tips/24-cold-weather-readiness.html" class="article-card" data-category="nutrition">
+            <div class="article-icon nutrition"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:32px;height:32px;color:#059669"><circle cx="24" cy="24" r="16"/><path d="M24 8v32"/><path d="M8 24h32"/><circle cx="16" cy="16" r="4" fill="currentColor" opacity="0.3"/><circle cx="32" cy="32" r="4" fill="currentColor" opacity="0.3"/></svg></div>
+            <div class="article-content">
+                <span class="article-tag nutrition">Nutrition</span>
+                <h3 class="article-title">Balanced Diet Principles</h3>
+                <p class="article-meta">8 min read • Expert Guide</p>
+            </div>
+            <span class="article-arrow">›</span>
+        </a>
+        
+        <a href="zh/still-alive-tips/25-medication-organization.html" class="article-card" data-category="nutrition">
+            <div class="article-icon nutrition"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:32px;height:32px;color:#059669"><ellipse cx="24" cy="24" rx="16" ry="10"/><path d="M8 24c0 8 8 16 16 16s16-8 16-16"/><circle cx="16" cy="24" r="3"/><circle cx="24" cy="20" r="2"/><circle cx="32" cy="26" r="3"/><circle cx="20" cy="28" r="2"/></svg></div>
+            <div class="article-content">
+                <span class="article-tag nutrition">Nutrition</span>
+                <h3 class="article-title">Gut Microbiome & Health</h3>
+                <p class="article-meta">9 min read • Expert Guide</p>
+            </div>
+            <span class="article-arrow">›</span>
+        </a>
+        
+        <a href="zh/still-alive-tips/26-stress-reset-after-emergency.html" class="article-card" data-category="nutrition">
+            <div class="article-icon nutrition"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:32px;height:32px;color:#059669"><path d="M24 4c-4 0-6 4-6 8 0 6 6 8 6 12s-6 6-6 12c0 4 2 8 6 8"/><path d="M24 4c4 0 6 4 6 8 0 6-6 8-6 12s6 6 6 12c0 4-2 8-6 8"/></svg></div>
+            <div class="article-content">
+                <span class="article-tag nutrition">Nutrition</span>
+                <h3 class="article-title">Probiotics & Prebiotics</h3>
+                <p class="article-meta">7 min read • Expert Guide</p>
+            </div>
+            <span class="article-arrow">›</span>
+        </a>
+        
+        <a href="zh/still-alive-tips/27-emergency-alerts-wea.html" class="article-card" data-category="nutrition">
+            <div class="article-icon nutrition"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:32px;height:32px;color:#059669"><circle cx="24" cy="24" r="16"/><path d="M14 14l20 20"/><path d="M34 14l-20 20"/><path d="M24 16v4"/><path d="M20 24h8"/></svg></div>
+            <div class="article-content">
+                <span class="article-tag nutrition">Nutrition</span>
+                <h3 class="article-title">Food Intolerance Detection</h3>
+                <p class="article-meta">8 min read • Expert Guide</p>
+            </div>
+            <span class="article-arrow">›</span>
+        </a>
+        
+        <a href="zh/still-alive-tips/28-weather-watches-warnings.html" class="article-card" data-category="nutrition">
+            <div class="article-icon nutrition"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:32px;height:32px;color:#059669"><path d="M12 40V16c0-4 4-8 8-8h8c4 0 8 4 8 8v24"/><path d="M8 40h32"/><path d="M16 16c0 4 8 8 8 8s8-4 8-8"/><path d="M20 28h8"/><path d="M22 32h4"/></svg></div>
+            <div class="article-content">
+                <span class="article-tag nutrition">Nutrition</span>
+                <h3 class="article-title">The Importance of Dietary Fiber</h3>
+                <p class="article-meta">6 min read • Expert Guide</p>
+            </div>
+            <span class="article-arrow">›</span>
+        </a>
+        
+        <a href="zh/still-alive-tips/29-hydration-basics.html" class="article-card" data-category="nutrition">
+            <div class="article-icon nutrition"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:32px;height:32px;color:#059669"><path d="M16 14c0 0-4 4-4 10s4 10 4 10"/><path d="M32 14c0 0 4 4 4 10s-4 10-4 10"/><ellipse cx="24" cy="24" rx="12" ry="14"/><path d="M18 20c3 2 9 2 12 0"/><path d="M20 28c2 1 6 1 8 0"/></svg></div>
+            <div class="article-content">
+                <span class="article-tag nutrition">Nutrition</span>
+                <h3 class="article-title">Relieving Indigestion</h3>
+                <p class="article-meta">7 min read • Expert Guide</p>
+            </div>
+            <span class="article-arrow">›</span>
+        </a>
+        
+        <a href="zh/still-alive-tips/30-social-connection-safety.html" class="article-card" data-category="nutrition">
+            <div class="article-icon nutrition"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:32px;height:32px;color:#059669"><rect x="10" y="8" width="28" height="32" rx="4"/><path d="M16 16h10"/><path d="M16 24h16"/><path d="M16 32h12"/><circle cx="34" cy="16" r="3"/><path d="M32 14l2 2 4-4"/></svg></div>
+            <div class="article-content">
+                <span class="article-tag nutrition">Nutrition</span>
+                <h3 class="article-title">Daily Body Self-Check List</h3>
+                <p class="article-meta">5 min read • Expert Guide</p>
+            </div>
+            <span class="article-arrow">›</span>
+        </a>
+    </div>
+    
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a href="happy-poop-app.html" class="nav-item">
+            <span class="icon">🏠</span>
+            <span>Home</span>
+        </a>
+        <a href="#" class="nav-item active">
+            <span class="icon">📚</span>
+            <span>Articles</span>
+        </a>
+        <a href="https://play.google.com/store/apps/details?id=com.happypoop.app" class="nav-item" target="_blank">
+            <span class="icon">📲</span>
+            <span>Get App</span>
+        </a>
+    </nav>
+    
+    <script src="happy-poop-lang.js"></script>
+    <script>
+        // Update time
+        const timeEl = document.getElementById('current-time');
+        const updateTime = () => {
+            const now = new Date();
+            timeEl.textContent = now.getHours() + ':' + String(now.getMinutes()).padStart(2, '0');
+        };
+        updateTime();
+        setInterval(updateTime, 60000);
+        
+        // Filter chips
+        const chips = document.querySelectorAll('.chip');
+        const cards = document.querySelectorAll('.article-card');
+        
+        chips.forEach(chip => {
+            chip.addEventListener('click', () => {
+                chips.forEach(c => c.classList.remove('active'));
+                chip.classList.add('active');
+                
+                const filter = chip.dataset.filter;
+                
+                cards.forEach(card => {
+                    if (filter === 'all' || card.dataset.category === filter) {
+                        card.classList.remove('hidden');
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

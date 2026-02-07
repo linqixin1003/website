@@ -1,274 +1,119 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de" data-theme="urinary">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shelter-in-Place Planning - Still Alive?</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --accent: #ff7a5a;
-            --accent-light: #ffb199;
-            --accent-dark: #c4553b;
-            --surface: #ffffff;
-            --text: #1f1f1f;
-            --muted: #6e6e6e;
-            --bg: #f6f4f1;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-        }
-
-        .status-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 44px;
-            background: rgba(0, 0, 0, 0.78);
-            color: #ffffff;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 18px;
-            font-size: 14px;
-            z-index: 10;
-        }
-
-        .status-icons {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .status-dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: #ffffff;
-            opacity: 0.8;
-        }
-
-        .status-pill {
-            width: 22px;
-            height: 10px;
-            border-radius: 6px;
-            border: 1px solid #ffffff;
-            position: relative;
-            opacity: 0.8;
-        }
-
-        .status-pill::after {
-            content: "";
-            position: absolute;
-            right: 2px;
-            top: 2px;
-            width: 6px;
-            height: 4px;
-            border-radius: 3px;
-            background: #ffffff;
-        }
-
-        .back-button {
-            position: fixed;
-            top: 58px;
-            left: 18px;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            border: none;
-            background: rgba(0, 0, 0, 0.6);
-            color: #ffffff;
-            font-size: 18px;
-            cursor: pointer;
-            z-index: 9;
-        }
-
-        .hero {
-            margin-top: 44px;
-            padding: 28px 20px 80px;
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
-            color: #ffffff;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero h1 {
-            margin: 12px 0 10px;
-            font-size: 26px;
-            font-weight: 700;
-        }
-
-        .hero p {
-            margin: 0;
-            font-size: 14px;
-            max-width: 320px;
-            line-height: 1.5;
-        }
-
-        .tag {
-            display: inline-block;
-            padding: 4px 10px;
-            border-radius: 999px;
-            font-size: 11px;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            background: rgba(255, 255, 255, 0.25);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-        }
-
-        .hero-icon {
-            position: absolute;
-            right: 20px;
-            bottom: 12px;
-            width: 80px;
-            height: 80px;
-            opacity: 0.18;
-        }
-
-        .content {
-            background: var(--surface);
-            margin: -50px 18px 24px;
-            border-radius: 20px;
-            padding: 24px 20px 28px;
-            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
-        }
-
-        .meta {
-            font-size: 12px;
-            color: var(--muted);
-            margin-bottom: 16px;
-        }
-
-        .section {
-            margin-top: 18px;
-        }
-
-        .section h2 {
-            margin: 0 0 10px;
-            font-size: 18px;
-        }
-
-        .section p {
-            margin: 0 0 12px;
-            font-size: 14px;
-            line-height: 1.6;
-            color: #3d3d3d;
-        }
-
-        .section ul {
-            margin: 0;
-            padding-left: 18px;
-            font-size: 14px;
-            line-height: 1.6;
-            color: #3d3d3d;
-        }
-
-        .callout {
-            background: #f7f1ed;
-            border-left: 4px solid var(--accent);
-            padding: 12px 14px;
-            border-radius: 10px;
-            font-size: 13px;
-            color: #3d3d3d;
-        }
-
-        .source {
-            margin-top: 18px;
-            font-size: 12px;
-            color: var(--muted);
-        }
-
-        .source a {
-            color: var(--accent-dark);
-            text-decoration: none;
-        }
-
-        .footer {
-            text-align: center;
-            margin-bottom: 36px;
-        }
-
-        .footer a {
-            color: var(--accent-dark);
-            text-decoration: none;
-            font-weight: 600;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Warnzeichen für Harnwegsinfektionen: Früherkennung erspart Ihnen Schmerzen - Happy Poop</title>
+    <link rel="stylesheet" href="../../article-theme-v2.css">
 </head>
 <body>
-    <div class="status-bar">
-        <span id="current-time">4:58</span>
-        <div class="status-icons" aria-hidden="true">
-            <span class="status-dot"></span>
-            <span class="status-dot"></span>
-            <span class="status-dot"></span>
-            <span class="status-pill"></span>
+    <header class="hero-section">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <div class="article-meta-top">
+                <span>Urinary Health</span>
+                <span>•</span>
+                <span>8 Min. Lesezeit</span>
+            </div>
+            <h1 class="hero-title">Warnzeichen für Harnwegsinfektionen: Früherkennung erspart Ihnen Schmerzen</h1>
+            
         </div>
-    </div>
-
-    <button class="back-button" onclick="history.back()" aria-label="Go back">&larr;</button>
-
-    <header class="hero">
-        <span class="tag">Preparedness</span>
-        <h1>Planung für Schutzräume</h1>
-        <p>Prepare a safe interior space when leaving is not possible.</p>
-        <svg class="hero-icon" viewBox="0 0 64 64" aria-hidden="true">
-            <rect x="12" y="22" width="40" height="30" rx="6" fill="none" stroke="#ffffff" stroke-width="3"></rect>
-            <rect x="22" y="14" width="20" height="10" rx="4" fill="none" stroke="#ffffff" stroke-width="3"></rect>
-            <path d="M20 36h24" stroke="#ffffff" stroke-width="3" stroke-linecap="round"></path>
-        </svg>
     </header>
-
-    <main class="content">
-        <div class="meta">5 min read - Updated Feb 3, 2026</div>
-        <section class="section">
-            <h2>Choose the Space</h2>
-            <p>Pick an interior room with few windows and enough supplies for everyone.</p>
-        </section>
-
-        <section class="section">
-            <h2>Seal and Monitor</h2>
-            <p>Keep plastic sheeting, tape, and a battery radio ready.</p>
-            <ul>
-                <li>Plastic sheeting and tape</li>
-                <li>Flashlight and batteries</li>
-                <li>A charged power bank</li>
-            </ul>
-        </section>
-
-        <section class="section">
-            <h2>Stay Connected</h2>
-            <p>Check in with your contacts and follow official updates.</p>
-            <div class="callout">Tip: store a small kit in the room you plan to shelter in.</div>
-        </section>
-        <div class="source">
-            Source: <a href="https://www.ready.gov/shelter" target="_blank" rel="noopener">Ready.gov - Shelter</a>
+    <div class="summary-card">
+        <div class="summary-title">⚡ TL;DR</div>
+        <ul class="summary-list">
+            <li><strong>Klassische Symptome:</strong> brennendes Wasserlassen, Harndrang, Häufigkeit und trüber oder übelriechender Urin – handeln Sie schnell, wenn diese auftreten.</li>
+            <li><strong>Frauen erkranken 30-mal häufiger an Harnwegsinfekten als Männer, da die Harnröhre kürzer ist und die anatomische Nähe zu Bakterien gegeben ist.</li>
+            <li><strong>Vorbeugung funktioniert:</strong> Richtiges Abwischen, Urinieren nach dem Geschlechtsverkehr, ausreichende Flüssigkeitszufuhr und der Verzicht auf reizende Produkte reduzieren das Risiko erheblich.</li>
+            <li><strong>Niereninfektion</strong> (Fieber, Flankenschmerzen, Übelkeit) ist ein Harnwegsinfektions-Notfall – zögern Sie nicht mit der medizinischen Versorgung.</li>
+            <li><strong>Wiederkehrende Harnwegsinfektionen</strong> (3+ pro Jahr) verdienen eine fachärztliche Beurteilung und können von prophylaktischen Strategien profitieren.</li>
+        </ul>
+    </div>
+    <article class="content-container">
+        <div class="content-block">
+            <p class="intro-text">Eine Harnwegsinfektion kann in weniger als 24 Stunden von „leicht lästig“ zu „quälend“ werden – und wenn sie Ihre Nieren erreicht, wird sie zu einem echten medizinischen Notfall. Die gute Nachricht? Harnwegsinfektionen gehören zu den am besten vermeidbaren Infektionen in der Medizin. Das Erkennen der ersten Warnzeichen bedeutet eine schnellere Behandlung, weniger Leiden und weniger Komplikationen. Hier finden Sie alles, was Sie wissen müssen.</p>
+            <h2>🔍 Die Symptome erkennen</h2>
+<p>Harnwegsinfektionen treten auf, wenn Bakterien – am häufigsten Escherichia coli (E. coli) aus dem Darm – in die Harnröhre eindringen und beginnen, sich in der Blase zu vermehren. Die Reaktion Ihres Körpers führt zu den typischen Symptomen:</p>
+<p><strong>Brennen oder Stechen beim Wasserlassen (Dysurie):</strong> Dies ist normalerweise das erste Anzeichen. Die entzündete Harnröhren- und Blasenschleimhaut wird äußerst empfindlich. Viele Patienten beschreiben es als „durch Rasierklingen pinkeln“ – dramatisch, aber treffend.</p>
+<p><strong>Dringlichkeit und Häufigkeit:</strong> Sie haben das Gefühl, alle 15 bis 20 Minuten urinieren zu müssen, auch wenn jedes Mal nur kleine Mengen austreten. Die entzündete Blase sendet falsche „Voll“-Signale an Ihr Gehirn und erzeugt so einen unerbittlichen Kreislauf.</p>
+<p><strong>Trübung oder milchiger Urin:</strong> Die Trübung entsteht durch weiße Blutkörperchen, Bakterien und manchmal Eiter, die Ihr Immunsystem zur Bekämpfung der Infektion einsetzt.</p>
+<p><strong>Übelkeit oder ungewöhnlich starker Geruch:</strong> Bakterielle Stoffwechselnebenprodukte erzeugen einen charakteristischen unangenehmen Geruch, der sich deutlich von normalem konzentriertem Urin unterscheidet.</p>
+<p><strong>Beckendruck oder -beschwerden:</strong> Ein dumpfer Schmerz oder Schweregefühl im Unterbauch oder Becken, insbesondere bei Frauen, weist auf eine Blasenwandentzündung hin.</p>
+<p><strong>Blut im Urin (Hämaturie):</strong> Rosa, roter oder colafarbener Urin während einer Harnwegsinfektion weist darauf hin, dass eine Entzündung die Blutgefäße in der Blasenschleimhaut geschädigt hat. Dies ist zwar besorgniserregend, kommt aber bei Harnwegsinfekten häufig vor und verschwindet normalerweise mit der Behandlung.</p>
+<div class="info-box">
+<div class="info-box-title">Harnwegsinfekte bei älteren Erwachsenen</div>
+<p>Bei älteren Patienten können Harnwegsinfektionssymptome atypisch sein und leicht übersehen werden. Anstelle von Brennen und Dringlichkeit können bei älteren Erwachsenen plötzliche Verwirrtheit, Unruhe, Stürze oder allgemeines Unwohlsein auftreten. Wenn ein älteres Familienmitglied plötzlich „nicht mehr er selbst“ zu sein scheint, sollte eine Harnwegsinfektion auf der Liste der möglichen Ursachen stehen. Ein einfacher Urintest kann dies bestätigen oder ausschließen.</p>
+</div>
+            <h2>👩 Warum Frauen anfälliger sind</h2>
+<p>Etwa 50 bis 60 Prozent der Frauen erleiden im Laufe ihres Lebens mindestens eine Harnwegsinfektion, verglichen mit etwa 12 Prozent der Männer. Der Grund ist in erster Linie anatomischer Natur: Die weibliche Harnröhre ist nur etwa 4 Zentimeter lang (im Vergleich zu 20 Zentimetern beim Mann), wodurch Bakterien einen viel kürzeren Weg zur Blase haben. Darüber hinaus befindet sich die Harnröhrenöffnung bei Frauen sowohl in der Nähe der Vagina als auch des Anus, was die Belastung durch Bakterien erhöht.</p>
+<p>Mehrere Faktoren erhöhen das Risiko für Frauen weiter:</p>
+<p><strong>Sexuelle Aktivität:</strong> Geschlechtsverkehr kann Bakterien in die Harnröhre befördern. Dies kommt so häufig vor, dass es manchmal als „Flitterwochen-Zystitis“ bezeichnet wird. Die Verwendung eines Diaphragmas oder von Spermizidprodukten erhöht das Risiko zusätzlich, da sie die Vaginalflora verändert.</p>
+<p><strong>Hormonelle Veränderungen:</strong> Nach der Menopause verdünnen sinkende Östrogenspiegel das Vaginal- und Harnröhrengewebe und verändern das schützende bakterielle Gleichgewicht, wodurch Harnwegsinfekte deutlich häufiger auftreten. Eine vaginale Östrogentherapie kann helfen, diesen Schutz wiederherzustellen.</p>
+<p><strong>Schwangerschaft:</strong> Hormonelle Veränderungen entspannen die Harnwegsmuskulatur und die wachsende Gebärmutter kann die Blase komprimieren, was beides das Bakterienwachstum fördert. Harnwegsinfektionen während der Schwangerschaft erfordern eine sofortige Behandlung, da das Risiko einer Niereninfektion und Schwangerschaftskomplikationen höher ist.</p>
+            <h2>🛡️ Prävention: evidenzbasierte Strategien</h2>
+<p>Vorbeugung ist immer besser als Behandlung. Hinter diesen Strategien stehen solide Beweise:</p>
+<div class="checklist">
+<div class="checklist-item">
+<div class="check-icon"> ✓</div>
+<div><strong>Von vorne nach hinten wischen:</strong> Diese einfache Angewohnheit verhindert, dass E. coli aus dem Analbereich in die Harnröhre gelangt. Bringen Sie Kindern dies frühzeitig bei.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon"> ✓</div>
+<div><strong>Urinieren nach dem Geschlechtsverkehr:</strong> Durch das Wasserlassen innerhalb von 30 Minuten nach dem Geschlechtsverkehr werden Bakterien ausgespült, die möglicherweise in die Harnröhre gedrückt wurden. Dies ist eine der wirksamsten Präventionsmaßnahmen.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon"> ✓</div>
+<div><strong>Bleiben Sie gut hydriert:</strong> Wenn Sie ausreichend Wasser trinken (streben Sie nach hellgelbem Urin), werden Bakterien verdünnt, die Häufigkeit des Wasserlassens erhöht und die Harnwege regelmäßig durchgespült.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon"> ✓</div>
+<div><strong>Halten Sie es nicht zurück:</strong> Urinieren Sie, wenn Sie das Bedürfnis verspüren. Das längere Halten des Urins gibt den Bakterien Zeit, sich in der Blase zu vermehren.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon"> ✓</div>
+<div><strong>Vermeiden Sie reizende Produkte:</strong> Spülungen, Damensprays, Duftpads und scharfe Seifen stören die natürliche Vaginalflora, die zum Schutz vor Infektionen beiträgt.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon"> ✓</div>
+<div><strong>Wählen Sie Baumwollunterwäsche:</strong> Atmungsaktive Stoffe reduzieren die Feuchtigkeitsansammlung, die das Bakterienwachstum fördert. Vermeiden Sie Tangas, wenn Sie zu Harnwegsinfektionen neigen.</div>
+</div>
+</div>
+            <h2>🍒 Die Cranberry-Frage</h2>
+<p>Cranberry-Produkte sind vielleicht das am meisten diskutierte Mittel zur Vorbeugung von Harnwegsinfektionen. Hier ist, was die Wissenschaft tatsächlich zeigt: Cranberries enthalten Proanthocyanidine (PACs), Verbindungen, die verhindern können, dass E. coli an der Blasenwand haftet. Allerdings ist die Konzentration an PACs in den meisten handelsüblichen Cranberry-Säften zu niedrig, um wirksam zu sein. Cranberrysaft-Cocktails enthalten viel Zucker, was die Situation sogar verschlimmern kann.</p>
+<p>Konzentrierte Cranberry-Nahrungsergänzungsmittel (36 mg PACs pro Tag) haben in einigen Studien einen mäßigen Nutzen gezeigt, insbesondere bei Frauen mit wiederkehrenden Harnwegsinfekten. Sie sind keine Behandlung aktiver Infektionen – nur Antibiotika beseitigen etablierte Harnwegsinfekte. Betrachten Sie Cranberry-Nahrungsergänzungsmittel als eine milde vorbeugende Maßnahme, nicht als Heilmittel.</p>
+            <h2>🔁 Wiederkehrende Harnwegsinfektionen: Den Kreislauf durchbrechen</h2>
+<p>Wenn bei Ihnen drei oder mehr Harnwegsinfekte pro Jahr oder zwei innerhalb von sechs Monaten auftreten, haben Sie wiederkehrende Harnwegsinfekte – und Sie benötigen eine maßgeschneiderte Strategie, die über die grundlegende Prävention hinausgeht. Zu den Optionen gehören:</p>
+<p><strong>Niedrig dosierte prophylaktische Antibiotika:</strong> Eine kleine tägliche Dosis oder eine postkoitale Dosis Antibiotika (wie Nitrofurantoin oder Trimethoprim) kann das Wiederauftreten um 85 bis 95 Prozent reduzieren. Ihr Arzt wird die Vorteile gegen das Risiko einer Antibiotikaresistenz abwägen.</p>
+<p><strong>Vaginales Östrogen (für Frauen nach der Menopause):</strong> Topische Östrogencreme oder vaginale Östrogenringe stellen die schützende Lactobacillus-Population wieder her und verdicken das Harnröhrengewebe. Studien zeigen, dass es das Wiederauftreten von Harnwegsinfekten um 36 bis 75 Prozent reduziert.</p>
+<p><strong>D-Mannose-Ergänzungsmittel:</strong> Dieser natürliche Zucker kann die Anhaftung von E. coli an der Blasenwand verhindern, ähnlich wie Cranberry-PACs. Einige Studien deuten auf eine Wirksamkeit hin, die mit niedrig dosierten Antibiotika vergleichbar ist, es sind jedoch weitere Untersuchungen erforderlich.</p>
+<p><strong>Methenaminhippurat:</strong> Dieses altmodische Harnantiseptikum gewinnt als antibiotikasparende Option zur Vorbeugung bei ausgewählten Patienten erneut an Interesse.</p>
+<div class="warning-box">
+<div class="warning-title">⚠️ Warnsignale bei Niereninfektionen – suchen Sie sofortige Hilfe auf</div>
+<ul class="warning-list">
+<li><strong>Fieber über 38,3 °C (101 °F)</strong> mit Harnbeschwerden weist darauf hin, dass die Infektion möglicherweise Ihre Nieren erreicht hat</li>
+<li><strong>Flankenschmerzen:</strong> Schmerzen im Rücken oder in der Seite, direkt unterhalb der Rippen, sind ein Kennzeichen einer Pyelonephritis (Niereninfektion)</li>
+<li><strong>Übelkeit und Erbrechen</strong> gehen häufig mit Niereninfektionen einher und können zu Dehydrierung führen</li>
+<li><strong>Schüttelfrost oder Schüttelfrost</strong> deuten darauf hin, dass möglicherweise Bakterien in den Blutkreislauf gelangen (Urosepsis – ein lebensbedrohlicher Notfall)</li>
+<li><strong>Verwirrung oder Bewusstseinsstörungen</strong> erfordern in jeder Altersgruppe eine Notfalluntersuchung</li>
+</ul>
+</div>
+            <h2>💊 Wenn Antibiotika benötigt werden</h2>
+<p>Einfache, unkomplizierte Blasenentzündungen (untere Harnwegsinfekte) werden typischerweise mit einer kurzen Antibiotikakur behandelt – in den meisten Fällen 3 bis 5 Tage lang Nitrofurantoin oder Trimethoprim-Sulfamethoxazol. Die Symptome bessern sich normalerweise innerhalb von 24 bis 48 Stunden, aber schließen Sie immer den gesamten Verlauf ab, um Resistenzen vorzubeugen.</p>
+<p>Komplizierte Harnwegsinfektionen – solche mit Fieber, Nierenbeteiligung, Schwangerschaft oder anatomischen Anomalien – erfordern längere Behandlungszyklen (7 bis 14 Tage) und manchmal intravenöse Antibiotika. Männer mit Harnwegsinfekten bedürfen immer weiterer Untersuchungen, da Harnwegsinfekte bei Männern seltener sind und häufig auf ein zugrunde liegendes Problem wie eine Prostatavergrößerung oder Harnverhalt hinweisen.</p>
+<p><strong>Ein kritischer Hinweis zur Selbstbehandlung:</strong> Während es verlockend ist, beim ersten Anzeichen eines Brennens Antibiotikareste einzunehmen, fördert diese Praxis die Antibiotikaresistenz – eine der größten Bedrohungen in der modernen Medizin. Wenn möglich, legen Sie immer eine Urinkultur an. Es bestätigt die Infektion und identifiziert, welche Antibiotika wirken. Angesichts der zunehmenden Antibiotikaresistenz liegen die Zeiten, in denen alle Harnwegsinfekte auf die gleiche Weise behandelt wurden, hinter uns. Gezielte Therapie basierend auf Kulturergebnissen ist die Zukunft – und die Gegenwart – eines verantwortungsvollen Harnwegsinfektionsmanagements.</p>
         </div>
-    </main>
-
-    <footer class="footer">
-        <a href="../../still-alive-mobile.html">Zurück zu Tipps</a>
-    </footer>
-
+    </article>
+    <nav class="floating-nav">
+        <a href="../../happy-poop-mobile.html" class="back-btn">← Zurück</a>
+        <a href="#" class="share-btn" onclick="navigator.share({title: 'Warnzeichen für Harnwegsinfektionen: Früherkennung erspart Ihnen Schmerzen', url: window.location.href}); return false;">📤</a>
+    </nav>
     <script>
-        const timeElement = document.getElementById("current-time");
-        const updateTime = () => {
-            const now = new Date();
-            const hours = now.getHours();
-            const minutes = String(now.getMinutes()).padStart(2, "0");
-            timeElement.textContent = `${hours}:${minutes}`;
-        };
-        updateTime();
-        setInterval(updateTime, 60000);
+        document.querySelectorAll('.checklist-item').forEach(item => {
+            item.addEventListener('click', () => {
+                item.style.backgroundColor = '#F3F4F6';
+                setTimeout(() => item.style.backgroundColor = 'transparent', 200);
+            });
+        });
     </script>
 </body>
 </html>

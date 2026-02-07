@@ -1,274 +1,119 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN" data-theme="urinary">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shelter-in-Place Planning - Still Alive?</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --accent: #ff7a5a;
-            --accent-light: #ffb199;
-            --accent-dark: #c4553b;
-            --surface: #ffffff;
-            --text: #1f1f1f;
-            --muted: #6e6e6e;
-            --bg: #f6f4f1;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-        }
-
-        .status-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 44px;
-            background: rgba(0, 0, 0, 0.78);
-            color: #ffffff;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 18px;
-            font-size: 14px;
-            z-index: 10;
-        }
-
-        .status-icons {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .status-dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: #ffffff;
-            opacity: 0.8;
-        }
-
-        .status-pill {
-            width: 22px;
-            height: 10px;
-            border-radius: 6px;
-            border: 1px solid #ffffff;
-            position: relative;
-            opacity: 0.8;
-        }
-
-        .status-pill::after {
-            content: "";
-            position: absolute;
-            right: 2px;
-            top: 2px;
-            width: 6px;
-            height: 4px;
-            border-radius: 3px;
-            background: #ffffff;
-        }
-
-        .back-button {
-            position: fixed;
-            top: 58px;
-            left: 18px;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            border: none;
-            background: rgba(0, 0, 0, 0.6);
-            color: #ffffff;
-            font-size: 18px;
-            cursor: pointer;
-            z-index: 9;
-        }
-
-        .hero {
-            margin-top: 44px;
-            padding: 28px 20px 80px;
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
-            color: #ffffff;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero h1 {
-            margin: 12px 0 10px;
-            font-size: 26px;
-            font-weight: 700;
-        }
-
-        .hero p {
-            margin: 0;
-            font-size: 14px;
-            max-width: 320px;
-            line-height: 1.5;
-        }
-
-        .tag {
-            display: inline-block;
-            padding: 4px 10px;
-            border-radius: 999px;
-            font-size: 11px;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            background: rgba(255, 255, 255, 0.25);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-        }
-
-        .hero-icon {
-            position: absolute;
-            right: 20px;
-            bottom: 12px;
-            width: 80px;
-            height: 80px;
-            opacity: 0.18;
-        }
-
-        .content {
-            background: var(--surface);
-            margin: -50px 18px 24px;
-            border-radius: 20px;
-            padding: 24px 20px 28px;
-            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
-        }
-
-        .meta {
-            font-size: 12px;
-            color: var(--muted);
-            margin-bottom: 16px;
-        }
-
-        .section {
-            margin-top: 18px;
-        }
-
-        .section h2 {
-            margin: 0 0 10px;
-            font-size: 18px;
-        }
-
-        .section p {
-            margin: 0 0 12px;
-            font-size: 14px;
-            line-height: 1.6;
-            color: #3d3d3d;
-        }
-
-        .section ul {
-            margin: 0;
-            padding-left: 18px;
-            font-size: 14px;
-            line-height: 1.6;
-            color: #3d3d3d;
-        }
-
-        .callout {
-            background: #f7f1ed;
-            border-left: 4px solid var(--accent);
-            padding: 12px 14px;
-            border-radius: 10px;
-            font-size: 13px;
-            color: #3d3d3d;
-        }
-
-        .source {
-            margin-top: 18px;
-            font-size: 12px;
-            color: var(--muted);
-        }
-
-        .source a {
-            color: var(--accent-dark);
-            text-decoration: none;
-        }
-
-        .footer {
-            text-align: center;
-            margin-bottom: 36px;
-        }
-
-        .footer a {
-            color: var(--accent-dark);
-            text-decoration: none;
-            font-weight: 600;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>尿路感染警告信号：早期发现可以减轻您的痛苦 - Happy Poop</title>
+    <link rel="stylesheet" href="../../article-theme-v2.css">
 </head>
 <body>
-    <div class="status-bar">
-        <span id="current-time">4:58</span>
-        <div class="status-icons" aria-hidden="true">
-            <span class="status-dot"></span>
-            <span class="status-dot"></span>
-            <span class="status-dot"></span>
-            <span class="status-pill"></span>
+    <header class="hero-section">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <div class="article-meta-top">
+                <span>Urinary Health</span>
+                <span>•</span>
+                <span>8分钟阅读</span>
+            </div>
+            <h1 class="hero-title">尿路感染警告信号：早期发现可以减轻您的痛苦</h1>
+            
         </div>
-    </div>
-
-    <button class="back-button" onclick="history.back()" aria-label="Go back">&larr;</button>
-
-    <header class="hero">
-        <span class="tag">Preparedness</span>
-        <h1>就地避难计划</h1>
-        <p>Prepare a safe interior space when leaving is not possible.</p>
-        <svg class="hero-icon" viewBox="0 0 64 64" aria-hidden="true">
-            <rect x="12" y="22" width="40" height="30" rx="6" fill="none" stroke="#ffffff" stroke-width="3"></rect>
-            <rect x="22" y="14" width="20" height="10" rx="4" fill="none" stroke="#ffffff" stroke-width="3"></rect>
-            <path d="M20 36h24" stroke="#ffffff" stroke-width="3" stroke-linecap="round"></path>
-        </svg>
     </header>
-
-    <main class="content">
-        <div class="meta">5 min read - Updated Feb 3, 2026</div>
-        <section class="section">
-            <h2>Choose the Space</h2>
-            <p>Pick an interior room with few windows and enough supplies for everyone.</p>
-        </section>
-
-        <section class="section">
-            <h2>Seal and Monitor</h2>
-            <p>Keep plastic sheeting, tape, and a battery radio ready.</p>
-            <ul>
-                <li>Plastic sheeting and tape</li>
-                <li>Flashlight and batteries</li>
-                <li>A charged power bank</li>
-            </ul>
-        </section>
-
-        <section class="section">
-            <h2>Stay Connected</h2>
-            <p>Check in with your contacts and follow official updates.</p>
-            <div class="callout">Tip: store a small kit in the room you plan to shelter in.</div>
-        </section>
-        <div class="source">
-            Source: <a href="https://www.ready.gov/shelter" target="_blank" rel="noopener">Ready.gov - Shelter</a>
+    <div class="summary-card">
+        <div class="summary-title">⚡ TL;DR</div>
+        <ul class="summary-list">
+            <li><strong>典型症状：</strong>排尿灼热、尿急、尿频、尿液混浊或有恶臭 — 出现这些症状时请迅速采取行动。</li>
+            <li><strong>由于尿道较短且在解剖结构上更接近细菌，女性患尿路感染的可能性是男性的 30 倍</strong>。</li>
+            <li><strong>预防工作</strong>：正确擦拭、性交后排尿、充足的水分以及避免刺激性产品可显着降低风险。</li>
+            <li><strong>肾脏感染</strong>（发烧、腰部疼痛、恶心）是尿路感染的紧急情况 - 不要延误医疗护理。</li>
+            <li><strong>复发性尿路感染</strong>（每年 3 次以上）值得专家评估，并可能受益于预防策略。</li>
+        </ul>
+    </div>
+    <article class="content-container">
+        <div class="content-block">
+            <p class="intro-text">尿路感染可能会在 24 小时内从“轻微烦恼”变成“难以忍受”——如果感染到达您的肾脏，就会成为真正的医疗紧急情况。好消息？尿路感染是医学上最可预防的感染之一，识别最早的预警信号意味着更快的治疗、更少的痛苦和更少的并发症。这是您需要了解的一切。</p>
+            <h2>🔍认识症状</h2>
+<p>当细菌（最常见的是肠道中的大肠杆菌 (E. coli)）进入尿道并开始在膀胱中繁殖时，就会发生尿路感染。您身体的反应会产生标志性症状：</p>
+<p><strong>排尿时有灼烧感或刺痛感（排尿困难）：</strong>这通常是第一个迹象。发炎的尿道和膀胱内壁变得极其敏感。许多患者将其描述为“通过刀片撒尿”——戏剧性，但准确。</p>
+<p><strong>尿急程度和频率：</strong>您感觉每 15 到 20 分钟就需要小便一次，尽管每次只排出少量。发炎的膀胱向您的大脑发送虚假的“已满”信号，从而形成无情的循环。</p>
+<p><strong>浑浊或乳白色的尿液：</strong>混浊来自白细胞、细菌，有时还来自免疫系统用来对抗感染的脓液。</p>
+<p><strong>恶臭或异常强烈的气味：</strong>细菌代谢副产物会产生一种与正常浓缩尿液明显不同的特有的难闻气味。</p>
+<p><strong>骨盆压力或不适：</strong>下腹部或骨盆隐隐作痛或沉重，尤其是女性，是膀胱壁炎症的信号。</p>
+<p><strong>尿中带血（血尿）：</strong>UTI 期间出现粉红色、红色或可乐色尿液表明炎症已损坏膀胱内壁血管。虽然令人担忧，但这在尿路感染中很常见，通常可以通过治疗得到解决。</p>
+<div class="info-box">
+<div class="info-box-title">老年人的尿路感染</div>
+<p>在老年患者中，尿路感染症状可能不典型且容易被忽视。老年人可能会出现突然的意识混乱、烦躁、跌倒或全身不适，而不是灼烧感和紧迫感。如果一位年长的家庭成员突然变得“不像自己”，那么可能的原因应该是尿路感染。简单的尿检即可确诊或排除。</p>
+</div>
+            <h2>👩 为什么女性更容易受到伤害</h2>
+<p>大约 50% 至 60% 的女性一生中至少会经历一次尿路感染，而男性的这一比例约为 12%。原因主要是解剖学上的：女性尿道只有约 4 厘米长（男性尿道长 20 厘米），细菌到达膀胱的路程要短得多。此外，女性的尿道口靠近阴道和肛门，增加了接触细菌的机会。</p>
+<p>有几个因素进一步增加了女性的风险：</p>
+<p><strong>性活动：</strong>性交会将细菌推向尿道。这种情况很常见，有时被称为“蜜月膀胱炎”。使用隔膜或杀精产品会改变阴道菌群，从而进一步增加风险。</p>
+<p><strong>荷尔蒙变化：</strong>绝经后，雌激素水平下降会使阴道和尿道组织变薄，并改变保护性细菌平衡，使尿路感染更加常见。阴道雌激素治疗可以帮助恢复这种保护。</p>
+<p><strong>怀孕：</strong>荷尔蒙的变化使尿路肌肉放松，而不断增长的子宫会压迫膀胱，这两者都会促进细菌生长。怀孕期间出现尿路感染需要及时治疗，因为肾脏感染和妊娠并发症的风险较高。</p>
+            <h2>🛡️预防：循证策略</h2>
+<p>预防永远胜于治疗。这些策略背后有确凿的证据：</p>
+<div class="checklist">
+<div class="checklist-item">
+<div class="check-icon">✓</div>
+<div><strong>从前到后擦拭：</strong>这个简单的习惯可以防止肛门区域的大肠杆菌到达尿道。尽早向孩子们传授这一点。</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">✓</div>
+<div><strong>性交后小便：</strong>性交后 30 分钟内排尿可冲洗可能被推向尿道的细菌。这是最有效的预防措施之一。</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">✓</div>
+<div><strong>保持充足的水分：</strong>喝足够的水（以浅黄色尿液为目标）可以稀释细菌并增加排尿频率，定期冲洗尿道。</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">✓</div>
+<div><strong>不要憋尿：</strong>当您感到需要时就排尿。长时间憋尿可以让细菌有时间在膀胱中繁殖。</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">✓</div>
+<div><strong>避免刺激性产品：</strong>冲洗液、女性喷雾剂、香味垫和刺激性肥皂会破坏有助于防止感染的自然阴道菌群。</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">✓</div>
+<div><strong>选择棉质内衣</strong>：透气面料可减少水分积聚，从而促进细菌生长。如果您有尿路感染倾向，请避免穿丁字裤。</div>
+</div>
+</div>
+            <h2>🍒蔓越莓问题</h2>
+<p>蔓越莓产品可能是最受争议的尿路感染预防工具。科学实际表明：蔓越莓含有原花青素 (PAC)，这种化合物可以防止大肠杆菌粘附在膀胱壁上。然而，大多数市售蔓越莓汁中的 PAC 浓度太低，无法发挥作用。蔓越莓汁鸡尾酒富含糖，这实际上可能会使情况变得更糟。</p>
+<p>一些研究表明，浓缩蔓越莓补充剂（每天 36 毫克 PAC）具有一定的益处，特别是对于患有复发性尿路感染的女性。它们不能治疗活动性感染——只有抗生素可以清除已形成的尿路感染。将蔓越莓补充剂视为温和的预防层，而不是治疗方法。</p>
+            <h2>🔁 复发性尿路感染：打破循环</h2>
+<p>如果您每年经历 3 次或以上尿路感染，或六个月内出现 2 次，则您患有复发性尿路感染 - 除了基本预防之外，您还需要制定量身定制的策略。选项包括：</p>
+<p><strong>低剂量预防性抗生素</strong>：每日小剂量或性交后服用抗生素（例如呋喃妥因或甲氧苄啶）可以减少 85% 至 95% 的复发率。您的医生将权衡抗生素耐药性风险的益处。</p>
+<p><strong>阴道雌激素（针对绝经后妇女）：</strong>外用雌激素霜或阴道雌激素环可恢复保护性乳杆菌群并增厚尿道组织。研究表明，它可以将 UTI 复发率降低 36% 至 75%。</p>
+<p><strong>D-甘露糖补充剂：</strong>这种天然糖可以防止大肠杆菌粘附到膀胱壁，类似于蔓越莓 PAC。一些研究表明其有效性与低剂量抗生素相当，但还需要更多研究。</p>
+<p><strong>马尿酸乌洛托品：</strong>这种老式泌尿道消毒剂作为一种用于特定患者预防的抗生素节约选择，正在重新获得人们的关注。</p>
+<div class="warning-box">
+<div class="warning-title">⚠️ 肾脏感染危险信号 - 立即寻求护理</div>
+<ul class="warning-list">
+<li><strong>发烧超过 38.3°C (101°F)</strong> 并伴有泌尿系统症状，表明感染可能已到达您的肾脏</li>
+<li><strong>胁腹疼痛：</strong>背部或侧面（肋骨下方）疼痛是肾盂肾炎（肾脏感染）的标志</li>
+<li><strong>恶心和呕吐</strong>通常伴随肾脏感染，并可能导致脱水</li>
+<li><strong>发冷或寒战</strong>表明细菌可能正在进入血液（尿脓毒症 - 危及生命的紧急情况）</li>
+<li><strong>任何年龄段的意识混乱或意识改变</strong>都需要紧急评估</li>
+</ul>
+</div>
+            <h2>💊何时需要抗生素</h2>
+<p>简单、无并发症的膀胱感染（下尿路感染）通常采用短期抗生素治疗——大多数情况下使用 3 至 5 天的呋喃妥因或甲氧苄啶-磺胺甲恶唑。症状通常会在 24 至 48 小时内改善，但一定要完成整个疗程以防止耐药。</p>
+<p>复杂性尿路感染（涉及发烧、肾脏受累、怀孕或解剖异常）需要较长的治疗疗程（7 至 14 天），有时需要静脉注射抗生素。患有尿路感染的男性始终需要进一步检查，因为男性尿路感染不太常见，并且通常预示着前列腺肥大或尿潴留等潜在问题。</p>
+<p><strong>关于自我治疗的重要说明：</strong>虽然一出现烧伤迹象就很想服用剩余的抗生素，但这种做法会加剧抗生素耐药性——这是现代医学中最大的威胁之一。如果可能的话，一定要进行尿培养。它可以确认感染并确定哪些抗生素有效。随着抗生素耐药性的增加，以同样的方式治疗所有尿路感染的日子已经过去了。基于培养结果的靶向治疗是负责任的尿路感染管理的未来和现在。</p>
         </div>
-    </main>
-
-    <footer class="footer">
-        <a href="../../still-alive-mobile.html">返回提示</a>
-    </footer>
-
+    </article>
+    <nav class="floating-nav">
+        <a href="../../happy-poop-mobile.html" class="back-btn">← 返回列表</a>
+        <a href="#" class="share-btn" onclick="navigator.share({title: '尿路感染警告信号：早期发现可以减轻您的痛苦', url: window.location.href}); return false;">📤</a>
+    </nav>
     <script>
-        const timeElement = document.getElementById("current-time");
-        const updateTime = () => {
-            const now = new Date();
-            const hours = now.getHours();
-            const minutes = String(now.getMinutes()).padStart(2, "0");
-            timeElement.textContent = `${hours}:${minutes}`;
-        };
-        updateTime();
-        setInterval(updateTime, 60000);
+        document.querySelectorAll('.checklist-item').forEach(item => {
+            item.addEventListener('click', () => {
+                item.style.backgroundColor = '#F3F4F6';
+                setTimeout(() => item.style.backgroundColor = 'transparent', 200);
+            });
+        });
     </script>
 </body>
 </html>

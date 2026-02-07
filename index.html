@@ -410,21 +410,35 @@
       });
     </script>
     
+    <!-- 防止闪屏：必须在所有外部 CSS 之前执行，避免脚本被 CSS 下载阻塞 -->
+    <script>
+        // 同步执行：在任何 CSS 加载前设置主题，避免闪屏
+        (function() {
+            var storageKey = 'theme-preference';
+            var stored = null;
+            try { stored = localStorage.getItem(storageKey); } catch(e) {}
+            var theme = stored || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            document.documentElement.setAttribute('data-theme', theme);
+            // 标记正在初始化，阻止 CSS transition 在首屏触发
+            document.documentElement.classList.add('no-transition');
+        })();
+    </script>
+    <style id="critical-anti-flash">
+        /* 根据主题设置正确的背景色，避免白色闪屏 */
+        html[data-theme="light"] body, body { background-color: #ffffff; min-height: 100vh; }
+        html[data-theme="dark"] body { background-color: #0f172a; min-height: 100vh; }
+        /* 初始加载时禁用所有过渡动画 */
+        html.no-transition,
+        html.no-transition *,
+        html.no-transition *::before,
+        html.no-transition *::after {
+            transition: none !important;
+        }
+    </style>
+    
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="dark-mode.css">
     <link rel="stylesheet" href="hero-enhanced.css">
-    
-    <!-- 防止闪屏：使用visibility方案，同步显示 -->
-    <style id="critical-anti-flash">
-        /* 新方案：使用visibility避免布局重排 */
-        html:not(.loaded) { visibility: hidden; }
-        html.loaded { visibility: visible; }
-        body { background-color: #ffffff; min-height: 100vh; }
-    </style>
-    <script>
-        // 同步执行，立即显示页面
-        document.documentElement.classList.add('loaded');
-    </script>
     <!-- 字体预连接优化 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -756,6 +770,39 @@
                             </a>
                             <a href="https://play.google.com/store/apps/details?id=com.lingjue.live" class="btn btn-download android-download" target="_blank" data-app-type="stillalive">
                                 <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get AiSnap on Google Play" loading="lazy" width="135" height="40">
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Happy Poop -->
+                    <div class="app-card" data-detail-url="happy-poop-app.html">
+                        <div class="app-header">
+                            <div class="app-icon-large">💩</div>
+                            <div class="app-status" style="background: linear-gradient(135deg, #A78BFA, #FB7185);">Health</div>
+                        </div>
+                        <h3>Happy Poop</h3>
+                        <p data-i18n="apps.happypoop.desc">AI-powered digestive health tracker. Monitor bowel habits, hydration, and receive personalized wellness insights.</p>
+                        <div class="app-features">
+                            <span>💩 Bristol Scale</span>
+                            <span>💧 Hydration</span>
+                            <span>🤖 AI Insights</span>
+                        </div>
+                        <div class="app-stats">
+                            <div class="stat">
+                                <strong>50K+</strong>
+                                <span>Users</span>
+                            </div>
+                            <div class="stat">
+                                <strong>4.7</strong>
+                                <span>Rating</span>
+                            </div>
+                        </div>
+                        <div class="download-buttons-group">
+                            <a href="#" class="btn btn-download ios-download" target="_blank" data-app-type="happypoop" style="opacity: 0.6; pointer-events: none;">
+                                <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Coming Soon to App Store" loading="lazy" width="120" height="40">
+                            </a>
+                            <a href="https://play.google.com/store/apps/details?id=com.happypoop.app" class="btn btn-download android-download" target="_blank" data-app-type="happypoop">
+                                <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get Happy Poop on Google Play" loading="lazy" width="135" height="40">
                             </a>
                         </div>
                     </div>
@@ -1235,6 +1282,7 @@
                         <li><a href="mushroom-app.html" data-i18n="footer.apps.mushroom">MushroomAiSnap</a></li>
                         <li><a href="insect-app.html" data-i18n="footer.apps.insect">InsectAiSnap</a></li>
                         <li><a href="still-alive.html" data-i18n="footer.apps.stillalive">Still Alive?</a></li>
+                        <li><a href="happy-poop-app.html" data-i18n="footer.apps.happypoop">Happy Poop</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">

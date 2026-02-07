@@ -1,273 +1,177 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" data-theme="bowel">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Emergency Prep for Older Adults - Still Alive?</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --accent: #6fbf9b;
-            --accent-light: #b9e3cf;
-            --accent-dark: #3f8b6a;
-            --surface: #ffffff;
-            --text: #1f1f1f;
-            --muted: #6e6e6e;
-            --bg: #f6f4f1;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-        }
-
-        .status-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 44px;
-            background: rgba(0, 0, 0, 0.78);
-            color: #ffffff;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 18px;
-            font-size: 14px;
-            z-index: 10;
-        }
-
-        .status-icons {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .status-dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: #ffffff;
-            opacity: 0.8;
-        }
-
-        .status-pill {
-            width: 22px;
-            height: 10px;
-            border-radius: 6px;
-            border: 1px solid #ffffff;
-            position: relative;
-            opacity: 0.8;
-        }
-
-        .status-pill::after {
-            content: "";
-            position: absolute;
-            right: 2px;
-            top: 2px;
-            width: 6px;
-            height: 4px;
-            border-radius: 3px;
-            background: #ffffff;
-        }
-
-        .back-button {
-            position: fixed;
-            top: 58px;
-            left: 18px;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            border: none;
-            background: rgba(0, 0, 0, 0.6);
-            color: #ffffff;
-            font-size: 18px;
-            cursor: pointer;
-            z-index: 9;
-        }
-
-        .hero {
-            margin-top: 44px;
-            padding: 28px 20px 80px;
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
-            color: #ffffff;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero h1 {
-            margin: 12px 0 10px;
-            font-size: 26px;
-            font-weight: 700;
-        }
-
-        .hero p {
-            margin: 0;
-            font-size: 14px;
-            max-width: 320px;
-            line-height: 1.5;
-        }
-
-        .tag {
-            display: inline-block;
-            padding: 4px 10px;
-            border-radius: 999px;
-            font-size: 11px;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            background: rgba(255, 255, 255, 0.25);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-        }
-
-        .hero-icon {
-            position: absolute;
-            right: 20px;
-            bottom: 12px;
-            width: 80px;
-            height: 80px;
-            opacity: 0.18;
-        }
-
-        .content {
-            background: var(--surface);
-            margin: -50px 18px 24px;
-            border-radius: 20px;
-            padding: 24px 20px 28px;
-            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
-        }
-
-        .meta {
-            font-size: 12px;
-            color: var(--muted);
-            margin-bottom: 16px;
-        }
-
-        .section {
-            margin-top: 18px;
-        }
-
-        .section h2 {
-            margin: 0 0 10px;
-            font-size: 18px;
-        }
-
-        .section p {
-            margin: 0 0 12px;
-            font-size: 14px;
-            line-height: 1.6;
-            color: #3d3d3d;
-        }
-
-        .section ul {
-            margin: 0;
-            padding-left: 18px;
-            font-size: 14px;
-            line-height: 1.6;
-            color: #3d3d3d;
-        }
-
-        .callout {
-            background: #eef8f3;
-            border-left: 4px solid var(--accent);
-            padding: 12px 14px;
-            border-radius: 10px;
-            font-size: 13px;
-            color: #3d3d3d;
-        }
-
-        .source {
-            margin-top: 18px;
-            font-size: 12px;
-            color: var(--muted);
-        }
-
-        .source a {
-            color: var(--accent-dark);
-            text-decoration: none;
-        }
-
-        .footer {
-            text-align: center;
-            margin-bottom: 36px;
-        }
-
-        .footer a {
-            color: var(--accent-dark);
-            text-decoration: none;
-            font-weight: 600;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>下痢の緊急対応: 消化器内科医の行動計画 - Happy Poop</title>
+    <link rel="stylesheet" href="../../article-theme-v2.css">
 </head>
 <body>
-    <div class="status-bar">
-        <span id="current-time">4:57</span>
-        <div class="status-icons" aria-hidden="true">
-            <span class="status-dot"></span>
-            <span class="status-dot"></span>
-            <span class="status-dot"></span>
-            <span class="status-pill"></span>
+    <header class="hero-section">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <div class="article-meta-top">
+                <span>腸の健康</span>
+                <span>•</span>
+                <span>9分で読める</span>
+            </div>
+            <h1 class="hero-title">下痢の緊急対応: 消化器内科医の行動計画</h1>
+            
         </div>
-    </div>
-
-    <button class="back-button" onclick="history.back()" aria-label="Go back">←</button>
-
-    <header class="hero">
-        <span class="tag">Wellness</span>
-        <h1>高齢者のための緊急準備</h1>
-        <p>Organize medications, medical details, and support contacts so help is easy to reach.</p>
-        <svg class="hero-icon" viewBox="0 0 64 64" aria-hidden="true">
-            <path d="M32 50C20 42 14 34 14 24a10 10 0 0 1 18-6 10 10 0 0 1 18 6c0 10-6 18-18 26z" fill="none" stroke="#ffffff" stroke-width="3" stroke-linejoin="round"></path>
-        </svg>
     </header>
-
-    <main class="content">
-        <div class="meta">5 min read • Updated Feb 3, 2026</div>
-
-        <section class="section">
-            <h2>Health Essentials</h2>
-            <p>Keep a current list of prescriptions, allergies, and doctors. Store it with your emergency kit.</p>
-            <ul>
-                <li>Include copies of insurance cards and emergency contacts.</li>
-                <li>Keep at least a few days of extra medication if possible.</li>
-            </ul>
-        </section>
-
-        <section class="section">
-            <h2>Caregiver Contacts</h2>
-            <p>List primary caregivers and back-up contacts. Make sure everyone knows how to reach each other.</p>
-        </section>
-
-        <section class="section">
-            <h2>Mobility and Equipment</h2>
-            <p>Prepare charging options or spare batteries for medical devices, walkers, or hearing aids.</p>
-            <div class="callout">Tip: store a printed checklist in case the phone battery runs out.</div>
-        </section>
-
-        <div class="source">
-            Source: <a href="https://www.nia.nih.gov/health/emergency-preparedness" target="_blank" rel="noopener">National Institute on Aging - Emergency Preparedness</a>
+    <div class="summary-card">
+        <div class="summary-title">⚡ TL;DR</div>
+        <ul class="summary-list">
+            <li><strong>水分補給がすべてです:</strong> 下痢の合併症のほとんどは、感染症そのものではなく、脱水症状によって引き起こされます。</li>
+            <li><strong>経口補水液 (ORS)</strong> は水だけよりも効果的です。電解質を加えてください。</li>
+            <li><strong>BRAT ダイエットは時代遅れです。</strong> バランスの取れた、消化しやすい食事を許容範囲内で食べてください。</li>
+            <li><strong>ほとんどの急性下痢は、抗生物質を使用しなくても 2～5 日で治ります</strong>。抗生物質は実際に症状を悪化させる場合もあります。</li>
+            <li><strong>血の混じった下痢、高熱（38.5°C 以上）、重度の脱水症状、または症状が 7 日間以上続く場合は<strong>直ちに緊急治療を受けます</li>
+        </ul>
+    </div>
+    <article class="content-container">
+        <div class="content-block">
+            <p class="intro-text">それは前触れもなく襲いかかります。突然のけいれん、急いでトイレに駆け込み、その日の計画が劇的に変わったことに気づきます。急性下痢は、人々が午前 2 時に医師に電話したり、救急治療を受けたり、オンラインで答えを検索したりする最も一般的な理由の 1 つです。ほとんどのエピソードは自然に制限され、数日以内に解決しますが、効果的な対応方法を知っているかどうかは、軽度の不便な状態と危険な脱水症状の違いを意味します。これは、まさにこの状況を乗り越えるために何千人もの患者を指導してきた消化器科医による、証拠に基づいた行動計画です。</p>
+            <h2>📊 急性と慢性: 違いを理解する</h2>
+<p>原因、治療法、緊急性が根本的に異なるため、区別することが重要です。</p>
+<p><strong>急性下痢</strong>は 14 日以内に続きます。症例の大部分 (90% 以上) は感染症が原因であり、ウイルス性胃腸炎 (ノロウイルス、ロタウイルス) が最も一般的です。細菌（<em>サルモネラ菌</em>、<em>大腸菌</em>、<em>カンピロバクター</em>）による食中毒は、2番目に多い原因です。急性下痢は通常、自然に治まり、特別な治療を行わなくても解決します。</p>
+<p><strong>慢性下痢</strong>が 4 週間以上続きます。これは全く異なる臨床シナリオであり、体系的な調査が必要です。一般的な原因には、過敏性腸症候群（IBS-D）、炎症性腸疾患（クローン病、潰瘍性大腸炎）、セリアック病、顕微鏡的大腸炎、胆汁酸吸収不良、慢性感染症などがあります。下痢が 1 か月以上続く場合は、自宅で症状を管理するだけでなく、消化器科医の診察を受ける必要があります。</p>
+            <h2>💧 ステップ 1: 水分補給 — 最優先事項</h2>
+<p>急性下痢の症状中にできる最も重要なことは、<strong>水分補給を維持する</strong>ことです。下痢は水分と電解質（ナトリウム、カリウム、塩化物、重炭酸塩）の急速な損失を引き起こします。感染症そのものではなく、脱水症状が人々を緊急治療室に送り込む原因であり、世界的に脆弱な人々の下痢を致命的なものにする原因となっています。</p>
+<div class="info-box">
+<div class="info-box-title">🥤 効果的な水分補給の方法</div>
+<p>
+<strong>経口補水液（ORS）</strong>がゴールドスタンダードです。 WHO の処方には、水、ナトリウム、カリウム、ブドウ糖、およびクエン酸塩が、腸での吸収を最大化するように設計された特定の割合で含まれています。 Pedialyte、Drip Drop、Liquid IV などの市販のオプションが便利な代替品です。<br/><br/>
+<strong>水だけでは不十分な理由:</strong> 普通の水では失われた電解質が補充されず、グルコースがないと腸でのナトリウム吸収が損なわれます。小腸におけるグルコースとナトリウムの共輸送メカニズムが ORS を非常に効果的にしているのです。腸が炎症を起こしている場合でも、グルコースは腸壁を越えてナトリウム (および水) を引き込みます。<br/><br/>
+<strong>DIY 水分補給レシピ:</strong> 1 リットルのきれいな水 + 小さじ 1/2 の塩 + 小さじ 6 杯の砂糖 + オプションでレモンを絞ります。商用 ORS ほど正確ではありませんが、いざというときに機能します。<br/><br/>
+<strong>摂取量:</strong> 各下痢便を少なくとも 1 カップ (250 mL) の ORS に置き換えることを目指します。吐き気や嘔吐を引き起こす可能性があるので、大量に飲み込むのではなく、頻繁に飲みましょう。
+                </p>
+</div>
+<div class="checklist">
+<div class="checklist-item">
+<div class="check-icon">✅</div>
+<div><strong>飲み物:</strong> ORS、透明なスープ、希釈したフルーツ ジュース (リンゴ、白ブドウ)、ココナッツ ウォーター、ハーブティー。</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">❌</div>
+<div><strong>避ける:</strong> コーヒー (運動を刺激する)、アルコール (利尿作用と刺激物)、フルストレングスのフルーツ ジュース (浸透圧の影響で下痢を悪化させる)、牛乳 (一時的な乳糖不耐症は腸感染症の際によく見られます)、甘い炭酸飲料は避けてください。</div>
+</div>
+</div>
+            <h2>🍽️ ステップ 2: 何を食べるか (BRAT ダイエットは時代遅れです)</h2>
+<p>何十年もの間、医師は回復食として頼りになるバナナ、米、アップルソース、トーストなどの<strong>BRAT 食事</strong>を推奨していました。これらの食品は体に優しく、症状を悪化させる可能性は低いですが、BRAT 食は現在<strong>制限が厳しすぎる</strong>と考えられています。腸粘膜の回復に必要な適切なタンパク質、脂肪、微量栄養素が不足しています。</p>
+<div class="info-box">
+<div class="info-box-title">🍽️ 現代の回復食ガイドライン</div>
+<p>
+                    米国消化器病学会による現在の推奨事項: <strong>許容範囲内でバランスの取れた規則的な食事を摂る</strong>。飢えたり、刺激の少ない食べ物だけに摂取を制限したりする必要はありません。<br/><br/>
+<strong>回復中の良い選択:</strong><br/>
+                    • 脂肪の少ないタンパク質: 鶏肉、魚、卵、豆腐<br/>
+                    • 消化しやすいでんぷん：白米、ジャガイモ、プレーンパスタ、クラッカー<br/>
+                    • 調理した野菜: ニンジン、インゲン、カボチャ (生野菜は一時的に避けてください)<br/>
+                    • バナナ（カリウムの代替品）、アップルソース（ペクチンは水分の吸収を助ける）<br/>
+                    • 生きた培養物を含むヨーグルト（プロバイオティクスは回復を助ける）<br/><br/>
+<strong>一時的に避ける:</strong><br/>
+                    • 脂っこい食べ物、揚げ物、または非常に辛い食べ物<br/>
+                    • 繊維質の多い生野菜と全粒穀物（便が正常になるまで待ちます）<br/>
+                    • ヨーグルト以外の乳製品（ラクターゼ酵素が一時的に枯渇することがよくあります）<br/>
+                    • 無糖のガムやキャンディーに含まれる糖アルコール（ソルビトール、マンニトール）
+                </p>
+</div>
+            <h2>💊 ステップ 3: 薬 — 何が効くのか、何が効かないのか</h2>
+<p><strong>ロペラミド (イモジウム)</strong> は、最も効果的な市販の下痢止めです。腸の運動を遅くすることで作用し、より多くの水分が吸収されるようにします。非出血性、非熱性の下痢のある成人に適しています。最初に 4 mg を摂取し、その後軟便ごとに 2 mg を摂取します (1 日あたり最大 16 mg)。血の混じった下痢や発熱がある場合は、ロペラミドを使用しないでください。侵襲性感染症の通過が遅れると、症状が悪化する可能性があります。</p>
+<p><strong>次サリチル酸ビスマス (ペプトビスモール)</strong> には、穏やかな抗菌作用と抗炎症作用があります。旅行者下痢症の排便回数を約50%減らすことができます。注: 便が黒くなります (正常であり、心配する必要はありません)。抗凝血薬を服用している人やアスピリンにアレルギーのある人は避けるべきです。</p>
+<p><strong>プロバイオティクス:</strong> 急性下痢に対する特定の菌株を裏付ける証拠があります。 <em>Saccharomyces boulardii</em> と <em>Lactobacillus rhamnosus GG</em> は最も強力なデータを持ち、下痢の期間を約 1 日短縮します。安全なので試してみる価値はありますが、水分補給の代わりにはなりません。</p>
+            <h2>💉 抗生物質: 役立つ場合と害を及ぼす場合</h2>
+<p>これは、一部の医療提供者でさえ誤解する重要な違いです。</p>
+<p><strong>ほとんどの急性下痢はウイルス性です</strong> - 抗生物質はウイルスに対しては役に立ちませんが、腸内微生物叢を破壊することで実際に害を及ぼし、症状を長引かせたり、<em>クロストリディオイデス ディフィシル</em>の二次感染を引き起こしたりする可能性があります。</p>
+<p><strong>抗生物質は次の場合に適しています:</strong></p>
+<div class="checklist">
+<div class="checklist-item">
+<div class="check-icon">✓</div>
+<div>中等度から重度の旅行者下痢症（アジスロマイシンまたはリファキシミン）</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">✓</div>
+<div><em>赤癬</em>、侵入性<em>サルモネラ菌</em>、または<em>カンピロバクター</em>による確認された細菌性赤痢（発熱を伴う血性下痢）</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">✓</div>
+<div><em>クロストリディオイデス ディフィシル</em>感染症（バンコマイシンまたはフィダキソマイシンで治療 - 第一選択のメトロニダゾールではなくなりました）</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">✓</div>
+<div>便検査により寄生虫感染症（ジアルジア症、アメーバ症）が確認された</div>
+</div>
+</div>
+<p><strong>次の場合は抗生物質を避けるべきです:</strong> 合併症のない<em>サルモネラ菌</em>性胃腸炎 (抗生物質はキャリア状態を長引かせる可能性があります)、<em>E.大腸菌</em>O157:H7 (抗生物質は溶血性尿毒症症候群のリスクを高めます)、およびウイルス性胃腸炎。</p>
+            <h2>✈️ 旅行者下痢: 予防のヒント</h2>
+<p>旅行者下痢症は、高リスクの目的地（南アジア、アフリカ、中央アメリカ）への海外旅行者の 30 ～ 70% に影響を与えています。予防戦略には次のようなものがあります。</p>
+<div class="checklist">
+<div class="checklist-item">
+<div class="check-icon">✓</div>
+<div><strong>「茹でる、調理する、皮をむく、または忘れる。」</strong> リスクの高い場所では、生の野菜、皮をむいていない果物、水道水、角氷を避けてください。</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">✓</div>
+<div><strong>飲料水はボトル入りの水または処理済みの水のみを飲みます。</strong> 歯磨きにもボトル入りの水を使用します。</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">✓</div>
+<div><strong>次サリチル酸ビスマスの予防:</strong> 2 錠を 1 日 4 回服用すると、リスクを 65% 軽減できます。旅行前に医師にご相談ください。</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">✓</div>
+<div><strong>トラベル キットを用意する:</strong> ORS パケット、ロペラミド、次サリチル酸ビスマス、および重度の症状が発生した場合の自己治療用のアジスロマイシン (処方箋) を含めてください。</div>
+</div>
+</div>
+            <h2>🚨 危険信号: 緊急治療室に行くべきとき</h2>
+<div class="warning-box">
+<div class="warning-title">🚨 次のような症状がある場合は、直ちに医師の診察を受けてください</div>
+<ul class="warning-list">
+<li><strong>血性または黒色のタール状の下痢</strong> — 浸潤性感染症または消化管出血を示唆します。</li>
+<li><strong>高熱（38.5 °C / 101.3 °F 以上）</strong> - 標的を絞った抗生物質が必要となる可能性のある侵襲性細菌または寄生虫感染を示します。</li>
+<li><strong>重度の脱水症状の兆候:</strong> 立ちくらみ、非常に濃い色の尿、8 時間以上排尿がない、口と皮膚の乾燥、心拍数の上昇、混乱</li>
+<li><strong>継続的な激しい腹痛</strong>（けいれんだけではない） - 中毒性巨大結腸症や穿孔などの合併症を示している可能性があります。</li>
+<li><strong>症状が 7 日以上続く</strong>が改善しない。</li>
+<li><strong>最近の抗生物質の使用</strong>とその後の水様性下痢 - <em>C に対する懸念が生じます。ディフィシル</em>感染症</li>
+<li><strong>免疫不全患者</strong>（HIV、化学療法、移植患者） - 「軽度の」下痢でも危険な場合があります。</li>
+</ul>
+</div>
+            <h2>📅 回復タイムライン: 予想されること</h2>
+<div class="checklist">
+<div class="checklist-item">
+<div class="check-icon">1</div>
+<div><strong>1 ～ 2 日目:</strong> 症状のピーク。水分補給だけに重点を置きます。許容範囲内で、刺激の少ない食べ物を少量食べてください。休憩</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">2</div>
+<div><strong>3 ～ 5 日目:</strong> 頻度が減少します。徐々に食生活の幅を広げていきましょう。脂肪分の少ないタンパク質と調理した野菜を再摂取します。 ORS を続行します。</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">3</div>
+<div><strong>5 ～ 7 日目:</strong> 便は正常化し始めます。通常の食生活に戻すことができます。プロバイオティクスは、マイクロバイオームのバランスを回復するためにこの段階で最も有益です。</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">4</div>
+<div><strong>第 1 ～ 4 週目:</strong> マイクロバイオームの完全な回復。一部の人は、腸感染症後 2 ～ 4 週間、一時的な乳糖不耐症を経験します (刷子縁酵素が再生するのに時間がかかります)。乳製品に症状がある場合は、一時的に乳製品の摂取を避け、1 か月後にもう一度試してください。</div>
+</div>
+</div>
+<div class="info-box">
+<div class="info-box-title">💡 最終的なポイント</div>
+<p>急性下痢は、ほとんどの場合、自然に治まる症状です。あなたの体は、病原体を素早く排出するという、その設計通りのことを正確に行っています。あなたの仕事は、水分補給、適切な栄養補給、そして簡単なセルフケアでは十分ではない時期を知ることで、そのプロセスをサポートすることです。水分を補給し、辛抱強く、危険信号が現れたらためらわずに助けを求めてください。あなたの腸は驚くほど回復力があり、適切なサポートがあれば元に戻ります。</p>
+</div>
         </div>
-    </main>
-
-    <footer class="footer">
-        <a href="../../still-alive-mobile.html">ヒントに戻る</a>
-    </footer>
-
+    </article>
+    <nav class="floating-nav">
+        <a href="../../happy-poop-mobile.html" class="back-btn">← 戻る</a>
+        <a href="#" class="share-btn" onclick="navigator.share({title: '下痢の緊急対応: 消化器内科医の行動計画', url: window.location.href}); return false;">📤</a>
+    </nav>
     <script>
-        const timeElement = document.getElementById("current-time");
-        const updateTime = () => {
-            const now = new Date();
-            const hours = now.getHours();
-            const minutes = String(now.getMinutes()).padStart(2, "0");
-            timeElement.textContent = `${hours}:${minutes}`;
-        };
-        updateTime();
-        setInterval(updateTime, 60000);
+        document.querySelectorAll('.checklist-item').forEach(item => {
+            item.addEventListener('click', () => {
+                item.style.backgroundColor = '#F3F4F6';
+                setTimeout(() => item.style.backgroundColor = 'transparent', 200);
+            });
+        });
     </script>
 </body>
 </html>

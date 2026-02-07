@@ -1,278 +1,161 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="it" data-theme="bowel">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Emergency Kit Essentials - Still Alive?</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --accent: #ff7a5a;
-            --accent-light: #ffb199;
-            --accent-dark: #c4553b;
-            --surface: #ffffff;
-            --text: #1f1f1f;
-            --muted: #6e6e6e;
-            --bg: #f6f4f1;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-        }
-
-        .status-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 44px;
-            background: rgba(0, 0, 0, 0.78);
-            color: #ffffff;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 18px;
-            font-size: 14px;
-            z-index: 10;
-        }
-
-        .status-icons {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .status-dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: #ffffff;
-            opacity: 0.8;
-        }
-
-        .status-pill {
-            width: 22px;
-            height: 10px;
-            border-radius: 6px;
-            border: 1px solid #ffffff;
-            position: relative;
-            opacity: 0.8;
-        }
-
-        .status-pill::after {
-            content: "";
-            position: absolute;
-            right: 2px;
-            top: 2px;
-            width: 6px;
-            height: 4px;
-            border-radius: 3px;
-            background: #ffffff;
-        }
-
-        .back-button {
-            position: fixed;
-            top: 58px;
-            left: 18px;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            border: none;
-            background: rgba(0, 0, 0, 0.6);
-            color: #ffffff;
-            font-size: 18px;
-            cursor: pointer;
-            z-index: 9;
-        }
-
-        .hero {
-            margin-top: 44px;
-            padding: 28px 20px 80px;
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
-            color: #ffffff;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero h1 {
-            margin: 12px 0 10px;
-            font-size: 26px;
-            font-weight: 700;
-        }
-
-        .hero p {
-            margin: 0;
-            font-size: 14px;
-            max-width: 320px;
-            line-height: 1.5;
-        }
-
-        .tag {
-            display: inline-block;
-            padding: 4px 10px;
-            border-radius: 999px;
-            font-size: 11px;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            background: rgba(255, 255, 255, 0.25);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-        }
-
-        .hero-icon {
-            position: absolute;
-            right: 20px;
-            bottom: 12px;
-            width: 80px;
-            height: 80px;
-            opacity: 0.18;
-        }
-
-        .content {
-            background: var(--surface);
-            margin: -50px 18px 24px;
-            border-radius: 20px;
-            padding: 24px 20px 28px;
-            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
-        }
-
-        .meta {
-            font-size: 12px;
-            color: var(--muted);
-            margin-bottom: 16px;
-        }
-
-        .section {
-            margin-top: 18px;
-        }
-
-        .section h2 {
-            margin: 0 0 10px;
-            font-size: 18px;
-        }
-
-        .section p {
-            margin: 0 0 12px;
-            font-size: 14px;
-            line-height: 1.6;
-            color: #3d3d3d;
-        }
-
-        .section ul {
-            margin: 0;
-            padding-left: 18px;
-            font-size: 14px;
-            line-height: 1.6;
-            color: #3d3d3d;
-        }
-
-        .callout {
-            background: #f7f1ed;
-            border-left: 4px solid var(--accent);
-            padding: 12px 14px;
-            border-radius: 10px;
-            font-size: 13px;
-            color: #3d3d3d;
-        }
-
-        .source {
-            margin-top: 18px;
-            font-size: 12px;
-            color: var(--muted);
-        }
-
-        .source a {
-            color: var(--accent-dark);
-            text-decoration: none;
-        }
-
-        .footer {
-            text-align: center;
-            margin-bottom: 36px;
-        }
-
-        .footer a {
-            color: var(--accent-dark);
-            text-decoration: none;
-            font-weight: 600;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Comprendere il colore e la forma delle feci: il barometro della salute dell'intestino - Happy Poop</title>
+    <link rel="stylesheet" href="../../article-theme-v2.css">
 </head>
 <body>
-    <div class="status-bar">
-        <span id="current-time">4:54</span>
-        <div class="status-icons" aria-hidden="true">
-            <span class="status-dot"></span>
-            <span class="status-dot"></span>
-            <span class="status-dot"></span>
-            <span class="status-pill"></span>
+    <header class="hero-section">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <div class="article-meta-top">
+                <span>Salute Intestinale</span>
+                <span>•</span>
+                <span>8 min di lettura</span>
+            </div>
+            <h1 class="hero-title">Comprendere il colore e la forma delle feci: il barometro della salute dell'intestino</h1>
+            
         </div>
-    </div>
-
-    <button class="back-button" onclick="history.back()" aria-label="Go back">←</button>
-
-    <header class="hero">
-        <span class="tag">Preparedness</span>
-        <h1>Elementi essenziali del kit di emergenza</h1>
-        <p>Build a 72-hour kit that keeps you safe, calm, and connected if normal routines are disrupted.</p>
-        <svg class="hero-icon" viewBox="0 0 64 64" aria-hidden="true">
-            <rect x="12" y="22" width="40" height="30" rx="6" fill="none" stroke="#ffffff" stroke-width="3"></rect>
-            <rect x="22" y="14" width="20" height="10" rx="4" fill="none" stroke="#ffffff" stroke-width="3"></rect>
-            <path d="M20 36h24" stroke="#ffffff" stroke-width="3" stroke-linecap="round"></path>
-        </svg>
     </header>
-
-    <main class="content">
-        <div class="meta">6 min read • Updated Feb 3, 2026</div>
-
-        <section class="section">
-            <h2>Core Supplies</h2>
-            <p>Your kit should cover the basics for at least three days. Focus on items that keep you hydrated, nourished, and able to communicate.</p>
-            <ul>
-                <li>Water: about 1 gallon per person per day.</li>
-                <li>Non-perishable food plus a manual can opener.</li>
-                <li>Flashlight, batteries, and a phone power bank.</li>
-                <li>First-aid kit and essential medications.</li>
-                <li>Copies of IDs, insurance cards, and key contacts.</li>
-            </ul>
-        </section>
-
-        <section class="section">
-            <h2>Personalize for Your Routine</h2>
-            <p>Add items that match your daily needs: medical devices, pet supplies, mobility aids, or comfort items that help reduce stress.</p>
-        </section>
-
-        <section class="section">
-            <h2>Store and Rotate</h2>
-            <p>Keep the kit in a reachable spot and refresh food, water, and batteries every 6-12 months.</p>
-            <div class="callout">Tip: put a reminder in Still Alive to review your kit every season.</div>
-        </section>
-
-        <div class="source">
-            Source: <a href="https://www.ready.gov/kit" target="_blank" rel="noopener">Ready.gov - Build a Kit</a>
+    <div class="summary-card">
+        <div class="summary-title">⚡ TL;DR</div>
+        <ul class="summary-list">
+            <li><strong>Base sana:</strong> feci di colore marrone medio, lisce a forma di salsiccia (Bristol Tipo 3–4) sono il gold standard.</li>
+            <li><strong>Il colore conta:</strong> le feci nere catramose, rosso vivo o color argilla pallida richiedono cure mediche immediate.</li>
+            <li><strong>Verde e giallo</strong> è solitamente dietetico: verdure in foglia, coloranti alimentari o di trasporto rapido.</li>
+            <li><strong>Soluzione rapida:</strong> aumenta l'assunzione di fibre e acqua per raggiungere la forma ideale in pochi giorni.</li>
+        </ul>
+    </div>
+    <article class="content-container">
+        <div class="content-block">
+            <p class="intro-text">Ecco qualcosa che dico a ogni paziente durante la prima visita: il rapporto sulla salute più informativo che riceverai mai è seduto nella tazza del water ogni singolo giorno, gratuitamente. Le tue feci sono un messaggero straordinariamente onesto. Il suo colore, forma, consistenza e persino la galleggiabilità riflettono ciò che hai mangiato, quanto bene lo hai digerito, quanto sei idratato e se qualcosa di più profondo merita attenzione. La maggior parte delle persone tira lo sciacquone senza degnare di uno sguardo. Una volta terminato questo articolo, saprai esattamente cosa cercare e quando chiamare il medico.</p>
+            <h2>🎨 Colore delle feci: cosa significa realmente ogni tonalità</h2>
+<p>Le feci normali vanno dal <strong>marrone chiaro al marrone cioccolato scuro</strong>. Quel colore marrone deriva dalla stercobilina, un pigmento creato quando i batteri intestinali scompongono la bilirubina, un prodotto di scarto dei vecchi globuli rossi elaborati dal fegato. Quando il colore si discosta in modo significativo, vale la pena indagare.</p>
+<div class="checklist">
+<div class="checklist-item">
+<div class="check-icon" style="background:#5C4033; color:white;">●</div>
+<div>
+<strong>Marrone (da chiaro a scuro)</strong>
+<p>Normale. La bile è stata adeguatamente scomposta. Le variazioni di tonalità giornaliere sono perfettamente accettabili e di solito riflettono le differenze dietetiche.</p>
+</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon" style="background:#228B22; color:white;">●</div>
+<div>
+<strong>Verde</strong>
+<p>Di solito innocuo. Le cause più comuni includono spinaci, cavoli, coloranti alimentari verdi, integratori di ferro o transito intestinale rapido (la bile non ha avuto il tempo di scomporsi completamente). Occasionalmente osservato con l'uso di antibiotici.</p>
+</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon" style="background:#DAA520; color:white;">●</div>
+<div>
+<strong>Giallo o grasso</strong>
+<p>Può indicare un eccesso di grasso nelle feci (steatorrea). Se è giallo pallido, maleodorante e galleggia, considera la celiachia, la pancreatite cronica o il malassorbimento degli acidi biliari. Occasionali feci gialle dopo un pasto ricco di grassi non sono allarmanti.</p>
+</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon" style="background:#FF8C00; color:white;">●</div>
+<div>
+<strong>Arancione</strong>
+<p>Tipicamente dietetico: carote, patate dolci, alimenti con beta-carotene o coloranti artificiali. Raramente indica un problema biliare. Di solito non c'è nulla di cui preoccuparsi.</p>
+</div>
+</div>
+</div>
+<div class="warning-box">
+<div class="warning-title">🚨 Tre colori che richiedono cure mediche</div>
+<ul class="warning-list">
+<li><strong>Nero o catramoso (melena):</strong> suggerisce un sanguinamento nel tratto gastrointestinale superiore: stomaco o esofago. Il sangue diventa nero mentre viene digerito. Eccezione: gli integratori di ferro, il subsalicilato di bismuto (Pepto-Bismol) e la liquirizia nera possono tutti causare scurimenti innocui.</li>
+<li><strong>Rosso brillante o sangue (ematochezia):</strong> indica sanguinamento nel tratto gastrointestinale inferiore: emorroidi, ragadi anali, malattia diverticolare o polipi. Anche piccole quantità di sangue rosso dovrebbero essere valutate, soprattutto dopo i 45 anni.</li>
+<li><strong>Pallido, color argilla o bianco:</strong> indica una mancanza di bile che raggiunge l'intestino. Ciò può segnalare un'ostruzione del dotto biliare (calcoli biliari, tumori), una malattia del fegato o una patologia della testa del pancreas. Richiedere tempestivamente una valutazione medica.</li>
+</ul>
+</div>
+            <h2>📏 Bilancia per feci Bristol: la tua pagella basata sulla forma</h2>
+<p>Sviluppata presso l'Università di Bristol nel 1997, la <strong>Bristol Stool Form Scale</strong> classifica le feci in sette tipi in base alla forma e alla consistenza. È direttamente correlato al tempo di transito del colon: quanto tempo trascorrono i rifiuti nell'intestino crasso.</p>
+<div class="info-box">
+<div class="info-box-title">📊 Spiegazione dei sette tipi</div>
+<p>
+<strong>Tipo 1: grumi duri separati (come noci):</strong> grave stitichezza. Le feci sono rimaste troppo a lungo nel colon e quasi tutta l'acqua è stata assorbita. Spesso doloroso da superare.<br/><br/>
+<strong>Tipo 2: a forma di salsiccia ma grumoso:</strong> lieve stitichezza. Migliore del Tipo 1 ma indica comunque un transito lento. Sono necessarie più fibre e acqua.<br/><br/>
+<strong>Tipo 3 — Salsiccia con crepe superficiali:</strong> Normale. Si tratta di feci sane con una buona idratazione e un'adeguata fibra.<br/><br/>
+<strong>Tipo 4 — Salsiccia o serpente liscio e morbido:</strong> Ideale. Questo è lo standard di riferimento: facile da eliminare, ben formato e indica una funzione digestiva ottimale.<br/><br/>
+<strong>Tipo 5: macchie morbide con bordi netti:</strong> leggermente sciolte. Può indicare una lieve intolleranza alimentare o un transito leggermente rapido. Non necessariamente problematico se occasionale.<br/><br/>
+<strong>Tipo 6: pezzi soffici e molli con bordi frastagliati:</strong> al limite della diarrea. Potrebbe segnalare un'infiammazione, un'infezione o un'intolleranza alimentare.<br/><br/>
+<strong>Tipo 7 — Interamente liquido, senza pezzi solidi:</strong> Diarrea. Le feci sono passate attraverso il colon troppo velocemente per poter assorbire l'acqua. Se persiste oltre le 48 ore, indagare.
+                </p>
+</div>
+            <h2>🔍 Oltre il colore e la forma: altri indizi degni di nota</h2>
+<p>Le tue feci comunicano non solo attraverso l'apparenza. Presta attenzione a questi segnali aggiuntivi:</p>
+<p><strong>Galleggiabilità:</strong> le feci che galleggiano costantemente spesso contengono gas o grasso in eccesso. Il galleggiamento occasionale è normale; il galleggiamento persistente con una lucentezza untuosa suggerisce un malassorbimento dei grassi.</p>
+<p><strong>Odore:</strong> tutte le feci odorano. Questo è il normale metabolismo batterico. Tuttavia, un odore insolitamente ripugnante e solforoso che rappresenta un netto cambiamento rispetto al livello di base potrebbe indicare un'infezione (come <em>Clostridioides difficile</em>), malassorbimento o una malattia infiammatoria intestinale.</p>
+<p><strong>Muco:</strong> un sottile strato di muco è normale: il rivestimento intestinale lo produce per la lubrificazione. Il muco visibile, fibroso o eccessivo può indicare la sindrome dell'intestino irritabile, un'infezione o una malattia infiammatoria intestinale.</p>
+<p><strong>Cibo non digerito:</strong> i chicchi di mais, i semi e le bucce delle verdure appaiono comunemente intatti. Questo è normale: i loro gusci di cellulosa resistono alla digestione. Tuttavia, vedere costantemente grandi pezzi di cibo non digerito può suggerire che stai mangiando troppo velocemente o che hai enzimi digestivi insufficienti.</p>
+            <h2>🩺 Quando consultare il medico</h2>
+<p>La maggior parte dei cambiamenti delle feci sono temporanei e legati alla dieta. Ma alcuni schemi dovrebbero indurre a una visita medica, idealmente il più presto possibile.</p>
+<div class="checklist">
+<div class="checklist-item">
+<div class="check-icon">⚠️</div>
+<div><strong>Sangue nelle feci</strong> (rosso vivo, scuro o nero) che non può essere spiegato dal cibo o dagli integratori.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">⚠️</div>
+<div><strong>Cambiamento di colore persistente</strong> che dura più di 2 settimane senza un'ovvia causa alimentare.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">⚠️</div>
+<div><strong>Feci strette e sottili come una matita</strong> consistenti: potrebbero indicare un restringimento o un'ostruzione del colon.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">⚠️</div>
+<div><strong>Perdita di peso inspiegabile</strong> combinata con cambiamenti nelle abitudini intestinali.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">⚠️</div>
+<div><strong>Feci pallide o color argilla</strong>: richiedono sempre un'indagine per problemi alle vie biliari o al fegato.</div>
+</div>
+</div>
+            <h2>🥗 Aggiustamenti della dieta per una migliore forma delle feci</h2>
+<p>Il modo più rapido per migliorare la qualità delle feci è attraverso ciò che mangi e bevi. Ecco il tuo piano d'azione basato sull'evidenza:</p>
+<div class="checklist">
+<div class="checklist-item">
+<div class="check-icon"> ✓</div>
+<div><strong>Punta a 25-30 g di fibre al giorno.</strong> Mescola la fibra solubile (avena, fagioli, mele, psillio) con fibra insolubile (grano integrale, verdure, crusca). La fibra solubile forma un gel che ammorbidisce le feci; la fibra insolubile aggiunge volume e accelera il transito.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon"> ✓</div>
+<div><strong>Bevi almeno 8 tazze (2 litri) di acqua al giorno.</strong> Le fibre senza acqua possono effettivamente peggiorare la stitichezza. Pensa alla fibra come a una spugna: ha bisogno di acqua per funzionare.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon"> ✓</div>
+<div><strong>Includi alimenti ricchi di probiotici.</strong> Yogurt, kefir, crauti e kimchi supportano un microbioma intestinale diversificato, che influenza direttamente la qualità delle feci.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon"> ✓</div>
+<div><strong>Limita gli alimenti ultra-processati.</strong> Un alto contenuto di zuccheri, un basso contenuto di fibre e additivi artificiali possono compromettere la motilità intestinale e l'equilibrio del microbioma.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon"> ✓</div>
+<div><strong>Muovi il tuo corpo.</strong> Anche una passeggiata quotidiana di 20 minuti stimola la peristalsi intestinale e può migliorare notevolmente il tempo di transito entro una settimana.</div>
+</div>
+</div>
+<div class="info-box">
+<div class="info-box-title">💡 Il controllo della toilette in 3 secondi</div>
+<p>Prima di tirare lo scarico, dedica tre secondi a dare un'occhiata. Chiediti: <strong>Di che colore? Che forma? Qualcosa di insolito?</strong> Questa rapida abitudine, praticata quotidianamente, può individuare i problemi in anticipo, quando sono più curabili. Il tuo istinto ti parla ogni giorno. Tutto quello che devi fare è ascoltare.</p>
+</div>
         </div>
-    </main>
-
-    <footer class="footer">
-        <a href="../../still-alive-mobile.html">Torna ai consigli</a>
-    </footer>
-
+    </article>
+    <nav class="floating-nav">
+        <a href="../../happy-poop-mobile.html" class="back-btn">← Indietro</a>
+        <a href="#" class="share-btn" onclick="navigator.share({title: 'Comprendere il colore e la forma delle feci: il barometro della salute dell\'intestino', url: window.location.href}); return false;">📤</a>
+    </nav>
     <script>
-        const timeElement = document.getElementById("current-time");
-        const updateTime = () => {
-            const now = new Date();
-            const hours = now.getHours();
-            const minutes = String(now.getMinutes()).padStart(2, "0");
-            timeElement.textContent = `${hours}:${minutes}`;
-        };
-        updateTime();
-        setInterval(updateTime, 60000);
+        document.querySelectorAll('.checklist-item').forEach(item => {
+            item.addEventListener('click', () => {
+                item.style.backgroundColor = '#F3F4F6';
+                setTimeout(() => item.style.backgroundColor = 'transparent', 200);
+            });
+        });
     </script>
 </body>
 </html>

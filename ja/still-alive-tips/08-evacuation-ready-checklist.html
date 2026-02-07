@@ -1,274 +1,115 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" data-theme="urinary">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Evacuation Ready Checklist - Still Alive?</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --accent: #ff7a5a;
-            --accent-light: #ffb199;
-            --accent-dark: #c4553b;
-            --surface: #ffffff;
-            --text: #1f1f1f;
-            --muted: #6e6e6e;
-            --bg: #f6f4f1;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-        }
-
-        .status-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 44px;
-            background: rgba(0, 0, 0, 0.78);
-            color: #ffffff;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 18px;
-            font-size: 14px;
-            z-index: 10;
-        }
-
-        .status-icons {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .status-dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: #ffffff;
-            opacity: 0.8;
-        }
-
-        .status-pill {
-            width: 22px;
-            height: 10px;
-            border-radius: 6px;
-            border: 1px solid #ffffff;
-            position: relative;
-            opacity: 0.8;
-        }
-
-        .status-pill::after {
-            content: "";
-            position: absolute;
-            right: 2px;
-            top: 2px;
-            width: 6px;
-            height: 4px;
-            border-radius: 3px;
-            background: #ffffff;
-        }
-
-        .back-button {
-            position: fixed;
-            top: 58px;
-            left: 18px;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            border: none;
-            background: rgba(0, 0, 0, 0.6);
-            color: #ffffff;
-            font-size: 18px;
-            cursor: pointer;
-            z-index: 9;
-        }
-
-        .hero {
-            margin-top: 44px;
-            padding: 28px 20px 80px;
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
-            color: #ffffff;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero h1 {
-            margin: 12px 0 10px;
-            font-size: 26px;
-            font-weight: 700;
-        }
-
-        .hero p {
-            margin: 0;
-            font-size: 14px;
-            max-width: 320px;
-            line-height: 1.5;
-        }
-
-        .tag {
-            display: inline-block;
-            padding: 4px 10px;
-            border-radius: 999px;
-            font-size: 11px;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            background: rgba(255, 255, 255, 0.25);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-        }
-
-        .hero-icon {
-            position: absolute;
-            right: 20px;
-            bottom: 12px;
-            width: 80px;
-            height: 80px;
-            opacity: 0.18;
-        }
-
-        .content {
-            background: var(--surface);
-            margin: -50px 18px 24px;
-            border-radius: 20px;
-            padding: 24px 20px 28px;
-            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
-        }
-
-        .meta {
-            font-size: 12px;
-            color: var(--muted);
-            margin-bottom: 16px;
-        }
-
-        .section {
-            margin-top: 18px;
-        }
-
-        .section h2 {
-            margin: 0 0 10px;
-            font-size: 18px;
-        }
-
-        .section p {
-            margin: 0 0 12px;
-            font-size: 14px;
-            line-height: 1.6;
-            color: #3d3d3d;
-        }
-
-        .section ul {
-            margin: 0;
-            padding-left: 18px;
-            font-size: 14px;
-            line-height: 1.6;
-            color: #3d3d3d;
-        }
-
-        .callout {
-            background: #f7f1ed;
-            border-left: 4px solid var(--accent);
-            padding: 12px 14px;
-            border-radius: 10px;
-            font-size: 13px;
-            color: #3d3d3d;
-        }
-
-        .source {
-            margin-top: 18px;
-            font-size: 12px;
-            color: var(--muted);
-        }
-
-        .source a {
-            color: var(--accent-dark);
-            text-decoration: none;
-        }
-
-        .footer {
-            text-align: center;
-            margin-bottom: 36px;
-        }
-
-        .footer a {
-            color: var(--accent-dark);
-            text-decoration: none;
-            font-weight: 600;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>排尿の頻度と習慣: 正常な頻度はどれくらいですか? - Happy Poop</title>
+    <link rel="stylesheet" href="../../article-theme-v2.css">
 </head>
 <body>
-    <div class="status-bar">
-        <span id="current-time">4:58</span>
-        <div class="status-icons" aria-hidden="true">
-            <span class="status-dot"></span>
-            <span class="status-dot"></span>
-            <span class="status-dot"></span>
-            <span class="status-pill"></span>
+    <header class="hero-section">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <div class="article-meta-top">
+                <span>Urinary Health</span>
+                <span>•</span>
+                <span>8分で読める</span>
+            </div>
+            <h1 class="hero-title">排尿の頻度と習慣: 正常な頻度はどれくらいですか?</h1>
+            
         </div>
-    </div>
-
-    <button class="back-button" onclick="history.back()" aria-label="Go back">&larr;</button>
-
-    <header class="hero">
-        <span class="tag">Preparedness</span>
-        <h1>避難準備チェックリスト</h1>
-        <p>Know when to go, what to grab, and where to meet before you have to leave.</p>
-        <svg class="hero-icon" viewBox="0 0 64 64" aria-hidden="true">
-            <rect x="12" y="22" width="40" height="30" rx="6" fill="none" stroke="#ffffff" stroke-width="3"></rect>
-            <rect x="22" y="14" width="20" height="10" rx="4" fill="none" stroke="#ffffff" stroke-width="3"></rect>
-            <path d="M20 36h24" stroke="#ffffff" stroke-width="3" stroke-linecap="round"></path>
-        </svg>
     </header>
-
-    <main class="content">
-        <div class="meta">5 min read - Updated Feb 3, 2026</div>
-        <section class="section">
-            <h2>Know Your Triggers</h2>
-            <p>Sign up for local alerts and understand the evacuation zones in your area.</p>
-        </section>
-
-        <section class="section">
-            <h2>Grab-and-Go Items</h2>
-            <p>Keep a ready bag with essentials so you can leave quickly.</p>
-            <ul>
-                <li>IDs and insurance cards</li>
-                <li>Medications and chargers</li>
-                <li>Pet supplies and a leash</li>
-            </ul>
-        </section>
-
-        <section class="section">
-            <h2>Reunification Plan</h2>
-            <p>Pick a meeting point and share it with your trusted contacts.</p>
-            <div class="callout">Tip: keep a printed route map in your go-bag in case your phone dies.</div>
-        </section>
-        <div class="source">
-            Source: <a href="https://www.ready.gov/evacuation" target="_blank" rel="noopener">Ready.gov - Evacuation</a>
+    <div class="summary-card">
+        <div class="summary-title">⚡ TL;DR</div>
+        <ul class="summary-list">
+            <li><strong>通常の頻度</strong>は、ほとんどの成人で 1 日あたり 6～8 回ですが、「通常」は水分摂取量、年齢、投薬内容によって異なります。</li>
+            <li><strong>夜間頻尿</strong>（排尿のために夜間に 2 回以上起きる）は、睡眠と健康に影響を与えます。これには治療可能な原因があります。</li>
+            <li><strong>過活動膀胱</strong>と尿路感染症は症状は共通していますが、まったく異なる治療法が必要です。</li>
+            <li><strong>膀胱トレーニング</strong>とケーゲル体操は、薬を使わずに排尿制御を大幅に改善できます。</li>
+            <li><strong>二度排尿</strong>は、毎回確実に膀胱を完全に空にするための簡単なテクニックです。</li>
+        </ul>
+    </div>
+    <article class="content-container">
+        <div class="content-block">
+            <p class="intro-text">おしっこが「多すぎる」のか「足りない」のか疑問に思ったことがあるなら、それは泌尿器科で最もよくある質問の 1 つです。真実を言えば、正常範囲には幅がありますが、何かが注目に値するという明確な兆候も存在します。健康的な排尿とは実際どのようなものなのか、またパターンが変化した場合にはどうすればよいのかを見ていきましょう。</p>
+            <h2>📊 普通とは何ですか?数字</h2>
+<p>健康な成人のほとんどは、1 日あたり約 2 リットル (約 8 カップ) の典型的な水分摂取量を想定して、24 時間に 6 ～ 8 回排尿します。しかし、「普通」というのは非常に個人差があります。正午までにたっぷりのコーヒーを 3 杯飲む人は、1 日を通して適度に水を飲む人よりも自然とコーヒーを飲む回数が多くなります。</p>
+<p>各排尿では、およそ 200 ～ 400 ミリリットル (約 7 ～ 14 オンス) の尿が生成されます。頻繁に排尿しているが、毎回の排尿量は少量である場合、それは排尿量が多く、排尿回数が少ない場合とは異なるパターンであり、この区別は診断上重要です。</p>
+<p>膀胱は約 400 ～ 600 ミリリットルを快適に保持できます。最初の尿意は通常、約 200 ～ 300 ミリリットルで発生します。膀胱が健康であれば、緊急性や不快感を感じることなくトイレを見つけるのに十分な警告が得られます。突然の衝動、制御不能な衝動、または尿漏れを伴う衝動を感じる場合は、膀胱が救難信号を送っている可能性があります。</p>
+<div class="info-box">
+<div class="info-box-title">簡単な自己評価</div>
+<p>1 日分の簡単な集計を記録します。トイレに行くたびにマークを付け、その量 (小、中、または大) を推定します。この「膀胱日記」は、単一の検査よりも有益な情報を医師に提供します。多くの泌尿器科医は、最初の診察の前にこれを行うよう求めます。</p>
+</div>
+            <h2>🌙 夜間頻尿: 夜間の排尿により生活に支障をきたす場合</h2>
+<p>夜間に排尿のために一度起きるのは、一般に正常なことと考えられており、特に年齢を重ねるにつれて顕著になります。しかし、連続して 2 回以上目が覚める（夜間頻尿と呼ばれる状態）と、睡眠が断片化され、生活の質に重大な影響を及ぼし、転倒、うつ病、心血管疾患のリスクが高まる可能性があります。</p>
+<p>夜間頻尿にはいくつかの潜在的な原因があり、適切な原因を特定することが効果的な治療の鍵となります。</p>
+<p><strong>夜間多尿:</strong> 夜間に体内の尿が過剰に生成されます。通常、抗利尿ホルモン (ADH またはバソプレシン) と呼ばれるホルモンにより、睡眠中に尿が濃縮されます。 ADH の産生が低下すると（加齢とともによく起こります）、腎臓は一晩中希釈した尿を生成し続けます。心不全や睡眠時無呼吸症候群が治療されていない場合も、横になっているときに体液が腎臓に移動する可能性があります。</p>
+<p><strong>膀胱容量の減少:</strong> 過活動膀胱、尿路感染症、前立腺肥大などの症状により、膀胱が快適に保持できる尿量が減少し、膀胱の回数が増加する可能性があります。</p>
+<p><strong>ライフスタイル要因:</strong> 就寝時間近くに水分を摂取する（特にカフェインやアルコール）、夕食にナトリウムを多く含む食事を食べる（ナトリウムは尿中に水分を引き込みます）、または夕方に利尿薬を服用することはすべて影響します。</p>
+<div class="checklist">
+<div class="checklist-item">
+<div class="check-icon">✓</div>
+<div><strong>就寝の 2 ～ 3 時間前に水分を制限します</strong> - 特にカフェインとアルコールを制限します。</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">✓</div>
+<div>午後に 30 ～ 60 分間<strong>脚を高く上げ</strong>て、就寝前に足首に溜まった体液を動員します。</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">✓</div>
+<div><strong>夜の塩分摂取量を減らし</strong>て、夜間の尿量を最小限に抑えます。</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">✓</div>
+<div><strong>利尿剤が処方されている場合は午前中に服用</strong>します。タイミングの調整については医師に相談してください。</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">✓</div>
+<div><strong>睡眠時無呼吸症候群の検査</strong> — 睡眠時無呼吸症候群を治療すると、夜間頻尿が劇的に軽減されることがよくあります。</div>
+</div>
+</div>
+            <h2>⚡ 過活動膀胱と尿路感染症: 違いを理解しましょう</h2>
+<p>これら 2 つの症状は、切迫感、頻度、常に行かなければならないという感覚など、もどかしいほど似た症状を共有していますが、原因と治療法はまったく異なります。これらを混同すると、不必要な抗生物質や未治療の感染症につながる可能性があります。</p>
+<p><strong>尿路感染症 (UTI):</strong> 尿路に侵入した細菌 (通常は大腸菌) によって引き起こされます。典型的な症状としては、排尿時の灼熱感や刺痛、尿の濁りや悪臭、骨盤の圧迫、場合によっては血尿などがあります。 UTI は通常、比較的突然発症し、数日かけて悪化します。治療には抗生物質が必要です。</p>
+<p><strong>過活動膀胱 (OAB):</strong> 膀胱の筋肉 (排尿筋) が無意識に収縮し、突然の激しい排尿衝動が生じる慢性疾患です。感染はありません。尿培養はきれいに戻ります。 OAB は、急激な変化ではなく、長年にわたるパターンである傾向があります。治療は、行動戦略、骨盤底療法、そして場合によっては薬物療法に重点を置きます。</p>
+<div class="warning-box">
+<div class="warning-title">⚠️ 自己診断しないでください</div>
+<ul class="warning-list">
+<li>灼熱感、発熱、血尿がある場合は、まず医師の診察を受けて感染症を除外してください</li>
+<li>「念のため」残った抗生物質を服用すると抗生物質耐性が高まる</li>
+<li>頻繁な尿路感染症（年間 3 回以上）は、潜在的な解剖学的問題または免疫系の問題を示している可能性があります</li>
+<li>50 歳以降に突然現れる OAB 症状は、神経学的原因を除外するために評価される必要があります</li>
+</ul>
+</div>
+            <h2>🏋️ 膀胱トレーニング: 脳と膀胱の接続を再トレーニングする</h2>
+<p>車に乗る前、会議の前、外出の前など、「万が一に備えて」排尿する習慣がある場合は、尿量を徐々に減らしながら満腹を知らせるように膀胱を誤って訓練している可能性があります。膀胱トレーニングではこのプロセスを逆転させ、トイレに行く間隔を徐々に延ばします。</p>
+<p><strong>開始方法:</strong> まず、膀胱日記を使用して現在の排尿パターンを記録します。そして、衝動を感じたら、5〜10分待ってから行くようにしてください。気を散らすテクニックを使用します。深呼吸、100 から逆算する、または素早いケーゲル スクイーズを実行します。数週間かけて、遅延時間を 15 分単位で徐々に増やします。目標は、日中の排尿間隔が 3 ～ 4 時間になるようにすることです。</p>
+<p>ほとんどの患者は 6 ～ 12 週間以内に有意な改善が見られます。研究によると、膀胱トレーニングにより排尿回数が 50% 以上減少し、副作用もなく薬と同等の結果が得られます。</p>
+            <h2>🔄 二重排尿: 膀胱を完全に空にする</h2>
+<p>膀胱が完全に空になっていないと感じた場合、または排尿後すぐにまた行きたくなった場合は、二重排尿が簡単で効果的なテクニックです。これは、前立腺肥大、骨盤臓器脱、膀胱の筋肉が弱っている人に特に役立ちます。</p>
+<p><strong>テクニック:</strong> いつものように排尿します。終わったと思ったら、20〜30秒間座ったまま（男性の場合は立ったまま）にしてください。少し前かがみになり、リラックスしてもう一度試してください。多くの人は、追加で 50 ～ 100 ミリリットル排泄できることに驚きます。これにより、排尿後の残尿が減り、尿路感染症のリスクが軽減され、数分後にまた行かなければならないという煩わしさが軽減されます。</p>
+            <h2>💪 ケーゲル体操: 女性だけではない</h2>
+<p>ケーゲル体操は、膀胱、尿道、および (女性の場合) 子宮を支える骨盤底筋を強化します。骨盤底筋が強いと、排尿制御が向上し、尿意切迫感が軽減され、特定の種類の失禁にも役立ちます。</p>
+<p><strong>適切な筋肉を見つける:</strong> 尿の流れを途中で止めようとしたり、ガスを抑えようとしていると想像してください。あなたが使う筋肉は骨盤底です。実際に尿の流れを止めてケーゲルを練習しないでください。正常な膀胱の排出が妨げられる可能性があります。</p>
+<p><strong>ルーチン:</strong> 5 秒間握って保持し、5 秒間リラックスします。 10回繰り返します。 1日3セット行ってください。保持時間を 10 秒まで徐々に増やします。ケーゲルは、机に座っているとき、渋滞で待っているとき、ベッドに横たわっているときに行うことができますが、それは誰にもわかりません。</p>
+<p><strong>男性の場合:</strong> ケーゲルは、前立腺手術後や排尿後のよだれの管理に特に役立ちます。研究によると、ケーゲル運動を継続的に行っている男性は、前立腺切除術後の失禁の回復が早いことがわかっています。</p>
+<div class="info-box">
+<div class="info-box-title">助けを求めるべきとき</div>
+<p>1 日 10 回以上の排尿がある場合、夜間に 2 回以上起きている場合、突然の尿意切迫感を感じて漏れにつながる場合、または 8 ～ 12 週間経っても行動戦略が機能しないことに気付いた場合は、泌尿器科医の診察を受けてください。骨盤底理学療法から神経刺激、標的薬物療法に至るまで、最新の治療法は非常に効果的であり、常に改善されています。泌尿器の問題は、医学的に最も治療可能な疾患の 1 つです。</p>
+</div>
         </div>
-    </main>
-
-    <footer class="footer">
-        <a href="../../still-alive-mobile.html">ヒントに戻る</a>
-    </footer>
-
+    </article>
+    <nav class="floating-nav">
+        <a href="../../happy-poop-mobile.html" class="back-btn">← 戻る</a>
+        <a href="#" class="share-btn" onclick="navigator.share({title: '排尿の頻度と習慣: 正常な頻度はどれくらいですか?', url: window.location.href}); return false;">📤</a>
+    </nav>
     <script>
-        const timeElement = document.getElementById("current-time");
-        const updateTime = () => {
-            const now = new Date();
-            const hours = now.getHours();
-            const minutes = String(now.getMinutes()).padStart(2, "0");
-            timeElement.textContent = `${hours}:${minutes}`;
-        };
-        updateTime();
-        setInterval(updateTime, 60000);
+        document.querySelectorAll('.checklist-item').forEach(item => {
+            item.addEventListener('click', () => {
+                item.style.backgroundColor = '#F3F4F6';
+                setTimeout(() => item.style.backgroundColor = 'transparent', 200);
+            });
+        });
     </script>
 </body>
 </html>

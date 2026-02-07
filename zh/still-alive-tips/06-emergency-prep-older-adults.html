@@ -1,273 +1,177 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN" data-theme="bowel">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Emergency Prep for Older Adults - Still Alive?</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --accent: #6fbf9b;
-            --accent-light: #b9e3cf;
-            --accent-dark: #3f8b6a;
-            --surface: #ffffff;
-            --text: #1f1f1f;
-            --muted: #6e6e6e;
-            --bg: #f6f4f1;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-        }
-
-        .status-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 44px;
-            background: rgba(0, 0, 0, 0.78);
-            color: #ffffff;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 18px;
-            font-size: 14px;
-            z-index: 10;
-        }
-
-        .status-icons {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .status-dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: #ffffff;
-            opacity: 0.8;
-        }
-
-        .status-pill {
-            width: 22px;
-            height: 10px;
-            border-radius: 6px;
-            border: 1px solid #ffffff;
-            position: relative;
-            opacity: 0.8;
-        }
-
-        .status-pill::after {
-            content: "";
-            position: absolute;
-            right: 2px;
-            top: 2px;
-            width: 6px;
-            height: 4px;
-            border-radius: 3px;
-            background: #ffffff;
-        }
-
-        .back-button {
-            position: fixed;
-            top: 58px;
-            left: 18px;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            border: none;
-            background: rgba(0, 0, 0, 0.6);
-            color: #ffffff;
-            font-size: 18px;
-            cursor: pointer;
-            z-index: 9;
-        }
-
-        .hero {
-            margin-top: 44px;
-            padding: 28px 20px 80px;
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
-            color: #ffffff;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero h1 {
-            margin: 12px 0 10px;
-            font-size: 26px;
-            font-weight: 700;
-        }
-
-        .hero p {
-            margin: 0;
-            font-size: 14px;
-            max-width: 320px;
-            line-height: 1.5;
-        }
-
-        .tag {
-            display: inline-block;
-            padding: 4px 10px;
-            border-radius: 999px;
-            font-size: 11px;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            background: rgba(255, 255, 255, 0.25);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-        }
-
-        .hero-icon {
-            position: absolute;
-            right: 20px;
-            bottom: 12px;
-            width: 80px;
-            height: 80px;
-            opacity: 0.18;
-        }
-
-        .content {
-            background: var(--surface);
-            margin: -50px 18px 24px;
-            border-radius: 20px;
-            padding: 24px 20px 28px;
-            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
-        }
-
-        .meta {
-            font-size: 12px;
-            color: var(--muted);
-            margin-bottom: 16px;
-        }
-
-        .section {
-            margin-top: 18px;
-        }
-
-        .section h2 {
-            margin: 0 0 10px;
-            font-size: 18px;
-        }
-
-        .section p {
-            margin: 0 0 12px;
-            font-size: 14px;
-            line-height: 1.6;
-            color: #3d3d3d;
-        }
-
-        .section ul {
-            margin: 0;
-            padding-left: 18px;
-            font-size: 14px;
-            line-height: 1.6;
-            color: #3d3d3d;
-        }
-
-        .callout {
-            background: #eef8f3;
-            border-left: 4px solid var(--accent);
-            padding: 12px 14px;
-            border-radius: 10px;
-            font-size: 13px;
-            color: #3d3d3d;
-        }
-
-        .source {
-            margin-top: 18px;
-            font-size: 12px;
-            color: var(--muted);
-        }
-
-        .source a {
-            color: var(--accent-dark);
-            text-decoration: none;
-        }
-
-        .footer {
-            text-align: center;
-            margin-bottom: 36px;
-        }
-
-        .footer a {
-            color: var(--accent-dark);
-            text-decoration: none;
-            font-weight: 600;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>紧急腹泻应对：胃肠病学家的行动计划 - Happy Poop</title>
+    <link rel="stylesheet" href="../../article-theme-v2.css">
 </head>
 <body>
-    <div class="status-bar">
-        <span id="current-time">4:57</span>
-        <div class="status-icons" aria-hidden="true">
-            <span class="status-dot"></span>
-            <span class="status-dot"></span>
-            <span class="status-dot"></span>
-            <span class="status-pill"></span>
+    <header class="hero-section">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <div class="article-meta-top">
+                <span>肠道健康</span>
+                <span>•</span>
+                <span>9分钟阅读</span>
+            </div>
+            <h1 class="hero-title">紧急腹泻应对：胃肠病学家的行动计划</h1>
+            
         </div>
-    </div>
-
-    <button class="back-button" onclick="history.back()" aria-label="Go back">←</button>
-
-    <header class="hero">
-        <span class="tag">Wellness</span>
-        <h1>老年人应急准备</h1>
-        <p>Organize medications, medical details, and support contacts so help is easy to reach.</p>
-        <svg class="hero-icon" viewBox="0 0 64 64" aria-hidden="true">
-            <path d="M32 50C20 42 14 34 14 24a10 10 0 0 1 18-6 10 10 0 0 1 18 6c0 10-6 18-18 26z" fill="none" stroke="#ffffff" stroke-width="3" stroke-linejoin="round"></path>
-        </svg>
     </header>
-
-    <main class="content">
-        <div class="meta">5 min read • Updated Feb 3, 2026</div>
-
-        <section class="section">
-            <h2>Health Essentials</h2>
-            <p>Keep a current list of prescriptions, allergies, and doctors. Store it with your emergency kit.</p>
-            <ul>
-                <li>Include copies of insurance cards and emergency contacts.</li>
-                <li>Keep at least a few days of extra medication if possible.</li>
-            </ul>
-        </section>
-
-        <section class="section">
-            <h2>Caregiver Contacts</h2>
-            <p>List primary caregivers and back-up contacts. Make sure everyone knows how to reach each other.</p>
-        </section>
-
-        <section class="section">
-            <h2>Mobility and Equipment</h2>
-            <p>Prepare charging options or spare batteries for medical devices, walkers, or hearing aids.</p>
-            <div class="callout">Tip: store a printed checklist in case the phone battery runs out.</div>
-        </section>
-
-        <div class="source">
-            Source: <a href="https://www.nia.nih.gov/health/emergency-preparedness" target="_blank" rel="noopener">National Institute on Aging - Emergency Preparedness</a>
+    <div class="summary-card">
+        <div class="summary-title">⚡ TL;DR</div>
+        <ul class="summary-list">
+            <li><strong>水分就是一切：</strong>大多数腹泻并发症来自脱水，而不是感染本身。</li>
+            <li><strong>口服补液 (ORS)</strong> 比单独喝水更有效 - 添加电解质。</li>
+            <li><strong>BRAT 饮食法已经过时了。</strong>在可以耐受的范围内，吃均衡、易消化的饮食。</li>
+            <li><strong>大多数急性腹泻会在 2-5 天内痊愈</strong>，无需使用抗生素。抗生素实际上会使某些情况变得更糟。</li>
+            <li>如果出现以下情况，<strong>立即急诊</strong>：血性腹泻、高烧 (>101.3°F/38.5°C)、严重脱水或症状持续超过 7 天。</li>
+        </ul>
+    </div>
+    <article class="content-container">
+        <div class="content-block">
+            <p class="intro-text">它毫无征兆地袭来——突然痉挛，急忙冲向卫生间，然后意识到你今天的计划发生了巨大的变化。急性腹泻是人们在凌晨 2 点致电医生、寻求紧急护理或在线搜索答案的最常见原因之一。虽然大多数发作都是自限性的，并会在几天内解决，但了解如何有效应对可能意味着轻微的不便和危险的脱水危机之间的区别。这是您的基于证据的行动计划，来自一位胃肠病学家，他指导了数千名患者经历了这种情况。</p>
+            <h2>📊 急性与慢性：了解差异</h2>
+<p>这种区别很重要，因为原因、治疗方法和紧迫性根本不同。</p>
+<p><strong>急性腹泻</strong>持续时间少于 14 天。绝大多数病例（超过 90%）是由感染引起的，其中最常见的是病毒性胃肠炎（诺如病毒、轮状病毒）。细菌引起的食物中毒（<em>沙门氏菌</em>、<em>大肠杆菌</em>、<em>弯曲杆菌</em>）是第二个最常见的原因。急性腹泻通常具有自限性，无需特殊治疗即可自行缓解。</p>
+<p><strong>慢性腹泻</strong>持续超过 4 周。这是完全不同的临床情况，需要系统的研究。常见原因包括肠易激综合征 (IBS-D)、炎症性肠病（克罗恩病、溃疡性结肠炎）、乳糜泻、显微镜下结肠炎、胆汁酸吸收不良和慢性感染。如果您的腹泻持续了一个多月，您需要去看胃肠病专家，而不仅仅是在家控制症状。</p>
+            <h2>💧 步骤 1：补水 — 您的首要任务</h2>
+<p>在急性腹泻发作期间，您可以做的最重要的事情就是<strong>保持水分</strong>。腹泻会导致水和电解质（钠、钾、氯、碳酸氢盐）快速流失。脱水——而不是感染本身——是导致人们被送往急诊室的原因，也是全球范围内导致腹泻对弱势人群致命的原因。</p>
+<div class="info-box">
+<div class="info-box-title">🥤 如何有效补水</div>
+<p>
+<strong>口服补液 (ORS)</strong> 是黄金标准。世界卫生组织的配方含有：水、钠、钾、葡萄糖和柠檬酸盐，其比例旨在最大限度地提高肠道吸收。 Pedialyte、Drip Drop 或 Liquid IV 等商业选项都是方便的替代品。<br/><br/>
+<strong>为什么仅喝水是不够的：</strong>白开水不能补充丢失的电解质，如果没有葡萄糖，肠道中的钠吸收就会受到损害。小肠中的葡萄糖-钠协同转运机制使得 ORS 如此有效 - 即使肠道发炎，葡萄糖也会将钠（和水）拉过肠壁。<br/><br/>
+<strong>DIY补水配方：</strong>1升清水+½茶匙盐+6茶匙糖+可选挤柠檬。它不如商业口服补液盐那么精确，但在紧要关头也能发挥作用。<br/><br/>
+<strong>用量</strong>：目标是用至少 1 杯（250 毫升）ORS 代替每次腹泻。经常啜饮而不是大量吞咽，否则会引发恶心和呕吐。
+                </p>
+</div>
+<div class="checklist">
+<div class="checklist-item">
+<div class="check-icon">✅</div>
+<div><strong>饮料：</strong> ORS、清汤、稀释果汁（苹果、白葡萄）、椰子水、花草茶。</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">❌</div>
+<div><strong>避免：</strong>咖啡（刺激运动）、酒精（利尿且有刺激性）、全浓度果汁（渗透作用使腹泻恶化）、牛奶（肠道感染期间常见暂时性乳糖不耐受）和含糖苏打水。</div>
+</div>
+</div>
+            <h2>🍽️第2步：吃什么（BRAT饮食法已经过时了）</h2>
+<p>几十年来，医生推荐<strong>BRAT饮食</strong>——香蕉、大米、苹果酱、吐司——作为首选的恢复饮食。虽然这些食物性质温和，不太可能使症状恶化，但 BRAT 饮食现在被认为<strong>限制太多</strong>。它缺乏肠粘膜恢复所需的足够蛋白质、脂肪和微量营养素。</p>
+<div class="info-box">
+<div class="info-box-title">🍽️ 现代恢复饮食指南</div>
+<p>
+                    美国胃肠病学协会当前的建议：<strong>在可耐受的范围内规律、均衡饮食。</strong>没有必要让自己挨饿或只限制清淡食物的摄入量。<br/><br/>
+<strong>恢复期间的好选择：</strong><br/>
+                    • 瘦肉蛋白：鸡肉、鱼、鸡蛋、豆腐<br/>
+                    • 易于消化的淀粉：白米、土豆、普通面食、饼干<br/>
+                    • 熟蔬菜：胡萝卜、青豆、南瓜（暂时避免生蔬菜）<br/>
+                    • 香蕉（钾替代品）、苹果酱（果胶有助于吸收水分）<br/>
+                    • 含有活菌的酸奶（益生菌有助于恢复）<br/><br/>
+<strong>暂时避免：</strong><br/>
+                    • 油腻、油炸或非常辛辣的食物<br/>
+                    • 高纤维生蔬菜和全谷物（等到大便恢复正常）<br/>
+                    • 酸奶以外的乳制品（乳糖酶通常会暂时耗尽）<br/>
+                    • 无糖口香糖和糖果中含有糖醇（山梨醇、甘露醇）
+                </p>
+</div>
+            <h2>💊 步骤 3：药物治疗 — 什么有帮助，什么没有作用</h2>
+<p><strong>洛哌丁胺（易蒙停）</strong>是最有效的非处方止泻药。它的作用是减慢肠道蠕动，让更多的水被吸收。它适合患有非血性、非发热性腹泻的成人。最初服用 4 毫克，然后每次稀便后服用 2 毫克（每天最多 16 毫克）。如果您出现血性腹泻或发烧，请勿使用洛哌丁胺——减缓侵袭性感染的传播可能会使病情恶化。</p>
+<p><strong>碱式水杨酸铋 (Pepto-Bismol)</strong> 具有温和的抗菌和抗炎特性。可使旅行者腹泻的大便次数减少约50%。注意：它会使大便变黑（正常，不值得警惕），服用血液稀释剂或对阿司匹林过敏的人应避免使用。</p>
+<p><strong>益生菌：</strong>有证据支持特定菌株可治疗急性腹泻。 <em>布拉酵母菌</em>和<em>鼠李糖乳杆菌GG</em>拥有最强的数据，可将腹泻持续时间缩短约1天。它们很安全，值得尝试，但它们不能替代水分。</p>
+            <h2>💉抗生素：什么时候有帮助，什么时候有害</h2>
+<p>这是一个关键的区别，甚至一些医疗保健提供者也会犯错。</p>
+<p><strong>大多数急性腹泻是病毒性的</strong> - 抗生素对病毒无效，实际上可能会破坏肠道微生物组，从而可能延长症状或引起继发性艰难梭菌感染。</p>
+<p><strong>抗生素适用于：</strong></p>
+<div class="checklist">
+<div class="checklist-item">
+<div class="check-icon">✓</div>
+<div>中度至重度旅行者腹泻（阿奇霉素或利福昔明）</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">✓</div>
+<div>确诊由<em>志贺氏菌</em>、侵袭性<em>沙门氏菌</em>或<em>弯曲杆菌</em>引起的细菌性痢疾（伴有发烧的血性腹泻）</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">✓</div>
+<div><em>艰难梭菌</em>感染（用万古霉素或非达霉素治疗——不再是甲硝唑作为一线药物）</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">✓</div>
+<div>通过粪便检测证实寄生虫感染（贾第鞭毛虫病、阿米巴病）</div>
+</div>
+</div>
+<p><strong>应避免使用抗生素：</strong>无并发症的<em>沙门氏菌</em>胃肠炎（抗生素可能会延长带菌状态）、<em>大肠杆菌。大肠杆菌</em> O157:H7（抗生素会增加溶血性尿毒症综合征的风险）和病毒性胃肠炎。</p>
+            <h2>✈️ 旅行者腹泻：预防技巧</h2>
+<p>前往高风险目的地（南亚、非洲、中美洲）的国际旅行者中有 30-70% 受到旅行者腹泻的影响。预防策略包括：</p>
+<div class="checklist">
+<div class="checklist-item">
+<div class="check-icon">✓</div>
+<div><strong>“煮它、煮它、剥皮，或者忘记它。”</strong>在高风险地区避免生蔬菜、未剥皮的水果、自来水和冰块。</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">✓</div>
+<div><strong>仅饮用瓶装水或经过处理的水。</strong>即使刷牙也请使用瓶装水。</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">✓</div>
+<div><strong>碱式水杨酸铋预防</strong>：每日四次服用 2 片，可将风险降低 65%。旅行前与您的医生讨论。</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">✓</div>
+<div><strong>准备一个旅行包：</strong>包括 ORS 包、洛哌丁胺、次水杨酸铋和一个疗程的阿奇霉素（处方），以便在出现严重症状时进行自我治疗。</div>
+</div>
+</div>
+            <h2>🚨 危险信号：何时去急诊室</h2>
+<div class="warning-box">
+<div class="warning-title">🚨 如果有，请立即就医</div>
+<ul class="warning-list">
+<li><strong>血性或黑色柏油样腹泻</strong> - 提示侵袭性感染或胃肠道出血。</li>
+<li><strong>高烧（>101.3°F / 38.5°C）</strong> — 表明存在侵入性细菌或寄生虫感染，可能需要针对性抗生素治疗。</li>
+<li><strong>严重脱水的迹象</strong>：站立时头晕、尿液颜色深、8小时以上没有排尿、口腔和皮肤干燥、心跳加快、神志不清。</li>
+<li><strong>持续的剧烈腹痛</strong>（不仅仅是痉挛）——可能表明存在中毒性巨结肠或穿孔等并发症。</li>
+<li><strong>症状持续超过 7 天</strong>且没有改善。</li>
+<li><strong>最近使用抗生素</strong>，随后出现水样腹泻 - 引起对<em>C.艰难梭菌感染。</li>
+<li><strong>免疫功能低下的患者</strong>（艾滋病毒、化疗、移植接受者）——即使是“轻微”腹泻也可能是危险的。</li>
+</ul>
+</div>
+            <h2>📅恢复时间表：会发生什么</h2>
+<div class="checklist">
+<div class="checklist-item">
+<div class="check-icon">1</div>
+<div><strong>第 1-2 天：</strong>症状达到顶峰。专注于补水。在可以忍受的范围内吃少量清淡的食物。休息。</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">2</div>
+<div><strong>第 3-5 天：</strong>频率降低。逐渐扩大饮食范围。重新摄入瘦肉蛋白和煮熟的蔬菜。继续 ORS。</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">3</div>
+<div><strong>第 5-7 天：</strong>大便开始正常化。您可以恢复正常饮食。益生菌在此阶段最有利于帮助恢复微生物组平衡。</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">4</div>
+<div><strong>第 1-4 周：</strong>微生物组完全恢复。有些人在肠道感染后 2-4 周内会出现暂时性乳糖不耐受（刷状缘酶需要时间再生）。如果乳制品引起症状，请暂时避免食用，并在一个月后重试。</div>
+</div>
+</div>
+<div class="info-box">
+<div class="info-box-title">💡 最后要点</div>
+<p>急性腹泻几乎总是一种自限性疾病。您的身体正在按照其设计目的进行操作——快速清除病原体。你的工作是通过补充水分、适当的营养来支持这一过程，并了解简单的自我护理何时还不够。保持水分充足，保持耐心，如果出现危险信号，请毫不犹豫地寻求帮助。您的肠道具有非常强的弹性——只要有适当的支持，它就会反弹。</p>
+</div>
         </div>
-    </main>
-
-    <footer class="footer">
-        <a href="../../still-alive-mobile.html">返回提示</a>
-    </footer>
-
+    </article>
+    <nav class="floating-nav">
+        <a href="../../happy-poop-mobile.html" class="back-btn">← 返回列表</a>
+        <a href="#" class="share-btn" onclick="navigator.share({title: '紧急腹泻应对：胃肠病学家的行动计划', url: window.location.href}); return false;">📤</a>
+    </nav>
     <script>
-        const timeElement = document.getElementById("current-time");
-        const updateTime = () => {
-            const now = new Date();
-            const hours = now.getHours();
-            const minutes = String(now.getMinutes()).padStart(2, "0");
-            timeElement.textContent = `${hours}:${minutes}`;
-        };
-        updateTime();
-        setInterval(updateTime, 60000);
+        document.querySelectorAll('.checklist-item').forEach(item => {
+            item.addEventListener('click', () => {
+                item.style.backgroundColor = '#F3F4F6';
+                setTimeout(() => item.style.backgroundColor = 'transparent', 200);
+            });
+        });
     </script>
 </body>
 </html>

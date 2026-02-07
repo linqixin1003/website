@@ -1,273 +1,164 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-theme="bowel">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Power Outage Readiness - Still Alive?</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --accent: #f4a259;
-            --accent-light: #f9d4aa;
-            --accent-dark: #c27733;
-            --surface: #ffffff;
-            --text: #1f1f1f;
-            --muted: #6e6e6e;
-            --bg: #f6f4f1;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-        }
-
-        .status-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 44px;
-            background: rgba(0, 0, 0, 0.78);
-            color: #ffffff;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 18px;
-            font-size: 14px;
-            z-index: 10;
-        }
-
-        .status-icons {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .status-dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: #ffffff;
-            opacity: 0.8;
-        }
-
-        .status-pill {
-            width: 22px;
-            height: 10px;
-            border-radius: 6px;
-            border: 1px solid #ffffff;
-            position: relative;
-            opacity: 0.8;
-        }
-
-        .status-pill::after {
-            content: "";
-            position: absolute;
-            right: 2px;
-            top: 2px;
-            width: 6px;
-            height: 4px;
-            border-radius: 3px;
-            background: #ffffff;
-        }
-
-        .back-button {
-            position: fixed;
-            top: 58px;
-            left: 18px;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            border: none;
-            background: rgba(0, 0, 0, 0.6);
-            color: #ffffff;
-            font-size: 18px;
-            cursor: pointer;
-            z-index: 9;
-        }
-
-        .hero {
-            margin-top: 44px;
-            padding: 28px 20px 80px;
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
-            color: #ffffff;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero h1 {
-            margin: 12px 0 10px;
-            font-size: 26px;
-            font-weight: 700;
-        }
-
-        .hero p {
-            margin: 0;
-            font-size: 14px;
-            max-width: 320px;
-            line-height: 1.5;
-        }
-
-        .tag {
-            display: inline-block;
-            padding: 4px 10px;
-            border-radius: 999px;
-            font-size: 11px;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            background: rgba(255, 255, 255, 0.25);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-        }
-
-        .hero-icon {
-            position: absolute;
-            right: 20px;
-            bottom: 12px;
-            width: 80px;
-            height: 80px;
-            opacity: 0.18;
-        }
-
-        .content {
-            background: var(--surface);
-            margin: -50px 18px 24px;
-            border-radius: 20px;
-            padding: 24px 20px 28px;
-            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
-        }
-
-        .meta {
-            font-size: 12px;
-            color: var(--muted);
-            margin-bottom: 16px;
-        }
-
-        .section {
-            margin-top: 18px;
-        }
-
-        .section h2 {
-            margin: 0 0 10px;
-            font-size: 18px;
-        }
-
-        .section p {
-            margin: 0 0 12px;
-            font-size: 14px;
-            line-height: 1.6;
-            color: #3d3d3d;
-        }
-
-        .section ul {
-            margin: 0;
-            padding-left: 18px;
-            font-size: 14px;
-            line-height: 1.6;
-            color: #3d3d3d;
-        }
-
-        .callout {
-            background: #fff3e5;
-            border-left: 4px solid var(--accent);
-            padding: 12px 14px;
-            border-radius: 10px;
-            font-size: 13px;
-            color: #3d3d3d;
-        }
-
-        .source {
-            margin-top: 18px;
-            font-size: 12px;
-            color: var(--muted);
-        }
-
-        .source a {
-            color: var(--accent-dark);
-            text-decoration: none;
-        }
-
-        .footer {
-            text-align: center;
-            margin-bottom: 36px;
-        }
-
-        .footer a {
-            color: var(--accent-dark);
-            text-decoration: none;
-            font-weight: 600;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Распознавание и профилактика геморроя: что ваш врач хочет, чтобы вы знали - Happy Poop</title>
+    <link rel="stylesheet" href="../../article-theme-v2.css">
 </head>
 <body>
-    <div class="status-bar">
-        <span id="current-time">4:56</span>
-        <div class="status-icons" aria-hidden="true">
-            <span class="status-dot"></span>
-            <span class="status-dot"></span>
-            <span class="status-dot"></span>
-            <span class="status-pill"></span>
+    <header class="hero-section">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <div class="article-meta-top">
+                <span>Здоровье кишечника</span>
+                <span>•</span>
+                <span>9 мин чтения</span>
+            </div>
+            <h1 class="hero-title">Распознавание и профилактика геморроя: что ваш врач хочет, чтобы вы знали</h1>
+            
         </div>
-    </div>
-
-    <button class="back-button" onclick="history.back()" aria-label="Go back">←</button>
-
-    <header class="hero">
-        <span class="tag">Preparedness</span>
-        <h1>Готовность к отключению электричества</h1>
-        <p>Keep your lights, phone, and safety tools ready before outages disrupt your routine.</p>
-        <svg class="hero-icon" viewBox="0 0 64 64" aria-hidden="true">
-            <path d="M36 8L18 36h14l-4 20 18-28H32z" fill="none" stroke="#ffffff" stroke-width="3" stroke-linejoin="round"></path>
-        </svg>
     </header>
-
-    <main class="content">
-        <div class="meta">4 min read • Updated Feb 3, 2026</div>
-
-        <section class="section">
-            <h2>Before the Outage</h2>
-            <p>Charge power banks, check batteries, and store flashlights where you can reach them quickly.</p>
-            <ul>
-                <li>Keep a hand-crank or battery radio.</li>
-                <li>Set aside a small cash reserve.</li>
-            </ul>
-        </section>
-
-        <section class="section">
-            <h2>During the Outage</h2>
-            <p>Limit opening the fridge, use safe lighting, and check in with your contacts if the outage is long.</p>
-            <div class="callout">Tip: use the Still Alive check-in window earlier if your battery is low.</div>
-        </section>
-
-        <section class="section">
-            <h2>After Power Returns</h2>
-            <p>Restock supplies, recharge devices, and update your checklist so you are ready for the next event.</p>
-        </section>
-
-        <div class="source">
-            Source: <a href="https://www.ready.gov/power-outages" target="_blank" rel="noopener">Ready.gov - Power Outages</a>
+    <div class="summary-card">
+        <div class="summary-title">⚡ TL;DR</div>
+        <ul class="summary-list">
+            <li><strong>Чрезвычайно часто:</strong> около 50% взрослых испытывают симптомы геморроя к 50 годам.</li>
+            <li><strong>Два типа:</strong> внутренний (безболезненное кровотечение) и внешний (болезненный отек) — лечение различается.</li>
+            <li><strong>Профилактика превыше всего:</strong> Диета с высоким содержанием клетчатки, достаточное количество воды, отсутствие натуживания и ограничение времени посещения туалета.</li>
+            <li><strong>Большинство случаев разрешаются</strong> при консервативном лечении; хирургическое вмешательство требуется редко.</li>
+        </ul>
+    </div>
+    <article class="content-container">
+        <div class="content-block">
+            <p class="intro-text">Геморрой, возможно, является самым обсуждаемым, но неправильно понимаемым заболеванием в гастроэнтерологии. Почти у каждого есть свое мнение, домашнее средство или страшилка, но на удивление мало людей понимают, что такое геморрой на самом деле, почему он возникает и как с ним правильно бороться. Позвольте мне прояснить ситуацию: геморрой – это не болезнь. Это нормальные анатомические структуры — подушечки кровеносных сосудов, соединительная ткань и гладкие мышцы, выстилающие анальный канал. Они есть у каждого. Они становятся «проблемой» только тогда, когда опухают, кровоточат, выпадают или вызывают дискомфорт. И когда они это сделают, появится четкий, основанный на фактических данных путь к облегчению ситуации.</p>
+            <h2>🔬 Внутреннее и внешнее: два разных зверя</h2>
+<p>Понимание разницы между внутренним и внешним геморроем имеет решающее значение, поскольку они проявляются по-разному и требуют разных подходов.</p>
+<div class="info-box">
+<div class="info-box-title">📊 Внутренний геморрой — система оценок</div>
+<р>
+                    Внутренний геморрой возникает над <strong>зубчатой линией</strong> — границей внутри анального канала, где меняется иннервация. Поскольку эта область имеет висцеральную иннервацию (не соматическую), внутренний геморрой обычно <strong>безболезненный</strong>.<br/><br/>
+<strong>Степень I:</strong> Кровотечение без пролапса. Вы замечаете ярко-красную кровь на туалетной бумаге или в унитазе, но ничего не выступает.<br/><br/>
+<strong>Степень II:</strong> выпадение при напряжении, но самопроизвольное втягивание. Вы можете почувствовать, как что-то выпячивается во время дефекации, но оно возвращается само по себе.<br/><br/>
+<strong>Степень III:</strong> Пролапс, требующий ручного вправления. Ткань выходит наружу, и ее необходимо осторожно вправить обратно внутрь.<br/><br/>
+<strong>Степень IV:</strong> постоянно выпадает и не может быть вправлена. Они могут оказаться ущемленными или тромбированными, что потребует неотложной медицинской помощи.
+                </p>
+</div>
+<p><strong>Наружный геморрой</strong> развивается ниже зубчатой линии, где кожа богата иннервацией соматических нервов. Это означает, что они могут быть <strong>чрезвычайно болезненными</strong>, особенно при тромбировании (когда внутри образуется тромб). Тромбированный наружный геморрой представляет собой твердую, болезненную, синеватую шишку на анальном крае. Боль усиливается в первые 48–72 часа и обычно проходит в течение 1–2 недель по мере рассасывания тромба.</p>
+            <h2>⚡ Факторы риска: почему обостряется геморрой</h2>
+<p>Симптомы геморроя возникают в результате повышенного давления на анальные подушечки. Следующие факторы вносят наибольший вклад:</p>
+<div class="checklist">
+<div class="checklist-item">
+<div class="check-icon">1</div>
+<div><strong>Напряжение во время дефекации.</strong> Это модифицируемый фактор риска номер один. Напряжение повышает внутрибрюшное давление, наполняет геморроидальные сосуды и может вызвать их пролапс. Обычно причиной этого является твердый стул из-за низкого потребления клетчатки.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">2</div>
+<div><strong>Длительное сидение на унитазе.</strong> Если вы проводите в туалете более 5–10 минут (часто прокручивая страницы телефона), анальные подушечки остаются в зависимом, безопорном положении, что способствует нагрубанию. Оставьте телефон возле ванной.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">3</div>
+<div><strong>Диета с низким содержанием клетчатки.</strong> Без достаточного количества клетчатки (25–30 г/день) стул становится твердым и его трудно отходить, что требует большего напряжения.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">4</div>
+<div><strong>Хронический запор или диарея.</strong> Обе крайности подвергают нагрузке анальные подушки: запор из-за напряжения, диарея из-за частых, раздражающих испражнений.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">5</div>
+<div><strong>Беременность.</strong> Растущая матка сдавливает вены таза, повышая давление в геморроидальных сосудах. Гормональные изменения также расслабляют стенки сосудов. До 35% беременных женщин заболевают симптоматическим геморроем.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">6</div>
+<div><strong>Длительное сидение или стояние.</strong> Сидячий образ жизни увеличивает венозный застой в области таза. Регулярные перерывы в движении необходимы.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">7</div>
+<div><strong>Подъем тяжестей.</strong> Повторные маневры Вальсальвы во время поднятия тяжестей или профессионального подъема тяжестей повышают внутрибрюшное давление.</div>
+</div>
+</div>
+            <h2>🏠 Лечение на дому: стратегии первой линии</h2>
+<p>Хорошей новостью является то, что большинство обострений геморроя — примерно 80 % — поддаются консервативному лечению в течение 2–4 недель. Вот что действительно работает:</p>
+<div class="checklist">
+<div class="checklist-item">
+<div class="check-icon">✓</div>
+<div><strong>Сидячие ванны:</strong> сидите в теплой (не горячей) воде в течение 10–15 минут 2–3 раза в день и после дефекации. Это уменьшает отек, расслабляет внутренний сфинктер и улучшает кровоток. Достаточно простой теплой воды — соли и добавки не нужны.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">✓</div>
+<div><strong>Добавка клетчатки:</strong> Шелуха подорожника (Метамуцил) — наиболее изученный вариант. Начните с одной чайной ложки в день и постепенно увеличивайте дозу. Метаанализ 2012 года показал, что добавление клетчатки снижает риск кровотечений на 50 %, а общие симптомы геморроя — на 47 %.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">✓</div>
+<div><strong>Употребление гидратации.</strong> Выпивайте не менее 6–8 стаканов воды в день. Клетчатка без воды контрпродуктивна — она может усугубить запор.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">✓</div>
+<div><strong>Местное лечение.</strong> Безрецептурный крем с гидрокортизоном (1%) уменьшает зуд и воспаление. Подушечки гамамелиса (Tucks) обеспечивают охлаждающее действие. Вазелин, нанесенный перед дефекацией, может уменьшить трение. Ограничьте прием стероидов до 7 дней, чтобы предотвратить истончение кожи.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">✓</div>
+<div><strong>Облегчение боли.</strong> Пероральные НПВП (ибупрофен) более эффективны при боли при геморрое, чем ацетаминофен, поскольку они также уменьшают воспаление. При тромбированном наружном геморрое в первые 48 часов могут помочь пакеты со льдом, накладываемые на 10 минут несколько раз в день.</div>
+</div>
+</div>
+            <h2>🏥 Когда необходима операция</h2>
+<p>Большинство случаев геморроя никогда не требуют хирургического вмешательства. Но при стойком внутреннем геморрое III–IV степени или рецидивирующем тромбированном наружном геморрое процедурное вмешательство дает окончательное облегчение.</p>
+<p><strong>Офисные процедуры</strong> (при внутреннем геморрое I–III степени):</p>
+<p><strong>Лигирование резиновой лентой</strong> — наиболее широко используемая и эффективная офисная процедура. Небольшую резиновую ленту помещают у основания внутреннего геморроидального узла, перекрывая кровоснабжение. Ткань увядает и отпадает в течение 5–7 дней. Вероятность успеха превышает 80%. Легкий дискомфорт и давление являются нормальными в течение 24–48 часов.</p>
+<p><strong>Инфракрасная коагуляция</strong> использует сфокусированный свет для коагуляции геморроидальной ткани. Менее эффективно, чем бандажирование, но вызывает меньше дискомфорта. Лучше всего для I–II классов.</p>
+<p><strong>Хирургическая геморроидэктомия</strong> предназначена для пациентов с геморроем III–IV степени, при которых консервативные меры и офисные процедуры оказались неэффективными. Это наиболее эффективный метод лечения (успех 95%), но он предполагает сильную послеоперационную боль и период восстановления продолжительностью 2–4 недели.</p>
+<div class="warning-box">
+<div class="warning-title">🚨 Не думайте, что это «просто геморрой»</div>
+<ul class="warning-list">
+<li><strong>Ректальное кровотечение всегда должно оцениваться</strong> врачом, особенно после 45 лет. Колоректальный рак, воспалительные заболевания кишечника и анальные трещины могут имитировать симптомы геморроя.</li>
+<li><strong>Изменение в работе кишечника в сочетании с кровотечением</strong> особенно важно исследовать.</li>
+<li><strong>Темная или смолистая кровь</strong> не связана с геморроем — она предполагает кровотечение из верхних отделов желудочно-кишечного тракта и требует срочного обследования.</li>
+<li><strong>Сильная, неослабевающая боль</strong> при перианальной шишке может указывать на абсцесс, а не на геморрой.</li>
+</ul>
+</div>
+            <h2>🛡️ Профилактика: ваша долгосрочная стратегия</h2>
+<div class="checklist">
+<div class="checklist-item">
+<div class="check-icon">✓</div>
+<div><strong>Ежедневно съедайте 25–30 г клетчатки</strong> из цельнозерновых продуктов, фруктов, овощей и бобовых. При необходимости добавьте псиллиум.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">✓</div>
+<div><strong>Соблюдайте питьевой режим</strong> – индикатором гидратации должна быть бледно-желтая моча.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">✓</div>
+<div><strong>Выходите, когда почувствуете позыв</strong> — не откладывайте, так как это приводит к более тяжелому стулу и усилению напряжения.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">✓</div>
+<div><strong>Ограничьте время посещения туалета 5 минутами.</strong> Если этого не произошло, встаньте и попробуйте позже.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">✓</div>
+<div><strong>Регулярно занимайтесь спортом.</strong> Даже умеренная ходьба уменьшает запоры и застой вен в области таза.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">✓</div>
+<div><strong>Используйте подставку для ног</strong>, чтобы поднять колени над бедрами, сидя на унитазе. Это выпрямляет аноректальный угол и снижает необходимость напряжения.</div>
+</div>
+</div>
+<div class="info-box">
+<div class="info-box-title">💡 Правило 5 минут</div>
+<p>Если бы я мог дать один совет по предотвращению геморроя, я бы назвал его следующим: <strong>проводите в туалете не более 5 минут.</strong> Каждую дополнительную минуту, когда вы там сидите, неподдерживаемые анальные подушечки под действием силы тяжести наполняются кровью. Отложите телефон, займитесь своими делами и уходите. Ваш геморрой — текущий или будущий — скажет вам спасибо.</p>
+</div>
         </div>
-    </main>
-
-    <footer class="footer">
-        <a href="../../still-alive-mobile.html">Назад к советам</a>
-    </footer>
-
+    </article>
+    <nav class="floating-nav">
+        <a href="../../happy-poop-mobile.html" class="back-btn">← Назад</a>
+        <a href="#" class="share-btn" onclick="navigator.share({title: 'Распознавание и профилактика геморроя: что ваш врач хочет, чтобы вы знали', url: window.location.href}); return false;">📤</a>
+    </nav>
     <script>
-        const timeElement = document.getElementById("current-time");
-        const updateTime = () => {
-            const now = new Date();
-            const hours = now.getHours();
-            const minutes = String(now.getMinutes()).padStart(2, "0");
-            timeElement.textContent = `${hours}:${minutes}`;
-        };
-        updateTime();
-        setInterval(updateTime, 60000);
+        document.querySelectorAll('.checklist-item').forEach(item => {
+            item.addEventListener('click', () => {
+                item.style.backgroundColor = '#F3F4F6';
+                setTimeout(() => item.style.backgroundColor = 'transparent', 200);
+            });
+        });
     </script>
 </body>
 </html>

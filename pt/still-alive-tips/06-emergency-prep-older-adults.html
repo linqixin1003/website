@@ -1,273 +1,177 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt" data-theme="bowel">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Emergency Prep for Older Adults - Still Alive?</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --accent: #6fbf9b;
-            --accent-light: #b9e3cf;
-            --accent-dark: #3f8b6a;
-            --surface: #ffffff;
-            --text: #1f1f1f;
-            --muted: #6e6e6e;
-            --bg: #f6f4f1;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-        }
-
-        .status-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 44px;
-            background: rgba(0, 0, 0, 0.78);
-            color: #ffffff;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 18px;
-            font-size: 14px;
-            z-index: 10;
-        }
-
-        .status-icons {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .status-dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: #ffffff;
-            opacity: 0.8;
-        }
-
-        .status-pill {
-            width: 22px;
-            height: 10px;
-            border-radius: 6px;
-            border: 1px solid #ffffff;
-            position: relative;
-            opacity: 0.8;
-        }
-
-        .status-pill::after {
-            content: "";
-            position: absolute;
-            right: 2px;
-            top: 2px;
-            width: 6px;
-            height: 4px;
-            border-radius: 3px;
-            background: #ffffff;
-        }
-
-        .back-button {
-            position: fixed;
-            top: 58px;
-            left: 18px;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            border: none;
-            background: rgba(0, 0, 0, 0.6);
-            color: #ffffff;
-            font-size: 18px;
-            cursor: pointer;
-            z-index: 9;
-        }
-
-        .hero {
-            margin-top: 44px;
-            padding: 28px 20px 80px;
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
-            color: #ffffff;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero h1 {
-            margin: 12px 0 10px;
-            font-size: 26px;
-            font-weight: 700;
-        }
-
-        .hero p {
-            margin: 0;
-            font-size: 14px;
-            max-width: 320px;
-            line-height: 1.5;
-        }
-
-        .tag {
-            display: inline-block;
-            padding: 4px 10px;
-            border-radius: 999px;
-            font-size: 11px;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            background: rgba(255, 255, 255, 0.25);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-        }
-
-        .hero-icon {
-            position: absolute;
-            right: 20px;
-            bottom: 12px;
-            width: 80px;
-            height: 80px;
-            opacity: 0.18;
-        }
-
-        .content {
-            background: var(--surface);
-            margin: -50px 18px 24px;
-            border-radius: 20px;
-            padding: 24px 20px 28px;
-            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
-        }
-
-        .meta {
-            font-size: 12px;
-            color: var(--muted);
-            margin-bottom: 16px;
-        }
-
-        .section {
-            margin-top: 18px;
-        }
-
-        .section h2 {
-            margin: 0 0 10px;
-            font-size: 18px;
-        }
-
-        .section p {
-            margin: 0 0 12px;
-            font-size: 14px;
-            line-height: 1.6;
-            color: #3d3d3d;
-        }
-
-        .section ul {
-            margin: 0;
-            padding-left: 18px;
-            font-size: 14px;
-            line-height: 1.6;
-            color: #3d3d3d;
-        }
-
-        .callout {
-            background: #eef8f3;
-            border-left: 4px solid var(--accent);
-            padding: 12px 14px;
-            border-radius: 10px;
-            font-size: 13px;
-            color: #3d3d3d;
-        }
-
-        .source {
-            margin-top: 18px;
-            font-size: 12px;
-            color: var(--muted);
-        }
-
-        .source a {
-            color: var(--accent-dark);
-            text-decoration: none;
-        }
-
-        .footer {
-            text-align: center;
-            margin-bottom: 36px;
-        }
-
-        .footer a {
-            color: var(--accent-dark);
-            text-decoration: none;
-            font-weight: 600;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Resposta de Emergência à Diarréia: Plano de Ação de um Gastroenterologista - Happy Poop</title>
+    <link rel="stylesheet" href="../../article-theme-v2.css">
 </head>
 <body>
-    <div class="status-bar">
-        <span id="current-time">4:57</span>
-        <div class="status-icons" aria-hidden="true">
-            <span class="status-dot"></span>
-            <span class="status-dot"></span>
-            <span class="status-dot"></span>
-            <span class="status-pill"></span>
+    <header class="hero-section">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <div class="article-meta-top">
+                <span>Saúde Intestinal</span>
+                <span>•</span>
+                <span>9 min de leitura</span>
+            </div>
+            <h1 class="hero-title">Resposta de Emergência à Diarréia: Plano de Ação de um Gastroenterologista</h1>
+            
         </div>
-    </div>
-
-    <button class="back-button" onclick="history.back()" aria-label="Go back">←</button>
-
-    <header class="hero">
-        <span class="tag">Wellness</span>
-        <h1>Preparação de emergência para idosos</h1>
-        <p>Organize medications, medical details, and support contacts so help is easy to reach.</p>
-        <svg class="hero-icon" viewBox="0 0 64 64" aria-hidden="true">
-            <path d="M32 50C20 42 14 34 14 24a10 10 0 0 1 18-6 10 10 0 0 1 18 6c0 10-6 18-18 26z" fill="none" stroke="#ffffff" stroke-width="3" stroke-linejoin="round"></path>
-        </svg>
     </header>
-
-    <main class="content">
-        <div class="meta">5 min read • Updated Feb 3, 2026</div>
-
-        <section class="section">
-            <h2>Health Essentials</h2>
-            <p>Keep a current list of prescriptions, allergies, and doctors. Store it with your emergency kit.</p>
-            <ul>
-                <li>Include copies of insurance cards and emergency contacts.</li>
-                <li>Keep at least a few days of extra medication if possible.</li>
-            </ul>
-        </section>
-
-        <section class="section">
-            <h2>Caregiver Contacts</h2>
-            <p>List primary caregivers and back-up contacts. Make sure everyone knows how to reach each other.</p>
-        </section>
-
-        <section class="section">
-            <h2>Mobility and Equipment</h2>
-            <p>Prepare charging options or spare batteries for medical devices, walkers, or hearing aids.</p>
-            <div class="callout">Tip: store a printed checklist in case the phone battery runs out.</div>
-        </section>
-
-        <div class="source">
-            Source: <a href="https://www.nia.nih.gov/health/emergency-preparedness" target="_blank" rel="noopener">National Institute on Aging - Emergency Preparedness</a>
+    <div class="summary-card">
+        <div class="summary-title">⚡ TL;DR</div>
+        <ul class="summary-list">
+            <li><strong>A hidratação é tudo:</strong> a maioria das complicações da diarreia vem da desidratação, não da infecção em si.</li>
+            <li><strong>A solução de reidratação oral (SRO)</strong> é mais eficaz do que apenas água – adicione eletrólitos.</li>
+            <li><strong>A dieta BRAT está desatualizada.</strong> Faça uma dieta balanceada e de fácil digestão, conforme tolerado.</li>
+            <li><strong>A maioria das diarreias agudas desaparecem em 2–5 dias</strong> sem antibióticos. Na verdade, os antibióticos podem piorar alguns casos.</li>
+            <li><strong>ER imediatamente</strong> se: diarreia com sangue, febre alta (&gt;101,3°F/38,5°C), desidratação grave ou sintomas que duram >7 dias.</li>
+        </ul>
+    </div>
+    <article class="content-container">
+        <div class="content-block">
+            <p class="intro-text">Aparece sem aviso prévio – uma cólica repentina, uma corrida urgente para o banheiro e a percepção de que seus planos para o dia mudaram drasticamente. A diarreia aguda é um dos motivos mais comuns pelos quais as pessoas ligam para o médico, vão ao atendimento de urgência ou procuram respostas online às 2 da manhã. Embora a maioria dos episódios seja autolimitada e se resolva em poucos dias, saber como responder de forma eficaz pode significar a diferença entre um incômodo leve e uma crise perigosa de desidratação. Aqui está o seu plano de ação baseado em evidências, de um gastroenterologista que orientou milhares de pacientes exatamente nessa situação.</p>
+            <h2>📊 Aguda vs. Crônica: conheça a diferença</h2>
+<p>A distinção é importante porque as causas, o tratamento e a urgência são fundamentalmente diferentes.</p>
+<p><strong>A diarreia aguda</strong> dura menos de 14 dias. A grande maioria dos casos (mais de 90%) é causada por infecções – sendo a gastroenterite viral (norovírus, rotavírus) a mais comum. A intoxicação alimentar por bactérias (<em>Salmonella</em>, <em>E. coli</em>, <em>Campylobacter</em>) é a segunda causa mais comum. A diarreia aguda geralmente é autolimitada e remite sem tratamento específico.</p>
+<p><strong>A diarreia crônica</strong> persiste por mais de 4 semanas. Este é um cenário clínico totalmente diferente e requer investigação sistemática. As causas comuns incluem síndrome do intestino irritável (SII-D), doença inflamatória intestinal (doença de Crohn, colite ulcerativa), doença celíaca, colite microscópica, má absorção de ácidos biliares e infecções crônicas. Se a sua diarreia já dura mais de um mês, você precisa consultar um gastroenterologista – e não apenas controlar os sintomas em casa.</p>
+            <h2>💧 Etapa 1: Hidratação — Sua principal prioridade</h2>
+<p>A coisa mais importante que você pode fazer durante um episódio de diarreia aguda é <strong>manter a hidratação</strong>. A diarreia causa rápida perda de água e eletrólitos (sódio, potássio, cloreto, bicarbonato). A desidratação – e não a infecção em si – é o que leva as pessoas ao pronto-socorro e, globalmente, o que torna a diarreia mortal em populações vulneráveis.</p>
+<div class="info-box">
+<div class="info-box-title">🥤 Como reidratar de forma eficaz</div>
+<p>
+<strong>Solução de Reidratação Oral (SRO)</strong> é o padrão ouro. A fórmula da OMS contém: água, sódio, potássio, glicose e citrato em proporções específicas destinadas a maximizar a absorção intestinal. Opções comerciais como Pedialyte, Drip Drop ou Liquid IV são alternativas convenientes.<br/><br/>
+<strong>Por que a água por si só não é suficiente:</strong> A água pura não repõe os eletrólitos perdidos e, sem glicose, a absorção de sódio no intestino fica prejudicada. O mecanismo de cotransporte glicose-sódio no intestino delgado é o que torna a SRO tão eficaz: a glicose puxa o sódio (e a água) através da parede intestinal, mesmo quando o intestino está inflamado.<br/><br/>
+<strong>Receita de reidratação DIY:</strong> 1 litro de água limpa + ½ colher de chá de sal + 6 colheres de chá de açúcar + suco de limão opcional. Não é tão preciso quanto o ORS comercial, mas funciona muito bem.<br/><br/>
+<strong>Quanto:</strong> Procure substituir cada fezes diarreicas por pelo menos 1 xícara (250 mL) de SRO. Beba com frequência, em vez de engolir grandes volumes, o que pode causar náuseas e vômitos.
+                </p>
+</div>
+<div class="checklist">
+<div class="checklist-item">
+<div class="check-icon">✅</div>
+<div><strong>BEBIDA:</strong> SRO, caldos claros, sucos de frutas diluídos (maçã, uva branca), água de coco, chás de ervas.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">❌</div>
+<div><strong>EVITAR:</strong> Café (estimula a motilidade), álcool (diurético e irritante), suco de fruta forte (o efeito osmótico piora a diarreia), leite (a intolerância temporária à lactose é comum durante infecções intestinais) e refrigerantes açucarados.</div>
+</div>
+</div>
+            <h2>🍽️ Passo 2: O que comer (a dieta BRAT está desatualizada)</h2>
+<p>Durante décadas, os médicos recomendaram a <strong>dieta BRAT</strong> – banana, arroz, compota de maçã, torradas – como a dieta de recuperação ideal. Embora esses alimentos sejam suaves e não tenham probabilidade de piorar os sintomas, a dieta BRAT é agora considerada <strong>muito restritiva</strong>. Faltam proteínas, gorduras e micronutrientes adequados, necessários para a recuperação da mucosa intestinal.</p>
+<div class="info-box">
+<div class="info-box-title">🍽️ Diretrizes modernas para dieta de recuperação</div>
+<p>
+                    Recomendações atuais da Associação Americana de Gastroenterologia: <strong>faça uma dieta regular e balanceada conforme tolerado.</strong> Não há necessidade de passar fome ou limitar a ingestão apenas a alimentos leves.<br/><br/>
+<strong>Boas escolhas durante a recuperação:</strong><br/>
+                    • Proteínas magras: frango, peixe, ovos, tofu<br/>
+                    • Amidos de fácil digestão: arroz branco, batatas, macarrão simples, biscoitos<br/>
+                    • Legumes cozidos: cenoura, feijão verde, abóbora (evite vegetais crus temporariamente)<br/>
+                    • Bananas (substituto de potássio), purê de maçã (a pectina ajuda a absorver água)<br/>
+                    • Iogurte com culturas vivas (probióticos ajudam na recuperação)<br/><br/>
+<strong>Evitar temporariamente:</strong><br/>
+                    • Alimentos gordurosos, fritos ou muito picantes<br/>
+                    • Vegetais crus e grãos integrais ricos em fibras (espere até que as fezes se normalizem)<br/>
+                    • Produtos lácteos que não sejam iogurte (a enzima lactase geralmente fica temporariamente esgotada)<br/>
+                    • Álcoois de açúcar (sorbitol, manitol) encontrados em chicletes e doces sem açúcar
+                </p>
+</div>
+            <h2>💊 Etapa 3: Medicamentos — O que ajuda e o que não ajuda</h2>
+<p><strong>Loperamida (Imodium)</strong> é o antidiarreico de venda livre mais eficaz. Atua diminuindo a motilidade intestinal, permitindo que mais água seja absorvida. É apropriado para adultos com diarreia não febril e sem sangue. Tome 4 mg inicialmente e depois 2 mg após cada evacuação amolecida (máximo 16 mg/dia). NÃO use loperamida se tiver diarreia com sangue ou febre – retardar o trânsito de uma infecção invasiva pode piorá-la.</p>
+<p><strong>Subsalicilato de bismuto (Pepto-Bismol)</strong> tem propriedades antibacterianas e anti-inflamatórias suaves. Pode reduzir a frequência das fezes em cerca de 50% na diarreia do viajante. Observação: torna as fezes pretas (normal, não alarmante) e deve ser evitado por pessoas que tomam anticoagulantes ou alérgicas à aspirina.</p>
+<p><strong>Probióticos:</strong> as evidências apoiam cepas específicas para diarreia aguda. <em>Saccharomyces boulardii</em> e <em>Lactobacillus rhamnosus GG</em> apresentam os dados mais fortes, reduzindo a duração da diarreia em aproximadamente 1 dia. Eles são seguros e vale a pena tentar, embora não substituam a hidratação.</p>
+            <h2>💉 Antibióticos: quando ajudam versus quando prejudicam</h2>
+<p>Esta é uma distinção crítica que até mesmo alguns profissionais de saúde erram.</p>
+<p><strong>A maioria das diarreias agudas são virais</strong> — os antibióticos são inúteis contra os vírus e podem, na verdade, prejudicar ao perturbar o microbioma intestinal, potencialmente prolongando os sintomas ou causando infecção secundária por <em>Clostridioides difficile</em>.</p>
+<p><strong>Os antibióticos SÃO apropriados para:</strong></p>
+<div class="checklist">
+<div class="checklist-item">
+<div class="check-icon">✓</div>
+<div>Diarréia do viajante moderada a grave (azitromicina ou rifaximina)</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">✓</div>
+<div>Disenteria bacteriana confirmada (diarreia sanguinolenta com febre) causada por <em>Shigella</em>, <em>Salmonella</em> invasiva ou <em>Campylobacter</em></div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">✓</div>
+Infecção por <div><em>Clostridioides difficile</em> (tratada com vancomicina ou fidaxomicina — NÃO mais metronidazol como primeira linha)</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">✓</div>
+<div>Infecções parasitárias (giardíase, amebíase) confirmadas por exames de fezes</div>
+</div>
+</div>
+<p><strong>Antibióticos devem ser EVITADOS para:</strong> gastroenterite por <em>Salmonella</em> não complicada (antibióticos podem prolongar o estado de portador), <em>E. coli</em> O157:H7 (antibióticos aumentam o risco de síndrome hemolítico-urêmica) e gastroenterite viral.</p>
+            <h2>✈️ Diarréia do Viajante: Dicas de Prevenção</h2>
+<p>A diarreia do viajante afecta 30-70% dos viajantes internacionais para destinos de alto risco (Sul da Ásia, África, América Central). As estratégias de prevenção incluem:</p>
+<div class="checklist">
+<div class="checklist-item">
+<div class="check-icon">✓</div>
+<div><strong>"Ferva, cozinhe, descasque ou esqueça."</strong> Evite vegetais crus, frutas com casca, água da torneira e cubos de gelo em áreas de alto risco.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">✓</div>
+<div><strong>Beba apenas água engarrafada ou tratada.</strong> Use água engarrafada mesmo para escovar os dentes.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">✓</div>
+<div><strong>Profilaxia com subsalicilato de bismuto:</strong> Tomar 2 comprimidos quatro vezes ao dia pode reduzir o risco em 65%. Converse com seu médico antes de viajar.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">✓</div>
+<div><strong>Leve um kit de viagem:</strong> inclua pacotes de SRO, loperamida, subsalicilato de bismuto e um curso de azitromicina (prescrição) para autotratamento se surgirem sintomas graves.</div>
+</div>
+</div>
+            <h2>🚨 Sinais de alerta: quando ir ao pronto-socorro</h2>
+<div class="warning-box">
+<div class="warning-title">🚨 Procure atendimento médico imediato se tiver</div>
+<ul class="warning-list">
+<li><strong>Diarréia com sangue ou alcatrão preto</strong> — sugere infecção invasiva ou sangramento gastrointestinal.</li>
+<li><strong>Febre alta (&gt;101,3°F / 38,5°C)</strong> — indica uma infecção bacteriana ou parasitária invasiva que pode necessitar de antibióticos direcionados.</li>
+<li><strong>Sinais de desidratação grave:</strong> tontura ao ficar em pé, urina muito escura, não urinar por mais de 8 horas, boca e pele secas, taquicardia, confusão.</li>
+<li><strong>Dor abdominal intensa</strong> que é constante (não apenas cólicas) — pode indicar complicações como megacólon tóxico ou perfuração.</li>
+<li><strong>Sintomas que duram mais de 7 dias</strong> sem melhora.</li>
+<li><strong>Uso recente de antibióticos</strong> seguido de diarreia aquosa — levanta preocupação para <em>C. difficile</em> infecção.</li>
+<li><strong>Pacientes imunocomprometidos</strong> (HIV, quimioterapia, receptores de transplantes) — mesmo a diarreia “leve” pode ser perigosa.</li>
+</ul>
+</div>
+            <h2>📅 Cronograma de recuperação: o que esperar</h2>
+<div class="checklist">
+<div class="checklist-item">
+<div class="check-icon">1</div>
+<div><strong>Dias 1–2:</strong> Pico dos sintomas. Concentre-se exclusivamente na hidratação. Coma pequenas quantidades de alimentos leves, conforme tolerado. Descanse.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">2</div>
+<div><strong>Dias 3–5:</strong> a frequência diminui. Expanda gradualmente sua dieta. Reintroduza proteínas magras e vegetais cozidos. Continuar ORS.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">3</div>
+<div><strong>Dias 5–7:</strong> As fezes começam a normalizar. Você pode retornar à sua dieta normal. Os probióticos são mais benéficos durante esta fase para ajudar a restaurar o equilíbrio do microbioma.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">4</div>
+<div><strong>Semanas 1–4:</strong> Recuperação total do microbioma. Algumas pessoas apresentam intolerância temporária à lactose por 2 a 4 semanas após uma infecção intestinal (as enzimas da borda em escova precisam de tempo para se regenerar). Se os laticínios causarem sintomas, evite-os temporariamente e tente novamente após um mês.</div>
+</div>
+</div>
+<div class="info-box">
+<div class="info-box-title">💡 Conclusão final</div>
+<p>A diarreia aguda é quase sempre uma condição autolimitada. Seu corpo está fazendo exatamente o que foi projetado para fazer: eliminar rapidamente os patógenos. Sua função é apoiar esse processo com hidratação, nutrição adequada e saber quando o simples autocuidado não é suficiente. Mantenha-se hidratado, seja paciente e não hesite em procurar ajuda se surgirem sinais de alerta. Seu intestino é extremamente resistente. Com o apoio certo, ele se recuperará.</p>
+</div>
         </div>
-    </main>
-
-    <footer class="footer">
-        <a href="../../still-alive-mobile.html">Voltar às dicas</a>
-    </footer>
-
+    </article>
+    <nav class="floating-nav">
+        <a href="../../happy-poop-mobile.html" class="back-btn">← Voltar</a>
+        <a href="#" class="share-btn" onclick="navigator.share({title: 'Resposta de Emergência à Diarréia: Plano de Ação de um Gastroenterologista', url: window.location.href}); return false;">📤</a>
+    </nav>
     <script>
-        const timeElement = document.getElementById("current-time");
-        const updateTime = () => {
-            const now = new Date();
-            const hours = now.getHours();
-            const minutes = String(now.getMinutes()).padStart(2, "0");
-            timeElement.textContent = `${hours}:${minutes}`;
-        };
-        updateTime();
-        setInterval(updateTime, 60000);
+        document.querySelectorAll('.checklist-item').forEach(item => {
+            item.addEventListener('click', () => {
+                item.style.backgroundColor = '#F3F4F6';
+                setTimeout(() => item.style.backgroundColor = 'transparent', 200);
+            });
+        });
     </script>
 </body>
 </html>

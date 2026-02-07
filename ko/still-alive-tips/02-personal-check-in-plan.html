@@ -1,279 +1,115 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" data-theme="bowel">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create a Personal Check-In Plan - Still Alive?</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --accent: #9a6ee8;
-            --accent-light: #cbb0f2;
-            --accent-dark: #6d3bbb;
-            --surface: #ffffff;
-            --text: #1f1f1f;
-            --muted: #6e6e6e;
-            --bg: #f6f4f1;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-        }
-
-        .status-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 44px;
-            background: rgba(0, 0, 0, 0.78);
-            color: #ffffff;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 18px;
-            font-size: 14px;
-            z-index: 10;
-        }
-
-        .status-icons {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .status-dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: #ffffff;
-            opacity: 0.8;
-        }
-
-        .status-pill {
-            width: 22px;
-            height: 10px;
-            border-radius: 6px;
-            border: 1px solid #ffffff;
-            position: relative;
-            opacity: 0.8;
-        }
-
-        .status-pill::after {
-            content: "";
-            position: absolute;
-            right: 2px;
-            top: 2px;
-            width: 6px;
-            height: 4px;
-            border-radius: 3px;
-            background: #ffffff;
-        }
-
-        .back-button {
-            position: fixed;
-            top: 58px;
-            left: 18px;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            border: none;
-            background: rgba(0, 0, 0, 0.6);
-            color: #ffffff;
-            font-size: 18px;
-            cursor: pointer;
-            z-index: 9;
-        }
-
-        .hero {
-            margin-top: 44px;
-            padding: 28px 20px 80px;
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
-            color: #ffffff;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero h1 {
-            margin: 12px 0 10px;
-            font-size: 26px;
-            font-weight: 700;
-        }
-
-        .hero p {
-            margin: 0;
-            font-size: 14px;
-            max-width: 320px;
-            line-height: 1.5;
-        }
-
-        .tag {
-            display: inline-block;
-            padding: 4px 10px;
-            border-radius: 999px;
-            font-size: 11px;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            background: rgba(255, 255, 255, 0.25);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-        }
-
-        .hero-icon {
-            position: absolute;
-            right: 20px;
-            bottom: 12px;
-            width: 80px;
-            height: 80px;
-            opacity: 0.18;
-        }
-
-        .content {
-            background: var(--surface);
-            margin: -50px 18px 24px;
-            border-radius: 20px;
-            padding: 24px 20px 28px;
-            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
-        }
-
-        .meta {
-            font-size: 12px;
-            color: var(--muted);
-            margin-bottom: 16px;
-        }
-
-        .section {
-            margin-top: 18px;
-        }
-
-        .section h2 {
-            margin: 0 0 10px;
-            font-size: 18px;
-        }
-
-        .section p {
-            margin: 0 0 12px;
-            font-size: 14px;
-            line-height: 1.6;
-            color: #3d3d3d;
-        }
-
-        .section ul {
-            margin: 0;
-            padding-left: 18px;
-            font-size: 14px;
-            line-height: 1.6;
-            color: #3d3d3d;
-        }
-
-        .callout {
-            background: #f4f0fb;
-            border-left: 4px solid var(--accent);
-            padding: 12px 14px;
-            border-radius: 10px;
-            font-size: 13px;
-            color: #3d3d3d;
-        }
-
-        .source {
-            margin-top: 18px;
-            font-size: 12px;
-            color: var(--muted);
-        }
-
-        .source a {
-            color: var(--accent-dark);
-            text-decoration: none;
-        }
-
-        .footer {
-            text-align: center;
-            margin-bottom: 36px;
-        }
-
-        .footer a {
-            color: var(--accent-dark);
-            text-decoration: none;
-            font-weight: 600;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>배변 빈도 및 리듬: 정상 찾기 - Happy Poop</title>
+    <link rel="stylesheet" href="../../article-theme-v2.css">
 </head>
 <body>
-    <div class="status-bar">
-        <span id="current-time">4:55</span>
-        <div class="status-icons" aria-hidden="true">
-            <span class="status-dot"></span>
-            <span class="status-dot"></span>
-            <span class="status-dot"></span>
-            <span class="status-pill"></span>
+    <header class="hero-section">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <div class="article-meta-top">
+                <span>장 건강</span>
+                <span>•</span>
+                <span>8분 읽기</span>
+            </div>
+            <h1 class="hero-title">배변 빈도 및 리듬: 정상 찾기</h1>
+            
         </div>
-    </div>
-
-    <button class="back-button" onclick="history.back()" aria-label="Go back">←</button>
-
-    <header class="hero">
-        <span class="tag">Check-In</span>
-        <h1>개인 체크인 계획 만들기</h1>
-        <p>Define who gets notified, how often you check in, and what happens if you miss one.</p>
-        <svg class="hero-icon" viewBox="0 0 64 64" aria-hidden="true">
-            <circle cx="32" cy="32" r="20" fill="none" stroke="#ffffff" stroke-width="3"></circle>
-            <path d="M24 32l6 6 12-14" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
-        </svg>
     </header>
-
-    <main class="content">
-        <div class="meta">5 min read • Updated Feb 3, 2026</div>
-
-        <section class="section">
-            <h2>Pick the Right People</h2>
-            <p>Choose 1-3 trusted contacts who will answer quickly and can take action. Make sure they agree to the plan and know your typical routine.</p>
-        </section>
-
-        <section class="section">
-            <h2>Set Your Cadence</h2>
-            <p>Decide how often to check in based on your risk and lifestyle. Daily for higher risk, every other day for lower risk.</p>
-            <ul>
-                <li>Set a consistent time window to reduce confusion.</li>
-                <li>Use reminders in Still Alive to stay on schedule.</li>
-            </ul>
-        </section>
-
-        <section class="section">
-            <h2>Define Escalation Steps</h2>
-            <p>Agree on what happens if you miss a check-in. Start with a call or text, then move to a visit or emergency services if needed.</p>
-            <div class="callout">Tip: write the escalation steps in a shared note so everyone follows the same process.</div>
-        </section>
-
-        <section class="section">
-            <h2>Share Key Information</h2>
-            <p>Give contacts your address, medical details, and any entry instructions for your home. Store critical numbers in one place.</p>
-        </section>
-
-        <div class="source">
-            Source: <a href="https://www.ready.gov/plan" target="_blank" rel="noopener">Ready.gov - Make a Plan</a>
+    <div class="summary-card">
+        <div class="summary-title">⚡ TL;DR</div>
+        <ul class="summary-list">
+            <li><strong>정상 범위:</strong> 하루 3회부터 주 3회까지 의학적으로 정상입니다.</li>
+            <li>빈도보다<strong>일관성이 더 중요합니다</strong>. 중요한 것은 규칙적인 개인 패턴입니다.</li>
+            <li><strong>위대장 반사</strong>는 신체에 내장된 유발 요인입니다. 아침 식사를 통해 이를 사용하세요.</li>
+            <li><strong>갑작스러운 변화</strong>는 확립된 패턴(2주 이상 지속)에 의학적 평가가 필요합니다.</li>
+        </ul>
+    </div>
+    <article class="content-container">
+        <div class="content-block">
+            <p class="intro-text">"박사님, 제가 격일로 가는 게 정상인가요?" 제가 진료실에서 가장 많이 듣는 질문 중 하나입니다. 시계처럼 하루에 정확히 한 번의 배변을 해야 한다는 거의 보편적인 불안이 있습니다. 진실은 훨씬 더 미묘하고 훨씬 더 안심이 됩니다. 장에는 유전학, 식습관, 활동 수준, 스트레스, 심지어 장에 서식하는 박테리아에 따라 형성되는 고유한 리듬이 있습니다. 자신의 개인적인 일상을 이해하는 것이 다른 사람의 일정을 쫓는 것보다 훨씬 더 가치 있습니다.</p>
+            <h2>📊 "정상" 주파수에 대해 과학이 말하는 것</h2>
+<p>대규모 인구 연구에 따르면 건강한 배변 빈도는 <strong>하루 3회에서 매주 3회</strong> 범위인 것으로 일관되게 나타났습니다. <em>Scandinavian Journal of Gastroenterology</em>에 실린 획기적인 2010년 연구에서는 4,000명이 넘는 성인을 대상으로 설문조사를 실시한 결과 가장 흔한 빈도는 하루에 한 번이었지만 이는 전체 인구의 약 40%에 불과한 것으로 나타났습니다. 나머지 60%는 전체 일반 스펙트럼에 걸쳐 분포되어 있습니다.</p>
+<p>가장 중요한 것은 마법의 숫자를 달성하는 것이 아닙니다. 패턴이 <strong>일관되고, 편안하며, 완전</strong>한지 여부입니다. 하루에 두 번 가고 항상 가지고 있다면 그게 정상입니다. 긴장하거나 부풀어오르는 일 없이 격일로 걷는다면 그것도 똑같이 건강합니다. 뚜렷한 이유 없이 확립된 패턴이 크게 변경되면 문제가 발생합니다.</p>
+<div class="info-box">
+<div class="info-box-title">📋 건강한 장 습관의 3C</div>
+<p>
+<strong>일관성:</strong> 빈도는 매주 크게 변하지 않습니다.<br/><br/>
+<strong>편안함:</strong> 지나치게 긴장하지 않으며, 움직여도 통증이 발생하지 않습니다.<br/><br/>
+<strong>완료:</strong> 나중에 뭔가가 더 있을 것 같은 느낌이 들지 않고 대피감을 느낍니다.
+                </p>
+</div>
+            <h2>🧠 위대장 반사: 내장된 트리거</h2>
+<p>식사 후, 특히 아침 식사 후에 바로 가고 싶은 충동을 느낀 적이 있습니까? 이것이 바로 소화 시스템에서 가장 강력하고 예측 가능한 반사 작용 중 하나인 <strong>위장 반사</strong>입니다.</p>
+<p>작동 방식은 다음과 같습니다. 음식이 위장에 들어가 위벽을 확장하면 신경계가 결장에 신호를 보내 수축을 시작합니다. <strong>대량 이동</strong>이라고 불리는 이러한 수축은 기존 노폐물을 직장으로 밀어냅니다. 반사는 첫 식사 후 아침에 가장 강합니다. 그 이유는 결장이 수면 중에 상대적으로 조용하고 반응할 준비가 되어 있기 때문입니다.</p>
+<p>이러한 반사 작용으로 인해 위장병 전문의는 규칙성을 확립하려는 경우 <strong>아침 식사</strong>를 강력히 권장합니다. 토스트 한 조각, 바나나, 요구르트 한 컵 등 작은 식사만으로도 이러한 증상을 유발하기에 충분합니다. 커피는 효과를 증폭시킵니다. 연구에 따르면 카페인 함유 커피와 무카페인 커피 모두 섭취 후 4분 이내에 대장 운동 활동을 자극하여 위대장 반사를 최대 60%까지 증가시킵니다.</p>
+            <h2>🌅 규칙성을 위한 아침 루틴 만들기</h2>
+<p>결장은 습관의 생물입니다. 일상에는 아름답게 반응하고 혼돈에는 잘 반응하지 않습니다. 다음은 신체의 자연스러운 리듬을 활용하는 증거 기반 아침 프로토콜입니다.</p>
+<div class="checklist">
+<div class="checklist-item">
+<div class="check-icon">1</div>
+<div><strong>일정한 시간에 일어나세요.</strong> 결장에도 일주기 리듬이 있습니다. 대장 운동성은 이른 아침 시간에 최고조에 달하므로 이 시간이 배변을 위한 최적의 창구가 됩니다.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">2</div>
+<div><strong>즉시 물 한 잔을 마십니다.</strong> 6~8시간 자고 나면 몸에 수분이 부족해집니다. 물은 위대장 반사를 활성화하고 밤새 결장에 앉아 있던 대변을 부드럽게 합니다.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">3</div>
+<div><strong>깨어난 지 30분 이내에 아침 식사를 하세요.</strong> 작은 일이라도 위대장 반사를 유발합니다. 섬유질이 풍부한 옵션(오트밀, 통곡물 토스트, 과일)이 이상적입니다.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">4</div>
+<div><strong>매일 같은 시간에 변기에 앉으세요</strong> — 충동을 느끼든 안 느끼든. 최대 5~10분 정도 소요됩니다. 이는 이때 대피를 예상하도록 결장을 훈련시킵니다.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">5</div>
+<div><strong>충동을 무시하지 마세요.</strong> 느껴지면 가세요. 습관적으로 충동을 억제하면 시간이 지남에 따라 배변 반사가 약화되어 만성 변비로 이어질 수 있습니다.</div>
+</div>
+</div>
+            <h2>⏰ 리듬에 영향을 미치는 요소</h2>
+<p>배변 패턴의 변화를 이해하면 통제력을 유지하는 데 도움이 됩니다. 가장 일반적인 영향력을 행사하는 사람들은 다음과 같습니다.</p>
+<p><strong>식단 변화:</strong> 갑자기 섬유질을 늘리거나 줄이면 빈도가 크게 바뀔 수 있습니다. 섬유질을 추가할 때 장내 미생물군집이 적응할 시간을 주기 위해 일주일에 약 5g씩 점차적으로 늘리세요. 급격한 증가는 팽만감, 가스, 경련을 유발합니다.</p>
+<p><strong>여행:</strong> 시간대, 식단, 물 공급원 및 일상 생활의 변화는 일반적으로 '여행자 변비'를 유발합니다. 당신의 결장은 놀라움을 좋아하지 않습니다. 여행하는 동안 수분을 유지하고 섬유질을 섭취하면 리듬을 유지하는 데 도움이 됩니다.</p>
+<p><strong>스트레스와 불안:</strong> 장-뇌 축은 양방향입니다. 급성 스트레스는 설사(통과를 가속화하는 교감 신경계를 통해)를 유발할 수 있는 반면, 만성 스트레스는 종종 변비를 유발합니다. 명상, 운동, 인지 행동 치료는 모두 임상 시험에서 배변 규칙성을 개선하는 것으로 나타났습니다.</p>
+<p><strong>약물:</strong> 아편유사제, 항우울제(특히 삼환계), 항히스타민제, 칼슘 통로 차단제, 철분 보충제는 통과 속도를 늦추는 일반적인 원인입니다. 새로운 약을 복용하기 시작했는데 변화가 생겼다면 처방자와 대안을 논의하세요.</p>
+<p><strong>신체 활동:</strong> 규칙적이고 적당한 운동(특히 걷기, 조깅, 요가)은 대장 운동성을 자극합니다. 2019년 메타 분석에 따르면 운동은 앉아서 생활하는 대조군에 비해 변비 증상을 37% 감소시키는 것으로 나타났습니다. 마라톤은 필요하지 않습니다. 매일 30분씩 산책하면 충분합니다.</p>
+            <h2>🚩 주파수 변화가 문제를 나타내는 경우</h2>
+<p>모든 변동이 우려되는 것은 아닙니다. 명절 잔치나 스트레스가 많은 한 주 후에 하루나 이틀의 불규칙성은 완전히 정상입니다. 하지만 특정 패턴에 대해서는 조사가 필요합니다.</p>
+<div class="warning-box">
+<div class="warning-title">🚨 위험 신호: 통지가 있을 경우 의사를 만나세요</div>
+<ul class="warning-list">
+<li><strong>2~3주 이상 지속되는 지속적인 변화</strong>(새로운 식단, 여행, 약물 치료).</li>
+<li><strong>변비와 설사가 교대로 나타나는 경우</strong> — 과민성 대장 증후군의 특징이지만 다른 질환도 검사해 볼 가치가 있습니다.</li>
+<li><strong>대변의 점진적인 협착</strong>과 빈도 감소는 결장의 구조적 문제를 나타낼 수 있습니다.</li>
+<li><strong>50세 이후에 새로 발병하는 변비</strong>(명확한 설명 없음) - 대장암 검진에 대해 논의해야 합니다.</li>
+<li><strong>혈액, 설명할 수 없는 체중 감소, 심한 복통을 동반하는 빈도 변화</strong></li>
+</ul>
+</div>
+            <h2>🔬 특수 인구: 차이점</h2>
+<p><strong>노인:</strong> 결장 벽의 신경 세포 밀도 감소로 인해(신경 변성이라는 과정) 나이가 들수록 결장 통과 속도가 느려집니다. 신체 활동 감소, 약물 복용, 수분 섭취 감소로 인해 문제가 더욱 악화됩니다. 많은 노년층에서는 빈도가 주당 3~4회로 감소합니다. 이는 편안하다면 정상이지만 모니터링해야 합니다.</p>
+<p><strong>임산부:</strong> 프로게스테론은 결장을 포함하여 몸 전체의 평활근을 이완시켜 통과 속도를 크게 늦춥니다. 임산부의 최대 40%가 변비를 경험합니다. 임신 중에 처방되는 철분 보충제는 이러한 현상을 더욱 악화시킵니다. 섬유질, 물 섭취량을 늘리고 가벼운 운동을 하는 것이 최우선 권장 사항입니다.</p>
+<p><strong>교대근무자:</strong> 일주기 리듬이 붕괴되면 대장 운동성에 직접적인 영향을 미칩니다. 연구에 따르면 교대근무자는 변비와 IBS 증상의 비율이 더 높습니다. 수면 시간이 다양하더라도 식사 시간을 일정하게 유지하면 어느 정도 규칙성을 유지하는 데 도움이 됩니다.</p>
+<div class="info-box">
+<div class="info-box-title">💡 결론</div>
+<p>자신의 배변 습관을 다른 사람의 습관과 비교하지 마세요. 간단한 일기나 앱을 사용하여 2~4주 동안 자신의 패턴을 추적하세요. 시간, 일관성(브리스톨 척도 사용) 및 관련 증상을 기록합니다. 이 개인 기준은 의미 있는 변화를 조기에 감지하는 데 가장 유용한 단일 도구입니다. 당신의 평범함은 당신의 평범함이며 그것이 강력하다는 것을 아는 것입니다.</p>
+</div>
         </div>
-    </main>
-
-    <footer class="footer">
-        <a href="../../still-alive-mobile.html">팁으로 돌아가기</a>
-    </footer>
-
+    </article>
+    <nav class="floating-nav">
+        <a href="../../happy-poop-mobile.html" class="back-btn">← 뒤로</a>
+        <a href="#" class="share-btn" onclick="navigator.share({title: '배변 빈도 및 리듬: 정상 찾기', url: window.location.href}); return false;">📤</a>
+    </nav>
     <script>
-        const timeElement = document.getElementById("current-time");
-        const updateTime = () => {
-            const now = new Date();
-            const hours = now.getHours();
-            const minutes = String(now.getMinutes()).padStart(2, "0");
-            timeElement.textContent = `${hours}:${minutes}`;
-        };
-        updateTime();
-        setInterval(updateTime, 60000);
+        document.querySelectorAll('.checklist-item').forEach(item => {
+            item.addEventListener('click', () => {
+                item.style.backgroundColor = '#F3F4F6';
+                setTimeout(() => item.style.backgroundColor = 'transparent', 200);
+            });
+        });
     </script>
 </body>
 </html>

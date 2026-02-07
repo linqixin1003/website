@@ -1,279 +1,115 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="it" data-theme="bowel">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create a Personal Check-In Plan - Still Alive?</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --accent: #9a6ee8;
-            --accent-light: #cbb0f2;
-            --accent-dark: #6d3bbb;
-            --surface: #ffffff;
-            --text: #1f1f1f;
-            --muted: #6e6e6e;
-            --bg: #f6f4f1;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-        }
-
-        .status-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 44px;
-            background: rgba(0, 0, 0, 0.78);
-            color: #ffffff;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 18px;
-            font-size: 14px;
-            z-index: 10;
-        }
-
-        .status-icons {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .status-dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: #ffffff;
-            opacity: 0.8;
-        }
-
-        .status-pill {
-            width: 22px;
-            height: 10px;
-            border-radius: 6px;
-            border: 1px solid #ffffff;
-            position: relative;
-            opacity: 0.8;
-        }
-
-        .status-pill::after {
-            content: "";
-            position: absolute;
-            right: 2px;
-            top: 2px;
-            width: 6px;
-            height: 4px;
-            border-radius: 3px;
-            background: #ffffff;
-        }
-
-        .back-button {
-            position: fixed;
-            top: 58px;
-            left: 18px;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            border: none;
-            background: rgba(0, 0, 0, 0.6);
-            color: #ffffff;
-            font-size: 18px;
-            cursor: pointer;
-            z-index: 9;
-        }
-
-        .hero {
-            margin-top: 44px;
-            padding: 28px 20px 80px;
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
-            color: #ffffff;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero h1 {
-            margin: 12px 0 10px;
-            font-size: 26px;
-            font-weight: 700;
-        }
-
-        .hero p {
-            margin: 0;
-            font-size: 14px;
-            max-width: 320px;
-            line-height: 1.5;
-        }
-
-        .tag {
-            display: inline-block;
-            padding: 4px 10px;
-            border-radius: 999px;
-            font-size: 11px;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            background: rgba(255, 255, 255, 0.25);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-        }
-
-        .hero-icon {
-            position: absolute;
-            right: 20px;
-            bottom: 12px;
-            width: 80px;
-            height: 80px;
-            opacity: 0.18;
-        }
-
-        .content {
-            background: var(--surface);
-            margin: -50px 18px 24px;
-            border-radius: 20px;
-            padding: 24px 20px 28px;
-            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
-        }
-
-        .meta {
-            font-size: 12px;
-            color: var(--muted);
-            margin-bottom: 16px;
-        }
-
-        .section {
-            margin-top: 18px;
-        }
-
-        .section h2 {
-            margin: 0 0 10px;
-            font-size: 18px;
-        }
-
-        .section p {
-            margin: 0 0 12px;
-            font-size: 14px;
-            line-height: 1.6;
-            color: #3d3d3d;
-        }
-
-        .section ul {
-            margin: 0;
-            padding-left: 18px;
-            font-size: 14px;
-            line-height: 1.6;
-            color: #3d3d3d;
-        }
-
-        .callout {
-            background: #f4f0fb;
-            border-left: 4px solid var(--accent);
-            padding: 12px 14px;
-            border-radius: 10px;
-            font-size: 13px;
-            color: #3d3d3d;
-        }
-
-        .source {
-            margin-top: 18px;
-            font-size: 12px;
-            color: var(--muted);
-        }
-
-        .source a {
-            color: var(--accent-dark);
-            text-decoration: none;
-        }
-
-        .footer {
-            text-align: center;
-            margin-bottom: 36px;
-        }
-
-        .footer a {
-            color: var(--accent-dark);
-            text-decoration: none;
-            font-weight: 600;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Frequenza e ritmo dei movimenti intestinali: trovare la normalità - Happy Poop</title>
+    <link rel="stylesheet" href="../../article-theme-v2.css">
 </head>
 <body>
-    <div class="status-bar">
-        <span id="current-time">4:55</span>
-        <div class="status-icons" aria-hidden="true">
-            <span class="status-dot"></span>
-            <span class="status-dot"></span>
-            <span class="status-dot"></span>
-            <span class="status-pill"></span>
+    <header class="hero-section">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <div class="article-meta-top">
+                <span>Salute Intestinale</span>
+                <span>•</span>
+                <span>8 min di lettura</span>
+            </div>
+            <h1 class="hero-title">Frequenza e ritmo dei movimenti intestinali: trovare la normalità</h1>
+            
         </div>
-    </div>
-
-    <button class="back-button" onclick="history.back()" aria-label="Go back">←</button>
-
-    <header class="hero">
-        <span class="tag">Check-In</span>
-        <h1>Crea un piano di verifica personale</h1>
-        <p>Define who gets notified, how often you check in, and what happens if you miss one.</p>
-        <svg class="hero-icon" viewBox="0 0 64 64" aria-hidden="true">
-            <circle cx="32" cy="32" r="20" fill="none" stroke="#ffffff" stroke-width="3"></circle>
-            <path d="M24 32l6 6 12-14" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
-        </svg>
     </header>
-
-    <main class="content">
-        <div class="meta">5 min read • Updated Feb 3, 2026</div>
-
-        <section class="section">
-            <h2>Pick the Right People</h2>
-            <p>Choose 1-3 trusted contacts who will answer quickly and can take action. Make sure they agree to the plan and know your typical routine.</p>
-        </section>
-
-        <section class="section">
-            <h2>Set Your Cadence</h2>
-            <p>Decide how often to check in based on your risk and lifestyle. Daily for higher risk, every other day for lower risk.</p>
-            <ul>
-                <li>Set a consistent time window to reduce confusion.</li>
-                <li>Use reminders in Still Alive to stay on schedule.</li>
-            </ul>
-        </section>
-
-        <section class="section">
-            <h2>Define Escalation Steps</h2>
-            <p>Agree on what happens if you miss a check-in. Start with a call or text, then move to a visit or emergency services if needed.</p>
-            <div class="callout">Tip: write the escalation steps in a shared note so everyone follows the same process.</div>
-        </section>
-
-        <section class="section">
-            <h2>Share Key Information</h2>
-            <p>Give contacts your address, medical details, and any entry instructions for your home. Store critical numbers in one place.</p>
-        </section>
-
-        <div class="source">
-            Source: <a href="https://www.ready.gov/plan" target="_blank" rel="noopener">Ready.gov - Make a Plan</a>
+    <div class="summary-card">
+        <div class="summary-title">⚡ TL;DR</div>
+        <ul class="summary-list">
+            <li><strong>Intervallo normale:</strong> un numero compreso tra 3 volte al giorno e 3 volte alla settimana è considerato normale dal punto di vista medico.</li>
+            <li><strong>La coerenza conta più</strong> della frequenza: ciò che conta è un modello personale regolare.</li>
+            <li><strong>Il riflesso gastrocolico</strong> è l'attivatore integrato del tuo corpo: usalo facendo colazione.</li>
+            <li><strong>Cambiamenti improvvisi</strong> nel modello stabilito (della durata di oltre 2 settimane) meritano una valutazione medica.</li>
+        </ul>
+    </div>
+    <article class="content-container">
+        <div class="content-block">
+            <p class="intro-text">"Dottore, è normale che vado solo a giorni alterni?" Questa è una delle domande più comuni che sento in clinica. C'è un'ansia quasi universale che dovremmo avere esattamente un movimento intestinale al giorno, come un orologio. La verità è molto più sfumata e molto più rassicurante. Il tuo intestino ha il suo ritmo, modellato dalla genetica, dalla dieta, dal livello di attività, dallo stress e persino dai batteri che vivono nell'intestino. Comprendere la tua normalità personale è molto più prezioso che inseguire il programma di qualcun altro.</p>
+            <h2>📊 Cosa dice la scienza sulla frequenza "normale"</h2>
+<p>Studi su vasta popolazione mostrano costantemente che la frequenza di un movimento intestinale sano varia da <strong>tre volte al giorno a tre volte alla settimana</strong>. Uno studio fondamentale del 2010 pubblicato sullo <em>Scandinavian Journal of Gastroenterology</em> ha intervistato oltre 4.000 adulti e ha scoperto che la frequenza più comune era una volta al giorno, ma che ciò rappresentava solo il 40% circa delle persone. Il restante 60% era distribuito nell'intero spettro normale.</p>
+<p>Ciò che conta di più non è trovare un numero magico. Dipende se il tuo schema è <strong>coerente, confortevole e completo</strong>. Se vai due volte al giorno e lo fai sempre, è normale. Se vai a giorni alterni senza sforzarti o gonfiarti, è altrettanto salutare. I problemi sorgono quando il modello stabilito cambia in modo significativo senza una ragione ovvia.</p>
+<div class="info-box">
+<div class="info-box-title">📋 Le tre C per sane abitudini intestinali</div>
+<p>
+<strong>Coerente:</strong> la tua frequenza non varia notevolmente di settimana in settimana.<br/><br/>
+<strong>Confortevole:</strong> non ti sforzi eccessivamente e i movimenti non provocano dolore.<br/><br/>
+<strong>Completato:</strong> in seguito avverti un senso di evacuazione, senza la sensazione persistente che ci sia altro in arrivo.
+                </p>
+</div>
+            <h2>🧠 Il riflesso gastrocolico: il tuo trigger integrato</h2>
+<p>Hai mai notato che spesso senti il bisogno di andare subito dopo aver mangiato, soprattutto dopo colazione? Questo è il <strong>riflesso gastrocolico</strong>, uno dei riflessi più potenti e prevedibili del tuo sistema digestivo.</p>
+<p>Ecco come funziona: quando il cibo entra nello stomaco e allunga la parete dello stomaco, il sistema nervoso invia segnali al colon per iniziare a contrarsi. Queste contrazioni, chiamate <strong>movimenti di massa</strong>, spingono i rifiuti esistenti verso il retto. Il riflesso è più forte al mattino dopo il primo pasto, perché il tuo colon è rimasto relativamente tranquillo durante il sonno ed è pronto a rispondere.</p>
+<p>Questo riflesso è il motivo per cui i gastroenterologi consigliano vivamente di <strong>fare colazione</strong> se stai cercando di stabilire una regolarità. Anche un piccolo pasto – un pezzo di pane tostato, una banana, una tazza di yogurt – è sufficiente per innescarlo. Il caffè amplifica l'effetto: gli studi dimostrano che sia il caffè con caffeina che quello decaffeinato stimolano l'attività motoria del colon entro quattro minuti dall'ingestione, aumentando il riflesso gastrocolico fino al 60%.</p>
+            <h2>🌅 Costruire una routine mattutina per la regolarità</h2>
+<p>Il tuo colon è una creatura abitudinaria. Risponde magnificamente alla routine e male al caos. Ecco un protocollo mattutino basato sull'evidenza che sfrutta i ritmi naturali del tuo corpo:</p>
+<div class="checklist">
+<div class="checklist-item">
+<div class="check-icon">1</div>
+<div><strong>Svegliati alla stessa ora.</strong> Anche il tuo colon ha ritmi circadiani. La motilità del colon raggiunge il picco nelle prime ore del mattino, rendendo questa la finestra ottimale per un movimento intestinale.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">2</div>
+<div><strong>Bevi immediatamente un bicchiere d'acqua.</strong> Dopo 6-8 ore di sonno, il tuo corpo è disidratato. L'acqua attiva il riflesso gastrocolico e ammorbidisce le feci rimaste nel colon durante la notte.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">3</div>
+<div><strong>Fai colazione entro 30 minuti dal risveglio.</strong> Anche qualcosa di piccolo attiva il riflesso gastrocolico. Le opzioni ricche di fibre (farina d'avena, pane tostato integrale, frutta) sono ideali.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">4</div>
+<div><strong>Siediti sul water ogni giorno alla stessa ora</strong>, indipendentemente dal fatto che tu ne senta o meno lo stimolo. Trascorri 5-10 minuti al massimo. Questo allena il tuo colon ad aspettarsi l'evacuazione in questo momento.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">5</div>
+<div><strong>Non ignorare l'impulso.</strong> Quando lo senti, vai. Sopprimere abitualmente lo stimolo indebolisce nel tempo il riflesso della defecazione e può portare a stitichezza cronica.</div>
+</div>
+</div>
+            <h2>⏰ Fattori che influenzano il tuo ritmo</h2>
+<p>Capire cosa cambia il tuo schema intestinale ti aiuta a mantenere il controllo. Ecco gli influencer più comuni:</p>
+<p><strong>Cambiamenti nella dieta:</strong> aumentare o diminuire improvvisamente le fibre può modificare drasticamente la frequenza. Quando aggiungi fibre, aumenta gradualmente – di circa 5 grammi a settimana – per dare al tuo microbioma intestinale il tempo di adattarsi. Aumenti rapidi causano gonfiore, gas e crampi.</p>
+<p><strong>Viaggi:</strong> i cambiamenti nel fuso orario, nella dieta, nella fonte d'acqua e nella routine causano comunemente la "stitichezza del viaggiatore". Al tuo colon non piacciono le sorprese. Mantenere l'idratazione e mangiare fibre durante il viaggio aiuta a preservare il ritmo.</p>
+<p><strong>Stress e ansia:</strong> l'asse intestino-cervello è bidirezionale. Lo stress acuto può scatenare la diarrea (attraverso il sistema nervoso simpatico che accelera il transito), mentre lo stress cronico spesso causa stitichezza. Negli studi clinici è stato dimostrato che la meditazione, l'esercizio fisico e la terapia cognitivo comportamentale migliorano la regolarità intestinale.</p>
+<p><strong>Farmaci:</strong> gli oppioidi, gli antidepressivi (soprattutto triciclici), gli antistaminici, i bloccanti dei canali del calcio e gli integratori di ferro sono comuni responsabili del rallentamento del transito. Se hai iniziato a prendere un nuovo farmaco e hai notato un cambiamento, discuti le alternative con il tuo medico prescrittore.</p>
+<p><strong>Attività fisica:</strong> un esercizio fisico moderato e regolare, in particolare passeggiate, jogging e yoga, stimola la motilità del colon. Una meta-analisi del 2019 ha rilevato che l’esercizio fisico riduce i sintomi della stitichezza del 37% rispetto ai controlli sedentari. Non hai bisogno di maratone; è sufficiente una passeggiata quotidiana di 30 minuti.</p>
+            <h2>🚩 Quando i cambiamenti di frequenza segnalano un problema</h2>
+<p>Non tutte le fluttuazioni sono preoccupanti. Uno o due giorni di irregolarità dopo una festa o una settimana stressante sono del tutto normali. Ma alcuni modelli meritano un'indagine.</p>
+<div class="warning-box">
+<div class="warning-title">🚨 Segnali di allarme: consulta il tuo medico se lo noti</div>
+<ul class="warning-list">
+<li><strong>Un cambiamento persistente che dura più di 2-3 settimane</strong> senza una causa evidente (nuova dieta, viaggio, farmaci).</li>
+<li><strong>Stitichezza e diarrea alternate</strong>: un segno distintivo della sindrome dell'intestino irritabile, ma che vale la pena monitorare anche per altre condizioni.</li>
+<li><strong>Il progressivo restringimento delle feci</strong> combinato con la diminuzione della frequenza potrebbe indicare un problema strutturale nel colon.</li>
+<li><strong>Stitichezza di nuova insorgenza dopo i 50 anni</strong> senza una spiegazione chiara: lo screening del cancro del colon-retto dovrebbe essere discusso.</li>
+<li><strong>Variazione della frequenza accompagnata da sangue, perdita di peso inspiegabile o forte dolore addominale.</strong></li>
+</ul>
+</div>
+            <h2>🔬 Popolazioni speciali: cosa c'è di diverso</h2>
+<p><strong>Anziani:</strong> il transito del colon rallenta con l'età a causa della diminuzione della densità delle cellule nervose nella parete del colon (un processo chiamato degenerazione neuronale). La ridotta attività fisica, i farmaci e la ridotta assunzione di liquidi aggravano il problema. Molti anziani ritengono che la frequenza scenda a 3-4 volte a settimana: questo è normale se confortevole, ma dovrebbe essere monitorato.</p>
+<p><strong>Donne incinte:</strong> il progesterone rilassa la muscolatura liscia in tutto il corpo, compreso il colon, rallentando significativamente il transito. Fino al 40% delle donne incinte soffre di stitichezza. Gli integratori di ferro prescritti durante la gravidanza peggiorano la situazione. Aumentare le fibre, l'acqua e l'esercizio fisico delicato sono raccomandazioni di prima linea.</p>
+<p><strong>Lavoratori a turni:</strong> i ritmi circadiani interrotti influenzano direttamente la motilità del colon. Gli studi dimostrano che i lavoratori a turni hanno tassi più elevati di stitichezza e sintomi di IBS. Mantenere orari dei pasti coerenti, anche se gli orari del sonno variano, aiuta a preservare una certa regolarità.</p>
+<div class="info-box">
+<div class="info-box-title">💡 Il risultato finale</div>
+<p>Smetti di confrontare le tue abitudini intestinali con quelle di chiunque altro. Tieni traccia del tuo modello per 2-4 settimane utilizzando un semplice diario o un'app. Annota il tempo, la coerenza (usa la scala Bristol) e tutti i sintomi associati. Questa linea di base personale è lo strumento più utile per rilevare tempestivamente cambiamenti significativi. La tua normalità è la tua normalità e saperlo è potente.</p>
+</div>
         </div>
-    </main>
-
-    <footer class="footer">
-        <a href="../../still-alive-mobile.html">Torna ai consigli</a>
-    </footer>
-
+    </article>
+    <nav class="floating-nav">
+        <a href="../../happy-poop-mobile.html" class="back-btn">← Indietro</a>
+        <a href="#" class="share-btn" onclick="navigator.share({title: 'Frequenza e ritmo dei movimenti intestinali: trovare la normalità', url: window.location.href}); return false;">📤</a>
+    </nav>
     <script>
-        const timeElement = document.getElementById("current-time");
-        const updateTime = () => {
-            const now = new Date();
-            const hours = now.getHours();
-            const minutes = String(now.getMinutes()).padStart(2, "0");
-            timeElement.textContent = `${hours}:${minutes}`;
-        };
-        updateTime();
-        setInterval(updateTime, 60000);
+        document.querySelectorAll('.checklist-item').forEach(item => {
+            item.addEventListener('click', () => {
+                item.style.backgroundColor = '#F3F4F6';
+                setTimeout(() => item.style.backgroundColor = 'transparent', 200);
+            });
+        });
     </script>
 </body>
 </html>

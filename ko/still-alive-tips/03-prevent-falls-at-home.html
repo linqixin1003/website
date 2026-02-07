@@ -1,274 +1,168 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" data-theme="bowel">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prevent Falls at Home - Still Alive?</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --accent: #6aa5f6;
-            --accent-light: #b6d3fa;
-            --accent-dark: #3b6db8;
-            --surface: #ffffff;
-            --text: #1f1f1f;
-            --muted: #6e6e6e;
-            --bg: #f6f4f1;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-        }
-
-        .status-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 44px;
-            background: rgba(0, 0, 0, 0.78);
-            color: #ffffff;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 18px;
-            font-size: 14px;
-            z-index: 10;
-        }
-
-        .status-icons {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .status-dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: #ffffff;
-            opacity: 0.8;
-        }
-
-        .status-pill {
-            width: 22px;
-            height: 10px;
-            border-radius: 6px;
-            border: 1px solid #ffffff;
-            position: relative;
-            opacity: 0.8;
-        }
-
-        .status-pill::after {
-            content: "";
-            position: absolute;
-            right: 2px;
-            top: 2px;
-            width: 6px;
-            height: 4px;
-            border-radius: 3px;
-            background: #ffffff;
-        }
-
-        .back-button {
-            position: fixed;
-            top: 58px;
-            left: 18px;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            border: none;
-            background: rgba(0, 0, 0, 0.6);
-            color: #ffffff;
-            font-size: 18px;
-            cursor: pointer;
-            z-index: 9;
-        }
-
-        .hero {
-            margin-top: 44px;
-            padding: 28px 20px 80px;
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
-            color: #ffffff;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero h1 {
-            margin: 12px 0 10px;
-            font-size: 26px;
-            font-weight: 700;
-        }
-
-        .hero p {
-            margin: 0;
-            font-size: 14px;
-            max-width: 320px;
-            line-height: 1.5;
-        }
-
-        .tag {
-            display: inline-block;
-            padding: 4px 10px;
-            border-radius: 999px;
-            font-size: 11px;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            background: rgba(255, 255, 255, 0.25);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-        }
-
-        .hero-icon {
-            position: absolute;
-            right: 20px;
-            bottom: 12px;
-            width: 80px;
-            height: 80px;
-            opacity: 0.18;
-        }
-
-        .content {
-            background: var(--surface);
-            margin: -50px 18px 24px;
-            border-radius: 20px;
-            padding: 24px 20px 28px;
-            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
-        }
-
-        .meta {
-            font-size: 12px;
-            color: var(--muted);
-            margin-bottom: 16px;
-        }
-
-        .section {
-            margin-top: 18px;
-        }
-
-        .section h2 {
-            margin: 0 0 10px;
-            font-size: 18px;
-        }
-
-        .section p {
-            margin: 0 0 12px;
-            font-size: 14px;
-            line-height: 1.6;
-            color: #3d3d3d;
-        }
-
-        .section ul {
-            margin: 0;
-            padding-left: 18px;
-            font-size: 14px;
-            line-height: 1.6;
-            color: #3d3d3d;
-        }
-
-        .callout {
-            background: #eef4ff;
-            border-left: 4px solid var(--accent);
-            padding: 12px 14px;
-            border-radius: 10px;
-            font-size: 13px;
-            color: #3d3d3d;
-        }
-
-        .source {
-            margin-top: 18px;
-            font-size: 12px;
-            color: var(--muted);
-        }
-
-        .source a {
-            color: var(--accent-dark);
-            text-decoration: none;
-        }
-
-        .footer {
-            text-align: center;
-            margin-bottom: 36px;
-        }
-
-        .footer a {
-            color: var(--accent-dark);
-            text-decoration: none;
-            font-weight: 600;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>항문 가려움증 및 일일 관리: 전체 가이드 - Happy Poop</title>
+    <link rel="stylesheet" href="../../article-theme-v2.css">
 </head>
 <body>
-    <div class="status-bar">
-        <span id="current-time">4:55</span>
-        <div class="status-icons" aria-hidden="true">
-            <span class="status-dot"></span>
-            <span class="status-dot"></span>
-            <span class="status-dot"></span>
-            <span class="status-pill"></span>
+    <header class="hero-section">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <div class="article-meta-top">
+                <span>장 건강</span>
+                <span>•</span>
+                <span>8분 읽기</span>
+            </div>
+            <h1 class="hero-title">항문 가려움증 및 일일 관리: 전체 가이드</h1>
+            
         </div>
-    </div>
-
-    <button class="back-button" onclick="history.back()" aria-label="Go back">←</button>
-
-    <header class="hero">
-        <span class="tag">Home Safety</span>
-        <h1>가정 내 낙상 예방</h1>
-        <p>Small changes like better lighting and clear walkways can reduce fall risk dramatically.</p>
-        <svg class="hero-icon" viewBox="0 0 64 64" aria-hidden="true">
-            <path d="M12 30l20-16 20 16v20a4 4 0 0 1-4 4H16a4 4 0 0 1-4-4z" fill="none" stroke="#ffffff" stroke-width="3" stroke-linejoin="round"></path>
-            <rect x="27" y="36" width="10" height="14" fill="none" stroke="#ffffff" stroke-width="3"></rect>
-        </svg>
     </header>
-
-    <main class="content">
-        <div class="meta">7 min read • Updated Feb 3, 2026</div>
-
-        <section class="section">
-            <h2>Reduce Trip Hazards</h2>
-            <p>Clear clutter from walkways and secure loose rugs or cords. Keep frequently used items within easy reach.</p>
-            <ul>
-                <li>Use non-slip mats in bathrooms and kitchens.</li>
-                <li>Keep stairs free of clutter and objects.</li>
-            </ul>
-        </section>
-
-        <section class="section">
-            <h2>Improve Visibility</h2>
-            <p>Bright, even lighting reduces missteps. Add night lights in hallways, bathrooms, and bedrooms.</p>
-        </section>
-
-        <section class="section">
-            <h2>Supportive Equipment</h2>
-            <p>Install handrails on both sides of stairs and grab bars near the shower or toilet.</p>
-            <div class="callout">Tip: review footwear and use sturdy shoes with grip inside the home.</div>
-        </section>
-
-        <div class="source">
-            Source: <a href="https://www.cdc.gov/falls/" target="_blank" rel="noopener">CDC - Older Adult Falls</a>
+    <div class="summary-card">
+        <div class="summary-title">⚡ TL;DR</div>
+        <ul class="summary-list">
+            <li><strong>가장 일반적인 원인:</strong> 지나친 습기와 과도한 닦아서 발생하는 자극 - 열악한 위생 상태는 아님</li>
+            <li><strong>황금률:</strong> 팻, 문지르지 마세요. 무향, 무염색 제품을 사용하세요.</li>
+            <li><strong>식이 유발 요인:</strong> 커피, 매운 음식, 감귤류, 알코올은 가려움증을 악화시킬 수 있습니다.</li>
+            <li><strong>가정 관리에도 불구하고 가려움증이 2주 이상 지속되거나 출혈, 덩어리 또는 피부 변화가 발견되면 의사의 진료를 받으세요</strong>.</li>
+        </ul>
+    </div>
+    <article class="content-container">
+        <div class="content-block">
+            <p class="intro-text">거의 아무도 이야기하고 싶어하지 않는 것에 대해 이야기해 봅시다. 심지어 의사에게도 말이죠. 의학적으로 <em>소양증</em>으로 알려진 항문 가려움증은 특정 시점에 인구의 최대 5%에 영향을 미치며 최대 45%의 사람들이 인생의 어느 시점에서 이를 경험하게 됩니다. 엄청나게 흔한 일임에도 불구하고 당혹감에 싸여 있습니다. 환자들은 도움을 구하기 전에 몇 달 동안 침묵 속에서 고통받는 경우가 많습니다. 좋은 소식은 다음과 같습니다. 대부분의 경우 원인은 양성이고 식별 가능하며 간단한 생활 습관 변화로 완전히 치료할 수 있습니다.</p>
+            <h2>🔍 왜 가렵나요? 가장 일반적인 원인</h2>
+<p>항문 주변 피부(항문 주위 피부)는 신체에서 가장 민감한 피부 중 하나입니다. 얇고 신경 분포가 높으며 습기, 마찰 및 자극 물질에 지속적으로 노출됩니다. 원인을 이해하는 것이 구제를 향한 첫 번째 단계입니다.</p>
+<div class="info-box">
+<div class="info-box-title">📋 항문 가려움증의 주요 원인</div>
+<p>
+<strong>1. 습기 및 자극(가장 흔함):</strong> 대변, 땀 또는 과도한 닦음이 남아 있으면 자극과 긁힘이 반복됩니다. 이는 대략 50~75%의 경우에서 원인입니다. 역설적이게도 가장 세심한 청소를 하는 사람들이 가장 큰 영향을 받는 경우가 많습니다. 과도한 세탁은 피부 보호 오일을 벗겨냅니다.<br/><br/>
+<strong>2. 식이 자극제:</strong> 커피(디카페인 포함), 차, 초콜릿, 매운 음식, 감귤류, 토마토, 맥주 및 유제품은 모두 항문 주위 자극을 유발할 수 있습니다. 대변의 pH를 변경하거나 점액 분비를 증가시키거나 항문관 점막을 직접 자극하는 방식으로 작용합니다.<br/><br/>
+<strong>3. 치질:</strong> 내치질과 외치질 모두 점액 누출, 피부 태그 자극 또는 해당 부위를 깨끗하게 유지하기 어려움으로 인해 가려움증을 유발할 수 있습니다.<br/><br/>
+<strong>4. 피부 상태:</strong> 건선, 습진, 접촉성 피부염(향이 나는 제품으로 인한), 경화 태선 등은 모두 항문 주위 가려움증을 유발할 수 있습니다.<br/><br/>
+<strong>5. 감염:</strong> 진균 감염(칸디다증), 요충(특히 어린이의 경우), 세균 감염, 성병 감염은 가려움증을 유발할 수 있습니다. 곰팡이 감염은 따뜻하고 습한 환경에서 번성합니다.<br/><br/>
+<strong>6. 항문 균열:</strong> 항문 내막의 작은 찢어짐은 치유되는 동안, 특히 배변 후에 통증과 가려움증을 유발합니다.
+                </p>
+</div>
+            <h2>🧻 올바른 닦는 방법: 항문주위 관리의 기초</h2>
+<p>이것은 기본적인 것처럼 보일 수 있지만 잘못된 닦음은 제가 실제로 경험한 지속적인 항문 가려움증의 가장 흔한 원인입니다. 제가 추천하는 기술은 다음과 같습니다.</p>
+<div class="checklist">
+<div class="checklist-item">
+<div class="check-icon">✓</div>
+<div><strong>항상 앞에서 뒤로 닦으십시오.</strong> 이는 요로 감염을 예방하기 위해 여성에게 특히 중요하지만 위생상의 이유로 모든 사람에게 적용됩니다.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">✓</div>
+<div><strong>두드리거나 두드려서 문지르지 마세요.</strong> 항문 주위 피부를 눈 주위 피부와 같다고 생각하세요. 마른 종이로 눈꺼풀을 문지르지 마십시오. 부드럽게 두드리면 피부 보호막이 벗겨지지 않고 잔여물이 제거됩니다.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">✓</div>
+<div><strong>무향, 무염료 화장지를 사용하세요.</strong> 화장지에 묻은 향료, 염료, 로션은 피부염을 유발하거나 악화시키는 접촉 알레르기 항원입니다. 일반 흰색 화장지가 가장 좋습니다.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">✓</div>
+<div><strong>비데나 물로 헹구는 것을 고려해보세요.</strong> 물세척은 종이보다 순하고 잔여물을 제거하는 데 더 효과적입니다. 비데 부착물, 휴대용 비데병 또는 배변 후 가볍게 샤워를 하면 증상이 극적으로 호전될 수 있습니다.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">✓</div>
+<div><strong>멈춰야 할 때를 아십시오.</strong> 3~4회 이상 닦아내는 경우 방지하는 것보다 더 많은 자극을 유발할 가능성이 높습니다. 대신 물세안으로 전환하세요.</div>
+</div>
+</div>
+            <h2>🚿 일일 위생: 해야 할 일과 하지 말아야 할 일</h2>
+<p>항문 주위 위생의 목표는 간단합니다. 항문 부위를 <strong>깨끗하고 건조하며 보호</strong>하는 것입니다. 하지만 선의의 습관이 실제로는 상황을 악화시키는 경우가 많습니다.</p>
+<div class="checklist">
+<div class="checklist-item">
+<div class="check-icon">✅</div>
+<div><strong>DO</strong> 하루에 한 번 미지근한 물로만 또는 매우 순한 무향 클렌저를 사용하여 항문 주위를 씻으십시오. 철저히 헹구세요.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">✅</div>
+<div><strong>DO</strong> 세탁 후 완전히 건조시키세요. 잔여 수분이 주요 원인입니다. 시원한 온도로 설정한 헤어드라이어는 완전한 건조를 달성하는 데 도움이 될 수 있습니다.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">✅</div>
+<div><strong>DO</strong> 헐렁한 면 속옷을 입으세요. 면은 숨을 쉬고 피부에서 수분을 흡수합니다. 매일 속옷을 갈아입으세요. 활동적이거나 땀을 흘리는 경우 하루에 두 번.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">❌</div>
+<div><strong>금지</strong> 향이 나는 비누, 바디 워시 또는 거품 목욕을 항문 주위에 사용하지 마십시오. 이는 피부의 산성막을 파괴하여 자극성 접촉 피부염을 유발합니다.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">❌</div>
+<div>물수건을 사용하지 <strong>마세요</strong>. 심지어 '수세식' 또는 '민감성' 라벨이 붙은 물티슈도 사용하지 마세요. 대부분은 강력한 접촉 알레르기 유발 물질인 방부제(예: 메틸이소치아졸리논)를 함유하고 있습니다. 수분이 필요할 경우 화장지에 물을 묻혀 사용하세요.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">❌</div>
+<div><strong>스크래치하지 마세요</strong>. 이것은 따라야 할 가장 어려운 조언이지만, 긁으면 더 많은 염증, 더 많은 가려움증을 유발하고 가려움증-스크래치 주기라는 악순환을 일으키는 미세한 상처가 생성됩니다. 대신 차갑고 축축한 천으로 꽉 눌러보세요.</div>
+</div>
+</div>
+            <h2>🍽️ 도움이 되는 식습관 수정</h2>
+<p>위생 변화만으로 가려움증이 호전되지 않는다면 식습관도 영향을 미칠 수 있습니다. 제거 시험을 고려해 보세요. 2주 동안 잠재적 유발 요인을 제거한 다음 한 번에 하나씩 다시 도입하세요.</p>
+<div class="info-box">
+<div class="info-box-title">🔬 일반적인 식단 유발 요인</div>
+<p>
+<strong>커피 및 카페인 함유 음료:</strong> 항문 괄약근을 이완시키고 점액 생성을 증가시켜 누출과 자극을 유발합니다.<br/><br/>
+<strong>매운 음식:</strong> 캡사이신은 부분적으로 손상되지 않은 위장관을 통과하여 항문 점막을 직접 자극할 수 있습니다.<br/><br/>
+<strong>감귤류 및 토마토:</strong> 산성 식품은 대변 pH를 변화시키고 민감한 항문 주위 피부를 자극할 수 있습니다.<br/><br/>
+<strong>알코올(특히 맥주):</strong> 위장관을 자극하고 묽은 변을 유발하여 수분과 잔류물을 증가시킬 수 있습니다.<br/><br/>
+<strong>유제품:</strong> 유당 불내증이 있는 사람의 경우 소화되지 않은 유당은 항문 주위를 자극하는 묽은 산성 변을 유발합니다.
+                </p>
+</div>
+            <h2>💊 크림을 사용해야 하는 경우와 의사를 만나야 하는 경우</h2>
+<p>일반 의약품 치료에도 역할이 있지만 짧은 기간 동안만 신중하게 사용해야 합니다.</p>
+<p><strong>산화아연 차단 크림</strong>(기저귀 발진 크림과 유사)은 탁월한 첫 번째 선택입니다. 스테로이드 성분이 함유되어 있지 않아 수분과 자극으로부터 피부를 보호해줍니다. 깨끗이 세척하고 건조시킨 후 얇게 바르세요.</p>
+<p><strong>히드로코르티손 1% 크림</strong>은 가려움증과 긁힘의 주기를 빨리 깨뜨릴 수 있습니다. 7일 이내로 하루에 두 번씩 얇게 바르십시오. 스테로이드를 장기간 사용하면 항문 주위 피부가 얇아져 더 약해지고 찢어지기 쉽습니다.</p>
+<p><strong>항진균 크림</strong>(클로트리마졸, 미코나졸)은 진균 감염이 의심되는 경우 적합합니다. 피부 주름에 위성 병변이 있는 뚜렷한 붉은 발진이 특징입니다.</p>
+<div class="warning-box">
+<div class="warning-title">🚨 의사를 만나야 할 때</div>
+<ul class="warning-list">
+<li><strong>일관적인 가정 관리 조치에도 불구하고 가려움증이 2~3주 이상 지속됩니다</strong>.</li>
+<li><strong>출혈, 덩어리 또는 피부 변화</strong> — 새로운 성장, 궤양 또는 지속적인 통증은 평가가 필요합니다.</li>
+<li><strong>밤에 잠을 깨는 가려움증</strong> - 특히 가족 구성원 중 자녀가 영향을 받는 경우 요충 감염을 고려하세요.</li>
+<li><strong>퇴원, 통증 또는 발열</strong> — 의학적 치료가 필요한 감염이나 농양을 나타낼 수 있습니다.</li>
+<li><strong>삶의 질에 영향을 미치는 증상</strong> — 조용히 괴로워하지 마세요. 효과적인 처방 치료법이 있습니다.</li>
+</ul>
+</div>
+            <h2>📝 일일 관리 체크리스트</h2>
+<div class="checklist">
+<div class="checklist-item">
+<div class="check-icon">✓</div>
+<div><strong>아침:</strong> 항문 주위를 물로 씻고 두드려 완전히 건조시킨 후 필요한 경우 보호 크림을 바르십시오.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">✓</div>
+<div><strong>배변을 한 후:</strong> 가볍게 두드리며(문지르지 말고) 가능하면 물을 사용하여 완전히 건조시키십시오.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">✓</div>
+<div><strong>의류:</strong> 면 속옷을 착용하고, 가죽끈이나 합성 섬유를 피하고, 운동 후에는 옷을 갈아입으세요.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">✓</div>
+<div><strong>저녁:</strong> 잠자리에 들기 전에 부드럽게 클렌징하세요. 가려움증이 밤에 가장 심하다면, 잠자는 동안 보호 장벽으로 산화아연 크림을 얇게 바르는 것을 고려해 보세요.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">✓</div>
+<div><strong>촉발 요인 추적:</strong> 개인적인 자극 요인을 식별하기 위해 2주 동안 간단한 음식 및 증상 일기를 작성하세요.</div>
+</div>
+</div>
+<div class="info-box">
+<div class="info-box-title">💡 당혹감에 대한 참고 사항</div>
+<p>이 기사에서 꼭 알아두셨으면 하는 점은 바로 항문 가려움증은 의학적 증상이지 위생이나 성격을 반영하는 것이 아니라는 것입니다. 위장병 전문의와 피부과 전문의는 이것을 매일 봅니다. 우리는 판단하지 않고 진단하고 치료합니다. 가정 조치가 효과가 없다면 몇 달을 기다리지 마십시오. 빠른 약속은 일상의 편안함을 극적으로 변화시키는 안도감을 가져올 수 있습니다.</p>
+</div>
         </div>
-    </main>
-
-    <footer class="footer">
-        <a href="../../still-alive-mobile.html">팁으로 돌아가기</a>
-    </footer>
-
+    </article>
+    <nav class="floating-nav">
+        <a href="../../happy-poop-mobile.html" class="back-btn">← 뒤로</a>
+        <a href="#" class="share-btn" onclick="navigator.share({title: '항문 가려움증 및 일일 관리: 전체 가이드', url: window.location.href}); return false;">📤</a>
+    </nav>
     <script>
-        const timeElement = document.getElementById("current-time");
-        const updateTime = () => {
-            const now = new Date();
-            const hours = now.getHours();
-            const minutes = String(now.getMinutes()).padStart(2, "0");
-            timeElement.textContent = `${hours}:${minutes}`;
-        };
-        updateTime();
-        setInterval(updateTime, 60000);
+        document.querySelectorAll('.checklist-item').forEach(item => {
+            item.addEventListener('click', () => {
+                item.style.backgroundColor = '#F3F4F6';
+                setTimeout(() => item.style.backgroundColor = 'transparent', 200);
+            });
+        });
     </script>
 </body>
 </html>

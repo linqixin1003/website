@@ -1,274 +1,119 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="it" data-theme="urinary">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shelter-in-Place Planning - Still Alive?</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --accent: #ff7a5a;
-            --accent-light: #ffb199;
-            --accent-dark: #c4553b;
-            --surface: #ffffff;
-            --text: #1f1f1f;
-            --muted: #6e6e6e;
-            --bg: #f6f4f1;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-        }
-
-        .status-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 44px;
-            background: rgba(0, 0, 0, 0.78);
-            color: #ffffff;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 18px;
-            font-size: 14px;
-            z-index: 10;
-        }
-
-        .status-icons {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .status-dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: #ffffff;
-            opacity: 0.8;
-        }
-
-        .status-pill {
-            width: 22px;
-            height: 10px;
-            border-radius: 6px;
-            border: 1px solid #ffffff;
-            position: relative;
-            opacity: 0.8;
-        }
-
-        .status-pill::after {
-            content: "";
-            position: absolute;
-            right: 2px;
-            top: 2px;
-            width: 6px;
-            height: 4px;
-            border-radius: 3px;
-            background: #ffffff;
-        }
-
-        .back-button {
-            position: fixed;
-            top: 58px;
-            left: 18px;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            border: none;
-            background: rgba(0, 0, 0, 0.6);
-            color: #ffffff;
-            font-size: 18px;
-            cursor: pointer;
-            z-index: 9;
-        }
-
-        .hero {
-            margin-top: 44px;
-            padding: 28px 20px 80px;
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
-            color: #ffffff;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero h1 {
-            margin: 12px 0 10px;
-            font-size: 26px;
-            font-weight: 700;
-        }
-
-        .hero p {
-            margin: 0;
-            font-size: 14px;
-            max-width: 320px;
-            line-height: 1.5;
-        }
-
-        .tag {
-            display: inline-block;
-            padding: 4px 10px;
-            border-radius: 999px;
-            font-size: 11px;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            background: rgba(255, 255, 255, 0.25);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-        }
-
-        .hero-icon {
-            position: absolute;
-            right: 20px;
-            bottom: 12px;
-            width: 80px;
-            height: 80px;
-            opacity: 0.18;
-        }
-
-        .content {
-            background: var(--surface);
-            margin: -50px 18px 24px;
-            border-radius: 20px;
-            padding: 24px 20px 28px;
-            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
-        }
-
-        .meta {
-            font-size: 12px;
-            color: var(--muted);
-            margin-bottom: 16px;
-        }
-
-        .section {
-            margin-top: 18px;
-        }
-
-        .section h2 {
-            margin: 0 0 10px;
-            font-size: 18px;
-        }
-
-        .section p {
-            margin: 0 0 12px;
-            font-size: 14px;
-            line-height: 1.6;
-            color: #3d3d3d;
-        }
-
-        .section ul {
-            margin: 0;
-            padding-left: 18px;
-            font-size: 14px;
-            line-height: 1.6;
-            color: #3d3d3d;
-        }
-
-        .callout {
-            background: #f7f1ed;
-            border-left: 4px solid var(--accent);
-            padding: 12px 14px;
-            border-radius: 10px;
-            font-size: 13px;
-            color: #3d3d3d;
-        }
-
-        .source {
-            margin-top: 18px;
-            font-size: 12px;
-            color: var(--muted);
-        }
-
-        .source a {
-            color: var(--accent-dark);
-            text-decoration: none;
-        }
-
-        .footer {
-            text-align: center;
-            margin-bottom: 36px;
-        }
-
-        .footer a {
-            color: var(--accent-dark);
-            text-decoration: none;
-            font-weight: 600;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Segnali d'allarme delle infezioni delle vie urinarie: la diagnosi precoce evita il dolore - Happy Poop</title>
+    <link rel="stylesheet" href="../../article-theme-v2.css">
 </head>
 <body>
-    <div class="status-bar">
-        <span id="current-time">4:58</span>
-        <div class="status-icons" aria-hidden="true">
-            <span class="status-dot"></span>
-            <span class="status-dot"></span>
-            <span class="status-dot"></span>
-            <span class="status-pill"></span>
+    <header class="hero-section">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <div class="article-meta-top">
+                <span>Urinary Health</span>
+                <span>•</span>
+                <span>8 min di lettura</span>
+            </div>
+            <h1 class="hero-title">Segnali d'allarme delle infezioni delle vie urinarie: la diagnosi precoce evita il dolore</h1>
+            
         </div>
-    </div>
-
-    <button class="back-button" onclick="history.back()" aria-label="Go back">&larr;</button>
-
-    <header class="hero">
-        <span class="tag">Preparedness</span>
-        <h1>Pianificazione del rifugio sul posto</h1>
-        <p>Prepare a safe interior space when leaving is not possible.</p>
-        <svg class="hero-icon" viewBox="0 0 64 64" aria-hidden="true">
-            <rect x="12" y="22" width="40" height="30" rx="6" fill="none" stroke="#ffffff" stroke-width="3"></rect>
-            <rect x="22" y="14" width="20" height="10" rx="4" fill="none" stroke="#ffffff" stroke-width="3"></rect>
-            <path d="M20 36h24" stroke="#ffffff" stroke-width="3" stroke-linecap="round"></path>
-        </svg>
     </header>
-
-    <main class="content">
-        <div class="meta">5 min read - Updated Feb 3, 2026</div>
-        <section class="section">
-            <h2>Choose the Space</h2>
-            <p>Pick an interior room with few windows and enough supplies for everyone.</p>
-        </section>
-
-        <section class="section">
-            <h2>Seal and Monitor</h2>
-            <p>Keep plastic sheeting, tape, and a battery radio ready.</p>
-            <ul>
-                <li>Plastic sheeting and tape</li>
-                <li>Flashlight and batteries</li>
-                <li>A charged power bank</li>
-            </ul>
-        </section>
-
-        <section class="section">
-            <h2>Stay Connected</h2>
-            <p>Check in with your contacts and follow official updates.</p>
-            <div class="callout">Tip: store a small kit in the room you plan to shelter in.</div>
-        </section>
-        <div class="source">
-            Source: <a href="https://www.ready.gov/shelter" target="_blank" rel="noopener">Ready.gov - Shelter</a>
+    <div class="summary-card">
+        <div class="summary-title">⚡ TL;DR</div>
+        <ul class="summary-list">
+            <li><strong>Sintomi classici:</strong> bruciore durante la minzione, urgenza, frequenza e urina torbida o maleodorante: agisci rapidamente quando compaiono.</li>
+            <li><strong>Le donne hanno 30 volte più probabilità</strong> di contrarre infezioni del tratto urinario rispetto agli uomini a causa di un'uretra più corta e della vicinanza anatomica ai batteri.</li>
+            <li><strong>La prevenzione funziona:</strong> un'adeguata pulizia, la minzione dopo il rapporto sessuale, un'adeguata idratazione e l'evitare prodotti irritanti riducono significativamente il rischio.</li>
+            <li><strong>L'infezione renale</strong> (febbre, dolore al fianco, nausea) è un'emergenza IVU: non ritardare le cure mediche.</li>
+            <li><strong>Le infezioni del tratto urinario ricorrenti</strong> (3+ all'anno) meritano una valutazione specialistica e possono trarre beneficio da strategie profilattiche.</li>
+        </ul>
+    </div>
+    <article class="content-container">
+        <div class="content-block">
+            <p class="intro-text">Un'infezione del tratto urinario può passare da un "leggero fastidio" a uno "straniante" in meno di 24 ore e, se raggiunge i reni, diventa una vera emergenza medica. La buona notizia? Le infezioni del tratto urinario sono una delle infezioni più prevenibili in medicina e riconoscere i primi segnali d’allarme significa un trattamento più rapido, meno sofferenze e meno complicazioni. Ecco tutto quello che devi sapere.</p>
+            <h2>🔍 Riconoscere i sintomi</h2>
+<p>Le infezioni delle vie urinarie si verificano quando i batteri, più comunemente Escherichia coli (E. coli) provenienti dall'intestino, entrano nell'uretra e iniziano a moltiplicarsi nella vescica. La risposta del tuo corpo crea i sintomi caratteristici:</p>
+<p><strong>Bruciore o pizzicore durante la minzione (disuria):</strong> questo è solitamente il primo segno. Il rivestimento infiammato dell'uretra e della vescica diventa estremamente sensibile. Molti pazienti lo descrivono come "fare pipì attraverso le lamette da barba": drammatico, ma accurato.</p>
+<p><strong>Urgenza e frequenza:</strong> hai la sensazione di dover urinare ogni 15-20 minuti, anche se ogni volta ne escono solo piccole quantità. La vescica infiammata invia falsi segnali di "pieno" al cervello, creando un ciclo incessante.</p>
+<p><strong>Urina torbida o lattiginosa:</strong> la torbidità deriva da globuli bianchi, batteri e talvolta pus che il sistema immunitario sta utilizzando per combattere l'infezione.</p>
+<p><strong>Odore disgustoso o insolitamente forte:</strong> i sottoprodotti metabolici batterici producono un caratteristico odore sgradevole che è nettamente diverso dalla normale urina concentrata.</p>
+<p><strong>Pressione o disagio pelvico:</strong> un dolore sordo o pesantezza nella parte inferiore dell'addome o del bacino, soprattutto nelle donne, segnala un'infiammazione della parete della vescica.</p>
+<p><strong>Sangue nelle urine (ematuria):</strong> l'urina rosa, rossa o color cola durante un'infezione delle vie urinarie indica che l'infiammazione ha danneggiato i vasi sanguigni nel rivestimento della vescica. Sebbene sia allarmante, questo è comune con le infezioni del tratto urinario e in genere si risolve con il trattamento.</p>
+<div class="info-box">
+<div class="info-box-title">IVU negli anziani</div>
+<p>Nei pazienti anziani, i sintomi delle infezioni delle vie urinarie possono essere atipici e facilmente non rilevati. Invece di bruciore e urgenza, gli anziani possono presentarsi con improvvisa confusione, agitazione, cadute o malessere generale. Se un membro più anziano della famiglia improvvisamente sembra "non se stesso", un'infezione del tratto urinario dovrebbe essere nell'elenco delle possibili cause. Un semplice esame delle urine può confermarlo o escluderlo.</p>
+</div>
+            <h2>👩 Perché le donne sono più vulnerabili</h2>
+<p>Circa il 50-60% delle donne sperimenterà almeno un'infezione delle vie urinarie nel corso della propria vita, rispetto a circa il 12% degli uomini. Il motivo è principalmente anatomico: l’uretra femminile è lunga solo circa 4 centimetri (contro i 20 centimetri degli uomini), consentendo ai batteri di raggiungere la vescica molto più rapidamente. Inoltre, l'apertura uretrale nelle donne è vicina sia alla vagina che all'ano, aumentando l'esposizione ai batteri.</p>
+<p>Diversi fattori aumentano ulteriormente il rischio per le donne:</p>
+<p><strong>Attività sessuale:</strong> il rapporto può spingere i batteri verso l'uretra. Questo è così comune che a volte viene chiamato "cistite da luna di miele". L'uso di un diaframma o di prodotti spermicidi aumenta ulteriormente il rischio alterando la flora vaginale.</p>
+<p><strong>Cambiamenti ormonali:</strong> dopo la menopausa, il calo dei livelli di estrogeni assottiglia i tessuti vaginali e uretrali e altera l'equilibrio batterico protettivo, rendendo le infezioni del tratto urinario significativamente più comuni. La terapia estrogenica vaginale può aiutare a ripristinare questa protezione.</p>
+<p><strong>Gravidanza:</strong> i cambiamenti ormonali rilassano i muscoli del tratto urinario e l'utero in crescita può comprimere la vescica, entrambi i quali favoriscono la crescita batterica. Le infezioni del tratto urinario durante la gravidanza richiedono un trattamento tempestivo a causa del rischio più elevato di infezioni renali e complicazioni della gravidanza.</p>
+            <h2>🛡️ Prevenzione: strategie basate sull'evidenza</h2>
+<p>Prevenire è sempre meglio che curare. Queste strategie hanno prove concrete alle spalle:</p>
+<div class="checklist">
+<div class="checklist-item">
+<div class="check-icon"> ✓</div>
+<div><strong>Pulirsi dalla parte anteriore a quella posteriore:</strong> questa semplice abitudine impedisce all'Escherichia coli della zona anale di raggiungere l'uretra. Insegnalo presto ai bambini.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon"> ✓</div>
+<div><strong>Urinare dopo un rapporto sessuale:</strong> la minzione entro 30 minuti dal rapporto sessuale elimina i batteri che potrebbero essere stati spinti verso l'uretra. Questa è una delle misure preventive più efficaci.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon"> ✓</div>
+<div><strong>Rimani ben idratato:</strong> bere acqua adeguata (mirare a urine di colore giallo pallido) diluisce i batteri e aumenta la frequenza della minzione, irrigando regolarmente il tratto urinario.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon"> ✓</div>
+<div><strong>Non trattenerlo:</strong> urina quando ne senti il bisogno. Trattenere l'urina per periodi prolungati dà ai batteri il tempo di moltiplicarsi nella vescica.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon"> ✓</div>
+<div><strong>Evita prodotti irritanti:</strong> lavande vaginali, spray femminili, assorbenti profumati e saponi aggressivi interrompono la flora vaginale naturale che aiuta a proteggere dalle infezioni.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon"> ✓</div>
+<div><strong>Scegli biancheria intima di cotone:</strong> i tessuti traspiranti riducono l'accumulo di umidità che favorisce la crescita batterica. Evita gli infradito se sei soggetto a infezioni delle vie urinarie.</div>
+</div>
+</div>
+            <h2>🍒 La questione del mirtillo rosso</h2>
+<p>I prodotti a base di mirtillo rosso sono forse lo strumento di prevenzione delle infezioni delle vie urinarie più dibattuto. Ecco cosa dimostra in realtà la scienza: i mirtilli rossi contengono proantocianidine (PAC), composti che possono impedire all'Escherichia coli di aderire alla parete della vescica. Tuttavia, la concentrazione di PAC nella maggior parte dei succhi di mirtillo rosso commerciali è troppo bassa per essere efficace. I cocktail di succo di mirtillo rosso sono ricchi di zucchero, il che potrebbe effettivamente peggiorare le cose.</p>
+<p>Gli integratori concentrati di mirtillo rosso (36 mg di PAC al giorno) hanno mostrato benefici modesti in alcuni studi, in particolare per le donne con infezioni del tratto urinario ricorrenti. Non sono un trattamento per le infezioni attive: solo gli antibiotici eliminano le infezioni del tratto urinario accertate. Pensa agli integratori di mirtillo rosso come a un leggero strato preventivo, non a una cura.</p>
+            <h2>🔁 IVU ricorrenti: interrompere il ciclo</h2>
+<p>Se riscontri tre o più infezioni del tratto urinario all'anno, o due nell'arco di sei mesi, soffri di infezioni del tratto urinario ricorrenti e hai bisogno di una strategia su misura che vada oltre la prevenzione di base. Le opzioni includono:</p>
+<p><strong>Antibiotici profilattici a basso dosaggio:</strong> una piccola dose giornaliera o una dose post-coitale di antibiotici (come nitrofurantoina o trimetoprim) può ridurre le recidive dall'85 al 95%. Il tuo medico valuterà i benefici rispetto al rischio di resistenza agli antibiotici.</p>
+<p><strong>Estrogeni vaginali (per donne in postmenopausa):</strong> la crema topica agli estrogeni o gli anelli vaginali di estrogeni ripristinano la popolazione protettiva di Lactobacillus e ispessiscono il tessuto uretrale. Gli studi dimostrano che riduce le recidive delle infezioni del tratto urinario dal 36 al 75%.</p>
+<p><strong>Integratori di D-mannosio:</strong> questo zucchero naturale può impedire l'adesione dell'E. coli alla parete della vescica, in modo simile ai PAC del mirtillo rosso. Alcuni studi suggeriscono un'efficacia paragonabile a quella degli antibiotici a basso dosaggio, anche se sono necessarie ulteriori ricerche.</p>
+<p><strong>Metenamina ippurato:</strong> questo antisettico urinario vecchio stile sta guadagnando un rinnovato interesse come opzione risparmiatrice di antibiotici per la prevenzione in pazienti selezionati.</p>
+<div class="warning-box">
+<div class="warning-title">⚠️ Segnali d'allarme per un'infezione renale: cerca assistenza immediata</div>
+<ul class="warning-list">
+<li><strong>Febbre superiore a 38,3°C (101°F)</strong> con sintomi urinari segnala che l'infezione potrebbe aver raggiunto i reni</li>
+<li><strong>Dolore al fianco:</strong> il dolore alla schiena o al fianco, appena sotto le costole, è un segno distintivo della pielonefrite (infezione renale)</li>
+<li><strong>Nausea e vomito</strong> spesso accompagnano le infezioni renali e possono portare alla disidratazione</li>
+<li><strong>Brividi o rigidità tremanti</strong> suggeriscono che i batteri potrebbero entrare nel flusso sanguigno (urosepsi, un'emergenza pericolosa per la vita)</li>
+<li><strong>Confusione o coscienza alterata</strong> in qualsiasi fascia di età richiede una valutazione di emergenza</li>
+</ul>
+</div>
+            <h2>💊 Quando servono gli antibiotici</h2>
+<p>Le infezioni vescicali semplici e non complicate (IVU inferiori) vengono generalmente trattate con un breve ciclo di antibiotici: nella maggior parte dei casi da 3 a 5 giorni di nitrofurantoina o trimetoprim-sulfametossazolo. I sintomi solitamente migliorano entro 24-48 ore, ma completa sempre l'intero ciclo per prevenire la resistenza.</p>
+<p>Le infezioni del tratto urinario complicate, ovvero quelle che comportano febbre, coinvolgimento renale, gravidanza o anomalie anatomiche, richiedono cicli di trattamento più lunghi (da 7 a 14 giorni) e talvolta antibiotici per via endovenosa. Gli uomini affetti da infezioni delle vie urinarie meritano sempre ulteriori indagini, poiché le infezioni delle vie urinarie negli uomini sono meno comuni e spesso segnalano un problema di fondo come l'ingrossamento della prostata o la ritenzione urinaria.</p>
+<p><strong>Una nota critica sull'autotrattamento:</strong> sebbene sia forte la tentazione di assumere gli antibiotici avanzati al primo segno di bruciore, questa pratica alimenta la resistenza agli antibiotici, una delle maggiori minacce nella medicina moderna. Se possibile, esegui sempre un'urinocoltura. Conferma l’infezione e identifica quali antibiotici funzioneranno. Con la crescente resistenza agli antibiotici, i giorni in cui si trattavano tutte le infezioni del tratto urinario allo stesso modo sono ormai alle nostre spalle. La terapia mirata basata sui risultati della cultura è il futuro, e il presente, della gestione responsabile delle infezioni delle vie urinarie.</p>
         </div>
-    </main>
-
-    <footer class="footer">
-        <a href="../../still-alive-mobile.html">Torna ai consigli</a>
-    </footer>
-
+    </article>
+    <nav class="floating-nav">
+        <a href="../../happy-poop-mobile.html" class="back-btn">← Indietro</a>
+        <a href="#" class="share-btn" onclick="navigator.share({title: 'Segnali d\'allarme delle infezioni delle vie urinarie: la diagnosi precoce evita il dolore', url: window.location.href}); return false;">📤</a>
+    </nav>
     <script>
-        const timeElement = document.getElementById("current-time");
-        const updateTime = () => {
-            const now = new Date();
-            const hours = now.getHours();
-            const minutes = String(now.getMinutes()).padStart(2, "0");
-            timeElement.textContent = `${hours}:${minutes}`;
-        };
-        updateTime();
-        setInterval(updateTime, 60000);
+        document.querySelectorAll('.checklist-item').forEach(item => {
+            item.addEventListener('click', () => {
+                item.style.backgroundColor = '#F3F4F6';
+                setTimeout(() => item.style.backgroundColor = 'transparent', 200);
+            });
+        });
     </script>
 </body>
 </html>

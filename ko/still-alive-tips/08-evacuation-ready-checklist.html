@@ -1,274 +1,115 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" data-theme="urinary">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Evacuation Ready Checklist - Still Alive?</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --accent: #ff7a5a;
-            --accent-light: #ffb199;
-            --accent-dark: #c4553b;
-            --surface: #ffffff;
-            --text: #1f1f1f;
-            --muted: #6e6e6e;
-            --bg: #f6f4f1;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-        }
-
-        .status-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 44px;
-            background: rgba(0, 0, 0, 0.78);
-            color: #ffffff;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 18px;
-            font-size: 14px;
-            z-index: 10;
-        }
-
-        .status-icons {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .status-dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: #ffffff;
-            opacity: 0.8;
-        }
-
-        .status-pill {
-            width: 22px;
-            height: 10px;
-            border-radius: 6px;
-            border: 1px solid #ffffff;
-            position: relative;
-            opacity: 0.8;
-        }
-
-        .status-pill::after {
-            content: "";
-            position: absolute;
-            right: 2px;
-            top: 2px;
-            width: 6px;
-            height: 4px;
-            border-radius: 3px;
-            background: #ffffff;
-        }
-
-        .back-button {
-            position: fixed;
-            top: 58px;
-            left: 18px;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            border: none;
-            background: rgba(0, 0, 0, 0.6);
-            color: #ffffff;
-            font-size: 18px;
-            cursor: pointer;
-            z-index: 9;
-        }
-
-        .hero {
-            margin-top: 44px;
-            padding: 28px 20px 80px;
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
-            color: #ffffff;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero h1 {
-            margin: 12px 0 10px;
-            font-size: 26px;
-            font-weight: 700;
-        }
-
-        .hero p {
-            margin: 0;
-            font-size: 14px;
-            max-width: 320px;
-            line-height: 1.5;
-        }
-
-        .tag {
-            display: inline-block;
-            padding: 4px 10px;
-            border-radius: 999px;
-            font-size: 11px;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            background: rgba(255, 255, 255, 0.25);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-        }
-
-        .hero-icon {
-            position: absolute;
-            right: 20px;
-            bottom: 12px;
-            width: 80px;
-            height: 80px;
-            opacity: 0.18;
-        }
-
-        .content {
-            background: var(--surface);
-            margin: -50px 18px 24px;
-            border-radius: 20px;
-            padding: 24px 20px 28px;
-            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
-        }
-
-        .meta {
-            font-size: 12px;
-            color: var(--muted);
-            margin-bottom: 16px;
-        }
-
-        .section {
-            margin-top: 18px;
-        }
-
-        .section h2 {
-            margin: 0 0 10px;
-            font-size: 18px;
-        }
-
-        .section p {
-            margin: 0 0 12px;
-            font-size: 14px;
-            line-height: 1.6;
-            color: #3d3d3d;
-        }
-
-        .section ul {
-            margin: 0;
-            padding-left: 18px;
-            font-size: 14px;
-            line-height: 1.6;
-            color: #3d3d3d;
-        }
-
-        .callout {
-            background: #f7f1ed;
-            border-left: 4px solid var(--accent);
-            padding: 12px 14px;
-            border-radius: 10px;
-            font-size: 13px;
-            color: #3d3d3d;
-        }
-
-        .source {
-            margin-top: 18px;
-            font-size: 12px;
-            color: var(--muted);
-        }
-
-        .source a {
-            color: var(--accent-dark);
-            text-decoration: none;
-        }
-
-        .footer {
-            text-align: center;
-            margin-bottom: 36px;
-        }
-
-        .footer a {
-            color: var(--accent-dark);
-            text-decoration: none;
-            font-weight: 600;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>배뇨 빈도 및 습관: 얼마나 자주 배뇨가 정상인가요? - Happy Poop</title>
+    <link rel="stylesheet" href="../../article-theme-v2.css">
 </head>
 <body>
-    <div class="status-bar">
-        <span id="current-time">4:58</span>
-        <div class="status-icons" aria-hidden="true">
-            <span class="status-dot"></span>
-            <span class="status-dot"></span>
-            <span class="status-dot"></span>
-            <span class="status-pill"></span>
+    <header class="hero-section">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <div class="article-meta-top">
+                <span>Urinary Health</span>
+                <span>•</span>
+                <span>8분 읽기</span>
+            </div>
+            <h1 class="hero-title">배뇨 빈도 및 습관: 얼마나 자주 배뇨가 정상인가요?</h1>
+            
         </div>
-    </div>
-
-    <button class="back-button" onclick="history.back()" aria-label="Go back">&larr;</button>
-
-    <header class="hero">
-        <span class="tag">Preparedness</span>
-        <h1>대피 준비 체크리스트</h1>
-        <p>Know when to go, what to grab, and where to meet before you have to leave.</p>
-        <svg class="hero-icon" viewBox="0 0 64 64" aria-hidden="true">
-            <rect x="12" y="22" width="40" height="30" rx="6" fill="none" stroke="#ffffff" stroke-width="3"></rect>
-            <rect x="22" y="14" width="20" height="10" rx="4" fill="none" stroke="#ffffff" stroke-width="3"></rect>
-            <path d="M20 36h24" stroke="#ffffff" stroke-width="3" stroke-linecap="round"></path>
-        </svg>
     </header>
-
-    <main class="content">
-        <div class="meta">5 min read - Updated Feb 3, 2026</div>
-        <section class="section">
-            <h2>Know Your Triggers</h2>
-            <p>Sign up for local alerts and understand the evacuation zones in your area.</p>
-        </section>
-
-        <section class="section">
-            <h2>Grab-and-Go Items</h2>
-            <p>Keep a ready bag with essentials so you can leave quickly.</p>
-            <ul>
-                <li>IDs and insurance cards</li>
-                <li>Medications and chargers</li>
-                <li>Pet supplies and a leash</li>
-            </ul>
-        </section>
-
-        <section class="section">
-            <h2>Reunification Plan</h2>
-            <p>Pick a meeting point and share it with your trusted contacts.</p>
-            <div class="callout">Tip: keep a printed route map in your go-bag in case your phone dies.</div>
-        </section>
-        <div class="source">
-            Source: <a href="https://www.ready.gov/evacuation" target="_blank" rel="noopener">Ready.gov - Evacuation</a>
+    <div class="summary-card">
+        <div class="summary-title">⚡ TL;DR</div>
+        <ul class="summary-list">
+            <li><strong>정상 빈도</strong>는 대부분의 성인에서 하루 6~8회이지만 '정상'은 수분 섭취량, 연령, 약물에 따라 다릅니다.</li>
+            <li><strong>야뇨증</strong>(밤에 소변을 보기 위해 2번 이상 깨어남)은 수면과 건강에 영향을 미치며, 치료 가능한 원인이 있습니다.</li>
+            <li><strong>과민성 방광</strong>과 UTI는 증상을 공유하지만 완전히 다른 치료가 필요합니다.</li>
+            <li><strong>방광 훈련</strong>과 케겔 운동은 약물 없이도 소변 조절을 크게 향상시킬 수 있습니다.</li>
+            <li><strong>이중 배뇨</strong>는 매번 방광을 완전히 비울 수 있는 간단한 기술입니다.</li>
+        </ul>
+    </div>
+    <article class="content-container">
+        <div class="content-block">
+            <p class="intro-text">소변을 너무 많이 보는지, 아니면 충분하지 않은지 궁금한 적이 있다면 비뇨기과에서 가장 일반적인 질문 중 하나를 묻는 것입니다. 사실, 정상 범위는 넓습니다. 하지만 주의를 기울일 만한 것이 있다는 명확한 신호도 있습니다. 건강한 배뇨가 실제로 어떤 모습인지, 패턴이 바뀌면 어떻게 해야 하는지 살펴보겠습니다.</p>
+            <h2>📊 정상이란 무엇인가요? 숫자</h2>
+<p>대부분의 건강한 성인은 하루에 약 2리터(대략 8컵)의 수분을 섭취한다고 가정할 때 24시간 동안 6~8회 소변을 봅니다. 그러나 "정상"은 매우 개인차가 있습니다. 정오 이전에 커피 세 잔을 마시는 사람은 하루 종일 물을 적당히 마시는 사람보다 자연스럽게 더 자주 갈 것입니다.</p>
+<p>각 배뇨에서 대략 200~400밀리리터(약 7~14온스)의 소변이 생성됩니다. 소변을 자주 보지만 매번 소변의 양이 적은 경우, 이는 소변량이 많고 빈도가 적은 경우와 패턴이 다르며 그 구별은 진단적으로 중요합니다.</p>
+<p>방광에는 약 400~600밀리리터를 편안하게 담을 수 있습니다. 첫 번째 소변 충동은 일반적으로 약 200~300밀리리터에서 발생합니다. 건강한 방광은 긴급함이나 불편함 없이 화장실을 찾을 수 있을 만큼 충분한 경고를 제공합니다. 충동이 갑작스럽거나 통제할 수 없거나 누출되는 경우 방광이 조난 신호를 보내는 것일 수 있습니다.</p>
+<div class="info-box">
+<div class="info-box-title">빠른 자체 평가</div>
+<p>하루 동안 간단한 기록을 유지하세요. 각 화장실 방문 횟수를 표시하고 그 양(소, 중, 대)을 추정해 보세요. 이 "방광 일기"는 의사에게 어떤 단일 검사보다 더 유용한 정보를 제공합니다. 많은 비뇨기과 전문의가 첫 진료 전에 이 작업을 수행하도록 요청할 것입니다.</p>
+</div>
+            <h2>🌙 야간뇨: 야간 배뇨가 생활에 지장을 줄 때</h2>
+<p>밤에 한 번 일어나서 소변을 보는 것은 일반적으로 정상적인 것으로 간주되며, 특히 나이가 들수록 더욱 그렇습니다. 그러나 지속적으로 두 번 이상 깨면(야간빈뇨라고 불리는 상태) 수면이 방해를 받고 삶의 질에 큰 영향을 미쳐 낙상, 우울증, 심혈관 문제의 위험이 높아질 수 있습니다.</p>
+<p>야간빈뇨에는 여러 가지 잠재적인 원인이 있으며 올바른 원인을 식별하는 것이 효과적인 치료의 핵심입니다.</p>
+<p><strong>야간 다뇨증:</strong> 밤에 몸에서 소변이 너무 많이 생성됩니다. 일반적으로 항이뇨 호르몬(ADH 또는 바소프레신)이라는 호르몬이 수면 중에 소변을 농축합니다. 노화로 인해 ADH 생산이 감소하면 신장은 밤새도록 묽은 소변을 계속 생성합니다. 심부전 및 치료되지 않은 수면 무호흡증으로 인해 누웠을 때 체액이 신장으로 이동할 수도 있습니다.</p>
+<p><strong>방광 용량 감소:</strong> 과민성 방광, 요로 감염 또는 전립선 비대와 같은 질환으로 인해 방광이 편안하게 담을 수 있는 소변의 양이 줄어들어 소변을 더 자주 보게 됩니다.</p>
+<p><strong>생활 습관 요인:</strong> 취침 시간에 가까운 수분 섭취(특히 카페인이나 알코올), 저녁 식사 시 나트륨 함량이 높은 식사(나트륨은 수분을 소변으로 끌어당김), 저녁에 이뇨제 복용 등이 모두 영향을 미칩니다.</p>
+<div class="checklist">
+<div class="checklist-item">
+<div class="check-icon">✓</div>
+<div><strong>잠들기 2~3시간 전에는 수분 섭취를 제한하세요</strong>, 특히 카페인과 알코올을 제한하세요.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">✓</div>
+<div>취침 전 발목에 남아 있는 체액을 동원하기 위해 오후 30~60분 동안 <strong>다리를 높이 올리세요</strong>.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">✓</div>
+<div><strong>저녁 소금 섭취량을 줄여</strong> 밤새 소변 생산량을 최소화하세요.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">✓</div>
+<div><strong>아침에 이뇨제를 복용</strong>하세요. 처방된 경우 의사에게 시기 조정에 관해 문의하세요.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">✓</div>
+<div><strong>수면 무호흡증 검사</strong> - 종종 치료하면 야간뇨가 극적으로 감소합니다.</div>
+</div>
+</div>
+            <h2>⚡ 과민성 방광과 UTI: 차이점 알아보기</h2>
+<p>이 두 질환은 긴급함, 빈도, 항상 가고 싶은 느낌 등 실망스러울 정도로 유사한 증상을 공유하지만 원인과 치료법은 완전히 다릅니다. 이를 혼동하면 불필요한 항생제를 사용하거나 치료되지 않은 감염이 발생할 수 있습니다.</p>
+<p><strong>요로 감염(UTI):</strong> 요로에 침입하는 박테리아(대개 대장균)로 인해 발생합니다. 전형적인 증상으로는 배뇨 시 작열감이나 따끔거림, 소변이 탁하거나 악취가 나는 것, 골반 압박, 때로는 혈액이 섞인 소변 등이 있습니다. UTI는 일반적으로 상대적으로 갑자기 발생하며 며칠이 지나면서 악화됩니다. 치료에는 항생제가 필요합니다.</p>
+<p><strong>과민성 방광(OAB):</strong> 방광 근육(배뇨근)이 무의식적으로 수축하여 갑작스럽고 강렬한 배뇨 충동을 일으키는 만성 질환입니다. 감염은 없습니다. 소변 배양 결과가 깨끗해집니다. OAB는 급격한 변화라기보다는 장기간 지속되는 패턴인 경향이 있습니다. 치료는 행동 전략, 골반저 요법, 때로는 약물 치료에 중점을 둡니다.</p>
+<div class="warning-box">
+<div class="warning-title">⚠️ 자가 진단하지 마세요</div>
+<ul class="warning-list">
+<li>화끈거리거나 열이 나거나 소변에 피가 섞인 경우 — 먼저 감염 가능성을 배제하기 위해 의사를 만나세요.</li>
+<li>만약을 대비해 남은 항생제를 복용하면 항생제 내성이 높아집니다</li>
+<li>잦은 UTI(연간 3회 이상)는 근본적인 해부학적 또는 면역 문제를 나타낼 수 있습니다.</li>
+<li>50세 이후 갑자기 나타나는 OAB 증상은 신경학적 원인을 배제하기 위해 평가되어야 합니다</li>
+</ul>
+</div>
+            <h2>🏋️ 방광 훈련: 뇌-방광 연결 재훈련</h2>
+<p>모든 자동차 탑승 전, 모든 회의, 모든 외출 전 등 '만약에 대비해' 소변을 보는 습관이 생겼다면, 낮은 볼륨과 낮은 볼륨에서 충만 신호를 보내도록 방광을 무심코 훈련시켰을 수 있습니다. 방광 훈련은 이 과정을 역전시켜 화장실 가는 간격을 점차 늘려줍니다.</p>
+<p><strong>시작 방법:</strong> 방광 일기를 사용하여 현재 배뇨 패턴을 기록하는 것부터 시작하세요. 그런 다음 충동을 느끼면 가기 전에 5~10분 정도 기다리십시오. 주의를 분산시키는 기술을 사용하십시오: 심호흡, 100부터 거꾸로 세기, 빠른 케겔 압박 수행. 몇 주에 걸쳐 지연 시간을 15분씩 점차적으로 늘립니다. 목표는 주간 공백 사이의 간격을 3~4시간에 도달하는 것입니다.</p>
+<p>대부분의 환자는 6~12주 내에 의미 있는 개선을 경험합니다. 연구에 따르면 방광 훈련을 하면 소변 빈도를 50% 이상 줄일 수 있으며, 이는 부작용 없이 약물 치료와 비슷한 결과를 얻을 수 있습니다.</p>
+            <h2>🔄 이중 배뇨: 방광을 완전히 비우세요</h2>
+<p>방광이 완전히 비워지지 않거나 마친 후 바로 다시 가야 하는 경우 이중 배뇨는 간단하고 효과적인 방법입니다. 특히 전립선 비대증, 골반 장기 탈출증, 방광 근육 약화가 있는 사람들에게 도움이 됩니다.</p>
+<p><strong>기술:</strong> 평소처럼 소변을 봅니다. 다 끝났다고 생각되면 20~30초 동안 앉아(남성의 경우 서 있음) 유지하세요. 약간 앞으로 몸을 기울여 긴장을 풀고 다시 시도해 보세요. 많은 사람들은 50~100밀리리터를 추가로 배출할 수 있다는 사실에 놀랐습니다. 이렇게 하면 배뇨 후 잔뇨가 줄어들어 UTI 위험과 몇 분 후에 다시 가야 한다는 성가신 느낌이 줄어듭니다.</p>
+            <h2>💪 케겔 운동: 여성만을 위한 것이 아닙니다</h2>
+<p>케겔 운동은 방광, 요도 및 (여성의 경우) 자궁을 지지하는 골반저 근육을 강화합니다. 강한 골반저 근육은 소변 조절을 개선하고 급박함을 줄이며 특정 유형의 요실금에도 도움이 될 수 있습니다.</p>
+<p><strong>적절한 근육 찾기:</strong> 소변의 흐름을 중간에 멈추거나 가스를 참으려고 한다고 상상해 보세요. 당신이 참여하는 근육은 골반저입니다. 실제로 소변 흐름을 멈추는 케겔 운동을 하지 마십시오. 이는 정상적인 방광 비우기를 방해할 수 있습니다.</p>
+<p><strong>루틴:</strong> 5초 동안 쥐고 있다가 5초 동안 긴장을 푸세요. 10회 반복하세요. 하루에 3세트를 하세요. 유지 시간을 점차적으로 10초로 늘립니다. 책상에 앉아 있을 때, 교통 정체를 기다리면서, 침대에 누워 있을 때 케겔 운동을 할 수 있습니다. 누구도 알 수 없습니다.</p>
+<p><strong>남성의 경우:</strong> 케겔 운동은 전립선 수술 후와 배뇨 후 드리블을 관리하는 데 특히 유용합니다. 연구에 따르면 케겔 운동을 지속적으로 수행하는 남성은 전립선 절제술 후 자제력이 더 빨리 회복되는 것으로 나타났습니다.</p>
+<div class="info-box">
+<div class="info-box-title">도움을 구해야 할 때</div>
+<p>하루에 10번 이상 소변을 보거나, 밤에 2번 이상 일어나거나, 소변이 새는 갑작스러운 급박함을 경험하거나, 8~12주 후에도 행동 전략이 효과가 없는 것으로 확인되면 비뇨기과 전문의를 만나야 합니다. 골반저 물리 치료부터 신경 자극, 표적 약물 치료에 이르기까지 현대 치료법은 매우 효과적이며 지속적으로 개선되고 있습니다. 비뇨기 문제는 의학에서 가장 치료가 가능한 질환 중 하나입니다.</p>
+</div>
         </div>
-    </main>
-
-    <footer class="footer">
-        <a href="../../still-alive-mobile.html">팁으로 돌아가기</a>
-    </footer>
-
+    </article>
+    <nav class="floating-nav">
+        <a href="../../happy-poop-mobile.html" class="back-btn">← 뒤로</a>
+        <a href="#" class="share-btn" onclick="navigator.share({title: '배뇨 빈도 및 습관: 얼마나 자주 배뇨가 정상인가요?', url: window.location.href}); return false;">📤</a>
+    </nav>
     <script>
-        const timeElement = document.getElementById("current-time");
-        const updateTime = () => {
-            const now = new Date();
-            const hours = now.getHours();
-            const minutes = String(now.getMinutes()).padStart(2, "0");
-            timeElement.textContent = `${hours}:${minutes}`;
-        };
-        updateTime();
-        setInterval(updateTime, 60000);
+        document.querySelectorAll('.checklist-item').forEach(item => {
+            item.addEventListener('click', () => {
+                item.style.backgroundColor = '#F3F4F6';
+                setTimeout(() => item.style.backgroundColor = 'transparent', 200);
+            });
+        });
     </script>
 </body>
 </html>

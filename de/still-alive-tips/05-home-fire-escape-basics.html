@@ -1,273 +1,159 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de" data-theme="bowel">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Fire Escape Basics - Still Alive?</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --accent: #ef6a5b;
-            --accent-light: #f6b0a8;
-            --accent-dark: #b3473f;
-            --surface: #ffffff;
-            --text: #1f1f1f;
-            --muted: #6e6e6e;
-            --bg: #f6f4f1;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-        }
-
-        .status-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 44px;
-            background: rgba(0, 0, 0, 0.78);
-            color: #ffffff;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 18px;
-            font-size: 14px;
-            z-index: 10;
-        }
-
-        .status-icons {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .status-dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: #ffffff;
-            opacity: 0.8;
-        }
-
-        .status-pill {
-            width: 22px;
-            height: 10px;
-            border-radius: 6px;
-            border: 1px solid #ffffff;
-            position: relative;
-            opacity: 0.8;
-        }
-
-        .status-pill::after {
-            content: "";
-            position: absolute;
-            right: 2px;
-            top: 2px;
-            width: 6px;
-            height: 4px;
-            border-radius: 3px;
-            background: #ffffff;
-        }
-
-        .back-button {
-            position: fixed;
-            top: 58px;
-            left: 18px;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            border: none;
-            background: rgba(0, 0, 0, 0.6);
-            color: #ffffff;
-            font-size: 18px;
-            cursor: pointer;
-            z-index: 9;
-        }
-
-        .hero {
-            margin-top: 44px;
-            padding: 28px 20px 80px;
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
-            color: #ffffff;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero h1 {
-            margin: 12px 0 10px;
-            font-size: 26px;
-            font-weight: 700;
-        }
-
-        .hero p {
-            margin: 0;
-            font-size: 14px;
-            max-width: 320px;
-            line-height: 1.5;
-        }
-
-        .tag {
-            display: inline-block;
-            padding: 4px 10px;
-            border-radius: 999px;
-            font-size: 11px;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            background: rgba(255, 255, 255, 0.25);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-        }
-
-        .hero-icon {
-            position: absolute;
-            right: 20px;
-            bottom: 12px;
-            width: 80px;
-            height: 80px;
-            opacity: 0.18;
-        }
-
-        .content {
-            background: var(--surface);
-            margin: -50px 18px 24px;
-            border-radius: 20px;
-            padding: 24px 20px 28px;
-            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
-        }
-
-        .meta {
-            font-size: 12px;
-            color: var(--muted);
-            margin-bottom: 16px;
-        }
-
-        .section {
-            margin-top: 18px;
-        }
-
-        .section h2 {
-            margin: 0 0 10px;
-            font-size: 18px;
-        }
-
-        .section p {
-            margin: 0 0 12px;
-            font-size: 14px;
-            line-height: 1.6;
-            color: #3d3d3d;
-        }
-
-        .section ul {
-            margin: 0;
-            padding-left: 18px;
-            font-size: 14px;
-            line-height: 1.6;
-            color: #3d3d3d;
-        }
-
-        .callout {
-            background: #fff0ef;
-            border-left: 4px solid var(--accent);
-            padding: 12px 14px;
-            border-radius: 10px;
-            font-size: 13px;
-            color: #3d3d3d;
-        }
-
-        .source {
-            margin-top: 18px;
-            font-size: 12px;
-            color: var(--muted);
-        }
-
-        .source a {
-            color: var(--accent-dark);
-            text-decoration: none;
-        }
-
-        .footer {
-            text-align: center;
-            margin-bottom: 36px;
-        }
-
-        .footer a {
-            color: var(--accent-dark);
-            text-decoration: none;
-            font-weight: 600;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Verstopfung bewältigen: Evidenzbasierte Lösungen, die tatsächlich funktionieren - Happy Poop</title>
+    <link rel="stylesheet" href="../../article-theme-v2.css">
 </head>
 <body>
-    <div class="status-bar">
-        <span id="current-time">4:56</span>
-        <div class="status-icons" aria-hidden="true">
-            <span class="status-dot"></span>
-            <span class="status-dot"></span>
-            <span class="status-dot"></span>
-            <span class="status-pill"></span>
+    <header class="hero-section">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <div class="article-meta-top">
+                <span>Darmgesundheit</span>
+                <span>•</span>
+                <span>9 Min. Lesezeit</span>
+            </div>
+            <h1 class="hero-title">Verstopfung bewältigen: Evidenzbasierte Lösungen, die tatsächlich funktionieren</h1>
+            
         </div>
-    </div>
-
-    <button class="back-button" onclick="history.back()" aria-label="Go back">←</button>
-
-    <header class="hero">
-        <span class="tag">Home Safety</span>
-        <h1>Grundlagen der Brandfluchtwege</h1>
-        <p>Plan two exits, keep alarms working, and practice so everyone knows what to do.</p>
-        <svg class="hero-icon" viewBox="0 0 64 64" aria-hidden="true">
-            <path d="M32 10c6 8 12 12 12 22a12 12 0 0 1-24 0c0-6 3-10 6-14 3-4 5-6 6-8z" fill="none" stroke="#ffffff" stroke-width="3" stroke-linejoin="round"></path>
-        </svg>
     </header>
-
-    <main class="content">
-        <div class="meta">6 min read • Updated Feb 3, 2026</div>
-
-        <section class="section">
-            <h2>Plan Two Ways Out</h2>
-            <p>Identify two exits from every room if possible. Keep keys and window tools accessible.</p>
-            <ul>
-                <li>Choose a meeting spot outside the home.</li>
-                <li>Share the plan with everyone in the household.</li>
-            </ul>
-        </section>
-
-        <section class="section">
-            <h2>Smoke Alarms Matter</h2>
-            <p>Test alarms monthly and replace batteries at least once a year.</p>
-            <div class="callout">Tip: set a seasonal reminder in Still Alive to check alarms.</div>
-        </section>
-
-        <section class="section">
-            <h2>Practice the Drill</h2>
-            <p>Run a quick drill twice a year so everyone can move quickly and calmly.</p>
-        </section>
-
-        <div class="source">
-            Source: <a href="https://www.redcross.org/get-help/how-to-prepare-for-emergencies/types-of-emergencies/fire.html" target="_blank" rel="noopener">American Red Cross - Home Fire Safety</a>
+    <div class="summary-card">
+        <div class="summary-title">⚡ TL;DR</div>
+        <ul class="summary-list">
+            <li><strong>Definition:</strong> Weniger als 3 Stuhlgänge pro Woche UND/ODER Anstrengung, harter Stuhl oder unvollständiger Stuhlgang.</li>
+            <li><strong>Schritt 1:</strong> Erhöhen Sie Ballaststoffe (25–30 g/Tag), Wasser (2+ Liter) und körperliche Aktivität.</li>
+            <li><strong>Schritt 2:</strong> Wenn Änderungen des Lebensstils nicht ausreichen, sind osmotische Abführmittel (PEG 3350) sicher und wirksam für den täglichen Gebrauch.</li>
+            <li><strong>Game Changer:</strong> Wenn Sie Ihre Knie mit einem Fußhocker hochlegen, können Sie die Belastung um bis zu 50 % reduzieren.</li>
+        </ul>
+    </div>
+    <article class="content-container">
+        <div class="content-block">
+            <p class="intro-text">Verstopfung ist wohl die häufigste Verdauungsbeschwerde in der entwickelten Welt. Etwa 16 % aller Erwachsenen weltweit sind davon betroffen, bei den über 60-Jährigen sind es sogar 33 %. Doch trotz ihrer Verbreitung wird sie chronisch unterbehandelt – teils, weil es den Menschen peinlich ist, darüber zu sprechen, und teils, weil es so viele widersprüchliche Ratschläge gibt. Pflaumensaft, Kaffeeeinläufe, Kräutertees, Entgiftungskuren ... der Lärm ist ohrenbetäubend. Lassen Sie uns mit dem durchbrechen, was die Wissenschaft tatsächlich sagt.</p>
+            <h2>📋 Was Verstopfung eigentlich ist (und was nicht)</h2>
+<p>Medizinisch verwenden wir die <strong>Rom IV-Kriterien</strong>, um funktionelle Verstopfung zu definieren. Sie müssen in den letzten drei Monaten mindestens zwei der folgenden Symptome gehabt haben, deren Beginn mindestens sechs Monate zurückliegt:</p>
+<div class="checklist">
+<div class="checklist-item">
+<div class="check-icon">•</div>
+<div>Pressen bei mehr als 25 % des Stuhlgangs</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">•</div>
+<div>Klumpiger oder harter Stuhl (Bristol Typ 1–2) bei mehr als 25 % der Bewegungen</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">•</div>
+<div>Gefühl einer unvollständigen Evakuierung in mehr als 25 % der Fälle</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">•</div>
+<div>Gefühl einer anorektalen Obstruktion oder Blockade</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">•</div>
+<div>Manuelle Manöver zur Erleichterung des Stuhlgangs</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">•</div>
+<div>Weniger als 3 spontane Stuhlgänge pro Woche</div>
+</div>
+</div>
+<p>Beachten Sie, dass die Häufigkeit allein Verstopfung nicht definiert. Wenn Sie jeden zweiten Tag gehen, Ihr Stuhl aber weich ist, leicht abgesetzt werden kann und Sie sich satt fühlen, handelt es sich nicht um Verstopfung. Umgekehrt liegt eine Verstopfung vor, wenn Sie täglich harte Pellets einnehmen, sich dabei aber schmerzhaft anstrengen.</p>
+            <h2>🔍Häufige Ursachen: Finden Sie Ihr Grundproblem</h2>
+<p>Eine wirksame Behandlung beginnt mit der Identifizierung der Ursache. Hier sind die Hauptkategorien:</p>
+<div class="info-box">
+<div class="info-box-title">📊 Die großen vier Ursachen</div>
+<p>
+<strong>1. Ernährungsfaktoren:</strong> Eine geringe Ballaststoffaufnahme ist weltweit die häufigste Ursache. Der durchschnittliche westliche Erwachsene nimmt täglich nur 12–15 g Ballaststoffe zu sich – etwa die Hälfte der empfohlenen Menge. Eine unzureichende Wasseraufnahme verschärft das Problem, da Ballaststoffe Wasser benötigen, um den Stuhl effektiv aufzufüllen.<br/><br/>
+<strong>2. Bewegungsmangel: Körperliche Inaktivität verlangsamt die Darmpassage. Der Dickdarm reagiert auf Bewegungen – Kontraktionen Ihrer Skelettmuskulatur stimulieren die Peristaltik über mechanische und neuronale Bahnen.<br/><br/>
+<strong>3. Medikamente: Opioide sind am berüchtigtsten (Opioid-induzierte Verstopfung betrifft 40–80 % der Patienten). Weitere häufige Übeltäter sind Kalziumkanalblocker, Eisenpräparate, Anticholinergika, Antidepressiva (Trizyklika und SSRIs) und aluminiumhaltige Antazida.<br/><br/>
+<strong>4. Funktionsstörung des Beckenbodens (dyssynergischer Stuhlgang):</strong> Bei bis zu 40 % der Patienten mit chronischer Verstopfung liegt das Problem nicht in einem langsamen Stuhlgang, sondern in einer paradoxen Kontraktion der Beckenbodenmuskulatur während des Stuhlgangs. Anstatt sich zu entspannen, um den Stuhlgang zu ermöglichen, spannen sich die Muskeln an. Dies wird oft übersehen und erfordert zur Diagnose spezielle Tests (anorektale Manometrie).
+                </p>
+</div>
+            <h2>🌾 Ballaststoffe: Ihr stärkstes Werkzeug (richtig verwendet)</h2>
+<p>Nicht alle Fasern sind gleich. Wenn Sie den Unterschied zwischen löslichen und unlöslichen Ballaststoffen kennen, können Sie den richtigen Ansatz wählen.</p>
+<p><strong>Lösliche Ballaststoffe</strong> (Psyllium, Hafer, Bohnen, Äpfel, Leinsamen) lösen sich in Wasser auf und bilden eine gelartige Substanz. Es macht den Stuhl weicher, vergrößert das Volumen und schont den Magen-Darm-Trakt. Flohsamenschalen sind das am besten untersuchte Nahrungsergänzungsmittel und werden von allen wichtigen gastroenterologischen Leitlinien als Erstlinientherapie empfohlen.</p>
+<p><strong>Unlösliche Ballaststoffe</strong> (Weizenkleie, Vollkornprodukte, Gemüseschalen, Nüsse) lösen sich nicht auf – sie sorgen für mehr Volumen und beschleunigen den Durchgang durch den Dickdarm. Bei Patienten mit langsamer Verstopfung können jedoch große Mengen unlöslicher Ballaststoffe Blähungen und Beschwerden verschlimmern, ohne die Symptome zu verbessern.</p>
+<div class="info-box">
+<div class="info-box-title">💡 Die Glasfaser-Faustregel</div>
+<p><strong>Beginnen Sie niedrig und gehen Sie langsam vor.</strong> Erhöhen Sie die Ballaststoffzufuhr um 5 Gramm pro Woche, bis Sie Ihr Ziel von 25–30 g/Tag erreichen. Ein schneller Anstieg führt zu Blähungen, Krämpfen und Blähungen, wenn sich Ihr Darmmikrobiom anpasst. Kombinieren Sie Ballaststoffe immer mit einer erhöhten Wasseraufnahme – mindestens ein Glas Wasser zusätzlich pro 5 g Ballaststoffe. Wenn Sie starke Blähungen verspüren, bevorzugen Sie lösliche Ballaststoffe (Psyllium) gegenüber unlöslichen Ballaststoffen (Kleie).</p>
+</div>
+            <h2>💊 Abführmittel: Ein praktischer Leitfaden</h2>
+<p>Wenn Lebensstilmaßnahmen allein nicht ausreichen, sind Abführmittel der nächste Schritt. Hier ist die Hierarchie, der ich in der Praxis folge:</p>
+<div class="checklist">
+<div class="checklist-item">
+<div class="check-icon">1</div>
+<div><strong>Osmotische Abführmittel (erste Wahl):</strong> Polyethylenglykol (PEG 3350/Miralax) zieht Wasser in den Dickdarm und macht den Stuhl weicher. Es macht nicht süchtig, hat nur minimale Nebenwirkungen und ist sicher für den täglichen Langzeitgebrauch. Lactulose ist eine Alternative, verursacht jedoch mehr Blähungen. Produkte auf Magnesiumbasis (Magnesiamilch, Magnesiumcitrat) sind wirksam, sollten jedoch bei Patienten mit Nierenerkrankungen vermieden werden.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">2</div>
+<div><strong>Stimulierende Abführmittel (zweite Linie):</strong> Bisacodyl (Dulcolax) und Senna stimulieren direkt die Kontraktionen des Dickdarms. Sie wirken innerhalb von 6–12 Stunden und eignen sich für den intermittierenden oder Rettungseinsatz. Trotz hartnäckiger Mythen verursachen sie bei empfohlener Dosierung KEINE Abhängigkeit oder „Faulheit“. Sie sind jedoch nicht ideal für den täglichen Langzeitgebrauch.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">3</div>
+<div><strong>Stuhlweichmacher:</strong> Docusat-Natrium (Colace) wird häufig verschrieben, aber die Beweise für seine Wirksamkeit sind überraschend schwach. Eine Studie aus dem Jahr 2005 ergab, dass es nicht besser als ein Placebo war. Wenn Sie eine Erweichung benötigen, sind osmotische Mittel wirksamer.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon">4</div>
+<div><strong>Verschreibungsoptionen:</strong> Für refraktäre Fälle bieten Linaclotid (Linzess), Plecanatid (Trulance) und Prucaloprid (Motegrity) gezielte Mechanismen. Diese sollten mit Ihrem Gastroenterologen besprochen werden, wenn rezeptfreie Optionen nach 8–12 Wochen versagen.</div>
+</div>
+</div>
+            <h2>🪑 Toilettenhaltung: Der Hock-Vorteil</h2>
+<p>Hier ist eine einfache Änderung, die einen dramatischen Unterschied machen kann: <strong>Heben Sie Ihre Füße hoch, während Sie auf der Toilette sitzen.</strong></p>
+<p>Wenn Sie mit flachen Füßen auf dem Boden auf einer Standardtoilette sitzen, beträgt Ihr anorektaler Winkel etwa 90 Grad. Der Musculus puborectalis – der sich wie eine Schlinge um das Rektum legt – behält einen Knick bei, der bei der Kontinenz hilft, aber die Entleerung erschwert.</p>
+<p>Wenn Sie Ihre Knie über Ihre Hüften heben (mithilfe eines Fußhockers, gestapelter Bücher oder eines kommerziellen Produkts wie dem Squatty Potty), öffnet sich der anorektale Winkel auf etwa 120–130 Grad. Dies entspannt den Musculus puborectalis, begradigt den Rektumkanal und sorgt dafür, dass der Stuhlgang deutlich weniger belastet wird.</p>
+<p>Eine Studie aus dem Jahr 2019 im <em>Journal of Clinical Gastroenterology</em> ergab, dass die Verwendung eines Toilettenhockers die Belastung um 50 % reduzierte, die auf der Toilette verbrachte Zeit um 30 % reduzierte und das Gefühl einer vollständigen Evakuierung verbesserte. Es ist kostenlos, sicher und tritt sofort in Kraft.</p>
+            <h2>🧠 Biofeedback-Therapie: Wenn Muskeln das Problem sind</h2>
+<p>Wenn Sie an einem dyssynergen Stuhlgang leiden, bei dem sich Ihre Beckenbodenmuskeln beim Stuhlgang zusammenziehen, anstatt sich zu entspannen, können keine Ballaststoffe oder Abführmittel das Problem vollständig lösen. Hier kommt die <strong>Biofeedback-Therapie</strong> ins Spiel.</p>
+<p>Biofeedback verwendet Sensoren, die im oder in der Nähe des Rektums platziert werden, um in Echtzeit visuelles oder akustisches Feedback über die Aktivität Ihrer Beckenbodenmuskulatur zu geben. In 4–6 Sitzungen lehrt Sie ein spezialisierter Therapeut, die Entspannung des Beckenbodens bewusst mit dem Drücken des Bauches zu koordinieren. Die Erfolgsraten liegen zwischen 70 und 80 % und die Ergebnisse sind dauerhaft – bei den meisten Patienten bleibt die Besserung noch Jahre später bestehen.</p>
+<div class="warning-box">
+<div class="warning-title">🚨 Warnsignale: Wenn Verstopfung dringend untersucht werden muss</div>
+<ul class="warning-list">
+<li><strong>Neu auftretende Verstopfung nach dem 50. Lebensjahr</strong> – rechtfertigt eine Darmkrebsvorsorgeuntersuchung.</li>
+<li><strong>Blut im Stuhl oder auf Toilettenpapier</strong> – gehen Sie nicht ohne Abklärung von Hämorrhoiden aus.</li>
+<li><strong>Unbeabsichtigter Gewichtsverlust</strong>, der mit Verstopfung einhergeht.</li>
+<li><strong>Starke Bauchschmerzen oder Blähungen</strong> – könnten auf eine Obstruktion hinweisen.</li>
+<li><strong>Familienanamnese von Darmkrebs oder entzündlichen Darmerkrankungen.</strong></li>
+<li><strong>Kein Stuhlgang für mehr als 7 Tage</strong> – erwägen Sie eine Impaktion, insbesondere bei älteren Patienten oder Patienten, die Opioide konsumieren.</li>
+</ul>
+</div>
+            <h2>📝 Ihr Aktionsplan gegen Verstopfung</h2>
+<div class="checklist">
+<div class="checklist-item">
+<div class="check-icon"> ✓</div>
+<div><strong>Woche 1:</strong> Fügen Sie ein Ballaststoffpräparat hinzu (beginnen Sie mit 1 TL Flohsamen pro Tag) und trinken Sie 2 zusätzliche Gläser Wasser. Beginnen Sie einen täglichen 20-minütigen Spaziergang.</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon"> ✓</div>
+<div><strong>Woche 2:</strong> Erhöhen Sie die Ballaststoffzufuhr auf 2 TL täglich. Beginnen Sie mit der Verwendung eines Toilettenhockers. Legen Sie eine einheitliche morgendliche Toilettenzeit fest (setzen Sie sich nach dem Frühstück 5 Minuten lang hin).</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon"> ✓</div>
+<div><strong>Woche 3–4:</strong> Erhöhen Sie weiterhin die Ballaststoffe bis zum Ziel (25–30 g/Tag aus der Nahrung + Nahrungsergänzungsmittel). Wenn Sie immer noch Probleme haben, fügen Sie PEG 3350 hinzu (eine Kapsel täglich).</div>
+</div>
+<div class="checklist-item">
+<div class="check-icon"> ✓</div>
+<div><strong>Woche 8+:</strong> Wenn die Symptome trotz der oben genannten Maßnahmen weiterhin bestehen, suchen Sie einen Gastroenterologen auf. Sie können von anorektalen Manometrietests oder verschreibungspflichtigen Medikamenten profitieren.</div>
+</div>
+</div>
+<div class="info-box">
+<div class="info-box-title">💡 Ein letzter Gedanke</div>
+<p>Verstopfung ist kein Charakterfehler, kein Zeichen von Faulheit oder etwas, das man einfach „durchhalten“ sollte. Es handelt sich um eine Erkrankung mit gut verstandenen Mechanismen und wirksamen Behandlungsmöglichkeiten. Wenn Änderungen des Lebensstils nicht ausreichen, geben Sie nicht auf – eskalieren Sie. Ihr Gastroenterologe verfügt über ein umfassendes Toolkit und gemeinsam können Sie herausfinden, was für Ihren Körper funktioniert.</p>
+</div>
         </div>
-    </main>
-
-    <footer class="footer">
-        <a href="../../still-alive-mobile.html">Zurück zu Tipps</a>
-    </footer>
-
+    </article>
+    <nav class="floating-nav">
+        <a href="../../happy-poop-mobile.html" class="back-btn">← Zurück</a>
+        <a href="#" class="share-btn" onclick="navigator.share({title: 'Verstopfung bewältigen: Evidenzbasierte Lösungen, die tatsächlich funktionieren', url: window.location.href}); return false;">📤</a>
+    </nav>
     <script>
-        const timeElement = document.getElementById("current-time");
-        const updateTime = () => {
-            const now = new Date();
-            const hours = now.getHours();
-            const minutes = String(now.getMinutes()).padStart(2, "0");
-            timeElement.textContent = `${hours}:${minutes}`;
-        };
-        updateTime();
-        setInterval(updateTime, 60000);
+        document.querySelectorAll('.checklist-item').forEach(item => {
+            item.addEventListener('click', () => {
+                item.style.backgroundColor = '#F3F4F6';
+                setTimeout(() => item.style.backgroundColor = 'transparent', 200);
+            });
+        });
     </script>
 </body>
 </html>

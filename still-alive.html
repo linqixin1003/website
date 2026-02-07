@@ -4,13 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- 防止闪屏：使用visibility方案 -->
+    <!-- 防止闪屏：必须在所有外部 CSS 之前执行 -->
+    <script>
+        (function() {
+            var storageKey = 'theme-preference';
+            var stored = null;
+            try { stored = localStorage.getItem(storageKey); } catch(e) {}
+            var theme = stored || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            document.documentElement.setAttribute('data-theme', theme);
+            document.documentElement.classList.add('no-transition');
+        })();
+    </script>
     <style id="critical-anti-flash">
-        html:not(.loaded) { visibility: hidden; }
-        html.loaded { visibility: visible; }
-        body { background-color: #ffffff; min-height: 100vh; }
+        html[data-theme="light"] body, body { background-color: #ffffff; min-height: 100vh; }
+        html[data-theme="dark"] body { background-color: #0f172a; min-height: 100vh; }
+        html.no-transition, html.no-transition *, html.no-transition *::before, html.no-transition *::after {
+            transition: none !important;
+        }
     </style>
-    <script>document.documentElement.classList.add('loaded');</script>
     
     <title>Still Alive? - Personal Safety Guardian | Dead Man's Switch App</title>
     <meta name="description" content="Still Alive? is a privacy-first 'Dead Man's Switch' safety app for people living alone. Daily check-ins with automatic emergency alerts to trusted contacts. No GPS tracking, no data sharing.">

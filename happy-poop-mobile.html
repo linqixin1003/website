@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Health Knowledge - Happy Poop</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -56,7 +56,9 @@
             font-weight: 800;
             background: linear-gradient(135deg, var(--accent-dark), var(--accent));
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
+            color: transparent;
             letter-spacing: -0.5px;
         }
         
@@ -82,6 +84,8 @@
             border-bottom: 1px solid rgba(0,0,0,0.05);
         }
         
+        .chips-container::-webkit-scrollbar { display: none; }
+        
         .chip {
             padding: 8px 16px;
             background: white;
@@ -92,6 +96,11 @@
             color: var(--text);
             box-shadow: 0 2px 8px rgba(0,0,0,0.04);
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            white-space: nowrap;
+            flex-shrink: 0;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
         }
         
         .chip.active {
@@ -165,12 +174,12 @@
             margin-bottom: 8px;
         }
         
-        .article-tag.bowel { background: #A78BFA20; color: #7C3AED; }
-        .article-tag.urinary { background: #60A5FA20; color: #2563EB; }
-        .article-tag.menstrual { background: #F472B620; color: #DB2777; }
-        .article-tag.hydration { background: #2DD4BF20; color: #0D9488; }
-        .article-tag.fitness { background: #FB718520; color: #DC2626; }
-        .article-tag.nutrition { background: #34D39920; color: #059669; }
+        .article-tag.bowel { background: #F4F0FE; color: #5B21B6; }
+        .article-tag.urinary { background: #EAF3FE; color: #1D4ED8; }
+        .article-tag.menstrual { background: #FDEDF6; color: #9D174D; }
+        .article-tag.hydration { background: #E4F9F7; color: #065F46; }
+        .article-tag.fitness { background: #FEECEF; color: #991B1B; }
+        .article-tag.nutrition { background: #E5F9F2; color: #065F46; }
         
         .article-title {
             font-size: 15px;
@@ -588,26 +597,22 @@
     
     <script src="happy-poop-lang.js"></script>
     <script>
-        // Update time
-        const timeEl = document.getElementById('current-time');
-        const updateTime = () => {
-            const now = new Date();
-            timeEl.textContent = now.getHours() + ':' + String(now.getMinutes()).padStart(2, '0');
-        };
-        updateTime();
-        setInterval(updateTime, 60000);
-        
         // Filter chips
         const chips = document.querySelectorAll('.chip');
         const cards = document.querySelectorAll('.article-card');
+        const chipsContainer = document.querySelector('.chips-container');
         
         chips.forEach(chip => {
             chip.addEventListener('click', () => {
+                // Update active chip
                 chips.forEach(c => c.classList.remove('active'));
                 chip.classList.add('active');
                 
-                const filter = chip.dataset.filter;
+                // Scroll the active chip into view (centered)
+                chip.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
                 
+                // Filter articles
+                const filter = chip.dataset.filter;
                 cards.forEach(card => {
                     if (filter === 'all' || card.dataset.category === filter) {
                         card.classList.remove('hidden');
@@ -616,6 +621,45 @@
                     }
                 });
             });
+        });
+        
+        // Auto-highlight category chip on scroll based on visible articles
+        let scrollTimer = null;
+        const articlesList = document.querySelector('.articles-list');
+        
+        function updateActiveChipOnScroll() {
+            if (document.querySelector('.chip.active[data-filter]:not([data-filter="all"])')) {
+                // If user manually selected a filter, don't auto-switch
+                return;
+            }
+            const visibleCards = [...cards].filter(c => !c.classList.contains('hidden'));
+            const scrollTop = window.scrollY + 160; // offset for sticky header + chips
+            
+            let currentCategory = 'all';
+            for (const card of visibleCards) {
+                if (card.offsetTop <= scrollTop) {
+                    currentCategory = card.dataset.category;
+                }
+            }
+            
+            // Only auto-highlight when "All" filter is active
+            const activeFilter = document.querySelector('.chip.active');
+            if (activeFilter && activeFilter.dataset.filter === 'all') {
+                chips.forEach(c => {
+                    if (c.dataset.filter === currentCategory) {
+                        c.style.borderColor = 'var(--accent)';
+                        c.style.color = 'var(--accent-dark)';
+                    } else if (c.dataset.filter !== 'all') {
+                        c.style.borderColor = '';
+                        c.style.color = '';
+                    }
+                });
+            }
+        }
+        
+        window.addEventListener('scroll', () => {
+            clearTimeout(scrollTimer);
+            scrollTimer = setTimeout(updateActiveChipOnScroll, 100);
         });
     </script>
 </body>

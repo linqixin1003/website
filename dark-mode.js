@@ -224,24 +224,19 @@ class DarkModeToggle {
     }
 }
 
-// 在DOM加载前就应用主题，避免闪烁
-(function() {
-    const storageKey = 'theme-preference';
-    const getSystemTheme = () => {
-        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            return 'dark';
-        }
-        return 'light';
-    };
-    
-    const storedTheme = localStorage.getItem(storageKey);
-    const theme = storedTheme || getSystemTheme();
-    
-    document.documentElement.setAttribute('data-theme', theme);
-})();
+// 主题检测已移至 index.html <head> 内联脚本中，确保在 CSS 加载前执行
+// 这里不再重复设置 data-theme，避免闪屏
 
 // DOM加载完成后初始化
 document.addEventListener('DOMContentLoaded', () => {
+    // 移除 no-transition 类，恢复用户手动切换主题时的过渡动画
+    // 使用 requestAnimationFrame 确保首帧渲染完成后再移除
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+            document.documentElement.classList.remove('no-transition');
+        });
+    });
+    
     window.darkModeToggle = new DarkModeToggle();
     
     // 导出到全局供外部使用

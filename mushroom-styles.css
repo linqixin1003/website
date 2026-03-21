@@ -1,0 +1,349 @@
+/* MushroomAiSnap 专题样式 */
+
+:root {
+    --mushroom-primary: #2d6a4f;
+    --mushroom-secondary: #52b788;
+    --mushroom-accent: #d4a373;
+    --mushroom-danger: #e63946;
+    --mushroom-warning: #f4a261;
+    --mushroom-bg-light: #f1f8e9;
+    --mushroom-text-dark: #1b4332;
+    
+    --grad-mushroom: linear-gradient(135deg, #2d6a4f 0%, #40916c 100%);
+    --grad-warning: linear-gradient(135deg, #e63946 0%, #ff5e6c 100%);
+    
+    --radius-card: 24px;
+}
+
+/* 覆盖全局样式 */
+body {
+    background-image: 
+        radial-gradient(at 0% 0%, rgba(45, 106, 79, 0.05) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(212, 163, 115, 0.08) 0px, transparent 50%);
+}
+
+.mushroom-hero {
+    position: relative;
+    padding: 160px 0 100px;
+    overflow: hidden;
+    background: linear-gradient(to bottom, #fdfbf7, #ffffff);
+}
+
+.app-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(45, 106, 79, 0.1);
+    color: var(--mushroom-primary);
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 24px;
+    border: 1px solid rgba(45, 106, 79, 0.2);
+}
+
+.app-badge .status {
+    background: var(--mushroom-primary);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+}
+
+/* 按钮样式覆盖 */
+.btn-primary {
+    background: var(--grad-mushroom) !important;
+    box-shadow: 0 10px 25px rgba(45, 106, 79, 0.3) !important;
+}
+
+.btn-primary:hover {
+    box-shadow: 0 15px 35px rgba(45, 106, 79, 0.4) !important;
+    transform: translateY(-2px);
+}
+
+/* 手机模型内的界面样式 */
+.mushroom-interface {
+    background: #f8fafc;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.camera-viewfinder {
+    flex: 1;
+    position: relative;
+    background: #000;
+    overflow: hidden;
+    border-radius: 0 0 20px 20px;
+}
+
+.viewfinder-frame {
+    position: absolute;
+    inset: 20px;
+    border: 2px dashed rgba(255, 255, 255, 0.5);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mushroom-preview {
+    font-size: 4rem;
+    filter: drop-shadow(0 0 20px rgba(0,0,0,0.5));
+}
+
+.safety-overlay {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.safety-indicator {
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 0.8rem;
+    backdrop-filter: blur(10px);
+}
+
+.safety-indicator.danger {
+    background: rgba(230, 57, 70, 0.9);
+    color: white;
+    box-shadow: 0 4px 15px rgba(230, 57, 70, 0.4);
+}
+
+.identification-result {
+    position: absolute;
+    bottom: 30px;
+    left: 20px;
+    right: 20px;
+}
+
+.result-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 16px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+.result-card.danger {
+    border: 2px solid var(--mushroom-danger);
+}
+
+.result-card h4 {
+    color: #1f2937;
+    margin-bottom: 4px;
+    font-size: 1.1rem;
+}
+
+.result-card .danger-text {
+    color: var(--mushroom-danger);
+    font-weight: 800;
+    font-size: 0.9rem;
+    margin-bottom: 2px;
+}
+
+/* Feature Cards 样式增强 */
+.safety-card {
+    background: white;
+    border-radius: var(--radius-card);
+    padding: 30px;
+    border: 1px solid rgba(0,0,0,0.05);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.safety-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(45, 106, 79, 0.1);
+    border-color: rgba(45, 106, 79, 0.2);
+}
+
+.safety-card .feature-icon {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    background: var(--mushroom-bg-light);
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px;
+}
+
+.safety-card h3 {
+    color: var(--mushroom-text-dark);
+    margin-bottom: 12px;
+    font-size: 1.25rem;
+}
+
+.safety-card p {
+    color: #4b5563;
+    line-height: 1.6;
+}
+
+/* Safety Section 样式 */
+.safety-section {
+    background: linear-gradient(135deg, #1b4332 0%, #081c15 100%);
+    color: white;
+    padding: 80px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.safety-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px);
+    background-size: 30px 30px;
+    opacity: 0.3;
+}
+
+.safety-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+}
+
+.safety-header {
+    max-width: 700px;
+    margin: 0 auto 60px;
+}
+
+.safety-header h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    background: linear-gradient(to right, #ffffff, #a7f3d0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.safety-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.safety-feature {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 30px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.safety-feature:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.safety-feature .safety-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.safety-feature h3 {
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+    color: #a7f3d0;
+}
+
+/* 蘑菇占位图样式 */
+.mushroom-placeholder {
+    background: #e9ecef;
+    border-radius: 20px;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.mushroom-collection {
+    display: flex;
+    gap: 20px;
+    align-items: flex-end;
+}
+
+.mushroom-item {
+    font-size: 4rem;
+    transition: transform 0.3s ease;
+}
+
+.mushroom-item:hover {
+    transform: scale(1.1) translateY(-10px);
+}
+
+.mushroom-item.safe { font-size: 3rem; }
+.mushroom-item.warning { font-size: 4rem; }
+.mushroom-item.danger { font-size: 5rem; filter: drop-shadow(0 0 10px rgba(230, 57, 70, 0.5)); }
+
+/* Contact Section 优化 */
+.mushroom-contact-container {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.mushroom-contact-btn {
+    display: inline-block;
+    background: linear-gradient(135deg, #8B4513, #A0522D);
+    color: white;
+    text-decoration: none;
+    padding: 18px 50px;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(139, 69, 19, 0.4);
+    margin-top: 30px;
+}
+
+.mushroom-contact-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(139, 69, 19, 0.5);
+}
+
+.mushroom-email-info {
+    margin-top: 25px;
+    color: #666;
+    font-size: 0.95rem;
+}
+
+.mushroom-email-info strong {
+    user-select: all;
+    cursor: text;
+    background: #f5f5f5;
+    padding: 5px 10px;
+    border-radius: 4px;
+    color: var(--mushroom-primary);
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .mushroom-hero {
+        padding: 120px 0 60px;
+    }
+    
+    .safety-header h2 {
+        font-size: 2rem;
+    }
+    
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+}

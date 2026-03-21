@@ -16,6 +16,10 @@ const APP_STORE_LINKS = {
     mushroom: {
         ios: 'https://apps.apple.com/us/app/mushroom-identify/id123456789', // 待更新实际链接
         android: 'https://play.google.com/store/apps/details?id=com.mushroom.ai.snap'
+    },
+    stillalive: {
+        ios: '#', // iOS版本即将上线
+        android: 'https://play.google.com/store/apps/details?id=com.lingjue.live'
     }
 };
 

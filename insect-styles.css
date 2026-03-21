@@ -1,0 +1,382 @@
+/* InsectAiSnap 专题样式 */
+
+:root {
+    --insect-primary: #e67e22;
+    --insect-secondary: #27ae60;
+    --insect-accent: #9b59b6;
+    --insect-warning: #f1c40f;
+    --insect-bg-light: #fffbf0;
+    --insect-text-dark: #d35400;
+    
+    --grad-insect: linear-gradient(135deg, #e67e22 0%, #f39c12 100%);
+    --grad-diversity: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    
+    --radius-card: 24px;
+}
+
+/* 覆盖全局样式 */
+body {
+    background-image: 
+        radial-gradient(at 0% 0%, rgba(230, 126, 34, 0.05) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(39, 174, 96, 0.05) 0px, transparent 50%);
+}
+
+.insect-hero {
+    position: relative;
+    padding: 160px 0 100px;
+    overflow: hidden;
+    background: linear-gradient(to bottom, #fffbf0, #ffffff);
+}
+
+.app-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(230, 126, 34, 0.1);
+    color: var(--insect-primary);
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 24px;
+    border: 1px solid rgba(230, 126, 34, 0.2);
+}
+
+.app-badge .status {
+    background: var(--insect-primary);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+}
+
+/* 按钮样式覆盖 */
+.btn-primary {
+    background: var(--grad-insect) !important;
+    box-shadow: 0 10px 25px rgba(230, 126, 34, 0.3) !important;
+}
+
+.btn-primary:hover {
+    box-shadow: 0 15px 35px rgba(230, 126, 34, 0.4) !important;
+    transform: translateY(-2px);
+}
+
+/* 手机模型内的界面样式 */
+.insect-interface {
+    background: #f8fafc;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.camera-viewfinder {
+    flex: 1;
+    position: relative;
+    background: #000;
+    overflow: hidden;
+    border-radius: 0 0 20px 20px;
+}
+
+.viewfinder-frame {
+    position: absolute;
+    inset: 20px;
+    border: 2px dashed rgba(255, 255, 255, 0.5);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.insect-preview {
+    font-size: 5rem;
+    filter: drop-shadow(0 0 20px rgba(0,0,0,0.5));
+    transform: rotate(-15deg);
+}
+
+/* 识别覆盖层 - 身体部位标注 */
+.identification-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.body-parts {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.part {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--insect-text-dark);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.part::before {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: white;
+    border-radius: 50%;
+    border: 2px solid var(--insect-primary);
+}
+
+.part.head { top: 35%; left: 30%; }
+.part.head::before { top: 100%; left: 50%; transform: translate(-50%, 5px); }
+
+.part.thorax { top: 45%; right: 25%; }
+.part.thorax::before { top: 50%; right: 100%; transform: translate(-5px, -50%); }
+
+.part.abdomen { bottom: 35%; left: 40%; }
+.part.abdomen::before { bottom: 100%; left: 50%; transform: translate(-50%, -5px); }
+
+
+.identification-result {
+    position: absolute;
+    bottom: 30px;
+    left: 20px;
+    right: 20px;
+}
+
+.result-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 16px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    text-align: left;
+    border-left: 4px solid var(--insect-primary);
+}
+
+.result-card h4 {
+    color: #1f2937;
+    margin-bottom: 4px;
+    font-size: 1.1rem;
+}
+
+.result-card p {
+    font-size: 0.9rem;
+    color: #4b5563;
+    margin-bottom: 2px;
+}
+
+/* Feature Cards 样式增强 */
+.feature-card {
+    background: white;
+    border-radius: var(--radius-card);
+    padding: 30px;
+    border: 1px solid rgba(0,0,0,0.05);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(230, 126, 34, 0.1);
+    border-color: rgba(230, 126, 34, 0.2);
+}
+
+.feature-card .feature-icon {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    background: var(--insect-bg-light);
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px;
+}
+
+.feature-card h3 {
+    color: var(--insect-text-dark);
+    margin-bottom: 12px;
+    font-size: 1.25rem;
+}
+
+.feature-card p {
+    color: #4b5563;
+    line-height: 1.6;
+}
+
+/* Knowledge Center Button */
+.knowledge-btn-container {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.knowledge-btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #2c7be5, #27ae60);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: transform 0.2s ease;
+}
+
+.knowledge-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(44, 123, 229, 0.3);
+}
+
+/* Diversity Section (多样性展示) */
+.diversity-section {
+    background: var(--insect-bg-light);
+    padding: 80px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.diversity-content {
+    text-align: center;
+}
+
+.diversity-header {
+    max-width: 700px;
+    margin: 0 auto 60px;
+}
+
+.diversity-header h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: var(--insect-text-dark);
+}
+
+.diversity-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.diversity-stat {
+    background: white;
+    padding: 30px 20px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+}
+
+.diversity-stat:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(230, 126, 34, 0.15);
+}
+
+.diversity-stat .stat-icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    display: inline-block;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+}
+
+.diversity-stat h3 {
+    color: #2c3e50;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.diversity-stat p {
+    color: var(--insect-primary);
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+/* About Section 占位图 */
+.insect-placeholder {
+    background: #fdf2e9;
+    border-radius: 20px;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.insect-collection {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+
+.insect-item {
+    font-size: 4rem;
+    background: white;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.insect-item:hover {
+    transform: scale(1.1) rotate(10deg);
+}
+
+/* Contact Section 优化 */
+.insect-contact-container {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.insect-contact-btn {
+    display: inline-block;
+    background: linear-gradient(135deg, #e67e22, #f39c12);
+    color: white;
+    text-decoration: none;
+    padding: 18px 50px;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(230, 126, 34, 0.4);
+    margin-top: 30px;
+}
+
+.insect-contact-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(230, 126, 34, 0.5);
+}
+
+.insect-email-info {
+    margin-top: 25px;
+    color: #666;
+    font-size: 0.95rem;
+}
+
+.insect-email-info strong {
+    user-select: all;
+    cursor: text;
+    background: #fff3e0;
+    padding: 5px 10px;
+    border-radius: 4px;
+    color: var(--insect-text-dark);
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .insect-hero {
+        padding: 120px 0 60px;
+    }
+    
+    .diversity-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+}

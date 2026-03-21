@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- 防止闪屏：必须在所有外部 CSS 之前执行 -->
+    <script>
+        (function() {
+            var storageKey = 'theme-preference';
+            var stored = null;
+            try { stored = localStorage.getItem(storageKey); } catch(e) {}
+            var theme = stored || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            document.documentElement.setAttribute('data-theme', theme);
+            document.documentElement.classList.add('no-transition');
+        })();
+    </script>
+    <style id="critical-anti-flash">
+        html[data-theme="light"] body, body { background-color: #ffffff; min-height: 100vh; }
+        html[data-theme="dark"] body { background-color: #0f172a; min-height: 100vh; }
+        html.no-transition, html.no-transition *, html.no-transition *::before, html.no-transition *::after {
+            transition: none !important;
+        }
+    </style>
+    
+    <title>Still Alive? - Personal Safety Guardian | Dead Man's Switch App</title>
+    <meta name="description" content="Still Alive? is a privacy-first 'Dead Man's Switch' safety app for people living alone. Daily check-ins with automatic emergency alerts to trusted contacts. No GPS tracking, no data sharing.">
+    <meta name="keywords" content="still alive app, dead man's switch, safety app for living alone, emergency alert app, check-in app, elderly safety, solo traveler safety, personal safety guardian">
+    <meta name="author" content="Lingjue LLC">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://birdid.net/still-alive.html">
+    
+    <!-- Hreflang - 仅英文页面 -->
+    <link rel="alternate" hreflang="en" href="https://birdid.net/still-alive.html" />
+    <link rel="alternate" hreflang="x-default" href="https://birdid.net/still-alive.html" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://birdid.net/still-alive.html">
+    <meta property="og:title" content="Still Alive? - Personal Safety Guardian for People Living Alone">
+    <meta property="og:description" content="Privacy-first 'Dead Man's Switch' app. Daily check-ins and automatic emergency alerts to trusted contacts. No GPS tracking.">
+    <meta property="og:image" content="https://birdid.net/images/still-alive-og.jpg">
+
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="dark-mode.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- GEO Optimized Schema.org Structured Data -->
+    
+    <!-- BreadcrumbList Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://birdid.net/"},
+        {"@type": "ListItem", "position": 2, "name": "Apps", "item": "https://birdid.net/#apps"},
+        {"@type": "ListItem", "position": 3, "name": "Still Alive?", "item": "https://birdid.net/still-alive.html"}
+      ]
+    }
+    </script>
+    
+    <!-- SoftwareApplication Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Still Alive?",
+      "alternateName": "Dead Man's Switch Safety App",
+      "description": "Still Alive? is a privacy-first personal safety app for people living alone. Daily check-in reminders with automatic emergency alerts to trusted contacts if you don't respond. No GPS tracking, no location sharing, no data collection.",
+      "applicationCategory": "HealthApplication",
+      "applicationSubCategory": "Personal Safety",
+      "operatingSystem": "Android 8.0+",
+      "installUrl": "https://play.google.com/store/apps/details?id=com.lingjue.live",
+      "softwareVersion": "1.0",
+      "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.6",
+        "ratingCount": "67",
+        "bestRating": "5",
+        "worstRating": "1"
+      },
+      "author": {"@type": "Organization", "name": "Lingjue LLC"},
+      "featureList": ["Daily safety check-in reminders", "Automatic alerts to 1-5 emergency contacts", "Customizable check-in schedules", "Privacy-first - no GPS tracking", "Works without constant internet", "24/7 monitoring system", "Simple one-tap confirmation"]
+    }
+    </script>
+    
+    <!-- FAQPage Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type": "Question", "name": "What is a Dead Man's Switch app?", "acceptedAnswer": {"@type": "Answer", "text": "A Dead Man's Switch app like Still Alive? sends automatic alerts to your emergency contacts if you don't check in within a specified time. It's designed for people living alone, solo travelers, and anyone who wants peace of mind knowing someone will be notified if something happens."}},
+        {"@type": "Question", "name": "Does Still Alive track my location?", "acceptedAnswer": {"@type": "Answer", "text": "No! Still Alive? is designed with privacy first. We do NOT track your GPS location, do NOT share your data with third parties, and do NOT collect personal information. The app only sends a simple 'I'm okay' or 'Alert needed' signal."}},
+        {"@type": "Question", "name": "Who is Still Alive for?", "acceptedAnswer": {"@type": "Answer", "text": "Still Alive? is perfect for: seniors living alone, remote workers, solo travelers, outdoor adventurers, people with medical conditions, and anyone who wants their loved ones to know they're safe without constant phone calls."}},
+        {"@type": "Question", "name": "How many emergency contacts can I add?", "acceptedAnswer": {"@type": "Answer", "text": "You can add 1-5 trusted emergency contacts. Each contact will receive an alert if you miss your check-in. You can customize which contacts are notified and in what order."}},
+        {"@type": "Question", "name": "What happens if I forget to check in?", "acceptedAnswer": {"@type": "Answer", "text": "If you miss your check-in, Still Alive? sends you multiple reminders. If you still don't respond within the grace period you set, the app automatically sends an alert to your emergency contacts with your pre-written message."}},
+        {"@type": "Question", "name": "Is Still Alive free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes! Still Alive? is free to download and use. All core safety features are included at no cost. We believe everyone deserves peace of mind."}}
+      ]
+    }
+    </script>
+    
+    <style>
+        :root {
+            --primary: #FF6B4A;
+            --primary-dark: #e55a3b;
+            --secondary: #FF8E75;
+            --text-main: #1f1f1f;
+            --text-muted: #666;
+            --bg-light: #f8f9fa;
+            --card-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            --card-hover-shadow: 0 20px 40px rgba(0,0,0,0.12);
+        }
+
+        .app-hero {
+            background: linear-gradient(135deg, #FF6B4A 0%, #FF8E75 100%);
+            color: #1f1f1f;
+            padding: 120px 0 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .app-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.15) 0%, transparent 60%),
+                        radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        
+        .app-hero h1 {
+            font-size: 4rem;
+            margin-bottom: 24px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            text-shadow: 0 2px 10px rgba(255, 255, 255, 0.3);
+        }
+        
+        .app-hero p {
+            font-size: 1.35rem;
+            max-width: 640px;
+            margin: 0 auto 48px;
+            opacity: 0.95;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        .download-buttons {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            margin-top: 40px;
+            align-items: center;
+        }
+
+        .btn-store {
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+        }
+        
+        .btn-store:hover {
+            transform: translateY(-4px) scale(1.02);
+            filter: drop-shadow(0 12px 16px rgba(0,0,0,0.15));
+        }
+
+        .btn-store img {
+            height: 54px;
+        }
+
+        .features-section {
+            padding: 100px 0;
+            background: var(--bg-light);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .feature-item {
+            text-align: left;
+            padding: 40px 32px;
+            background: #ffffff;
+            border-radius: 24px;
+            border: 1px solid rgba(0,0,0,0.04);
+            box-shadow: var(--card-shadow);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--card-hover-shadow);
+            border-color: rgba(255, 107, 74, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 3.5rem;
+            margin-bottom: 24px;
+            display: inline-block;
+            background: #fff5f2;
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
+            text-align: center;
+            border-radius: 20px;
+        }
+
+        .feature-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+            color: var(--text-main);
+            font-weight: 700;
+        }
+
+        .feature-item p {
+            color: var(--text-muted);
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        .support-section {
+            padding: 100px 0;
+            background: linear-gradient(to bottom, #fff5f2, #ffffff);
+        }
+
+        .support-form {
+            max-width: 640px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 60px 50px;
+            border-radius: 32px;
+            box-shadow: 0 20px 60px rgba(255, 107, 74, 0.08);
+            border: 1px solid rgba(255, 107, 74, 0.1);
+        }
+
+        .mobile-preview-section {
+            padding: 100px 0;
+            background: #ffffff;
+        }
+
+        .mobile-preview-card {
+            max-width: 960px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 32px;
+            padding: 60px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.06);
+            border: 1px solid rgba(0,0,0,0.03);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .mobile-preview-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, #FF6B4A, #FF8E75);
+        }
+
+        .mobile-preview-card h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--text-main);
+        }
+
+        .mobile-preview-card p {
+            max-width: 600px;
+            margin: 0 auto;
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+
+        .mobile-preview-actions {
+            margin-top: 40px;
+        }
+
+        .mobile-preview-actions a {
+            display: inline-block;
+            background: linear-gradient(135deg, #FF6B4A, #FF8E75);
+            color: #1f1f1f;
+            text-decoration: none;
+            padding: 16px 42px;
+            border-radius: 999px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(255, 107, 74, 0.35);
+        }
+
+        .mobile-preview-actions a:hover,
+        .mobile-preview-actions a:focus {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(255, 107, 74, 0.45);
+        }
+
+        .privacy-section {
+            padding: 100px 0;
+            background: #fafafa;
+        }
+
+        .privacy-content {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 60px;
+            border-radius: 24px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .privacy-content h3 {
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .privacy-content ul {
+            padding-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        .privacy-content li {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" style="text-decoration: none; color: inherit;">
+                    <h2>AiSnap Suite</h2>
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#mobile-preview">Mobile</a></li>
+                <li><a href="#support">Support</a></li>
+                <li><a href="#privacy">Privacy</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="app-hero">
+        <div class="container">
+            <div class="hero-icon" style="font-size: 5rem; margin-bottom: 20px;">❤️</div>
+            <h1>Still Alive?</h1>
+            <p>Your personal "Dead Man's Switch" safety guardian. Daily check-ins, automatic emergency alerts, and peace of mind for you and your loved ones.</p>
+            
+            <div class="download-buttons">
+                <a href="#" class="btn-store" style="opacity: 0.5; pointer-events: none;">
+                    <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Coming Soon to App Store">
+                </a>
+                <a href="https://play.google.com/store/apps/details?id=com.lingjue.live" class="btn-store" target="_blank">
+                    <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" style="height: 50px;">
+                </a>
+            </div>
+            <p style="margin-top: 15px; font-size: 0.9rem; opacity: 0.8;">📱 Android available now! iOS coming soon</p>
+        </div>
+    </header>
+
+    <!-- Features -->
+    <section id="features" class="features-section">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 20px;">Key Features</h2>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">⏰</div>
+                    <h3>Daily Check-in</h3>
+                    <p>One-tap daily check-in to confirm you are safe. Simple, fast, and reliable.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🚨</div>
+                    <h3>Smart Monitoring</h3>
+                    <p>Automatically detects if you miss a check-in and triggers the emergency protocol.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📨</div>
+                    <h3>Emergency Alerts</h3>
+                    <p>Sends email alerts to up to 5 trusted contacts when you fail to check in.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Privacy First</h3>
+                    <p>No account registration required. Your data is encrypted and stored locally.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">⚙️</div>
+                    <h3>Custom Tolerance</h3>
+                    <p>Set your preferred tolerance period from 1-7 days based on your lifestyle needs.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">👥</div>
+                    <h3>Multiple Contacts</h3>
+                    <p>Add up to 5 emergency contacts. All will be notified simultaneously in emergencies.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section style="padding: 80px 0; background: var(--bg-secondary);">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 50px;">How It Works</h2>
+            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; max-width: 900px; margin: 0 auto;">
+                <div style="text-align: center; flex: 1; min-width: 200px;">
+                    <div style="font-size: 3rem; margin-bottom: 15px;">1️⃣</div>
+                    <h3 style="margin-bottom: 10px;">Set Up</h3>
+                    <p>Add your emergency contacts and set your preferred check-in tolerance (1-7 days)</p>
+                </div>
+                <div style="text-align: center; flex: 1; min-width: 200px;">
+                    <div style="font-size: 3rem; margin-bottom: 15px;">2️⃣</div>
+                    <h3 style="margin-bottom: 10px;">Check In Daily</h3>
+                    <p>Simply tap the check-in button once a day to let your loved ones know you're safe</p>
+                </div>
+                <div style="text-align: center; flex: 1; min-width: 200px;">
+                    <div style="font-size: 3rem; margin-bottom: 15px;">3️⃣</div>
+                    <h3 style="margin-bottom: 10px;">Stay Protected</h3>
+                    <p>If you miss check-ins, your contacts are automatically notified via email</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mobile Preview -->
+    <section id="mobile-preview" class="mobile-preview-section">
+        <div class="container">
+            <div class="mobile-preview-card">
+                <h2>Mobile Safety Tips Preview</h2>
+                <p>Explore a mobile-first tips feed inspired by the app UI, with curated guidance and quick links to trusted resources.</p>
+                <div class="mobile-preview-actions">
+                    <a href="still-alive-mobile.html" target="_blank" rel="noopener">Open Mobile Page</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Support Form -->
+    <section id="support" class="support-section">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 40px;">App Support</h2>
+            <div class="support-form">
+                <p style="text-align: center; margin-bottom: 30px;">Need help? Have a question? Contact us directly:</p>
+                
+                <div style="text-align: center; padding: 40px 20px;">
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=lingjuetech@gmail.com&su=[Still Alive?] Support Request" 
+                       target="_blank"
+                       style="display: inline-block; background: linear-gradient(135deg, #FF6B4A, #FF8E75); color: #1f1f1f; text-decoration: none; padding: 18px 50px; border-radius: 50px; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 8px 25px rgba(255, 107, 74, 0.4);"
+                       onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 12px 35px rgba(255, 107, 74, 0.5)';"
+                       onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 25px rgba(255, 107, 74, 0.4)';"
+                       onfocus="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 12px 35px rgba(255, 107, 74, 0.5)';"
+                       onblur="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 25px rgba(255, 107, 74, 0.4)';">
+                        📧 Send Email via Gmail
+                    </a>
+                    <p style="margin-top: 25px; color: #666; font-size: 0.95rem;">
+                        Click to open Gmail compose window<br>
+                        Email: <strong style="user-select: all; cursor: text; background: #f5f5f5; padding: 5px 10px; border-radius: 4px;">lingjuetech@gmail.com</strong>
+                    </p>
+                </div>
+                
+                <div style="margin-top: 30px; padding: 20px; background: var(--bg-secondary); border-radius: 12px;">
+                    <h4 style="margin-bottom: 15px;">📋 When contacting us, please include:</h4>
+                    <ul style="text-align: left; line-height: 1.8;">
+                        <li>Your device model (e.g., Samsung Galaxy S24)</li>
+                        <li>App version (found in Settings)</li>
+                        <li>Description of your issue or question</li>
+                        <li>Screenshots if applicable</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Privacy Policy -->
+    <section id="privacy" class="privacy-section">
+        <div class="container">
+            <div class="privacy-content">
+                <h2>Privacy Policy</h2>
+                <p>Last updated: January 20, 2026</p>
+                
+                <h3>1. Introduction</h3>
+                <p>Still Alive? ("we", "our", or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your information when you use our mobile application.</p>
+
+                <h3>2. Data We Collect</h3>
+                <ul>
+                    <li><strong>Device Information:</strong> We collect device identifiers to ensure the app functions correctly on your specific device.</li>
+                    <li><strong>Check-in Data:</strong> We store your check-in history locally on your device and sync status with our secure server.</li>
+                    <li><strong>Emergency Contacts:</strong> Information about your emergency contacts (name, email, phone) is stored securely to send alerts when needed.</li>
+                </ul>
+
+                <h3>3. How We Use Your Data</h3>
+                <p>We use your data solely for the purpose of providing the safety check-in service:</p>
+                <ul>
+                    <li>To monitor your check-in status.</li>
+                    <li>To send notifications to you (reminders).</li>
+                    <li>To send emergency alerts to your contacts if you fail to check in.</li>
+                </ul>
+
+                <h3>4. Data Security</h3>
+                <p>We implement industry-standard security measures to protect your data. Your personal information is encrypted and we do not sell your data to third parties.</p>
+
+                <h3>5. Contact Us</h3>
+                <p>If you have any questions about this Privacy Policy, please contact us at <a href="mailto:lingjuetech@gmail.com">lingjuetech@gmail.com</a></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Still Alive?</h3>
+                    <p>Your Personal Safety Guardian</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Email: <a href="https://mail.google.com/mail/?view=cm&fs=1&to=lingjuetech@gmail.com&su=[Still Alive?] Support" target="_blank" style="color: inherit;">lingjuetech@gmail.com</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Still Alive? All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="dark-mode.js"></script>
+</body>
+</html>

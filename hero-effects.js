@@ -13,12 +13,38 @@ class ParticleSystem {
         this.particles = [];
         this.particleCount = 50;
         this.colors = ['#667eea', '#764ba2', '#4A90E2', '#8B7355'];
+        this.isAnimating = true;
+        this.animationId = null;
         
         this.resize();
         this.init();
         this.animate();
         
         window.addEventListener('resize', () => this.resize());
+        
+        // 页面不可见时暂停动画以节省资源
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                this.pause();
+            } else {
+                this.resume();
+            }
+        });
+    }
+    
+    pause() {
+        this.isAnimating = false;
+        if (this.animationId) {
+            cancelAnimationFrame(this.animationId);
+            this.animationId = null;
+        }
+    }
+    
+    resume() {
+        if (!this.isAnimating) {
+            this.isAnimating = true;
+            this.animate();
+        }
     }
     
     resize() {
@@ -42,6 +68,8 @@ class ParticleSystem {
     }
     
     animate() {
+        if (!this.isAnimating) return;
+        
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         
         this.particles.forEach((particle, index) => {
@@ -79,7 +107,7 @@ class ParticleSystem {
         });
         
         this.ctx.globalAlpha = 1;
-        requestAnimationFrame(() => this.animate());
+        this.animationId = requestAnimationFrame(() => this.animate());
     }
 }
 

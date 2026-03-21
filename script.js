@@ -6,6 +6,7 @@ const languages = {
         code: 'EN',
         translations: {
             'nav.home': 'Home',
+            'nav.apps': 'Apps',
             'nav.features': 'Features',
             'nav.about': 'About',
             'nav.contact': 'Contact',
@@ -31,6 +32,7 @@ const languages = {
             'features.info.desc': 'Access extensive ornithological information and scientific knowledge repositories anytime, anywhere',
             'features.knowledge.title': 'Ornithological Insights',
             'features.knowledge.desc': 'Explore comprehensive birdwatching guides, scientific discoveries, avian care, ecological relationships, and cultural significance',
+            'apps.stillalive.desc': 'Your personal safety guardian with daily check-ins and automatic emergency alerts for people living alone.',
             'about.title': 'About BirdAiSnap',
             'about.desc1': 'BirdAiSnap is an intelligent recognition application designed specifically for avian enthusiasts and nature explorers. We are dedicated to helping users develop deeper understanding and appreciation for the magnificent birds in nature through cutting-edge AI technology.',
             'about.desc2': 'Whether you are a professional ornithologist or an inquisitive nature enthusiast, BirdAiSnap delivers precise and rapid bird identification services tailored to your needs.',
@@ -62,6 +64,7 @@ const languages = {
             'footer.support.privacy': 'Privacy Policy',
             'footer.contact': 'Contact Us',
             'footer.contact.email': 'Email Consultation',
+            'footer.apps.stillalive': 'Still Alive?',
             'footer.copyright': '© 2024 BirdAiSnap. All rights reserved',
             'knowledge.hero.title': 'Bird Knowledge Center',
             'knowledge.hero.description': 'Explore the fascinating world of birds through comprehensive knowledge resources',
@@ -131,6 +134,7 @@ const languages = {
         code: 'DE',
         translations: {
             'nav.home': 'Home',
+            'nav.apps': 'Apps',
             'nav.features': 'Features',
             'nav.about': 'About',
             'nav.contact': 'Contact',
@@ -194,6 +198,7 @@ const languages = {
         translations: {
             // 使用英文内容作为基础
             'nav.home': 'Home',
+            'nav.apps': 'Apps',
             'nav.features': 'Features',
             'nav.about': 'About',
             'nav.contact': 'Contact',
@@ -251,6 +256,7 @@ const languages = {
         translations: {
             // 使用英文内容作为基础
             'nav.home': 'Home',
+            'nav.apps': 'Apps',
             'nav.features': 'Features',
             'nav.about': 'About',
             'nav.contact': 'Contact',
@@ -308,6 +314,7 @@ const languages = {
         translations: {
             // 使用英文内容作为基础
             'nav.home': 'Home',
+            'nav.apps': 'Apps',
             'nav.features': 'Features',
             'nav.about': 'About',
             'nav.contact': 'Contact',
@@ -360,11 +367,12 @@ const languages = {
     },
     'ja': { 
         name: '日本語', 
-        flag: '🇯��', 
+        flag: '🇯🇵', 
         code: 'JP',
         translations: {
             // 使用英文内容作为基础
             'nav.home': 'Home',
+            'nav.apps': 'Apps',
             'nav.features': 'Features',
             'nav.about': 'About',
             'nav.contact': 'Contact',
@@ -422,6 +430,7 @@ const languages = {
         translations: {
             // 使用英文内容作为基础
             'nav.home': 'Home',
+            'nav.apps': 'Apps',
             'nav.features': 'Features',
             'nav.about': 'About',
             'nav.contact': 'Contact',
@@ -479,6 +488,7 @@ const languages = {
         translations: {
             // 使用英文内容作为基础
             'nav.home': 'Home',
+            'nav.apps': 'Apps',
             'nav.features': 'Features',
             'nav.about': 'About',
             'nav.contact': 'Contact',
@@ -535,6 +545,7 @@ const languages = {
         code: 'ZH',
         translations: {
             'nav.home': '首页',
+            'nav.apps': '应用',
             'nav.features': '功能',
             'nav.about': '关于',
             'nav.contact': '联系',
@@ -557,6 +568,7 @@ const languages = {
             'features.info.desc': '随时随地访问丰富的鸟类学信息和科学知识库',
             'features.knowledge.title': '鸟类学见解',
             'features.knowledge.desc': '探索全面的观鸟指南、科学发现、鸟类护理、生态关系和文化意义',
+            'apps.stillalive.desc': '您的个人安全守护者，为独居人群提供每日签到和自动紧急警报功能。',
             'about.title': '关于BirdAiSnap',
             'about.desc1': 'BirdAiSnap是专为鸟类爱好者和自然探索者设计的智能识别应用。我们致力于通过前沿AI技术帮助用户更深入地理解和欣赏自然界中的美丽鸟类。',
             'about.desc2': '无论您是专业鸟类学家还是好奇的自然爱好者，BirdAiSnap都能为您提供精确快速的鸟类识别服务。',
@@ -582,6 +594,7 @@ const languages = {
             'footer.support.privacy': '隐私政策',
             'footer.contact': '联系我们',
             'footer.contact.email': '邮件咨询',
+            'footer.apps.stillalive': '活着么？',
             'footer.copyright': '© 2024 BirdAiSnap. 版权所有',
             // RockAiSnap 相关翻译
             'rock.nav.home': '首页',
@@ -636,6 +649,7 @@ const languages = {
         code: 'RU',
         translations: {
             'nav.home': 'Главная',
+            'nav.apps': 'Приложения',
             'nav.features': 'Функции',
             'nav.about': 'О нас',
             'nav.contact': 'Контакты',
@@ -879,9 +893,20 @@ function switchLanguage(langCode) {
     console.log('切换到语言:', languages[langCode].name);
 }
 
-// 页面加载完成后初始化
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('DOM loaded, creating language dropdown...');
+// 防止重复初始化的标志
+let isInitialized = false;
+
+// 统一初始化函数
+function initializePage() {
+    if (isInitialized) {
+        console.log('Page already initialized, skipping...');
+        return;
+    }
+    isInitialized = true;
+    
+    // 防闪屏逻辑已移至index.html内联脚本（visibility方案）
+    
+    console.log('DOM loaded, initializing page...');
     
     // 检查 URL 参数中是否有语言设置
     const urlParams = new URLSearchParams(window.location.search);
@@ -891,7 +916,7 @@ document.addEventListener('DOMContentLoaded', function() {
         localStorage.setItem('selectedLanguage', urlLang);
     }
     
-    // 立即创建语言下拉菜单，不使用延迟
+    // 创建语言下拉菜单
     if (document.querySelector('.language-switcher')) {
         createLanguageDropdown();
     }
@@ -899,7 +924,66 @@ document.addEventListener('DOMContentLoaded', function() {
     // 初始化时应用当前语言
     translatePage(currentLang);
     
-});
+    // 为应用卡片添加点击处理
+    setupAppCardHandlers();
+    
+    // 初始化现代 UI 交互
+    initModernInteractions();
+    
+    console.log('Page initialization complete');
+}
+
+/**
+ * 初始化现代 UI 交互
+ */
+function initModernInteractions() {
+    // 1. 导航栏滚动效果
+    const navbar = document.querySelector('.navbar');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+
+    // 2. 移动端菜单切换
+    const navToggle = document.querySelector('.nav-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+    if (navToggle && navMenu) {
+        navToggle.addEventListener('click', () => {
+            navToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // 点击菜单项后关闭菜单
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+    }
+
+    // 3. 滚动显示动画已禁用 - 防止闪烁
+    // 所有元素直接可见，不使用 reveal-hidden/reveal-visible
+
+    // 4. 磁性按钮效果已禁用 - 防止闪烁
+    /*
+    const magneticBtns = document.querySelectorAll('.btn.enhanced');
+    magneticBtns.forEach(btn => {
+        // ... (removed to prevent flicker)
+        });
+    */
+
+    // 5. 3D 应用图标悬停已禁用 - 防止闪烁
+    /*
+    const appIcons = document.querySelectorAll('.apps-showcase.enhanced .app-icon');
+    appIcons.forEach(icon => {
+        // ... (removed to prevent flicker)
+        });
+    */
+}
 
 // 为链接添加语言参数的函数
 function addLanguageParam(event, linkElement) {
@@ -1001,7 +1085,7 @@ function handleArticleLanguageRedirect() {
     }
 }
 
-// 安全的页面加载处理
+// 安全的页面加载处理 - 仅用于文章页面
 function safeInitialize() {
     try {
         handleArticleLanguageRedirect();
@@ -1010,47 +1094,16 @@ function safeInitialize() {
     }
 }
 
-// 初始化页面语言
-function initializeLanguage() {
-    try {
-        // 如果是主页，使用保存的语言但不跳转
-        if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
-            const savedLang = localStorage.getItem('selectedLanguage') || 'en';
-            currentLang = savedLang;
-            
-            // 更新当前语言显示
-            const currentLangElement = document.getElementById('currentLang');
-            if (currentLangElement) {
-                currentLangElement.textContent = languages[currentLang].code;
-            }
-            
-            // 翻译页面内容
-            translatePage(currentLang);
-            
-            console.log('页面初始化语言:', languages[currentLang].name);
-        }
-    } catch (error) {
-        console.log('Language initialization error:', error);
-    }
-}
-
-// 安全的DOM加载处理
-function safeDOMContentLoaded() {
-    try {
-        safeInitialize();
-        createLanguageDropdown();
-        initializeLanguage();
-    } catch (error) {
-        console.log('DOM content loaded error:', error);
-    }
-}
-
-// 在页面加载时检查语言跳转
+// 在页面加载时执行初始化
 if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', safeDOMContentLoaded);
+    document.addEventListener('DOMContentLoaded', function() {
+        safeInitialize();
+        initializePage();
+    });
 } else {
-    // 延迟执行以确保DOM完全加载
-    setTimeout(safeDOMContentLoaded, 100);
+    // DOM已加载完成，直接执行
+    safeInitialize();
+    initializePage();
 }
 
 // ==================== 应用卡片点击处理 ====================
@@ -1059,7 +1112,7 @@ if (document.readyState === 'loading') {
  * - 点击下载按钮 → 跳转应用商店
  * - 点击卡片其他区域 → 跳转详情页
  */
-document.addEventListener('DOMContentLoaded', function() {
+function setupAppCardHandlers() {
     // 为所有应用卡片添加点击处理
     document.querySelectorAll('.app-card[data-detail-url]').forEach(card => {
         const detailUrl = card.getAttribute('data-detail-url');
@@ -1089,4 +1142,4 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     console.log('App card click handlers initialized');
-});
+}

@@ -30,11 +30,15 @@
     z-index: -1;
 }
 
+/* Hover effect removed to prevent flicker */
+/*
 .app-card:hover::before {
     opacity: 1;
 }
+*/
 
-/* 3D倾斜效果 */
+/* 3D倾斜效果 - 已移除hover防止闪烁 */
+/*
 .app-card:hover {
     transform: translateY(-20px) scale(1.03);
     box-shadow: 
@@ -43,6 +47,7 @@
         0 0 0 1px rgba(102, 126, 234, 0.1);
     z-index: 10;
 }
+*/
 
 /* ==================== 光泽效果层 ==================== */
 .app-card::after {
@@ -64,9 +69,11 @@
     z-index: 1;
 }
 
+/*
 .app-card:hover::after {
     transform: translateX(100%) translateY(100%) rotate(45deg);
 }
+*/
 
 /* ==================== 应用图标增强 ==================== */
 .app-icon-large {
@@ -82,10 +89,12 @@
     z-index: 2;
 }
 
+/*
 .app-card:hover .app-icon-large {
     transform: scale(1.2) rotate(-5deg) translateY(-10px);
     filter: drop-shadow(0 10px 20px rgba(102, 126, 234, 0.3));
 }
+*/
 
 /* 图标发光效果 */
 .app-icon-large::after {
@@ -99,9 +108,11 @@
     z-index: -1;
 }
 
+/*
 .app-card:hover .app-icon-large::after {
     opacity: 0.5;
 }
+*/
 
 /* ==================== 应用状态标签 ==================== */
 .app-status {
@@ -113,24 +124,11 @@
     content: '';
     position: absolute;
     top: 50%;
-    left: -100%;
+    left: 0;
     width: 100%;
     height: 2px;
     background: linear-gradient(90deg, transparent, currentColor, transparent);
-    animation: status-scan 2s ease-in-out infinite;
-}
-
-.app-card:hover .app-status::before {
-    animation-play-state: paused;
-}
-
-@keyframes status-scan {
-    0% {
-        left: -100%;
-    }
-    100% {
-        left: 200%;
-    }
+    /* 移除无限循环动画 */
 }
 
 /* ==================== 特性标签动画 ==================== */
@@ -168,14 +166,14 @@
 }
 
 .app-card:hover .app-features span {
-    transform: translateY(-3px);
-    background: rgba(102, 126, 234, 0.15);
-    box-shadow: 0 4px 10px rgba(102, 126, 234, 0.15);
+    /* transform: translateY(-3px); */
+    /* background: rgba(102, 126, 234, 0.15); */
+    /* box-shadow: 0 4px 10px rgba(102, 126, 234, 0.15); */
 }
 
 .app-card:hover .app-features span::before {
-    width: 300px;
-    height: 300px;
+    /* width: 300px; */
+    /* height: 300px; */
 }
 
 /* 逐个延迟动画 */
@@ -219,6 +217,7 @@
     transition: all 0.3s ease;
 }
 
+/*
 .app-card:hover .app-stats .stat {
     transform: scale(1.1);
 }
@@ -226,6 +225,7 @@
 .app-card:hover .app-stats .stat strong {
     text-shadow: 0 2px 10px rgba(102, 126, 234, 0.3);
 }
+*/
 
 /* 统计项逐个放大 */
 .app-stats .stat:nth-child(1) { transition-delay: 0s; }
@@ -234,17 +234,19 @@
 /* ==================== 下载按钮增强 ==================== */
 .app-card .download-buttons-group {
     margin-top: 25px;
-    opacity: 0.9;
-    transform: translateY(10px);
+    opacity: 1; /* Always fully visible */
+    transform: translateY(0); /* No translation */
     transition: all 0.4s ease;
     position: relative;
     z-index: 2;
 }
 
+/*
 .app-card:hover .download-buttons-group {
     opacity: 1;
     transform: translateY(0);
 }
+*/
 
 .app-card .btn-download {
     position: relative;
@@ -264,17 +266,23 @@
     transition: width 0.5s ease, height 0.5s ease;
 }
 
+/*
 .app-card:hover .btn-download:hover::before {
     width: 200px;
     height: 200px;
 }
+*/
 
 /* ==================== 特色卡片 ==================== */
 .app-card.featured {
     border: 2px solid transparent;
+    background: white;
+    /* 移除默认显示的渐变边框 */
+    /*
     background: 
         linear-gradient(white, white) padding-box,
         linear-gradient(135deg, #667eea, #764ba2) border-box;
+    */
     position: relative;
 }
 
@@ -286,11 +294,17 @@
 }
 
 .app-card.featured:hover {
+    border-color: #667eea;
+}
+
+/*
+.app-card.featured:hover {
     box-shadow: 
         0 35px 70px rgba(102, 126, 234, 0.25),
         0 20px 40px rgba(118, 75, 162, 0.2),
         0 0 0 2px rgba(102, 126, 234, 0.2);
 }
+*/
 
 /* 特色徽章 */
 .app-card.featured .app-header::after {
@@ -305,16 +319,7 @@
     font-weight: 600;
     border-radius: 20px;
     box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-    animation: badge-bounce 2s ease-in-out infinite;
-}
-
-@keyframes badge-bounce {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-5px);
-    }
+    /* 移除无限循环动画 */
 }
 
 /* ==================== 即将推出状态 ==================== */
@@ -338,45 +343,35 @@
     z-index: 10;
 }
 
+/*
 .app-card[data-status="coming-soon"]:hover {
     opacity: 1;
 }
+*/
 
 /* ==================== 悬停时的内容移动 ==================== */
 .app-card h3 {
     transition: all 0.3s ease;
 }
 
+/*
 .app-card:hover h3 {
     transform: translateX(5px);
     color: #667eea;
 }
+*/
 
 .app-card p {
     transition: all 0.3s ease;
 }
 
+/*
 .app-card:hover p {
     transform: translateX(3px);
 }
+*/
 
-/* ==================== 卡片边缘发光 ==================== */
-@keyframes card-glow {
-    0%, 100% {
-        box-shadow: 
-            0 0 5px rgba(102, 126, 234, 0.2),
-            0 0 10px rgba(118, 75, 162, 0.1);
-    }
-    50% {
-        box-shadow: 
-            0 0 20px rgba(102, 126, 234, 0.4),
-            0 0 40px rgba(118, 75, 162, 0.2);
-    }
-}
-
-.app-card:hover {
-    animation: card-glow 2s ease-in-out infinite;
-}
+/* 卡片边缘发光动画已禁用 - 防止hover闪烁 */
 
 /* ==================== 响应式适配 ==================== */
 @media (max-width: 1024px) {
@@ -392,9 +387,11 @@
 }
 
 @media (max-width: 768px) {
+/*
     .app-card:hover {
         transform: translateY(-10px) scale(1.02);
     }
+*/
     
     .app-icon-large {
         font-size: 2.5rem !important;
@@ -402,9 +399,11 @@
         height: 70px !important;
     }
     
+/*
     .app-card:hover .app-icon-large {
         transform: scale(1.1) rotate(-3deg) translateY(-5px);
     }
+*/
     
     .app-stats .stat strong {
         font-size: 1.5rem;
@@ -417,25 +416,8 @@
 }
 
 /* ==================== 卡片加载动画 ==================== */
-@keyframes card-appear {
-    from {
-        opacity: 0;
-        transform: translateY(50px) scale(0.9);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-}
-
-.app-card {
-    animation: card-appear 0.6s ease-out both;
-}
-
-.app-card:nth-child(1) { animation-delay: 0.1s; }
-.app-card:nth-child(2) { animation-delay: 0.2s; }
-.app-card:nth-child(3) { animation-delay: 0.3s; }
-.app-card:nth-child(4) { animation-delay: 0.4s; }
+/* 移除 card-appear 入场动画 - 防止闪烁 */
+/* 卡片直接可见，不使用延迟动画 */
 
 /* ==================== 暗色模式支持 ==================== */
 @media (prefers-color-scheme: dark) {
@@ -462,9 +444,11 @@
         color: #cbd5e1;
     }
     
+/*
     .app-card:hover .app-features span {
         background: rgba(102, 126, 234, 0.25);
     }
+*/
     
     .app-stats .stat span {
         color: #94a3b8;

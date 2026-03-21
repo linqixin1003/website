@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Still Alive? - Safety Tips (Mobile)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f2f4f6;
+            --text: #1f1f1f;
+            --muted: #8e8e93;
+            --chip-bg: #e5e5ea;
+            --chip-text: #1c1c1e;
+            --chip-active: #FF6B4A;
+            --chip-active-text: #ffffff;
+            --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+            --nav-shadow: 0 -1px 0 rgba(0,0,0,0.05);
+            --fab: #FF6B4A;
+            --surface: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .phone-shell {
+            max-width: 440px;
+            margin: 0 auto;
+            min-height: 100vh;
+            background: var(--bg);
+            padding-bottom: 100px;
+            box-shadow: 0 0 40px rgba(0,0,0,0.1);
+        }
+
+        .status-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 20px 10px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .status-icons {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--text);
+        }
+
+        .status-pill {
+            width: 24px;
+            height: 11px;
+            border-radius: 4px;
+            border: 1px solid var(--text);
+            position: relative;
+        }
+
+        .status-pill::after {
+            content: "";
+            position: absolute;
+            right: 2px;
+            top: 2px;
+            width: 18px;
+            height: 5px;
+            border-radius: 2px;
+            background: var(--text);
+        }
+
+        .header {
+            padding: 12px 20px 16px;
+            background: var(--bg);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .header-content h1 {
+            margin: 0;
+            font-size: 32px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: var(--text);
+        }
+
+        .header-content h2 {
+            margin: 4px 0 8px;
+            font-size: 20px;
+            font-weight: 500;
+            color: var(--muted);
+        }
+
+        .subtitle {
+            margin: 0;
+            font-size: 15px;
+            color: var(--muted);
+            line-height: 1.4;
+        }
+
+        .chip-row {
+            display: flex;
+            gap: 10px;
+            padding: 4px 20px 16px;
+            overflow-x: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .chip-row::-webkit-scrollbar {
+            display: none;
+        }
+
+        .chip {
+            border: none;
+            background: var(--chip-bg);
+            color: var(--chip-text);
+            border-radius: 20px;
+            padding: 8px 16px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s ease;
+        }
+
+        .chip:hover {
+            background: #d1d1d6;
+        }
+
+        .chip.active {
+            background: var(--chip-active);
+            color: var(--chip-active-text);
+            box-shadow: 0 4px 10px rgba(255, 107, 74, 0.3);
+        }
+
+        .feed {
+            padding: 8px 20px 120px;
+            display: grid;
+            gap: 20px;
+        }
+
+        .article-card {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 16px;
+            box-shadow: var(--card-shadow);
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            text-decoration: none;
+            color: inherit;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .article-card:active {
+            transform: scale(0.98);
+        }
+
+        .media {
+            height: 150px;
+            border-radius: 18px;
+            background: var(--media-bg, #f2f2f7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .tag {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(8px);
+            color: var(--tag-color, #000);
+            font-size: 11px;
+            font-weight: 700;
+            padding: 6px 12px;
+            border-radius: 12px;
+            letter-spacing: 0.02em;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .icon {
+            width: 64px;
+            height: 64px;
+            color: var(--icon-color, #8e8e93);
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+        }
+
+        .meta {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            padding: 0 4px 4px;
+        }
+
+        .read-time {
+            font-size: 12px;
+            color: var(--muted);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .read-time .dot {
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: var(--muted);
+        }
+
+        .meta h3 {
+            margin: 0;
+            font-size: 19px;
+            font-weight: 700;
+            line-height: 1.3;
+            letter-spacing: -0.01em;
+        }
+
+        .meta p {
+            margin: 4px 0 0;
+            font-size: 15px;
+            color: var(--muted);
+            line-height: 1.5;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .read-link {
+            margin-top: 12px;
+            color: var(--fab);
+            font-weight: 600;
+            font-size: 14px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .fab {
+            position: fixed;
+            right: 20px;
+            bottom: 90px;
+            width: 60px;
+            height: 60px;
+            border-radius: 20px;
+            border: none;
+            background: var(--fab);
+            color: #ffffff;
+            font-size: 32px;
+            line-height: 1;
+            box-shadow: 0 10px 25px rgba(255, 107, 74, 0.4);
+            cursor: pointer;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        .fab:active {
+            transform: scale(0.9) rotate(90deg);
+        }
+
+        .bottom-nav {
+            position: fixed;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 440px;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-around;
+            padding: 12px 16px 28px;
+            z-index: 99;
+        }
+
+        .nav-item {
+            flex: 1;
+            text-align: center;
+            text-decoration: none;
+            color: #999;
+            font-size: 10px;
+            font-weight: 500;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            transition: color 0.2s;
+        }
+
+        .nav-icon {
+            width: 24px;
+            height: 24px;
+            stroke-width: 2;
+        }
+
+        .nav-item.active {
+            color: var(--fab);
+        }
+
+        /* Color Themes - Refined */
+        .accent-mint {
+            --media-bg: #e0f2f1;
+            --tag-color: #00695c;
+            --icon-color: #26a69a;
+        }
+
+        .accent-lavender {
+            --media-bg: #f3e5f5;
+            --tag-color: #6a1b9a;
+            --icon-color: #ab47bc;
+        }
+
+        .accent-blue {
+            --media-bg: #e3f2fd;
+            --tag-color: #1565c0;
+            --icon-color: #42a5f5;
+        }
+
+        .accent-peach {
+            --media-bg: #fff3e0;
+            --tag-color: #ef6c00;
+            --icon-color: #ff9800;
+        }
+
+        .accent-sage {
+            --media-bg: #e8f5e9;
+            --tag-color: #2e7d32;
+            --icon-color: #66bb6a;
+        }
+
+        @media (max-width: 360px) {
+            .header h1 { font-size: 28px; }
+            .feed { padding: 8px 16px 120px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="phone-shell">
+        <div class="status-row">
+            <span id="current-time">4:54</span>
+            <div class="status-icons" aria-hidden="true">
+                <span class="status-dot"></span>
+                <span class="status-dot"></span>
+                <span class="status-dot"></span>
+                <span class="status-pill"></span>
+            </div>
+        </div>
+
+        <header class="header">
+            <div class="header-content">
+                <h1>Safety Check-In</h1>
+                <h2>Encyclopedia</h2>
+                <p class="subtitle">Curated insights for safer daily routines and peace of mind.</p>
+            </div>
+        </header>
+
+        <div class="chip-row" role="tablist" aria-label="Article categories">
+            <button class="chip active" data-filter="all" role="tab" aria-selected="true">All</button>
+            <button class="chip" data-filter="preparedness" role="tab">Preparedness</button>
+            <button class="chip" data-filter="checkin" role="tab">Check-In</button>
+            <button class="chip" data-filter="home-safety" role="tab">Home Safety</button>
+            <button class="chip" data-filter="wellness" role="tab">Wellness</button>
+            <button class="chip" data-filter="science" role="tab">Science</button>
+        </div>
+
+        <main class="feed">
+            <article class="article-card accent-mint" data-category="preparedness">
+                <div class="media">
+                    <span class="tag">PREPAREDNESS</span>
+                    <svg class="icon" viewBox="0 0 64 64" aria-hidden="true">
+                        <rect x="12" y="20" width="40" height="30" rx="6" fill="none" stroke="currentColor" stroke-width="3"></rect>
+                        <rect x="22" y="14" width="20" height="10" rx="4" fill="none" stroke="currentColor" stroke-width="3"></rect>
+                        <path d="M20 34h24" stroke="currentColor" stroke-width="3" stroke-linecap="round"></path>
+                    </svg>
+                </div>
+                <div class="meta">
+                    <div class="read-time"><span class="dot"></span>6 min read</div>
+                    <h3>Emergency Kit Essentials</h3>
+                    <p>Build a 72-hour kit with water, food, medications, and backups you can reach fast.</p>
+                    <a class="read-link" href="still-alive-tips/01-emergency-kit-essentials.html">Read Article &rarr;</a>
+                </div>
+            </article>
+
+            <article class="article-card accent-lavender" data-category="checkin">
+                <div class="media">
+                    <span class="tag">CHECK-IN</span>
+                    <svg class="icon" viewBox="0 0 64 64" aria-hidden="true">
+                        <circle cx="32" cy="32" r="20" fill="none" stroke="currentColor" stroke-width="3"></circle>
+                        <path d="M24 32l6 6 12-14" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                </div>
+                <div class="meta">
+                    <div class="read-time"><span class="dot"></span>5 min read</div>
+                    <h3>Create a Personal Check-In Plan</h3>
+                    <p>Set expectations with trusted contacts and define escalation steps in advance.</p>
+                    <a class="read-link" href="still-alive-tips/02-personal-check-in-plan.html">Read Article &rarr;</a>
+                </div>
+            </article>
+
+            <article class="article-card accent-blue" data-category="home-safety">
+                <div class="media">
+                    <span class="tag">HOME SAFETY</span>
+                    <svg class="icon" viewBox="0 0 64 64" aria-hidden="true">
+                        <path d="M12 30l20-16 20 16v20a4 4 0 0 1-4 4H16a4 4 0 0 1-4-4z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"></path>
+                        <rect x="27" y="36" width="10" height="14" fill="none" stroke="currentColor" stroke-width="3"></rect>
+                    </svg>
+                </div>
+                <div class="meta">
+                    <div class="read-time"><span class="dot"></span>7 min read</div>
+                    <h3>Prevent Falls at Home</h3>
+                    <p>Improve lighting, remove trip hazards, and review footwear to lower fall risk.</p>
+                    <a class="read-link" href="still-alive-tips/03-prevent-falls-at-home.html">Read Article &rarr;</a>
+                </div>
+            </article>
+
+            <article class="article-card accent-peach" data-category="preparedness">
+                <div class="media">
+                    <span class="tag">PREPAREDNESS</span>
+                    <svg class="icon" viewBox="0 0 64 64" aria-hidden="true">
+                        <path d="M18 44h28a8 8 0 0 0 0-16h-2V20a12 12 0 0 0-24 0v8h-2a8 8 0 0 0 0 16z" fill="none" stroke="currentColor" stroke-width="3"></path>
+                        <path d="M28 44v-8m8 8v-8" stroke="currentColor" stroke-width="3" stroke-linecap="round"></path>
+                    </svg>
+                </div>
+                <div class="meta">
+                    <div class="read-time"><span class="dot"></span>4 min read</div>
+                    <h3>Power Outage Readiness</h3>
+                    <p>Prepare lighting, charging backups, and medication storage before outages happen.</p>
+                    <a class="read-link" href="still-alive-tips/04-power-outage-readiness.html">Read Article &rarr;</a>
+                </div>
+            </article>
+
+            <article class="article-card accent-sage" data-category="home-safety">
+                <div class="media">
+                    <span class="tag">HOME SAFETY</span>
+                    <svg class="icon" viewBox="0 0 64 64" aria-hidden="true">
+                        <path d="M32 10l18 8v12c0 12-8 20-18 24-10-4-18-12-18-24V18z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"></path>
+                        <path d="M24 30l6 6 10-12" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                </div>
+                <div class="meta">
+                    <div class="read-time"><span class="dot"></span>6 min read</div>
+                    <h3>Home Fire Escape Basics</h3>
+                    <p>Plan two exits, practice drills, and keep smoke alarms working year-round.</p>
+                    <a class="read-link" href="still-alive-tips/05-home-fire-escape-basics.html">Read Article &rarr;</a>
+                </div>
+            </article>
+
+            <article class="article-card accent-lavender" data-category="wellness">
+                <div class="media">
+                    <span class="tag">WELLNESS</span>
+                    <svg class="icon" viewBox="0 0 64 64" aria-hidden="true">
+                        <path d="M32 50C20 42 14 34 14 24a10 10 0 0 1 18-6 10 10 0 0 1 18 6c0 10-6 18-18 26z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"></path>
+                    </svg>
+                </div>
+                <div class="meta">
+                    <div class="read-time"><span class="dot"></span>5 min read</div>
+                    <h3>Emergency Prep for Older Adults</h3>
+                    <p>Organize medications, health info, and caregiver contacts in one place.</p>
+                    <a class="read-link" href="still-alive-tips/06-emergency-prep-older-adults.html">Read Article &rarr;</a>
+                </div>
+            </article>
+
+            <article class="article-card accent-blue" data-category="science">
+                <div class="media">
+                    <span class="tag">SCIENCE</span>
+                    <svg class="icon" viewBox="0 0 64 64" aria-hidden="true">
+                        <path d="M24 10h16v6l8 18a8 8 0 0 1-8 12H24a8 8 0 0 1-8-12l8-18z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"></path>
+                        <path d="M24 28h16" stroke="currentColor" stroke-width="3" stroke-linecap="round"></path>
+                    </svg>
+                </div>
+                <div class="meta">
+                    <div class="read-time"><span class="dot"></span>6 min read</div>
+                    <h3>Fall Risk Facts and Prevention</h3>
+                    <p>Understand the scale of fall injuries and the impact of simple prevention steps.</p>
+                    <a class="read-link" href="still-alive-tips/07-fall-risk-facts.html">Read Article &rarr;</a>
+                </div>
+            </article>
+            <article class="article-card accent-mint" data-category="preparedness">
+                <div class="media">
+                    <span class="tag">PREPAREDNESS</span>
+                    <svg class="icon" viewBox="0 0 64 64" aria-hidden="true">
+<rect x="12" y="20" width="40" height="30" rx="6" fill="none" stroke="currentColor" stroke-width="3"></rect>
+                        <rect x="22" y="14" width="20" height="10" rx="4" fill="none" stroke="currentColor" stroke-width="3"></rect>
+                        <path d="M20 34h24" stroke="currentColor" stroke-width="3" stroke-linecap="round"></path>
+                    </svg>
+                </div>
+                <div class="meta">
+                    <div class="read-time"><span class="dot"></span>5 min read</div>
+                    <h3>Evacuation Ready Checklist</h3>
+                    <p>Know when to go, what to grab, and where to meet before you have to leave.</p>
+                    <a class="read-link" href="still-alive-tips/08-evacuation-ready-checklist.html">Read Article &rarr;</a>
+                </div>
+            </article>
+
+            <article class="article-card accent-peach" data-category="preparedness">
+                <div class="media">
+                    <span class="tag">PREPAREDNESS</span>
+                    <svg class="icon" viewBox="0 0 64 64" aria-hidden="true">
+<rect x="12" y="20" width="40" height="30" rx="6" fill="none" stroke="currentColor" stroke-width="3"></rect>
+                        <rect x="22" y="14" width="20" height="10" rx="4" fill="none" stroke="currentColor" stroke-width="3"></rect>
+                        <path d="M20 34h24" stroke="currentColor" stroke-width="3" stroke-linecap="round"></path>
+                    </svg>
+                </div>
+                <div class="meta">
+                    <div class="read-time"><span class="dot"></span>4 min read</div>
+                    <h3>Water Storage Basics</h3>
+                    <p>Store safe water for drinking, cooking, and medications when services are disrupted.</p>
+                    <a class="read-link" href="still-alive-tips/09-water-storage-basics.html">Read Article &rarr;</a>
+                </div>
+            </article>
+
+            <article class="article-card accent-mint" data-category="preparedness">
+                <div class="media">
+                    <span class="tag">PREPAREDNESS</span>
+                    <svg class="icon" viewBox="0 0 64 64" aria-hidden="true">
+<rect x="12" y="20" width="40" height="30" rx="6" fill="none" stroke="currentColor" stroke-width="3"></rect>
+                        <rect x="22" y="14" width="20" height="10" rx="4" fill="none" stroke="currentColor" stroke-width="3"></rect>
+                        <path d="M20 34h24" stroke="currentColor" stroke-width="3" stroke-linecap="round"></path>
+                    </svg>
+                </div>
+                <div class="meta">
+                    <div class="read-time"><span class="dot"></span>5 min read</div>
+                    <h3>Shelter-in-Place Planning</h3>
+                    <p>Prepare a safe interior space when leaving is not possible.</p>
+                    <a class="read-link" href="still-alive-tips/10-shelter-in-place-planning.html">Read Article &rarr;</a>
+                </div>
+            </article>
+            <article class="article-card accent-lavender" data-category="wellness">
+                <div class="media">
+                    <span class="tag">WELLNESS</span>
+                    <svg class="icon" viewBox="0 0 64 64" aria-hidden="true"><path d="M32 12c-8 0-14 6-14 14 0 10 14 26 14 26s14-16 14-26c0-8-6-14-14-14z" fill="none" stroke="currentColor" stroke-width="3"/><path d="M22 26l20 0" stroke="currentColor" stroke-width="3"/><path d="M32 20v12" stroke="currentColor" stroke-width="3"/></svg>
+                </div>
+                <div class="meta">
+                    <div class="read-time"><span class="dot"></span>8 min read</div>
+                    <h3>Menstrual Pain Relief</h3>
+                    <p>Scientific strategies to manage primary and secondary dysmenorrhea effectively.</p>
+                    <a class="read-link" href="still-alive-tips/11-menstrual-pain-relief.html">Read Article &rarr;</a>
+                </div>
+            </article>
+
+            <article class="article-card accent-lavender" data-category="wellness">
+                <div class="media">
+                    <span class="tag">WELLNESS</span>
+                    <svg class="icon" viewBox="0 0 64 64" aria-hidden="true"><path d="M32 8c0 0-14 20-14 32a14 14 0 0 0 28 0c0-12-14-32-14-32z" fill="none" stroke="currentColor" stroke-width="3"/><line x1="32" y1="20" x2="32" y2="36" stroke="currentColor" stroke-width="3"/><line x1="26" y1="30" x2="38" y2="30" stroke="currentColor" stroke-width="3"/></svg>
+                </div>
+                <div class="meta">
+                    <div class="read-time"><span class="dot"></span>7 min read</div>
+                    <h3>Check Your Menstrual Flow</h3>
+                    <p>Understanding what's normal and when heavy or light flow signals a health issue.</p>
+                    <a class="read-link" href="still-alive-tips/12-menstrual-flow-check.html">Read Article &rarr;</a>
+                </div>
+            </article>
+
+            <article class="article-card accent-lavender" data-category="wellness">
+                <div class="media">
+                    <span class="tag">WELLNESS</span>
+                    <svg class="icon" viewBox="0 0 64 64" aria-hidden="true"><circle cx="24" cy="24" r="10" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="40" cy="40" r="10" fill="none" stroke="currentColor" stroke-width="3"/><path d="M30 30l4 4" stroke="currentColor" stroke-width="3"/></svg>
+                </div>
+                <div class="meta">
+                    <div class="read-time"><span class="dot"></span>6 min read</div>
+                    <h3>Sex During Menstruation</h3>
+                    <p>A guide to safety, hygiene, and potential benefits of period intimacy.</p>
+                    <a class="read-link" href="still-alive-tips/13-sex-during-period.html">Read Article &rarr;</a>
+                </div>
+            </article>
+
+            <article class="article-card accent-lavender" data-category="wellness">
+                <div class="media">
+                    <span class="tag">WELLNESS</span>
+                    <svg class="icon" viewBox="0 0 64 64" aria-hidden="true"><path d="M20 16h24v20c0 12-12 20-12 20s-12-8-12-20V16z" fill="none" stroke="currentColor" stroke-width="3"/><line x1="20" y1="16" x2="44" y2="16" stroke="currentColor" stroke-width="3"/><line x1="32" y1="56" x2="32" y2="62" stroke="currentColor" stroke-width="3"/></svg>
+                </div>
+                <div class="meta">
+                    <div class="read-time"><span class="dot"></span>5 min read</div>
+                    <h3>Period Hygiene Basics</h3>
+                    <p>Choosing the right products and preventing infections during your cycle.</p>
+                    <a class="read-link" href="still-alive-tips/14-period-hygiene-basics.html">Read Article &rarr;</a>
+                </div>
+            </article>
+
+            <article class="article-card accent-lavender" data-category="wellness">
+                <div class="media">
+                    <span class="tag">WELLNESS</span>
+                    <svg class="icon" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="22" fill="none" stroke="currentColor" stroke-width="3"/><path d="M32 10v22l14 8" fill="none" stroke="currentColor" stroke-width="3"/><path d="M20 40a12 12 0 0 0 24 0" fill="none" stroke="currentColor" stroke-width="3"/></svg>
+                </div>
+                <div class="meta">
+                    <div class="read-time"><span class="dot"></span>7 min read</div>
+                    <h3>Diet & Exercise on Your Period</h3>
+                    <p>Adjusting your nutrition and workout intensity to match your hormonal cycle.</p>
+                    <a class="read-link" href="still-alive-tips/15-diet-exercise-period.html">Read Article &rarr;</a>
+                </div>
+            </article>
+
+            <article class="article-card accent-lavender" data-category="checkin">
+                <div class="media">
+                    <span class="tag">CHECK-IN</span>
+                    <svg class="icon" viewBox="0 0 64 64" aria-hidden="true">
+<circle cx="32" cy="32" r="20" fill="none" stroke="currentColor" stroke-width="3"></circle>
+                        <path d="M24 32l6 6 12-14" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                </div>
+                <div class="meta">
+                    <div class="read-time"><span class="dot"></span>4 min read</div>
+                    <h3>Build a Trusted Contacts List</h3>
+                    <p>Pick people who can respond quickly and understand your routine.</p>
+                    <a class="read-link" href="still-alive-tips/16-trusted-contacts-list.html">Read Article &rarr;</a>
+                </div>
+            </article>
+
+            <article class="article-card accent-lavender" data-category="checkin">
+                <div class="media">
+                    <span class="tag">CHECK-IN</span>
+                    <svg class="icon" viewBox="0 0 64 64" aria-hidden="true">
+<circle cx="32" cy="32" r="20" fill="none" stroke="currentColor" stroke-width="3"></circle>
+                        <path d="M24 32l6 6 12-14" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                </div>
+                <div class="meta">
+                    <div class="read-time"><span class="dot"></span>5 min read</div>
+                    <h3>Missed Check-In Escalation Steps</h3>
+                    <p>Define what happens after a missed check-in so everyone stays aligned.</p>
+                    <a class="read-link" href="still-alive-tips/17-missed-check-in-steps.html">Read Article &rarr;</a>
+                </div>
+            </article>
+
+            <article class="article-card accent-lavender" data-category="checkin">
+                <div class="media">
+                    <span class="tag">CHECK-IN</span>
+                    <svg class="icon" viewBox="0 0 64 64" aria-hidden="true">
+<circle cx="32" cy="32" r="20" fill="none" stroke="currentColor" stroke-width="3"></circle>
+                        <path d="M24 32l6 6 12-14" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                </div>
+                <div class="meta">
+                    <div class="read-time"><span class="dot"></span>5 min read</div>
+                    <h3>Travel Check-In Routine</h3>
+                    <p>Use a simple travel habit so someone always knows your status on the road.</p>
+                    <a class="read-link" href="still-alive-tips/18-travel-check-in-routine.html">Read Article &rarr;</a>
+                </div>
+            </article>
+
+            <article class="article-card accent-lavender" data-category="checkin">
+                <div class="media">
+                    <span class="tag">CHECK-IN</span>
+                    <svg class="icon" viewBox="0 0 64 64" aria-hidden="true">
+<circle cx="32" cy="32" r="20" fill="none" stroke="currentColor" stroke-width="3"></circle>
+                        <path d="M24 32l6 6 12-14" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                </div>
+                <div class="meta">
+                    <div class="read-time"><span class="dot"></span>4 min read</div>
+                    <h3>Share Medical Notes Safely</h3>
+                    <p>Keep a brief medical snapshot ready for trusted contacts and responders.</p>
+                    <a class="read-link" href="still-alive-tips/19-share-medical-notes.html">Read Article &rarr;</a>
+                </div>
+            </article>
+
+            <article class="article-card accent-blue" data-category="home-safety">
+                <div class="media">
+                    <span class="tag">HOME SAFETY</span>
+                    <svg class="icon" viewBox="0 0 64 64" aria-hidden="true">
+<path d="M12 30l20-16 20 16v20a4 4 0 0 1-4 4H16a4 4 0 0 1-4-4z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"></path>
+                        <rect x="27" y="36" width="10" height="14" fill="none" stroke="currentColor" stroke-width="3"></rect>
+                    </svg>
+                </div>
+                <div class="meta">
+                    <div class="read-time"><span class="dot"></span>4 min read</div>
+                    <h3>Smoke Alarm Maintenance</h3>
+                    <p>Working alarms buy time. Test and replace them on a schedule.</p>
+                    <a class="read-link" href="still-alive-tips/20-smoke-alarm-maintenance.html">Read Article &rarr;</a>
+                </div>
+            </article>
+
+            <article class="article-card accent-sage" data-category="home-safety">
+                <div class="media">
+                    <span class="tag">HOME SAFETY</span>
+                    <svg class="icon" viewBox="0 0 64 64" aria-hidden="true">
+<path d="M12 30l20-16 20 16v20a4 4 0 0 1-4 4H16a4 4 0 0 1-4-4z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"></path>
+                        <rect x="27" y="36" width="10" height="14" fill="none" stroke="currentColor" stroke-width="3"></rect>
+                    </svg>
+                </div>
+                <div class="meta">
+                    <div class="read-time"><span class="dot"></span>5 min read</div>
+                    <h3>Carbon Monoxide Safety</h3>
+                    <p>CO is invisible. Install detectors and know the warning signs.</p>
+                    <a class="read-link" href="still-alive-tips/21-carbon-monoxide-safety.html">Read Article &rarr;</a>
+                </div>
+            </article>
+
+            <article class="article-card accent-blue" data-category="home-safety">
+                <div class="media">
+                    <span class="tag">HOME SAFETY</span>
+                    <svg class="icon" viewBox="0 0 64 64" aria-hidden="true">
+<path d="M12 30l20-16 20 16v20a4 4 0 0 1-4 4H16a4 4 0 0 1-4-4z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"></path>
+                        <rect x="27" y="36" width="10" height="14" fill="none" stroke="currentColor" stroke-width="3"></rect>
+                    </svg>
+                </div>
+                <div class="meta">
+                    <div class="read-time"><span class="dot"></span>4 min read</div>
+                    <h3>Safer Bathroom Setup</h3>
+                    <p>Small changes in the bathroom can prevent slips and falls.</p>
+                    <a class="read-link" href="still-alive-tips/22-safer-bathroom-setup.html">Read Article &rarr;</a>
+                </div>
+            </article>
+
+            <article class="article-card accent-sage" data-category="wellness">
+                <div class="media">
+                    <span class="tag">WELLNESS</span>
+                    <svg class="icon" viewBox="0 0 64 64" aria-hidden="true">
+<path d="M32 50C20 42 14 34 14 24a10 10 0 0 1 18-6 10 10 0 0 1 18 6c0 10-6 18-18 26z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"></path>
+                    </svg>
+                </div>
+                <div class="meta">
+                    <div class="read-time"><span class="dot"></span>5 min read</div>
+                    <h3>Heat Safety for Daily Routines</h3>
+                    <p>Stay cool and hydrated during hot days and heat waves.</p>
+                    <a class="read-link" href="still-alive-tips/23-heat-safety-routine.html">Read Article &rarr;</a>
+                </div>
+            </article>
+
+            <article class="article-card accent-sage" data-category="wellness">
+                <div class="media">
+                    <span class="tag">WELLNESS</span>
+                    <svg class="icon" viewBox="0 0 64 64" aria-hidden="true">
+<path d="M32 50C20 42 14 34 14 24a10 10 0 0 1 18-6 10 10 0 0 1 18 6c0 10-6 18-18 26z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"></path>
+                    </svg>
+                </div>
+                <div class="meta">
+                    <div class="read-time"><span class="dot"></span>5 min read</div>
+                    <h3>Cold Weather Readiness</h3>
+                    <p>Layer up and prepare safe heating options for colder days.</p>
+                    <a class="read-link" href="still-alive-tips/24-cold-weather-readiness.html">Read Article &rarr;</a>
+                </div>
+            </article>
+
+            <article class="article-card accent-sage" data-category="wellness">
+                <div class="media">
+                    <span class="tag">WELLNESS</span>
+                    <svg class="icon" viewBox="0 0 64 64" aria-hidden="true">
+<path d="M32 50C20 42 14 34 14 24a10 10 0 0 1 18-6 10 10 0 0 1 18 6c0 10-6 18-18 26z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"></path>
+                    </svg>
+                </div>
+                <div class="meta">
+                    <div class="read-time"><span class="dot"></span>5 min read</div>
+                    <h3>Medication Organization for Emergencies</h3>
+                    <p>Keep medications organized so you can act quickly when routines change.</p>
+                    <a class="read-link" href="still-alive-tips/25-medication-organization.html">Read Article &rarr;</a>
+                </div>
+            </article>
+
+            <article class="article-card accent-sage" data-category="wellness">
+                <div class="media">
+                    <span class="tag">WELLNESS</span>
+                    <svg class="icon" viewBox="0 0 64 64" aria-hidden="true">
+<path d="M32 50C20 42 14 34 14 24a10 10 0 0 1 18-6 10 10 0 0 1 18 6c0 10-6 18-18 26z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"></path>
+                    </svg>
+                </div>
+                <div class="meta">
+                    <div class="read-time"><span class="dot"></span>4 min read</div>
+                    <h3>Stress Reset After an Emergency</h3>
+                    <p>Calm the nervous system and rebuild routines after a scare.</p>
+                    <a class="read-link" href="still-alive-tips/26-stress-reset-after-emergency.html">Read Article &rarr;</a>
+                </div>
+            </article>
+
+            <article class="article-card accent-blue" data-category="science">
+                <div class="media">
+                    <span class="tag">SCIENCE</span>
+                    <svg class="icon" viewBox="0 0 64 64" aria-hidden="true">
+<path d="M24 10h16v6l8 18a8 8 0 0 1-8 12H24a8 8 0 0 1-8-12l8-18z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"></path>
+                        <path d="M24 28h16" stroke="currentColor" stroke-width="3" stroke-linecap="round"></path>
+                    </svg>
+                </div>
+                <div class="meta">
+                    <div class="read-time"><span class="dot"></span>4 min read</div>
+                    <h3>How Emergency Alerts Work</h3>
+                    <p>Wireless alerts are location-based and time-sensitive.</p>
+                    <a class="read-link" href="still-alive-tips/27-emergency-alerts-wea.html">Read Article &rarr;</a>
+                </div>
+            </article>
+
+            <article class="article-card accent-blue" data-category="science">
+                <div class="media">
+                    <span class="tag">SCIENCE</span>
+                    <svg class="icon" viewBox="0 0 64 64" aria-hidden="true">
+<path d="M24 10h16v6l8 18a8 8 0 0 1-8 12H24a8 8 0 0 1-8-12l8-18z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"></path>
+                        <path d="M24 28h16" stroke="currentColor" stroke-width="3" stroke-linecap="round"></path>
+                    </svg>
+                </div>
+                <div class="meta">
+                    <div class="read-time"><span class="dot"></span>4 min read</div>
+                    <h3>Watches vs Warnings</h3>
+                    <p>Know the difference so you act at the right time.</p>
+                    <a class="read-link" href="still-alive-tips/28-weather-watches-warnings.html">Read Article &rarr;</a>
+                </div>
+            </article>
+
+            <article class="article-card accent-blue" data-category="science">
+                <div class="media">
+                    <span class="tag">SCIENCE</span>
+                    <svg class="icon" viewBox="0 0 64 64" aria-hidden="true">
+<path d="M24 10h16v6l8 18a8 8 0 0 1-8 12H24a8 8 0 0 1-8-12l8-18z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"></path>
+                        <path d="M24 28h16" stroke="currentColor" stroke-width="3" stroke-linecap="round"></path>
+                    </svg>
+                </div>
+                <div class="meta">
+                    <div class="read-time"><span class="dot"></span>4 min read</div>
+                    <h3>Hydration Basics Under Stress</h3>
+                    <p>Dehydration affects focus, balance, and recovery.</p>
+                    <a class="read-link" href="still-alive-tips/29-hydration-basics.html">Read Article &rarr;</a>
+                </div>
+            </article>
+
+            <article class="article-card accent-blue" data-category="science">
+                <div class="media">
+                    <span class="tag">SCIENCE</span>
+                    <svg class="icon" viewBox="0 0 64 64" aria-hidden="true">
+<path d="M24 10h16v6l8 18a8 8 0 0 1-8 12H24a8 8 0 0 1-8-12l8-18z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"></path>
+                        <path d="M24 28h16" stroke="currentColor" stroke-width="3" stroke-linecap="round"></path>
+                    </svg>
+                </div>
+                <div class="meta">
+                    <div class="read-time"><span class="dot"></span>5 min read</div>
+                    <h3>Social Connection and Safety</h3>
+                    <p>Strong social ties improve safety and recovery after emergencies.</p>
+                    <a class="read-link" href="still-alive-tips/30-social-connection-safety.html">Read Article &rarr;</a>
+                </div>
+            </article>
+        </main>
+    </div>
+
+    <button class="fab" type="button" aria-label="Add a new tip">+</button>
+
+    <nav class="bottom-nav" aria-label="Bottom navigation">
+        <a class="nav-item" href="still-alive.html">
+            <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 11l8-7 8 7v8a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path>
+            </svg>
+            <span>Home</span>
+        </a>
+        <a class="nav-item" href="still-alive.html#features">
+            <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 17l6-6 4 4 6-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M4 20h16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+            </svg>
+            <span>Trends</span>
+        </a>
+        <a class="nav-item active" href="still-alive-mobile.html">
+            <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 3l7 4v5c0 5-3 8-7 9-4-1-7-4-7-9V7z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path>
+            </svg>
+            <span>Tips</span>
+        </a>
+        <a class="nav-item" href="still-alive.html#support">
+            <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.8"></circle>
+                <path d="M12 8v4l2 2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+            </svg>
+            <span>Settings</span>
+        </a>
+    </nav>
+
+    <script>
+        const chips = document.querySelectorAll(".chip");
+        const cards = document.querySelectorAll(".article-card");
+
+        const setFilter = (filter) => {
+            chips.forEach((chip) => {
+                const isActive = chip.dataset.filter === filter;
+                chip.classList.toggle("active", isActive);
+                chip.setAttribute("aria-selected", String(isActive));
+            });
+
+            cards.forEach((card) => {
+                const matches = filter === "all" || card.dataset.category === filter;
+                card.style.display = matches ? "flex" : "none";
+            });
+        };
+
+        chips.forEach((chip) => {
+            chip.addEventListener("click", () => {
+                setFilter(chip.dataset.filter);
+            });
+        });
+
+        setFilter("all");
+
+        const timeElement = document.getElementById("current-time");
+        const updateTime = () => {
+            const now = new Date();
+            const hours = now.getHours();
+            const minutes = String(now.getMinutes()).padStart(2, "0");
+            timeElement.textContent = `${hours}:${minutes}`;
+        };
+        if (timeElement) {
+            updateTime();
+            setInterval(updateTime, 60000);
+        }
+    </script>
+</body>
+</html>

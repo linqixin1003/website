@@ -1,0 +1,814 @@
+/* ==========================================================================
+   MushroomAiSnap — 文章页统一设计系统
+   适用于 mushroom/{lang}/{category}/*.html
+   主题通过 <body data-category="..."> 切换
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. 设计令牌
+   -------------------------------------------------------------------------- */
+:root {
+    /* 品牌基调 */
+    --brand: #2d6a4f;
+    --brand-soft: #52b788;
+
+    /* 分类主题（默认 = 生态绿，由 data-category 覆盖） */
+    --theme: #2d6a4f;
+    --theme-dark: #1b4332;
+    --theme-accent: #52b788;
+    --theme-tint: #ecfdf5;
+    --theme-rgb: 45, 106, 79;
+
+    /* 中性色 */
+    --bg: #f6f7f5;
+    --surface: #ffffff;
+    --surface-alt: #fbfbfa;
+    --text: #1f2328;
+    --text-soft: #4a5259;
+    --text-mute: #79828b;
+    --line: #e7e9e6;
+
+    /* 语义色 */
+    --danger: #c53030;
+    --danger-tint: #fef2f2;
+    --warn: #b45309;
+    --warn-tint: #fffbeb;
+
+    /* 圆角与阴影 */
+    --r-sm: 10px;
+    --r-md: 16px;
+    --r-lg: 22px;
+    --r-full: 999px;
+    --shadow-sm: 0 1px 2px rgba(16, 24, 40, .04), 0 1px 3px rgba(16, 24, 40, .06);
+    --shadow-md: 0 4px 12px rgba(16, 24, 40, .06), 0 2px 4px rgba(16, 24, 40, .04);
+    --shadow-lg: 0 18px 40px rgba(16, 24, 40, .10), 0 4px 12px rgba(16, 24, 40, .05);
+
+    /* 版式 */
+    --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+                 "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", "Noto Sans JP",
+                 "Noto Sans KR", Roboto, Helvetica, Arial, sans-serif;
+    --measure: 720px;
+}
+
+/* 分类主题 ---------------------------------------------------------------- */
+body[data-category="culinary-mushrooms"] {
+    --theme: #a0522d; --theme-dark: #7c3d1f; --theme-accent: #d2691e;
+    --theme-tint: #fdf6ef; --theme-rgb: 160, 82, 45;
+}
+body[data-category="mushroom-ecology"] {
+    --theme: #2d6a4f; --theme-dark: #1b4332; --theme-accent: #52b788;
+    --theme-tint: #edfaf3; --theme-rgb: 45, 106, 79;
+}
+body[data-category="mushroom-identification"] {
+    --theme: #2b6cb0; --theme-dark: #1e4e8c; --theme-accent: #4299e1;
+    --theme-tint: #eef5fd; --theme-rgb: 43, 108, 176;
+}
+body[data-category="mushroom-safety"] {
+    --theme: #c0392b; --theme-dark: #8f2a20; --theme-accent: #e8705f;
+    --theme-tint: #fdf0ee; --theme-rgb: 192, 57, 43;
+}
+body[data-category="mushroom-science"] {
+    --theme: #6b46c1; --theme-dark: #4c3195; --theme-accent: #9f7aea;
+    --theme-tint: #f4f1fd; --theme-rgb: 107, 70, 193;
+}
+
+/* --------------------------------------------------------------------------
+   2. 基础
+   -------------------------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-size: 17px;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-wrap: break-word;
+}
+
+body.is-loading { overflow: hidden; }
+
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--theme); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+::selection { background: rgba(var(--theme-rgb), .16); }
+
+/* --------------------------------------------------------------------------
+   3. Loading 遮罩 + 骨架屏
+   -------------------------------------------------------------------------- */
+.m-loader {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 22px;
+    background: var(--bg);
+    transition: opacity .45s ease, visibility .45s ease;
+    /* 脚本异常时的兜底：到点自行隐藏，不把页面锁死 */
+    animation: m-loader-failsafe 0s linear 8s forwards;
+}
+
+.m-loader.is-done {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+@keyframes m-loader-failsafe {
+    to { opacity: 0; visibility: hidden; pointer-events: none; }
+}
+
+/* 蘑菇造型的加载指示器 */
+.m-loader__mark {
+    position: relative;
+    width: 72px;
+    height: 72px;
+    display: grid;
+    place-items: center;
+}
+
+.m-loader__ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 3px solid rgba(var(--theme-rgb), .14);
+    border-top-color: var(--theme);
+    animation: m-spin .9s cubic-bezier(.6, .1, .4, .9) infinite;
+}
+
+.m-loader__cap {
+    font-size: 30px;
+    line-height: 1;
+    animation: m-bob 1.6s ease-in-out infinite;
+}
+
+.m-loader__text {
+    font-size: 14px;
+    letter-spacing: .04em;
+    color: var(--text-mute);
+    font-weight: 500;
+}
+
+/* 骨架条 */
+.m-loader__skeleton {
+    width: min(520px, 82vw);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.m-loader__bar {
+    height: 12px;
+    border-radius: var(--r-full);
+    background: linear-gradient(90deg, #e9ebe8 25%, #f4f5f3 37%, #e9ebe8 63%);
+    background-size: 400% 100%;
+    animation: m-shimmer 1.4s ease infinite;
+}
+
+.m-loader__bar:nth-child(1) { width: 62%; height: 20px; }
+.m-loader__bar:nth-child(2) { width: 100%; }
+.m-loader__bar:nth-child(3) { width: 92%; }
+.m-loader__bar:nth-child(4) { width: 74%; }
+
+@keyframes m-spin { to { transform: rotate(360deg); } }
+@keyframes m-bob {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-5px); }
+}
+@keyframes m-shimmer {
+    0%   { background-position: 100% 50%; }
+    100% { background-position: 0 50%; }
+}
+
+/* --------------------------------------------------------------------------
+   4. 顶部导航 + 阅读进度
+   -------------------------------------------------------------------------- */
+.m-topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 900;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    height: 56px;
+    padding: 0 14px;
+    background: rgba(255, 255, 255, .82);
+    -webkit-backdrop-filter: saturate(180%) blur(14px);
+    backdrop-filter: saturate(180%) blur(14px);
+    border-bottom: 1px solid transparent;
+    transform: translateY(-100%);
+    transition: transform .32s ease, border-color .32s ease;
+}
+
+.m-topbar.is-visible {
+    transform: translateY(0);
+    border-bottom-color: var(--line);
+}
+
+.m-topbar__back,
+.m-topbar__share {
+    flex: 0 0 auto;
+    width: 38px;
+    height: 38px;
+    display: grid;
+    place-items: center;
+    border: 0;
+    border-radius: var(--r-full);
+    background: rgba(var(--theme-rgb), .08);
+    color: var(--theme);
+    font-size: 17px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background .2s ease, transform .2s ease;
+}
+
+.m-topbar__back:hover,
+.m-topbar__share:hover {
+    background: rgba(var(--theme-rgb), .16);
+    text-decoration: none;
+    transform: translateY(-1px);
+}
+
+.m-topbar__title {
+    flex: 1 1 auto;
+    min-width: 0;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.m-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    z-index: 950;
+    background: transparent;
+    pointer-events: none;
+}
+
+.m-progress__fill {
+    height: 100%;
+    width: 0;
+    border-radius: 0 var(--r-full) var(--r-full) 0;
+    background: linear-gradient(90deg, var(--theme), var(--theme-accent));
+    transition: width .12s linear;
+}
+
+/* --------------------------------------------------------------------------
+   5. Hero
+   -------------------------------------------------------------------------- */
+.hero-image {
+    position: relative;
+    width: 100%;
+    height: clamp(260px, 46vw, 420px);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: #d8dbd6;
+}
+
+.hero-image::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        180deg,
+        rgba(12, 16, 14, .38) 0%,
+        rgba(12, 16, 14, .18) 38%,
+        rgba(12, 16, 14, .52) 100%
+    );
+}
+
+/* Hero 上的返回入口（滚动前可见） */
+.m-hero-back {
+    position: absolute;
+    top: 16px;
+    left: 14px;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    height: 38px;
+    padding: 0 16px 0 12px;
+    border-radius: var(--r-full);
+    background: rgba(255, 255, 255, .9);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    color: var(--text);
+    font-size: 14px;
+    font-weight: 600;
+    box-shadow: var(--shadow-sm);
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.m-hero-back:hover {
+    text-decoration: none;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+/* --------------------------------------------------------------------------
+   6. 内容容器 —— 上浮卡片
+   -------------------------------------------------------------------------- */
+.content {
+    position: relative;
+    z-index: 3;
+    max-width: var(--measure);
+    margin: -68px auto 0;
+    padding: 34px 22px 64px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg) var(--r-lg) 0 0;
+    box-shadow: var(--shadow-lg);
+}
+
+/* --------------------------------------------------------------------------
+   7. 标题与元信息
+   -------------------------------------------------------------------------- */
+.title {
+    margin: 0 0 18px;
+    font-size: clamp(25px, 5.4vw, 36px);
+    line-height: 1.28;
+    font-weight: 750;
+    letter-spacing: -.015em;
+    color: var(--text);
+}
+
+.article-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0 0 22px;
+    padding: 0 0 22px;
+    border-bottom: 1px solid var(--line);
+}
+
+.category,
+.read-time,
+.difficulty {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 13px;
+    border-radius: var(--r-full);
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.6;
+    white-space: nowrap;
+}
+
+.category {
+    background: var(--theme);
+    color: #fff;
+}
+
+.read-time {
+    background: rgba(var(--theme-rgb), .09);
+    color: var(--theme-dark);
+}
+
+.difficulty {
+    background: var(--surface-alt);
+    color: var(--text-soft);
+    border: 1px solid var(--line);
+}
+
+/* 引言 / 副标题 */
+.quote-box {
+    margin: 0 0 24px;
+    padding: 14px 18px;
+    border-radius: var(--r-md);
+    background: var(--theme-tint);
+    border-left: 3px solid var(--theme-accent);
+}
+
+.quote-text {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 600;
+    font-style: italic;
+    letter-spacing: .01em;
+    color: var(--theme-dark);
+}
+
+/* --------------------------------------------------------------------------
+   8. 章节标题
+   -------------------------------------------------------------------------- */
+.section-title {
+    margin: 48px 0 18px;
+    padding: 0 0 12px;
+    font-size: clamp(20px, 4.2vw, 25px);
+    font-weight: 700;
+    line-height: 1.4;
+    letter-spacing: -.01em;
+    color: var(--theme-dark);
+    border-bottom: 2px solid rgba(var(--theme-rgb), .14);
+}
+
+.section-title:first-of-type { margin-top: 8px; }
+
+.subsection-title {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin: 32px 0 14px;
+    padding: 0 0 0 14px;
+    font-size: clamp(17px, 3.6vw, 20px);
+    font-weight: 700;
+    line-height: 1.5;
+    color: var(--text);
+    border-left: 4px solid var(--theme-accent);
+}
+
+/* --------------------------------------------------------------------------
+   9. 正文
+   -------------------------------------------------------------------------- */
+.content p {
+    margin: 0 0 16px;
+    color: var(--text-soft);
+}
+
+.content strong { color: var(--text); font-weight: 700; }
+
+.article-text {
+    margin: 0 0 16px;
+    font-size: 17px;
+    line-height: 1.8;
+    color: var(--text-soft);
+}
+
+/* 导语段：首段强调 */
+.main-text {
+    position: relative;
+    margin: 0 0 24px;
+    padding: 20px 22px;
+    border-radius: var(--r-md);
+    background: linear-gradient(135deg, var(--theme-tint), var(--surface-alt));
+    border: 1px solid rgba(var(--theme-rgb), .12);
+    font-size: 17.5px;
+    line-height: 1.82;
+    color: var(--text);
+}
+
+.main-text > .emoji { display: none; }   /* 独占一行的装饰 emoji 造成断行，隐藏 */
+
+.emoji {
+    font-size: 1.1em;
+    margin-left: 4px;
+}
+
+/* --------------------------------------------------------------------------
+   10. 列表 / 要点块
+   -------------------------------------------------------------------------- */
+.highlight {
+    margin: 0 0 22px;
+    padding: 16px 20px;
+    border-radius: var(--r-md);
+    background: var(--surface-alt);
+    border: 1px solid var(--line);
+}
+
+.highlight ul,
+.content ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.highlight li,
+.content ul li {
+    position: relative;
+    margin: 0 0 10px;
+    padding-left: 22px;
+    color: var(--text-soft);
+    line-height: 1.72;
+}
+
+.highlight li:last-child,
+.content ul li:last-child { margin-bottom: 0; }
+
+.highlight li::before,
+.content ul li::before {
+    content: "";
+    position: absolute;
+    left: 2px;
+    top: .68em;
+    width: 7px;
+    height: 7px;
+    border-radius: 2px;
+    background: var(--theme-accent);
+    transform: rotate(45deg);
+}
+
+/* 有序步骤：主题色圆形序号 */
+.content ol {
+    counter-reset: m-step;
+    margin: 0 0 22px;
+    padding: 0;
+    list-style: none;
+}
+
+.content ol > li {
+    position: relative;
+    counter-increment: m-step;
+    margin: 0 0 14px;
+    padding-left: 40px;
+    color: var(--text-soft);
+    line-height: 1.72;
+}
+
+.content ol > li:last-child { margin-bottom: 0; }
+
+.content ol > li::before {
+    content: counter(m-step);
+    position: absolute;
+    left: 0;
+    top: .12em;
+    width: 26px;
+    height: 26px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: rgba(var(--theme-rgb), .10);
+    color: var(--theme);
+    font-size: 13px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+}
+
+/* 步骤内的子列表 */
+.content ol > li > ul {
+    margin: 10px 0 0;
+    padding: 12px 16px;
+    border-radius: var(--r-sm);
+    background: var(--surface-alt);
+    border: 1px solid var(--line);
+}
+
+.content ol > li > ul > li { margin-bottom: 8px; font-size: .96em; }
+
+/* 段落转换而来的要点列表 */
+.m-points {
+    margin: 0 0 22px;
+}
+
+/* --------------------------------------------------------------------------
+   11. 提示 / 警告 / 卡片
+   -------------------------------------------------------------------------- */
+.tip-box {
+    margin: 0 0 22px;
+    padding: 18px 20px;
+    border-radius: var(--r-md);
+    background: var(--theme-tint);
+    border: 1px solid rgba(var(--theme-rgb), .16);
+    border-left: 4px solid var(--theme);
+}
+
+.tip-title {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 700;
+    color: var(--theme-dark);
+}
+
+.warning {
+    margin: 0 0 22px;
+    padding: 18px 20px;
+    border-radius: var(--r-md);
+    background: var(--danger-tint);
+    border: 1px solid rgba(197, 48, 48, .18);
+    border-left: 4px solid var(--danger);
+    color: #7f1d1d;
+}
+
+.equipment-item {
+    margin: 0 0 14px;
+    padding: 16px 18px;
+    border-radius: var(--r-md);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow-sm);
+}
+
+.equipment-item h4 {
+    margin: 0 0 6px;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--theme-dark);
+}
+
+blockquote {
+    margin: 0 0 22px;
+    padding: 14px 18px;
+    border-left: 3px solid var(--theme-accent);
+    background: var(--theme-tint);
+    border-radius: 0 var(--r-md) var(--r-md) 0;
+    color: var(--text-soft);
+}
+
+hr {
+    margin: 36px 0;
+    border: 0;
+    border-top: 1px solid var(--line);
+}
+
+/* --------------------------------------------------------------------------
+   12. 页脚
+   -------------------------------------------------------------------------- */
+.m-footer {
+    max-width: var(--measure);
+    margin: 0 auto;
+    padding: 26px 22px 46px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-top: 0;
+    text-align: center;
+}
+
+.m-footer__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 26px;
+    border-radius: var(--r-full);
+    background: var(--theme);
+    color: #fff;
+    font-size: 15px;
+    font-weight: 650;
+    box-shadow: 0 8px 20px rgba(var(--theme-rgb), .26);
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.m-footer__cta:hover {
+    text-decoration: none;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 26px rgba(var(--theme-rgb), .32);
+}
+
+.m-footer__note {
+    margin: 18px 0 0;
+    font-size: 13px;
+    color: var(--text-mute);
+}
+
+/* --------------------------------------------------------------------------
+   13. 回到顶部
+   -------------------------------------------------------------------------- */
+.m-totop {
+    position: fixed;
+    right: 16px;
+    bottom: 22px;
+    z-index: 880;
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--line);
+    border-radius: var(--r-full);
+    background: rgba(255, 255, 255, .92);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    color: var(--theme);
+    font-size: 17px;
+    cursor: pointer;
+    box-shadow: var(--shadow-md);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: opacity .28s ease, transform .28s ease, visibility .28s ease;
+}
+
+.m-totop.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* --------------------------------------------------------------------------
+   14. 入场动画
+   -------------------------------------------------------------------------- */
+.m-reveal {
+    opacity: 0;
+    transform: translateY(14px);
+}
+
+body.is-ready .m-reveal {
+    animation: m-rise .6s cubic-bezier(.22, .68, .36, 1) forwards;
+}
+
+body.is-ready .m-reveal:nth-child(1) { animation-delay: .04s; }
+body.is-ready .m-reveal:nth-child(2) { animation-delay: .10s; }
+body.is-ready .m-reveal:nth-child(3) { animation-delay: .16s; }
+
+@keyframes m-rise {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --------------------------------------------------------------------------
+   15. 响应式
+   -------------------------------------------------------------------------- */
+@media (min-width: 768px) {
+    body { font-size: 17.5px; }
+
+    .content {
+        margin-top: -80px;
+        padding: 44px 52px 72px;
+        border-radius: var(--r-lg);
+    }
+
+    .m-footer {
+        padding: 30px 52px 50px;
+        border-radius: 0 0 var(--r-lg) var(--r-lg);
+        margin-bottom: 48px;
+    }
+
+    .m-hero-back { top: 22px; left: 24px; }
+}
+
+@media (max-width: 420px) {
+    body { font-size: 16.5px; }
+
+    .content {
+        margin-top: -56px;
+        padding: 26px 17px 52px;
+    }
+
+    .m-footer { padding: 22px 17px 40px; }
+    .article-meta { gap: 6px; }
+    .category, .read-time, .difficulty { font-size: 12.5px; padding: 4px 11px; }
+}
+
+/* --------------------------------------------------------------------------
+   16. 深色模式
+   -------------------------------------------------------------------------- */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg: #14171a;
+        --surface: #1b1f23;
+        --surface-alt: #22272c;
+        --text: #e8eaed;
+        --text-soft: #b9c0c7;
+        --text-mute: #8b949e;
+        --line: #2c3238;
+        --danger-tint: #2a1a1a;
+        --shadow-lg: 0 18px 40px rgba(0, 0, 0, .5);
+        --shadow-md: 0 4px 12px rgba(0, 0, 0, .4);
+        --shadow-sm: 0 1px 3px rgba(0, 0, 0, .35);
+    }
+
+    body[data-category="culinary-mushrooms"]      { --theme: #d98b52; --theme-dark: #f0b183; --theme-tint: #2a2019; }
+    body[data-category="mushroom-ecology"]        { --theme: #52b788; --theme-dark: #86e0b3; --theme-tint: #17251f; }
+    body[data-category="mushroom-identification"] { --theme: #63a4e8; --theme-dark: #9ecbf5; --theme-tint: #17212c; }
+    body[data-category="mushroom-safety"]         { --theme: #e8705f; --theme-dark: #f5a294; --theme-tint: #2a1a18; }
+    body[data-category="mushroom-science"]        { --theme: #9f7aea; --theme-dark: #c3a9f5; --theme-tint: #201a2e; }
+
+    .m-topbar { background: rgba(27, 31, 35, .84); }
+    .m-totop { background: rgba(27, 31, 35, .92); }
+    .m-hero-back { background: rgba(27, 31, 35, .9); color: var(--text); }
+    .warning { color: #f6b3b3; }
+
+    .m-loader__bar {
+        background: linear-gradient(90deg, #23282d 25%, #2c3238 37%, #23282d 63%);
+        background-size: 400% 100%;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   17. 无障碍 / 打印
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+
+    *, *::before, *::after {
+        animation-duration: .001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .001ms !important;
+    }
+
+    .m-reveal { opacity: 1; transform: none; }
+}
+
+@media print {
+    .m-loader, .m-topbar, .m-progress, .m-totop, .m-hero-back, .m-footer__cta { display: none !important; }
+    .content { margin: 0; box-shadow: none; border: 0; }
+    .hero-image { height: 200px; }
+}

@@ -1,161 +1,65 @@
 <!DOCTYPE html>
-
-<html lang="en">
+<html lang="ko">
 <head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<meta name="theme-color" content="#6b46c1"/>
 <title>03 DNA 바코드 기술 - MushroomAiSnap</title>
-<link href="../../mobile-styles.css" rel="stylesheet"/>
-<link href="../../mobile-enhancement.css" rel="stylesheet"/>
-<link href="../../ecology-theme.css" rel="stylesheet"/>
+<meta name="description" content="핸드 헬드 DNA 시퀀서가있는 숲에서 버섯을 처음 식별했을 때, 나는 mycologic의 게임 규칙이 완전히 바뀌 었다는 것을 깨달았습니다.전통적으로, 우리는 캡의 컬러, 폴드 간격 및 고리의 형태 인 형태 학적 특성에 의존합니다.이제 DNA 바코드 기술을 통해 전문가의 정확성…"/>
+<meta property="og:type" content="article"/>
+<meta property="og:title" content="03 DNA 바코드 기술"/>
+<meta property="og:description" content="핸드 헬드 DNA 시퀀서가있는 숲에서 버섯을 처음 식별했을 때, 나는 mycologic의 게임 규칙이 완전히 바뀌 었다는 것을 깨달았습니다.전통적으로, 우리는 캡의 컬러, 폴드 간격 및 고리의 형태 인 형태 학적 특성에 의존합니다.이제 DNA 바코드 기술을 통해 전문가의 정확성…"/>
+<meta property="og:image" content="../../images/mushroom-science_03-dna-barcoding-molecular-identification.webp"/>
+<link rel="icon" type="image/svg+xml" href="../../../favicon.svg"/>
+<link rel="preload" as="image" href="../../images/mushroom-science_03-dna-barcoding-molecular-identification.webp"/>
+<link rel="stylesheet" href="../../assets/article.css"/>
 <style>
-        .hero-image img {
-            max-height: 200px;
-            width: 100%;
-            object-fit: cover;
-        }
-        .article-card img {
-            max-height: 120px;
-            width: 100%;
-            object-fit: cover;
-        }
-        .hero-image {
-            width: 100%;
-            height: 400px;
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
-                        url('../../images/mushroom-science_03-dna-barcoding-molecular-identification.webp') center/cover;
-            position: relative;
-            margin-top: 0;
-        }
-        .article-meta {
-            margin-top: 15px !important;
-        }
-    
-        /* Mushroom Science Theme */
-        :root {
-            --primary-color: #9370DB;
-            --primary-dark: #4B0082;
-            --primary-light: #F8F4FF;
-            --accent-color: #BA55D3;
-        }
-        
-        /* Theme Color Overrides */
-        .content {
-            background: linear-gradient(135deg, #ffffff, var(--primary-light));
-            border: 2px solid var(--primary-color);
-        }
-        
-        .quote-box {
-            background: linear-gradient(135deg, var(--primary-light), var(--primary-light));
-            border-left: 4px solid var(--primary-color);
-        }
-        
-        .quote-text {
-            color: var(--primary-dark);
-        }
-        
-        .section-title {
-            color: var(--primary-color);
-            border-bottom: 2px solid var(--accent-color);
-        }
-        
-        .subsection-title {
-            color: var(--primary-dark);
-            font-size: 1.4em;
-            font-weight: 600;
-            margin: 25px 0 15px 0;
-            padding-left: 10px;
-            border-left: 3px solid var(--accent-color);
-        }
-        
-        .tip-box {
-            border-left: 4px solid var(--primary-color);
-            background: var(--primary-light);
-        }
-        
-        .tip-title {
-            color: var(--primary-color);
-        }
-        
-        .highlight {
-            border-left: 4px solid var(--accent-color);
-            background: linear-gradient(135deg, #f1f8e9, var(--primary-light));
-        }
-        
-        .warning {
-            border-left: 4px solid #f44336;
-        }
-        
-        .equipment-item {
-            border: 1px solid var(--accent-color);
-            background: linear-gradient(135deg, #ffffff, var(--primary-light));
-        }
-        
-        .equipment-item h4 {
-            color: var(--primary-color);
-        }
-        
-        .category {
-            background: var(--primary-color);
-            color: white;
-        }
-        
-        .main-text {
-            font-size: 1.1em;
-            line-height: 1.8;
-            color: #333;
-            margin: 20px 0;
-            padding: 15px;
-            background: linear-gradient(135deg, #ffffff, #f9f9f9);
-            border-radius: 8px;
-            border-left: 3px solid var(--accent-color);
-        }
-        
-        .emoji {
-            font-size: 1.5em;
-            margin-left: 10px;
-        }
-        
-        .read-time, .difficulty {
-            display: inline-block;
-            padding: 5px 15px;
-            margin: 5px 5px 5px 0;
-            border-radius: 20px;
-            font-size: 0.9em;
-            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
-            color: #1976d2;
-            font-weight: 500;
-        }
-        
-        .difficulty {
-            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
-            color: #e65100;
-        }
-        
-        .article-text {
-            line-height: 1.8;
-            color: #444;
-            margin: 15px 0;
-            font-size: 1.05em;
-        }
-    </style>
+.hero-image {
+    background-image: url('../../images/mushroom-science_03-dna-barcoding-molecular-identification.webp');
+}
+</style>
 </head>
-<body>
-<div class="hero-image"></div>
-<div class="content">
-    <h1 class="title">03 DNA 바코드 기술</h1>
-    <div class="quote-box">
-        <div class="quote-text">Professional Mycology Guide</div>
-    </div>
-    
-<div class="article-meta">
-<span class="category">🔬 Mushroom Science</span>
-<span class="read-time">📖 15 minute read</span>
-<span class="difficulty">🔴 Advanced</span>
+<body class="is-loading" data-category="mushroom-science">
+
+<div class="m-loader" id="m-loader" role="status" aria-live="polite">
+<div class="m-loader__mark">
+<span class="m-loader__ring"></span>
+<span class="m-loader__cap">🍄</span>
+</div>
+<p class="m-loader__text">기사를 불러오는 중…</p>
+<div class="m-loader__skeleton" aria-hidden="true">
+<span class="m-loader__bar"></span>
+<span class="m-loader__bar"></span>
+<span class="m-loader__bar"></span>
+<span class="m-loader__bar"></span>
+</div>
+</div>
+<noscript><style>.m-loader{display:none!important}body.is-loading{overflow:auto!important}.m-reveal{opacity:1!important;transform:none!important}</style></noscript>
+
+<div class="m-progress" aria-hidden="true"><div class="m-progress__fill"></div></div>
+
+<header class="m-topbar">
+<a class="m-topbar__back" href="../../../mushroom-app.html" aria-label="뒤로">←</a>
+<span class="m-topbar__title">03 DNA 바코드 기술</span>
+<button class="m-topbar__share" type="button" aria-label="공유">↗</button>
+</header>
+
+<div class="hero-image">
+<a class="m-hero-back" href="../../../mushroom-app.html">← 뒤로</a>
 </div>
 
+<main class="content">
+<h1 class="title m-reveal">03 DNA 바코드 기술</h1>
+<div class="quote-box m-reveal">
+<p class="quote-text">전문 균학 가이드</p>
+</div>
+<div class="article-meta m-reveal">
+<span class="category">🔬 균류 과학</span>
+<span class="read-time">⏱ 15분 소요</span>
+<span class="difficulty">🟡 중급</span>
+</div>
 
-            <div class="section-title">🧬 왜 DNA 식별이 Mycologics를 변화 시키는가</div>
+<div class="section-title">🧬 왜 DNA 식별이 Mycologics를 변화 시키는가</div>
 <div class="main-text">핸드 헬드 DNA 시퀀서가있는 숲에서 버섯을 처음 식별했을 때, 나는 mycologic의 게임 규칙이 완전히 바뀌 었다는 것을 깨달았습니다.전통적으로, 우리는 캡의 컬러, 폴드 간격 및 고리의 형태 인 형태 학적 특성에 의존합니다.이제 DNA 바코드 기술을 통해 전문가의 정확성에 가까운 정확도를 달성하는 법을 배우는 것에 대해 진지한 애호가를 허용합니다.<span class="emoji">🍄</span></div>
 <p class="article-text">DNA 바코드의 개념은 슈퍼마켓 상품 스캐닝과 유사합니다. 생물학적 DNA의 특정 영역에서 서열을 분석하여 종을 식별합니다.곰팡이의 경우 국제적으로 인정 된 표준 바코드 지역은 (내부 전사 스페이서)입니다.이 기술은 수십 년 동안 미화 학자들을 괴롭힌 문제를 해결할뿐만 아니라 현장 수집가, 요리사 및 연구원들에게 전례없는 정확한 도구를 제공합니다.</p>
 <div class="section-title">🧬 DNA 바코드의 과학적 기초 : 왜 그 지역을 선택해야합니까?</div>
@@ -189,11 +93,7 @@
 </ul></div>
 <div class="subsection-title">🧬 DNA 추출 : 고품질 샘플의 핵심 단계</div>
 <p><strong> 기본 가정 실험실 프로그램 </strong> :</p>
-<p class="article-text">1. 건조 된 박테리아 캡 조직 50-100mg을 섭취하여 액체 질소로 미세 분말로 분쇄하십시오.</p>
-<p>2. CTAB 추출 완충액을 추가하고 65 ° C에서 30 분 동안 목욕을합니다.</p>
-<p>3. 단백질을 제거하기위한 클로로포름-이소 아밀 알코올 추출</p>
-<p>4. 이소 프로판올은 DNA를 침전시킨다</p>
-<p>5. 70% 에탄올로 세척하고 TE 완충액에 용해</p>
+<ol class="m-steps"><li>건조 된 박테리아 캡 조직 50-100mg을 섭취하여 액체 질소로 미세 분말로 분쇄하십시오.</li><li>CTAB 추출 완충액을 추가하고 65 ° C에서 30 분 동안 목욕을합니다.</li><li>단백질을 제거하기위한 클로로포름-이소 아밀 알코올 추출</li><li>이소 프로판올은 DNA를 침전시킨다</li><li>70% 에탄올로 세척하고 TE 완충액에 용해</li></ol>
 <p><strong> 상용 키트 선택 </strong> : 초보자의 경우 Qiagen Dneasy Plant Mini Kit 또는 MP Biomedicals FastDNA 스핀 키트를 사용하는 것이 좋습니다.</p>
 <p><strong> 일반적인 오류 회피 </strong> :</p>
 <div class="highlight"><ul>
@@ -215,10 +115,7 @@
 </ul></div>
 <div class="subsection-title">📌 시퀀스 분석 및 식별 : 데이터 해석 기술</div>
 <p><strong> 기본 프로세스 </strong> :</p>
-<p>1. 시퀀스 품질 관리 : 저품질 영역을 제거하고 Q 값> 30</p>
-<p>2. Blast Search : NCBI 또는 Unite 데이터베이스의 비교</p>
-<p>3. 유사성 평가 :> 97-99% 유사성은 일반적으로 동일한 종을 나타냅니다.</p>
-<p>4. 계통 발생 학적 분석 : 진화 트리를 구성하여 식별 결과 확인</p>
+<ol class="m-steps"><li>시퀀스 품질 관리 : 저품질 영역을 제거하고 Q 값> 30</li><li>Blast Search : NCBI 또는 Unite 데이터베이스의 비교</li><li>유사성 평가 :> 97-99% 유사성은 일반적으로 동일한 종을 나타냅니다.</li><li>계통 발생 학적 분석 : 진화 트리를 구성하여 식별 결과 확인</li></ol>
 <p><strong> 실용 기술 </strong> : 가장 높은 일치 결과를 맹목적으로 믿지 마십시오.다수의 높은 매칭 시퀀스를 점검하여 기원과 주석 품질을 확인하십시오.Unite 데이터베이스에서 "종 가설"숫자를 갖는 시퀀스가 ​​선호되며, 이는 전문적으로 주석이 달성되고 신뢰성이 높습니다.</p>
 <div class="section-title">📚 기본 데이터베이스 및 리소스 플랫폼</div>
 <div class="subsection-title">🛠️ 전문 데이터베이스 비교</div>
@@ -286,10 +183,7 @@
 <li>곰팡이 지역 사회에 대한 기후 변화의 영향 추적</li>
 </ul></div>
 <p><strong> 실외 운영 안내서 </strong> :</p>
-<p>1. 100-200g의 지표 토양 수집 (잎 층 제거)</p>
-<p>2. 멸균 도구를 사용하여 교차 오염을 피하십시오</p>
-<p>3. 즉시 냉장 또는 스토리지 버퍼를 추가하십시오</p>
-<p>4. 정확한 GPS 좌표 및 환경 매개 변수를 기록하십시오</p>
+<ol class="m-steps"><li>100-200g의 지표 토양 수집 (잎 층 제거)</li><li>멸균 도구를 사용하여 교차 오염을 피하십시오</li><li>즉시 냉장 또는 스토리지 버퍼를 추가하십시오</li><li>정확한 GPS 좌표 및 환경 매개 변수를 기록하십시오</li></ol>
 <div class="subsection-title">📌 법의학 mycologics의 적용</div>
 <p class="article-text">유독 한 버섯 중독의 경우, DNA 분석은 구토, 요리 잔류 물 및 소화 시스템의 종을 식별하여 의학적 개입에 대한 주요 정보를 제공 할 수 있습니다.2019 년 캘리포니아 중독 사건에서 Amanita Phalloides는 DNA 바코드를 통해 위의 내용물에서 확인되었으며, 의사는 실험적인 해독제를 사용하여 환자의 생명을 성공적으로 구할 수 있도록 안내되었습니다.</p>
 <div class="section-title">🧬 휴대용 DNA 기술 : 현장에서 실시간 식별</div>
@@ -308,11 +202,7 @@
 <li>스마트 폰 애플리케이션과 연결하여 운영 프로세스를 단순화하십시오</li>
 </ul></div>
 <div class="subsection-title">📌 필드 워크 플로</div>
-<p>1. 현장 샘플 수집 및 기록</p>
-<p>2. 빠른 DNA 추출 (15 분)</p>
-<p>3. 휴대용 PCR 증폭 (30 분)</p>
-<p>4. 미니언 시퀀싱 및 실시간 분석 (1-4 시간)</p>
-<p>5. 위성 네트워크를 통한 액세스 데이터베이스 비교</p>
+<ol class="m-steps"><li>현장 샘플 수집 및 기록</li><li>빠른 DNA 추출 (15 분)</li><li>휴대용 PCR 증폭 (30 분)</li><li>미니언 시퀀싱 및 실시간 분석 (1-4 시간)</li><li>위성 네트워크를 통한 액세스 데이터베이스 비교</li></ol>
 <p><strong> 실제 경험 </strong> : 몬태나 외곽 지역의 곰팡이 조사 에서이 시스템을 사용하여 3 시간 안에 12 개의 샘플의 현장 식별을 완료했으며 전통적인 방법은 몇 주가 걸렸습니다.</p>
 <div class="section-title">🍄 비용 분석 및 접근성</div>
 <div class="subsection-title">📌 현재 수수료 구조</div>
@@ -333,10 +223,7 @@
 <div class="section-title">🔬 시민 과학 참여 가이드</div>
 <div class="subsection-title">🧬 DNA 바코드 프로젝트에 참여하는 방법</div>
 <p><strong> INTERALIST 플랫폼 </strong> :</p>
-<p>1. 명확한 버섯 사진을 업로드하십시오</p>
-<p>2. 자세한 수집 정보를 기록하십시오</p>
-<p>3. 예비 공동체 평가를 얻으십시오</p>
-<p>4. DNA 분석을 제출하려면 고품질 관찰을 선택하십시오</p>
+<ol class="m-steps"><li>명확한 버섯 사진을 업로드하십시오</li><li>자세한 수집 정보를 기록하십시오</li><li>예비 공동체 평가를 얻으십시오</li><li>DNA 분석을 제출하려면 고품질 관찰을 선택하십시오</li></ol>
 <p><strong> 전문 프로젝트 협력 </strong> :</p>
 <p>-NSF 자금 지원“북미 곰팡이 다양성 프로젝트”</p>
 <div class="highlight"><ul>
@@ -479,32 +366,26 @@
 <div class="section-title">🍄 통합 방법 : 현대 균학의 미래</div>
 <p class="article-text">DNA 바코드는 전통적인 균학을 대체하는 것이 아니라 그들과 강한 시너지 효과를 형성하는 것입니다. 가장 신뢰할 수있는 식별은 여러 증거 통합에서 비롯됩니다.</p>
 <p><strong> 포괄적 인 평가 계약 </strong> :</p>
-<p>1. 현장 매크로 관찰 및 기록</p>
-<p>2. 마이크로 기능 검증</p>
-<p>3. 생태 및 분산 데이터 평가</p>
-<p>4. DNA 바코드 확인</p>
-<p>5. 필요한 경우 화학 분석을 지원합니다</p>
+<ol class="m-steps"><li>현장 매크로 관찰 및 기록</li><li>마이크로 기능 검증</li><li>생태 및 분산 데이터 평가</li><li>DNA 바코드 확인</li><li>필요한 경우 화학 분석을 지원합니다</li></ol>
 <p class="article-text">** 전문가들은 제안 : 가장 진보 된 DNA 기술을 사용하더라도 형태 학적 식별 기술을 키우는 것을 무시하지 마십시오.최고의 마이 클리어 전문가는 실험실 데이터와 현장 관찰 경험을 원활하게 결합 할 수있는 사람들입니다.</p>
 <div class="section-title">📖 액션 가이드 : 지금 시작하십시오</div>
 <p><strong> 일주일의 액션 아이템 </strong> :</p>
-<p>1. 3 개의 일반적인 현지 버섯을 선택하고 자세한 사진을 찍습니다.</p>
-<p>2. Inaturalist에서 계정을 만들고 관찰을 업로드하십시오.</p>
-<p>3. 지역 곰팡이 사회의 DNA 바코드 프로젝트 연구</p>
-<p>4. 기본 곰팡이 분자 생물학에 관한 책을 주문하십시오</p>
+<ol class="m-steps"><li>3 개의 일반적인 현지 버섯을 선택하고 자세한 사진을 찍습니다.</li><li>Inaturalist에서 계정을 만들고 관찰을 업로드하십시오.</li><li>지역 곰팡이 사회의 DNA 바코드 프로젝트 연구</li><li>기본 곰팡이 분자 생물학에 관한 책을 주문하십시오</li></ol>
 <p><strong> 이번 달 목표 </strong> :</p>
-<p>1. 온라인 또는 오프라인 DNA 바코드 세미나에 참여하십시오</p>
-<p>2. 샘플 수집 및 보존 시스템을 설정하십시오</p>
-<p>3. 지역 대학 Mycology Research Group에 문의하십시오</p>
-<p>4. 가정용 실험실 예산 및 계획을 준비하십시오</p>
+<ol class="m-steps"><li>온라인 또는 오프라인 DNA 바코드 세미나에 참여하십시오</li><li>샘플 수집 및 보존 시스템을 설정하십시오</li><li>지역 대학 Mycology Research Group에 문의하십시오</li><li>가정용 실험실 예산 및 계획을 준비하십시오</li></ol>
 <p><strong> 올해의 비전 </strong> :</p>
-<p>1. 최소 50 개의 토착 종 DNA 바코드를 완료하십시오</p>
-<p>2. 시민의 과학적 발견에 관한 보고서를 발표하십시오</p>
-<p>3. 개인 참조 시퀀스 라이브러리를 만듭니다</p>
-<p>4. DNA 바코드 기술을 배우도록 최소한 한 사람을 안내합니다.</p>
+<ol class="m-steps"><li>최소 50 개의 토착 종 DNA 바코드를 완료하십시오</li><li>시민의 과학적 발견에 관한 보고서를 발표하십시오</li><li>개인 참조 시퀀스 라이브러리를 만듭니다</li><li>DNA 바코드 기술을 배우도록 최소한 한 사람을 안내합니다.</li></ol>
 <p class="article-text">DNA 바코드 기술은 곰팡이 식별을 위해 민주화되어 신분을 진지하게 받아들이는 모든 사람에게 전문 실험실로 한 번 제한됩니다.이 기술은 빠르게 발전하고 있으며 비용은 계속 감소하고 접근성이 증가하고 있습니다.지금은 깊이 배우고 DNA 바코드를 mycology 연습에 통합하기에 완벽한시기입니다.</p>
 <p class="article-text">목표는 자연적인 관찰의 즐거움을 기술로 대체하는 것이 아니라 곰팡이 왕국과의 관계를 심화시키고 식별 신뢰를 향상 시키며 글로벌 곰팡이 지식 시스템에 기여하는 것입니다.신중하게 수집, 신중하게 기록 및 정확하게 식별 된 모든 샘플은 과학에 대한 귀중한 기여입니다.</p>
-        </div>
+</main>
 
-</div>
+<footer class="m-footer">
+<a class="m-footer__cta" href="../../../mushroom-app.html">🍄 MushroomAiSnap 알아보기</a>
+<p class="m-footer__note">교육 목적으로만 제공됩니다. 전문가 확인 없이 야생 버섯을 섭취하지 마세요.</p>
+</footer>
+
+<button class="m-totop" type="button" aria-label="맨 위로">↑</button>
+
+<script src="../../assets/article.js"></script>
 </body>
 </html>

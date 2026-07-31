@@ -333,17 +333,272 @@ body {
     color: var(--mushroom-primary);
 }
 
+/* --------------------------------------------------------------------------
+   页面级导航：防止 "AiSnap Suite / MushroomAiSnap" 在窄屏被裁切
+   -------------------------------------------------------------------------- */
+.page-mushroom .nav-logo {
+    flex: 1 1 auto;
+    min-width: 0;
+    margin-right: 0.5rem;
+}
+
+.page-mushroom .nav-logo h2 {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 0.35rem;
+    font-size: 1.2rem;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.page-mushroom .nav-logo h2 a.nav-suite {
+    text-decoration: none;
+    color: inherit;
+    -webkit-text-fill-color: inherit;
+    background: none;
+    flex: 0 0 auto;
+}
+
+.page-mushroom .nav-sep {
+    opacity: 0.45;
+    flex: 0 0 auto;
+    -webkit-text-fill-color: var(--mushroom-primary);
+    color: var(--mushroom-primary);
+}
+
+.page-mushroom .app-name {
+    flex: 0 1 auto;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: var(--mushroom-primary);
+    -webkit-text-fill-color: var(--mushroom-primary);
+    background: none;
+}
+
+.page-mushroom .nav-suite-short { display: none; }
+
+.page-mushroom .language-switcher:empty {
+    display: none;
+}
+
+/* --------------------------------------------------------------------------
+   Hero / CTA：覆盖全局 .btn { width: 200px } 导致的折行
+   -------------------------------------------------------------------------- */
+.page-mushroom .mushroom-hero .hero-content {
+    max-width: 100%;
+}
+
+.page-mushroom .mushroom-hero .hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.page-mushroom .mushroom-hero .btn {
+    width: auto;
+    min-width: 0;
+    white-space: nowrap;
+    padding: 0.95rem 1.75rem;
+}
+
+.page-mushroom .mushroom-hero .btn .btn-label {
+    white-space: nowrap;
+}
+
+/* 全局防横向溢出 */
+.page-mushroom {
+    overflow-x: clip;
+}
+
+.page-mushroom .container,
+.page-mushroom .hero-container,
+.page-mushroom .about-content,
+.page-mushroom .about-text,
+.page-mushroom .about-image,
+.page-mushroom .footer-content,
+.page-mushroom .footer-section,
+.page-mushroom .scientific-content,
+.page-mushroom .scientific-text {
+    min-width: 0;
+    max-width: 100%;
+}
+
+.page-mushroom .planned-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.page-mushroom .planned-stats .stat {
+    text-align: center;
+}
+
+.page-mushroom .planned-stats .stat h3 {
+    font-size: clamp(1.4rem, 4vw, 2rem);
+    color: var(--mushroom-primary);
+    margin: 0 0 0.25rem;
+}
+
+.page-mushroom .planned-stats .stat p {
+    margin: 0;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #6b7280;
+}
+
 /* 响应式调整 */
 @media (max-width: 768px) {
     .mushroom-hero {
-        padding: 120px 0 60px;
+        padding: 110px 0 56px;
     }
-    
+
+    .page-mushroom .nav-logo h2 {
+        font-size: 1.05rem;
+        letter-spacing: -0.02em;
+    }
+
+    .page-mushroom .nav-suite-full { display: none; }
+    .page-mushroom .nav-suite-short { display: inline; }
+
+    .page-mushroom .mushroom-hero .hero-content {
+        text-align: center;
+        padding: 0 4px;
+    }
+
+    .page-mushroom .mushroom-hero .app-badge {
+        max-width: 100%;
+        flex-wrap: wrap;
+        justify-content: center;
+        row-gap: 6px;
+    }
+
+    .page-mushroom .mushroom-hero h1 {
+        font-size: clamp(1.75rem, 7vw, 2.35rem) !important;
+        line-height: 1.15;
+        letter-spacing: -0.03em;
+        overflow-wrap: anywhere;
+        word-break: break-word;
+        background: none;
+        -webkit-text-fill-color: var(--mushroom-text-dark);
+        color: var(--mushroom-text-dark);
+    }
+
+    .page-mushroom .mushroom-hero .hero-content > p {
+        font-size: 1rem;
+        line-height: 1.65;
+        margin-left: auto;
+        margin-right: auto;
+        overflow-wrap: anywhere;
+    }
+
+    .page-mushroom .mushroom-hero .hero-buttons {
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+        max-width: 360px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .page-mushroom .mushroom-hero .btn {
+        width: 100%;
+        justify-content: center;
+        padding: 1rem 1.25rem;
+    }
+
+    .page-mushroom .coming-soon-info {
+        text-align: left;
+    }
+
+    .page-mushroom .about-content {
+        grid-template-columns: minmax(0, 1fr) !important;
+        gap: 2rem;
+    }
+
+    .page-mushroom .about-text h2 {
+        font-size: clamp(1.6rem, 6vw, 2.1rem);
+    }
+
+    .page-mushroom .mushroom-placeholder {
+        height: 220px;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .page-mushroom .mushroom-collection {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+    }
+
+    .page-mushroom .mushroom-item,
+    .page-mushroom .mushroom-item.safe,
+    .page-mushroom .mushroom-item.warning,
+    .page-mushroom .mushroom-item.danger {
+        font-size: 2.5rem;
+    }
+
+    .page-mushroom .footer-content {
+        grid-template-columns: 1fr !important;
+        gap: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .page-mushroom .footer-bottom {
+        flex-direction: column;
+        gap: 0.75rem;
+        text-align: center;
+    }
+
+    .page-mushroom .scientific-content {
+        grid-template-columns: minmax(0, 1fr) !important;
+        gap: 1.5rem;
+    }
+
+    .page-mushroom .scientific-stats {
+        flex-direction: column;
+    }
+
+    .page-mushroom .planned-stats {
+        grid-template-columns: 1fr;
+    }
+
     .safety-header h2 {
         font-size: 2rem;
     }
-    
+
     .features-grid {
         grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-mushroom .nav-container {
+        padding: 0 12px;
+        gap: 0.4rem;
+    }
+
+    .page-mushroom .nav-logo h2 {
+        font-size: 0.98rem;
+    }
+
+    .page-mushroom .mushroom-hero {
+        padding: 96px 0 48px;
+    }
+
+    .page-mushroom .mushroom-hero .app-badge {
+        font-size: 0.82rem;
+        padding: 7px 12px;
+    }
+
+    .page-mushroom .container {
+        padding-left: 16px;
+        padding-right: 16px;
     }
 }

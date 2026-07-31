@@ -5,6 +5,7 @@
   1. 句号后缺空格（enjoyment.In → enjoyment. In）
   2. 残留 markdown 粗体（**text** → <strong>text</strong>）
   3. 英文正文中混入的中文词
+  4. 根据正文刷新 meta / og:description
 
 用法:
     python3 fix_en_mushroom_content.py [--dry-run]
@@ -12,11 +13,18 @@
 
 import argparse
 import glob
+import html
 import os
 import re
 import sys
 
+from restyle_mushroom_articles import build_description, strip_tags
+
 ROOT = os.path.dirname(os.path.abspath(__file__))
+
+RE_HEAD_TITLE = re.compile(r'<title>(.*?)</title>', re.S | re.I)
+RE_META_DESC = re.compile(r'<meta name="description" content="([^"]*)"', re.I)
+RE_OG_DESC = re.compile(r'<meta property="og:description" content="([^"]*)"', re.I)
 
 # 中文残留 → 正确英文（按长度降序匹配，避免短词抢先）
 ZH_FIXES = [
@@ -37,7 +45,6 @@ ZH_FIXES = [
     ('体质', 'constitution'),
 ]
 
-# 常见缩写：其后紧跟大写不算缺空格
 ABBR_GUARD = re.compile(
     r'(?:Ph|Dr|Mr|Mrs|Ms|Jr|Sr|vs|etc|e\.g|i\.e|U\.S|U\.K|Fig|Vol|No|'
     r'approx|Inc|Ltd|Co|Prof|Gen|Corp|al|St|Ave|Rd)\.$',
@@ -48,8 +55,31 @@ RE_STUCK_PERIOD = re.compile(r'([a-z])\.([A-Z])')
 RE_MD_BOLD = re.compile(r'\*\*([^*\n]+?)\*\*')
 
 
+def page_title(raw):
+    match = RE_HEAD_TITLE.search(raw)
+    if not match:
+        return ''
+    title = strip_tags(match.group(1))
+    return re.sub(r'\s*-\s*MushroomAiSnap\s*$', '', title).strip()
+
+
+def sync_meta_descriptions(raw, body_html, fallback_title):
+    """用正文首段生成 description，写回 meta 与 og:description。"""
+    desc = build_description(body_html, fallback_title)
+    esc = html.escape(desc, quote=True)
+
+    updated = raw
+    updated, n1 = RE_META_DESC.subn(
+        '<meta name="description" content="{}"'.format(esc), updated, count=1)
+    updated, n2 = RE_OG_DESC.subn(
+        '<meta property="og:description" content="{}"'.format(esc), updated, count=1)
+
+    if n1 == 0 or n2 == 0:
+        return raw, False
+    return updated, updated != raw
+
+
 def fix_stuck_periods(text):
-    """在文本节点语境下修复句号后缺空格；跳过缩写与标签属性。"""
     parts = re.split(r'(<[^>]+>)', text)
     out = []
     for part in parts:
@@ -61,7 +91,6 @@ def fix_stuck_periods(text):
             left = part[max(0, m.start() - 12):m.start() + 1]
             if ABBR_GUARD.search(left):
                 return m.group(0)
-            # 单字母缩写：A.B / J.K
             if re.search(r'\b[A-Z]\.$', left):
                 return m.group(0)
             return '{}. {}'.format(m.group(1), m.group(2))
@@ -71,7 +100,6 @@ def fix_stuck_periods(text):
 
 
 def fix_markdown_bold(text):
-    """把正文里的 **bold** 转成 <strong>，跳过已在标签内的情况。"""
     parts = re.split(r'(<[^>]+>)', text)
     out = []
     for part in parts:
@@ -86,9 +114,7 @@ def fix_chinese(text):
     for zh, en in ZH_FIXES:
         if zh in text:
             text = text.replace(zh, en)
-    # 清理替换后可能出现的双空格
-    text = re.sub(r' {2,}', ' ', text)
-    return text
+    return re.sub(r' {2,}', ' ', text)
 
 
 def process(path, dry_run=False):
@@ -100,22 +126,23 @@ def process(path, dry_run=False):
         return False, 'no main'
 
     before = body_match.group(2)
-    after = before
-    after = fix_chinese(after)
-    after = fix_markdown_bold(after)
-    after = fix_stuck_periods(after)
+    after = fix_stuck_periods(fix_markdown_bold(fix_chinese(before)))
 
-    if after == before:
+    title = page_title(raw)
+    new_raw = raw[:body_match.start(2)] + after + raw[body_match.end(2):]
+    new_raw, meta_changed = sync_meta_descriptions(new_raw, after, title)
+
+    if new_raw == raw:
         return False, 'unchanged'
 
-    # 统计改动
     stats = {
+        'body': before != after,
+        'meta': meta_changed,
         'zh': sum(1 for zh, _ in ZH_FIXES if zh in before),
         'md': len(RE_MD_BOLD.findall(before)),
         'period': len(RE_STUCK_PERIOD.findall(before)),
     }
 
-    new_raw = raw[:body_match.start(2)] + after + raw[body_match.end(2):]
     if not dry_run:
         with open(path, 'w', encoding='utf-8') as fh:
             fh.write(new_raw)
@@ -130,21 +157,25 @@ def main():
 
     files = sorted(glob.glob(os.path.join(ROOT, 'mushroom/en/*/*.html')))
     changed = skipped = 0
-    totals = {'zh': 0, 'md': 0, 'period': 0}
+    totals = {'body': 0, 'meta': 0, 'zh': 0, 'md': 0, 'period': 0}
 
     for path in files:
         ok, info = process(path, args.dry_run)
         if ok:
             changed += 1
-            for k in totals:
-                totals[k] += info[k]
+            if isinstance(info, dict):
+                for k in totals:
+                    if k in ('body', 'meta'):
+                        totals[k] += 1 if info.get(k) else 0
+                    else:
+                        totals[k] += info.get(k, 0)
         else:
             skipped += 1
 
     print('EN 内容修复：改写 {} 个，跳过 {} 个{}'.format(
         changed, skipped, '（演练）' if args.dry_run else ''))
-    print('  中文残留命中文件: {}  markdown 粗体: {}  句号缺空格: {}'.format(
-        totals['zh'], totals['md'], totals['period']))
+    print('  正文: {}  meta: {}  中文: {}  markdown: {}  句号: {}'.format(
+        totals['body'], totals['meta'], totals['zh'], totals['md'], totals['period']))
     return 0
 
 

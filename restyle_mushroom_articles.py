@@ -24,6 +24,7 @@ import sys
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 MUSHROOM_DIR = os.path.join(ROOT, 'mushroom')
+SITE_BASE = 'https://birdid.net'
 
 LANGS = ['de', 'en', 'es', 'fr', 'it', 'ja', 'ko', 'pt', 'ru', 'zh']
 CATEGORIES = [
@@ -367,6 +368,7 @@ def render(lang, category, slug, title, quote, minutes, difficulty, body_html):
     ui = UI.get(lang, UI['en'])
     theme = THEME_COLOR[category]
     hero = '../../images/{}_{}.webp'.format(category, slug)
+    og_image = '{}/mushroom/images/{}_{}.webp'.format(SITE_BASE, category, slug)
 
     esc_title = html.escape(title, quote=True)
     description = build_description(body_html, title)
@@ -401,6 +403,7 @@ def render(lang, category, slug, title, quote, minutes, difficulty, body_html):
         category=category,
         theme=theme,
         hero=hero,
+        og_image=html.escape(og_image, quote=True),
         title=esc_title,
         description=esc_desc,
         quote_block=quote_html,
@@ -426,7 +429,7 @@ TEMPLATE = '''<!DOCTYPE html>
 <meta property="og:type" content="article"/>
 <meta property="og:title" content="{title}"/>
 <meta property="og:description" content="{description}"/>
-<meta property="og:image" content="{hero}"/>
+<meta property="og:image" content="{og_image}"/>
 <link rel="icon" type="image/svg+xml" href="../../../favicon.svg"/>
 <link rel="preload" as="image" href="{hero}"/>
 <link rel="stylesheet" href="../../assets/article.css"/>

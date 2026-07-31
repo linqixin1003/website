@@ -9,10 +9,10 @@
     var body = doc.body;
 
     /* ----------------------------------------------------------------------
-       Loading：等待首屏图片就绪后淡出，最长不超过 MAX_WAIT
+       Loading：DOM 就绪后预载 hero，最长 MAX_WAIT 兜底
        ---------------------------------------------------------------------- */
-    var MAX_WAIT = 3200;   // 网络慢时的兜底上限
-    var MIN_SHOW = 420;    // 避免闪一下就消失
+    var MAX_WAIT = 3200;
+    var MIN_SHOW = 420;
     var started = Date.now();
     var settled = false;
 
@@ -36,7 +36,6 @@
         }, wait);
     }
 
-    // hero 背景图是 CSS background，需要手动预载才能知道何时就绪
     function waitForHero() {
         var hero = doc.querySelector('.hero-image');
         if (!hero) { return revealPage(); }
@@ -56,16 +55,10 @@
 
     setTimeout(revealPage, MAX_WAIT);
 
-    if (doc.readyState === 'complete') {
-        waitForHero();
+    if (doc.readyState === 'loading') {
+        doc.addEventListener('DOMContentLoaded', waitForHero, { once: true });
     } else {
-        window.addEventListener('load', waitForHero);
-        // DOM 就绪即可开始预载，不必等所有子资源
-        if (doc.readyState === 'loading') {
-            doc.addEventListener('DOMContentLoaded', waitForHero);
-        } else {
-            waitForHero();
-        }
+        waitForHero();
     }
 
     /* ----------------------------------------------------------------------
@@ -102,18 +95,12 @@
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onScroll, { passive: true });
 
-    /* ----------------------------------------------------------------------
-       回到顶部
-       ---------------------------------------------------------------------- */
     if (toTop) {
         toTop.addEventListener('click', function () {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     }
 
-    /* ----------------------------------------------------------------------
-       分享：优先系统分享，降级为复制链接
-       ---------------------------------------------------------------------- */
     var share = doc.querySelector('.m-topbar__share');
     if (share) {
         share.addEventListener('click', function () {
@@ -129,7 +116,7 @@
                     var prev = share.textContent;
                     share.textContent = '✓';
                     setTimeout(function () { share.textContent = prev; }, 1600);
-                });
+                }).catch(function () { /* 权限拒绝 */ });
             }
         });
     }

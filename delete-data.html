@@ -17,7 +17,7 @@
     * { box-sizing: border-box; }
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      max-width: 680px;
+      max-width: 720px;
       margin: 40px auto;
       padding: 0 20px 48px;
       color: var(--text);
@@ -29,25 +29,17 @@
       justify-content: flex-end;
       margin-bottom: 12px;
     }
-    .lang-switch {
-      display: inline-flex;
+    .lang-select {
+      appearance: none;
+      -webkit-appearance: none;
       border: 1px solid var(--line);
       border-radius: 999px;
-      overflow: hidden;
-      background: var(--card);
-    }
-    .lang-switch button {
-      border: 0;
-      background: transparent;
-      padding: 8px 14px;
-      font-size: 0.88rem;
+      background: var(--card) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23666' d='M1 1l5 5 5-5'/%3E%3C/svg%3E") no-repeat right 12px center;
+      padding: 8px 36px 8px 14px;
+      font-size: 0.9rem;
       font-weight: 600;
-      color: var(--muted);
+      color: var(--text);
       cursor: pointer;
-    }
-    .lang-switch button.active {
-      background: var(--accent);
-      color: #fff;
     }
     .card {
       background: var(--card);
@@ -72,118 +64,345 @@
     ul, ol { padding-left: 1.2rem; }
     li { margin: 0.35rem 0; }
     a { color: #2F6FED; }
-    [data-i18n-lang] { display: none; }
-    html[lang="en"] [data-i18n-lang="en"],
-    html[lang="zh"] [data-i18n-lang="zh"] { display: block; }
   </style>
 </head>
 <body>
   <div class="topbar">
-    <div class="lang-switch" role="group" aria-label="Language">
-      <button type="button" data-lang="en" class="active" aria-pressed="true">English</button>
-      <button type="button" data-lang="zh" aria-pressed="false">中文</button>
-    </div>
+    <label for="langSelect" class="visually-hidden" style="position:absolute;left:-9999px;">Language</label>
+    <select id="langSelect" class="lang-select" aria-label="Language"></select>
   </div>
 
   <div class="card">
-    <div data-i18n-lang="en">
-      <h1>FoodSnap · Delete Data</h1>
-      <p class="meta">
-        Lingjue Tech · FoodSnap<br>
-        You can delete some or all of your data <strong>without deleting your account</strong>.
-      </p>
-
-      <h2>How to delete data in the app</h2>
-      <div class="steps">
-        <ol>
-          <li>Open the <strong>FoodSnap</strong> app</li>
-          <li>Go to your <strong>Food Diary / Today</strong> log</li>
-          <li>Open a food entry and tap <strong>Delete</strong>, or remove individual water / related records from their screens</li>
-          <li>Confirm deletion — the selected record is removed while your account remains active</li>
-        </ol>
-      </div>
-
-      <div class="info">
-        <strong>What gets deleted:</strong>
-        <ul>
-          <li>Individual food diary entries and related nutrition totals for those entries</li>
-          <li>Water intake records you choose to remove</li>
-          <li>Other logs you delete in-app</li>
-        </ul>
-        <p>Account credentials and remaining profile settings are kept until you delete the account.</p>
-      </div>
-
-      <p>
-        To delete your entire account, email
-        <a href="mailto:lingjuetech@gmail.com">lingjuetech@gmail.com</a>
-        or use in-app: Settings → Account Info → Delete Account.
-      </p>
-
-      <div class="contact">
-        <strong>Need help?</strong><br>
-        Email <a href="mailto:lingjuetech@gmail.com">lingjuetech@gmail.com</a>
-        with your registered email and describe which data to remove.
-        We will process requests within 7 business days.
-      </div>
+    <h1 id="title"></h1>
+    <p class="meta" id="meta"></p>
+    <h2 id="howTitle"></h2>
+    <div class="steps"><ol id="steps"></ol></div>
+    <div class="info">
+      <strong id="whatTitle"></strong>
+      <ul id="whatList"></ul>
+      <p id="whatNote"></p>
     </div>
-
-    <div data-i18n-lang="zh">
-      <h1>FoodSnap · 删除数据</h1>
-      <p class="meta">
-        Lingjue Tech · FoodSnap（拍照记热量）<br>
-        您可以删除部分或全部记录，而<strong>不必删除账号</strong>。
-      </p>
-
-      <h2>如何在应用内删除数据</h2>
-      <div class="steps">
-        <ol>
-          <li>打开 <strong>FoodSnap（拍照记热量）</strong> 应用</li>
-          <li>进入 <strong>饮食日记 / 今日记录</strong></li>
-          <li>打开某条饮食记录并点击 <strong>删除</strong>；饮水等记录也可在对应页面单独删除</li>
-          <li>确认后仅删除所选内容，账号继续保留</li>
-        </ol>
-      </div>
-
-      <div class="info">
-        <strong>会删除哪些数据：</strong>
-        <ul>
-          <li>您选择删除的单条饮食记录及其对应营养汇总</li>
-          <li>您选择删除的饮水等记录</li>
-          <li>您在应用内主动移除的其他历史条目</li>
-        </ul>
-        <p>账号与未删除的个人资料会继续保留，直到您删除整个账号。</p>
-      </div>
-
-      <p>
-        若需删除整个账号，请发送邮件至
-        <a href="mailto:lingjuetech@gmail.com">lingjuetech@gmail.com</a>
-        ，或在应用内：设置 → 账号信息 → 删除账号。
-      </p>
-
-      <div class="contact">
-        <strong>需要帮助？</strong><br>
-        请发送邮件至 <a href="mailto:lingjuetech@gmail.com">lingjuetech@gmail.com</a>，
-        附上注册邮箱并说明要删除的数据。我们将在 7 个工作日内处理。
-      </div>
+    <p id="accountNote"></p>
+    <div class="contact">
+      <strong id="helpTitle"></strong><br>
+      <span id="helpBody"></span>
     </div>
   </div>
 
   <script>
     (function () {
       var STORAGE_KEY = "birdid.delete-data.lang";
-      var buttons = document.querySelectorAll(".lang-switch button");
+      var EMAIL = "lingjuetech@gmail.com";
+      var MAIL = '<a href="mailto:' + EMAIL + '">' + EMAIL + "</a>";
+
+      // FoodSnap T1 locales: en · zh · zh-TW · ja · ko · es · pt · fr · de · it · nl
+      var LANGS = [
+        { code: "en", label: "English" },
+        { code: "zh", label: "简体中文" },
+        { code: "zh-TW", label: "繁體中文" },
+        { code: "ja", label: "日本語" },
+        { code: "ko", label: "한국어" },
+        { code: "es", label: "Español" },
+        { code: "pt", label: "Português" },
+        { code: "fr", label: "Français" },
+        { code: "de", label: "Deutsch" },
+        { code: "it", label: "Italiano" },
+        { code: "nl", label: "Nederlands" }
+      ];
+
+      var I18N = {
+        en: {
+          docTitle: "Delete Data - FoodSnap | Lingjue Tech",
+          title: "FoodSnap · Delete Data",
+          meta: "Lingjue Tech · FoodSnap<br>You can delete some or all of your data <strong>without deleting your account</strong>.",
+          howTitle: "How to delete data in the app",
+          steps: [
+            "Open the <strong>FoodSnap</strong> app",
+            "Go to your <strong>Food Diary / Today</strong> log",
+            "Open a food entry and tap <strong>Delete</strong>, or remove individual water / related records from their screens",
+            "Confirm deletion — the selected record is removed while your account remains active"
+          ],
+          whatTitle: "What gets deleted:",
+          whatList: [
+            "Individual food diary entries and related nutrition totals for those entries",
+            "Water intake records you choose to remove",
+            "Other logs you delete in-app"
+          ],
+          whatNote: "Account credentials and remaining profile settings are kept until you delete the account.",
+          accountNote: "To delete your entire account, email " + MAIL + " or use in-app: Settings → Account Info → Delete Account.",
+          helpTitle: "Need help?",
+          helpBody: "Email " + MAIL + " with your registered email and describe which data to remove. We will process requests within 7 business days."
+        },
+        zh: {
+          docTitle: "删除数据 - FoodSnap | Lingjue Tech",
+          title: "FoodSnap · 删除数据",
+          meta: "Lingjue Tech · FoodSnap（拍照记热量）<br>您可以删除部分或全部记录，而<strong>不必删除账号</strong>。",
+          howTitle: "如何在应用内删除数据",
+          steps: [
+            "打开 <strong>FoodSnap（拍照记热量）</strong> 应用",
+            "进入 <strong>饮食日记 / 今日记录</strong>",
+            "打开某条饮食记录并点击 <strong>删除</strong>；饮水等记录也可在对应页面单独删除",
+            "确认后仅删除所选内容，账号继续保留"
+          ],
+          whatTitle: "会删除哪些数据：",
+          whatList: [
+            "您选择删除的单条饮食记录及其对应营养汇总",
+            "您选择删除的饮水等记录",
+            "您在应用内主动移除的其他历史条目"
+          ],
+          whatNote: "账号与未删除的个人资料会继续保留，直到您删除整个账号。",
+          accountNote: "若需删除整个账号，请发送邮件至 " + MAIL + "，或在应用内：设置 → 账号信息 → 删除账号。",
+          helpTitle: "需要帮助？",
+          helpBody: "请发送邮件至 " + MAIL + "，附上注册邮箱并说明要删除的数据。我们将在 7 个工作日内处理。"
+        },
+        "zh-TW": {
+          docTitle: "刪除資料 - FoodSnap | Lingjue Tech",
+          title: "FoodSnap · 刪除資料",
+          meta: "Lingjue Tech · FoodSnap（拍照記熱量）<br>您可以刪除部分或全部記錄，而<strong>不必刪除帳號</strong>。",
+          howTitle: "如何在應用內刪除資料",
+          steps: [
+            "開啟 <strong>FoodSnap（拍照記熱量）</strong> 應用",
+            "進入 <strong>飲食日記 / 今日記錄</strong>",
+            "開啟某筆飲食記錄並點擊 <strong>刪除</strong>；飲水等記錄也可在對應頁面單獨刪除",
+            "確認後僅刪除所選內容，帳號繼續保留"
+          ],
+          whatTitle: "會刪除哪些資料：",
+          whatList: [
+            "您選擇刪除的單筆飲食記錄及其對應營養彙總",
+            "您選擇刪除的飲水等記錄",
+            "您在應用內主動移除的其他歷史項目"
+          ],
+          whatNote: "帳號與未刪除的個人資料會繼續保留，直到您刪除整個帳號。",
+          accountNote: "若需刪除整個帳號，請寄信至 " + MAIL + "，或在應用內：設定 → 帳號資訊 → 刪除帳號。",
+          helpTitle: "需要協助？",
+          helpBody: "請寄信至 " + MAIL + "，附上註冊信箱並說明要刪除的資料。我們將在 7 個工作天內處理。"
+        },
+        ja: {
+          docTitle: "データの削除 - FoodSnap | Lingjue Tech",
+          title: "FoodSnap · データの削除",
+          meta: "Lingjue Tech · FoodSnap<br>アカウントを削除せずに、<strong>データの一部またはすべてを削除</strong>できます。",
+          howTitle: "アプリ内でデータを削除する方法",
+          steps: [
+            "<strong>FoodSnap</strong> アプリを開く",
+            "<strong>食事日記 / 今日</strong> の記録を開く",
+            "食事記録を開き<strong>削除</strong>をタップするか、水分などの記録を各画面から削除する",
+            "確認後、選択した記録のみが削除され、アカウントは残ります"
+          ],
+          whatTitle: "削除されるデータ：",
+          whatList: [
+            "選択した食事日記の記録と、その栄養合計",
+            "削除を選択した水分摂取記録",
+            "アプリ内で削除したその他の履歴"
+          ],
+          whatNote: "アカウント情報と残りのプロフィール設定は、アカウント削除まで保持されます。",
+          accountNote: "アカウント全体を削除する場合は " + MAIL + " へメールするか、アプリ内：設定 → アカウント情報 → アカウント削除 を使用してください。",
+          helpTitle: "サポートが必要ですか？",
+          helpBody: "登録メールアドレスと削除したいデータを明記して " + MAIL + " までご連絡ください。7営業日以内に対応します。"
+        },
+        ko: {
+          docTitle: "데이터 삭제 - FoodSnap | Lingjue Tech",
+          title: "FoodSnap · 데이터 삭제",
+          meta: "Lingjue Tech · FoodSnap<br>계정을 삭제하지 않고 <strong>일부 또는 전체 데이터를 삭제</strong>할 수 있습니다.",
+          howTitle: "앱에서 데이터를 삭제하는 방법",
+          steps: [
+            "<strong>FoodSnap</strong> 앱을 엽니다",
+            "<strong>식단 다이어리 / 오늘</strong> 기록으로 이동합니다",
+            "식사 기록을 열고 <strong>삭제</strong>를 탭하거나, 물 섭취 등 관련 기록을 각 화면에서 삭제합니다",
+            "확인 후 선택한 기록만 삭제되며 계정은 유지됩니다"
+          ],
+          whatTitle: "삭제되는 데이터:",
+          whatList: [
+            "개별 식단 기록 및 해당 영양 합계",
+            "삭제를 선택한 물 섭취 기록",
+            "앱에서 삭제한 기타 기록"
+          ],
+          whatNote: "계정 자격 증명과 남은 프로필 설정은 계정을 삭제할 때까지 유지됩니다.",
+          accountNote: "계정 전체를 삭제하려면 " + MAIL + " 로 이메일을 보내거나 앱 내: 설정 → 계정 정보 → 계정 삭제를 사용하세요.",
+          helpTitle: "도움이 필요하신가요?",
+          helpBody: "등록된 이메일과 삭제할 데이터를 적어 " + MAIL + " 로 보내 주세요. 영업일 기준 7일 이내에 처리합니다."
+        },
+        es: {
+          docTitle: "Eliminar datos - FoodSnap | Lingjue Tech",
+          title: "FoodSnap · Eliminar datos",
+          meta: "Lingjue Tech · FoodSnap<br>Puedes eliminar parte o todos tus datos <strong>sin eliminar tu cuenta</strong>.",
+          howTitle: "Cómo eliminar datos en la app",
+          steps: [
+            "Abre la app <strong>FoodSnap</strong>",
+            "Ve a tu <strong>diario de comidas / Hoy</strong>",
+            "Abre una entrada de comida y toca <strong>Eliminar</strong>, o elimina registros de agua u otros desde sus pantallas",
+            "Confirma: solo se elimina el registro seleccionado y tu cuenta sigue activa"
+          ],
+          whatTitle: "Qué se elimina:",
+          whatList: [
+            "Entradas individuales del diario de comidas y sus totales nutricionales",
+            "Registros de agua que elijas eliminar",
+            "Otros registros que elimines en la app"
+          ],
+          whatNote: "Las credenciales de la cuenta y el resto del perfil se conservan hasta que elimines la cuenta.",
+          accountNote: "Para eliminar toda la cuenta, escribe a " + MAIL + " o usa en la app: Ajustes → Info de cuenta → Eliminar cuenta.",
+          helpTitle: "¿Necesitas ayuda?",
+          helpBody: "Escribe a " + MAIL + " con tu correo registrado y describe qué datos eliminar. Procesaremos la solicitud en 7 días hábiles."
+        },
+        pt: {
+          docTitle: "Excluir dados - FoodSnap | Lingjue Tech",
+          title: "FoodSnap · Excluir dados",
+          meta: "Lingjue Tech · FoodSnap<br>Você pode excluir parte ou todos os seus dados <strong>sem excluir a conta</strong>.",
+          howTitle: "Como excluir dados no app",
+          steps: [
+            "Abra o app <strong>FoodSnap</strong>",
+            "Vá ao seu <strong>diário de refeições / Hoje</strong>",
+            "Abra um registro de comida e toque em <strong>Excluir</strong>, ou remova registros de água e similares nas respectivas telas",
+            "Confirme: apenas o registro selecionado é removido e a conta permanece ativa"
+          ],
+          whatTitle: "O que é excluído:",
+          whatList: [
+            "Registros individuais do diário de refeições e totais nutricionais relacionados",
+            "Registros de água que você escolher remover",
+            "Outros registros excluídos no app"
+          ],
+          whatNote: "Credenciais da conta e demais configurações de perfil são mantidas até você excluir a conta.",
+          accountNote: "Para excluir a conta inteira, envie e-mail para " + MAIL + " ou use no app: Configurações → Informações da conta → Excluir conta.",
+          helpTitle: "Precisa de ajuda?",
+          helpBody: "Envie e-mail para " + MAIL + " com o e-mail cadastrado e descreva quais dados remover. Processaremos em até 7 dias úteis."
+        },
+        fr: {
+          docTitle: "Supprimer des données - FoodSnap | Lingjue Tech",
+          title: "FoodSnap · Supprimer des données",
+          meta: "Lingjue Tech · FoodSnap<br>Vous pouvez supprimer une partie ou la totalité de vos données <strong>sans supprimer votre compte</strong>.",
+          howTitle: "Comment supprimer des données dans l’app",
+          steps: [
+            "Ouvrez l’app <strong>FoodSnap</strong>",
+            "Allez dans votre <strong>journal alimentaire / Aujourd’hui</strong>",
+            "Ouvrez une entrée et appuyez sur <strong>Supprimer</strong>, ou supprimez l’eau et d’autres enregistrements depuis leurs écrans",
+            "Confirmez : seul l’enregistrement sélectionné est supprimé, le compte reste actif"
+          ],
+          whatTitle: "Ce qui est supprimé :",
+          whatList: [
+            "Entrées individuelles du journal alimentaire et totaux nutritionnels associés",
+            "Enregistrements d’eau que vous choisissez de supprimer",
+            "Autres historiques que vous supprimez dans l’app"
+          ],
+          whatNote: "Les identifiants du compte et le reste du profil sont conservés jusqu’à la suppression du compte.",
+          accountNote: "Pour supprimer tout le compte, écrivez à " + MAIL + " ou utilisez dans l’app : Réglages → Infos du compte → Supprimer le compte.",
+          helpTitle: "Besoin d’aide ?",
+          helpBody: "Écrivez à " + MAIL + " avec votre e-mail d’inscription et précisez les données à supprimer. Nous traiterons la demande sous 7 jours ouvrés."
+        },
+        de: {
+          docTitle: "Daten löschen - FoodSnap | Lingjue Tech",
+          title: "FoodSnap · Daten löschen",
+          meta: "Lingjue Tech · FoodSnap<br>Sie können einen Teil oder alle Ihre Daten löschen, <strong>ohne das Konto zu löschen</strong>.",
+          howTitle: "So löschen Sie Daten in der App",
+          steps: [
+            "Öffnen Sie die App <strong>FoodSnap</strong>",
+            "Gehen Sie zu Ihrem <strong>Ernährungstagebuch / Heute</strong>",
+            "Öffnen Sie einen Essenseintrag und tippen Sie auf <strong>Löschen</strong>, oder entfernen Sie Wasser- und andere Einträge auf den jeweiligen Bildschirmen",
+            "Bestätigen Sie — nur der ausgewählte Eintrag wird entfernt, das Konto bleibt aktiv"
+          ],
+          whatTitle: "Was gelöscht wird:",
+          whatList: [
+            "Einzelne Ernährungseinträge und zugehörige Nährwertsummen",
+            "Wassereinträge, die Sie entfernen",
+            "Andere Protokolle, die Sie in der App löschen"
+          ],
+          whatNote: "Kontodaten und verbleibende Profileinstellungen bleiben erhalten, bis Sie das Konto löschen.",
+          accountNote: "Um das gesamte Konto zu löschen, schreiben Sie an " + MAIL + " oder nutzen Sie in der App: Einstellungen → Kontoinfo → Konto löschen.",
+          helpTitle: "Brauchen Sie Hilfe?",
+          helpBody: "Schreiben Sie an " + MAIL + " mit Ihrer registrierten E-Mail und beschreiben Sie, welche Daten entfernt werden sollen. Wir bearbeiten Anfragen innerhalb von 7 Werktagen."
+        },
+        it: {
+          docTitle: "Elimina dati - FoodSnap | Lingjue Tech",
+          title: "FoodSnap · Elimina dati",
+          meta: "Lingjue Tech · FoodSnap<br>Puoi eliminare alcuni o tutti i tuoi dati <strong>senza eliminare l’account</strong>.",
+          howTitle: "Come eliminare i dati nell’app",
+          steps: [
+            "Apri l’app <strong>FoodSnap</strong>",
+            "Vai al tuo <strong>diario alimentare / Oggi</strong>",
+            "Apri una voce e tocca <strong>Elimina</strong>, oppure rimuovi acqua e altri record dalle relative schermate",
+            "Conferma: viene rimosso solo il record selezionato e l’account resta attivo"
+          ],
+          whatTitle: "Cosa viene eliminato:",
+          whatList: [
+            "Singole voci del diario alimentare e relativi totali nutrizionali",
+            "Registri di acqua che scegli di rimuovere",
+            "Altri log eliminati nell’app"
+          ],
+          whatNote: "Credenziali dell’account e impostazioni del profilo rimanenti restano fino all’eliminazione dell’account.",
+          accountNote: "Per eliminare l’intero account, scrivi a " + MAIL + " oppure usa in-app: Impostazioni → Info account → Elimina account.",
+          helpTitle: "Serve aiuto?",
+          helpBody: "Scrivi a " + MAIL + " con l’email registrata e indica quali dati rimuovere. Elaboreremo la richiesta entro 7 giorni lavorativi."
+        },
+        nl: {
+          docTitle: "Gegevens verwijderen - FoodSnap | Lingjue Tech",
+          title: "FoodSnap · Gegevens verwijderen",
+          meta: "Lingjue Tech · FoodSnap<br>Je kunt een deel of al je gegevens verwijderen <strong>zonder je account te verwijderen</strong>.",
+          howTitle: "Gegevens in de app verwijderen",
+          steps: [
+            "Open de <strong>FoodSnap</strong>-app",
+            "Ga naar je <strong>voedingsdagboek / Vandaag</strong>",
+            "Open een maaltijdvermelding en tik op <strong>Verwijderen</strong>, of verwijder water- en andere records op hun schermen",
+            "Bevestig — alleen het geselecteerde record wordt verwijderd; je account blijft actief"
+          ],
+          whatTitle: "Wat wordt verwijderd:",
+          whatList: [
+            "Individuele dagboekvermeldingen en bijbehorende voedingstotalen",
+            "Waterinname-records die je kiest te verwijderen",
+            "Andere logs die je in de app verwijdert"
+          ],
+          whatNote: "Accountgegevens en overige profielinstellingen blijven bewaard tot je het account verwijdert.",
+          accountNote: "Om je hele account te verwijderen, mail naar " + MAIL + " of gebruik in de app: Instellingen → Accountinfo → Account verwijderen.",
+          helpTitle: "Hulp nodig?",
+          helpBody: "Mail " + MAIL + " met je geregistreerde e-mailadres en beschrijf welke gegevens moeten worden verwijderd. We verwerken verzoeken binnen 7 werkdagen."
+        }
+      };
+
+      var select = document.getElementById("langSelect");
+
+      function normalize(code) {
+        if (!code) return null;
+        var lower = String(code).replace("_", "-").toLowerCase();
+        if (lower === "zh-tw" || lower === "zh-hant" || lower.indexOf("zh-tw") === 0 || lower.indexOf("zh-hant") === 0) {
+          return "zh-TW";
+        }
+        if (lower === "zh" || lower.indexOf("zh-") === 0) return "zh";
+        var base = lower.split("-")[0];
+        return I18N[base] ? base : null;
+      }
+
+      function fillSelect() {
+        select.innerHTML = "";
+        LANGS.forEach(function (lang) {
+          var opt = document.createElement("option");
+          opt.value = lang.code;
+          opt.textContent = lang.label;
+          select.appendChild(opt);
+        });
+      }
+
+      function renderList(el, items) {
+        el.innerHTML = "";
+        items.forEach(function (item) {
+          var li = document.createElement("li");
+          li.innerHTML = item;
+          el.appendChild(li);
+        });
+      }
 
       function setLang(lang) {
-        if (lang !== "en" && lang !== "zh") lang = "en";
-        document.documentElement.lang = lang;
-        document.title = lang === "zh"
-          ? "删除数据 - FoodSnap | Lingjue Tech"
-          : "Delete Data - FoodSnap | Lingjue Tech";
-        buttons.forEach(function (btn) {
-          var active = btn.getAttribute("data-lang") === lang;
-          btn.classList.toggle("active", active);
-          btn.setAttribute("aria-pressed", active ? "true" : "false");
-        });
+        if (!I18N[lang]) lang = "en";
+        var t = I18N[lang];
+        document.documentElement.lang = lang === "zh-TW" ? "zh-Hant" : lang;
+        document.title = t.docTitle;
+        document.getElementById("title").textContent = t.title;
+        document.getElementById("meta").innerHTML = t.meta;
+        document.getElementById("howTitle").textContent = t.howTitle;
+        renderList(document.getElementById("steps"), t.steps);
+        document.getElementById("whatTitle").textContent = t.whatTitle;
+        renderList(document.getElementById("whatList"), t.whatList);
+        document.getElementById("whatNote").textContent = t.whatNote;
+        document.getElementById("accountNote").innerHTML = t.accountNote;
+        document.getElementById("helpTitle").textContent = t.helpTitle;
+        document.getElementById("helpBody").innerHTML = t.helpBody;
+        select.value = lang;
         try { localStorage.setItem(STORAGE_KEY, lang); } catch (e) {}
         if (history.replaceState) {
           var url = new URL(window.location.href);
@@ -193,16 +412,17 @@
         }
       }
 
-      buttons.forEach(function (btn) {
-        btn.addEventListener("click", function () {
-          setLang(btn.getAttribute("data-lang"));
-        });
+      fillSelect();
+      select.addEventListener("change", function () {
+        setLang(select.value);
       });
 
       var params = new URLSearchParams(window.location.search);
-      var fromQuery = params.get("lang");
+      var fromQuery = normalize(params.get("lang"));
       var fromStorage = null;
-      try { fromStorage = localStorage.getItem(STORAGE_KEY); } catch (e) {}
+      try { fromStorage = normalize(localStorage.getItem(STORAGE_KEY)); } catch (e) {}
+
+      // Default English; query/storage can override to a T1 locale.
       setLang(fromQuery || fromStorage || "en");
     })();
   </script>

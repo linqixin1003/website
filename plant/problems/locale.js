@@ -11,7 +11,7 @@
   const captionNote = "Resized and converted to WebP";
 
   async function readJSON(path) {
-    const response = await fetch(new URL(path, guide));
+    const response = await fetch(new URL(path, guide), {cache: "no-cache"});
     if (!response.ok) throw new Error("Language data unavailable");
     return response.json();
   }

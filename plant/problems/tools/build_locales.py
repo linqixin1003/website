@@ -118,6 +118,12 @@ def main():
     parser.add_argument("--jobs", type=int, default=4)
     args = parser.parse_args()
     available = json.loads((LOCALES / "languages.json").read_text())
+    # The WebView needs these names and recovery controls before it can fetch a dictionary.
+    script = (ROOT / "locale.js").read_text()
+    recovery, _ = json.JSONDecoder().raw_decode(script.split("const recoveryLanguages = ", 1)[1])
+    if ({code: labels[0] for code, labels in recovery.items()} != available or
+            any(len(labels) != 3 or not all(labels) for labels in recovery.values())):
+        parser.error("Sync the language names and recovery labels in locale.js with languages.json")
     codes = args.languages or [code for code in available if code not in {"en", "zh-Hans"}]
     glossary_path = LOCALES / "glossary.json"
     glossary = json.loads(glossary_path.read_text()) if glossary_path.exists() else {}

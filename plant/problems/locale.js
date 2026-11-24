@@ -10,10 +10,94 @@
   const requested = current.searchParams.get("lang");
   const captionNote = "Resized and converted to WebP";
 
-  async function readJSON(path) {
-    const response = await fetch(new URL(path, guide), {cache: "no-cache"});
-    if (!response.ok) throw new Error("Language data unavailable");
-    return response.json();
+  // Bootstrap labels stay available even if the language dictionary cannot load.
+  const recoveryLanguages = {
+    "af": ["Afrikaans", "Netwerkfout, probeer asseblief weer!", "Probeer weer"],
+    "am": ["አማርኛ", "የአውታረ መረብ ስህተት፣ እባክዎን እንደገና ይሞክሩ!", "እንደገና ሞክር"],
+    "ar": ["العربية", "خطأ في الشبكة، يرجى المحاولة مرة أخرى!", "إعادة المحاولة"],
+    "az": ["azərbaycan", "Şəbəkə xətası, xahiş edirik, yenidən cəhd edin!", "Təkrar cəhd et"],
+    "be": ["беларуская", "Памылка сеткі, калі ласка, паспрабуйце яшчэ раз!", "Паўтарыць"],
+    "bg": ["български", "Мрежова грешка, моля опитайте отново!", "Опитай отново"],
+    "bn": ["বাংলা", "নেটওয়ার্ক ত্রুটি, অনুগ্রহ করে আবার চেষ্টা করুন!", "পুনরায় চেষ্টা করুন"],
+    "ca": ["català", "Error de xarxa, si us plau, provi de nou!", "Torna a intentar"],
+    "cs": ["čeština", "Chyba site, zkuste to znovu", "Zkusit znovu"],
+    "da": ["dansk", "Netværksfejl, prøv igen!", "Prøv igen"],
+    "de": ["Deutsch", "Netzwerkfehler, bitte erneut versuchen", "Erneut versuchen"],
+    "el": ["Ελληνικά", "σφάλμα δικτύου, δοκιμάστε ξανά!", "Επανάληψη"],
+    "en": ["English", "Network error, please try again!", "Retry"],
+    "es": ["español", "Error de red, ¡inténtalo de nuevo!", "Reintentar"],
+    "et": ["eesti", "Võrguviga, palun proovige uuesti!", "Proovi uuesti"],
+    "eu": ["euskara", "Sare akatsa, mesedez saiatu berriro!", "Saiatu berriro"],
+    "fa": ["فارسی", "خطای شبکه، لطفاً دوباره تلاش کنید!", "تلاش مجدد"],
+    "fi": ["suomi", "verkkovirhe, yritä uudelleen!", "Yritä uudelleen"],
+    "fil": ["Filipino", "Error sa network, pakiusap subukan muli!", "Subukan muli"],
+    "fr": ["français", "Erreur réseau, veuillez réessayer !", "Réessayer"],
+    "gl": ["galego", "Erro de rede, por favor inténtao de novo!", "Reintentar"],
+    "gu": ["ગુજરાતી", "નેટવર્ક ભૂલ, કૃપા કરીને ફરીથી પ્રયાસ કરો!", "ફરી પ્રયાસ કરો"],
+    "he": ["עברית", "שגיאת רשת, נא לנסות שוב!", "נסה שוב"],
+    "hi": ["हिन्दी", "नेटवर्क त्रुटि, कृपया पुनः प्रयास करें!", "पुनः प्रयास"],
+    "hr": ["hrvatski", "Mrežna greška, molimo pokušajte ponovo!", "Pokušaj ponovno"],
+    "hu": ["magyar", "Hálózati hiba, kérjük, próbálja újra!", "Újra"],
+    "hy": ["հայերեն", "Ցանցային սխալ, խնդրում ենք կրկին փորձել!", "Կրկին փորձել"],
+    "id": ["Indonesia", "Kesalahan jaringan, silakan coba lagi!", "Coba Lagi"],
+    "is": ["íslenska", "Netvill, vinsamlegast reyndu aftur!", "Reyna aftur"],
+    "it": ["italiano", "Errore di rete, riprova!", "Riprova"],
+    "ja": ["日本語", "ネットワークエラー、もう一度お試しください！", "再試行"],
+    "ka": ["ქართული", "ქსელის შეცდომა, გთხოვთ, კვლავ სცადოთ!", "ხელახლა ცდა"],
+    "kk": ["қазақ тілі", "Желілік қате, қайта тырыңыз!", "Қайталау"],
+    "km": ["ខ្មែរ", "កំហុសបណ្តាញ សូមព្យាយាមម្តងទៀត!", "ព្យាយាមម្តងទៀត"],
+    "kn": ["ಕನ್ನಡ", "ನೆಟ್‌ವರ್ಕ್ ದೋಷ, ದಯವಿಟ್ಟು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ!", "ಮರುಪ್ರಯತ್ನಿಸಿ"],
+    "ko": ["한국어", "네트워크 오류, 다시 시도해주세요!", "재시도"],
+    "ky": ["кыргызча", "Тармактык ката, кайрадан аракет кылыңыз!", "Кайра аракет"],
+    "lt": ["lietuvių", "Tinklo klaida, prašome bandyti dar kartą!", "Bandyti dar kartą"],
+    "mk": ["македонски", "Мрежна грешка, ве молиме обидете се повторно!", "Обиди се повторно"],
+    "ml": ["മലയാളം", "പിണ്ണിപ്പിന്റെ പിശക്, ദയവായി വീണ്ടും ശ്രമിക്കുക!", "വീണ്ടും ശ്രമിക്കുക"],
+    "mn": ["монгол", "Сүлжээний алдаа, дахин оролд!", "Дахин оролдох"],
+    "mr": ["मराठी", "नेटवर्क त्रुटी, कृपया पुन्हा प्रयत्न करा!", "पुन्हा प्रयत्न करा"],
+    "ms": ["Melayu", "Ralat rangkaian, sila cuba lagi!", "Cuba lagi"],
+    "nb": ["norsk bokmål", "nettverksfeil, prøv igjen!", "Prøv igjen"],
+    "ne": ["नेपाली", "नेटवर्क त्रुटि, कृपया पुन: प्रयास गर्नुहोस्!", "पुन: प्रयास"],
+    "nl": ["Nederlands", "netwerkfout, probeer het opnieuw!", "Opnieuw"],
+    "pl": ["polski", "błąd sieci, spróbuj ponownie!", "Ponów"],
+    "pt": ["português", "Erro de rede, tente novamente", "Tentar novamente"],
+    "ru": ["русский", "Ошибка сети, попробуйте еще раз!", "Повторить"],
+    "si": ["සිංහල", "ජාල දෝෂයක්, කරුණාකර නැවත උත්සාහ කරන්න!", "නැවත උත්සාහ කරන්න"],
+    "sk": ["slovenčina", "chyba siete, skúste znovu!", "Opakovať"],
+    "sq": ["shqip", "Gabim në rrjet, ju lutemi provoni përsëri!", "Riprovo"],
+    "sr": ["српски", "Грешка мреже, покушајте поново!", "Pokušaj ponovo"],
+    "sv": ["svenska", "Natverksfel, forsok igen", "Försök igen"],
+    "ta": ["தமிழ்", "நெட்வொர்க் பிழை, தயவுசெய்து மீண்டும் முயற்சி செய்யுங்கள்!", "மீண்டும் முயற்சி"],
+    "te": ["తెలుగు", "నెట్‌వర్క్ లోపం, దయచేసి మళ్లీ ప్రయత్నించండి!", "మళ్ళీ ప్రయత్నించండి"],
+    "th": ["ไทย", "เครือข่ายผิดพลาด โปรดลองอีกครั้ง!", "ลองใหม่"],
+    "tr": ["Türkçe", "ağ hatası, lütfen tekrar deneyin!", "Tekrar Dene"],
+    "uk": ["українська", "Помилка мережі, спробуйте ще раз!", "Повторити"],
+    "ur": ["اردو", "نیٹ ورک کی خرابی، براہ کرم دوبارہ کوشش کریں!", "دوبارہ کوشش کریں"],
+    "vi": ["Tiếng Việt", "lỗi mạng, vui lòng thử lại!", "Thử lại"],
+    "zh-Hans": ["简体中文", "网络错误，请重试！", "重试"],
+    "zh-Hant-TW": ["中文（繁體，台灣）", "網路錯誤，請重試！", "重試"],
+    "zu": ["isiZulu", "Iphutha lwenethiwekhi, sicela uzame futhi!", "Zama futhi"]
+  };
+
+  async function readDictionary(code, requiredText) {
+    const url = new URL("locales/" + code + ".json", guide);
+    for (let attempt = 0; attempt < 2; attempt++) {
+      const controller = new AbortController();
+      const timer = setTimeout(() => controller.abort(), 8000);
+      try {
+        const response = await fetch(url, {cache: attempt ? "reload" : "no-cache", signal: controller.signal});
+        if (!response.ok) throw new Error("Dictionary HTTP " + response.status);
+        const dictionary = await response.json();
+        if (requiredText.some(key => typeof dictionary?.[key] !== "string" || !dictionary[key].trim())) {
+          throw new Error("Invalid language dictionary");
+        }
+        return dictionary;
+      } catch (error) {
+        if (attempt) throw error;
+      } finally {
+        clearTimeout(timer);
+      }
+      await new Promise(resolve => setTimeout(resolve, 350));
+    }
   }
 
   function resolveLanguage(value, languages) {
@@ -61,6 +145,7 @@
     const previous = header.querySelector("a[lang]");
     if (previous) previous.replaceWith(picker);
     else header.append(picker);
+    return picker;
   }
 
   function renderLanding(languages) {
@@ -116,7 +201,7 @@
   }
 
   async function start() {
-    const languages = await readJSON("locales/languages.json");
+    const languages = Object.fromEntries(Object.entries(recoveryLanguages).map(([code, labels]) => [code, labels[0]]));
     const code = resolveLanguage(requested, languages);
     if (isLanding) {
       if (requested) location.replace(destination(code, "index.html"));
@@ -129,17 +214,49 @@
       location.replace(destination(code, page));
       return;
     }
-    let label = code === "zh-Hans" ? "语言" : "Language";
-    if (code !== "en" && code !== "zh-Hans") {
-      const dictionary = await readJSON("locales/" + code + ".json");
+    const translated = code !== "en" && code !== "zh-Hans";
+    const picker = renderChooser(languages, code, page, translated ? languages[code] : code === "en" ? "Language" : "语言");
+    if (!translated) return;
+
+    const main = document.querySelector("main");
+    const html = document.documentElement;
+    const [name, errorMessage, retryLabel] = recoveryLanguages[code];
+    const panel = document.createElement("section");
+    panel.className = "locale-recovery";
+    panel.lang = code;
+    panel.dir = ["ar","he","fa","ur"].includes(code) ? "rtl" : "ltr";
+    const progress = document.createElement("progress");
+    progress.setAttribute("aria-label", name);
+    panel.append(progress);
+    main.before(panel);
+    main.hidden = true;
+    const originalTitle = document.title;
+    const requiredText = ["Language", originalTitle, ...Array.from(
+      main.querySelectorAll("article h1, article h2, article p, .item-copy span, .item-copy small"),
+      element => element.textContent.trim()
+    ).filter(Boolean)];
+    document.title = name;
+    try {
+      const dictionary = await readDictionary(code, requiredText);
+      document.title = originalTitle;
       localize(dictionary, code);
-      label = dictionary.Language || label;
+      if (picker) picker.setAttribute("aria-label", dictionary.Language || name);
+      main.hidden = false;
+      panel.remove();
+    } catch (error) {
+      console.warn("Plant guide language loading failed", code, error);
+      html.dataset.localeError = "true";
+      panel.setAttribute("role", "alert");
+      const message = document.createElement("p");
+      message.textContent = errorMessage;
+      const retry = document.createElement("button");
+      retry.type = "button";
+      retry.textContent = retryLabel;
+      retry.addEventListener("click", () => location.reload());
+      panel.replaceChildren(message, retry);
+      if (picker) panel.append(picker);
     }
-    renderChooser(languages, code, page, label);
   }
 
-  start().catch(error => {
-    console.warn("Plant guide language loading failed", error);
-    document.documentElement.dataset.localeError = "true";
-  });
+  start();
 })();

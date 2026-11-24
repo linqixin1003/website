@@ -232,7 +232,7 @@
     main.hidden = true;
     const originalTitle = document.title;
     const requiredText = ["Language", originalTitle, ...Array.from(
-      main.querySelectorAll("article h1, article h2, article p, .item-copy span, .item-copy small"),
+      main.querySelectorAll("h1, h2, p, .item span, .item small"),
       element => element.textContent.trim()
     ).filter(Boolean)];
     document.title = name;
